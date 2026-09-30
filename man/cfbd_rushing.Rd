@@ -39,7 +39,7 @@
 
 \subsection{\strong{Get individual rushing plays}}{
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{  cfbd_rushing_plays(year = 2025, week = 5, team = "Texas")
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{  cfbd_rushing_plays(year = 2025, week = 1, team = "Texas")
 }\if{html}{\out{</div>}}
 }
 }
@@ -50,11 +50,11 @@ Every rushing endpoint below shares one production block, documented once here
 rather than repeated in each returns table. Player frames carry 24 of these
 columns; team frames carry 26, adding \code{touchdown_status_available} and
 \code{rushing_touchdowns}.\tabular{lll}{
-   col_name \tab types \tab description \cr
+   col_name \tab type \tab description \cr
    attempts \tab integer \tab Rush attempts. \cr
    rushing_yards_available \tab integer \tab Attempts for which rushing yards were parsed (denominator for yardage means). \cr
    total_rushing_yards \tab integer \tab Sum of rushing yards over those attempts. \cr
-   yards_per_carry \tab numeric \tab Mean rushing yards per carry. \cr
+   yards_per_carry \tab double \tab Mean rushing yards per carry. \cr
    individual_attempts \tab integer \tab Attempts attributed to a single identified ball carrier. \cr
    unattributed_attempts \tab integer \tab Attempts with no ball carrier resolved from the play text. \cr
    sacks \tab integer \tab Sacks counted within the rushing play set. \cr
@@ -63,18 +63,18 @@ columns; team frames carry 26, adding \code{touchdown_status_available} and
    multi_carrier_attempts \tab integer \tab Attempts where more than one carrier was identified. \cr
    direction_eligible_attempts \tab integer \tab Attempts eligible for a direction split. \cr
    direction_available_attempts \tab integer \tab Attempts for which a direction was actually parsed. \cr
-   success_rate \tab numeric \tab Proportion of attempts meeting the success threshold (0-1). \cr
-   ppa \tab numeric \tab Predicted points added per attempt. \cr
-   total_ppa \tab numeric \tab Sum of predicted points added. \cr
-   line_yards \tab numeric \tab Line yards per carry (Football Outsiders methodology). \cr
-   line_yards_total \tab numeric \tab Sum of line yards. \cr
-   second_level_yards \tab numeric \tab Second-level yards per carry (5-10 yards past the line of scrimmage). \cr
-   second_level_yards_total \tab numeric \tab Sum of second-level yards. \cr
-   open_field_yards \tab numeric \tab Open-field yards per carry (10+ yards past the line of scrimmage). \cr
-   open_field_yards_total \tab numeric \tab Sum of open-field yards. \cr
-   stuff_rate \tab numeric \tab Proportion of carries stopped at or behind the line of scrimmage (0-1). \cr
-   power_success \tab numeric \tab Conversion rate on short-yardage power runs (0-1). \cr
-   explosiveness \tab numeric \tab Mean PPA on successful carries. \cr
+   success_rate \tab double \tab Proportion of attempts meeting the success threshold (0-1). \cr
+   ppa \tab double \tab Predicted points added per attempt. \cr
+   total_ppa \tab double \tab Sum of predicted points added. \cr
+   line_yards \tab double \tab Line yards per carry (Football Outsiders methodology). \cr
+   line_yards_total \tab double \tab Sum of line yards. \cr
+   second_level_yards \tab double \tab Second-level yards per carry (5-10 yards past the line of scrimmage). \cr
+   second_level_yards_total \tab integer \tab Sum of second-level yards. \cr
+   open_field_yards \tab double \tab Open-field yards per carry (yards gained more than 10 yards past the line of scrimmage). \cr
+   open_field_yards_total \tab integer \tab Sum of open-field yards. \cr
+   stuff_rate \tab double \tab Proportion of carries stopped at or behind the line of scrimmage (0-1). \cr
+   power_success \tab double \tab Conversion rate on short-yardage power runs (0-1). \cr
+   explosiveness \tab double \tab Mean PPA on successful carries. \cr
    touchdown_status_available \tab integer \tab \emph{Team frames only.} Attempts for which touchdown status was parsed. \cr
    rushing_touchdowns \tab integer \tab \emph{Team frames only.} Rushing touchdowns over those attempts. \cr
 }
@@ -93,10 +93,26 @@ A 15-column subset repeats for each of four run directions, prefixed
 \verb{directions_<bucket>_}: \code{left}, \code{middle}, \code{right} and \code{unknown} (direction
 could not be parsed).
 
-Each bucket carries \code{carries}, \code{yards}, \code{yards_per_carry}, \code{success_rate},
-\code{ppa}, \code{total_ppa}, \code{line_yards}, \code{line_yards_total}, \code{second_level_yards},
-\code{second_level_yards_total}, \code{open_field_yards}, \code{open_field_yards_total},
-\code{stuff_rate}, \code{power_success} and \code{explosiveness}.
+Each bucket carries these 15 columns, prefixed \verb{directions_<bucket>_}
+(e.g. \code{directions_left_carries}):\tabular{lll}{
+   col_name \tab type \tab description \cr
+   carries \tab integer \tab Carries in this direction. \cr
+   yards \tab integer \tab Rushing yards on those carries. \cr
+   yards_per_carry \tab double \tab Mean rushing yards per carry. \cr
+   success_rate \tab double \tab Proportion of attempts meeting the success threshold (0-1). \cr
+   ppa \tab double \tab Predicted points added per attempt. \cr
+   total_ppa \tab double \tab Sum of predicted points added. \cr
+   line_yards \tab double \tab Line yards per carry (Football Outsiders methodology). \cr
+   line_yards_total \tab double \tab Sum of line yards. \cr
+   second_level_yards \tab double \tab Second-level yards per carry (5-10 yards past the line of scrimmage). \cr
+   second_level_yards_total \tab integer \tab Sum of second-level yards. \cr
+   open_field_yards \tab double \tab Open-field yards per carry (yards gained more than 10 yards past the line of scrimmage). \cr
+   open_field_yards_total \tab integer \tab Sum of open-field yards. \cr
+   stuff_rate \tab double \tab Proportion of carries stopped at or behind the line of scrimmage (0-1). \cr
+   power_success \tab double \tab Conversion rate on short-yardage power runs (0-1). \cr
+   explosiveness \tab double \tab Mean PPA on successful carries. \cr
+}
+
 
 So a player frame is 5 identity + 24 production + 4 x 15 direction =
 \strong{89 columns}, and a team frame is 3 identity + 2 x (26 + 4 x 15) = \strong{175},

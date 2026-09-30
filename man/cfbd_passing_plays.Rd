@@ -47,7 +47,7 @@ Minimum value accepted: 2025}
 }
 \value{
 \code{\link[=cfbd_passing_plays]{cfbd_passing_plays()}} - A data frame with 39 variables:\tabular{lll}{
-   col_name \tab types \tab description \cr
+   col_name \tab type \tab description \cr
    game_id \tab integer \tab Unique game identifier - \code{game_id}. \cr
    play_id \tab character \tab Unique play identifier - \code{play_id}. \cr
    drive_id \tab character \tab Unique drive identifier - \code{drive_id}. \cr
@@ -84,7 +84,7 @@ Minimum value accepted: 2025}
    is_throwaway \tab logical \tab TRUE when the pass was a deliberate throwaway. \cr
    is_intentional_grounding \tab logical \tab TRUE when the play was flagged intentional grounding. \cr
    parse_status \tab character \tab How completely CFBD parsed the play text for this row. \cr
-   ppa \tab numeric \tab Predicted points added on the play. \cr
+   ppa \tab double \tab Predicted points added on the play. \cr
    success \tab logical \tab TRUE when the play met the success threshold for its down and distance. \cr
    location_analysis_eligible \tab logical \tab TRUE when the play is eligible to be counted in a location split. \cr
 }
@@ -104,7 +104,7 @@ holds values.
 }
 \examples{
 \donttest{
-  try(cfbd_passing_plays(year = 2025, week = 5, team = "Texas"))
+  try(cfbd_passing_plays(year = 2025, week = 1, team = "Texas"))
 }
 }
 \seealso{

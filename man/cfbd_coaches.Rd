@@ -28,23 +28,28 @@ Minimum value accepted: 1886}
 \item{max_year}{(\emph{Integer} optional): Maximum Year filter (inclusive), 4 digit format (\emph{YYYY})}
 }
 \value{
-Returns a tibble with 15 variables:\tabular{lll}{
-   col_name \tab types \tab description \cr
+A data frame with one row per coach per season coached, sorted by \code{year},
+and 19 variables. An empty data frame is returned if the request fails.\tabular{lll}{
+   col_name \tab type \tab description \cr
+   id \tab integer \tab CFBD coach id; the \code{coach_id} of \code{\link[=cfbd_coaches_profile]{cfbd_coaches_profile()}}. \cr
    first_name \tab character \tab First name of coach. \cr
    last_name \tab character \tab Last name of coach. \cr
-   hire_date \tab character \tab Hire date of coach (ISO date string from CFBD). \cr
+   hire_date \tab character \tab Hire date of coach (ISO 8601 date-time string from CFBD); NA when unknown. \cr
+   team_id \tab integer \tab CFBD team id of the school for the listed season. \cr
    school \tab character \tab School of coach for the listed season. \cr
+   conference \tab character \tab Conference of the school for the listed season. \cr
    year \tab integer \tab Four-digit season year of record. \cr
    games \tab integer \tab Games coached during the season. \cr
    wins \tab integer \tab Wins for the season. \cr
    losses \tab integer \tab Losses for the season. \cr
    ties \tab integer \tab Ties for the season. \cr
+   win_percentage \tab double \tab Winning percentage for the season as a proportion 0-1 (0.538 for 7-6). \cr
    preseason_rank \tab integer \tab Preseason AP rank for the school of coach (NA if unranked). \cr
    postseason_rank \tab integer \tab Postseason AP rank for the school of coach (NA if unranked). \cr
-   srs \tab character \tab Simple Rating System adjustment for team. \cr
-   sp_overall \tab character \tab Bill Connelly's SP+ overall rating for team. \cr
-   sp_offense \tab character \tab Bill Connelly's SP+ offense rating for team. \cr
-   sp_defense \tab character \tab Bill Connelly's SP+ defense rating for team. \cr
+   srs \tab double \tab Simple Rating System (SRS) rating for the team's season, in points relative to an average team. \cr
+   sp_overall \tab double \tab Bill Connelly's SP+ overall rating for team. \cr
+   sp_offense \tab double \tab Bill Connelly's SP+ offense rating for team. \cr
+   sp_defense \tab double \tab Bill Connelly's SP+ defense rating for team. \cr
 }
 }
 \description{

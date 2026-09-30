@@ -39,7 +39,7 @@
 
 \subsection{\strong{Get individual passing plays}}{
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{  cfbd_passing_plays(year = 2025, week = 5, team = "Texas")
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{  cfbd_passing_plays(year = 2025, week = 1, team = "Texas")
 }\if{html}{\out{</div>}}
 }
 }
@@ -49,24 +49,24 @@
 Every passing endpoint below shares one 23-column production block. It is
 documented once here rather than repeated in each returns table, because the
 team endpoints carry it sixteen times over (see \emph{Location splits}).\tabular{lll}{
-   col_name \tab types \tab description \cr
+   col_name \tab type \tab description \cr
    attempts \tab integer \tab Pass attempts. \cr
    completions \tab integer \tab Completed passes. \cr
    incompletions \tab integer \tab Incomplete passes. \cr
    interceptions \tab integer \tab Passes intercepted. \cr
-   completion_rate \tab numeric \tab Completions divided by attempts (proportion 0-1). \cr
+   completion_rate \tab double \tab Completions divided by attempts (proportion 0-1). \cr
    air_yards_attempts_available \tab integer \tab Attempts for which air yards were parsed (the denominator for air-yard means). \cr
    total_air_yards \tab integer \tab Sum of air yards over \code{air_yards_attempts_available} attempts. \cr
-   average_depth_of_target \tab numeric \tab Mean air yards per attempt (aDOT). \cr
+   average_depth_of_target \tab double \tab Mean air yards per attempt (aDOT). \cr
    total_yards_attempts_available \tab integer \tab Attempts for which total yards were parsed. \cr
    total_yards \tab integer \tab Sum of passing yards over those attempts. \cr
    yards_after_catch_attempts_available \tab integer \tab Attempts for which yards after catch were parsed. \cr
    total_yards_after_catch \tab integer \tab Sum of yards after catch over those attempts. \cr
-   average_yards_after_catch \tab numeric \tab Mean yards after catch per completion. \cr
-   success_rate \tab numeric \tab Successful attempts divided by \code{success_attempts_available} (proportion 0-1). \cr
-   ppa \tab numeric \tab Predicted points added per attempt. \cr
-   total_ppa \tab numeric \tab Sum of predicted points added. \cr
-   explosiveness \tab numeric \tab Mean PPA on successful attempts. \cr
+   average_yards_after_catch \tab double \tab Mean yards after catch per completion. \cr
+   success_rate \tab double \tab Successful attempts divided by \code{success_attempts_available} (proportion 0-1). \cr
+   ppa \tab double \tab Predicted points added per attempt. \cr
+   total_ppa \tab double \tab Sum of predicted points added. \cr
+   explosiveness \tab double \tab Mean PPA on successful attempts. \cr
    ppa_attempts_available \tab integer \tab Attempts carrying a PPA value (the denominator for \code{ppa}). \cr
    success_attempts_available \tab integer \tab Attempts eligible for the success calculation. \cr
    successful_attempts \tab integer \tab Attempts meeting the success threshold. \cr
@@ -85,13 +85,43 @@ YAC or location stay unknown. Dividing by \code{attempts} instead of the matchin
 \section{Location splits}{
 
 
-The same block repeats for each of seven pass locations, prefixed
-\verb{locations_<bucket>_}:
+Each of seven pass locations carries 23 columns, prefixed \verb{locations_<bucket>_}
+(e.g. \code{locations_short_left_attempts}): the production block without its two
+\verb{location_*} counts, plus \code{yards_per_attempt} and \code{air_yards_per_attempt}.
+The buckets are:
 \itemize{
 \item \code{short_left}, \code{short_middle}, \code{short_right}
 \item \code{deep_left}, \code{deep_middle}, \code{deep_right}
 \item \code{unknown} -- location could not be parsed from the play text
 }
+
+Each bucket's columns:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   attempts \tab integer \tab Pass attempts. \cr
+   completions \tab integer \tab Completed passes. \cr
+   incompletions \tab integer \tab Incomplete passes. \cr
+   interceptions \tab integer \tab Passes intercepted. \cr
+   completion_rate \tab double \tab Completions divided by attempts (proportion 0-1). \cr
+   air_yards_attempts_available \tab integer \tab Attempts for which air yards were parsed (the denominator for air-yard means). \cr
+   total_air_yards \tab integer \tab Sum of air yards over \code{air_yards_attempts_available} attempts. \cr
+   average_depth_of_target \tab double \tab Mean air yards per attempt (aDOT). \cr
+   total_yards_attempts_available \tab integer \tab Attempts for which total yards were parsed. \cr
+   total_yards \tab integer \tab Sum of passing yards over those attempts. \cr
+   yards_after_catch_attempts_available \tab integer \tab Attempts for which yards after catch were parsed. \cr
+   total_yards_after_catch \tab integer \tab Sum of yards after catch over those attempts. \cr
+   average_yards_after_catch \tab double \tab Mean yards after catch per completion. \cr
+   success_rate \tab double \tab Successful attempts divided by \code{success_attempts_available} (proportion 0-1). \cr
+   ppa \tab double \tab Predicted points added per attempt. \cr
+   total_ppa \tab double \tab Sum of predicted points added. \cr
+   explosiveness \tab double \tab Mean PPA on successful attempts. \cr
+   ppa_attempts_available \tab integer \tab Attempts carrying a PPA value (the denominator for \code{ppa}). \cr
+   success_attempts_available \tab integer \tab Attempts eligible for the success calculation. \cr
+   successful_attempts \tab integer \tab Attempts meeting the success threshold. \cr
+   successful_ppa_attempts_available \tab integer \tab Successful attempts carrying a PPA value (the denominator for \code{explosiveness}). \cr
+   yards_per_attempt \tab double \tab Passing yards per attempt: \code{total_yards} divided by \code{total_yards_attempts_available}, to one decimal; NA when no attempt has total yards. \cr
+   air_yards_per_attempt \tab double \tab Air yards per attempt: \code{total_air_yards} divided by \code{air_yards_attempts_available}, to one decimal. The same value as \code{average_depth_of_target}; NA when no attempt has air yards. \cr
+}
+
 
 All seven buckets are always present, including empty ones. So a player frame
 is 5 identity columns + 23 production + 7 x 23 location = \strong{189 columns}, and a

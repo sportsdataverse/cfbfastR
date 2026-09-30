@@ -26,7 +26,7 @@ Minimum value accepted: 2025}
 }
 \value{
 \code{\link[=cfbd_passing_teams_season]{cfbd_passing_teams_season()}} - A data frame with 371 variables:\tabular{lll}{
-   col_name \tab types \tab description \cr
+   col_name \tab type \tab description \cr
    season \tab integer \tab Four-digit season year (e.g. 2025). \cr
    team \tab character \tab Team name. \cr
    conference \tab character \tab Team conference name. \cr

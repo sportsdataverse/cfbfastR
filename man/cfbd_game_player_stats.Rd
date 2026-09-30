@@ -41,7 +41,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 }
 \value{
 \code{\link[=cfbd_game_player_stats]{cfbd_game_player_stats()}} - A data frame with 32 variables:\tabular{lll}{
-   col_name \tab types \tab description \cr
+   col_name \tab type \tab description \cr
    game_id \tab integer \tab CFBD-internal game id; join key to other CFBD endpoints. \cr
    team \tab character \tab Full team name (e.g. "Alabama") for the player's team. \cr
    conference \tab character \tab Conference name of the player's team (e.g. "SEC"). \cr
@@ -49,59 +49,59 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
    team_points \tab integer \tab Total points scored by the player's team in this game. \cr
    athlete_id \tab integer \tab CFBD-internal athlete id for the player. \cr
    athlete_name \tab character \tab Player's display name as reported by CFBD. \cr
-   defensive_td \tab numeric \tab Defensive touchdowns scored by the player. \cr
-   defensive_qb_hur \tab numeric \tab Quarterback hurries credited to the player. \cr
-   defensive_pd \tab numeric \tab Passes defended (pass breakups) by the player. \cr
-   defensive_tfl \tab numeric \tab Tackles for loss credited to the player. \cr
-   defensive_sacks \tab numeric \tab Sacks credited to the player. \cr
-   defensive_solo \tab numeric \tab Solo (unassisted) tackles by the player. \cr
-   defensive_tot \tab numeric \tab Total tackles (solo plus assisted) by the player. \cr
-   fumbles_rec \tab numeric \tab Fumbles recovered by the player. \cr
-   fumbles_lost \tab numeric \tab Fumbles by the player that were lost to the opposing team. \cr
-   fumbles_fum \tab numeric \tab Fumbles committed by the player. \cr
-   punting_long \tab numeric \tab Longest punt by the player, in yards. \cr
-   punting_in_20 \tab numeric \tab Punts downed inside the opponent 20-yard line. \cr
-   punting_tb \tab numeric \tab Punts resulting in a touchback. \cr
-   punting_avg \tab numeric \tab Average yards per punt. \cr
-   punting_yds \tab numeric \tab Total punting yards (gross). \cr
-   punting_no \tab numeric \tab Number of punts attempted. \cr
-   kicking_pts \tab numeric \tab Total points scored by the kicker (FGs + XPs). \cr
-   kicking_long \tab numeric \tab Longest made field goal, in yards. \cr
-   kicking_pct \tab numeric \tab Field-goal percentage (made / attempted), 0-100. \cr
-   punt_returns_td \tab numeric \tab Touchdowns scored on punt returns. \cr
-   punt_returns_long \tab numeric \tab Longest punt return, in yards. \cr
-   punt_returns_avg \tab numeric \tab Average yards per punt return. \cr
-   punt_returns_yds \tab numeric \tab Total punt-return yards. \cr
-   punt_returns_no \tab numeric \tab Number of punt returns. \cr
-   kick_returns_td \tab numeric \tab Touchdowns scored on kickoff returns. \cr
-   kick_returns_long \tab numeric \tab Longest kickoff return, in yards. \cr
-   kick_returns_avg \tab numeric \tab Average yards per kickoff return. \cr
-   kick_returns_yds \tab numeric \tab Total kickoff-return yards. \cr
-   kick_returns_no \tab numeric \tab Number of kickoff returns. \cr
-   interceptions_td \tab numeric \tab Touchdowns scored on interception returns (pick-sixes). \cr
-   interceptions_yds \tab numeric \tab Interception-return yards. \cr
-   interceptions_int \tab numeric \tab Number of interceptions made by the player. \cr
-   receiving_long \tab numeric \tab Longest reception by the player, in yards. \cr
-   receiving_td \tab numeric \tab Receiving touchdowns. \cr
-   receiving_avg \tab numeric \tab Average yards per reception. \cr
-   receiving_yds \tab numeric \tab Total receiving yards. \cr
-   receiving_rec \tab numeric \tab Number of receptions (catches). \cr
-   rushing_long \tab numeric \tab Longest rush by the player, in yards. \cr
-   rushing_td \tab numeric \tab Rushing touchdowns. \cr
-   rushing_avg \tab numeric \tab Average yards per rushing attempt. \cr
-   rushing_yds \tab numeric \tab Total rushing yards. \cr
-   rushing_car \tab numeric \tab Rushing carries (attempts). \cr
-   passing_int \tab numeric \tab Interceptions thrown by the passer. \cr
-   passing_td \tab numeric \tab Passing touchdowns thrown. \cr
-   passing_avg \tab numeric \tab Yards per pass attempt. \cr
-   passing_yds \tab numeric \tab Total passing yards. \cr
-   passing_completions \tab numeric \tab Pass completions (split from CFBD's \code{C/ATT} field). \cr
-   passing_attempts \tab numeric \tab Pass attempts (split from CFBD's \code{C/ATT} field). \cr
-   passing_qbr \tab numeric \tab ESPN Quarterback Rating (QBR) for the player in this game. \cr
-   kicking_xpm \tab numeric \tab Extra points made (split from CFBD's \code{XP} field). \cr
-   kicking_xpa \tab numeric \tab Extra points attempted (split from CFBD's \code{XP} field). \cr
-   kicking_fgm \tab numeric \tab Field goals made (split from CFBD's \code{FG} field). \cr
-   kicking_fga \tab numeric \tab Field goals attempted (split from CFBD's \code{FG} field). \cr
+   defensive_td \tab double \tab Defensive touchdowns scored by the player. \cr
+   defensive_qb_hur \tab double \tab Quarterback hurries credited to the player. \cr
+   defensive_pd \tab double \tab Passes defended (pass breakups) by the player. \cr
+   defensive_tfl \tab double \tab Tackles for loss credited to the player. \cr
+   defensive_sacks \tab double \tab Sacks credited to the player. \cr
+   defensive_solo \tab double \tab Solo (unassisted) tackles by the player. \cr
+   defensive_tot \tab double \tab Total tackles (solo plus assisted) by the player. \cr
+   fumbles_rec \tab double \tab Fumbles recovered by the player. \cr
+   fumbles_lost \tab double \tab Fumbles by the player that were lost to the opposing team. \cr
+   fumbles_fum \tab double \tab Fumbles committed by the player. \cr
+   punting_long \tab double \tab Longest punt by the player, in yards. \cr
+   punting_in_20 \tab double \tab Punts downed inside the opponent 20-yard line. \cr
+   punting_tb \tab double \tab Punts resulting in a touchback. \cr
+   punting_avg \tab double \tab Average yards per punt. \cr
+   punting_yds \tab double \tab Total punting yards (gross). \cr
+   punting_no \tab double \tab Number of punts attempted. \cr
+   kicking_pts \tab double \tab Total points scored by the kicker (FGs + XPs). \cr
+   kicking_long \tab double \tab Longest made field goal, in yards. \cr
+   kicking_pct \tab double \tab Field-goal percentage (made / attempted), 0-100. \cr
+   punt_returns_td \tab double \tab Touchdowns scored on punt returns. \cr
+   punt_returns_long \tab double \tab Longest punt return, in yards. \cr
+   punt_returns_avg \tab double \tab Average yards per punt return. \cr
+   punt_returns_yds \tab double \tab Total punt-return yards. \cr
+   punt_returns_no \tab double \tab Number of punt returns. \cr
+   kick_returns_td \tab double \tab Touchdowns scored on kickoff returns. \cr
+   kick_returns_long \tab double \tab Longest kickoff return, in yards. \cr
+   kick_returns_avg \tab double \tab Average yards per kickoff return. \cr
+   kick_returns_yds \tab double \tab Total kickoff-return yards. \cr
+   kick_returns_no \tab double \tab Number of kickoff returns. \cr
+   interceptions_td \tab double \tab Touchdowns scored on interception returns (pick-sixes). \cr
+   interceptions_yds \tab double \tab Interception-return yards. \cr
+   interceptions_int \tab double \tab Number of interceptions made by the player. \cr
+   receiving_long \tab double \tab Longest reception by the player, in yards. \cr
+   receiving_td \tab double \tab Receiving touchdowns. \cr
+   receiving_avg \tab double \tab Average yards per reception. \cr
+   receiving_yds \tab double \tab Total receiving yards. \cr
+   receiving_rec \tab double \tab Number of receptions (catches). \cr
+   rushing_long \tab double \tab Longest rush by the player, in yards. \cr
+   rushing_td \tab double \tab Rushing touchdowns. \cr
+   rushing_avg \tab double \tab Average yards per rushing attempt. \cr
+   rushing_yds \tab double \tab Total rushing yards. \cr
+   rushing_car \tab double \tab Rushing carries (attempts). \cr
+   passing_int \tab double \tab Interceptions thrown by the passer. \cr
+   passing_td \tab double \tab Passing touchdowns thrown. \cr
+   passing_avg \tab double \tab Yards per pass attempt. \cr
+   passing_yds \tab double \tab Total passing yards. \cr
+   passing_completions \tab double \tab Pass completions (split from CFBD's \code{C/ATT} field). \cr
+   passing_attempts \tab double \tab Pass attempts (split from CFBD's \code{C/ATT} field). \cr
+   passing_qbr \tab double \tab ESPN Quarterback Rating (QBR) for the player in this game. \cr
+   kicking_xpm \tab double \tab Extra points made (split from CFBD's \code{XP} field). \cr
+   kicking_xpa \tab double \tab Extra points attempted (split from CFBD's \code{XP} field). \cr
+   kicking_fgm \tab double \tab Field goals made (split from CFBD's \code{FG} field). \cr
+   kicking_fga \tab double \tab Field goals attempted (split from CFBD's \code{FG} field). \cr
 }
 }
 \description{

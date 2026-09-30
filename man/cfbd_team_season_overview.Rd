@@ -18,61 +18,163 @@ Minimum value accepted: 2014}
 variables.}
 }
 \value{
-\code{\link[=cfbd_team_season_overview]{cfbd_team_season_overview()}} - A named list of tibbles:
-\code{overview}, \code{record}, \code{ratings}, \code{advanced}, \code{passing}, \code{rushing},
-\code{players}. Nested objects are flattened into prefixed columns. A section CFBD
-did not fill (\code{passing} and \code{rushing} start in 2025) is a 0-column tibble.
+A named list of data frames: \code{overview}, \code{record}, \code{ratings}, \code{advanced},
+\code{passing}, \code{rushing}, \code{players}. The sections have different row grains, so they are
+not joined. A section CFBD did not fill is a 0-column tibble (\code{passing} and \code{rushing}
+start in 2025). Nested objects are flattened into prefixed columns. An empty list is
+returned if the request fails.
 
-\strong{overview} - one row: \code{season} (integer), \code{team_id} (integer), \code{team} (character).
-
-\strong{record} - one row: completed games for the requested season, including
-postseason: \code{games}, \code{wins}, \code{losses}, \code{ties} (integer).
-
-\strong{ratings} - one row: current available ratings for the requested season;
-unavailable systems are \code{NA}. \code{elo} (numeric, latest postgame Elo from a
-completed game this season), then a \verb{<system>_<unit>_rating} (numeric,
-rounded to two decimals) and \verb{<system>_<unit>_rank} (integer, rank within
-the season and division) pair for \code{srs} (no unit), \verb{sp_*} and \verb{fpi_*}
-(\code{overall}, \code{offense}, \code{defense}, \code{special_teams}; FPI values are
-efficiencies, higher is better) and \verb{core_*} (\code{overall}, \code{offense}, \code{defense}).
-
-\strong{advanced} - one row: \code{season} (integer), \code{team}, \code{conference}
-(character), then for each of \code{offense_} and \code{defense_}:\tabular{ll}{
-   col_name (after the side prefix) \tab types \cr
-   plays, drives \tab integer \cr
-   ppa, total_ppa, success_rate, explosiveness \tab numeric \cr
-   power_success, stuff_rate \tab numeric \cr
-   line_yards, line_yards_total \tab numeric, integer \cr
-   second_level_yards, second_level_yards_total \tab numeric, integer \cr
-   open_field_yards, open_field_yards_total \tab numeric, integer \cr
-   total_opportunies, points_per_opportunity \tab integer, numeric (upstream spelling kept) \cr
-   field_position_average_start, field_position_average_predicted_points \tab numeric \cr
-   havoc_total, havoc_front_seven, havoc_db \tab numeric \cr
-   \verb{standard_downs_*}, \verb{passing_downs_*} \tab numeric: \code{rate}, \code{ppa}, \code{success_rate}, \code{explosiveness} (\code{total_ppa} too on defense passing downs) \cr
-   \verb{passing_plays_*}, \verb{rushing_plays_*} \tab numeric: \code{rate}, \code{ppa}, \code{total_ppa}, \code{success_rate}, \code{explosiveness} \cr
+\strong{overview} - one row:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   season \tab integer \tab Season of the overview. \cr
+   team_id \tab integer \tab CFBD team id. \cr
+   team \tab character \tab Team name. \cr
 }
 
 
-\strong{passing} - one row: \code{season} (integer), \code{team}, \code{conference}
-(character), then \verb{offense_*} and \verb{defense_*}, each the passing production
-block (with \verb{locations_<bucket>_*}) documented in \code{\link[=cfbd_passing_teams_season]{cfbd_passing_teams_season()}}.
+\strong{record} - one row, completed games for the requested season, including postseason:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   games \tab integer \tab Completed games. \cr
+   wins \tab integer \tab Wins. \cr
+   losses \tab integer \tab Losses. \cr
+   ties \tab integer \tab Ties. \cr
+}
 
-\strong{rushing} - one row: \code{season} (integer), \code{team}, \code{conference}
-(character), then \verb{offense_*} and \verb{defense_*}, each the rushing production
-block (with \verb{directions_<direction>_*}) documented in \code{\link[=cfbd_rushing_teams_season]{cfbd_rushing_teams_season()}}.
 
-\strong{players} - one row per player per \code{category} (\code{usage} or \code{ppa}):\tabular{lll}{
-   col_name \tab types \tab description \cr
-   category \tab character \tab usage or ppa: which player list the row comes from. \cr
-   season \tab integer \tab Season. \cr
-   id \tab character \tab Player id. \cr
-   name \tab character \tab Player name. \cr
-   position \tab character \tab Player position. \cr
+\strong{ratings} - one row, the ratings currently available for the season. All 25
+columns are always present and typed; a system CFBD has no value for is NA, and any
+rating CFBD adds later follows them. Ratings are rounded to two decimals; each rank
+is the competition rank within the season and division (1 = best), computed on
+unrounded values:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   elo \tab double \tab Latest postgame Elo rating from a completed game this season. \cr
+   srs_rating \tab double \tab Simple Rating System (SRS) rating; higher is better. \cr
+   srs_rank \tab integer \tab Rank of \code{srs_rating}. \cr
+   sp_overall_rating \tab double \tab SP+ overall rating; higher is better. \cr
+   sp_overall_rank \tab integer \tab Rank of \code{sp_overall_rating}. \cr
+   sp_offense_rating \tab double \tab SP+ offense rating; higher is better. \cr
+   sp_offense_rank \tab integer \tab Rank of \code{sp_offense_rating}. \cr
+   sp_defense_rating \tab double \tab SP+ defense rating; lower is better. \cr
+   sp_defense_rank \tab integer \tab Rank of \code{sp_defense_rating}. \cr
+   sp_special_teams_rating \tab double \tab SP+ special teams rating; higher is better. \cr
+   sp_special_teams_rank \tab integer \tab Rank of \code{sp_special_teams_rating}. \cr
+   fpi_overall_rating \tab double \tab FPI overall efficiency (not the FPI points rating); higher is better. \cr
+   fpi_overall_rank \tab integer \tab Rank of \code{fpi_overall_rating}. \cr
+   fpi_offense_rating \tab double \tab FPI offense efficiency; higher is better. \cr
+   fpi_offense_rank \tab integer \tab Rank of \code{fpi_offense_rating}. \cr
+   fpi_defense_rating \tab double \tab FPI defense efficiency; higher is better. \cr
+   fpi_defense_rank \tab integer \tab Rank of \code{fpi_defense_rating}. \cr
+   fpi_special_teams_rating \tab double \tab FPI special teams efficiency; higher is better. \cr
+   fpi_special_teams_rank \tab integer \tab Rank of \code{fpi_special_teams_rating}. \cr
+   core_overall_rating \tab double \tab CFBD CORE overall rating, \code{core_offense_rating} minus \code{core_defense_rating}; higher is better. See \code{\link[=cfbd_ratings_core]{cfbd_ratings_core()}}. \cr
+   core_overall_rank \tab integer \tab Rank of \code{core_overall_rating}. \cr
+   core_offense_rating \tab double \tab CFBD CORE offense rating: points created above average per 100 qualifying plays; higher is better. \cr
+   core_offense_rank \tab integer \tab Rank of \code{core_offense_rating}. \cr
+   core_defense_rating \tab double \tab CFBD CORE defense rating: points allowed above average per 100 qualifying plays; lower is better. \cr
+   core_defense_rank \tab integer \tab Rank of \code{core_defense_rating}. \cr
+}
+
+
+\strong{advanced} - one row. After \code{team} and \code{season}, each base column below appears
+twice, first prefixed \code{defense_} (what opponents did against the team) and then
+prefixed \code{offense_}, in the order shown; \code{conference} comes last. The one exception
+is \code{passing_downs_total_ppa}, which CFBD sends for the defense only
+(\code{defense_passing_downs_total_ppa}). Rates are proportions 0-1 and PPA is predicted
+points added. A double that happens to be a whole number parses as integer in this
+one-row frame (e.g. \code{offense_open_field_yards} in the 2025 Texas sample):\tabular{lll}{
+   col_name \tab type \tab description \cr
    team \tab character \tab Team name. \cr
-   conference \tab character \tab Conference. \cr
-   usage_* \tab numeric \tab Usage rows: \code{overall}, \code{pass}, \code{rush}, \code{first_down}, \code{second_down}, \code{third_down}, \code{standard_downs}, \code{passing_downs}. \cr
-   average_ppa_* \tab numeric \tab PPA rows: average PPA for \code{all}, \code{pass}, \code{rush}, \code{first_down}, \code{second_down}, \code{third_down}, \code{standard_downs}, \code{passing_downs}. \cr
-   total_ppa_* \tab numeric \tab PPA rows: total PPA for the same splits. \cr
+   season \tab integer \tab Season of the statistics. \cr
+   ppa \tab double \tab Average PPA per play. \cr
+   havoc_total \tab double \tab Havoc rate: proportion of plays with a tackle for loss, forced fumble, interception or pass breakup. \cr
+   havoc_front_seven \tab double \tab Havoc rate from front-seven defenders. \cr
+   havoc_db \tab double \tab Havoc rate from defensive backs. \cr
+   plays \tab integer \tab Plays. \cr
+   drives \tab integer \tab Drives. \cr
+   total_ppa \tab double \tab Total PPA over all plays. \cr
+   line_yards \tab double \tab Offensive line yards per rush (Football Outsiders line-yards method). \cr
+   stuff_rate \tab double \tab Proportion of rushes stopped at or behind the line of scrimmage. \cr
+   success_rate \tab double \tab Proportion of plays that were successful. \cr
+   passing_downs_ppa \tab double \tab Average PPA per play on passing downs. \cr
+   passing_downs_rate \tab double \tab Proportion of plays that came on passing downs. \cr
+   passing_downs_total_ppa \tab double \tab Labelled by CFBD as total PPA on passing downs; defense only (\code{defense_passing_downs_total_ppa}). In every sampled season (2023-2025) it equals \code{passing_plays_total_ppa}, so it looks like an upstream copy. \cr
+   passing_downs_success_rate \tab double \tab Success rate on passing downs. \cr
+   passing_downs_explosiveness \tab double \tab Explosiveness (average PPA on successful plays) on passing downs. \cr
+   passing_plays_ppa \tab double \tab Average PPA per pass play. \cr
+   passing_plays_rate \tab double \tab Proportion of plays that were passes. \cr
+   passing_plays_total_ppa \tab double \tab Total PPA on pass plays. \cr
+   passing_plays_success_rate \tab double \tab Success rate on pass plays. \cr
+   passing_plays_explosiveness \tab double \tab Explosiveness on pass plays. \cr
+   power_success \tab double \tab Proportion of short-yardage runs (third or fourth down, 2 yards or fewer to go) that gained a first down or touchdown. \cr
+   rushing_plays_ppa \tab double \tab Average PPA per rush. \cr
+   rushing_plays_rate \tab double \tab Proportion of plays that were rushes. \cr
+   rushing_plays_total_ppa \tab double \tab Total PPA on rushes. \cr
+   rushing_plays_success_rate \tab double \tab Success rate on rushes. \cr
+   rushing_plays_explosiveness \tab double \tab Explosiveness on rushes. \cr
+   explosiveness \tab double \tab Explosiveness: average PPA on successful plays. \cr
+   field_position_average_start \tab double \tab Average drive start, in yards to the end zone being attacked (70 = own 30). \cr
+   field_position_average_predicted_points \tab double \tab Average predicted points of the drive start, from this side's view: the defense value is negative when opponents start with positive expected points. \cr
+   standard_downs_ppa \tab double \tab Average PPA per play on standard downs. \cr
+   standard_downs_rate \tab double \tab Proportion of plays that came on standard downs. \cr
+   standard_downs_success_rate \tab double \tab Success rate on standard downs. \cr
+   standard_downs_explosiveness \tab double \tab Explosiveness on standard downs. \cr
+   line_yards_total \tab integer \tab Total offensive line yards. \cr
+   open_field_yards \tab double \tab Open-field yards per rush: rushing yards gained more than 10 yards past the line of scrimmage, averaged over all rushes. \cr
+   second_level_yards \tab double \tab Second-level yards per rush: rushing yards gained 5 to 10 yards past the line of scrimmage, averaged over all rushes. \cr
+   total_opportunies \tab integer \tab Scoring opportunities: drives with a first down inside the opponent 40 (CFBD spelling kept). \cr
+   open_field_yards_total \tab integer \tab Total open-field yards. \cr
+   points_per_opportunity \tab double \tab Points per scoring opportunity. \cr
+   second_level_yards_total \tab integer \tab Total second-level yards. \cr
+   conference \tab character \tab Team conference. \cr
+}
+
+
+\strong{passing} - one row, 0 columns before 2025:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   * \tab varies \tab The same columns, names and types, as \code{\link[=cfbd_passing_teams_season]{cfbd_passing_teams_season()}} for this team and season, in CFBD key order: \code{team}, \code{season}, the \code{defense_} block, the \code{offense_} block, then \code{conference}; each column is defined there, see \link{cfbd_passing}. \cr
+}
+
+
+\strong{rushing} - one row, 0 columns before 2025:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   * \tab varies \tab The same columns, names and types, as \code{\link[=cfbd_rushing_teams_season]{cfbd_rushing_teams_season()}} for this team and season, in CFBD key order: \code{team}, \code{season}, the \code{defense_} block, the \code{offense_} block, then \code{conference}; each column is defined there, see \link{cfbd_rushing}. \cr
+}
+
+
+\strong{players} - one row per player per \code{category}; a player in both CFBD lists has two
+rows, and the other list's columns are NA on each:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   category \tab character \tab Which CFBD player list the row comes from: ppa or usage. \cr
+   id \tab character \tab CFBD athlete id. \cr
+   name \tab character \tab Player name. \cr
+   team \tab character \tab Team name. \cr
+   season \tab integer \tab Season. \cr
+   position \tab character \tab Position abbreviation (e.g. QB, RB, WR). \cr
+   conference \tab character \tab Team conference. \cr
+   total_ppa_all \tab double \tab Total PPA on all of the player's plays; NA on usage rows. \cr
+   total_ppa_pass \tab double \tab Total PPA on pass plays; NA on usage rows. \cr
+   total_ppa_rush \tab double \tab Total PPA on rushes; NA on usage rows. \cr
+   total_ppa_first_down \tab double \tab Total PPA on first downs; NA on usage rows. \cr
+   total_ppa_third_down \tab double \tab Total PPA on third downs; NA on usage rows. \cr
+   total_ppa_second_down \tab double \tab Total PPA on second downs; NA on usage rows. \cr
+   total_ppa_passing_downs \tab double \tab Total PPA on passing downs; NA on usage rows. \cr
+   total_ppa_standard_downs \tab double \tab Total PPA on standard downs; NA on usage rows. \cr
+   average_ppa_all \tab double \tab Average PPA per play on all of the player's plays; NA on usage rows. \cr
+   average_ppa_pass \tab double \tab Average PPA per pass play; NA on usage rows. \cr
+   average_ppa_rush \tab double \tab Average PPA per rush; NA on usage rows. \cr
+   average_ppa_first_down \tab double \tab Average PPA per first-down play; NA on usage rows. \cr
+   average_ppa_third_down \tab double \tab Average PPA per third-down play; NA on usage rows. \cr
+   average_ppa_second_down \tab double \tab Average PPA per second-down play; NA on usage rows. \cr
+   average_ppa_passing_downs \tab double \tab Average PPA per passing-down play; NA on usage rows. \cr
+   average_ppa_standard_downs \tab double \tab Average PPA per standard-down play; NA on usage rows. \cr
+   usage_pass \tab double \tab Player share of team passing usage (proportion 0-1); NA on ppa rows. \cr
+   usage_rush \tab double \tab Player share of team rushing usage (proportion 0-1); NA on ppa rows. \cr
+   usage_overall \tab double \tab Player share of overall offensive usage (proportion 0-1); NA on ppa rows. \cr
+   usage_first_down \tab double \tab Player share of team usage on first downs; NA on ppa rows. \cr
+   usage_third_down \tab double \tab Player share of team usage on third downs; NA on ppa rows. \cr
+   usage_second_down \tab double \tab Player share of team usage on second downs; NA on ppa rows. \cr
+   usage_passing_downs \tab double \tab Player share of team usage on passing downs; NA on ppa rows. \cr
+   usage_standard_downs \tab double \tab Player share of team usage on standard downs; NA on ppa rows. \cr
 }
 }
 \description{

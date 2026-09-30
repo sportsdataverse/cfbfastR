@@ -31,63 +31,66 @@ Minimum value accepted: 2002}
 variables.}
 }
 \value{
-\code{\link[=cfbd_game_schedule]{cfbd_game_schedule()}} - A data frame with one row per game in the
-slate. The slate-level fields of the response are carried as attributes:
-\code{attr(x, "selection")} (active, next, explicit or none), \code{attr(x, "window")}
-and \code{attr(x, "following_window")} (each a list of \code{year}, \code{seasonType},
-\code{week}, \code{startDate}, \code{endDate}), \code{attr(x, "filters")} and
-\code{attr(x, "assembled_at")}. Nested blocks (\code{venue}, \code{playoff}, \code{odds}) are
-flattened into prefixed columns when at least one game in the slate carries them.\tabular{lll}{
-   col_name \tab types \tab description \cr
-   game_id \tab integer \tab Referencing game id. \cr
+A data frame with one row per game in the slate. The slate-level fields of
+the response are carried as attributes: \code{attr(x, "selection")} (active, next,
+explicit or none), \code{attr(x, "window")} and \code{attr(x, "following_window")} (each a list
+of \code{year}, \code{seasonType}, \code{week}, \code{startDate}, \code{endDate}), \code{attr(x, "filters")} and
+\code{attr(x, "assembled_at")}. Nested blocks are flattened into prefixed columns; a block
+that no game in the slate carries collapses to one all-NA column named after it
+(\code{playoff} in a regular-season slate, and likewise \code{venue} or \code{odds_data}), so the
+column count varies by slate (42 for 2025 regular week 1, 49 for 2024 postseason
+week 1). An empty data frame is returned if the request fails.\tabular{lll}{
+   col_name \tab type \tab description \cr
+   game_id \tab integer \tab Unique CFBD game identifier. \cr
    season \tab integer \tab Season of the game. \cr
-   week \tab integer \tab Game week. \cr
-   season_type \tab character \tab Season type of the game. \cr
+   week \tab integer \tab Game week (postseason games restart at week 1). \cr
+   season_type \tab character \tab Season type of the game: regular or postseason. \cr
+   status \tab character \tab Game status: scheduled, in_progress or completed. \cr
+   status_checked_at \tab character \tab When CFBD last checked the game status (ISO 8601, UTC). \cr
    start_date \tab character \tab Game start date-time (ISO 8601, UTC). \cr
    start_time_tbd \tab logical \tab TRUE if the start time is still to be determined. \cr
-   status \tab character \tab Game status. \cr
-   status_checked_at \tab character \tab When CFBD last checked the game status. \cr
    neutral_site \tab logical \tab TRUE if the game is at a neutral site. \cr
    conference_game \tab logical \tab TRUE if the game is a conference game. \cr
-   venue_id \tab integer \tab Referencing venue id. \cr
-   venue_name \tab character \tab Venue name. \cr
-   venue_city \tab character \tab Venue city. \cr
-   venue_state \tab character \tab Venue state. \cr
+   playoff \tab logical \tab All-NA placeholder, present only when no game in the slate has playoff context; otherwise the eight \verb{playoff_*} columns after \code{venue_state} replace it. \cr
    home_team_id \tab integer \tab Home team id. \cr
    home_team_name \tab character \tab Home team name. \cr
    home_team_conference \tab character \tab Home team conference. \cr
    home_team_conference_abbreviation \tab character \tab Home team conference abbreviation. \cr
-   home_team_classification \tab character \tab Home team division classification. \cr
-   home_team_points \tab integer \tab Home team points. \cr
+   home_team_classification \tab character \tab Home team division classification: fbs, fcs, ii, ii/iii or iii. \cr
+   home_team_points \tab integer \tab Home team points; NA until the game has a score. \cr
    away_team_id \tab integer \tab Away team id. \cr
    away_team_name \tab character \tab Away team name. \cr
    away_team_conference \tab character \tab Away team conference. \cr
    away_team_conference_abbreviation \tab character \tab Away team conference abbreviation. \cr
-   away_team_classification \tab character \tab Away team division classification. \cr
-   away_team_points \tab integer \tab Away team points. \cr
-   playoff_competition \tab character \tab Playoff competition. \cr
-   playoff_format \tab character \tab Playoff format. \cr
-   playoff_round \tab character \tab Playoff round. \cr
-   playoff_round_name \tab character \tab Playoff round name. \cr
-   playoff_bracket_slot \tab character \tab Playoff bracket slot. \cr
+   away_team_classification \tab character \tab Away team division classification: fbs, fcs, ii, ii/iii or iii. \cr
+   away_team_points \tab integer \tab Away team points; NA until the game has a score. \cr
+   venue_id \tab integer \tab Venue id. \cr
+   venue_name \tab character \tab Venue name. \cr
+   venue_city \tab character \tab Venue city. \cr
+   venue_state \tab character \tab Venue state abbreviation; empty for venues outside the US. \cr
+   playoff_competition \tab character \tab Playoff competition (cfp). Present only when at least one game in the slate has playoff context, as are the other \verb{playoff_*} columns; NA for the other games. \cr
+   playoff_format \tab character \tab Playoff format (e.g. twelve_team_2024). \cr
+   playoff_round \tab character \tab Playoff round: first_round, quarterfinal, semifinal or championship. \cr
+   playoff_round_name \tab character \tab Display name of the round (e.g. First Round). \cr
+   playoff_bracket_slot \tab character \tab Bracket slot code (e.g. FR3). \cr
    playoff_home_seed \tab integer \tab Home team playoff seed. \cr
    playoff_away_seed \tab integer \tab Away team playoff seed. \cr
-   playoff_bowl_name \tab character \tab Bowl name. \cr
+   playoff_bowl_name \tab character \tab Name of the bowl hosting the game; NA when none. \cr
    broadcasts_status \tab character \tab Broadcast section status: available, no_data or unavailable. \cr
-   broadcasts_reason \tab character \tab Why the broadcast section is not available. \cr
-   broadcasts_assembled_at \tab character \tab When the broadcast section was assembled. \cr
-   broadcasts_source_updated_at \tab character \tab Broadcast snapshot publication time. \cr
-   broadcasts_data \tab list \tab Broadcasts: one data frame of \code{mediaType}, \code{outlet} per game. \cr
+   broadcasts_reason \tab character \tab Why the broadcast section has no data: no_data, no_results_yet, source_error or invalid_data; NA when available. \cr
+   broadcasts_assembled_at \tab character \tab When CFBD assembled the broadcast section (ISO 8601, UTC). \cr
+   broadcasts_source_updated_at \tab character \tab Publication time of the broadcast snapshot, not a games-through cutoff (ISO 8601, UTC); NA when CFBD sends none. \cr
+   broadcasts_data \tab list \tab Broadcasts: one data frame per game of \code{mediaType} (tv, radio, web, ppv or mobile) and \code{outlet}; NULL or empty when the section has no data. \cr
    odds_status \tab character \tab Odds section status: available, no_data or unavailable. \cr
-   odds_reason \tab character \tab Why the odds section is not available. \cr
-   odds_assembled_at \tab character \tab When the odds section was assembled. \cr
-   odds_source_updated_at \tab character \tab Odds snapshot publication time. \cr
-   odds_data_provider_id \tab integer \tab Odds provider id. \cr
-   odds_data_provider \tab character \tab Odds provider (DraftKings, Bovada). \cr
-   odds_data_spread \tab numeric \tab Home-relative spread; negative favors home. \cr
-   odds_data_over_under \tab numeric \tab Over/under. \cr
-   odds_data_home_moneyline \tab numeric \tab Home team moneyline. \cr
-   odds_data_away_moneyline \tab numeric \tab Away team moneyline. \cr
+   odds_reason \tab character \tab Why the odds section has no data: no_data, no_results_yet, source_error or invalid_data; NA when available. \cr
+   odds_assembled_at \tab character \tab When CFBD assembled the odds section (ISO 8601, UTC). \cr
+   odds_source_updated_at \tab character \tab Publication time of the odds snapshot, not a games-through cutoff (ISO 8601, UTC); NA when CFBD sends none. \cr
+   odds_data_provider_id \tab integer \tab Sportsbook provider id; NA when the game has no odds. \cr
+   odds_data_provider \tab character \tab Sportsbook: DraftKings or Bovada. \cr
+   odds_data_spread \tab double \tab Home-relative point spread; negative favors home. \cr
+   odds_data_over_under \tab double \tab Total points line. \cr
+   odds_data_home_moneyline \tab integer \tab Home team moneyline (American odds). \cr
+   odds_data_away_moneyline \tab integer \tab Away team moneyline (American odds). \cr
 }
 }
 \description{

@@ -16,86 +16,227 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} or \code{
 variables.}
 }
 \value{
-\code{\link[=cfbd_game_preview]{cfbd_game_preview()}} - A named list of tibbles: \code{game},
-\code{broadcasts}, \code{odds}, \code{teams}, \code{key_players}, \code{recent_results}, \code{series},
-\code{series_meetings}. The sections have different row grains, so they are not
-joined. A section CFBD did not fill (for example every analysis section once
-\code{availability} is \code{metadata_only}) is a 0-column tibble. Nested objects are
-flattened into prefixed columns.
+A named list of data frames: \code{game}, \code{broadcasts}, \code{odds}, \code{teams},
+\code{key_players}, \code{recent_results}, \code{series}, \code{series_meetings}. The sections have
+different row grains, so they are not joined. A section CFBD did not fill is a
+0-column tibble: once \code{availability} is \code{metadata_only} (for example a completed
+game) every section except \code{game} is empty. Nested objects are flattened into
+prefixed columns, and a nested object CFBD sends as null (\code{venue}, \code{playoff},
+\code{latest_meeting}, \code{streak}, a statistics block) becomes one all-NA column named
+after it instead of its prefixed columns. An empty list is returned if the
+request fails.
 
 \strong{game} - one row:\tabular{lll}{
-   col_name \tab types \tab description \cr
-   game_id \tab integer \tab Referencing game id. \cr
+   col_name \tab type \tab description \cr
+   game_id \tab integer \tab Unique CFBD game identifier. \cr
    season \tab integer \tab Season of the game. \cr
-   week \tab integer \tab Game week. \cr
-   season_type \tab character \tab Season type of the game. \cr
+   week \tab integer \tab Game week (postseason games restart at week 1). \cr
+   season_type \tab character \tab Season type of the game (e.g. regular, postseason). \cr
+   status \tab character \tab Game status: scheduled, in_progress or completed. \cr
+   status_checked_at \tab character \tab When CFBD last checked the game status (ISO 8601, UTC). \cr
    start_date \tab character \tab Game start date-time (ISO 8601, UTC). \cr
    start_time_tbd \tab logical \tab TRUE if the start time is still to be determined. \cr
-   status \tab character \tab Game status. \cr
-   status_checked_at \tab character \tab When CFBD last checked the game status. \cr
    neutral_site \tab logical \tab TRUE if the game is at a neutral site. \cr
    conference_game \tab logical \tab TRUE if the game is a conference game. \cr
-   venue_id, venue_name, venue_city, venue_state \tab mixed \tab Venue (a single \code{venue} NA column when absent). \cr
    home_team_id \tab integer \tab Home team id. \cr
    home_team_name \tab character \tab Home team name. \cr
    home_team_conference \tab character \tab Home team conference. \cr
    home_team_conference_abbreviation \tab character \tab Home team conference abbreviation. \cr
-   home_team_classification \tab character \tab Home team division classification. \cr
-   home_team_points \tab integer \tab Home team points. \cr
-   away_team_* \tab mixed \tab The same six columns for the away team. \cr
-   playoff_* \tab mixed \tab \code{competition}, \code{format}, \code{round}, \code{round_name}, \code{bracket_slot}, \code{home_seed}, \code{away_seed}, \code{bowl_name} (a single \code{playoff} NA column when absent). \cr
-   availability \tab character \tab pregame or metadata_only. \cr
-   reason \tab character \tab Why analysis is not available. \cr
-   assembled_at \tab character \tab When the preview was assembled. \cr
+   home_team_classification \tab character \tab Home team division classification: fbs, fcs, ii, ii/iii or iii. \cr
+   home_team_points \tab integer \tab Home team points; NA until the game has a score. \cr
+   away_team_id \tab integer \tab Away team id. \cr
+   away_team_name \tab character \tab Away team name. \cr
+   away_team_conference \tab character \tab Away team conference. \cr
+   away_team_conference_abbreviation \tab character \tab Away team conference abbreviation. \cr
+   away_team_classification \tab character \tab Away team division classification: fbs, fcs, ii, ii/iii or iii. \cr
+   away_team_points \tab integer \tab Away team points; NA until the game has a score. \cr
+   venue_id \tab integer \tab Venue id. \cr
+   venue_name \tab character \tab Venue name. \cr
+   venue_city \tab character \tab Venue city. \cr
+   venue_state \tab character \tab Venue state abbreviation. \cr
+   playoff \tab logical \tab All-NA placeholder, present only when the game is not a College Football Playoff game (the eight \verb{playoff_*} columns replace it for CFP games). \cr
+   playoff_competition \tab character \tab Playoff competition (cfp); present only for CFP games. \cr
+   playoff_format \tab character \tab Playoff format (e.g. twelve_team_2025); present only for CFP games. \cr
+   playoff_round \tab character \tab Playoff round: first_round, quarterfinal, semifinal or championship; present only for CFP games. \cr
+   playoff_round_name \tab character \tab Display name of the round (e.g. Quarterfinal); present only for CFP games. \cr
+   playoff_bracket_slot \tab character \tab Bracket slot code (e.g. FR4, QF1); present only for CFP games. \cr
+   playoff_home_seed \tab integer \tab Home team playoff seed; present only for CFP games. \cr
+   playoff_away_seed \tab integer \tab Away team playoff seed; present only for CFP games. \cr
+   playoff_bowl_name \tab character \tab Name of the bowl hosting the game (e.g. Rose Bowl), NA when none; present only for CFP games. \cr
+   availability \tab character \tab pregame (analysis sections filled) or metadata_only (only \code{game} is filled). \cr
+   reason \tab character \tab Why analysis is not available: game_started, game_completed, kickoff_reached or kickoff_unknown; NA when \code{availability} is pregame. \cr
+   assembled_at \tab character \tab When CFBD assembled the preview (ISO 8601, UTC). \cr
 }
 
 
-\strong{broadcasts} - one row per broadcast: \code{media_type} (character), \code{outlet} (character).
+\strong{broadcasts} - one row per broadcast:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   media_type \tab character \tab Broadcast medium: tv, radio, web, ppv or mobile. \cr
+   outlet \tab character \tab Broadcast outlet (e.g. ABC). \cr
+}
 
-\strong{odds} - one row: \code{provider_id} (integer), \code{provider} (character),
-\code{spread} (numeric, home-relative; negative favors home), \code{over_under},
-\code{home_moneyline}, \code{away_moneyline} (numeric).
 
-\strong{teams} - one row per side (\code{side} = home or away), then \code{team_id}
-(integer) and \code{season} (integer). Each of the \code{record}, \code{ratings} and
-\code{statistics} sections contributes \verb{<section>_status}, \verb{<section>_reason},
-\verb{<section>_assembled_at}, \verb{<section>_source_updated_at} and its payload as
-\verb{<section>_data_*}: \verb{record_data_*} carries the \code{record} section of
-\code{\link[=cfbd_team_season_overview]{cfbd_team_season_overview()}}; \verb{ratings_data_*} is that function's padded
-\code{ratings} section (\code{elo}, then \verb{<system>_<unit>_rating} / \verb{_rank} for \code{srs},
-\code{sp}, \code{fpi}, \code{core}), typed and present even when CFBD omits a system;
-\verb{statistics_data_*} holds \code{season}, \code{is_previous_season},
-\verb{advanced_*} (the \code{advanced} section of \code{\link[=cfbd_team_season_overview]{cfbd_team_season_overview()}}),
-\verb{passing_*} (the passing production block of \code{\link[=cfbd_passing_teams_season]{cfbd_passing_teams_season()}},
-per side of the ball, including \verb{locations_<bucket>_*}) and \verb{rushing_*} (the
-rushing production block of \code{\link[=cfbd_rushing_teams_season]{cfbd_rushing_teams_season()}}).
+\strong{odds} - one row, the line from the selected sportsbook:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   provider_id \tab integer \tab Sportsbook provider id. \cr
+   provider \tab character \tab Sportsbook: DraftKings or Bovada. \cr
+   spread \tab double \tab Home-relative point spread; negative favors home. Integer when every spread in the result is a whole number. \cr
+   over_under \tab double \tab Total points line. \cr
+   home_moneyline \tab integer \tab Home team moneyline (American odds). \cr
+   away_moneyline \tab integer \tab Away team moneyline (American odds). \cr
+}
 
-\strong{key_players} - one row per player:\tabular{lll}{
-   col_name \tab types \tab description \cr
+
+\strong{teams} - one row per side (home, away). The rows \code{ppa} through
+\code{field_position_average_predicted_points} (metrics) and \code{rank} through
+\code{percentile} (stats) are base names: each metric appears as the columns
+\verb{statistics_data_stat_rankings_<side>_<metric>_<stat>}, for \verb{<side>} \code{offense}
+then \code{defense}, every metric in row order and every stat in row order (160
+columns), except that a metric CFBD sends as null (in the sample,
+\code{power_success}) is one all-NA \verb{statistics_data_stat_rankings_<side>_<metric>}
+column instead of four:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   side \tab character \tab home or away: which team of this game the row describes. \cr
+   team_id \tab integer \tab Team id. \cr
+   season \tab integer \tab Season of the game. \cr
+   statistics_status \tab character \tab Status of the team statistics section: available, no_data or unavailable. \cr
+   statistics_reason \tab character \tab Why the statistics section has no data: no_data, no_results_yet, source_error or invalid_data; NA when available. \cr
+   statistics_assembled_at \tab character \tab When CFBD assembled the statistics section (ISO 8601, UTC). \cr
+   statistics_source_updated_at \tab character \tab Publication time of the statistics snapshot, not a games-through cutoff (ISO 8601, UTC). \cr
+   statistics_data_season \tab integer \tab Season the team statistics come from. \cr
+   statistics_data_is_previous_season \tab logical \tab TRUE when the statistics come from the season before the game season. \cr
+   statistics_data_advanced_* \tab varies \tab The \code{advanced} section of \code{\link[=cfbd_team_season_overview]{cfbd_team_season_overview()}} for \code{statistics_data_season} (same columns and order), prefixed \code{statistics_data_advanced_}; each column is defined there. \cr
+   statistics_data_passing_* \tab varies \tab All columns of \code{\link[=cfbd_passing_teams_season]{cfbd_passing_teams_season()}}, including \code{season}, \code{team} and \code{conference}, in the order of the \code{passing} section of \code{\link[=cfbd_team_season_overview]{cfbd_team_season_overview()}}, prefixed \code{statistics_data_passing_}; each column is defined there, see \link{cfbd_passing}. \cr
+   statistics_data_rushing_* \tab varies \tab All columns of \code{\link[=cfbd_rushing_teams_season]{cfbd_rushing_teams_season()}}, including \code{season}, \code{team} and \code{conference}, in the order of the \code{rushing} section of \code{\link[=cfbd_team_season_overview]{cfbd_team_season_overview()}}, prefixed \code{statistics_data_rushing_}; each column is defined there, see \link{cfbd_rushing}. \cr
+   statistics_data_stat_rankings_team_id \tab integer \tab Team id the stat rankings are for. \cr
+   statistics_data_stat_rankings_season \tab integer \tab Season the stat rankings are computed for. \cr
+   statistics_data_stat_rankings_division \tab character \tab Division the team is ranked within: fbs, fcs, ii, ii/iii or iii. \cr
+   statistics_data_stat_rankings_division_team_count \tab integer \tab Number of teams in that division. \cr
+   statistics_data_stat_rankings_calculated_at \tab character \tab When CFBD calculated the stat rankings (ISO 8601, UTC). \cr
+   statistics_data_stat_rankings_expires_at \tab character \tab When CFBD's cached stat rankings expire (ISO 8601, UTC). \cr
+   statistics_data_stat_rankings_source_updated_at \tab character \tab Publication time of the statistics the rankings are built from (ISO 8601, UTC). \cr
+   ppa \tab varies \tab Metric: predicted points added (EPA) per play, \verb{statistics_data_advanced_<side>_ppa}. \cr
+   success_rate \tab varies \tab Metric: success rate (proportion of successful plays), \verb{statistics_data_advanced_<side>_success_rate}. \cr
+   explosiveness \tab varies \tab Metric: explosiveness (average PPA on successful plays), \verb{statistics_data_advanced_<side>_explosiveness}. \cr
+   standard_downs_success_rate \tab varies \tab Metric: success rate on standard downs, \verb{statistics_data_advanced_<side>_standard_downs_success_rate}. \cr
+   passing_downs_success_rate \tab varies \tab Metric: success rate on passing downs, \verb{statistics_data_advanced_<side>_passing_downs_success_rate}. \cr
+   passing_plays_ppa \tab varies \tab Metric: PPA per pass play, \verb{statistics_data_advanced_<side>_passing_plays_ppa}. \cr
+   rushing_plays_ppa \tab varies \tab Metric: PPA per rush play, \verb{statistics_data_advanced_<side>_rushing_plays_ppa}. \cr
+   passing_plays_explosiveness \tab varies \tab Metric: explosiveness of pass plays, \verb{statistics_data_advanced_<side>_passing_plays_explosiveness}. \cr
+   rushing_plays_explosiveness \tab varies \tab Metric: explosiveness of rush plays, \verb{statistics_data_advanced_<side>_rushing_plays_explosiveness}. \cr
+   line_yards \tab varies \tab Metric: offensive line yards per rush, \verb{statistics_data_advanced_<side>_line_yards}. \cr
+   second_level_yards \tab varies \tab Metric: second-level yards per rush (5-10 yards past the line of scrimmage), \verb{statistics_data_advanced_<side>_second_level_yards}. \cr
+   open_field_yards \tab varies \tab Metric: open-field yards per rush (yards gained more than 10 yards past the line of scrimmage), \verb{statistics_data_advanced_<side>_open_field_yards}. \cr
+   stuff_rate \tab varies \tab Metric: proportion of rushes stopped at or behind the line of scrimmage, \verb{statistics_data_advanced_<side>_stuff_rate}. \cr
+   power_success \tab varies \tab Metric: power success (proportion of short-yardage runs that convert), \verb{statistics_data_advanced_<side>_power_success}. \cr
+   havoc_total \tab varies \tab Metric: havoc rate (share of plays with a tackle for loss, forced fumble, interception or pass breakup), \verb{statistics_data_advanced_<side>_havoc_total}. \cr
+   havoc_front_seven \tab varies \tab Metric: havoc rate from front-seven players, \verb{statistics_data_advanced_<side>_havoc_front_seven}. \cr
+   havoc_db \tab varies \tab Metric: havoc rate from defensive backs, \verb{statistics_data_advanced_<side>_havoc_db}. \cr
+   points_per_opportunity \tab varies \tab Metric: points per scoring opportunity, \verb{statistics_data_advanced_<side>_points_per_opportunity}. \cr
+   field_position_average_start \tab varies \tab Metric: average drive start in yards to the end zone, \verb{statistics_data_advanced_<side>_field_position_average_start}. \cr
+   field_position_average_predicted_points \tab varies \tab Metric: average predicted points of the drive start, \verb{statistics_data_advanced_<side>_field_position_average_predicted_points}. \cr
+   rank \tab integer \tab Stat: the team's rank on the metric within \code{statistics_data_stat_rankings_division}, 1 = best for that side of the ball. \cr
+   population \tab integer \tab Stat: number of teams ranked on the metric. \cr
+   tied \tab logical \tab Stat: TRUE when the rank is shared with another team. \cr
+   percentile \tab double \tab Stat: percentile of the rank within the division, 0-100 (higher is better). \cr
+   record_status \tab character \tab Status of the record section: available, no_data or unavailable. \cr
+   record_reason \tab character \tab Why the record section has no data: no_data, no_results_yet, source_error or invalid_data; NA when available. \cr
+   record_assembled_at \tab character \tab When CFBD assembled the record section (ISO 8601, UTC). \cr
+   record_source_updated_at \tab character \tab Publication time of the record snapshot (ISO 8601, UTC); NA when CFBD reports none. \cr
+   record_data_* \tab varies \tab The \code{record} section of \code{\link[=cfbd_team_season_overview]{cfbd_team_season_overview()}}, prefixed \code{record_data_}; each column is defined there. \cr
+   ratings_status \tab character \tab Status of the ratings section: available, no_data or unavailable. \cr
+   ratings_reason \tab character \tab Why the ratings section has no data: no_data, no_results_yet, source_error or invalid_data; NA when available. \cr
+   ratings_assembled_at \tab character \tab When CFBD assembled the ratings section (ISO 8601, UTC). \cr
+   ratings_source_updated_at \tab character \tab Publication time of the ratings snapshot (ISO 8601, UTC); NA when CFBD reports none. \cr
+   ratings_data_* \tab varies \tab The \code{ratings} section of \code{\link[=cfbd_team_season_overview]{cfbd_team_season_overview()}} (the same padded, typed 25 columns), prefixed \code{ratings_data_}; each column is defined there. Absent when the ratings section has no data. \cr
+}
+
+
+\strong{key_players} - one row per key player, per side and category:\tabular{lll}{
+   col_name \tab type \tab description \cr
    side \tab character \tab home or away. \cr
    category \tab character \tab passing, rushing or receiving. \cr
    athlete_id \tab character \tab Player id. \cr
    name \tab character \tab Player name. \cr
    position \tab character \tab Player position. \cr
-   usage \tab numeric \tab Pass/rush involvement, not receiving target share. \cr
-   average_ppa \tab numeric \tab Average predicted points added. \cr
-   total_ppa \tab numeric \tab Total predicted points added. \cr
+   usage \tab double \tab Pass/rush involvement (proportion 0-1), not receiving target share. \cr
+   average_ppa \tab double \tab Average predicted points added per play. \cr
+   total_ppa \tab double \tab Total predicted points added. \cr
 }
 
 
-\strong{recent_results} - one row per recent game: \code{side}, \code{game_id}, \code{season},
-\code{start_date}, \code{opponent_id}, \code{opponent_name}, \code{home_away} (home, away), \code{neutral_site},
-\verb{venue_*}, \code{team_points}, \code{opponent_points}, \code{result} (win, loss, tie, unknown).
+\strong{recent_results} - one row per recent game of each side:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   side \tab character \tab home or away: the team of this game the result belongs to. \cr
+   game_id \tab integer \tab Game id of the recent game. \cr
+   season \tab integer \tab Season of the recent game. \cr
+   start_date \tab character \tab Start date-time of the recent game (ISO 8601, UTC). \cr
+   home_away \tab character \tab Whether the side's team was home or away in that game. \cr
+   neutral_site \tab logical \tab TRUE if that game was at a neutral site. \cr
+   team_points \tab integer \tab Points scored by the side's team; NA when unknown. \cr
+   opponent_points \tab integer \tab Points scored by the opponent; NA when unknown. \cr
+   result \tab character \tab Result for the side's team: win, loss, tie or unknown. \cr
+   opponent_id \tab integer \tab Opponent team id. \cr
+   opponent_name \tab character \tab Opponent team name. \cr
+   venue_id \tab integer \tab Venue id. \cr
+   venue_name \tab character \tab Venue name. \cr
+   venue_city \tab character \tab Venue city. \cr
+   venue_state \tab character \tab Venue state abbreviation. \cr
+}
 
-\strong{series} - one row: \code{home_team_id}, \code{away_team_id}, \code{meetings},
-\code{known_results}, \code{unknown_results}, \code{home_wins}, \code{away_wins}, \code{ties},
-\code{first_season}, \code{last_season} (integer), \verb{latest_meeting_*} (the columns of
-\code{series_meetings}) and \code{streak_team_id}, \code{streak_wins}.
 
-\strong{series_meetings} - one row per recent meeting: \code{game_id}, \code{season},
-\code{start_date}, \code{home_team_id}, \code{home_team}, \code{away_team_id}, \code{away_team},
-\code{neutral_site}, \verb{venue_*}, \code{home_points}, \code{away_points}, \code{winner_team_id},
-\code{result} (win, tie, unknown).
+\strong{series} - one row, the all-time series between the two teams:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   home_team_id \tab integer \tab Team id of this game's home team. \cr
+   away_team_id \tab integer \tab Team id of this game's away team. \cr
+   meetings \tab integer \tab Number of all-time meetings. \cr
+   known_results \tab integer \tab Meetings with a known result. \cr
+   unknown_results \tab integer \tab Meetings with an unknown result. \cr
+   home_wins \tab integer \tab Series wins by this game's home team, wherever played. \cr
+   away_wins \tab integer \tab Series wins by this game's away team, wherever played. \cr
+   ties \tab integer \tab Tied meetings. \cr
+   first_season \tab integer \tab Season of the first meeting; NA when the teams have not met. \cr
+   last_season \tab integer \tab Season of the most recent meeting; NA when the teams have not met. \cr
+   latest_meeting_game_id \tab integer \tab Game id of the most recent meeting. \cr
+   latest_meeting_season \tab integer \tab Season of the most recent meeting. \cr
+   latest_meeting_start_date \tab character \tab Start date-time of the most recent meeting (ISO 8601, UTC). \cr
+   latest_meeting_home_team_id \tab integer \tab Home team id in the most recent meeting. \cr
+   latest_meeting_home_team \tab character \tab Home team name in the most recent meeting. \cr
+   latest_meeting_away_team_id \tab integer \tab Away team id in the most recent meeting. \cr
+   latest_meeting_away_team \tab character \tab Away team name in the most recent meeting. \cr
+   latest_meeting_neutral_site \tab logical \tab TRUE if the most recent meeting was at a neutral site. \cr
+   latest_meeting_venue_id \tab integer \tab Venue id of the most recent meeting. \cr
+   latest_meeting_venue_name \tab character \tab Venue name of the most recent meeting. \cr
+   latest_meeting_venue_city \tab character \tab Venue city of the most recent meeting. \cr
+   latest_meeting_venue_state \tab character \tab Venue state abbreviation of the most recent meeting. \cr
+   latest_meeting_home_points \tab integer \tab Home team points in the most recent meeting. \cr
+   latest_meeting_away_points \tab integer \tab Away team points in the most recent meeting. \cr
+   latest_meeting_winner_team_id \tab integer \tab Winning team id in the most recent meeting; NA for a tie or unknown result. \cr
+   latest_meeting_result \tab character \tab Result of the most recent meeting: win (see winner id), tie or unknown. \cr
+   streak_team_id \tab integer \tab Team id holding the current series winning streak. \cr
+   streak_wins \tab integer \tab Length of that winning streak, in consecutive meetings won. \cr
+}
+
+
+\strong{series_meetings} - one row per recent meeting of the two teams:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   game_id \tab integer \tab Game id of the meeting. \cr
+   season \tab integer \tab Season of the meeting. \cr
+   start_date \tab character \tab Start date-time of the meeting (ISO 8601, UTC). \cr
+   home_team_id \tab integer \tab Home team id in the meeting. \cr
+   home_team \tab character \tab Home team name in the meeting. \cr
+   away_team_id \tab integer \tab Away team id in the meeting. \cr
+   away_team \tab character \tab Away team name in the meeting. \cr
+   neutral_site \tab logical \tab TRUE if the meeting was at a neutral site. \cr
+   home_points \tab integer \tab Home team points; NA when unknown. \cr
+   away_points \tab integer \tab Away team points; NA when unknown. \cr
+   winner_team_id \tab integer \tab Winning team id; NA for a tie or unknown result. \cr
+   result \tab character \tab Result of the meeting: win (see \code{winner_team_id}), tie or unknown. \cr
+   venue_id \tab integer \tab Venue id. \cr
+   venue_name \tab character \tab Venue name. \cr
+   venue_city \tab character \tab Venue city. \cr
+   venue_state \tab character \tab Venue state abbreviation. \cr
+}
 }
 \description{
 \strong{Returns pregame team comparisons and key players.}

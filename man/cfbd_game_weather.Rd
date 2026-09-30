@@ -33,35 +33,41 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \item{game_id}{(\emph{Integer} optional): Game ID. When specified, returns weather for that game.}
 }
 \value{
-\code{\link[=cfbd_game_weather]{cfbd_game_weather()}} - A data frame with 23 variables:\tabular{lll}{
-   col_name \tab types \tab description \cr
-   game_id \tab integer \tab Referencing game id. \cr
+A data frame with one row per game and 22 variables. An empty data frame is
+returned, with an informational message, when CFBD has no weather for the filters
+yet (it backfills weather mid-week in season), and also if the request fails.\tabular{lll}{
+   col_name \tab type \tab description \cr
+   game_id \tab integer \tab Unique CFBD game identifier. \cr
    season \tab integer \tab Season of the game. \cr
    week \tab integer \tab Game week. \cr
-   season_type \tab character \tab Season type of the game. \cr
-   start_date \tab character \tab Game date. \cr
-   start_time_tbd \tab logical \tab TRUE/FALSE flag for if the game's start time is to be determined. \cr
+   season_type \tab character \tab Season type of the game (e.g. regular, postseason). \cr
+   start_time \tab character \tab Game start date-time (ISO 8601, UTC). \cr
    game_indoors \tab logical \tab TRUE/FALSE flag for if the game is indoors. \cr
    home_team \tab character \tab Home team name. \cr
    home_conference \tab character \tab Home team conference. \cr
    away_team \tab character \tab Away team name. \cr
    away_conference \tab character \tab Away team conference. \cr
-   venue_id \tab integer \tab Referencing venue id. \cr
+   venue_id \tab integer \tab CFBD venue id. \cr
    venue \tab character \tab Venue name. \cr
-   temperature \tab integer \tab Game-time temperature, in degrees Fahrenheit. \cr
-   dew_point \tab integer \tab Dew point at kickoff, in degrees Fahrenheit. \cr
+   temperature \tab double \tab Game-time temperature, in degrees Fahrenheit. \cr
+   dew_point \tab double \tab Dew point at kickoff, in degrees Fahrenheit. \cr
    humidity \tab integer \tab Relative humidity at kickoff, as a percentage (0-100). \cr
-   precipitation \tab integer \tab Precipitation total at kickoff, in inches. \cr
-   snowfall \tab integer \tab Snowfall total at kickoff, in inches. \cr
+   precipitation \tab double \tab Precipitation at kickoff, in inches; parses as integer when every value in the result is a whole number (e.g. all 0). \cr
+   snowfall \tab double \tab Snowfall at kickoff, in inches; parses as integer when every value in the result is a whole number (e.g. all 0). \cr
    wind_direction \tab integer \tab Wind direction, in degrees (0-360, 0 = north). \cr
-   wind_speed \tab integer \tab Wind speed, in miles per hour. \cr
-   pressure \tab integer \tab Barometric pressure, in millibars. \cr
-   weather_condition_code \tab integer \tab Weather condition code from the upstream weather provider. \cr
-   weather_condition \tab character \tab Free-text weather condition (e.g. "Clear", "Light rain"). \cr
+   wind_speed \tab double \tab Wind speed, in miles per hour. \cr
+   pressure \tab double \tab Barometric pressure, in millibars. \cr
+   weather_condition_code \tab integer \tab Numeric weather condition code, labelled by \code{weather_condition} (e.g. 1 = Clear, 3 = Cloudy, 8 = Rain, 25 = Thunderstorm). \cr
+   weather_condition \tab character \tab Weather condition label (e.g. Clear, Cloudy, Light Rain, Thunderstorm). \cr
 }
 }
 \description{
 \strong{Get weather from games.}
+}
+\examples{
+\donttest{
+  try(cfbd_game_weather(year = 2025, week = 1, conference = "SEC"))
+}
 }
 \seealso{
 Other CFBD Games:

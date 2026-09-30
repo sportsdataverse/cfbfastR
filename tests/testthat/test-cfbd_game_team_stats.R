@@ -62,3 +62,41 @@ test_that("CFB Game Team Stats", {
   expect_s3_class(y, "data.frame")
   expect_s3_class(z, "data.frame")
 })
+
+# Serve a captured CFBD response (fixtures/cfbd/README.md) in place of get_req().
+local_cfbd_fixture <- function(file, env = parent.frame()) {
+  local_mocked_bindings(
+    validate_api_key = function() invisible(TRUE),
+    get_req = function(full_url, proxy = NULL) {
+      con <- gzfile(test_path("fixtures", "cfbd", file), "rb")
+      on.exit(close(con))
+      httr2::response(
+        status_code = 200L, url = full_url,
+        headers = list(`Content-Type` = "application/json"),
+        body = readBin(con, "raw", n = 1e7)
+      )
+    },
+    .env = env
+  )
+}
+
+test_that("CFBD - Game Team Stats keeps only the requested team", {
+  # CFBD's team= returns the whole game (both teams); the wrapper narrows it.
+  # `.data$team == team` compared the column with itself and kept both rows.
+  local_cfbd_fixture("games_teams_2024_w5_oregon.json.gz")
+  x <- suppressWarnings(cfbd_game_team_stats(2024, week = 5, team = "Oregon"))
+  expect_equal(x$school, "Oregon")
+  expect_equal(x$opponent, "UCLA")
+  y <- suppressWarnings(cfbd_game_team_stats(2024, week = 5, team = "Oregon", rows_per_team = 2))
+  expect_equal(y$school, "Oregon")
+})
+
+test_that("CFBD - Game Team Stats team filter ignores case, as CFBD's team= does", {
+  # CFBD answers team = "oregon" with the whole game; an exact-case filter
+  # then dropped both rows.
+  local_cfbd_fixture("games_teams_2024_w5_oregon.json.gz")
+  x <- suppressWarnings(cfbd_game_team_stats(2024, week = 5, team = "oregon"))
+  expect_equal(x$school, "Oregon")
+  y <- suppressWarnings(cfbd_game_team_stats(2024, week = 5, team = "oregon", rows_per_team = 2))
+  expect_equal(y$school, "Oregon")
+})

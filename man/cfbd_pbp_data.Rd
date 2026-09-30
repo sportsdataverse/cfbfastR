@@ -59,342 +59,467 @@ column-set selector. Ignored on the legacy path.}
 \item{offense}{(\emph{String} optional): Offensive team filter.}
 }
 \value{
-A data frame with 368 variables:\tabular{lll}{
-   col_name \tab types \tab description \cr
-   season \tab numeric \tab Four-digit season year (e.g. 2024). \cr
-   wk \tab numeric \tab Season week number (1-15 regular season, 1 for bowl/postseason week). \cr
+A \code{cfbfastR_data} data frame of plays, or \code{NULL} when CFBD returns no plays.
+With \code{epa_wpa = TRUE} and the default \code{output = "default"} it has the 362 columns in the first
+table (358 when the four betting columns \code{provider}, \code{spread}, \code{formatted_spread} and
+\code{over_under} are not joined: before 2013, or if the betting-lines request fails); games with
+fewer than 20 plays are skipped. \code{output = "lean"} drops the 12 WPA scratchpad columns
+\code{lead_wp_before2} through \code{lead_pos_team2}; \code{output = "full"} also keeps the 91 pipeline
+columns in the second table, interleaved with the first. With
+\code{epa_wpa = FALSE} (the argument default) no modeling runs and only these 54 columns of the first
+table are returned, in CFBD order (\code{yards_to_goal}, \code{down}, \code{distance}, \code{yards_gained} and
+\code{drive_start_yards_to_goal} stay integer and \code{drive_scoring} is logical):
+\code{game_id}, \code{drive_id}, \code{id_play}, \code{drive_number}, \code{play_number}, \code{offense_play},
+\code{offense_conference}, \code{offense_score}, \code{defense_play}, \code{defense_conference},
+\code{defense_score}, \code{home}, \code{away}, \code{period}, \code{clock_minutes}, \code{clock_seconds},
+\code{offense_timeouts}, \code{defense_timeouts}, \code{yard_line}, \code{yards_to_goal}, \code{down}, \code{distance},
+\code{yards_gained}, \code{scoring}, \code{play_type}, \code{play_text}, \code{ppa}, \code{wallclock}, \code{provider},
+\code{spread}, \code{formatted_spread}, \code{over_under}, \code{orig_drive_number}, \code{drive_scoring},
+\code{drive_start_period}, \code{drive_start_yards_to_goal}, \code{drive_end_period},
+\code{drive_end_yards_to_goal}, \code{drive_yards}, \code{drive_result}, \code{drive_is_home_offense},
+\code{drive_start_offense_score}, \code{drive_start_defense_score}, \code{drive_end_offense_score},
+\code{drive_end_defense_score}, \code{drive_time_minutes_start}, \code{drive_time_seconds_start},
+\code{drive_time_minutes_end}, \code{drive_time_seconds_end}, \code{drive_time_minutes_elapsed},
+\code{drive_time_seconds_elapsed}, \code{drive_pts}, \code{season}, \code{wk}. As on the modeled path, \code{provider},
+\code{spread}, \code{formatted_spread} and \code{over_under} are absent when betting lines are not joined.
+\code{engine = "legacy"} returns the older pre-v2 frame, which these tables do not describe.
+
+\strong{Default columns} - one row per play (\code{epa_wpa = TRUE}, \code{output = "default"}):\tabular{lll}{
+   col_name \tab type \tab description \cr
+   season \tab double \tab Four-digit season year (e.g. 2024). \cr
+   wk \tab double \tab Season week number (1-15 regular season, 1 for bowl/postseason week). \cr
    id_play \tab character \tab Unique CFBD play identifier (concatenates game_id and play index). \cr
    game_id \tab integer \tab CFBD-internal game identifier. \cr
-   game_play_number \tab numeric \tab Sequential play number within the game (excludes timeouts/end markers). \cr
-   half_play_number \tab numeric \tab Sequential play number within the current half. \cr
-   drive_play_number \tab numeric \tab Sequential play number within the current drive. \cr
+   game_play_number \tab double \tab Sequential play number within the game (excludes timeouts/end markers). \cr
+   half_play_number \tab double \tab Sequential play number within the current half. \cr
+   drive_play_number \tab double \tab Sequential play number within the current drive. \cr
    pos_team \tab character \tab Team name in possession at the start of the play (offense, kickoff-aware). \cr
    def_pos_team \tab character \tab Team name on defense at the start of the play. \cr
-   pos_team_score \tab integer \tab Score for the team in possession at the start of the play. \cr
-   def_pos_team_score \tab integer \tab Score for the defensive team at the start of the play. \cr
+   pos_team_score \tab integer \tab Score for the team in possession after the play (includes points scored on it). \cr
+   def_pos_team_score \tab integer \tab Score for the defensive team after the play. \cr
    half \tab factor \tab Half indicator (1 or 2). \cr
    period \tab integer \tab Quarter number (1-4, 5+ for overtime). \cr
    clock_minutes \tab integer \tab Minutes remaining on the period clock at the start of the play. \cr
    clock_seconds \tab integer \tab Seconds remaining on the period clock at the start of the play. \cr
    play_type \tab character \tab CFBD play type label (e.g. "Rush", "Pass Reception", "Field Goal Good"). \cr
    play_text \tab character \tab Free-text description of the play from CFBD. \cr
-   down \tab numeric \tab Down number at the start of the play (1-4). \cr
-   distance \tab numeric \tab Yards to gain for a first down at the start of the play. \cr
-   yards_to_goal \tab numeric \tab Yards from the offense to the opponent's end zone at the start of the play. \cr
-   yards_gained \tab numeric \tab Yards gained (or lost) by the offense on the play. \cr
-   EPA \tab numeric \tab Expected Points Added on the play (cfbfastR EPA model output). \cr
-   ep_before \tab numeric \tab Expected points value before the play (cfbfastR EPA model). \cr
-   ep_after \tab numeric \tab Expected points value after the play (cfbfastR EPA model). \cr
-   wpa \tab numeric \tab Win Probability Added on the play (cfbfastR WP model output). \cr
-   wp_before \tab numeric \tab Win probability for the possession team before the play (0-1). \cr
-   wp_after \tab numeric \tab Win probability for the possession team after the play (0-1). \cr
-   def_wp_before \tab numeric \tab Win probability for the defensive team before the play (0-1). \cr
-   def_wp_after \tab numeric \tab Win probability for the defensive team after the play (0-1). \cr
+   down \tab double \tab Down number at the start of the play (1-4). \cr
+   distance \tab double \tab Yards to gain for a first down at the start of the play. \cr
+   yards_to_goal \tab double \tab Yards from the offense to the opponent's end zone at the start of the play. \cr
+   yards_gained \tab double \tab Yards gained (or lost) by the offense on the play. \cr
+   EPA \tab double \tab Expected Points Added on the play (cfbfastR EPA model output). \cr
+   ep_before \tab double \tab Expected points value before the play (cfbfastR EPA model). \cr
+   ep_after \tab double \tab Expected points value after the play (cfbfastR EPA model). \cr
+   wpa \tab double \tab Win Probability Added on the play (cfbfastR WP model output). \cr
+   wp_before \tab double \tab Win probability for the possession team before the play (0-1). \cr
+   wp_after \tab double \tab Win probability for the possession team after the play (0-1). \cr
+   def_wp_before \tab double \tab Win probability for the defensive team before the play (0-1). \cr
+   def_wp_after \tab double \tab Win probability for the defensive team after the play (0-1). \cr
    penalty_detail \tab character \tab Parsed penalty description extracted from play text. \cr
-   yds_penalty \tab numeric \tab Yardage assessed on the penalty. \cr
+   yds_penalty \tab double \tab Yardage assessed on the penalty. \cr
    penalty_1st_conv \tab logical \tab TRUE when the penalty resulted in a first down conversion. \cr
-   new_series \tab numeric \tab Binary flag for the start of a new series of downs. \cr
-   firstD_by_kickoff \tab numeric \tab Binary flag for a new first down arising from a kickoff. \cr
-   firstD_by_poss \tab numeric \tab Binary flag for a new first down via change of possession. \cr
-   firstD_by_penalty \tab numeric \tab Binary flag for a new first down via penalty. \cr
-   firstD_by_yards \tab numeric \tab Binary flag for a new first down via yards gained. \cr
-   def_EPA \tab numeric \tab EPA for the defensive team on the play (sign-flipped offense EPA). \cr
-   home_EPA \tab numeric \tab EPA for the home team on the play. \cr
-   away_EPA \tab numeric \tab EPA for the away team on the play. \cr
-   home_EPA_rush \tab numeric \tab Rushing EPA for the home team on the play. \cr
-   away_EPA_rush \tab numeric \tab Rushing EPA for the away team on the play. \cr
-   home_EPA_pass \tab numeric \tab Passing EPA for the home team on the play. \cr
-   away_EPA_pass \tab numeric \tab Passing EPA for the away team on the play. \cr
-   total_home_EPA \tab numeric \tab Cumulative total EPA for the home team through the play. \cr
-   total_away_EPA \tab numeric \tab Cumulative total EPA for the away team through the play. \cr
-   total_home_EPA_rush \tab numeric \tab Cumulative rushing EPA for the home team through the play. \cr
-   total_away_EPA_rush \tab numeric \tab Cumulative rushing EPA for the away team through the play. \cr
-   total_home_EPA_pass \tab numeric \tab Cumulative passing EPA for the home team through the play. \cr
-   total_away_EPA_pass \tab numeric \tab Cumulative passing EPA for the away team through the play. \cr
-   net_home_EPA \tab numeric \tab Net EPA differential (home minus away) through the play. \cr
-   net_away_EPA \tab numeric \tab Net EPA differential (away minus home) through the play. \cr
-   net_home_EPA_rush \tab numeric \tab Net rushing EPA differential for the home team through the play. \cr
-   net_away_EPA_rush \tab numeric \tab Net rushing EPA differential for the away team through the play. \cr
-   net_home_EPA_pass \tab numeric \tab Net passing EPA differential for the home team through the play. \cr
-   net_away_EPA_pass \tab numeric \tab Net passing EPA differential for the away team through the play. \cr
-   success \tab numeric \tab Binary success-rate flag using the 50/70/100 percent down-state thresholds. \cr
-   epa_success \tab numeric \tab Binary flag for plays with positive EPA (EPA > 0). \cr
-   rz_play \tab numeric \tab Binary flag for a red-zone play (yards_to_goal <= 20). \cr
-   scoring_opp \tab numeric \tab Binary flag for a scoring opportunity (yards_to_goal <= 40). \cr
+   penalty_count \tab integer \tab Number of penalties on the play (count of "penalty" in the play text); 0 when none. \cr
+   penalty_declined_count \tab integer \tab Number of declined penalties on the play (count of "declined" in the play text). \cr
+   penalty_all_declined \tab logical \tab TRUE only when the play has at least one penalty and every one was declined, so the play stood. \cr
+   penalty_enforcement \tab character \tab How the penalty was enforced: \code{no_play}, \code{declined}, \code{offsetting}, \code{negating_foul}, \code{play_stands} or \code{unknown}; NA on plays without a penalty. \cr
+   penalty_negated_play \tab logical \tab TRUE when a penalty wiped out the play (\code{no_play}, \code{offsetting}, \code{negating_foul}), FALSE when the play stood or had no penalty; NA when enforcement is \code{unknown}. \cr
+   rusher_player_id \tab character \tab ESPN athlete id of \code{rusher_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   passer_player_id \tab character \tab ESPN athlete id of \code{passer_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   receiver_player_id \tab character \tab ESPN athlete id of \code{receiver_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   fumble_player_id \tab character \tab ESPN athlete id of \code{fumble_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   sack_player_id \tab character \tab ESPN athlete id of \code{sack_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   sack_player_id2 \tab character \tab ESPN athlete id of \code{sack_player_name2}. Always NA from this function, which has no game roster to resolve names against. \cr
+   interception_player_id \tab character \tab ESPN athlete id of \code{interception_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   pass_breakup_player_id \tab character \tab ESPN athlete id of \code{pass_breakup_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   fumble_forced_player_id \tab character \tab ESPN athlete id of \code{fumble_forced_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   fumble_recovered_player_id \tab character \tab ESPN athlete id of \code{fumble_recovered_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   fg_kicker_player_id \tab character \tab ESPN athlete id of \code{fg_kicker_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   punter_player_id \tab character \tab ESPN athlete id of \code{punter_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   kickoff_player_id \tab character \tab ESPN athlete id of \code{kickoff_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   kickoff_return_player_id \tab character \tab ESPN athlete id of \code{kickoff_return_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   punt_return_player_id \tab character \tab ESPN athlete id of \code{punt_return_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   fg_block_player_id \tab character \tab ESPN athlete id of \code{fg_block_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   punt_block_player_id \tab character \tab ESPN athlete id of \code{punt_block_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   fg_return_player_id \tab character \tab ESPN athlete id of \code{fg_return_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   punt_block_return_player_id \tab character \tab ESPN athlete id of \code{punt_block_return_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
+   pos_team_id \tab character \tab ESPN team id of \code{pos_team}. Always NA from this function: CFBD plays carry team names, not ids. \cr
+   def_pos_team_id \tab character \tab ESPN team id of \code{def_pos_team}. Always NA from this function: CFBD plays carry team names, not ids. \cr
+   kicking_team \tab character \tab Team id of the kicking team on kickoffs, punts and field goals; NA on other plays. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   return_team \tab character \tab Team id of the receiving team on kickoffs, punts and field goals; NA on other plays. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   punt_return_team \tab character \tab Team id of the punt-returning team (copy of \code{return_team}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   kick_return_team \tab character \tab Team id of the kick-returning team (copy of \code{return_team}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   fg_team \tab character \tab Team id of the field-goal kicking team (copy of \code{kicking_team}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   punt_team \tab character \tab Team id of the punting team (copy of \code{kicking_team}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   sack_team \tab character \tab Team id credited with a sack (the defense, \code{def_pos_team_id}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   interception_team \tab character \tab Team id credited with an interception (the defense, \code{def_pos_team_id}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   pass_breakup_team \tab character \tab Team id credited with a pass breakup (the defense, \code{def_pos_team_id}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   forced_fumble_team \tab character \tab Team id credited with a forced fumble (the defense, \code{def_pos_team_id}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   fumble_recovery_team \tab character \tab Team id that recovered a fumble or muff: the first \verb{recovered by} team in the text, else inferred from the turnover. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   fumble_or_muff \tab logical \tab TRUE when the play has a fumble (\code{fumble_vec}) or the play text mentions a muff. \cr
+   fumbling_team \tab character \tab Team id that fumbled or muffed; NA when \code{fumble_or_muff} is FALSE. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   recovery_team \tab character \tab Team id from the first \verb{recovered by} clause in the play text. Always NA from this function: matching the clause needs home/away team ids and abbreviations that CFBD plays do not carry. \cr
+   recovery_team_2 \tab character \tab Team id from a second \verb{recovered by} clause (the ball changed hands twice). Always NA from this function (see \code{recovery_team}). \cr
+   int_turnover \tab logical \tab TRUE when the play is an interception (from \code{int}). \cr
+   pos_fumble_lost \tab logical \tab TRUE when the team in possession lost a fumble. Always FALSE from this function, because it needs the team ids CFBD plays do not carry. \cr
+   def_fumble_lost \tab logical \tab TRUE when the defense recovered and then lost a fumble on the same play. Always FALSE from this function (see \code{pos_fumble_lost}). \cr
+   is_pos_team_turnover \tab logical \tab TRUE when the team in possession gave the ball away (\code{int_turnover} or \code{pos_fumble_lost}); from this function, interceptions only. \cr
+   is_def_pos_team_turnover \tab logical \tab TRUE when the defense gave the ball back on the same play (\code{def_fumble_lost}). Always FALSE from this function. \cr
+   is_turnover \tab logical \tab TRUE when either side gave the ball away (interceptions and lost fumbles; blocked kicks excluded); from this function, interceptions only. \cr
+   turnover_team \tab character \tab Team id that gave the ball away; NA when \code{is_turnover} is FALSE. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   is_st_turnover \tab logical \tab TRUE when a lost fumble happened on a special-teams play. Always FALSE from this function (see \code{pos_fumble_lost}). \cr
+   is_blocked_punt_turnover \tab logical \tab TRUE on a blocked punt returned for a touchdown or that changed possession; not counted in \code{is_turnover}. \cr
+   is_blocked_fg_turnover \tab logical \tab TRUE on a blocked field goal returned for a touchdown or that changed possession; not counted in \code{is_turnover}. \cr
+   penalized_team \tab character \tab Team id charged with the penalty; NA on plays without a penalty. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   penalty_team_id \tab character \tab Copy of \code{penalized_team}. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   penalty_yards_signed \tab integer \tab Penalty yardage parsed from \code{yds_penalty} as an integer, 0 when none. The magnitude is reliable; the sign is not a dependable direction. \cr
+   air_yardsToEndzone \tab integer \tab Catch point in yards from the end zone, parsed from \verb{caught at} or \verb{thrown to} in the play text. NA from this function except a spot at the 50, because siding the spot needs team ids CFBD plays do not carry. \cr
+   air_yards \tab integer \tab Air yards: \code{yards_to_goal} minus \code{air_yardsToEndzone}; NA whenever \code{air_yardsToEndzone} is NA. \cr
+   yards_after_catch \tab integer \tab Yards after the catch on completions: \code{yards_gained} minus \code{air_yards}; NA on other plays or when \code{air_yards} is NA. \cr
+   pass_depth \tab character \tab Pass depth stated in the text of a pass play (\code{short} or \code{deep}); NA when not stated or not a pass. \cr
+   pass_direction \tab character \tab Pass direction stated in the text of a pass play (\code{left}, \code{middle} or \code{right}); NA when not stated or not a pass. \cr
+   rush_direction \tab character \tab Run direction stated in the text of a rushing play (\code{left}, \code{middle} or \code{right}); NA when not stated or not a rush. \cr
+   qb_hurry \tab logical \tab TRUE when the play text says the passer was hurried ("hurried by"). \cr
+   new_series \tab double \tab Binary flag for the start of a new series of downs. \cr
+   firstD_by_kickoff \tab double \tab Binary flag for a new first down arising from a kickoff. \cr
+   firstD_by_poss \tab double \tab Binary flag for a new first down via change of possession. \cr
+   firstD_by_penalty \tab double \tab Binary flag for a new first down via penalty. \cr
+   firstD_by_yards \tab double \tab Binary flag for a new first down via yards gained. \cr
+   def_EPA \tab double \tab EPA for the defensive team on the play (sign-flipped offense EPA). \cr
+   home_EPA \tab double \tab EPA for the home team on the play. \cr
+   away_EPA \tab double \tab EPA for the away team on the play. \cr
+   home_EPA_rush \tab double \tab Rushing EPA for the home team on the play. \cr
+   away_EPA_rush \tab double \tab Rushing EPA for the away team on the play. \cr
+   home_EPA_pass \tab double \tab Passing EPA for the home team on the play. \cr
+   away_EPA_pass \tab double \tab Passing EPA for the away team on the play. \cr
+   total_home_EPA \tab double \tab Cumulative total EPA for the home team through the play. \cr
+   total_away_EPA \tab double \tab Cumulative total EPA for the away team through the play. \cr
+   total_home_EPA_rush \tab double \tab Cumulative rushing EPA for the home team through the play. \cr
+   total_away_EPA_rush \tab double \tab Cumulative rushing EPA for the away team through the play. \cr
+   total_home_EPA_pass \tab double \tab Cumulative passing EPA for the home team through the play. \cr
+   total_away_EPA_pass \tab double \tab Cumulative passing EPA for the away team through the play. \cr
+   net_home_EPA \tab double \tab Net EPA differential (home minus away) through the play. \cr
+   net_away_EPA \tab double \tab Net EPA differential (away minus home) through the play. \cr
+   net_home_EPA_rush \tab double \tab Net rushing EPA differential for the home team through the play. \cr
+   net_away_EPA_rush \tab double \tab Net rushing EPA differential for the away team through the play. \cr
+   net_home_EPA_pass \tab double \tab Net passing EPA differential for the home team through the play. \cr
+   net_away_EPA_pass \tab double \tab Net passing EPA differential for the away team through the play. \cr
+   success \tab double \tab Binary success-rate flag using the 50/70/100 percent down-state thresholds. \cr
+   epa_success \tab double \tab Binary flag for plays with positive EPA (EPA > 0). \cr
+   rz_play \tab double \tab Binary flag for a red-zone play (yards_to_goal <= 20). \cr
+   scoring_opp \tab double \tab Binary flag for a scoring opportunity (yards_to_goal <= 40). \cr
    middle_8 \tab logical \tab TRUE for plays in the middle-8 window (final 4 min of 1H, first 4 min of 2H). \cr
-   stuffed_run \tab numeric \tab Binary flag for a stuffed run (zero or negative yards gained). \cr
-   change_of_pos_team \tab numeric \tab Binary flag for change of possession-team on the play. \cr
-   downs_turnover \tab numeric \tab Binary flag for a turnover on downs. \cr
-   turnover \tab numeric \tab Binary flag for any turnover on the play. \cr
-   pos_score_diff_start \tab numeric \tab Score differential for the possession team at the start of the play. \cr
-   pos_score_pts \tab numeric \tab Points scored on the play attributed to the possession team. \cr
-   log_ydstogo \tab numeric \tab Natural log of distance-to-go (model feature). \cr
-   ExpScoreDiff \tab numeric \tab Expected score differential at the start of the play (EPA-adjusted). \cr
-   ExpScoreDiff_Time_Ratio \tab numeric \tab Expected score differential scaled by share of time remaining. \cr
-   half_clock_minutes \tab numeric \tab Minutes remaining in the half (15 + clock_minutes when in Q1/Q3). \cr
-   TimeSecsRem \tab numeric \tab Seconds remaining in the half at the start of the play. \cr
-   adj_TimeSecsRem \tab numeric \tab Adjusted seconds remaining used by the EPA/WP models. \cr
+   stuffed_run \tab double \tab Binary flag for a stuffed run (zero or negative yards gained). \cr
+   change_of_pos_team \tab double \tab Binary flag for change of possession-team on the play. \cr
+   downs_turnover \tab double \tab Binary flag for a turnover on downs. \cr
+   turnover \tab double \tab Binary flag for any turnover on the play. \cr
+   pos_score_diff_start \tab double \tab Score differential for the possession team at the start of the play. \cr
+   pos_score_pts \tab double \tab Points scored on the play attributed to the possession team. \cr
+   log_ydstogo \tab double \tab Natural log of distance-to-go (model feature). \cr
+   ExpScoreDiff \tab double \tab Expected score differential at the start of the play (EPA-adjusted). \cr
+   ExpScoreDiff_Time_Ratio \tab double \tab \code{ExpScoreDiff} divided by (\code{adj_TimeSecsRem} + 1) (WP model input). \cr
+   half_clock_minutes \tab double \tab Minutes remaining in the half (15 + clock_minutes when in Q1/Q3). \cr
+   TimeSecsRem \tab double \tab Seconds remaining in the half at the start of the play. \cr
+   adj_TimeSecsRem \tab double \tab Seconds remaining in regulation: \code{TimeSecsRem} plus 1800 in the first half (WP model input). \cr
    Goal_To_Go \tab logical \tab TRUE when the offense is in a goal-to-go situation. \cr
    Under_two \tab logical \tab TRUE when under two minutes remain in the half. \cr
    home \tab character \tab Home team name. \cr
    away \tab character \tab Away team name. \cr
-   home_wp_before \tab numeric \tab Home team win probability before the play (0-1). \cr
-   away_wp_before \tab numeric \tab Away team win probability before the play (0-1). \cr
-   home_wp_after \tab numeric \tab Home team win probability after the play (0-1). \cr
-   away_wp_after \tab numeric \tab Away team win probability after the play (0-1). \cr
-   end_of_half \tab numeric \tab Binary flag for the last play of a half. \cr
-   pos_team_receives_2H_kickoff \tab numeric \tab Binary flag indicating possession team receives the second-half kickoff. \cr
-   lead_pos_team \tab character \tab Possession team on the next play (lead value). \cr
-   lead_play_type \tab character \tab Play type on the next play (lead value). \cr
-   lag_pos_team \tab character \tab Possession team on the previous play (lag value). \cr
-   lag_play_type \tab character \tab Play type on the previous play (lag value). \cr
+   home_wp_before \tab double \tab Home team win probability before the play (0-1). \cr
+   away_wp_before \tab double \tab Away team win probability before the play (0-1). \cr
+   home_wp_after \tab double \tab Home team win probability after the play (0-1). \cr
+   away_wp_after \tab double \tab Away team win probability after the play (0-1). \cr
+   end_of_half \tab double \tab Binary flag for the last play of a half. \cr
+   pos_team_receives_2H_kickoff \tab double \tab Binary flag indicating possession team receives the second-half kickoff. \cr
    orig_play_type \tab character \tab Original CFBD play type label before cfbfastR cleaning. \cr
    Under_three \tab logical \tab TRUE when under three minutes remain in the half. \cr
    down_end \tab factor \tab Down number at the end of the play (post-play state). \cr
-   distance_end \tab numeric \tab Distance-to-go at the end of the play (post-play state). \cr
-   log_ydstogo_end \tab numeric \tab Natural log of post-play distance-to-go (model feature). \cr
-   yards_to_goal_end \tab numeric \tab Yards to opponent end zone at the end of the play. \cr
-   TimeSecsRem_end \tab numeric \tab Seconds remaining in the half at the end of the play. \cr
+   distance_end \tab double \tab Distance-to-go at the end of the play (post-play state). \cr
+   log_ydstogo_end \tab double \tab Natural log of post-play distance-to-go (model feature). \cr
+   yards_to_goal_end \tab double \tab Yards to opponent end zone at the end of the play. \cr
+   TimeSecsRem_end \tab double \tab Seconds remaining in the half at the end of the play. \cr
    Goal_To_Go_end \tab logical \tab TRUE when the post-play state is goal-to-go. \cr
    Under_two_end \tab logical \tab TRUE when the post-play state is under two minutes. \cr
-   offense_score_play \tab numeric \tab Binary flag for an offensive scoring play. \cr
-   defense_score_play \tab numeric \tab Binary flag for a defensive scoring play. \cr
-   ppa \tab numeric \tab Predicted Points Added from the CFBD ppa endpoint (CFB-EPA analogue). \cr
+   offense_score_play \tab double \tab Binary flag for an offensive scoring play. \cr
+   defense_score_play \tab double \tab Binary flag for a defensive scoring play. \cr
+   ppa \tab double \tab CFBD's own Predicted Points Added for the play (the \code{ppa} field of the CFBD plays payload). \cr
    yard_line \tab integer \tab Yard line where the play started (raw CFBD yardline field). \cr
    scoring \tab logical \tab TRUE when the play resulted in a score (CFBD scoring flag). \cr
-   pos_team_timeouts_rem_before \tab numeric \tab Possession team timeouts remaining before the play. \cr
-   def_pos_team_timeouts_rem_before \tab numeric \tab Defensive team timeouts remaining before the play. \cr
+   pos_team_timeouts_rem_before \tab double \tab Possession team timeouts remaining before the play. \cr
+   def_pos_team_timeouts_rem_before \tab double \tab Defensive team timeouts remaining before the play. \cr
    pos_team_timeouts \tab integer \tab Possession team timeouts remaining after the play. \cr
    def_pos_team_timeouts \tab integer \tab Defensive team timeouts remaining after the play. \cr
-   pos_score_diff \tab integer \tab Score differential from the possession team's perspective. \cr
-   pos_score_diff_start_end \tab numeric \tab Score differential aggregated from start to end of the play. \cr
+   pos_score_diff \tab integer \tab Score differential from the possession team's perspective after the play; \code{pos_score_diff_start} is the pre-play value. \cr
+   pos_score_diff_start_end \tab double \tab Score differential for the post-play EP state: \code{pos_score_diff}, negated when possession changed on the play. \cr
    offense_play \tab character \tab Offensive team name as labeled by CFBD on the play. \cr
    defense_play \tab character \tab Defensive team name as labeled by CFBD on the play. \cr
-   offense_receives_2H_kickoff \tab numeric \tab Binary flag indicating offense receives the second-half kickoff. \cr
-   change_of_poss \tab numeric \tab Binary flag for change of possession on the play (CFBD offense field). \cr
-   score_pts \tab numeric \tab Points scored on the play. \cr
-   score_diff_start \tab numeric \tab Score differential at the start of the play. \cr
-   score_diff \tab integer \tab Score differential (offense_score - defense_score) at the start. \cr
-   offense_score \tab integer \tab Offense team score at the start of the play. \cr
-   defense_score \tab integer \tab Defense team score at the start of the play. \cr
+   offense_receives_2H_kickoff \tab double \tab Binary flag indicating offense receives the second-half kickoff. \cr
+   change_of_poss \tab double \tab Binary flag for change of possession on the play (CFBD offense field). \cr
+   score_pts \tab double \tab Points scored on the play. \cr
+   score_diff_start \tab double \tab Score differential at the start of the play. \cr
+   score_diff \tab integer \tab Score differential (offense_score - defense_score) after the play; \code{score_diff_start} is the pre-play value. \cr
+   offense_score \tab integer \tab Offense team score after the play (includes points scored on it). \cr
+   defense_score \tab integer \tab Defense team score after the play. \cr
    offense_conference \tab character \tab Conference name of the offensive team. \cr
    defense_conference \tab character \tab Conference name of the defensive team. \cr
-   off_timeout_called \tab numeric \tab Binary flag for an offensive timeout called during the play. \cr
-   def_timeout_called \tab numeric \tab Binary flag for a defensive timeout called during the play. \cr
+   off_timeout_called \tab double \tab Binary flag for an offensive timeout called during the play. \cr
+   def_timeout_called \tab double \tab Binary flag for a defensive timeout called during the play. \cr
    offense_timeouts \tab integer \tab Offense timeouts remaining after the play (CFBD field). \cr
    defense_timeouts \tab integer \tab Defense timeouts remaining after the play (CFBD field). \cr
-   off_timeouts_rem_before \tab numeric \tab Offense timeouts remaining before the play. \cr
-   def_timeouts_rem_before \tab numeric \tab Defense timeouts remaining before the play. \cr
+   off_timeouts_rem_before \tab double \tab Offense timeouts remaining before the play. \cr
+   def_timeouts_rem_before \tab double \tab Defense timeouts remaining before the play. \cr
    rusher_player_name \tab character \tab Name of the rusher on a rushing play. \cr
-   yds_rushed \tab numeric \tab Rushing yards gained on the play. \cr
+   yds_rushed \tab double \tab Rushing yards gained on the play. \cr
    passer_player_name \tab character \tab Name of the passer on a passing play. \cr
    receiver_player_name \tab character \tab Name of the receiver on a passing play. \cr
-   yds_receiving \tab numeric \tab Receiving yards gained on the play. \cr
-   yds_sacked \tab numeric \tab Yards lost on the sack. \cr
+   yds_receiving \tab double \tab Receiving yards gained on the play. \cr
+   yds_sacked \tab double \tab Yards lost on the sack. \cr
    sack_players \tab character \tab Combined names of all sack participants. \cr
    sack_player_name \tab character \tab Primary sack player name. \cr
    sack_player_name2 \tab character \tab Secondary sack player name (when split between two defenders). \cr
    pass_breakup_player_name \tab character \tab Name of the defender credited with the pass breakup. \cr
    interception_player_name \tab character \tab Name of the defender credited with the interception. \cr
-   yds_int_return \tab numeric \tab Yards gained on an interception return. \cr
+   yds_int_return \tab double \tab Yards gained on an interception return. \cr
    fumble_player_name \tab character \tab Name of the player who fumbled. \cr
    fumble_forced_player_name \tab character \tab Name of the player who forced the fumble. \cr
    fumble_recovered_player_name \tab character \tab Name of the player who recovered the fumble. \cr
-   yds_fumble_return \tab numeric \tab Yards gained on a fumble return. \cr
+   yds_fumble_return \tab double \tab Yards gained on a fumble return. \cr
    punter_player_name \tab character \tab Name of the punter. \cr
-   yds_punted \tab numeric \tab Yards the ball traveled on the punt. \cr
+   yds_punted \tab double \tab Yards the ball traveled on the punt. \cr
    punt_returner_player_name \tab character \tab Name of the punt returner. \cr
-   yds_punt_return \tab numeric \tab Yards gained on the punt return. \cr
-   yds_punt_gained \tab numeric \tab Net yards gained on the punt (punt distance minus return). \cr
+   yds_punt_return \tab double \tab Yards gained on the punt return. \cr
+   yds_punt_gained \tab double \tab The play's \code{yards_gained} on punt plays; NA otherwise. \cr
    punt_block_player_name \tab character \tab Name of the player credited with blocking the punt. \cr
    punt_block_return_player_name \tab character \tab Name of the player returning a blocked punt. \cr
    fg_kicker_player_name \tab character \tab Name of the field goal kicker. \cr
-   yds_fg \tab numeric \tab Distance of the field goal attempt in yards. \cr
+   yds_fg \tab double \tab Distance of the field goal attempt in yards; NA on other plays. \cr
    fg_block_player_name \tab character \tab Name of the player credited with blocking the field goal. \cr
    fg_return_player_name \tab character \tab Name of the player returning the blocked/missed field goal. \cr
    kickoff_player_name \tab character \tab Name of the kickoff specialist. \cr
-   yds_kickoff \tab numeric \tab Yards the ball traveled on the kickoff. \cr
+   yds_kickoff \tab double \tab Yards the ball traveled on the kickoff. \cr
    kickoff_returner_player_name \tab character \tab Name of the kickoff returner. \cr
-   yds_kickoff_return \tab numeric \tab Yards gained on the kickoff return. \cr
-   new_id \tab numeric \tab Numeric play index within the game (id_play with game_id stripped). \cr
+   yds_kickoff_return \tab double \tab Yards gained on the kickoff return. \cr
+   new_id \tab double \tab Numeric play index within the game (id_play with game_id stripped). \cr
    orig_drive_number \tab integer \tab Original CFBD drive number for the play. \cr
    drive_number \tab integer \tab cfbfastR-cleaned drive number for the play. \cr
    drive_result_detailed \tab character \tab Detailed drive result label (e.g. "Punt", "Passing Touchdown", "Downs Turnover"). \cr
-   new_drive_pts \tab numeric \tab Points scored on the drive (signed for offense/defense). \cr
-   drive_id \tab numeric \tab CFBD drive identifier. \cr
+   new_drive_pts \tab double \tab Points scored on the drive (signed for offense/defense). \cr
+   drive_id \tab double \tab CFBD drive identifier. \cr
    drive_result \tab character \tab CFBD drive result label. \cr
-   drive_start_yards_to_goal \tab numeric \tab Yards to goal at the start of the drive. \cr
+   drive_start_yards_to_goal \tab double \tab Yards to goal at the start of the drive. \cr
    drive_end_yards_to_goal \tab integer \tab Yards to goal at the end of the drive. \cr
    drive_yards \tab integer \tab Net yards gained on the drive. \cr
-   drive_scoring \tab numeric \tab Binary flag for a scoring drive. \cr
-   drive_pts \tab numeric \tab Points scored on the drive (CFBD/cfbfastR reconciled value). \cr
+   drive_scoring \tab double \tab Binary flag for a scoring drive. \cr
+   drive_pts \tab double \tab Points scored on the drive (CFBD/cfbfastR reconciled value). \cr
    drive_start_period \tab integer \tab Period (quarter) at the start of the drive. \cr
    drive_end_period \tab integer \tab Period (quarter) at the end of the drive. \cr
    drive_time_minutes_start \tab integer \tab Minutes on the clock at the start of the drive. \cr
    drive_time_seconds_start \tab integer \tab Seconds on the clock at the start of the drive. \cr
    drive_time_minutes_end \tab integer \tab Minutes on the clock at the end of the drive. \cr
    drive_time_seconds_end \tab integer \tab Seconds on the clock at the end of the drive. \cr
-   drive_time_minutes_elapsed \tab logical \tab Minutes elapsed during the drive. \cr
-   drive_time_seconds_elapsed \tab logical \tab Seconds elapsed during the drive. \cr
-   drive_numbers \tab numeric \tab Binary flag marking the first play of a new drive. \cr
-   number_of_drives \tab numeric \tab Cumulative count of drives in the game. \cr
-   pts_scored \tab numeric \tab Points scored on the play, signed by play_type rule. \cr
-   drive_result_detailed_flag \tab character \tab Pre-fill copy of drive_result_detailed used during drive reconciliation. \cr
-   drive_result2 \tab character \tab Short-form drive result label (e.g. "TD", "PUNT", "DOWNS"). \cr
-   drive_num \tab numeric \tab Game-scoped drive sequence number. \cr
-   lag_drive_result_detailed \tab character \tab Drive result detailed on the previous play (lag value). \cr
-   lead_drive_result_detailed \tab character \tab Drive result detailed on the next play (lead value). \cr
-   lag_new_drive_pts \tab numeric \tab Drive points on the previous play (lag value). \cr
+   drive_time_minutes_elapsed \tab integer \tab Minutes elapsed during the drive. \cr
+   drive_time_seconds_elapsed \tab integer \tab Seconds elapsed during the drive. \cr
+   drive_numbers \tab double \tab Binary flag marking the first play of a new drive. \cr
+   number_of_drives \tab double \tab Cumulative count of drives in the game. \cr
+   pts_scored \tab double \tab Points scored on the play, signed by play_type rule. \cr
+   drive_num \tab double \tab Game-scoped drive sequence number. \cr
    id_drive \tab character \tab Composite drive identifier (game_id concatenated with drive_num). \cr
-   rush \tab numeric \tab Binary flag for a rushing play. \cr
-   rush_td \tab numeric \tab Binary flag for a rushing touchdown. \cr
-   pass \tab numeric \tab Binary flag for a passing play (includes sacks). \cr
-   pass_td \tab numeric \tab Binary flag for a passing touchdown. \cr
-   completion \tab numeric \tab Binary flag for a completed pass. \cr
-   pass_attempt \tab numeric \tab Binary flag for a pass attempt. \cr
-   target \tab numeric \tab Binary flag for a targeted receiver on the play. \cr
-   sack_vec \tab numeric \tab Binary flag for a sack play. \cr
-   sack \tab numeric \tab Binary flag for a sack (duplicate of sack_vec for downstream use). \cr
-   int \tab numeric \tab Binary flag for an interception. \cr
-   int_td \tab numeric \tab Binary flag for an interception returned for a touchdown. \cr
-   turnover_vec \tab numeric \tab Binary flag for any play classified as a turnover. \cr
-   turnover_vec_lag \tab numeric \tab Lag of turnover_vec (previous-play turnover flag). \cr
-   turnover_indicator \tab numeric \tab Composite turnover indicator including failed 4th downs. \cr
-   kickoff_play \tab numeric \tab Binary flag for a kickoff play. \cr
-   receives_2H_kickoff \tab numeric \tab Binary flag for the team receiving the second-half kickoff. \cr
-   missing_yard_flag \tab logical \tab TRUE when post-play yardage had to be imputed. \cr
-   scoring_play \tab numeric \tab Binary flag for any scoring play. \cr
-   td_play \tab numeric \tab Binary flag for a touchdown play. \cr
-   touchdown \tab numeric \tab Binary flag for a touchdown (duplicate of td_play for downstream use). \cr
-   safety \tab numeric \tab Binary flag for a safety. \cr
-   fumble_vec \tab numeric \tab Binary flag for a play involving a fumble. \cr
-   kickoff_tb \tab numeric \tab Binary flag for a kickoff touchback. \cr
-   kickoff_onside \tab numeric \tab Binary flag for an onside kickoff attempt. \cr
-   kickoff_oob \tab numeric \tab Binary flag for a kickoff out of bounds. \cr
-   kickoff_fair_catch \tab numeric \tab Binary flag for a kickoff fair catch. \cr
-   kickoff_downed \tab numeric \tab Binary flag for a kickoff downed in the field of play. \cr
-   kickoff_safety \tab numeric \tab Binary flag for a kickoff safety. \cr
-   kick_play \tab numeric \tab Binary flag for any kicking play (kickoff or field goal). \cr
-   punt \tab numeric \tab Binary flag for a punt play. \cr
-   punt_play \tab numeric \tab Binary flag for any punt-related play (includes blocks/returns). \cr
-   punt_tb \tab numeric \tab Binary flag for a punt touchback. \cr
-   punt_oob \tab numeric \tab Binary flag for a punt out of bounds. \cr
-   punt_fair_catch \tab numeric \tab Binary flag for a punt fair catch. \cr
-   punt_downed \tab numeric \tab Binary flag for a punt downed in the field of play. \cr
-   punt_safety \tab numeric \tab Binary flag for a punt safety. \cr
-   punt_blocked \tab numeric \tab Binary flag for a blocked punt. \cr
-   penalty_safety \tab numeric \tab Binary flag for a safety scored on a penalty. \cr
-   fg_inds \tab numeric \tab Binary flag for a field goal attempt. \cr
+   rush \tab double \tab Binary flag for a rushing play. \cr
+   rush_td \tab double \tab Binary flag for a rushing touchdown. \cr
+   pass \tab double \tab Binary flag for a passing play (includes sacks). \cr
+   pass_td \tab double \tab Binary flag for a passing touchdown. \cr
+   completion \tab double \tab Binary flag for a completed pass. \cr
+   pass_attempt \tab double \tab Binary flag for a pass attempt. \cr
+   target \tab double \tab Binary flag for a targeted receiver on the play. \cr
+   sack \tab double \tab Binary flag for a sack; unlike \code{sack_vec}, excludes sack and fumble-return touchdowns. \cr
+   int \tab double \tab Binary flag for an interception. \cr
+   int_td \tab double \tab Binary flag for an interception returned for a touchdown. \cr
+   turnover_vec \tab double \tab Binary flag for any play classified as a turnover. \cr
+   kickoff_play \tab double \tab Binary flag for a kickoff play. \cr
+   receives_2H_kickoff \tab double \tab Binary flag for the team receiving the second-half kickoff. \cr
+   scoring_play \tab double \tab Binary flag for any scoring play. \cr
+   td_play \tab double \tab Binary flag for a touchdown play. \cr
+   touchdown \tab double \tab Binary flag: 1 when \code{play_type} contains Touchdown (\code{td_play} reads \code{play_text} instead). \cr
+   safety \tab double \tab Binary flag for a safety. \cr
+   fumble_vec \tab double \tab Binary flag for a play involving a fumble. \cr
+   kickoff_tb \tab double \tab Binary flag for a kickoff touchback. \cr
+   kickoff_onside \tab double \tab Binary flag for an onside kickoff attempt. \cr
+   kickoff_oob \tab double \tab Binary flag for a kickoff out of bounds. \cr
+   kickoff_fair_catch \tab double \tab Binary flag for a kickoff fair catch. \cr
+   kickoff_downed \tab double \tab Binary flag for a kickoff downed in the field of play. \cr
+   kickoff_safety \tab double \tab Binary flag for a kickoff safety. \cr
+   punt \tab double \tab Binary flag for a punt play. \cr
+   punt_play \tab double \tab Binary flag for any punt-related play (includes blocks/returns). \cr
+   punt_tb \tab double \tab Binary flag for a punt touchback. \cr
+   punt_oob \tab double \tab Binary flag for a punt out of bounds. \cr
+   punt_fair_catch \tab double \tab Binary flag for a punt fair catch. \cr
+   punt_downed \tab double \tab Binary flag for a punt downed in the field of play. \cr
+   punt_safety \tab double \tab Binary flag for a punt safety. \cr
+   punt_blocked \tab double \tab Binary flag for a blocked punt. \cr
+   penalty_safety \tab double \tab Binary flag for a safety scored on a penalty. \cr
+   fg_inds \tab double \tab Binary flag for a field goal attempt. \cr
    fg_made \tab logical \tab TRUE when the field goal attempt was successful. \cr
-   fg_make_prob \tab numeric \tab Predicted probability of making the field goal (cfbfastR FG model, 0-1). \cr
-   No_Score_before \tab numeric \tab Pre-play predicted probability of no score before end of half (cfbfastR EP model, 0-1). \cr
-   FG_before \tab numeric \tab Pre-play predicted probability of a posteam field goal next (0-1). \cr
-   Opp_FG_before \tab numeric \tab Pre-play predicted probability of a defteam field goal next (0-1). \cr
-   Opp_Safety_before \tab numeric \tab Pre-play predicted probability of a defteam safety next (0-1). \cr
-   Opp_TD_before \tab numeric \tab Pre-play predicted probability of a defteam touchdown next (0-1). \cr
-   Safety_before \tab numeric \tab Pre-play predicted probability of a posteam safety next (0-1). \cr
-   TD_before \tab numeric \tab Pre-play predicted probability of a posteam touchdown next (0-1). \cr
-   No_Score_after \tab numeric \tab Post-play predicted probability of no score before end of half (0-1). \cr
-   FG_after \tab numeric \tab Post-play predicted probability of a posteam field goal next (0-1). \cr
-   Opp_FG_after \tab numeric \tab Post-play predicted probability of a defteam field goal next (0-1). \cr
-   Opp_Safety_after \tab numeric \tab Post-play predicted probability of a defteam safety next (0-1). \cr
-   Opp_TD_after \tab numeric \tab Post-play predicted probability of a defteam touchdown next (0-1). \cr
-   Safety_after \tab numeric \tab Post-play predicted probability of a posteam safety next (0-1). \cr
-   TD_after \tab numeric \tab Post-play predicted probability of a posteam touchdown next (0-1). \cr
+   fg_make_prob \tab double \tab Predicted probability of making the field goal (cfbfastR FG model, 0-1); NA on plays that are not field goal attempts. \cr
+   No_Score_before \tab double \tab Pre-play predicted probability of no score before end of half (cfbfastR EP model, 0-1). \cr
+   FG_before \tab double \tab Pre-play predicted probability of a posteam field goal next (0-1). \cr
+   Opp_FG_before \tab double \tab Pre-play predicted probability of a defteam field goal next (0-1). \cr
+   Opp_Safety_before \tab double \tab Pre-play predicted probability of a defteam safety next (0-1). \cr
+   Opp_TD_before \tab double \tab Pre-play predicted probability of a defteam touchdown next (0-1). \cr
+   Safety_before \tab double \tab Pre-play predicted probability of a posteam safety next (0-1). \cr
+   TD_before \tab double \tab Pre-play predicted probability of a posteam touchdown next (0-1). \cr
+   No_Score_after \tab double \tab Post-play predicted probability of no score before end of half (0-1). \cr
+   FG_after \tab double \tab Post-play predicted probability of a posteam field goal next (0-1). \cr
+   Opp_FG_after \tab double \tab Post-play predicted probability of a defteam field goal next (0-1). \cr
+   Opp_Safety_after \tab double \tab Post-play predicted probability of a defteam safety next (0-1). \cr
+   Opp_TD_after \tab double \tab Post-play predicted probability of a defteam touchdown next (0-1). \cr
+   Safety_after \tab double \tab Post-play predicted probability of a posteam safety next (0-1). \cr
+   TD_after \tab double \tab Post-play predicted probability of a posteam touchdown next (0-1). \cr
    penalty_flag \tab logical \tab TRUE when a penalty was flagged on the play. \cr
    penalty_declined \tab logical \tab TRUE when the penalty was declined. \cr
    penalty_no_play \tab logical \tab TRUE when the penalty nullified the play (no play counted). \cr
    penalty_offset \tab logical \tab TRUE when offsetting penalties were called. \cr
    penalty_text \tab logical \tab TRUE when penalty information is detectable in the play text. \cr
    penalty_play_text \tab character \tab Penalty-related substring extracted from the play text. \cr
-   lead_wp_before2 \tab numeric \tab Win probability two plays ahead (lead 2 of wp_before). \cr
-   wpa_half_end \tab numeric \tab WPA contribution from the end-of-half adjustment. \cr
-   wpa_base \tab numeric \tab Base WPA component used to assemble the final wpa value. \cr
-   wpa_base_nxt \tab numeric \tab WPA base component looking ahead one play. \cr
-   wpa_change \tab numeric \tab WPA change-of-possession component for the current play. \cr
-   wpa_change_nxt \tab numeric \tab WPA change-of-possession component for the next play. \cr
-   wpa_base_ind \tab numeric \tab Indicator selecting the wpa_base path for the current play. \cr
-   wpa_base_nxt_ind \tab numeric \tab Indicator selecting the wpa_base_nxt path for the next play. \cr
-   wpa_change_ind \tab numeric \tab Indicator selecting the wpa_change path for the current play. \cr
-   wpa_change_nxt_ind \tab numeric \tab Indicator selecting the wpa_change_nxt path for the next play. \cr
-   lead_wp_before \tab numeric \tab Win probability on the next play (lead of wp_before). \cr
+   lead_wp_before2 \tab double \tab Win probability two plays ahead (lead 2 of wp_before). \cr
+   wpa_half_end \tab double \tab WPA contribution from the end-of-half adjustment. \cr
+   wpa_base \tab double \tab Base WPA component used to assemble the final wpa value. \cr
+   wpa_base_nxt \tab double \tab WPA base component looking ahead one play. \cr
+   wpa_change \tab double \tab WPA change-of-possession component for the current play. \cr
+   wpa_change_nxt \tab double \tab WPA change-of-possession component for the next play. \cr
+   wpa_base_ind \tab double \tab Indicator selecting the wpa_base path for the current play. \cr
+   wpa_base_nxt_ind \tab double \tab Indicator selecting the wpa_base_nxt path for the next play. \cr
+   wpa_change_ind \tab double \tab Indicator selecting the wpa_change path for the current play. \cr
+   wpa_change_nxt_ind \tab double \tab Indicator selecting the wpa_change_nxt path for the next play. \cr
+   lead_wp_before \tab double \tab Win probability on the next play (lead of wp_before). \cr
    lead_pos_team2 \tab character \tab Possession team two plays ahead (lead 2 of pos_team). \cr
-   row \tab integer \tab Row index within the game grouping (sequencing helper). \cr
-   drive_event_number \tab numeric \tab Sequential event number within the current drive. \cr
-   lag_play_type2 \tab character \tab Play type two plays prior (lag 2 of play_type). \cr
-   lag_play_type3 \tab character \tab Play type three plays prior (lag 3 of play_type). \cr
-   lag_play_text \tab character \tab Play text from the previous play (lag value). \cr
-   lag_play_text2 \tab character \tab Play text from two plays prior (lag 2 value). \cr
-   lead_play_text \tab character \tab Play text from the next play (lead value). \cr
-   lag_first_by_penalty \tab numeric \tab First-down-by-penalty flag from the previous play (lag value). \cr
-   lag_first_by_penalty2 \tab numeric \tab First-down-by-penalty flag from two plays prior (lag 2 value). \cr
-   lag_first_by_yards \tab numeric \tab First-down-by-yards flag from the previous play (lag value). \cr
-   lag_first_by_yards2 \tab numeric \tab First-down-by-yards flag from two plays prior (lag 2 value). \cr
-   first_by_penalty \tab numeric \tab Binary flag for a first down earned by penalty on the play. \cr
-   first_by_yards \tab numeric \tab Binary flag for a first down earned by yards on the play. \cr
-   play_after_turnover \tab numeric \tab Binary flag indicating the play immediately following a turnover. \cr
-   lag_change_of_poss \tab numeric \tab change_of_poss from the previous play (lag value). \cr
-   lag_change_of_pos_team \tab numeric \tab change_of_pos_team from the previous play (lag value). \cr
-   lag_change_of_pos_team2 \tab numeric \tab change_of_pos_team from two plays prior (lag 2 value). \cr
-   lag_kickoff_play \tab numeric \tab kickoff_play flag from the previous play (lag value). \cr
-   lag_punt \tab numeric \tab punt flag from the previous play (lag value). \cr
-   lag_punt2 \tab numeric \tab punt flag from two plays prior (lag 2 value). \cr
-   lag_scoring_play \tab numeric \tab scoring_play flag from the previous play (lag value). \cr
-   lag_turnover_vec \tab numeric \tab turnover_vec flag from the previous play (lag value). \cr
-   lag_downs_turnover \tab numeric \tab downs_turnover flag from the previous play (lag value). \cr
-   lag_defense_score_play \tab numeric \tab defense_score_play flag from the previous play (lag value). \cr
-   lag_score_diff \tab numeric \tab score_diff from the previous play (lag value). \cr
-   lag_offense_play \tab character \tab offense_play from the previous play (lag value). \cr
-   lead_offense_play \tab character \tab offense_play from the next play (lead value). \cr
-   lead_offense_play2 \tab character \tab offense_play from two plays ahead (lead 2 value). \cr
-   lag_pos_score_diff \tab numeric \tab pos_score_diff from the previous play (lag value). \cr
-   lag_off_timeouts \tab numeric \tab offense_timeouts from the previous play (lag value). \cr
-   lag_def_timeouts \tab numeric \tab defense_timeouts from the previous play (lag value). \cr
-   lag_TimeSecsRem2 \tab numeric \tab TimeSecsRem from two plays prior (lag 2 value). \cr
-   lag_TimeSecsRem \tab numeric \tab TimeSecsRem from the previous play (lag value). \cr
-   lead_TimeSecsRem \tab numeric \tab TimeSecsRem from the next play (lead value). \cr
-   lead_TimeSecsRem2 \tab numeric \tab TimeSecsRem from two plays ahead (lead 2 value). \cr
-   lag_yards_to_goal2 \tab integer \tab yards_to_goal from two plays prior (lag 2 value). \cr
-   lag_yards_to_goal \tab integer \tab yards_to_goal from the previous play (lag value). \cr
-   lead_yards_to_goal \tab numeric \tab yards_to_goal from the next play (lead value). \cr
-   lead_yards_to_goal2 \tab integer \tab yards_to_goal from two plays ahead (lead 2 value). \cr
-   lag_down2 \tab integer \tab Down number two plays prior (lag 2 value). \cr
-   lag_down \tab integer \tab Down number from the previous play (lag value). \cr
-   lead_down \tab numeric \tab Down number on the next play (lead value). \cr
-   lead_down2 \tab numeric \tab Down number two plays ahead (lead 2 value). \cr
-   lead_distance \tab numeric \tab Distance to go on the next play (lead value). \cr
-   lead_distance2 \tab integer \tab Distance to go two plays ahead (lead 2 value). \cr
-   lead_play_type2 \tab character \tab Play type two plays ahead (lead 2 value). \cr
-   lead_play_type3 \tab character \tab Play type three plays ahead (lead 3 value). \cr
-   lag_ep_before3 \tab numeric \tab ep_before from three plays prior (lag 3 value). \cr
-   lag_ep_before2 \tab numeric \tab ep_before from two plays prior (lag 2 value). \cr
-   lag_ep_before \tab numeric \tab ep_before from the previous play (lag value). \cr
-   lead_ep_before \tab numeric \tab ep_before on the next play (lead value). \cr
-   lead_ep_before2 \tab numeric \tab ep_before two plays ahead (lead 2 value). \cr
-   lag_ep_after \tab numeric \tab ep_after from the previous play (lag value). \cr
-   lag_ep_after2 \tab numeric \tab ep_after from two plays prior (lag 2 value). \cr
-   lag_ep_after3 \tab numeric \tab ep_after from three plays prior (lag 3 value). \cr
-   lead_ep_after \tab numeric \tab ep_after on the next play (lead value). \cr
-   lead_ep_after2 \tab numeric \tab ep_after two plays ahead (lead 2 value). \cr
-   play_number \tab integer \tab CFBD-supplied play number within the game. \cr
+   row \tab integer \tab Row index within the game half (sequencing helper). \cr
+   drive_event_number \tab double \tab Sequential event number within the current drive. \cr
+   first_by_penalty \tab double \tab Binary flag for a first down earned by penalty on the play. \cr
+   first_by_yards \tab double \tab Binary flag for a first down earned by yards on the play. \cr
+   play_after_turnover \tab double \tab Binary flag indicating the play immediately following a turnover. \cr
+   play_number \tab integer \tab CFBD-supplied play number within the drive (1-indexed); \code{game_play_number} is the game-level sequence. \cr
    wallclock \tab character \tab ISO 8601 wall-clock timestamp from CFBD for the play. \cr
-   provider \tab character \tab Sportsbook provider used for spread/over_under joined onto the play. \cr
-   spread \tab numeric \tab Pre-game point spread from the selected provider. \cr
-   formatted_spread \tab character \tab Human-readable formatted spread string from the betting provider. \cr
-   over_under \tab numeric \tab Pre-game over/under total from the selected provider. \cr
+   provider \tab character \tab Sportsbook provider used for spread/over_under joined onto the play. Present only when \code{year >= 2013}. \cr
+   spread \tab double \tab Pre-game point spread from the selected provider (negative when the home team is favored). Present only when \code{year >= 2013}; NA when no line was found. \cr
+   formatted_spread \tab character \tab Human-readable formatted spread string from the betting provider. Present only when \code{year >= 2013}. \cr
+   over_under \tab double \tab Pre-game over/under total from the selected provider. Present only when \code{year >= 2013}. \cr
    drive_is_home_offense \tab logical \tab TRUE when the home team is on offense for the drive. \cr
    drive_start_offense_score \tab integer \tab Offense score at the start of the drive. \cr
    drive_start_defense_score \tab integer \tab Defense score at the start of the drive. \cr
    drive_end_offense_score \tab integer \tab Offense score at the end of the drive. \cr
    drive_end_defense_score \tab integer \tab Defense score at the end of the drive. \cr
-   play \tab numeric \tab Binary flag indicating the row is a counted play (excludes end markers/timeouts/penalties). \cr
-   event \tab numeric \tab Binary flag indicating the row is a counted game event (excludes end markers). \cr
-   game_event_number \tab numeric \tab Sequential event number within the game. \cr
+   cleaned_text \tab character \tab \code{play_text} with the leading clock stamp, the first pass depth and direction words, and No Huddle/Shotgun tags removed. \cr
+   play \tab double \tab Binary flag indicating the row is a counted play (excludes end markers/timeouts/penalties). \cr
+   event \tab double \tab Binary flag indicating the row is a counted game event (excludes end markers). \cr
+   game_event_number \tab double \tab Sequential event number within the game. \cr
    game_row_number \tab integer \tab Row index within the game grouping. \cr
-   half_play \tab numeric \tab Binary flag indicating a counted play within the half. \cr
-   half_event \tab numeric \tab Binary flag indicating a counted event within the half. \cr
-   half_event_number \tab numeric \tab Sequential event number within the half. \cr
+   half_play \tab double \tab Binary flag indicating a counted play within the half. \cr
+   half_event \tab double \tab Binary flag indicating a counted event within the half. \cr
+   half_event_number \tab double \tab Sequential event number within the half. \cr
    half_row_number \tab integer \tab Row index within the half grouping. \cr
+   pos_unit \tab character \tab Unit of the team in possession: \code{Offense}, \verb{Punt Offense}, \verb{Kickoff Return} or \verb{Field Goal Offense}. \cr
+   def_pos_unit \tab character \tab Unit of the defending team: \code{Defense}, \verb{Punt Return}, \verb{Kickoff Defense} or \verb{Field Goal Defense}. \cr
+   drive_play \tab double \tab Binary flag indicating a counted play within the drive. \cr
+   drive_event \tab double \tab Binary flag indicating a counted event within the drive. \cr
+   punt_return_player_name \tab character \tab Not populated by this pipeline (always NA); the punt returner is in \code{punt_returner_player_name}. \cr
+   kickoff_return_player_name \tab character \tab Not populated by this pipeline (always NA); the kickoff returner is in \code{kickoff_returner_player_name}. \cr
+   vegas_wp \tab double \tab Spread-aware win probability for the team in possession before the play (proportion 0-1); NA when the game has no pre-game spread (always before 2013). \cr
+   vegas_wpa \tab double \tab Change in \code{vegas_wp} over the play, with the same possession-change handling as \code{wpa}; NA on the final rows of a game. \cr
+   vegas_wp_after \tab double \tab Spread-aware win probability after the play (\code{vegas_wp} plus \code{vegas_wpa}). \cr
+   cp \tab double \tab Modeled completion probability of the pass (proportion 0-1, cfbfastR CP model); NA on non-pass plays. \cr
+   cpoe \tab double \tab Completion percentage over expected, in percentage points: \code{100 * (completion - cp)}; NA on non-pass plays. \cr
+   xpass \tab double \tab Modeled probability that the play is a pass given down, distance, field position, score, time and era (proportion 0-1); NA on non-scrimmage plays. \cr
+   pass_oe \tab double \tab Pass over expected, in percentage points: \code{100 * (pass - xpass)}; NA on non-scrimmage plays. \cr
+   prob_2pt \tab double \tab Modeled probability of converting a two-point try (proportion 0-1). Set only on offensive-touchdown rows of games with a pre-game line; NA elsewhere. \cr
+   two_pt_wp \tab double \tab Win probability for the scoring team if it goes for two, weighting the make and miss outcomes by \code{prob_2pt}; offensive-touchdown rows only. \cr
+   xp_wp \tab double \tab Win probability for the scoring team if it kicks the extra point; offensive-touchdown rows only. \cr
+   two_pt_wp_diff \tab double \tab \code{two_pt_wp} minus \code{xp_wp}; positive favors going for two. \cr
+   two_pt_recommendation \tab character \tab \code{go_for_2} when \code{two_pt_wp} exceeds \code{xp_wp}, otherwise \code{kick_xp}; NA off offensive-touchdown rows. Use \code{two_pt_wp_diff} to apply a threshold. \cr
+   go_wp \tab double \tab Win probability for the team in possession if it goes for it on fourth down (proportion 0-1). The fourth-down columns are set only on fourth downs in periods 1-4 with more than 30 seconds left in the game; NA elsewhere. \cr
+   first_down_prob \tab double \tab Modeled probability that going for it on fourth down converts (first down or score). \cr
+   wp_succeed \tab double \tab Win probability if the fourth-down attempt converts; NA when that outcome has no probability. \cr
+   wp_fail \tab double \tab Win probability if the fourth-down attempt fails; NA when that outcome has no probability. \cr
+   fourth_down_fg_make_prob \tab double \tab Probability of making a field goal from the current spot, set to 0 beyond 42 yards to goal and scaled by 0.9 from 35 to 42 (not the same as \code{fg_make_prob}). \cr
+   make_fg_wp \tab double \tab Win probability for the kicking team if the fourth-down field goal is made. \cr
+   miss_fg_wp \tab double \tab Win probability for the kicking team if the fourth-down field goal is missed. \cr
+   fg_wp \tab double \tab Expected win probability of attempting the field goal: \code{make_fg_wp} and \code{miss_fg_wp} weighted by \code{fourth_down_fg_make_prob}. \cr
+   punt_wp \tab double \tab Expected win probability of punting; NA when \code{yards_to_goal} is under 31, where the bundled punt distribution has no data. \cr
+   go_boost \tab double \tab Win probability gained by going for it over the better of the field goal and the punt, in percentage points. \cr
+   go_wp_diff \tab double \tab \code{go_wp} minus the win probability of the recommended option (0 when going for it is recommended). \cr
+   fg_wp_diff \tab double \tab \code{fg_wp} minus the win probability of the recommended option (0 when the field goal is recommended). \cr
+   punt_wp_diff \tab double \tab \code{punt_wp} minus the win probability of the recommended option (0 when the punt is recommended). \cr
+   fourth_down_recommendation \tab character \tab Fourth-down option with the highest win probability: \code{go}, \code{field_goal} or \code{punt}; NA off fourth-down rows. \cr
+}
+
+
+\strong{Columns added by \code{output = "full"}} - one row per play; lag/lead pipeline intermediates,
+redundant alternates and drive-result aliases, each defined below:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   lead_pos_team \tab character \tab Possession team on the next play (lead value). \cr
+   lead_play_type \tab character \tab Play type on the next play (lead value). \cr
+   lag_pos_team \tab character \tab Possession team on the previous play (lag value). \cr
+   lag_play_type \tab character \tab Play type on the previous play (lag value). \cr
+   drive_result_detailed_flag \tab character \tab Pre-fill copy of drive_result_detailed used during drive reconciliation. \cr
+   drive_result2 \tab character \tab Short-form drive result label (e.g. "TD", "PUNT", "DOWNS"). \cr
+   lag_drive_result_detailed \tab character \tab Drive result detailed on the previous play (lag value). \cr
+   lead_drive_result_detailed \tab character \tab Drive result detailed on the next play (lead value). \cr
+   lag_new_drive_pts \tab double \tab Drive points on the previous play (lag value). \cr
+   sack_vec \tab double \tab Binary flag for a sack play. \cr
+   turnover_vec_lag \tab double \tab Lag of turnover_vec (previous-play turnover flag). \cr
+   turnover_indicator \tab double \tab Composite turnover indicator including failed 4th downs. \cr
+   missing_yard_flag \tab logical \tab TRUE when post-play yardage had to be imputed. \cr
+   kick_play \tab double \tab Binary flag for a play whose text mentions a kick (kickoffs, extra points, field goals). \cr
+   lag_play_type2 \tab character \tab Play type two plays prior (lag 2 of play_type). \cr
+   lag_play_type3 \tab character \tab Play type three plays prior (lag 3 of play_type). \cr
+   lag_play_text \tab character \tab Play text from the previous play (lag value). \cr
+   lag_play_text2 \tab character \tab Play text from two plays prior (lag 2 value). \cr
+   lead_play_text \tab character \tab Play text from the next play (lead value). \cr
+   lag_first_by_penalty \tab double \tab First-down-by-penalty flag from the previous play (lag value). \cr
+   lag_first_by_penalty2 \tab double \tab First-down-by-penalty flag from two plays prior (lag 2 value). \cr
+   lag_first_by_yards \tab double \tab First-down-by-yards flag from the previous play (lag value). \cr
+   lag_first_by_yards2 \tab double \tab First-down-by-yards flag from two plays prior (lag 2 value). \cr
+   lag_change_of_poss \tab double \tab change_of_poss from the previous play (lag value). \cr
+   lag_change_of_pos_team \tab double \tab change_of_pos_team from the previous play (lag value). \cr
+   lag_change_of_pos_team2 \tab double \tab change_of_pos_team from two plays prior (lag 2 value). \cr
+   lag_kickoff_play \tab double \tab kickoff_play flag from the previous play (lag value). \cr
+   lag_punt \tab double \tab punt flag from the previous play (lag value). \cr
+   lag_punt2 \tab double \tab punt flag from two plays prior (lag 2 value). \cr
+   lag_scoring_play \tab double \tab scoring_play flag from the previous play (lag value). \cr
+   lag_turnover_vec \tab double \tab turnover_vec flag from the previous play (lag value). \cr
+   lag_downs_turnover \tab double \tab downs_turnover flag from the previous play (lag value). \cr
+   lag_defense_score_play \tab double \tab defense_score_play flag from the previous play (lag value). \cr
+   lag_score_diff \tab double \tab score_diff from the previous play (lag value). \cr
+   lag_offense_play \tab character \tab offense_play from the previous play (lag value). \cr
+   lead_offense_play \tab character \tab offense_play from the next play (lead value). \cr
+   lead_offense_play2 \tab character \tab offense_play from two plays ahead (lead 2 value). \cr
+   lag_pos_score_diff \tab double \tab pos_score_diff from the previous play (lag value). \cr
+   lag_off_timeouts \tab double \tab offense_timeouts from the previous play (lag value). \cr
+   lag_def_timeouts \tab double \tab defense_timeouts from the previous play (lag value). \cr
+   lag_TimeSecsRem2 \tab double \tab TimeSecsRem from two plays prior (lag 2 value). \cr
+   lag_TimeSecsRem \tab double \tab TimeSecsRem from the previous play (lag value). \cr
+   lead_TimeSecsRem \tab double \tab TimeSecsRem from the next play (lead value). \cr
+   lead_TimeSecsRem2 \tab double \tab TimeSecsRem from two plays ahead (lead 2 value). \cr
+   lag_yards_to_goal2 \tab integer \tab yards_to_goal from two plays prior (lag 2 value). \cr
+   lag_yards_to_goal \tab integer \tab yards_to_goal from the previous play (lag value). \cr
+   lead_yards_to_goal \tab double \tab yards_to_goal from the next play (lead value). \cr
+   lead_yards_to_goal2 \tab integer \tab yards_to_goal from two plays ahead (lead 2 value). \cr
+   lag_down2 \tab integer \tab Down number two plays prior (lag 2 value). \cr
+   lag_down \tab integer \tab Down number from the previous play (lag value). \cr
+   lead_down \tab double \tab Down number on the next play (lead value). \cr
+   lead_down2 \tab double \tab Down number two plays ahead (lead 2 value). \cr
+   lead_distance \tab double \tab Distance to go on the next play (lead value). \cr
+   lead_distance2 \tab integer \tab Distance to go two plays ahead (lead 2 value). \cr
+   lead_play_type2 \tab character \tab Play type two plays ahead (lead 2 value). \cr
+   lead_play_type3 \tab character \tab Play type three plays ahead (lead 3 value). \cr
+   lag_ep_before3 \tab double \tab ep_before from three plays prior (lag 3 value). \cr
+   lag_ep_before2 \tab double \tab ep_before from two plays prior (lag 2 value). \cr
+   lag_ep_before \tab double \tab ep_before from the previous play (lag value). \cr
+   lead_ep_before \tab double \tab ep_before on the next play (lead value). \cr
+   lead_ep_before2 \tab double \tab ep_before two plays ahead (lead 2 value). \cr
+   lag_ep_after \tab double \tab ep_after from the previous play (lag value). \cr
+   lag_ep_after2 \tab double \tab ep_after from two plays prior (lag 2 value). \cr
+   lag_ep_after3 \tab double \tab ep_after from three plays prior (lag 3 value). \cr
+   lead_ep_after \tab double \tab ep_after on the next play (lead value). \cr
+   lead_ep_after2 \tab double \tab ep_after two plays ahead (lead 2 value). \cr
    lag_distance3 \tab integer \tab distance three plays prior (lag 3 value). \cr
    lag_distance2 \tab integer \tab distance two plays prior (lag 2 value). \cr
    lag_distance \tab integer \tab distance from the previous play (lag value). \cr
@@ -406,24 +531,20 @@ A data frame with 368 variables:\tabular{lll}{
    lag_play_text3 \tab character \tab Play text from three plays prior (lag 3 value). \cr
    lead_play_text2 \tab character \tab Play text from two plays ahead (lead 2 value). \cr
    lead_play_text3 \tab character \tab Play text from three plays ahead (lead 3 value). \cr
-   pos_unit \tab character \tab Possession-team unit label (offense or special teams). \cr
-   def_pos_unit \tab character \tab Defensive possession-team unit label (defense or special teams). \cr
-   lag_change_of_poss2 \tab numeric \tab change_of_poss from two plays prior (lag 2 value). \cr
-   lag_change_of_poss3 \tab numeric \tab change_of_poss from three plays prior (lag 3 value). \cr
-   lag_change_of_pos_team3 \tab numeric \tab change_of_pos_team from three plays prior (lag 3 value). \cr
-   lag_kickoff_play2 \tab numeric \tab kickoff_play flag from two plays prior (lag 2 value). \cr
-   lag_kickoff_play3 \tab numeric \tab kickoff_play flag from three plays prior (lag 3 value). \cr
-   lag_punt3 \tab numeric \tab punt flag from three plays prior (lag 3 value). \cr
-   lag_scoring_play2 \tab numeric \tab scoring_play flag from two plays prior (lag 2 value). \cr
-   lag_scoring_play3 \tab numeric \tab scoring_play flag from three plays prior (lag 3 value). \cr
-   lag_turnover_vec2 \tab numeric \tab turnover_vec flag from two plays prior (lag 2 value). \cr
-   lag_turnover_vec3 \tab numeric \tab turnover_vec flag from three plays prior (lag 3 value). \cr
-   lag_downs_turnover2 \tab numeric \tab downs_turnover flag from two plays prior (lag 2 value). \cr
-   lag_downs_turnover3 \tab numeric \tab downs_turnover flag from three plays prior (lag 3 value). \cr
-   drive_play \tab numeric \tab Binary flag indicating a counted play within the drive. \cr
-   drive_event \tab numeric \tab Binary flag indicating a counted event within the drive. \cr
-   lag_first_by_penalty3 \tab numeric \tab first_by_penalty flag from three plays prior (lag 3 value). \cr
-   lag_first_by_yards3 \tab numeric \tab first_by_yards flag from three plays prior (lag 3 value). \cr
+   lag_change_of_poss2 \tab double \tab change_of_poss from two plays prior (lag 2 value). \cr
+   lag_change_of_poss3 \tab double \tab change_of_poss from three plays prior (lag 3 value). \cr
+   lag_change_of_pos_team3 \tab double \tab change_of_pos_team from three plays prior (lag 3 value). \cr
+   lag_kickoff_play2 \tab double \tab kickoff_play flag from two plays prior (lag 2 value). \cr
+   lag_kickoff_play3 \tab double \tab kickoff_play flag from three plays prior (lag 3 value). \cr
+   lag_punt3 \tab double \tab punt flag from three plays prior (lag 3 value). \cr
+   lag_scoring_play2 \tab double \tab scoring_play flag from two plays prior (lag 2 value). \cr
+   lag_scoring_play3 \tab double \tab scoring_play flag from three plays prior (lag 3 value). \cr
+   lag_turnover_vec2 \tab double \tab turnover_vec flag from two plays prior (lag 2 value). \cr
+   lag_turnover_vec3 \tab double \tab turnover_vec flag from three plays prior (lag 3 value). \cr
+   lag_downs_turnover2 \tab double \tab downs_turnover flag from two plays prior (lag 2 value). \cr
+   lag_downs_turnover3 \tab double \tab downs_turnover flag from three plays prior (lag 3 value). \cr
+   lag_first_by_penalty3 \tab double \tab first_by_penalty flag from three plays prior (lag 3 value). \cr
+   lag_first_by_yards3 \tab double \tab first_by_yards flag from three plays prior (lag 3 value). \cr
 }
 }
 \description{

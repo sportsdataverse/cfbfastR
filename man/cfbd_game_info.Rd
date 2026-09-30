@@ -50,38 +50,53 @@ I have defaulted the parameter to false so that you will not have to go to the t
 \item{round}{(\emph{String} optional): Playoff round -- \code{first_round}, \code{quarterfinal}, \code{semifinal}, \code{championship}.}
 }
 \value{
-\code{\link[=cfbd_game_info]{cfbd_game_info()}} - A data frame with 30 variables:\tabular{lll}{
-   col_name \tab types \tab description \cr
-   game_id \tab integer \tab Referencing game id. \cr
+A data frame with one row per game and 32 variables. With
+\code{quarter_scores = TRUE} the per-period scores are inserted after \code{home_points} and
+after \code{away_points}: one \verb{home_scores_Q<n>} and one \verb{away_scores_Q<n>} column per
+period played by any game in the result, so overtime adds \verb{_Q5} onward (the
+seven-overtime 2018 LSU at Texas A&M game reaches \verb{_Q11}). An empty data frame is
+returned if the request fails.\tabular{lll}{
+   col_name \tab type \tab description \cr
+   game_id \tab integer \tab Unique CFBD game identifier. \cr
    season \tab integer \tab Season of the game. \cr
-   week \tab integer \tab Game week. \cr
-   season_type \tab character \tab Season type of the game. \cr
-   start_date \tab character \tab Game date. \cr
+   week \tab integer \tab Game week (postseason games restart at week 1). \cr
+   season_type \tab character \tab Season type of the game (e.g. regular, postseason). \cr
+   start_date \tab character \tab Game start date-time (ISO 8601, UTC). \cr
    start_time_tbd \tab logical \tab TRUE/FALSE flag for if the game's start time is to be determined. \cr
+   completed \tab logical \tab TRUE if the game has been completed. \cr
    neutral_site \tab logical \tab TRUE/FALSE flag for the game taking place at a neutral site. \cr
    conference_game \tab logical \tab TRUE/FALSE flag for this game qualifying as a conference game. \cr
-   attendance \tab integer \tab Reported attendance at the game. \cr
-   venue_id \tab integer \tab Referencing venue id. \cr
+   attendance \tab integer \tab Reported attendance at the game; NA when not reported. \cr
+   venue_id \tab integer \tab CFBD venue id. \cr
    venue \tab character \tab Venue name. \cr
-   home_id \tab integer \tab Home team referencing id. \cr
+   home_id \tab integer \tab Home team CFBD id. \cr
    home_team \tab character \tab Home team name. \cr
+   home_division \tab character \tab Home team division (CFBD classification): fbs, fcs, ii, ii/iii or iii. \cr
    home_conference \tab character \tab Home team conference. \cr
-   home_division \tab character \tab Home team division. \cr
-   home_points \tab integer \tab Home team points. \cr
-   home_post_win_prob \tab character \tab Home team post-game win probability. \cr
-   home_pregame_elo \tab character \tab Home team pre-game ELO rating. \cr
-   home_postgame_elo \tab character \tab Home team post-game ELO rating. \cr
-   away_id \tab integer \tab Away team referencing id. \cr
+   home_points \tab integer \tab Home team points; NA until the game has a score. \cr
+   home_scores_Q1 \tab integer \tab Home team points in the first quarter; present only with \code{quarter_scores = TRUE}. \cr
+   home_scores_Q2 \tab integer \tab Home team points in the second quarter; present only with \code{quarter_scores = TRUE}. \cr
+   home_scores_Q3 \tab integer \tab Home team points in the third quarter; present only with \code{quarter_scores = TRUE}. \cr
+   home_scores_Q4 \tab integer \tab Home team points in the fourth quarter; present only with \code{quarter_scores = TRUE}. \cr
+   home_post_win_prob \tab double \tab Home team post-game win probability (proportion 0-1). \cr
+   home_pregame_elo \tab integer \tab Home team pre-game Elo rating. \cr
+   home_postgame_elo \tab integer \tab Home team post-game Elo rating. \cr
+   away_id \tab integer \tab Away team CFBD id. \cr
    away_team \tab character \tab Away team name. \cr
+   away_division \tab character \tab Away team division (CFBD classification): fbs, fcs, ii, ii/iii or iii. \cr
    away_conference \tab character \tab Away team conference. \cr
-   away_division \tab character \tab Away team division. \cr
-   away_points \tab integer \tab Away team points. \cr
-   away_post_win_prob \tab character \tab Away team post-game win probability. \cr
-   away_pregame_elo \tab character \tab Away team pre-game ELO rating. \cr
-   away_postgame_elo \tab character \tab Away team post-game ELO rating. \cr
-   excitement_index \tab character \tab Game excitement index. \cr
-   highlights \tab character \tab Game highlight urls. \cr
-   notes \tab character \tab Game notes. \cr
+   away_points \tab integer \tab Away team points; NA until the game has a score. \cr
+   away_scores_Q1 \tab integer \tab Away team points in the first quarter; present only with \code{quarter_scores = TRUE}. \cr
+   away_scores_Q2 \tab integer \tab Away team points in the second quarter; present only with \code{quarter_scores = TRUE}. \cr
+   away_scores_Q3 \tab integer \tab Away team points in the third quarter; present only with \code{quarter_scores = TRUE}. \cr
+   away_scores_Q4 \tab integer \tab Away team points in the fourth quarter; present only with \code{quarter_scores = TRUE}. \cr
+   away_post_win_prob \tab double \tab Away team post-game win probability (proportion 0-1). \cr
+   away_pregame_elo \tab integer \tab Away team pre-game Elo rating. \cr
+   away_postgame_elo \tab integer \tab Away team post-game Elo rating. \cr
+   excitement_index \tab double \tab Game excitement index (CFBD measure of in-game win-probability swings; higher is more exciting). \cr
+   highlights \tab character \tab Game highlight URL; NA or empty when none. \cr
+   notes \tab character \tab Game notes (e.g. the bowl name); NA when none. \cr
+   playoff \tab data.frame \tab Playoff context. An all-NA logical column when no game in the result has playoff context; otherwise a nested data frame column (not flattened) of \code{competition}, \code{format}, \code{round}, \code{roundName}, \code{bracketSlot}, \code{homeSeed}, \code{awaySeed}, \code{bowlName}, NA for non-playoff games. See the \verb{playoff_*} columns of \code{\link[=cfbd_game_schedule]{cfbd_game_schedule()}} for their meaning. \cr
 }
 }
 \description{

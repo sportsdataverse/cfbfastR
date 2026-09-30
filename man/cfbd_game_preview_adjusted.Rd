@@ -16,41 +16,136 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} or \code{
 variables.}
 }
 \value{
-\code{\link[=cfbd_game_preview_adjusted]{cfbd_game_preview_adjusted()}} - A named list of tibbles: \code{game},
-\code{team_metrics}, \code{passing}, \code{rushing}, \code{kicking}. A section CFBD did not fill
-is a 0-column tibble.
+A named list of data frames: \code{game}, \code{team_metrics}, \code{passing},
+\code{rushing}, \code{kicking}. A section CFBD did not fill is a 0-column tibble: once
+\code{availability} is \code{metadata_only} (for example a completed game) every section
+except \code{game} is empty. Nested objects are flattened into prefixed columns, and
+a nested object CFBD sends as null (\code{venue}, \code{playoff}, a metrics block) becomes one all-NA
+column named after it instead of its prefixed columns. An empty list is
+returned if the request fails, including for a key without CFBD Patreon Tier 1.
 
-\strong{game} - one row, the same columns as the \code{game} section of \code{\link[=cfbd_game_preview]{cfbd_game_preview()}}.
-
-\strong{team_metrics} - one row per side (\code{side} = home or away): \code{team_id},
-\code{season} (integer), \code{metrics_status}, \code{metrics_reason},
-\code{metrics_assembled_at}, \code{metrics_source_updated_at} (character),
-\code{metrics_data_season} (integer), \code{metrics_data_is_previous_season} (logical)
-and \verb{metrics_data_metrics_*}: \code{year}, \code{team_id}, \code{team}, \code{conference},
-\verb{epa_*} and \verb{epa_allowed_*} (\code{total}, \code{passing}, \code{rushing}),
-\verb{success_rate_*} and \verb{success_rate_allowed_*} (\code{total}, \code{standard_downs},
-\code{passing_downs}), \verb{rushing_*} and \verb{rushing_allowed_*} (\code{line_yards},
-\code{second_level_yards}, \code{open_field_yards}, \code{highlight_yards}),
-\code{explosiveness}, \code{explosiveness_allowed} (numeric; see
-\code{\link[=cfbd_metrics_wepa_team_season]{cfbd_metrics_wepa_team_season()}} for the adjusted metrics).
-
-\strong{passing}, \strong{rushing} - one row per player:\tabular{lll}{
-   col_name \tab types \tab description \cr
-   side \tab character \tab home or away. \cr
-   team \tab character \tab Team name. \cr
-   year \tab integer \tab Season. \cr
-   athlete_id \tab character \tab Player id. \cr
-   athlete_name \tab character \tab Player name. \cr
-   position \tab character \tab Player position. \cr
-   conference \tab character \tab Conference. \cr
-   wepa \tab numeric \tab Opponent-adjusted EPA per play. \cr
-   plays \tab integer \tab Plays. \cr
+\strong{game} - one row, the same columns as the \code{game} section of \code{\link[=cfbd_game_preview]{cfbd_game_preview()}}:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   game_id \tab integer \tab Unique CFBD game identifier. \cr
+   season \tab integer \tab Season of the game. \cr
+   week \tab integer \tab Game week (postseason games restart at week 1). \cr
+   season_type \tab character \tab Season type of the game (e.g. regular, postseason). \cr
+   status \tab character \tab Game status: scheduled, in_progress or completed. \cr
+   status_checked_at \tab character \tab When CFBD last checked the game status (ISO 8601, UTC). \cr
+   start_date \tab character \tab Game start date-time (ISO 8601, UTC). \cr
+   start_time_tbd \tab logical \tab TRUE if the start time is still to be determined. \cr
+   neutral_site \tab logical \tab TRUE if the game is at a neutral site. \cr
+   conference_game \tab logical \tab TRUE if the game is a conference game. \cr
+   home_team_id \tab integer \tab Home team id. \cr
+   home_team_name \tab character \tab Home team name. \cr
+   home_team_conference \tab character \tab Home team conference. \cr
+   home_team_conference_abbreviation \tab character \tab Home team conference abbreviation. \cr
+   home_team_classification \tab character \tab Home team division classification: fbs, fcs, ii, ii/iii or iii. \cr
+   home_team_points \tab integer \tab Home team points; NA until the game has a score. \cr
+   away_team_id \tab integer \tab Away team id. \cr
+   away_team_name \tab character \tab Away team name. \cr
+   away_team_conference \tab character \tab Away team conference. \cr
+   away_team_conference_abbreviation \tab character \tab Away team conference abbreviation. \cr
+   away_team_classification \tab character \tab Away team division classification: fbs, fcs, ii, ii/iii or iii. \cr
+   away_team_points \tab integer \tab Away team points; NA until the game has a score. \cr
+   venue_id \tab integer \tab Venue id. \cr
+   venue_name \tab character \tab Venue name. \cr
+   venue_city \tab character \tab Venue city. \cr
+   venue_state \tab character \tab Venue state abbreviation. \cr
+   playoff \tab logical \tab All-NA placeholder, present only when the game is not a College Football Playoff game (the eight \verb{playoff_*} columns replace it for CFP games). \cr
+   playoff_competition \tab character \tab Playoff competition (cfp); present only for CFP games. \cr
+   playoff_format \tab character \tab Playoff format (e.g. twelve_team_2025); present only for CFP games. \cr
+   playoff_round \tab character \tab Playoff round: first_round, quarterfinal, semifinal or championship; present only for CFP games. \cr
+   playoff_round_name \tab character \tab Display name of the round (e.g. Quarterfinal); present only for CFP games. \cr
+   playoff_bracket_slot \tab character \tab Bracket slot code (e.g. FR4, QF1); present only for CFP games. \cr
+   playoff_home_seed \tab integer \tab Home team playoff seed; present only for CFP games. \cr
+   playoff_away_seed \tab integer \tab Away team playoff seed; present only for CFP games. \cr
+   playoff_bowl_name \tab character \tab Name of the bowl hosting the game (e.g. Rose Bowl), NA when none; present only for CFP games. \cr
+   availability \tab character \tab pregame (analysis sections filled) or metadata_only (only \code{game} is filled). \cr
+   reason \tab character \tab Why analysis is not available: game_started, game_completed, kickoff_reached or kickoff_unknown; NA when \code{availability} is pregame. \cr
+   assembled_at \tab character \tab When CFBD assembled the preview (ISO 8601, UTC). \cr
 }
 
 
-\strong{kicking} - one row per kicker: \code{side}, \code{team}, \code{year}, \code{athlete_id},
-\code{athlete_name}, \code{conference}, \code{paar} (numeric, points added above
-replacement), \code{attempts} (integer).
+\strong{team_metrics} - one row per side (home, away):\tabular{lll}{
+   col_name \tab type \tab description \cr
+   side \tab character \tab home or away: which team of this game the row describes. \cr
+   team_id \tab integer \tab Team id. \cr
+   season \tab integer \tab Season of the game. \cr
+   metrics_status \tab character \tab Status of the team metrics section: available, no_data or unavailable. \cr
+   metrics_reason \tab character \tab Why the team metrics section has no data: no_data, no_results_yet, source_error or invalid_data; NA when available. \cr
+   metrics_assembled_at \tab character \tab When CFBD assembled the team metrics section (ISO 8601, UTC). \cr
+   metrics_source_updated_at \tab character \tab Publication time of the team metrics snapshot (ISO 8601, UTC); NA when CFBD reports none. \cr
+   metrics_data_season \tab integer \tab Season the adjusted team metrics come from. \cr
+   metrics_data_is_previous_season \tab logical \tab TRUE when the metrics come from the season before the game season. \cr
+   metrics_data_metrics_year \tab integer \tab Four-digit season year of the metrics (e.g. 2026). \cr
+   metrics_data_metrics_team_id \tab integer \tab CFBD internal team identifier. \cr
+   metrics_data_metrics_team \tab character \tab Full team name (e.g. "Alabama"). \cr
+   metrics_data_metrics_conference \tab character \tab Team conference name (e.g. "SEC"). \cr
+   metrics_data_metrics_epa_total \tab double \tab Opponent-adjusted total offensive EPA per play (predicted points added). \cr
+   metrics_data_metrics_epa_passing \tab double \tab Opponent-adjusted offensive passing EPA per play. \cr
+   metrics_data_metrics_epa_rushing \tab double \tab Opponent-adjusted offensive rushing EPA per play. \cr
+   metrics_data_metrics_epa_allowed_total \tab double \tab Opponent-adjusted total defensive EPA per play allowed. \cr
+   metrics_data_metrics_epa_allowed_passing \tab double \tab Opponent-adjusted defensive passing EPA per play allowed. \cr
+   metrics_data_metrics_epa_allowed_rushing \tab double \tab Opponent-adjusted defensive rushing EPA per play allowed. \cr
+   metrics_data_metrics_success_rate_total \tab double \tab Opponent-adjusted offensive success rate across all plays (proportion 0-1). \cr
+   metrics_data_metrics_success_rate_standard_downs \tab double \tab Opponent-adjusted offensive success rate on standard downs (proportion 0-1). \cr
+   metrics_data_metrics_success_rate_passing_downs \tab double \tab Opponent-adjusted offensive success rate on passing downs (proportion 0-1). \cr
+   metrics_data_metrics_success_rate_allowed_total \tab double \tab Opponent-adjusted defensive success rate allowed across all plays (proportion 0-1). \cr
+   metrics_data_metrics_success_rate_allowed_standard_downs \tab double \tab Opponent-adjusted defensive success rate allowed on standard downs (proportion 0-1). \cr
+   metrics_data_metrics_success_rate_allowed_passing_downs \tab double \tab Opponent-adjusted defensive success rate allowed on passing downs (proportion 0-1). \cr
+   metrics_data_metrics_rushing_line_yards \tab double \tab Opponent-adjusted offensive line yards per rush (Football Outsiders methodology). \cr
+   metrics_data_metrics_rushing_second_level_yards \tab double \tab Opponent-adjusted offensive second-level yards per rush (5-10 yards past line of scrimmage). \cr
+   metrics_data_metrics_rushing_open_field_yards \tab double \tab Opponent-adjusted offensive open-field yards per rush (yards gained more than 10 yards past the line of scrimmage). \cr
+   metrics_data_metrics_rushing_highlight_yards \tab double \tab Opponent-adjusted offensive highlight yards per opportunity rush. \cr
+   metrics_data_metrics_rushing_allowed_line_yards \tab double \tab Opponent-adjusted defensive line yards per rush allowed. \cr
+   metrics_data_metrics_rushing_allowed_second_level_yards \tab double \tab Opponent-adjusted defensive second-level yards per rush allowed. \cr
+   metrics_data_metrics_rushing_allowed_open_field_yards \tab double \tab Opponent-adjusted defensive open-field yards per rush allowed. \cr
+   metrics_data_metrics_rushing_allowed_highlight_yards \tab double \tab Opponent-adjusted defensive highlight yards per opportunity rush allowed. \cr
+   metrics_data_metrics_explosiveness \tab double \tab Opponent-adjusted offensive explosiveness (higher = more big plays). \cr
+   metrics_data_metrics_explosiveness_allowed \tab double \tab Opponent-adjusted defensive explosiveness allowed. \cr
+}
+
+
+\strong{passing} - one row per passing player listed for each side:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   side \tab character \tab home or away. \cr
+   year \tab integer \tab Four-digit season year of the player metrics (e.g. 2026). \cr
+   athlete_id \tab character \tab CFBD athlete identifier (use with \code{\link[=cfbd_player_info]{cfbd_player_info()}}). \cr
+   athlete_name \tab character \tab Player full name. \cr
+   team \tab character \tab Full team name (e.g. "Alabama"). \cr
+   conference \tab character \tab Team conference name (e.g. "SEC"). \cr
+   position \tab character \tab Player position abbreviation (e.g. "QB", "RB"). \cr
+   wepa \tab double \tab Opponent-adjusted weighted EPA (WEPA) per passing play. \cr
+   plays \tab integer \tab Total qualifying passing plays included in the WEPA calculation. \cr
+}
+
+
+\strong{rushing} - one row per rushing player listed for each side:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   side \tab character \tab home or away. \cr
+   year \tab integer \tab Four-digit season year of the player metrics (e.g. 2026). \cr
+   athlete_id \tab character \tab CFBD athlete identifier (use with \code{\link[=cfbd_player_info]{cfbd_player_info()}}). \cr
+   athlete_name \tab character \tab Player full name. \cr
+   team \tab character \tab Full team name (e.g. "Alabama"). \cr
+   conference \tab character \tab Team conference name (e.g. "SEC"). \cr
+   position \tab character \tab Player position abbreviation (e.g. "QB", "RB"). \cr
+   wepa \tab double \tab Opponent-adjusted weighted EPA (WEPA) per rushing play. \cr
+   plays \tab integer \tab Total qualifying rushing plays included in the WEPA calculation. \cr
+}
+
+
+\strong{kicking} - one row per kicker listed for each side:\tabular{lll}{
+   col_name \tab type \tab description \cr
+   side \tab character \tab home or away. \cr
+   year \tab integer \tab Four-digit season year of the kicker metrics (e.g. 2026). \cr
+   athlete_id \tab character \tab CFBD athlete identifier (use with \code{\link[=cfbd_player_info]{cfbd_player_info()}}). \cr
+   athlete_name \tab character \tab Kicker full name. \cr
+   team \tab character \tab Full team name (e.g. "Alabama"). \cr
+   conference \tab character \tab Team conference name (e.g. "SEC"). \cr
+   paar \tab double \tab Points Added Above Replacement on field goal attempts (kicker value vs baseline). \cr
+   attempts \tab integer \tab Total field goal attempts included in the PAAR calculation. \cr
+}
 }
 \description{
 \strong{Returns stored adjusted team and player metrics until game completion.}

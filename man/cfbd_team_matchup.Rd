@@ -17,7 +17,7 @@ cfbd_team_matchup(team1, team2, min_year = NULL, max_year = NULL)
 }
 \value{
 \link{cfbd_team_matchup} - A data frame with 11 variables:\tabular{lll}{
-   col_name \tab types \tab description \cr
+   col_name \tab type \tab description \cr
    season \tab integer \tab Season the game took place. \cr
    week \tab integer \tab Game week of the season. \cr
    season_type \tab character \tab Season type of the game. \cr

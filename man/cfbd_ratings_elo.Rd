@@ -32,11 +32,11 @@ Missing opening ratings are omitted. Cannot be combined with \code{week}; \code{
 }
 \value{
 \code{\link[=cfbd_ratings_elo]{cfbd_ratings_elo()}} - A data frame with 4 variables:\tabular{lll}{
-   col_name \tab types \tab description \cr
+   col_name \tab type \tab description \cr
    year \tab integer \tab Four-digit season year (e.g. 2019). \cr
    team \tab character \tab Full team name (e.g. "Texas"). \cr
    conference \tab character \tab Conference affiliation for the team in the given season. \cr
-   elo \tab numeric \tab CFBD-calculated Elo rating for the team as of the requested week. \cr
+   elo \tab double \tab CFBD-calculated Elo rating for the team as of the requested week. \cr
 }
 }
 \description{

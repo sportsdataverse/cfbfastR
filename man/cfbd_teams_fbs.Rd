@@ -17,7 +17,7 @@ variables, so a caller can override the shared setting for one endpoint.}
 }
 \value{
 \code{\link[=cfbd_teams_fbs]{cfbd_teams_fbs()}} - A tibble with 43 columns:\tabular{lll}{
-   col_name \tab types \tab description \cr
+   col_name \tab type \tab description \cr
    id \tab integer \tab Record identifier. \cr
    school \tab character \tab School name. \cr
    mascot \tab character \tab Team mascot. \cr
@@ -54,8 +54,8 @@ variables, so a caller can override the shared setting for one endpoint.}
    location_zip \tab character \tab Venue zip. \cr
    location_country_code \tab character \tab Venue country code. \cr
    location_timezone \tab character \tab Venue timezone. \cr
-   location_latitude \tab numeric \tab Venue latitude. \cr
-   location_longitude \tab numeric \tab Venue longitude. \cr
+   location_latitude \tab double \tab Venue latitude. \cr
+   location_longitude \tab double \tab Venue longitude. \cr
    location_elevation \tab character \tab Venue elevation. \cr
    location_capacity \tab integer \tab Venue capacity. \cr
    location_construction_year \tab integer \tab Venue construction year. \cr

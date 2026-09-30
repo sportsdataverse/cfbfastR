@@ -63,7 +63,7 @@ multi_carrier, unmatched, ambiguous, conflict, unlinked}
 }
 \value{
 \code{\link[=cfbd_rushing_plays]{cfbd_rushing_plays()}} - A data frame with 34 variables:\tabular{lll}{
-   col_name \tab types \tab description \cr
+   col_name \tab type \tab description \cr
    game_id \tab integer \tab Unique game identifier - \code{game_id}. \cr
    play_id \tab character \tab Unique play identifier - \code{play_id}. \cr
    drive_id \tab character \tab Unique drive identifier - \code{drive_id}. \cr
@@ -96,7 +96,7 @@ multi_carrier, unmatched, ambiguous, conflict, unlinked}
    attribution_status \tab character \tab How the carrier was resolved - individual, team, multi_carrier, unmatched, ... \cr
    direction_analysis_eligible \tab logical \tab TRUE when the play is eligible to be counted in a direction split. \cr
    parse_status \tab character \tab How completely CFBD parsed the play text for this row. \cr
-   ppa \tab numeric \tab Predicted points added on the play. \cr
+   ppa \tab double \tab Predicted points added on the play. \cr
    success \tab logical \tab TRUE when the play met the success threshold for its down and distance. \cr
 }
 
@@ -111,7 +111,7 @@ populated, and use \code{attribution_status} before trusting \code{rusher_id}.
 }
 \examples{
 \donttest{
-  try(cfbd_rushing_plays(year = 2025, week = 5, team = "Texas"))
+  try(cfbd_rushing_plays(year = 2025, week = 1, team = "Texas"))
 }
 }
 \seealso{
