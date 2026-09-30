@@ -750,6 +750,21 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
         purrr::map_if(is.data.frame, list) |>
         purrr::map_if(is.data.frame, list)
 
+      # Pair the two teams by NAME, not position: CFBD lists `havoc` in the
+      # opposite team order to every other section, so pairing odd/even entries
+      # gave each team its opponent's havoc. Keep only the sections the renames
+      # below were written for (in the order CFBD sends them): 2025 adds
+      # `passing` and `rushingAdvanced`, which otherwise land as ~550 raw dotted
+      # columns, one mangled to `rushing_dvanced.*` by the "rushing." rename.
+      known <- c("ppa", "cumulativePpa", "successRates", "explosiveness",
+                 "rushing", "havoc", "fieldPosition", "scoringOpportunities")
+      sections <- Filter(is.data.frame, df$teams[names(df$teams) %in% known])
+      team_order <- sections$ppa$team
+      df$teams <- lapply(sections, function(s) {
+        i <- match(team_order, s$team)
+        if (anyNA(i)) s else s[i, , drop = FALSE]
+      })
+
       df <- tibble::enframe(unlist(df$teams, use.names = TRUE))
       team1 <- seq(1, nrow(df) - 1, by = 2)
       df1 <- df[team1, ] |>

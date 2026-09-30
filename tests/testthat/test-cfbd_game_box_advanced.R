@@ -37,3 +37,56 @@ test_that("CFB Game Box Advanced", {
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
 })
+
+# Serve a captured CFBD response (fixtures/cfbd/README.md) in place of get_req().
+local_cfbd_box_fixture <- function(file, env = parent.frame()) {
+  local_mocked_bindings(
+    validate_api_key = function() invisible(TRUE),
+    get_req = function(full_url, proxy = NULL) {
+      con <- gzfile(test_path("fixtures", "cfbd", file), "rb")
+      on.exit(close(con))
+      httr2::response(status_code = 200L, url = full_url,
+                      headers = list(`Content-Type` = "application/json"),
+                      body = readBin(con, "raw", n = 1e7))
+    },
+    .env = env
+  )
+}
+box_fixture_json <- function(file) {
+  con <- gzfile(test_path("fixtures", "cfbd", file), "rb")
+  on.exit(close(con))
+  jsonlite::fromJSON(rawToChar(readBin(con, "raw", n = 1e7)), flatten = TRUE)
+}
+
+test_that("CFBD - Game Box Advanced pairs every section by team, not position", {
+  # CFBD lists `havoc` in the opposite team order to every other section
+  # (Georgia | Alabama vs Alabama | Georgia); positional pairing gave each team
+  # its opponent's havoc.
+  local_cfbd_box_fixture("game_box_advanced_401628374.json.gz")
+  x <- cfbd_game_box_advanced(game_id = 401628374)
+  raw <- box_fixture_json("game_box_advanced_401628374.json.gz")$teams
+  for (tm in c("Alabama", "Georgia")) {
+    h <- raw$havoc[raw$havoc$team == tm, ]
+    p <- raw$ppa[raw$ppa$team == tm, ]
+    expect_equal(x$havoc_total[x$team == tm], h$total)
+    expect_equal(x$havoc_front_seven[x$team == tm], h$frontSeven)
+    expect_equal(x$havoc_db[x$team == tm], h$db)
+    expect_equal(x$ppa_overall_total[x$team == tm], p$overall.total)
+  }
+  long <- cfbd_game_box_advanced(game_id = 401628374, long = TRUE)
+  expect_equal(long$team1[long$stat == "havoc_total"],
+               as.character(raw$havoc$total[raw$havoc$team == long$team1[long$stat == "ppa_team"]]))
+})
+
+test_that("CFBD - Game Box Advanced keeps its 69 columns when 2025 adds sections", {
+  # 2025 payloads fill `passing` and `rushingAdvanced`; they used to land as
+  # ~550 raw dotted columns (one mangled to `rushing_dvanced.*`) with coercion
+  # warnings.
+  local_cfbd_box_fixture("game_box_advanced_401628374.json.gz")
+  cols_2024 <- colnames(cfbd_game_box_advanced(game_id = 401628374))
+  local_cfbd_box_fixture("game_box_advanced_401752677.json.gz")
+  expect_no_warning(x <- cfbd_game_box_advanced(game_id = 401752677))
+  expect_equal(ncol(x), 69L)
+  expect_identical(colnames(x), cols_2024)
+  expect_setequal(x$team, c("Ohio State", "Texas"))
+})
