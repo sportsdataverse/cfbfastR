@@ -6209,8 +6209,10 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
           plays_curr <- jsonlite::fromJSON(jsonlite::toJSON(drives_curr), flatten = TRUE)
         }
 
-        plays_df <- plays_curr |>
-          dplyr::bind_rows(plays_prev) |>
+        # Completed drives first, then the live one: .espn_amp0_distance() reads
+        # each play's predecessor in this order (the pipeline re-sorts later).
+        plays_df <- plays_prev |>
+          dplyr::bind_rows(plays_curr) |>
           janitor::clean_names() |>
           dplyr::select(-"drive_team_logos")
 
