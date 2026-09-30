@@ -110,7 +110,7 @@ refetches them, and \code{options(cfbfastR.cache = "off")} set before loading th
    play_type \tab character \tab CFBD play type label (e.g. "Rush", "Pass Reception", "Field Goal Good"). \cr
    play_text \tab character \tab Free-text description of the play from CFBD. \cr
    down \tab double \tab Down number at the start of the play (1-4). \cr
-   distance \tab double \tab Yards to gain for a first down at the start of the play; on goal-to-go downs the yards to the goal line (a 0 the feed sends on a down ESPN labels Goal, or that CFBD sends at the 10 or closer, is replaced). \cr
+   distance \tab double \tab Yards to gain for a first down at the start of the play; on goal-to-go downs the yards to the goal line (a 0 the feed sends on a down ESPN labels Goal, or that CFBD sends at the 10 or closer, is replaced; an ESPN "& 0 at" down takes the previous snap's end state). \cr
    yards_to_goal \tab double \tab Yards from the offense to the opponent's end zone at the start of the play. \cr
    yards_gained \tab double \tab Yards gained (or lost) by the offense on the play. \cr
    EPA \tab double \tab Expected Points Added on the play (cfbfastR EPA model output). \cr
