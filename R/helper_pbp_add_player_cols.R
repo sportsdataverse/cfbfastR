@@ -423,6 +423,12 @@ add_player_cols <- function(pbp) {
       punt_block_player_name = stringr::str_trim(.data$punt_block_player),
       punt_returner_player_name = stringr::str_trim(.data$punt_returner_player),
       punt_block_return_player_name = stringr::str_trim(.data$punt_block_return_player),
+      # The canonical names -- sdv-py's, the output schema's and the id
+      # matcher's role map -- are `*_return_player_name`; the `*_returner_*`
+      # pair above is the older spelling. Both used to exist with only the older
+      # one filled, so returners never got a name or an id on the modeled paths.
+      punt_return_player_name = .data$punt_returner_player_name,
+      kickoff_return_player_name = .data$kickoff_returner_player_name,
       fumble_player_name = stringr::str_trim(.data$fumble_player),
       fumble_forced_player_name = stringr::str_trim(.data$fumble_forced_player),
       fumble_recovered_player_name = stringr::str_trim(.data$fumble_recovered_player)
