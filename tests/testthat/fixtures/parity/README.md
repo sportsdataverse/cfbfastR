@@ -14,11 +14,9 @@ whose vendor text abbreviation differs from ESPN's (`TA&M-SC` 401752772, `UNLV-H
 Re-capture: `python data-raw/parity_airyards_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON` override the
 default droplet paths); do not hand-edit the parquet.
 
-`amp0_oracle.csv` — captured 2026-09-30 from sportsdataverse-py `01d3c1ad6` (#636), same offline
+`amp0_oracle.csv` — captured 2026-09-30 from sportsdataverse-py `71a8f0863` (#636, #638, #639), same offline
 pipeline as above, for eight games (401752671, 400559176, 400548315, 400787459, 400869264,
 400763571, 400548134, 400547673). One row per ESPN play whose raw `start.distance` is 0 with a
 "& 0 at" down-and-distance text (no "Goal") that sdv-py's processing gives a non-zero distance:
-`game_id`, `id_play`, `start_down_distance_text`, `sdvpy_distance`. The R test adds three rows sdv-py
-misses because its id sort misplaces a re-keyed field-goal row (see `.espn_amp0_distance()`).
-Re-capture: `python data-raw/parity_amp0_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not
+`game_id`, `id_play`, `start_down_distance_text`, `sdvpy_distance`. Re-capture: `python data-raw/parity_amp0_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not
 hand-edit the csv. (It writes only the csv; `parity_airyards_oracle.py` rewrites this README.)

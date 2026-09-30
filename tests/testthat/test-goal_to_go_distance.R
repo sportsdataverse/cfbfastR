@@ -91,24 +91,60 @@ test_that("ESPN '& 0 at' downs follow the previous snap's end state", {
   expect_identical(amp0(transform(rush, end_down = 3), row), c(10, 0))
   expect_identical(amp0(transform(rush, end_distance = NA, end_text = "2nd & 0 at UWA 21"), row), c(10, 0))
   expect_identical(amp0(rush, transform(row, type = "Kickoff")), c(10, 0))
-  # KNOWN GAP (as in sdv-py): TULN 15 is really goal-to-go, but the penalty
-  # before it carries no end state, so there is nothing to read.
+  # Without the offense id the same-series branch is skipped: TULN 15 stays 0.
   pen <- play("Penalty", 1, 10, 10, "1st & Goal at TULN 10", 1, 0, NA)
   expect_identical(amp0(pen, play("Rush", 1, 0, 15, "1st & 0 at TULN 15", 2, 0, NA)), c(10, 0))
 })
 
-test_that("ESPN '& 0 at' rows match sdv-py's oracle, except its id-order misses", {
+test_that("a goal-to-go series stays goal-to-go when the previous snap has no end state", {
+  # 400547673: a penalty with no end state backs "1st & Goal at TULN 10" up to
+  # the 15 (sdv-py's same-series branch). team = the offense's start team id.
+  series <- function(prev_team, prev_start) {
+    r <- rbind(play("Penalty", 1, 10, 10, prev_start, 1, 0, NA),
+               play("Rush", 1, 0, 15, "1st & 0 at TULN 15", 2, 0, NA))
+    .espn_amp0_distance(r$distance, r$down, r$ytg, r$text, r$type, r$end_down, r$end_distance,
+                        r$end_text, team = c(prev_team, "2653"), period = c(1, 1))
+  }
+  expect_identical(series("2653", "1st & Goal at TULN 10"), c(10, 15))
+  expect_identical(series("202", "1st & Goal at TULN 10"), c(10, 0))    # possession changed
+  expect_identical(series("2653", "1st & 10 at TULN 30"), c(10, 0))     # not goal-to-go
+  # the previous end text: "Goal" at another spot keeps it goal-to-go; a non-goal
+  # end would contradict the series and is never overridden (as sdv-py #638)
+  with_end <- function(end_text) {
+    r <- rbind(play("Rush", 1, 10, 10, "1st & Goal at TULN 10", 2, 0, end_text),
+               play("Rush", 2, 0, 15, "2nd & 0 at TULN 15", 3, 0, NA))
+    .espn_amp0_distance(r$distance, r$down, r$ytg, r$text, r$type, r$end_down, r$end_distance,
+                        r$end_text, team = c("2653", "2653"), period = c(1, 1))
+  }
+  expect_identical(with_end("2nd & Goal at TULN 12"), c(10, 15))
+  expect_identical(with_end("2nd & 7 at TULN 12"), c(10, 0))
+})
+
+test_that("the same-series rule stops at a new series", {
+  # sdv-py #639: 400869264 overtime -- OHIO opens OT2 "1st & 0 at OHIO 25" after its
+  # own OT1 goal-line snap; ESPN files OT under one drive. Also a score, a new period.
+  run <- function(prev_type, prev_down, periods, row_down, row_text) {
+    r <- rbind(play(prev_type, prev_down, 2, 2, "2nd & Goal at OHIO 2", 3, 3, "3rd & Goal at OHIO 3"),
+               play("Rush", row_down, 0, 25, row_text, 2, 0, NA))
+    .espn_amp0_distance(r$distance, r$down, r$ytg, r$text, r$type, r$end_down, r$end_distance,
+                        r$end_text, team = c("195", "195"), period = periods)
+  }
+  expect_identical(run("Rush", 2, c(5, 5), 1, "1st & 0 at OHIO 25"), c(2, 0))              # down reset
+  expect_identical(run("Rushing Touchdown", 2, c(5, 5), 2, "2nd & 0 at OHIO 25"), c(2, 0)) # score
+  expect_identical(run("Rush", 2, c(5, 6), 2, "2nd & 0 at OHIO 25"), c(2, 0))              # new period
+  expect_identical(run("Rush", 2, c(5, 5), 2, "2nd & 0 at OHIO 25"), c(2, 25))             # same series
+})
+
+test_that("ESPN '& 0 at' rows match sdv-py's oracle", {
   skip_on_cran()
-  # fixtures/parity/amp0_oracle.csv: every "& 0 at" row sdv-py 01d3c1ad6 (#636)
-  # changes in eight games (see fixtures/parity/README.md). R must change
-  # exactly those rows to the same distance, plus the rows sdv-py misses
-  # because its id sort puts a re-keyed field-goal row after the opponent's
-  # next drive (see .espn_amp0_distance()).
+  # fixtures/parity/amp0_oracle.csv: every "& 0 at" row sdv-py changes in eight
+  # games (see fixtures/parity/README.md for the commit). R must change exactly
+  # those rows to the same distance. The three rows sdv-py once missed because its
+  # id sort filed a drive-ending play after the next drive are resolved there too
+  # since sportsdataverse-py #638 (#637).
   oracle <- utils::read.csv(test_path("fixtures", "parity", "amp0_oracle.csv"),
                             colClasses = c("numeric", "character", "character", "integer"))
-  r_only <- data.frame(id_play = c("400548134101886613", "400787459102977201", "400763571101946705"),
-                       sdvpy_distance = c(14L, 11L, 14L))
-  want <- rbind(oracle[c("id_play", "sdvpy_distance")], r_only)
+  want <- oracle[c("id_play", "sdvpy_distance")]
   games <- c(401752671, 400559176, 400548315, 400787459, 400869264, 400763571, 400548134, 400547673)
   got <- do.call(rbind, lapply(games, function(g) {
     raw <- suppressWarnings(suppressMessages(espn_cfb_pbp(game_id = g, epa_wpa = FALSE)))
