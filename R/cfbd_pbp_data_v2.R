@@ -294,15 +294,22 @@ cfbd_pbp_data_v2 <- function(year,
   # team-aware stages key on ids and abbreviations (see .cfbd_team_identity()).
   # Without them pos_team_id, every *_player_id and the turnover / penalty /
   # return attribution came back NA, and a lost fumble never counted.
+  # division must be passed: cfbd_game_info() defaults to "fbs".
   id_games <- cfbd_game_info(
     year = year, week = week, season_type = season_type, team = team,
     conference = conference, division = division
   )
   id_teams <- .cfbd_team_catalog(year)
   play_df <- .cfbd_team_identity(play_df, id_games, id_teams)
-  if (all(is.na(play_df$offense_play_id))) {
+  no_ids <- unique(play_df$game_id[is.na(play_df$home_team_id)])
+  if (length(no_ids)) {
     cli::cli_alert_warning(
-      "CFBD returned no team ids for {year} wk {week}; team attribution and player ids will be NA."
+      "CFBD /games has no team ids for game{?s} {no_ids}; team attribution and player ids will be NA there."
+    )
+  }
+  if (!nrow(id_teams)) {
+    cli::cli_alert_warning(
+      "CFBD /teams returned nothing for {year}; team abbreviations and player ids will be NA."
     )
   }
 
@@ -321,7 +328,10 @@ cfbd_pbp_data_v2 <- function(year,
     # Player ids resolve against a roster. One season-wide CFBD roster, scoped
     # to each game's two teams so the engine never applies one game's roster
     # to another (CFBD athlete ids are ESPN athlete ids).
-    season_roster <- .cfbd_season_roster(year, teams = id_teams)
+    # A team= call covers a handful of schools: fetch just those rosters
+    # rather than the ~20 s season-wide one.
+    schools <- if (!is.null(team)) unique(c(play_df$home, play_df$away))
+    season_roster <- .cfbd_season_roster(year, teams = id_teams, schools = schools)
     rosters <- NULL
     if (!is.null(season_roster)) {
       g <- unique(play_df[, c("game_id", "home_team_id", "away_team_id")])

@@ -46,8 +46,15 @@
 #' @noRd
 .cfbd_team_identity <- function(play_df, games, teams) {
   # match() rather than a join: play order and the integer `game_id` stay as
-  # they are, and a duplicated game row cannot fan the plays out.
-  i <- match(as.character(play_df$game_id), as.character(games$game_id))
+  # they are, and a duplicated game row cannot fan the plays out. Numeric, not
+  # character: as.character(401000000) is "4.01e+08" unless scipen is raised.
+  i <- match(as.numeric(play_df$game_id), as.numeric(games$game_id))
+  # /plays and /games are both CFBD, but if they ever disagree on the home team
+  # the ids would land on the wrong sides; leave that game unknown instead.
+  if ("home_team" %in% names(games)) {
+    same <- play_df$home == as.character(games$home_team)[i]
+    i[is.na(same) | !same] <- NA
+  }
   home_id <- as.character(games$home_id)[i]
   away_id <- as.character(games$away_id)[i]
   abbrev <- stats::setNames(as.character(teams$abbreviation), as.character(teams$team_id))
@@ -57,8 +64,7 @@
     dplyr::case_when(
       is.na(team) ~ NA_character_,
       team == play_df$home ~ home_id,
-      team == play_df$away ~ away_id,
-      TRUE ~ NA_character_
+      team == play_df$away ~ away_id
     )
   }
   play_df$home_team_id <- home_id
@@ -88,21 +94,29 @@
 
 #' CFBD season roster in the engine's roster contract
 #'
-#' One `/roster` request covers every team (about 30,000 rows, roughly 20 s),
-#' fetched once per modeled call. CFBD athlete ids are ESPN athlete ids, so the
-#' ids resolved here agree with the ESPN path's.
+#' With `schools`, one `/roster` request per school (about 0.3 s each);
+#' without, one season-wide request (about 30,000 rows, roughly 20 s). CFBD
+#' athlete ids are ESPN athlete ids, so the ids resolved here agree with the
+#' ESPN path's.
 #' @return `athlete_id`, `display_name`, `team_id` (character), or NULL.
 #' @keywords internal
 #' @noRd
-.cfbd_season_roster <- function(year, teams = .cfbd_team_catalog(year)) {
-  r <- cfbd_team_roster(year = year)
+.cfbd_season_roster <- function(year, teams = .cfbd_team_catalog(year), schools = NULL) {
+  r <- if (is.null(schools)) {
+    cfbd_team_roster(year = year)
+  } else {
+    dplyr::bind_rows(lapply(schools, function(s) as.data.frame(cfbd_team_roster(year = year, team = s))))
+  }
   if (!is.data.frame(r) || !nrow(r)) return(NULL)
-  data.frame(
+  out <- data.frame(
     athlete_id   = as.character(r$athlete_id),
-    display_name = trimws(paste(r$first_name, r$last_name)),
+    display_name = trimws(paste(dplyr::coalesce(r$first_name, ""), dplyr::coalesce(r$last_name, ""))),
     team_id      = teams$team_id[match(r$team, teams$school)],
     stringsAsFactors = FALSE
   )
+  # A player whose school is missing from /teams cannot be scoped to a game,
+  # and kept he would join every game that also lacks ids (NA %in% NA is TRUE).
+  out[!is.na(out$team_id), , drop = FALSE]
 }
 
 #' Modular PBP -- adapt an ESPN core-v2 plays frame into the modeling input

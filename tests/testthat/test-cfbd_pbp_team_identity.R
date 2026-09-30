@@ -37,9 +37,52 @@ test_that("CFBD plays get the team ids and abbreviations the engine keys on", {
 })
 
 test_that("CFBD plays with no matching game keep NA ids rather than guessing", {
-  x <- .cfbd_team_identity(cfbd_identity_plays(), cfbd_identity_games()[0, ], cfbd_identity_teams())
+  # cfbd_game_info() returns data.frame() when the request fails.
+  x <- .cfbd_team_identity(cfbd_identity_plays(), data.frame(), cfbd_identity_teams())
   expect_true(all(is.na(x$home_team_id)))
   expect_true(all(is.na(x$offense_play_id)))
+})
+
+test_that("CFBD game ids match whatever their type", {
+  # as.character(401000000) is "4.01e+08" at the default scipen.
+  plays <- cfbd_identity_plays()
+  plays$game_id <- as.character(plays$game_id)
+  x <- .cfbd_team_identity(plays, cfbd_identity_games(), cfbd_identity_teams())
+  expect_identical(x$home_team_id, rep("194", 5))
+  g <- cfbd_identity_games(); g$game_id <- 401000000; plays$game_id <- 401000000L
+  expect_identical(.cfbd_team_identity(plays, g, cfbd_identity_teams())$home_team_id, rep("194", 5))
+})
+
+test_that("CFBD plays whose home team disagrees with /games stay unknown", {
+  g <- cfbd_identity_games()
+  g$home_team <- "Texas"   # the sides swapped between /plays and /games
+  x <- .cfbd_team_identity(cfbd_identity_plays(), g, cfbd_identity_teams())
+  expect_true(all(is.na(x$home_team_id)))
+  expect_true(all(is.na(x$offense_play_id)))
+})
+
+test_that("CFBD season roster drops players it cannot scope to a team", {
+  # Real 2025 /roster rows; Caldwell's first name blanked to exercise the NA
+  # path. Cumberland (TN) is not in /teams, so its player has no team id.
+  rows <- data.frame(
+    athlete_id = c("4870906", "4877717", "5078278", "4696126"),
+    first_name = c("Arch", NA, "Lincoln", "Shaikyi"),
+    last_name  = c("Manning", "Caldwell", "Kienholz", "Hannah"),
+    team       = c("Texas", "Texas", "Ohio State", "Cumberland (TN)")
+  )
+  asked <- character()
+  local_mocked_bindings(cfbd_team_roster = function(year, team = NULL, ...) {
+    asked <<- c(asked, if (is.null(team)) "<season>" else team)
+    if (is.null(team)) rows else rows[rows$team == team, ]
+  })
+  r <- .cfbd_season_roster(2025, teams = cfbd_identity_teams())
+  expect_identical(r$athlete_id, c("4870906", "4877717", "5078278"))
+  expect_identical(r$display_name, c("Arch Manning", "Caldwell", "Lincoln Kienholz"))
+  expect_identical(r$team_id, c("251", "251", "194"))
+  asked <- character()
+  r2 <- .cfbd_season_roster(2025, teams = cfbd_identity_teams(), schools = c("Ohio State", "Texas"))
+  expect_identical(asked, c("Ohio State", "Texas"))
+  expect_setequal(r2$athlete_id, r$athlete_id)
 })
 
 test_that("CFBD pbp possession ids match the ESPN path play for play", {
@@ -51,10 +94,13 @@ test_that("CFBD pbp possession ids match the ESPN path play for play", {
   if (!is.data.frame(cf) || !nrow(cf) || !is.data.frame(es) || !nrow(es)) {
     skip("CFBD or ESPN returned no plays")
   }
-  keys <- function(d) data.frame(id_play = as.character(d$id_play), pos_team_id = d$pos_team_id,
-                                  def_pos_team_id = d$def_pos_team_id, stringsAsFactors = FALSE)
+  ids <- c("pos_team_id", "def_pos_team_id", "passer_player_id", "rusher_player_id",
+           "receiver_player_id")
+  keys <- function(d) data.frame(id_play = as.character(d$id_play),
+                                  lapply(d[ids], as.character), stringsAsFactors = FALSE)
   j <- merge(keys(cf), keys(es), by = "id_play", suffixes = c("_cfbd", "_espn"))
   expect_gt(nrow(j), 100L)
-  expect_identical(j$pos_team_id_cfbd, j$pos_team_id_espn)
-  expect_identical(j$def_pos_team_id_cfbd, j$def_pos_team_id_espn)
+  for (k in ids) expect_identical(j[[paste0(k, "_cfbd")]], j[[paste0(k, "_espn")]], label = k)
+  # Player ids come from the roster; all-NA on both sides would pass the above.
+  expect_gt(sum(!is.na(j$passer_player_id_cfbd)), 20L)
 })
