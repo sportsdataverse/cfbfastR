@@ -141,6 +141,17 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   against sdv-py's order on 270 ESPN games, clock order put 685 plays after the
   wrong neighbour, against 151 for id order. `engine = "legacy"` on either
   function is unchanged.
+* `espn_cfb_pbp()` (v2) drops the plays ESPN files twice, as sdv-py does before
+  it models them: a stub echo (the play repeated with no start spot; its play type
+  is kept on the play, 401752854), a stale batch of a drive's plays filed at the
+  drive's start clock ahead of the same plays at their real clocks, the same play
+  on both sides of a timeout or period marker, and a play the next row repeats
+  (same id, or same text and start state). They were modeled as extra snaps. On a
+  92-game 2004-2026 sample the 19 copies sdv-py drops are gone, no row sdv-py
+  keeps is lost, and the median EPA gap to sdv-py fell from 0.019 to 0.018. The
+  returned frame no longer carries them either. R still models the end-of-period
+  and end-of-half marker rows sdv-py drops before its features (213 in that
+  sample); its engine reads them, a separate difference.
 
 ## Documentation: CFBD return tables
 

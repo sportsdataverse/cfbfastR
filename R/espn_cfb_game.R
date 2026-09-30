@@ -6713,6 +6713,11 @@ espn_cfb_pbp_v2 <- function(game_id,
         names(plays_df)[names(plays_df) == "is_turnover"] <- "espn_is_turnover"
       }
 
+      # ESPN files some plays twice (stub echoes, stale drive batches, copies
+      # across a marker, adjacent repeats); sdv-py drops them before modeling,
+      # and so does the returned frame -- they are the same play
+      plays_df <- .espn_drop_play_copies(plays_df, game_season)
+
       context_df <- plays_df
 
       adapter <- plays_df |>
