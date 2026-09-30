@@ -7,6 +7,10 @@
 #
 # Allow-list: columns permitted to differ are explicitly enumerated below
 # with a rationale per entry. Every other canonical column must match.
+#
+# The legacy side must pin engine = "legacy": the default engine is "v2". v2
+# carries fixes the legacy engine does not (sdv-py's play order for the 2024+
+# ESPN feed, #173), so the sample games are ones those fixes leave unchanged.
 
 # --- helpers -----------------------------------------------------------
 .eq_canonical_cols <- function() {
@@ -181,6 +185,18 @@
     skip(paste0("v2 returned no rows for ", sample_label))
   }
 
+  # The two sides must come from different engines. The default engine is
+  # "v2", so a legacy call that does not pin engine = "legacy" returns v2 output
+  # and this harness would compare v2 with itself (it did from the switch to
+  # the v2 default until the legacy calls were pinned).
+  expect_false(identical(attr(legacy, "cfbfastR_type"), attr(v2, "cfbfastR_type")),
+               info = paste0(sample_label, ": legacy and v2 came from the same engine"))
+
+  # A canonical column one engine returns, the other must return too; the
+  # intersection below would otherwise skip it (ESPN has no `wk` on either side).
+  expect_setequal(intersect(.eq_canonical_cols(), colnames(v2)),
+                  intersect(.eq_canonical_cols(), colnames(legacy)))
+
   # Pipeline-canonical columns that exist on BOTH sides.
   both_have <- intersect(colnames(legacy), colnames(v2))
   canonical <- intersect(both_have, .eq_canonical_cols())
@@ -198,6 +214,11 @@
   # v2 character/lossless).
   ord_l <- order(.eq_id_play_key(legacy$id_play), legacy$game_id)
   ord_v <- order(.eq_id_play_key(v2$id_play),     v2$game_id)
+  # The ids are allow-listed for their storage type only; their values must match.
+  for (key in c("game_id", "id_play")) {
+    expect_identical(.eq_id_play_key(v2[[key]])[ord_v], .eq_id_play_key(legacy[[key]])[ord_l],
+                     info = paste0(sample_label, ": ", key, " values"))
+  }
   for (col in cols_to_check) {
     expect_equal(
       v2[[col]][ord_v],
@@ -215,7 +236,8 @@ test_that("espn_cfb_pbp_v2(epa_wpa = TRUE) matches espn_cfb_pbp(epa_wpa = TRUE)"
 
   game_id <- 401628339  # Texas vs Washington (CFP semifinal), one stable game.
 
-  legacy <- try(espn_cfb_pbp(game_id    = game_id, epa_wpa = TRUE),
+  legacy <- try(espn_cfb_pbp(game_id    = game_id, epa_wpa = TRUE,
+                             engine     = "legacy"),
                 silent = TRUE)
   v2     <- try(espn_cfb_pbp_v2(game_id = game_id, epa_wpa = TRUE),
                 silent = TRUE)
@@ -238,7 +260,7 @@ test_that("cfbd_pbp_data_v2(epa_wpa = TRUE) matches cfbd_pbp_data(epa_wpa = TRUE
   args <- list(year = 2024, week = 1, season_type = "regular",
                team = "Texas", epa_wpa = TRUE)
 
-  legacy <- try(do.call(cfbd_pbp_data,    args), silent = TRUE)
+  legacy <- try(do.call(cfbd_pbp_data,    c(args, engine = "legacy")), silent = TRUE)
   v2     <- try(do.call(cfbd_pbp_data_v2, args), silent = TRUE)
 
   if (inherits(legacy, "try-error") || inherits(v2, "try-error")) {
