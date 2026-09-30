@@ -96,6 +96,9 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   from both `cfbd_pbp_data()` and `espn_cfb_pbp()`: the player-name stage
   filled `punt_returner_player_name` / `kickoff_returner_player_name`, and the
   documented names were never set from them.
+* Kneel-downs ("J. Sayin takes a knee") now name the rusher on the
+  text-parsed paths (`cfbd_pbp_data()`, `espn_cfb_pbp(engine = "legacy")`); the
+  text has no "run", so `rusher_player_name` and its id were `NA`.
 
 ## Documentation: CFBD return tables
 

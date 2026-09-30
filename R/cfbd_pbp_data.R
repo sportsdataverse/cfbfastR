@@ -99,25 +99,25 @@ NULL
 #'  |penalty_all_declined |logical |TRUE only when the play has at least one penalty and every one was declined, so the play stood. |
 #'  |penalty_enforcement |character |How the penalty was enforced: `no_play`, `declined`, `offsetting`, `negating_foul`, `play_stands` or `unknown`; NA on plays without a penalty. |
 #'  |penalty_negated_play |logical |TRUE when a penalty wiped out the play (`no_play`, `offsetting`, `negating_foul`), FALSE when the play stood or had no penalty; NA when enforcement is `unknown`. |
-#'  |rusher_player_id |character |ESPN athlete id of `rusher_player_name`. NA when the name does not match a player on the season roster. |
-#'  |passer_player_id |character |ESPN athlete id of `passer_player_name`. NA when the name does not match a player on the season roster. |
-#'  |receiver_player_id |character |ESPN athlete id of `receiver_player_name`. NA when the name does not match a player on the season roster. |
-#'  |fumble_player_id |character |ESPN athlete id of `fumble_player_name`. NA when the name does not match a player on the season roster. |
-#'  |sack_player_id |character |ESPN athlete id of `sack_player_name`. NA when the name does not match a player on the season roster. |
-#'  |sack_player_id2 |character |ESPN athlete id of `sack_player_name2`. NA when the name does not match a player on the season roster. |
-#'  |interception_player_id |character |ESPN athlete id of `interception_player_name`. NA when the name does not match a player on the season roster. |
-#'  |pass_breakup_player_id |character |ESPN athlete id of `pass_breakup_player_name`. NA when the name does not match a player on the season roster. |
-#'  |fumble_forced_player_id |character |ESPN athlete id of `fumble_forced_player_name`. NA when the name does not match a player on the season roster. |
-#'  |fumble_recovered_player_id |character |ESPN athlete id of `fumble_recovered_player_name`. NA when the name does not match a player on the season roster. |
-#'  |fg_kicker_player_id |character |ESPN athlete id of `fg_kicker_player_name`. NA when the name does not match a player on the season roster. |
-#'  |punter_player_id |character |ESPN athlete id of `punter_player_name`. NA when the name does not match a player on the season roster. |
-#'  |kickoff_player_id |character |ESPN athlete id of `kickoff_player_name`. NA when the name does not match a player on the season roster. |
-#'  |kickoff_return_player_id |character |ESPN athlete id of `kickoff_return_player_name`. NA when the name does not match a player on the season roster. |
-#'  |punt_return_player_id |character |ESPN athlete id of `punt_return_player_name`. NA when the name does not match a player on the season roster. |
-#'  |fg_block_player_id |character |ESPN athlete id of `fg_block_player_name`. NA when the name does not match a player on the season roster. |
-#'  |punt_block_player_id |character |ESPN athlete id of `punt_block_player_name`. NA when the name does not match a player on the season roster. |
-#'  |fg_return_player_id |character |ESPN athlete id of `fg_return_player_name`. NA when the name does not match a player on the season roster. |
-#'  |punt_block_return_player_id |character |ESPN athlete id of `punt_block_return_player_name`. NA when the name does not match a player on the season roster. |
+#'  |rusher_player_id |character |ESPN athlete id of `rusher_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |passer_player_id |character |ESPN athlete id of `passer_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |receiver_player_id |character |ESPN athlete id of `receiver_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |fumble_player_id |character |ESPN athlete id of `fumble_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |sack_player_id |character |ESPN athlete id of `sack_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |sack_player_id2 |character |ESPN athlete id of `sack_player_name2`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |interception_player_id |character |ESPN athlete id of `interception_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |pass_breakup_player_id |character |ESPN athlete id of `pass_breakup_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |fumble_forced_player_id |character |ESPN athlete id of `fumble_forced_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |fumble_recovered_player_id |character |ESPN athlete id of `fumble_recovered_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |fg_kicker_player_id |character |ESPN athlete id of `fg_kicker_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |punter_player_id |character |ESPN athlete id of `punter_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |kickoff_player_id |character |ESPN athlete id of `kickoff_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |kickoff_return_player_id |character |ESPN athlete id of `kickoff_return_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |punt_return_player_id |character |ESPN athlete id of `punt_return_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |fg_block_player_id |character |ESPN athlete id of `fg_block_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |punt_block_player_id |character |ESPN athlete id of `punt_block_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |fg_return_player_id |character |ESPN athlete id of `fg_return_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+#'  |punt_block_return_player_id |character |ESPN athlete id of `punt_block_return_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
 #'  |pos_team_id |character |ESPN team id of `pos_team`. |
 #'  |def_pos_team_id |character |ESPN team id of `def_pos_team`. |
 #'  |kicking_team |character |Team id of the kicking team on kickoffs, punts and field goals; NA on other plays. |
@@ -383,10 +383,10 @@ NULL
 #'  |drive_start_defense_score |integer |Defense score at the start of the drive. |
 #'  |drive_end_offense_score |integer |Offense score at the end of the drive. |
 #'  |drive_end_defense_score |integer |Defense score at the end of the drive. |
-#'  |home_team_id |character |Home team id (CFBD /games `homeId`; CFBD team ids are ESPN team ids). |
-#'  |away_team_id |character |Away team id (CFBD /games `awayId`). |
-#'  |home_team_abbreviation |character |Home team abbreviation from CFBD /teams. |
-#'  |away_team_abbreviation |character |Away team abbreviation from CFBD /teams. |
+#'  |home_team_id |character |Home team id (CFBD /games `homeId`; CFBD team ids are ESPN team ids); NA when the game is not in CFBD /games. |
+#'  |away_team_id |character |Away team id (CFBD /games `awayId`); NA when the game is not in CFBD /games. |
+#'  |home_team_abbreviation |character |Home team abbreviation from CFBD /teams; NA when the team is not in /teams. |
+#'  |away_team_abbreviation |character |Away team abbreviation from CFBD /teams; NA when the team is not in /teams. |
 #'  |offense_play_id |character |Team id of the offense on the play; NA when `offense_play` names neither team in the game. |
 #'  |defense_play_id |character |Team id of the defense on the play; NA when `defense_play` names neither team in the game. |
 #'  |cleaned_text |character |`play_text` with the leading clock stamp, the first pass depth and direction words, and No Huddle/Shotgun tags removed. |
@@ -402,8 +402,8 @@ NULL
 #'  |def_pos_unit |character |Unit of the defending team: `Defense`, `Punt Return`, `Kickoff Defense` or `Field Goal Defense`. |
 #'  |drive_play |double |Binary flag indicating a counted play within the drive. |
 #'  |drive_event |double |Binary flag indicating a counted event within the drive. |
-#'  |punt_return_player_name |character |Not populated by this pipeline (always NA); the punt returner is in `punt_returner_player_name`. |
-#'  |kickoff_return_player_name |character |Not populated by this pipeline (always NA); the kickoff returner is in `kickoff_returner_player_name`. |
+#'  |punt_return_player_name |character |Name of the punt returner (same as `punt_returner_player_name`). |
+#'  |kickoff_return_player_name |character |Name of the kickoff returner (same as `kickoff_returner_player_name`). |
 #'  |vegas_wp |double |Spread-aware win probability for the team in possession before the play (proportion 0-1); NA when the game has no pre-game spread (always before 2013). |
 #'  |vegas_wpa |double |Change in `vegas_wp` over the play, with the same possession-change handling as `wpa`; NA on the final rows of a game. |
 #'  |vegas_wp_after |double |Spread-aware win probability after the play (`vegas_wp` plus `vegas_wpa`). |

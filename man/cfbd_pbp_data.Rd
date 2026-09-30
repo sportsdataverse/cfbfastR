@@ -125,25 +125,25 @@ table are returned: these 54 in CFBD order (\code{yards_to_goal}, \code{down}, \
    penalty_all_declined \tab logical \tab TRUE only when the play has at least one penalty and every one was declined, so the play stood. \cr
    penalty_enforcement \tab character \tab How the penalty was enforced: \code{no_play}, \code{declined}, \code{offsetting}, \code{negating_foul}, \code{play_stands} or \code{unknown}; NA on plays without a penalty. \cr
    penalty_negated_play \tab logical \tab TRUE when a penalty wiped out the play (\code{no_play}, \code{offsetting}, \code{negating_foul}), FALSE when the play stood or had no penalty; NA when enforcement is \code{unknown}. \cr
-   rusher_player_id \tab character \tab ESPN athlete id of \code{rusher_player_name}. NA when the name does not match a player on the season roster. \cr
-   passer_player_id \tab character \tab ESPN athlete id of \code{passer_player_name}. NA when the name does not match a player on the season roster. \cr
-   receiver_player_id \tab character \tab ESPN athlete id of \code{receiver_player_name}. NA when the name does not match a player on the season roster. \cr
-   fumble_player_id \tab character \tab ESPN athlete id of \code{fumble_player_name}. NA when the name does not match a player on the season roster. \cr
-   sack_player_id \tab character \tab ESPN athlete id of \code{sack_player_name}. NA when the name does not match a player on the season roster. \cr
-   sack_player_id2 \tab character \tab ESPN athlete id of \code{sack_player_name2}. NA when the name does not match a player on the season roster. \cr
-   interception_player_id \tab character \tab ESPN athlete id of \code{interception_player_name}. NA when the name does not match a player on the season roster. \cr
-   pass_breakup_player_id \tab character \tab ESPN athlete id of \code{pass_breakup_player_name}. NA when the name does not match a player on the season roster. \cr
-   fumble_forced_player_id \tab character \tab ESPN athlete id of \code{fumble_forced_player_name}. NA when the name does not match a player on the season roster. \cr
-   fumble_recovered_player_id \tab character \tab ESPN athlete id of \code{fumble_recovered_player_name}. NA when the name does not match a player on the season roster. \cr
-   fg_kicker_player_id \tab character \tab ESPN athlete id of \code{fg_kicker_player_name}. NA when the name does not match a player on the season roster. \cr
-   punter_player_id \tab character \tab ESPN athlete id of \code{punter_player_name}. NA when the name does not match a player on the season roster. \cr
-   kickoff_player_id \tab character \tab ESPN athlete id of \code{kickoff_player_name}. NA when the name does not match a player on the season roster. \cr
-   kickoff_return_player_id \tab character \tab ESPN athlete id of \code{kickoff_return_player_name}. NA when the name does not match a player on the season roster. \cr
-   punt_return_player_id \tab character \tab ESPN athlete id of \code{punt_return_player_name}. NA when the name does not match a player on the season roster. \cr
-   fg_block_player_id \tab character \tab ESPN athlete id of \code{fg_block_player_name}. NA when the name does not match a player on the season roster. \cr
-   punt_block_player_id \tab character \tab ESPN athlete id of \code{punt_block_player_name}. NA when the name does not match a player on the season roster. \cr
-   fg_return_player_id \tab character \tab ESPN athlete id of \code{fg_return_player_name}. NA when the name does not match a player on the season roster. \cr
-   punt_block_return_player_id \tab character \tab ESPN athlete id of \code{punt_block_return_player_name}. NA when the name does not match a player on the season roster. \cr
+   rusher_player_id \tab character \tab ESPN athlete id of \code{rusher_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   passer_player_id \tab character \tab ESPN athlete id of \code{passer_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   receiver_player_id \tab character \tab ESPN athlete id of \code{receiver_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   fumble_player_id \tab character \tab ESPN athlete id of \code{fumble_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   sack_player_id \tab character \tab ESPN athlete id of \code{sack_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   sack_player_id2 \tab character \tab ESPN athlete id of \code{sack_player_name2}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   interception_player_id \tab character \tab ESPN athlete id of \code{interception_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   pass_breakup_player_id \tab character \tab ESPN athlete id of \code{pass_breakup_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   fumble_forced_player_id \tab character \tab ESPN athlete id of \code{fumble_forced_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   fumble_recovered_player_id \tab character \tab ESPN athlete id of \code{fumble_recovered_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   fg_kicker_player_id \tab character \tab ESPN athlete id of \code{fg_kicker_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   punter_player_id \tab character \tab ESPN athlete id of \code{punter_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   kickoff_player_id \tab character \tab ESPN athlete id of \code{kickoff_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   kickoff_return_player_id \tab character \tab ESPN athlete id of \code{kickoff_return_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   punt_return_player_id \tab character \tab ESPN athlete id of \code{punt_return_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   fg_block_player_id \tab character \tab ESPN athlete id of \code{fg_block_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   punt_block_player_id \tab character \tab ESPN athlete id of \code{punt_block_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   fg_return_player_id \tab character \tab ESPN athlete id of \code{fg_return_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
+   punt_block_return_player_id \tab character \tab ESPN athlete id of \code{punt_block_return_player_name}. NA when the name does not match a player on either team's CFBD season roster. \cr
    pos_team_id \tab character \tab ESPN team id of \code{pos_team}. \cr
    def_pos_team_id \tab character \tab ESPN team id of \code{def_pos_team}. \cr
    kicking_team \tab character \tab Team id of the kicking team on kickoffs, punts and field goals; NA on other plays. \cr
@@ -409,10 +409,10 @@ table are returned: these 54 in CFBD order (\code{yards_to_goal}, \code{down}, \
    drive_start_defense_score \tab integer \tab Defense score at the start of the drive. \cr
    drive_end_offense_score \tab integer \tab Offense score at the end of the drive. \cr
    drive_end_defense_score \tab integer \tab Defense score at the end of the drive. \cr
-   home_team_id \tab character \tab Home team id (CFBD /games \code{homeId}; CFBD team ids are ESPN team ids). \cr
-   away_team_id \tab character \tab Away team id (CFBD /games \code{awayId}). \cr
-   home_team_abbreviation \tab character \tab Home team abbreviation from CFBD /teams. \cr
-   away_team_abbreviation \tab character \tab Away team abbreviation from CFBD /teams. \cr
+   home_team_id \tab character \tab Home team id (CFBD /games \code{homeId}; CFBD team ids are ESPN team ids); NA when the game is not in CFBD /games. \cr
+   away_team_id \tab character \tab Away team id (CFBD /games \code{awayId}); NA when the game is not in CFBD /games. \cr
+   home_team_abbreviation \tab character \tab Home team abbreviation from CFBD /teams; NA when the team is not in /teams. \cr
+   away_team_abbreviation \tab character \tab Away team abbreviation from CFBD /teams; NA when the team is not in /teams. \cr
    offense_play_id \tab character \tab Team id of the offense on the play; NA when \code{offense_play} names neither team in the game. \cr
    defense_play_id \tab character \tab Team id of the defense on the play; NA when \code{defense_play} names neither team in the game. \cr
    cleaned_text \tab character \tab \code{play_text} with the leading clock stamp, the first pass depth and direction words, and No Huddle/Shotgun tags removed. \cr
@@ -428,8 +428,8 @@ table are returned: these 54 in CFBD order (\code{yards_to_goal}, \code{down}, \
    def_pos_unit \tab character \tab Unit of the defending team: \code{Defense}, \verb{Punt Return}, \verb{Kickoff Defense} or \verb{Field Goal Defense}. \cr
    drive_play \tab double \tab Binary flag indicating a counted play within the drive. \cr
    drive_event \tab double \tab Binary flag indicating a counted event within the drive. \cr
-   punt_return_player_name \tab character \tab Not populated by this pipeline (always NA); the punt returner is in \code{punt_returner_player_name}. \cr
-   kickoff_return_player_name \tab character \tab Not populated by this pipeline (always NA); the kickoff returner is in \code{kickoff_returner_player_name}. \cr
+   punt_return_player_name \tab character \tab Name of the punt returner (same as \code{punt_returner_player_name}). \cr
+   kickoff_return_player_name \tab character \tab Name of the kickoff returner (same as \code{kickoff_returner_player_name}). \cr
    vegas_wp \tab double \tab Spread-aware win probability for the team in possession before the play (proportion 0-1); NA when the game has no pre-game spread (always before 2013). \cr
    vegas_wpa \tab double \tab Change in \code{vegas_wp} over the play, with the same possession-change handling as \code{wpa}; NA on the final rows of a game. \cr
    vegas_wp_after \tab double \tab Spread-aware win probability after the play (\code{vegas_wp} plus \code{vegas_wpa}). \cr
