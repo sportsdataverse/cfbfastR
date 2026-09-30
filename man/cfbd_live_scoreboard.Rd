@@ -14,47 +14,54 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
-\code{\link[=cfbd_live_scoreboard]{cfbd_live_scoreboard()}} - A data frame with 41 variables:\tabular{lll}{
-   col_name \tab types \tab description \cr
+A data frame with one row per game on the current CFBD scoreboard. The
+quarter columns depend on how far the games have gone: \code{home_team_line_scores_Q1}
+and \code{away_team_line_scores_Q1} are always present (all NA before any game starts),
+\verb{_Q2} to \verb{_Q4} appear once any game in the result has reached that quarter, and
+overtime adds \verb{_Q5} onward. So there are 37 variables before kickoff and 43 once a
+game reaches the fourth quarter. An empty data frame is returned if the request fails.\tabular{lll}{
+   col_name \tab type \tab description \cr
    game_id \tab integer \tab CFBD-internal game id; join key to other CFBD endpoints. \cr
    start_date \tab character \tab Scheduled kickoff timestamp (ISO 8601, UTC). \cr
    start_time_tbd \tab logical \tab TRUE if the scheduled kickoff time is still to be determined. \cr
-   tv \tab character \tab Television network broadcasting the game (e.g. "ESPN", "ABC"). \cr
+   tv \tab character \tab Television network broadcasting the game (e.g. ESPNU). \cr
    neutral_site \tab logical \tab TRUE if the game is being played at a neutral site. \cr
-   conference_game \tab logical \tab TRUE if both teams are in the same conference. \cr
-   status \tab character \tab Game status (e.g. "scheduled", "in_progress", "completed"). \cr
-   period \tab integer \tab Current period/quarter number (1-4, 5+ for overtime). \cr
-   clock \tab character \tab Game clock display as "MM:SS" remaining in the current period. \cr
-   situation \tab character \tab Free-text down-and-distance / field-position summary for the current play. \cr
-   possession \tab character \tab Abbreviation of the team currently in possession. \cr
-   last_play \tab character \tab Free-text description of the most recent play. \cr
+   conference_game \tab logical \tab TRUE if the game is a conference game. \cr
+   status \tab character \tab Game status: scheduled, in_progress or completed. \cr
+   period \tab integer \tab Current period/quarter number (1-4, 5+ for overtime); NA before kickoff. \cr
+   clock \tab character \tab Game clock remaining in the current period, as sent by CFBD; NA before kickoff. \cr
+   situation \tab character \tab Free-text down-and-distance / field-position summary for the current play; NA before kickoff. \cr
+   possession \tab character \tab Team currently in possession, as sent by CFBD; NA before kickoff. \cr
+   last_play \tab character \tab Free-text description of the most recent play; NA before kickoff. \cr
    venue_name \tab character \tab Stadium / venue name. \cr
    venue_city \tab character \tab City where the venue is located. \cr
    venue_state \tab character \tab State (or province/country) where the venue is located. \cr
    home_team_id \tab integer \tab CFBD-internal team id for the home team. \cr
-   home_team_name \tab character \tab Full home team name (e.g. "Georgia"). \cr
+   home_team_name \tab character \tab Home team display name including mascot (e.g. Kansas Jayhawks). \cr
    home_team_conference \tab character \tab Conference name of the home team. \cr
-   home_team_classification \tab character \tab Division classification of the home team (fbs/fcs/ii/iii). \cr
-   home_team_points \tab integer \tab Current total points scored by the home team. \cr
-   home_team_line_scores_Q1 \tab integer \tab Home team points scored in the first quarter. \cr
-   home_team_line_scores_Q2 \tab integer \tab Home team points scored in the second quarter. \cr
-   home_team_line_scores_Q3 \tab integer \tab Home team points scored in the third quarter. \cr
-   home_team_line_scores_Q4 \tab integer \tab Home team points scored in the fourth quarter. \cr
+   home_team_classification \tab character \tab Division classification of the home team: fbs, fcs, ii, ii/iii or iii. \cr
+   home_team_points \tab integer \tab Current total points scored by the home team; NA before kickoff. \cr
+   home_team_line_scores_Q1 \tab integer \tab Home team points scored in the first quarter; NA before kickoff. \cr
+   home_team_line_scores_Q2 \tab integer \tab Home team points scored in the second quarter; present once any game in the result has reached it. \cr
+   home_team_line_scores_Q3 \tab integer \tab Home team points scored in the third quarter; present once any game in the result has reached it. \cr
+   home_team_line_scores_Q4 \tab integer \tab Home team points scored in the fourth quarter; present once any game in the result has reached it. \cr
+   home_team_win_probability \tab double \tab Home team win probability reported by CFBD; NA while the game is scheduled. \cr
    away_team_id \tab integer \tab CFBD-internal team id for the away team. \cr
-   away_team_name \tab character \tab Full away team name (e.g. "Auburn"). \cr
+   away_team_name \tab character \tab Away team display name including mascot (e.g. Middle Tennessee Blue Raiders). \cr
    away_team_conference \tab character \tab Conference name of the away team. \cr
-   away_team_classification \tab character \tab Division classification of the away team (fbs/fcs/ii/iii). \cr
-   away_team_points \tab integer \tab Current total points scored by the away team. \cr
-   away_team_line_scores_Q1 \tab integer \tab Away team points scored in the first quarter. \cr
-   away_team_line_scores_Q2 \tab integer \tab Away team points scored in the second quarter. \cr
-   away_team_line_scores_Q3 \tab integer \tab Away team points scored in the third quarter. \cr
-   away_team_line_scores_Q4 \tab integer \tab Away team points scored in the fourth quarter. \cr
-   weather_temperature \tab numeric \tab Temperature at kickoff, in degrees Fahrenheit. \cr
-   weather_description \tab character \tab Free-text weather description (e.g. "Clear", "Light rain"). \cr
-   weather_wind_speed \tab numeric \tab Wind speed, in miles per hour. \cr
+   away_team_classification \tab character \tab Division classification of the away team: fbs, fcs, ii, ii/iii or iii. \cr
+   away_team_points \tab integer \tab Current total points scored by the away team; NA before kickoff. \cr
+   away_team_line_scores_Q1 \tab integer \tab Away team points scored in the first quarter; NA before kickoff. \cr
+   away_team_line_scores_Q2 \tab integer \tab Away team points scored in the second quarter; present once any game in the result has reached it. \cr
+   away_team_line_scores_Q3 \tab integer \tab Away team points scored in the third quarter; present once any game in the result has reached it. \cr
+   away_team_line_scores_Q4 \tab integer \tab Away team points scored in the fourth quarter; present once any game in the result has reached it. \cr
+   away_team_win_probability \tab double \tab Away team win probability reported by CFBD; NA while the game is scheduled. \cr
+   weather_temperature \tab double \tab Temperature at kickoff, in degrees Fahrenheit. \cr
+   weather_description \tab character \tab Free-text weather description (e.g. Clear, Light rain). \cr
+   weather_wind_speed \tab double \tab Wind speed, in miles per hour. \cr
    weather_wind_direction \tab integer \tab Wind direction, in degrees (0-360, 0 = north). \cr
-   betting_spread \tab numeric \tab Pre-game point spread relative to the home team (negative = home favored). \cr
-   betting_over_under \tab numeric \tab Pre-game over/under (total) line in points. \cr
+   betting_spread \tab double \tab Pre-game point spread relative to the home team (negative = home favored). \cr
+   betting_over_under \tab double \tab Pre-game over/under (total) line in points. \cr
    betting_home_moneyline \tab integer \tab American-odds moneyline for the home team. \cr
    betting_away_moneyline \tab integer \tab American-odds moneyline for the away team. \cr
 }

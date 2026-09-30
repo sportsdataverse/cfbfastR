@@ -468,13 +468,13 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
 #'
 #' @return [cfbd_ratings_srs()] - A data frame with 6 variables:
 #'
-#'  |col_name   |types     |description                                                  |
+#'  |col_name   |type      |description                                                  |
 #'  |:----------|:---------|:------------------------------------------------------------|
 #'  |year       |integer   |Season of the SRS rating.                                    |
 #'  |team       |character |Team name.                                                   |
 #'  |conference |character |Conference of the team.                                      |
 #'  |division   |character |Division in the conference for the team.                    |
-#'  |rating     |numeric   |Simple Rating System (SRS) rating.                           |
+#'  |rating     |double    |Simple Rating System (SRS) rating.                           |
 #'  |ranking    |integer   |Simple Rating System ranking within the group returned.      |
 #'
 #' @keywords SRS
@@ -560,12 +560,12 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #'
 #' @return [cfbd_ratings_elo()] - A data frame with 4 variables:
 #'
-#'  |col_name   |types     |description                                                                       |
+#'  |col_name   |type      |description                                                                       |
 #'  |:----------|:---------|:---------------------------------------------------------------------------------|
 #'  |year       |integer   |Four-digit season year (e.g. 2019).                                               |
 #'  |team       |character |Full team name (e.g. "Texas").                                                    |
 #'  |conference |character |Conference affiliation for the team in the given season.                          |
-#'  |elo        |numeric   |CFBD-calculated Elo rating for the team as of the requested week.                 |
+#'  |elo        |double    |CFBD-calculated Elo rating for the team as of the requested week.                 |
 #'
 #' @keywords elo
 #' @importFrom jsonlite fromJSON

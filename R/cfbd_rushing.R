@@ -28,7 +28,7 @@
 #' ```
 #' ### **Get individual rushing plays**
 #' ```r
-#'   cfbd_rushing_plays(year = 2025, week = 5, team = "Texas")
+#'   cfbd_rushing_plays(year = 2025, week = 1, team = "Texas")
 #' ```
 #'
 #' @section The rushing production block:
@@ -38,12 +38,12 @@
 #' columns; team frames carry 26, adding `touchdown_status_available` and
 #' `rushing_touchdowns`.
 #'
-#'  |col_name                     |types     |description                                                                       |
+#'  |col_name                     |type      |description                                                                       |
 #'  |:----------------------------|:---------|:---------------------------------------------------------------------------------|
 #'  |attempts                     |integer   |Rush attempts.                                                                     |
 #'  |rushing_yards_available      |integer   |Attempts for which rushing yards were parsed (denominator for yardage means).       |
 #'  |total_rushing_yards          |integer   |Sum of rushing yards over those attempts.                                          |
-#'  |yards_per_carry              |numeric   |Mean rushing yards per carry.                                                      |
+#'  |yards_per_carry              |double    |Mean rushing yards per carry.                                                      |
 #'  |individual_attempts          |integer   |Attempts attributed to a single identified ball carrier.                           |
 #'  |unattributed_attempts        |integer   |Attempts with no ball carrier resolved from the play text.                         |
 #'  |sacks                        |integer   |Sacks counted within the rushing play set.                                         |
@@ -52,18 +52,18 @@
 #'  |multi_carrier_attempts       |integer   |Attempts where more than one carrier was identified.                               |
 #'  |direction_eligible_attempts  |integer   |Attempts eligible for a direction split.                                           |
 #'  |direction_available_attempts |integer   |Attempts for which a direction was actually parsed.                                |
-#'  |success_rate                 |numeric   |Proportion of attempts meeting the success threshold (0-1).                        |
-#'  |ppa                          |numeric   |Predicted points added per attempt.                                                |
-#'  |total_ppa                    |numeric   |Sum of predicted points added.                                                     |
-#'  |line_yards                   |numeric   |Line yards per carry (Football Outsiders methodology).                             |
-#'  |line_yards_total             |numeric   |Sum of line yards.                                                                 |
-#'  |second_level_yards           |numeric   |Second-level yards per carry (5-10 yards past the line of scrimmage).              |
-#'  |second_level_yards_total     |numeric   |Sum of second-level yards.                                                         |
-#'  |open_field_yards             |numeric   |Open-field yards per carry (10+ yards past the line of scrimmage).                 |
-#'  |open_field_yards_total       |numeric   |Sum of open-field yards.                                                           |
-#'  |stuff_rate                   |numeric   |Proportion of carries stopped at or behind the line of scrimmage (0-1).            |
-#'  |power_success                |numeric   |Conversion rate on short-yardage power runs (0-1).                                 |
-#'  |explosiveness                |numeric   |Mean PPA on successful carries.                                                    |
+#'  |success_rate                 |double    |Proportion of attempts meeting the success threshold (0-1).                        |
+#'  |ppa                          |double    |Predicted points added per attempt.                                                |
+#'  |total_ppa                    |double    |Sum of predicted points added.                                                     |
+#'  |line_yards                   |double    |Line yards per carry (Football Outsiders methodology).                             |
+#'  |line_yards_total             |double    |Sum of line yards.                                                                 |
+#'  |second_level_yards           |double    |Second-level yards per carry (5-10 yards past the line of scrimmage).              |
+#'  |second_level_yards_total     |integer   |Sum of second-level yards.                                                         |
+#'  |open_field_yards             |double    |Open-field yards per carry (10+ yards past the line of scrimmage).                 |
+#'  |open_field_yards_total       |integer   |Sum of open-field yards.                                                           |
+#'  |stuff_rate                   |double    |Proportion of carries stopped at or behind the line of scrimmage (0-1).            |
+#'  |power_success                |double    |Conversion rate on short-yardage power runs (0-1).                                 |
+#'  |explosiveness                |double    |Mean PPA on successful carries.                                                    |
 #'  |touchdown_status_available   |integer   |*Team frames only.* Attempts for which touchdown status was parsed.                |
 #'  |rushing_touchdowns           |integer   |*Team frames only.* Rushing touchdowns over those attempts.                        |
 #'
@@ -78,10 +78,26 @@
 #' `directions_<bucket>_`: `left`, `middle`, `right` and `unknown` (direction
 #' could not be parsed).
 #'
-#' Each bucket carries `carries`, `yards`, `yards_per_carry`, `success_rate`,
-#' `ppa`, `total_ppa`, `line_yards`, `line_yards_total`, `second_level_yards`,
-#' `second_level_yards_total`, `open_field_yards`, `open_field_yards_total`,
-#' `stuff_rate`, `power_success` and `explosiveness`.
+#' Each bucket carries these 15 columns, prefixed `directions_<bucket>_`
+#' (e.g. `directions_left_carries`):
+#'
+#'  |col_name                 |type      |description |
+#'  |:------------------------|:---------|:-----------|
+#'  |carries                  |integer   |Carries in this direction. |
+#'  |yards                    |integer   |Rushing yards on those carries. |
+#'  |yards_per_carry          |double    |Mean rushing yards per carry. |
+#'  |success_rate             |double    |Proportion of attempts meeting the success threshold (0-1). |
+#'  |ppa                      |double    |Predicted points added per attempt. |
+#'  |total_ppa                |double    |Sum of predicted points added. |
+#'  |line_yards               |double    |Line yards per carry (Football Outsiders methodology). |
+#'  |line_yards_total         |double    |Sum of line yards. |
+#'  |second_level_yards       |double    |Second-level yards per carry (5-10 yards past the line of scrimmage). |
+#'  |second_level_yards_total |integer   |Sum of second-level yards. |
+#'  |open_field_yards         |double    |Open-field yards per carry (10+ yards past the line of scrimmage). |
+#'  |open_field_yards_total   |integer   |Sum of open-field yards. |
+#'  |stuff_rate               |double    |Proportion of carries stopped at or behind the line of scrimmage (0-1). |
+#'  |power_success            |double    |Conversion rate on short-yardage power runs (0-1). |
+#'  |explosiveness            |double    |Mean PPA on successful carries. |
 #'
 #' So a player frame is 5 identity + 24 production + 4 x 15 direction =
 #' **89 columns**, and a team frame is 3 identity + 2 x (26 + 4 x 15) = **175**,
@@ -109,7 +125,7 @@ NULL
 #'
 #' @return [cfbd_rushing_players_season()] - A data frame with 89 variables:
 #'
-#'  |col_name        |types     |description                                                     |
+#'  |col_name        |type      |description                                                     |
 #'  |:---------------|:---------|:---------------------------------------------------------------|
 #'  |season          |integer   |Four-digit season year (e.g. 2025).                             |
 #'  |player_id       |character |CFBD athlete identifier (use with `cfbd_player_info()`).        |
@@ -210,7 +226,7 @@ cfbd_rushing_players_season <- function(year = NULL,
 #'
 #' @return [cfbd_rushing_players_games()] - A data frame with 93 variables:
 #'
-#'  |col_name        |types     |description                                                     |
+#'  |col_name        |type      |description                                                     |
 #'  |:---------------|:---------|:---------------------------------------------------------------|
 #'  |game_id         |integer   |Unique game identifier - `game_id`.                             |
 #'  |season          |integer   |Four-digit season year (e.g. 2025).                             |
@@ -312,7 +328,7 @@ cfbd_rushing_players_games <- function(year = NULL,
 #'
 #' @return [cfbd_rushing_teams_season()] - A data frame with 175 variables:
 #'
-#'  |col_name        |types     |description                                                     |
+#'  |col_name        |type      |description                                                     |
 #'  |:---------------|:---------|:---------------------------------------------------------------|
 #'  |season          |integer   |Four-digit season year (e.g. 2025).                             |
 #'  |team            |character |Team name.                                                      |
@@ -408,7 +424,7 @@ cfbd_rushing_teams_season <- function(year = NULL,
 #'
 #' @return [cfbd_rushing_teams_games()] - A data frame with 179 variables:
 #'
-#'  |col_name        |types     |description                                                     |
+#'  |col_name        |type      |description                                                     |
 #'  |:---------------|:---------|:---------------------------------------------------------------|
 #'  |game_id         |integer   |Unique game identifier - `game_id`.                             |
 #'  |season          |integer   |Four-digit season year (e.g. 2025).                             |
@@ -526,7 +542,7 @@ cfbd_rushing_teams_games <- function(year = NULL,
 #'
 #' @return [cfbd_rushing_plays()] - A data frame with 34 variables:
 #'
-#'  |col_name                    |types     |description                                                                    |
+#'  |col_name                    |type      |description                                                                    |
 #'  |:---------------------------|:---------|:-------------------------------------------------------------------------------|
 #'  |game_id                     |integer   |Unique game identifier - `game_id`.                                            |
 #'  |play_id                     |character |Unique play identifier - `play_id`.                                            |
@@ -560,7 +576,7 @@ cfbd_rushing_teams_games <- function(year = NULL,
 #'  |attribution_status          |character |How the carrier was resolved - individual, team, multi_carrier, unmatched, ...  |
 #'  |direction_analysis_eligible |logical   |TRUE when the play is eligible to be counted in a direction split.             |
 #'  |parse_status                |character |How completely CFBD parsed the play text for this row.                         |
-#'  |ppa                         |numeric   |Predicted points added on the play.                                            |
+#'  |ppa                         |double    |Predicted points added on the play.                                            |
 #'  |success                     |logical   |TRUE when the play met the success threshold for its down and distance.        |
 #'
 #' `rush_direction` comes back all-`NA` for any request whose plays were not
@@ -579,7 +595,7 @@ cfbd_rushing_teams_games <- function(year = NULL,
 #' @export
 #' @examples
 #' \donttest{
-#'   try(cfbd_rushing_plays(year = 2025, week = 5, team = "Texas"))
+#'   try(cfbd_rushing_plays(year = 2025, week = 1, team = "Texas"))
 #' }
 
 cfbd_rushing_plays <- function(year = NULL,

@@ -31,7 +31,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
 \code{\link[=cfbd_passing_players_season]{cfbd_passing_players_season()}} - A data frame with 189 variables:\tabular{lll}{
-   col_name \tab types \tab description \cr
+   col_name \tab type \tab description \cr
    season \tab integer \tab Four-digit season year (e.g. 2025). \cr
    player_id \tab character \tab CFBD athlete identifier (use with \code{cfbd_player_info()}). \cr
    player \tab character \tab Player full name. \cr

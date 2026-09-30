@@ -18,12 +18,12 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
 \code{\link[=cfbd_ratings_srs]{cfbd_ratings_srs()}} - A data frame with 6 variables:\tabular{lll}{
-   col_name \tab types \tab description \cr
+   col_name \tab type \tab description \cr
    year \tab integer \tab Season of the SRS rating. \cr
    team \tab character \tab Team name. \cr
    conference \tab character \tab Conference of the team. \cr
    division \tab character \tab Division in the conference for the team. \cr
-   rating \tab numeric \tab Simple Rating System (SRS) rating. \cr
+   rating \tab double \tab Simple Rating System (SRS) rating. \cr
    ranking \tab integer \tab Simple Rating System ranking within the group returned. \cr
 }
 }

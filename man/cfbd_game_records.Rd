@@ -18,14 +18,14 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
 \code{\link[=cfbd_game_records]{cfbd_game_records()}} - A data frame with 35 variables:\tabular{lll}{
-   col_name \tab types \tab description \cr
+   col_name \tab type \tab description \cr
    year \tab integer \tab Season of the games. \cr
    team_id \tab integer \tab Referencing team id. \cr
    team \tab character \tab Team name. \cr
    classification \tab character \tab Conference classification (fbs, fcs, ii, iii). \cr
    conference \tab character \tab Conference of the team. \cr
    division \tab character \tab Division in the conference of the team. \cr
-   expected_wins \tab numeric \tab Expected number of wins based on post-game win probability. \cr
+   expected_wins \tab double \tab Expected number of wins based on post-game win probability. \cr
    total_games \tab integer \tab Total number of games played. \cr
    total_wins \tab integer \tab Total wins. \cr
    total_losses \tab integer \tab Total losses. \cr

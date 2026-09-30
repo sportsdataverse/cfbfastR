@@ -50,25 +50,30 @@ NULL
 #' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_coaches', 'min_year']`
 #' @param min_year (*Integer* optional): Minimum Year filter (inclusive), 4 digit format (*YYYY*).
 #' @param max_year (*Integer* optional): Maximum Year filter (inclusive), 4 digit format (*YYYY*)
-#' @return Returns a tibble with 15 variables:
+#' @return A data frame with one row per coach per season coached, sorted by `year`,
+#' and 19 variables. An empty data frame is returned if the request fails.
 #'
-#'    |col_name        |types     |description                                                       |
-#'    |:---------------|:---------|:-----------------------------------------------------------------|
-#'    |first_name      |character |First name of coach.                                              |
-#'    |last_name       |character |Last name of coach.                                               |
-#'    |hire_date       |character |Hire date of coach (ISO date string from CFBD).                   |
-#'    |school          |character |School of coach for the listed season.                            |
-#'    |year            |integer   |Four-digit season year of record.                                 |
-#'    |games           |integer   |Games coached during the season.                                  |
-#'    |wins            |integer   |Wins for the season.                                              |
-#'    |losses          |integer   |Losses for the season.                                            |
-#'    |ties            |integer   |Ties for the season.                                              |
-#'    |preseason_rank  |integer   |Preseason AP rank for the school of coach (NA if unranked).       |
-#'    |postseason_rank |integer   |Postseason AP rank for the school of coach (NA if unranked).      |
-#'    |srs             |character |Simple Rating System adjustment for team.                         |
-#'    |sp_overall      |character |Bill Connelly's SP+ overall rating for team.                      |
-#'    |sp_offense      |character |Bill Connelly's SP+ offense rating for team.                      |
-#'    |sp_defense      |character |Bill Connelly's SP+ defense rating for team.                      |
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |id |integer |CFBD coach id; the `coach_id` of [cfbd_coaches_profile()]. |
+#'  |first_name |character |First name of coach. |
+#'  |last_name |character |Last name of coach. |
+#'  |hire_date |character |Hire date of coach (ISO 8601 date-time string from CFBD); NA when unknown. |
+#'  |team_id |integer |CFBD team id of the school for the listed season. |
+#'  |school |character |School of coach for the listed season. |
+#'  |conference |character |Conference of the school for the listed season. |
+#'  |year |integer |Four-digit season year of record. |
+#'  |games |integer |Games coached during the season. |
+#'  |wins |integer |Wins for the season. |
+#'  |losses |integer |Losses for the season. |
+#'  |ties |integer |Ties for the season. |
+#'  |win_percentage |double |Winning percentage for the season as a proportion 0-1 (0.538 for 7-6). |
+#'  |preseason_rank |integer |Preseason AP rank for the school of coach (NA if unranked). |
+#'  |postseason_rank |integer |Postseason AP rank for the school of coach (NA if unranked). |
+#'  |srs |double |Simple Rating System (SRS) rating for the team's season, in points relative to an average team. |
+#'  |sp_overall |double |Bill Connelly's SP+ overall rating for team. |
+#'  |sp_offense |double |Bill Connelly's SP+ offense rating for team. |
+#'  |sp_defense |double |Bill Connelly's SP+ defense rating for team. |
 #'
 #' @keywords Coaches
 #' @importFrom jsonlite fromJSON

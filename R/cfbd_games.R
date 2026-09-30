@@ -116,40 +116,55 @@ NULL
 #'
 #' @param competition (*String* optional): Competition filter; `cfp` restricts to College Football Playoff games.
 #' @param round (*String* optional): Playoff round -- `first_round`, `quarterfinal`, `semifinal`, `championship`.
-#' @return [cfbd_game_info()] - A data frame with 30 variables:
+#' @return A data frame with one row per game and 32 variables. With
+#' `quarter_scores = TRUE` the per-period scores are inserted after `home_points` and
+#' after `away_points`: one `home_scores_Q<n>` and one `away_scores_Q<n>` column per
+#' period played by any game in the result, so overtime adds `_Q5` onward (the
+#' seven-overtime 2018 LSU at Texas A&M game reaches `_Q11`). An empty data frame is
+#' returned if the request fails.
 #'
-#'   |col_name           |types     |description                                                                |
-#'   |:------------------|:---------|:--------------------------------------------------------------------------|
-#'   |game_id            |integer   |Referencing game id.                                                       |
-#'   |season             |integer   |Season of the game.                                                        |
-#'   |week               |integer   |Game week.                                                                 |
-#'   |season_type        |character |Season type of the game.                                                   |
-#'   |start_date         |character |Game date.                                                                 |
-#'   |start_time_tbd     |logical   |TRUE/FALSE flag for if the game's start time is to be determined.          |
-#'   |neutral_site       |logical   |TRUE/FALSE flag for the game taking place at a neutral site.               |
-#'   |conference_game    |logical   |TRUE/FALSE flag for this game qualifying as a conference game.             |
-#'   |attendance         |integer   |Reported attendance at the game.                                           |
-#'   |venue_id           |integer   |Referencing venue id.                                                      |
-#'   |venue              |character |Venue name.                                                                |
-#'   |home_id            |integer   |Home team referencing id.                                                  |
-#'   |home_team          |character |Home team name.                                                            |
-#'   |home_conference    |character |Home team conference.                                                      |
-#'   |home_division      |character |Home team division.                                                        |
-#'   |home_points        |integer   |Home team points.                                                          |
-#'   |home_post_win_prob |character |Home team post-game win probability.                                       |
-#'   |home_pregame_elo   |character |Home team pre-game ELO rating.                                             |
-#'   |home_postgame_elo  |character |Home team post-game ELO rating.                                            |
-#'   |away_id            |integer   |Away team referencing id.                                                  |
-#'   |away_team          |character |Away team name.                                                            |
-#'   |away_conference    |character |Away team conference.                                                      |
-#'   |away_division      |character |Away team division.                                                        |
-#'   |away_points        |integer   |Away team points.                                                          |
-#'   |away_post_win_prob |character |Away team post-game win probability.                                       |
-#'   |away_pregame_elo   |character |Away team pre-game ELO rating.                                             |
-#'   |away_postgame_elo  |character |Away team post-game ELO rating.                                            |
-#'   |excitement_index   |character |Game excitement index.                                                     |
-#'   |highlights         |character |Game highlight urls.                                                       |
-#'   |notes              |character |Game notes.                                                                |
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |game_id |integer |Unique CFBD game identifier. |
+#'  |season |integer |Season of the game. |
+#'  |week |integer |Game week (postseason games restart at week 1). |
+#'  |season_type |character |Season type of the game (e.g. regular, postseason). |
+#'  |start_date |character |Game start date-time (ISO 8601, UTC). |
+#'  |start_time_tbd |logical |TRUE/FALSE flag for if the game's start time is to be determined. |
+#'  |completed |logical |TRUE if the game has been completed. |
+#'  |neutral_site |logical |TRUE/FALSE flag for the game taking place at a neutral site. |
+#'  |conference_game |logical |TRUE/FALSE flag for this game qualifying as a conference game. |
+#'  |attendance |integer |Reported attendance at the game; NA when not reported. |
+#'  |venue_id |integer |CFBD venue id. |
+#'  |venue |character |Venue name. |
+#'  |home_id |integer |Home team CFBD id. |
+#'  |home_team |character |Home team name. |
+#'  |home_division |character |Home team division (CFBD classification): fbs, fcs, ii, ii/iii or iii. |
+#'  |home_conference |character |Home team conference. |
+#'  |home_points |integer |Home team points; NA until the game has a score. |
+#'  |home_scores_Q1 |integer |Home team points in the first quarter; present only with `quarter_scores = TRUE`. |
+#'  |home_scores_Q2 |integer |Home team points in the second quarter; present only with `quarter_scores = TRUE`. |
+#'  |home_scores_Q3 |integer |Home team points in the third quarter; present only with `quarter_scores = TRUE`. |
+#'  |home_scores_Q4 |integer |Home team points in the fourth quarter; present only with `quarter_scores = TRUE`. |
+#'  |home_post_win_prob |double |Home team post-game win probability (proportion 0-1). |
+#'  |home_pregame_elo |integer |Home team pre-game Elo rating. |
+#'  |home_postgame_elo |integer |Home team post-game Elo rating. |
+#'  |away_id |integer |Away team CFBD id. |
+#'  |away_team |character |Away team name. |
+#'  |away_division |character |Away team division (CFBD classification): fbs, fcs, ii, ii/iii or iii. |
+#'  |away_conference |character |Away team conference. |
+#'  |away_points |integer |Away team points; NA until the game has a score. |
+#'  |away_scores_Q1 |integer |Away team points in the first quarter; present only with `quarter_scores = TRUE`. |
+#'  |away_scores_Q2 |integer |Away team points in the second quarter; present only with `quarter_scores = TRUE`. |
+#'  |away_scores_Q3 |integer |Away team points in the third quarter; present only with `quarter_scores = TRUE`. |
+#'  |away_scores_Q4 |integer |Away team points in the fourth quarter; present only with `quarter_scores = TRUE`. |
+#'  |away_post_win_prob |double |Away team post-game win probability (proportion 0-1). |
+#'  |away_pregame_elo |integer |Away team pre-game Elo rating. |
+#'  |away_postgame_elo |integer |Away team post-game Elo rating. |
+#'  |excitement_index |double |Game excitement index (CFBD measure of in-game win-probability swings; higher is more exciting). |
+#'  |highlights |character |Game highlight URL; NA or empty when none. |
+#'  |notes |character |Game notes (e.g. the bowl name); NA when none. |
+#'  |playoff |data.frame |Playoff context. An all-NA logical column when no game in the result has playoff context; otherwise a nested data frame column (not flattened) of `competition`, `format`, `round`, `roundName`, `bracketSlot`, `homeSeed`, `awaySeed`, `bowlName`, NA for non-playoff games. See the `playoff_*` columns of [cfbd_game_schedule()] for their meaning. |
 #'
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
@@ -269,33 +284,34 @@ cfbd_game_info <- function(year,
 #'
 #' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 #' @param game_id (*Integer* optional): Game ID. When specified, returns weather for that game.
-#' @return [cfbd_game_weather()] - A data frame with 23 variables:
+#' @return A data frame with one row per game and 22 variables. An empty data frame is
+#' returned, with an informational message, when CFBD has no weather for the filters
+#' yet (it backfills weather mid-week in season), and also if the request fails.
 #'
-#'   |col_name               |types     |description                                                          |
-#'   |:----------------------|:---------|:--------------------------------------------------------------------|
-#'   |game_id                |integer   |Referencing game id.                                                 |
-#'   |season                 |integer   |Season of the game.                                                  |
-#'   |week                   |integer   |Game week.                                                           |
-#'   |season_type            |character |Season type of the game.                                             |
-#'   |start_date             |character |Game date.                                                           |
-#'   |start_time_tbd         |logical   |TRUE/FALSE flag for if the game's start time is to be determined.    |
-#'   |game_indoors           |logical   |TRUE/FALSE flag for if the game is indoors.                          |
-#'   |home_team              |character |Home team name.                                                      |
-#'   |home_conference        |character |Home team conference.                                                |
-#'   |away_team              |character |Away team name.                                                      |
-#'   |away_conference        |character |Away team conference.                                                |
-#'   |venue_id               |integer   |Referencing venue id.                                                |
-#'   |venue                  |character |Venue name.                                                          |
-#'   |temperature            |integer   |Game-time temperature, in degrees Fahrenheit.                        |
-#'   |dew_point              |integer   |Dew point at kickoff, in degrees Fahrenheit.                         |
-#'   |humidity               |integer   |Relative humidity at kickoff, as a percentage (0-100).               |
-#'   |precipitation          |integer   |Precipitation total at kickoff, in inches.                           |
-#'   |snowfall               |integer   |Snowfall total at kickoff, in inches.                                |
-#'   |wind_direction         |integer   |Wind direction, in degrees (0-360, 0 = north).                       |
-#'   |wind_speed             |integer   |Wind speed, in miles per hour.                                       |
-#'   |pressure               |integer   |Barometric pressure, in millibars.                                   |
-#'   |weather_condition_code |integer   |Weather condition code from the upstream weather provider.           |
-#'   |weather_condition      |character |Free-text weather condition (e.g. "Clear", "Light rain").            |
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |game_id |integer |Unique CFBD game identifier. |
+#'  |season |integer |Season of the game. |
+#'  |week |integer |Game week. |
+#'  |season_type |character |Season type of the game (e.g. regular, postseason). |
+#'  |start_time |character |Game start date-time (ISO 8601, UTC). |
+#'  |game_indoors |logical |TRUE/FALSE flag for if the game is indoors. |
+#'  |home_team |character |Home team name. |
+#'  |home_conference |character |Home team conference. |
+#'  |away_team |character |Away team name. |
+#'  |away_conference |character |Away team conference. |
+#'  |venue_id |integer |CFBD venue id. |
+#'  |venue |character |Venue name. |
+#'  |temperature |double |Game-time temperature, in degrees Fahrenheit. |
+#'  |dew_point |double |Dew point at kickoff, in degrees Fahrenheit. |
+#'  |humidity |integer |Relative humidity at kickoff, as a percentage (0-100). |
+#'  |precipitation |double |Precipitation at kickoff, in inches; parses as integer when every value in the result is a whole number (e.g. all 0). |
+#'  |snowfall |double |Snowfall at kickoff, in inches; parses as integer when every value in the result is a whole number (e.g. all 0). |
+#'  |wind_direction |integer |Wind direction, in degrees (0-360, 0 = north). |
+#'  |wind_speed |double |Wind speed, in miles per hour. |
+#'  |pressure |double |Barometric pressure, in millibars. |
+#'  |weather_condition_code |integer |Numeric weather condition code, labelled by `weather_condition` (e.g. 1 = Clear, 3 = Cloudy, 8 = Rain, 25 = Thunderstorm). |
+#'  |weather_condition |character |Weather condition label (e.g. Clear, Cloudy, Light Rain, Thunderstorm). |
 #'
 #' @keywords Game Weather
 #' @importFrom jsonlite fromJSON
@@ -306,6 +322,10 @@ cfbd_game_info <- function(year,
 #' @import tidyr
 #' @family CFBD Games
 #' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_game_weather(year = 2025, week = 1, conference = "SEC"))
+#' }
 cfbd_game_weather <- function(year = NULL,
                               week = NULL,
                               season_type = "regular",
@@ -587,79 +607,101 @@ cfbd_game_media <- function(year,
 #' @param game_id (*Integer* required): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
 #' @param long (*Logical* default `FALSE`): Return the data in a long format.
-#' @return [cfbd_game_box_advanced()] - A data frame with 2 rows and 69 variables:
+#' @return A data frame with two rows, one per team, and 69 variables, all double
+#' except `team`. Rows are assembled by position: the first entry of every CFBD
+#' section goes to the first team (the first team of the `ppa` section), so a section
+#' CFBD lists in the other team order lands on the other team's row. In sampled games
+#' that is `havoc`, which CFBD lists in reverse order (see the `long = TRUE` output,
+#' whose `havoc_team` row names the team behind each value). For games from 2025 on,
+#' CFBD also sends enriched `passing` and `rushingAdvanced` sections, which this parser
+#' appends as about 550 extra columns with raw dotted names (e.g.
+#' `passing.defense.ppa`, `rushing_dvanced.offense.attempts`) coerced to double with
+#' warnings; they are not described here, and the same data comes from
+#' [cfbd_passing_teams_games()] and [cfbd_rushing_teams_games()]. PPA is predicted
+#' points added. An empty data frame is returned if the request fails.
 #'
-#'   |col_name                              |types     |description                                                                       |
-#'   |:-------------------------------------|:---------|:---------------------------------------------------------------------------------|
-#'   |team                                  |character |Team name.                                                                        |
-#'   |plays                                 |numeric   |Number of plays.                                                                  |
-#'   |ppa_overall_total                     |numeric   |Predicted points added (PPA) overall total.                                       |
-#'   |ppa_overall_quarter1                  |numeric   |Predicted points added (PPA) overall Q1.                                          |
-#'   |ppa_overall_quarter2                  |numeric   |Predicted points added (PPA) overall Q2.                                          |
-#'   |ppa_overall_quarter3                  |numeric   |Predicted points added (PPA) overall Q3.                                          |
-#'   |ppa_overall_quarter4                  |numeric   |Predicted points added (PPA) overall Q4.                                          |
-#'   |ppa_passing_total                     |numeric   |Passing predicted points added (PPA) total.                                       |
-#'   |ppa_passing_quarter1                  |numeric   |Passing predicted points added (PPA) Q1.                                          |
-#'   |ppa_passing_quarter2                  |numeric   |Passing predicted points added (PPA) Q2.                                          |
-#'   |ppa_passing_quarter3                  |numeric   |Passing predicted points added (PPA) Q3.                                          |
-#'   |ppa_passing_quarter4                  |numeric   |Passing predicted points added (PPA) Q4.                                          |
-#'   |ppa_rushing_total                     |numeric   |Rushing predicted points added (PPA) total.                                       |
-#'   |ppa_rushing_quarter1                  |numeric   |Rushing predicted points added (PPA) Q1.                                          |
-#'   |ppa_rushing_quarter2                  |numeric   |Rushing predicted points added (PPA) Q2.                                          |
-#'   |ppa_rushing_quarter3                  |numeric   |Rushing predicted points added (PPA) Q3.                                          |
-#'   |ppa_rushing_quarter4                  |numeric   |Rushing predicted points added (PPA) Q4.                                          |
-#'   |cumulative_ppa_plays                  |numeric   |Cumulative predicted points added (PPA) added total.                              |
-#'   |cumulative_ppa_overall_total          |numeric   |Cumulative predicted points added (PPA) total.                                    |
-#'   |cumulative_ppa_overall_quarter1       |numeric   |Cumulative predicted points added (PPA) Q1.                                       |
-#'   |cumulative_ppa_overall_quarter2       |numeric   |Cumulative predicted points added (PPA) Q2.                                       |
-#'   |cumulative_ppa_overall_quarter3       |numeric   |Cumulative predicted points added (PPA) Q3.                                       |
-#'   |cumulative_ppa_overall_quarter4       |numeric   |Cumulative predicted points added (PPA) Q4.                                       |
-#'   |cumulative_ppa_passing_total          |numeric   |Cumulative passing predicted points added (PPA) total.                            |
-#'   |cumulative_ppa_passing_quarter1       |numeric   |Cumulative passing predicted points added (PPA) Q1.                               |
-#'   |cumulative_ppa_passing_quarter2       |numeric   |Cumulative passing predicted points added (PPA) Q2.                               |
-#'   |cumulative_ppa_passing_quarter3       |numeric   |Cumulative passing predicted points added (PPA) Q3.                               |
-#'   |cumulative_ppa_passing_quarter4       |numeric   |Cumulative passing predicted points added (PPA) Q4.                               |
-#'   |cumulative_ppa_rushing_total          |numeric   |Cumulative rushing predicted points added (PPA) total.                            |
-#'   |cumulative_ppa_rushing_quarter1       |numeric   |Cumulative rushing predicted points added (PPA) Q1.                               |
-#'   |cumulative_ppa_rushing_quarter2       |numeric   |Cumulative rushing predicted points added (PPA) Q2.                               |
-#'   |cumulative_ppa_rushing_quarter3       |numeric   |Cumulative rushing predicted points added (PPA) Q3.                               |
-#'   |cumulative_ppa_rushing_quarter4       |numeric   |Cumulative rushing predicted points added (PPA) Q4.                               |
-#'   |success_rates_overall_total           |numeric   |Success rates overall total.                                                      |
-#'   |success_rates_overall_quarter1        |numeric   |Success rates overall Q1.                                                         |
-#'   |success_rates_overall_quarter2        |numeric   |Success rates overall Q2.                                                         |
-#'   |success_rates_overall_quarter3        |numeric   |Success rates overall Q3.                                                         |
-#'   |success_rates_overall_quarter4        |numeric   |Success rates overall Q4.                                                         |
-#'   |success_rates_standard_downs_total    |numeric   |Success rates standard downs total.                                               |
-#'   |success_rates_standard_downs_quarter1 |numeric   |Success rates standard downs Q1.                                                  |
-#'   |success_rates_standard_downs_quarter2 |numeric   |Success rates standard downs Q2.                                                  |
-#'   |success_rates_standard_downs_quarter3 |numeric   |Success rates standard downs Q3.                                                  |
-#'   |success_rates_standard_downs_quarter4 |numeric   |Success rates standard downs Q4.                                                  |
-#'   |success_rates_passing_downs_total     |numeric   |Success rates passing downs total.                                                |
-#'   |success_rates_passing_downs_quarter1  |numeric   |Success rates passing downs Q1.                                                   |
-#'   |success_rates_passing_downs_quarter2  |numeric   |Success rates passing downs Q2.                                                   |
-#'   |success_rates_passing_downs_quarter3  |numeric   |Success rates passing downs Q3.                                                   |
-#'   |success_rates_passing_downs_quarter4  |numeric   |Success rates passing downs Q4.                                                   |
-#'   |explosiveness_overall_total           |numeric   |Explosiveness rates overall total.                                                |
-#'   |explosiveness_overall_quarter1        |numeric   |Explosiveness rates overall Q1.                                                   |
-#'   |explosiveness_overall_quarter2        |numeric   |Explosiveness rates overall Q2.                                                   |
-#'   |explosiveness_overall_quarter3        |numeric   |Explosiveness rates overall Q3.                                                   |
-#'   |explosiveness_overall_quarter4        |numeric   |Explosiveness rates overall Q4.                                                   |
-#'   |rushing_power_success                 |numeric   |Rushing power success rate.                                                       |
-#'   |rushing_stuff_rate                    |numeric   |Rushing stuff rate.                                                               |
-#'   |rushing_line_yds                      |numeric   |Rushing offensive line yards.                                                     |
-#'   |rushing_line_yds_avg                  |numeric   |Rushing line yards average.                                                       |
-#'   |rushing_second_lvl_yds                |numeric   |Rushing second-level yards.                                                       |
-#'   |rushing_second_lvl_yds_avg            |numeric   |Average second level yards per rush.                                              |
-#'   |rushing_open_field_yds                |numeric   |Rushing open field yards.                                                         |
-#'   |rushing_open_field_yds_avg            |numeric   |Average rushing open field yards average.                                         |
-#'   |havoc_total                           |numeric   |Total havoc rate.                                                                 |
-#'   |havoc_front_seven                     |numeric   |Front-7 players havoc rate.                                                       |
-#'   |havoc_db                              |numeric   |Defensive back players havoc rate.                                                |
-#'   |scoring_opps_opportunities            |numeric   |Number of scoring opportunities.                                                  |
-#'   |scoring_opps_points                   |numeric   |Points on scoring opportunity drives.                                             |
-#'   |scoring_opps_pts_per_opp              |numeric   |Points per scoring opportunity drives.                                            |
-#'   |field_pos_avg_start                   |numeric   |Average starting field position.                                                  |
-#'   |field_pos_avg_starting_predicted_pts  |numeric   |Average starting predicted points (PP) for the average starting field position.   |
+#' **wide** (`long = FALSE`, the default) - one row per team:
+#'
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |team |character |Team name. |
+#'  |ppa_plays |double |Number of plays in the team's PPA sample. |
+#'  |ppa_overall_total |double |Average PPA per play, whole game. |
+#'  |ppa_overall_quarter1 |double |Average PPA per play, first quarter. |
+#'  |ppa_overall_quarter2 |double |Average PPA per play, second quarter. |
+#'  |ppa_overall_quarter3 |double |Average PPA per play, third quarter. |
+#'  |ppa_overall_quarter4 |double |Average PPA per play, fourth quarter. |
+#'  |ppa_passing_total |double |Average PPA per pass play, whole game. |
+#'  |ppa_passing_quarter1 |double |Average PPA per pass play, first quarter. |
+#'  |ppa_passing_quarter2 |double |Average PPA per pass play, second quarter. |
+#'  |ppa_passing_quarter3 |double |Average PPA per pass play, third quarter. |
+#'  |ppa_passing_quarter4 |double |Average PPA per pass play, fourth quarter. |
+#'  |ppa_rushing_total |double |Average PPA per rush, whole game. |
+#'  |ppa_rushing_quarter1 |double |Average PPA per rush, first quarter. |
+#'  |ppa_rushing_quarter2 |double |Average PPA per rush, second quarter. |
+#'  |ppa_rushing_quarter3 |double |Average PPA per rush, third quarter. |
+#'  |ppa_rushing_quarter4 |double |Average PPA per rush, fourth quarter. |
+#'  |cumulative_ppa_plays |double |Number of plays in the cumulative PPA sample (same as `ppa_plays`). |
+#'  |cumulative_ppa_overall_total |double |Total PPA summed over all plays, whole game. |
+#'  |cumulative_ppa_overall_quarter1 |double |Total PPA, first quarter. |
+#'  |cumulative_ppa_overall_quarter2 |double |Total PPA, second quarter. |
+#'  |cumulative_ppa_overall_quarter3 |double |Total PPA, third quarter. |
+#'  |cumulative_ppa_overall_quarter4 |double |Total PPA, fourth quarter. |
+#'  |cumulative_ppa_passing_total |double |Total PPA on pass plays, whole game. |
+#'  |cumulative_ppa_passing_quarter1 |double |Total PPA on pass plays, first quarter. |
+#'  |cumulative_ppa_passing_quarter2 |double |Total PPA on pass plays, second quarter. |
+#'  |cumulative_ppa_passing_quarter3 |double |Total PPA on pass plays, third quarter. |
+#'  |cumulative_ppa_passing_quarter4 |double |Total PPA on pass plays, fourth quarter. |
+#'  |cumulative_ppa_rushing_total |double |Total PPA on rushes, whole game. |
+#'  |cumulative_ppa_rushing_quarter1 |double |Total PPA on rushes, first quarter. |
+#'  |cumulative_ppa_rushing_quarter2 |double |Total PPA on rushes, second quarter. |
+#'  |cumulative_ppa_rushing_quarter3 |double |Total PPA on rushes, third quarter. |
+#'  |cumulative_ppa_rushing_quarter4 |double |Total PPA on rushes, fourth quarter. |
+#'  |success_rates_overall_total |double |Success rate (proportion 0-1 of plays that were successful), whole game. |
+#'  |success_rates_overall_quarter1 |double |Success rate, first quarter; NA when the team had no plays in the quarter. |
+#'  |success_rates_overall_quarter2 |double |Success rate, second quarter; NA when the team had no plays in the quarter. |
+#'  |success_rates_overall_quarter3 |double |Success rate, third quarter; NA when the team had no plays in the quarter. |
+#'  |success_rates_overall_quarter4 |double |Success rate, fourth quarter; NA when the team had no plays in the quarter. |
+#'  |success_rates_standard_downs_total |double |Success rate on standard downs, whole game. |
+#'  |success_rates_standard_downs_quarter1 |double |Success rate on standard downs, first quarter; NA when there were none. |
+#'  |success_rates_standard_downs_quarter2 |double |Success rate on standard downs, second quarter; NA when there were none. |
+#'  |success_rates_standard_downs_quarter3 |double |Success rate on standard downs, third quarter; NA when there were none. |
+#'  |success_rates_standard_downs_quarter4 |double |Success rate on standard downs, fourth quarter; NA when there were none. |
+#'  |success_rates_passing_downs_total |double |Success rate on passing downs, whole game. |
+#'  |success_rates_passing_downs_quarter1 |double |Success rate on passing downs, first quarter; NA when there were none. |
+#'  |success_rates_passing_downs_quarter2 |double |Success rate on passing downs, second quarter; NA when there were none. |
+#'  |success_rates_passing_downs_quarter3 |double |Success rate on passing downs, third quarter; NA when there were none. |
+#'  |success_rates_passing_downs_quarter4 |double |Success rate on passing downs, fourth quarter; NA when there were none. |
+#'  |explosiveness_overall_total |double |Explosiveness (average PPA on successful plays), whole game. |
+#'  |explosiveness_overall_quarter1 |double |Explosiveness, first quarter; NA when the team had no successful plays. |
+#'  |explosiveness_overall_quarter2 |double |Explosiveness, second quarter; NA when the team had no successful plays. |
+#'  |explosiveness_overall_quarter3 |double |Explosiveness, third quarter; NA when the team had no successful plays. |
+#'  |explosiveness_overall_quarter4 |double |Explosiveness, fourth quarter; NA when the team had no successful plays. |
+#'  |rushing_power_success |double |Proportion of short-yardage runs (third or fourth down, 2 yards or fewer to go) that gained a first down or touchdown. |
+#'  |rushing_stuff_rate |double |Proportion of rushes stopped at or behind the line of scrimmage. |
+#'  |rushing_line_yds |double |Total offensive line yards (Football Outsiders line-yards method). |
+#'  |rushing_line_yds_avg |double |Offensive line yards per rush. |
+#'  |rushing_second_lvl_yds |double |Total second-level yards: rushing yards gained 5 to 10 yards past the line of scrimmage. |
+#'  |rushing_second_lvl_yds_avg |double |Second-level yards per rush. |
+#'  |rushing_open_field_yds |double |Total open-field yards: rushing yards gained more than 10 yards past the line of scrimmage. |
+#'  |rushing_open_field_yds_avg |double |Open-field yards per rush. |
+#'  |havoc_total |double |Havoc rate the team's offense faced: the opponent defense's proportion of plays with a tackle for loss, forced fumble, interception or pass breakup (positional pairing, see above). |
+#'  |havoc_front_seven |double |Front-seven havoc rate the team's offense faced (opponent defense's value, see above). |
+#'  |havoc_db |double |Defensive-back havoc rate the team's offense faced (opponent defense's value, see above). |
+#'  |scoring_opps_opportunities |double |Scoring opportunities: drives with a first down inside the opponent 40. |
+#'  |scoring_opps_points |double |Points scored on scoring-opportunity drives. |
+#'  |scoring_opps_pts_per_opp |double |Points per scoring opportunity. |
+#'  |field_pos_avg_start |double |Average drive start, in yards to the end zone being attacked (70 = own 30). |
+#'  |field_pos_avg_starting_predicted_pts |double |Average predicted points of the team's drive starts. |
+#'
+#' **long** (`long = TRUE`) - a plain data frame (not `cfbfastR_data`), one row per
+#' statistic in CFBD order:
+#'
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |stat |character |Statistic name, as in the wide columns except that the three rushing averages end in `_yd_avg` (e.g. `rushing_line_yd_avg`), plus one `<section>_team` row per section (e.g. `havoc_team`) naming the team whose values fill `team1` and `team2` for that section. |
+#'  |team1 |character |Value for the first team listed in the section, as text. |
+#'  |team2 |character |Value for the second team listed in the section, as text. |
 #'
 #' @keywords Game Advanced Box Score
 #' @importFrom tibble enframe
@@ -801,7 +843,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 #' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 #' @return [cfbd_game_player_stats()] - A data frame with 32 variables:
 #'
-#'   |col_name            |types     |description                                                                        |
+#'   |col_name            |type      |description                                                                        |
 #'   |:-------------------|:---------|:----------------------------------------------------------------------------------|
 #'   |game_id             |integer   |CFBD-internal game id; join key to other CFBD endpoints.                           |
 #'   |team                |character |Full team name (e.g. "Alabama") for the player's team.                             |
@@ -810,59 +852,59 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 #'   |team_points         |integer   |Total points scored by the player's team in this game.                             |
 #'   |athlete_id          |integer   |CFBD-internal athlete id for the player.                                           |
 #'   |athlete_name        |character |Player's display name as reported by CFBD.                                         |
-#'   |defensive_td        |numeric   |Defensive touchdowns scored by the player.                                         |
-#'   |defensive_qb_hur    |numeric   |Quarterback hurries credited to the player.                                        |
-#'   |defensive_pd        |numeric   |Passes defended (pass breakups) by the player.                                     |
-#'   |defensive_tfl       |numeric   |Tackles for loss credited to the player.                                           |
-#'   |defensive_sacks     |numeric   |Sacks credited to the player.                                                      |
-#'   |defensive_solo      |numeric   |Solo (unassisted) tackles by the player.                                           |
-#'   |defensive_tot       |numeric   |Total tackles (solo plus assisted) by the player.                                  |
-#'   |fumbles_rec         |numeric   |Fumbles recovered by the player.                                                   |
-#'   |fumbles_lost        |numeric   |Fumbles by the player that were lost to the opposing team.                         |
-#'   |fumbles_fum         |numeric   |Fumbles committed by the player.                                                   |
-#'   |punting_long        |numeric   |Longest punt by the player, in yards.                                              |
-#'   |punting_in_20       |numeric   |Punts downed inside the opponent 20-yard line.                                     |
-#'   |punting_tb          |numeric   |Punts resulting in a touchback.                                                    |
-#'   |punting_avg         |numeric   |Average yards per punt.                                                            |
-#'   |punting_yds         |numeric   |Total punting yards (gross).                                                       |
-#'   |punting_no          |numeric   |Number of punts attempted.                                                         |
-#'   |kicking_pts         |numeric   |Total points scored by the kicker (FGs + XPs).                                     |
-#'   |kicking_long        |numeric   |Longest made field goal, in yards.                                                 |
-#'   |kicking_pct         |numeric   |Field-goal percentage (made / attempted), 0-100.                                   |
-#'   |punt_returns_td     |numeric   |Touchdowns scored on punt returns.                                                 |
-#'   |punt_returns_long   |numeric   |Longest punt return, in yards.                                                     |
-#'   |punt_returns_avg    |numeric   |Average yards per punt return.                                                     |
-#'   |punt_returns_yds    |numeric   |Total punt-return yards.                                                           |
-#'   |punt_returns_no     |numeric   |Number of punt returns.                                                            |
-#'   |kick_returns_td     |numeric   |Touchdowns scored on kickoff returns.                                              |
-#'   |kick_returns_long   |numeric   |Longest kickoff return, in yards.                                                  |
-#'   |kick_returns_avg    |numeric   |Average yards per kickoff return.                                                  |
-#'   |kick_returns_yds    |numeric   |Total kickoff-return yards.                                                        |
-#'   |kick_returns_no     |numeric   |Number of kickoff returns.                                                         |
-#'   |interceptions_td    |numeric   |Touchdowns scored on interception returns (pick-sixes).                            |
-#'   |interceptions_yds   |numeric   |Interception-return yards.                                                         |
-#'   |interceptions_int   |numeric   |Number of interceptions made by the player.                                        |
-#'   |receiving_long      |numeric   |Longest reception by the player, in yards.                                         |
-#'   |receiving_td        |numeric   |Receiving touchdowns.                                                              |
-#'   |receiving_avg       |numeric   |Average yards per reception.                                                       |
-#'   |receiving_yds       |numeric   |Total receiving yards.                                                             |
-#'   |receiving_rec       |numeric   |Number of receptions (catches).                                                    |
-#'   |rushing_long        |numeric   |Longest rush by the player, in yards.                                              |
-#'   |rushing_td          |numeric   |Rushing touchdowns.                                                                |
-#'   |rushing_avg         |numeric   |Average yards per rushing attempt.                                                 |
-#'   |rushing_yds         |numeric   |Total rushing yards.                                                               |
-#'   |rushing_car         |numeric   |Rushing carries (attempts).                                                        |
-#'   |passing_int         |numeric   |Interceptions thrown by the passer.                                                |
-#'   |passing_td          |numeric   |Passing touchdowns thrown.                                                         |
-#'   |passing_avg         |numeric   |Yards per pass attempt.                                                            |
-#'   |passing_yds         |numeric   |Total passing yards.                                                               |
-#'   |passing_completions |numeric   |Pass completions (split from CFBD's `C/ATT` field).                                |
-#'   |passing_attempts    |numeric   |Pass attempts (split from CFBD's `C/ATT` field).                                   |
-#'   |passing_qbr         |numeric   |ESPN Quarterback Rating (QBR) for the player in this game.                         |
-#'   |kicking_xpm         |numeric   |Extra points made (split from CFBD's `XP` field).                                  |
-#'   |kicking_xpa         |numeric   |Extra points attempted (split from CFBD's `XP` field).                             |
-#'   |kicking_fgm         |numeric   |Field goals made (split from CFBD's `FG` field).                                   |
-#'   |kicking_fga         |numeric   |Field goals attempted (split from CFBD's `FG` field).                              |
+#'   |defensive_td        |double    |Defensive touchdowns scored by the player.                                         |
+#'   |defensive_qb_hur    |double    |Quarterback hurries credited to the player.                                        |
+#'   |defensive_pd        |double    |Passes defended (pass breakups) by the player.                                     |
+#'   |defensive_tfl       |double    |Tackles for loss credited to the player.                                           |
+#'   |defensive_sacks     |double    |Sacks credited to the player.                                                      |
+#'   |defensive_solo      |double    |Solo (unassisted) tackles by the player.                                           |
+#'   |defensive_tot       |double    |Total tackles (solo plus assisted) by the player.                                  |
+#'   |fumbles_rec         |double    |Fumbles recovered by the player.                                                   |
+#'   |fumbles_lost        |double    |Fumbles by the player that were lost to the opposing team.                         |
+#'   |fumbles_fum         |double    |Fumbles committed by the player.                                                   |
+#'   |punting_long        |double    |Longest punt by the player, in yards.                                              |
+#'   |punting_in_20       |double    |Punts downed inside the opponent 20-yard line.                                     |
+#'   |punting_tb          |double    |Punts resulting in a touchback.                                                    |
+#'   |punting_avg         |double    |Average yards per punt.                                                            |
+#'   |punting_yds         |double    |Total punting yards (gross).                                                       |
+#'   |punting_no          |double    |Number of punts attempted.                                                         |
+#'   |kicking_pts         |double    |Total points scored by the kicker (FGs + XPs).                                     |
+#'   |kicking_long        |double    |Longest made field goal, in yards.                                                 |
+#'   |kicking_pct         |double    |Field-goal percentage (made / attempted), 0-100.                                   |
+#'   |punt_returns_td     |double    |Touchdowns scored on punt returns.                                                 |
+#'   |punt_returns_long   |double    |Longest punt return, in yards.                                                     |
+#'   |punt_returns_avg    |double    |Average yards per punt return.                                                     |
+#'   |punt_returns_yds    |double    |Total punt-return yards.                                                           |
+#'   |punt_returns_no     |double    |Number of punt returns.                                                            |
+#'   |kick_returns_td     |double    |Touchdowns scored on kickoff returns.                                              |
+#'   |kick_returns_long   |double    |Longest kickoff return, in yards.                                                  |
+#'   |kick_returns_avg    |double    |Average yards per kickoff return.                                                  |
+#'   |kick_returns_yds    |double    |Total kickoff-return yards.                                                        |
+#'   |kick_returns_no     |double    |Number of kickoff returns.                                                         |
+#'   |interceptions_td    |double    |Touchdowns scored on interception returns (pick-sixes).                            |
+#'   |interceptions_yds   |double    |Interception-return yards.                                                         |
+#'   |interceptions_int   |double    |Number of interceptions made by the player.                                        |
+#'   |receiving_long      |double    |Longest reception by the player, in yards.                                         |
+#'   |receiving_td        |double    |Receiving touchdowns.                                                              |
+#'   |receiving_avg       |double    |Average yards per reception.                                                       |
+#'   |receiving_yds       |double    |Total receiving yards.                                                             |
+#'   |receiving_rec       |double    |Number of receptions (catches).                                                    |
+#'   |rushing_long        |double    |Longest rush by the player, in yards.                                              |
+#'   |rushing_td          |double    |Rushing touchdowns.                                                                |
+#'   |rushing_avg         |double    |Average yards per rushing attempt.                                                 |
+#'   |rushing_yds         |double    |Total rushing yards.                                                               |
+#'   |rushing_car         |double    |Rushing carries (attempts).                                                        |
+#'   |passing_int         |double    |Interceptions thrown by the passer.                                                |
+#'   |passing_td          |double    |Passing touchdowns thrown.                                                         |
+#'   |passing_avg         |double    |Yards per pass attempt.                                                            |
+#'   |passing_yds         |double    |Total passing yards.                                                               |
+#'   |passing_completions |double    |Pass completions (split from CFBD's `C/ATT` field).                                |
+#'   |passing_attempts    |double    |Pass attempts (split from CFBD's `C/ATT` field).                                   |
+#'   |passing_qbr         |double    |ESPN Quarterback Rating (QBR) for the player in this game.                         |
+#'   |kicking_xpm         |double    |Extra points made (split from CFBD's `XP` field).                                  |
+#'   |kicking_xpa         |double    |Extra points attempted (split from CFBD's `XP` field).                             |
+#'   |kicking_fgm         |double    |Field goals made (split from CFBD's `FG` field).                                   |
+#'   |kicking_fga         |double    |Field goals attempted (split from CFBD's `FG` field).                              |
 #'
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
@@ -1143,7 +1185,7 @@ cfbd_game_player_stats <- function(year = NULL,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @return [cfbd_game_records()] - A data frame with 35 variables:
 #'
-#'   |col_name              |types     |description                                                          |
+#'   |col_name              |type      |description                                                          |
 #'   |:---------------------|:---------|:--------------------------------------------------------------------|
 #'   |year                  |integer   |Season of the games.                                                 |
 #'   |team_id               |integer   |Referencing team id.                                                 |
@@ -1151,7 +1193,7 @@ cfbd_game_player_stats <- function(year = NULL,
 #'   |classification        |character |Conference classification (fbs, fcs, ii, iii).                       |
 #'   |conference            |character |Conference of the team.                                              |
 #'   |division              |character |Division in the conference of the team.                              |
-#'   |expected_wins         |numeric   |Expected number of wins based on post-game win probability.          |
+#'   |expected_wins         |double    |Expected number of wins based on post-game win probability.          |
 #'   |total_games           |integer   |Total number of games played.                                        |
 #'   |total_wins            |integer   |Total wins.                                                          |
 #'   |total_losses          |integer   |Total losses.                                                        |
@@ -1291,88 +1333,96 @@ cfbd_game_records <- function(year,
 #' Can be found using the [cfbd_game_info()] function
 #' @param rows_per_team (*Integer* default 1): Both Teams for each game on one or two row(s), Options: 1 or 2
 #'
-#' @return [cfbd_game_team_stats()] - A data frame with 78 variables:
+#' @return A data frame with one row per team per game and 78 variables. A `team` query
+#' keeps both teams of each of that team's games; a `conference` query keeps only the
+#' rows of that conference's teams. The box-score statistics are character, as CFBD
+#' sends them, and NA when CFBD has no value for that team. Every column from `points`
+#' to `possession_time` is repeated with the suffix `_allowed`, holding the opponent's
+#' value from the same game. With `rows_per_team = 2`, `opponent`,
+#' `opponent_conference` and the `_allowed` columns are dropped (40 variables). `NULL`
+#' is returned with a warning when CFBD returns no games (e.g. a bye week), and an
+#' empty data frame if the request fails.
 #'
-#'   |col_name                       |types     |description                                                |
-#'   |:------------------------------|:---------|:----------------------------------------------------------|
-#'   |game_id                        |integer   |Referencing game id.                                       |
-#'   |team                           |character |Team name.                                                 |
-#'   |conference                     |character |Conference of the team.                                    |
-#'   |home_away                      |character |Home/Away Flag.                                            |
-#'   |opponent                       |character |Opponent team name.                                        |
-#'   |opponent_conference            |character |Conference of the opponent team.                           |
-#'   |points                         |integer   |Team points.                                               |
-#'   |total_yards                    |character |Team total yards.                                          |
-#'   |net_passing_yards              |character |Team net passing yards.                                    |
-#'   |completion_attempts            |character |Team completion attempts.                                  |
-#'   |passing_tds                    |character |Team passing touchdowns.                                   |
-#'   |yards_per_pass                 |character |Team game yards per pass.                                  |
-#'   |passes_intercepted             |character |Team passes intercepted.                                   |
-#'   |interception_yards             |character |Interception yards.                                        |
-#'   |interception_tds               |character |Interceptions returned for a touchdown.                    |
-#'   |rushing_attempts               |character |Team rushing attempts.                                     |
-#'   |rushing_yards                  |character |Team rushing yards.                                        |
-#'   |rush_tds                       |character |Team rushing touchdowns.                                   |
-#'   |yards_per_rush_attempt         |character |Team yards per rush attempt.                               |
-#'   |first_downs                    |character |First downs earned by the team.                            |
-#'   |third_down_eff                 |character |Third down efficiency.                                     |
-#'   |fourth_down_eff                |character |Fourth down efficiency.                                    |
-#'   |punt_returns                   |character |Team punt returns.                                         |
-#'   |punt_return_yards              |character |Team punt return yards.                                    |
-#'   |punt_return_tds                |character |Team punt return touchdowns.                               |
-#'   |kick_return_yards              |character |Team kick return yards.                                    |
-#'   |kick_return_tds                |character |Team kick return touchdowns.                               |
-#'   |kick_returns                   |character |Team kick returns.                                         |
-#'   |kicking_points                 |character |Team points from kicking the ball.                         |
-#'   |fumbles_recovered              |character |Team fumbles recovered.                                    |
-#'   |fumbles_lost                   |character |Team fumbles lost.                                         |
-#'   |total_fumbles                  |character |Team total fumbles.                                        |
-#'   |tackles                        |character |Team tackles.                                              |
-#'   |tackles_for_loss               |character |Team tackles for a loss.                                   |
-#'   |sacks                          |character |Team sacks.                                                |
-#'   |qb_hurries                     |character |Team QB hurries.                                           |
-#'   |interceptions                  |character |Team interceptions.                                        |
-#'   |passes_deflected               |character |Team passes deflected.                                     |
-#'   |turnovers                      |character |Team turnovers.                                            |
-#'   |defensive_tds                  |character |Team defensive touchdowns.                                 |
-#'   |total_penalties_yards          |character |Team total penalty yards.                                  |
-#'   |possession_time                |character |Team time of possession.                                   |
-#'   |points_allowed                 |integer   |Points for the opponent.                                   |
-#'   |total_yards_allowed            |character |Opponent total yards.                                      |
-#'   |net_passing_yards_allowed      |character |Opponent net passing yards.                                |
-#'   |completion_attempts_allowed    |character |Opponent completion attempts.                              |
-#'   |passing_tds_allowed            |character |Opponent passing TDs.                                      |
-#'   |yards_per_pass_allowed         |character |Opponent yards per pass allowed.                           |
-#'   |passes_intercepted_allowed     |character |Opponent passes intercepted.                               |
-#'   |interception_yards_allowed     |character |Opponent interception yards.                               |
-#'   |interception_tds_allowed       |character |Opponent interception TDs.                                 |
-#'   |rushing_attempts_allowed       |character |Opponent rushing attempts.                                 |
-#'   |rushing_yards_allowed          |character |Opponent rushing yards.                                    |
-#'   |rush_tds_allowed               |character |Opponent rushing touchdowns.                               |
-#'   |yards_per_rush_attempt_allowed |character |Opponent rushing yards per attempt.                        |
-#'   |first_downs_allowed            |character |Opponent first downs.                                      |
-#'   |third_down_eff_allowed         |character |Opponent third down efficiency.                            |
-#'   |fourth_down_eff_allowed        |character |Opponent fourth down efficiency.                           |
-#'   |punt_returns_allowed           |character |Opponent punt returns.                                     |
-#'   |punt_return_yards_allowed      |character |Opponent punt return yards.                                |
-#'   |punt_return_tds_allowed        |character |Opponent punt return touchdowns.                           |
-#'   |kick_return_yards_allowed      |character |Opponent kick return yards.                                |
-#'   |kick_return_tds_allowed        |character |Opponent kick return touchdowns.                           |
-#'   |kick_returns_allowed           |character |Opponent kick returns.                                     |
-#'   |kicking_points_allowed         |character |Opponent points from kicking.                              |
-#'   |fumbles_recovered_allowed      |character |Opponent fumbles recovered.                                |
-#'   |fumbles_lost_allowed           |character |Opponent fumbles lost.                                     |
-#'   |total_fumbles_allowed          |character |Opponent total number of fumbles.                          |
-#'   |tackles_allowed                |character |Opponent tackles.                                          |
-#'   |tackles_for_loss_allowed       |character |Opponent tackles for loss.                                 |
-#'   |sacks_allowed                  |character |Opponent sacks.                                            |
-#'   |qb_hurries_allowed             |character |Opponent quarterback hurries.                              |
-#'   |interceptions_allowed          |character |Opponent interceptions.                                    |
-#'   |passes_deflected_allowed       |character |Opponent passes deflected.                                 |
-#'   |turnovers_allowed              |character |Opponent turnovers.                                        |
-#'   |defensive_tds_allowed          |character |Opponent defensive touchdowns.                             |
-#'   |total_penalties_yards_allowed  |character |Opponent total penalty yards.                              |
-#'   |possession_time_allowed        |character |Opponent time of possession.                               |
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |game_id |integer |Unique CFBD game identifier. |
+#'  |school |character |Team name (CFBD `team`, renamed). |
+#'  |conference |character |Conference of the team. |
+#'  |home_away |character |home or away. |
+#'  |opponent |character |Opponent team name; absent with `rows_per_team = 2`. |
+#'  |opponent_conference |character |Conference of the opponent; absent with `rows_per_team = 2`. |
+#'  |points |integer |Team points. |
+#'  |total_yards |character |Total offensive yards. |
+#'  |net_passing_yards |character |Net passing yards. |
+#'  |completion_attempts |character |Completions and pass attempts as completions-attempts text (e.g. 21-28). |
+#'  |passing_tds |character |Passing touchdowns. |
+#'  |yards_per_pass |character |Yards per pass attempt. |
+#'  |passes_intercepted |character |Opponent passes the team intercepted; NA when none recorded. |
+#'  |interception_yards |character |Return yards on the team's interceptions. |
+#'  |interception_tds |character |Interceptions the team returned for a touchdown. |
+#'  |rushing_attempts |character |Rushing attempts. |
+#'  |rushing_yards |character |Rushing yards. |
+#'  |rush_tds |character |Rushing touchdowns. |
+#'  |yards_per_rush_attempt |character |Yards per rushing attempt. |
+#'  |first_downs |character |First downs. |
+#'  |third_down_eff |character |Third-down conversions as conversions-attempts text (e.g. 6-11). |
+#'  |fourth_down_eff |character |Fourth-down conversions as conversions-attempts text (e.g. 1-1). |
+#'  |punt_returns |character |Punt returns; NA when none recorded. |
+#'  |punt_return_yards |character |Punt return yards. |
+#'  |punt_return_tds |character |Punt return touchdowns. |
+#'  |kick_return_yards |character |Kickoff return yards. |
+#'  |kick_return_tds |character |Kickoff return touchdowns. |
+#'  |kick_returns |character |Kickoff returns. |
+#'  |kicking_points |character |Points from kicking (field goals and extra points). |
+#'  |fumbles_recovered |character |Fumbles recovered. |
+#'  |fumbles_lost |character |Fumbles lost to the opponent. |
+#'  |total_fumbles |character |Total fumbles; NA when none recorded. |
+#'  |tackles |character |Tackles. |
+#'  |tackles_for_loss |character |Tackles for loss. |
+#'  |sacks |character |Sacks by the team's defense. |
+#'  |qb_hurries |character |Quarterback hurries by the team's defense. |
+#'  |interceptions |character |Interceptions thrown by the team (counted in `turnovers`). |
+#'  |passes_deflected |character |Passes deflected by the team's defense. |
+#'  |turnovers |character |Turnovers committed. |
+#'  |defensive_tds |character |Defensive touchdowns. |
+#'  |total_penalties_yards |character |Penalties and penalty yards as penalties-yards text (e.g. 8-71). |
+#'  |possession_time |character |Time of possession as minutes:seconds text (e.g. 36:19). |
+#'  |points_allowed |integer |Points scored by the opponent. |
+#'  |total_yards_allowed |character |Opponent total offensive yards. |
+#'  |net_passing_yards_allowed |character |Opponent net passing yards. |
+#'  |completion_attempts_allowed |character |Opponent completions and pass attempts as completions-attempts text. |
+#'  |passing_tds_allowed |character |Opponent passing touchdowns. |
+#'  |yards_per_pass_allowed |character |Opponent yards per pass attempt. |
+#'  |passes_intercepted_allowed |character |Team passes the opponent intercepted; NA when none recorded. |
+#'  |interception_yards_allowed |character |Return yards on the opponent's interceptions. |
+#'  |interception_tds_allowed |character |Interceptions the opponent returned for a touchdown. |
+#'  |rushing_attempts_allowed |character |Opponent rushing attempts. |
+#'  |rushing_yards_allowed |character |Opponent rushing yards. |
+#'  |rush_tds_allowed |character |Opponent rushing touchdowns. |
+#'  |yards_per_rush_attempt_allowed |character |Opponent yards per rushing attempt. |
+#'  |first_downs_allowed |character |Opponent first downs. |
+#'  |third_down_eff_allowed |character |Opponent third-down conversions as conversions-attempts text. |
+#'  |fourth_down_eff_allowed |character |Opponent fourth-down conversions as conversions-attempts text. |
+#'  |punt_returns_allowed |character |Opponent punt returns; NA when none recorded. |
+#'  |punt_return_yards_allowed |character |Opponent punt return yards. |
+#'  |punt_return_tds_allowed |character |Opponent punt return touchdowns. |
+#'  |kick_return_yards_allowed |character |Opponent kickoff return yards. |
+#'  |kick_return_tds_allowed |character |Opponent kickoff return touchdowns. |
+#'  |kick_returns_allowed |character |Opponent kickoff returns. |
+#'  |kicking_points_allowed |character |Opponent points from kicking. |
+#'  |fumbles_recovered_allowed |character |Opponent fumbles recovered. |
+#'  |fumbles_lost_allowed |character |Fumbles the opponent lost. |
+#'  |total_fumbles_allowed |character |Opponent total fumbles; NA when none recorded. |
+#'  |tackles_allowed |character |Opponent tackles. |
+#'  |tackles_for_loss_allowed |character |Opponent tackles for loss. |
+#'  |sacks_allowed |character |Sacks by the opponent's defense. |
+#'  |qb_hurries_allowed |character |Quarterback hurries by the opponent's defense. |
+#'  |interceptions_allowed |character |Interceptions thrown by the opponent. |
+#'  |passes_deflected_allowed |character |Passes deflected by the opponent's defense. |
+#'  |turnovers_allowed |character |Turnovers committed by the opponent. |
+#'  |defensive_tds_allowed |character |Opponent defensive touchdowns. |
+#'  |total_penalties_yards_allowed |character |Opponent penalties and penalty yards as penalties-yards text. |
+#'  |possession_time_allowed |character |Opponent time of possession. |
 #'
 #' @keywords Team Game Stats
 #' @importFrom jsonlite fromJSON
@@ -1618,51 +1668,58 @@ cfbd_game_team_stats <- function(year = NULL,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param division (*String* optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii
 #'
-#' @return [cfbd_live_scoreboard()] - A data frame with 41 variables:
+#' @return A data frame with one row per game on the current CFBD scoreboard. The
+#' quarter columns depend on how far the games have gone: `home_team_line_scores_Q1`
+#' and `away_team_line_scores_Q1` are always present (all NA before any game starts),
+#' `_Q2` to `_Q4` appear once any game in the result has reached that quarter, and
+#' overtime adds `_Q5` onward. So there are 37 variables before kickoff and 43 once a
+#' game reaches the fourth quarter. An empty data frame is returned if the request fails.
 #'
-#'  |col_name                 |types     |description                                                                        |
-#'  |:------------------------|:---------|:----------------------------------------------------------------------------------|
-#'  |game_id                  |integer   |CFBD-internal game id; join key to other CFBD endpoints.                           |
-#'  |start_date               |character |Scheduled kickoff timestamp (ISO 8601, UTC).                                       |
-#'  |start_time_tbd           |logical   |TRUE if the scheduled kickoff time is still to be determined.                      |
-#'  |tv                       |character |Television network broadcasting the game (e.g. "ESPN", "ABC").                     |
-#'  |neutral_site             |logical   |TRUE if the game is being played at a neutral site.                                |
-#'  |conference_game          |logical   |TRUE if both teams are in the same conference.                                     |
-#'  |status                   |character |Game status (e.g. "scheduled", "in_progress", "completed").                        |
-#'  |period                   |integer   |Current period/quarter number (1-4, 5+ for overtime).                              |
-#'  |clock                    |character |Game clock display as "MM:SS" remaining in the current period.                     |
-#'  |situation                |character |Free-text down-and-distance / field-position summary for the current play.         |
-#'  |possession               |character |Abbreviation of the team currently in possession.                                  |
-#'  |last_play                |character |Free-text description of the most recent play.                                     |
-#'  |venue_name               |character |Stadium / venue name.                                                              |
-#'  |venue_city               |character |City where the venue is located.                                                   |
-#'  |venue_state              |character |State (or province/country) where the venue is located.                            |
-#'  |home_team_id             |integer   |CFBD-internal team id for the home team.                                           |
-#'  |home_team_name           |character |Full home team name (e.g. "Georgia").                                              |
-#'  |home_team_conference     |character |Conference name of the home team.                                                  |
-#'  |home_team_classification |character |Division classification of the home team (fbs/fcs/ii/iii).                         |
-#'  |home_team_points         |integer   |Current total points scored by the home team.                                      |
-#'  |home_team_line_scores_Q1 |integer   |Home team points scored in the first quarter.                                      |
-#'  |home_team_line_scores_Q2 |integer   |Home team points scored in the second quarter.                                     |
-#'  |home_team_line_scores_Q3 |integer   |Home team points scored in the third quarter.                                      |
-#'  |home_team_line_scores_Q4 |integer   |Home team points scored in the fourth quarter.                                     |
-#'  |away_team_id             |integer   |CFBD-internal team id for the away team.                                           |
-#'  |away_team_name           |character |Full away team name (e.g. "Auburn").                                               |
-#'  |away_team_conference     |character |Conference name of the away team.                                                  |
-#'  |away_team_classification |character |Division classification of the away team (fbs/fcs/ii/iii).                         |
-#'  |away_team_points         |integer   |Current total points scored by the away team.                                      |
-#'  |away_team_line_scores_Q1 |integer   |Away team points scored in the first quarter.                                      |
-#'  |away_team_line_scores_Q2 |integer   |Away team points scored in the second quarter.                                     |
-#'  |away_team_line_scores_Q3 |integer   |Away team points scored in the third quarter.                                      |
-#'  |away_team_line_scores_Q4 |integer   |Away team points scored in the fourth quarter.                                     |
-#'  |weather_temperature      |numeric   |Temperature at kickoff, in degrees Fahrenheit.                                     |
-#'  |weather_description      |character |Free-text weather description (e.g. "Clear", "Light rain").                        |
-#'  |weather_wind_speed       |numeric   |Wind speed, in miles per hour.                                                     |
-#'  |weather_wind_direction   |integer   |Wind direction, in degrees (0-360, 0 = north).                                     |
-#'  |betting_spread           |numeric   |Pre-game point spread relative to the home team (negative = home favored).         |
-#'  |betting_over_under       |numeric   |Pre-game over/under (total) line in points.                                        |
-#'  |betting_home_moneyline   |integer   |American-odds moneyline for the home team.                                         |
-#'  |betting_away_moneyline   |integer   |American-odds moneyline for the away team.                                         |
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |game_id |integer |CFBD-internal game id; join key to other CFBD endpoints. |
+#'  |start_date |character |Scheduled kickoff timestamp (ISO 8601, UTC). |
+#'  |start_time_tbd |logical |TRUE if the scheduled kickoff time is still to be determined. |
+#'  |tv |character |Television network broadcasting the game (e.g. ESPNU). |
+#'  |neutral_site |logical |TRUE if the game is being played at a neutral site. |
+#'  |conference_game |logical |TRUE if the game is a conference game. |
+#'  |status |character |Game status: scheduled, in_progress or completed. |
+#'  |period |integer |Current period/quarter number (1-4, 5+ for overtime); NA before kickoff. |
+#'  |clock |character |Game clock remaining in the current period, as sent by CFBD; NA before kickoff. |
+#'  |situation |character |Free-text down-and-distance / field-position summary for the current play; NA before kickoff. |
+#'  |possession |character |Team currently in possession, as sent by CFBD; NA before kickoff. |
+#'  |last_play |character |Free-text description of the most recent play; NA before kickoff. |
+#'  |venue_name |character |Stadium / venue name. |
+#'  |venue_city |character |City where the venue is located. |
+#'  |venue_state |character |State (or province/country) where the venue is located. |
+#'  |home_team_id |integer |CFBD-internal team id for the home team. |
+#'  |home_team_name |character |Home team display name including mascot (e.g. Kansas Jayhawks). |
+#'  |home_team_conference |character |Conference name of the home team. |
+#'  |home_team_classification |character |Division classification of the home team: fbs, fcs, ii, ii/iii or iii. |
+#'  |home_team_points |integer |Current total points scored by the home team; NA before kickoff. |
+#'  |home_team_line_scores_Q1 |integer |Home team points scored in the first quarter; NA before kickoff. |
+#'  |home_team_line_scores_Q2 |integer |Home team points scored in the second quarter; present once any game in the result has reached it. |
+#'  |home_team_line_scores_Q3 |integer |Home team points scored in the third quarter; present once any game in the result has reached it. |
+#'  |home_team_line_scores_Q4 |integer |Home team points scored in the fourth quarter; present once any game in the result has reached it. |
+#'  |home_team_win_probability |double |Home team win probability reported by CFBD; NA while the game is scheduled. |
+#'  |away_team_id |integer |CFBD-internal team id for the away team. |
+#'  |away_team_name |character |Away team display name including mascot (e.g. Middle Tennessee Blue Raiders). |
+#'  |away_team_conference |character |Conference name of the away team. |
+#'  |away_team_classification |character |Division classification of the away team: fbs, fcs, ii, ii/iii or iii. |
+#'  |away_team_points |integer |Current total points scored by the away team; NA before kickoff. |
+#'  |away_team_line_scores_Q1 |integer |Away team points scored in the first quarter; NA before kickoff. |
+#'  |away_team_line_scores_Q2 |integer |Away team points scored in the second quarter; present once any game in the result has reached it. |
+#'  |away_team_line_scores_Q3 |integer |Away team points scored in the third quarter; present once any game in the result has reached it. |
+#'  |away_team_line_scores_Q4 |integer |Away team points scored in the fourth quarter; present once any game in the result has reached it. |
+#'  |away_team_win_probability |double |Away team win probability reported by CFBD; NA while the game is scheduled. |
+#'  |weather_temperature |double |Temperature at kickoff, in degrees Fahrenheit. |
+#'  |weather_description |character |Free-text weather description (e.g. Clear, Light rain). |
+#'  |weather_wind_speed |double |Wind speed, in miles per hour. |
+#'  |weather_wind_direction |integer |Wind direction, in degrees (0-360, 0 = north). |
+#'  |betting_spread |double |Pre-game point spread relative to the home team (negative = home favored). |
+#'  |betting_over_under |double |Pre-game over/under (total) line in points. |
+#'  |betting_home_moneyline |integer |American-odds moneyline for the home team. |
+#'  |betting_away_moneyline |integer |American-odds moneyline for the away team. |
 #'
 #' @keywords Game Scoreboard
 #' @importFrom jsonlite fromJSON
@@ -1753,65 +1810,68 @@ cfbd_live_scoreboard <- function(division = 'fbs',
 #'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables.
-#' @return [cfbd_game_schedule()] - A data frame with one row per game in the
-#' slate. The slate-level fields of the response are carried as attributes:
-#' `attr(x, "selection")` (active, next, explicit or none), `attr(x, "window")`
-#' and `attr(x, "following_window")` (each a list of `year`, `seasonType`,
-#' `week`, `startDate`, `endDate`), `attr(x, "filters")` and
-#' `attr(x, "assembled_at")`. Nested blocks (`venue`, `playoff`, `odds`) are
-#' flattened into prefixed columns when at least one game in the slate carries them.
+#' @return A data frame with one row per game in the slate. The slate-level fields of
+#' the response are carried as attributes: `attr(x, "selection")` (active, next,
+#' explicit or none), `attr(x, "window")` and `attr(x, "following_window")` (each a list
+#' of `year`, `seasonType`, `week`, `startDate`, `endDate`), `attr(x, "filters")` and
+#' `attr(x, "assembled_at")`. Nested blocks are flattened into prefixed columns; a block
+#' that no game in the slate carries collapses to one all-NA column named after it
+#' (`playoff` in a regular-season slate, and likewise `venue` or `odds_data`), so the
+#' column count varies by slate (42 for 2025 regular week 1, 49 for 2024 postseason
+#' week 1). An empty data frame is returned if the request fails.
 #'
-#'   |col_name                          |types     |description                                                       |
-#'   |:---------------------------------|:---------|:-----------------------------------------------------------------|
-#'   |game_id                           |integer   |Referencing game id.                                              |
-#'   |season                            |integer   |Season of the game.                                               |
-#'   |week                              |integer   |Game week.                                                        |
-#'   |season_type                       |character |Season type of the game.                                          |
-#'   |start_date                        |character |Game start date-time (ISO 8601, UTC).                             |
-#'   |start_time_tbd                    |logical   |TRUE if the start time is still to be determined.                |
-#'   |status                            |character |Game status.                                                      |
-#'   |status_checked_at                 |character |When CFBD last checked the game status.                           |
-#'   |neutral_site                      |logical   |TRUE if the game is at a neutral site.                            |
-#'   |conference_game                   |logical   |TRUE if the game is a conference game.                            |
-#'   |venue_id                          |integer   |Referencing venue id.                                             |
-#'   |venue_name                        |character |Venue name.                                                       |
-#'   |venue_city                        |character |Venue city.                                                       |
-#'   |venue_state                       |character |Venue state.                                                      |
-#'   |home_team_id                      |integer   |Home team id.                                                     |
-#'   |home_team_name                    |character |Home team name.                                                   |
-#'   |home_team_conference              |character |Home team conference.                                             |
-#'   |home_team_conference_abbreviation |character |Home team conference abbreviation.                                |
-#'   |home_team_classification          |character |Home team division classification.                                |
-#'   |home_team_points                  |integer   |Home team points.                                                 |
-#'   |away_team_id                      |integer   |Away team id.                                                     |
-#'   |away_team_name                    |character |Away team name.                                                   |
-#'   |away_team_conference              |character |Away team conference.                                             |
-#'   |away_team_conference_abbreviation |character |Away team conference abbreviation.                                |
-#'   |away_team_classification          |character |Away team division classification.                                |
-#'   |away_team_points                  |integer   |Away team points.                                                 |
-#'   |playoff_competition               |character |Playoff competition.                                              |
-#'   |playoff_format                    |character |Playoff format.                                                   |
-#'   |playoff_round                     |character |Playoff round.                                                    |
-#'   |playoff_round_name                |character |Playoff round name.                                               |
-#'   |playoff_bracket_slot              |character |Playoff bracket slot.                                             |
-#'   |playoff_home_seed                 |integer   |Home team playoff seed.                                           |
-#'   |playoff_away_seed                 |integer   |Away team playoff seed.                                           |
-#'   |playoff_bowl_name                 |character |Bowl name.                                                        |
-#'   |broadcasts_status                 |character |Broadcast section status: available, no_data or unavailable.      |
-#'   |broadcasts_reason                 |character |Why the broadcast section is not available.                       |
-#'   |broadcasts_assembled_at           |character |When the broadcast section was assembled.                         |
-#'   |broadcasts_source_updated_at      |character |Broadcast snapshot publication time.                              |
-#'   |broadcasts_data                   |list      |Broadcasts: one data frame of `mediaType`, `outlet` per game.     |
-#'   |odds_status                       |character |Odds section status: available, no_data or unavailable.           |
-#'   |odds_reason                       |character |Why the odds section is not available.                            |
-#'   |odds_assembled_at                 |character |When the odds section was assembled.                              |
-#'   |odds_source_updated_at            |character |Odds snapshot publication time.                                   |
-#'   |odds_data_provider_id             |integer   |Odds provider id.                                                 |
-#'   |odds_data_provider                |character |Odds provider (DraftKings, Bovada).                               |
-#'   |odds_data_spread                  |numeric   |Home-relative spread; negative favors home.                       |
-#'   |odds_data_over_under              |numeric   |Over/under.                                                       |
-#'   |odds_data_home_moneyline          |numeric   |Home team moneyline.                                              |
-#'   |odds_data_away_moneyline          |numeric   |Away team moneyline.                                              |
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |game_id |integer |Unique CFBD game identifier. |
+#'  |season |integer |Season of the game. |
+#'  |week |integer |Game week (postseason games restart at week 1). |
+#'  |season_type |character |Season type of the game: regular or postseason. |
+#'  |status |character |Game status: scheduled, in_progress or completed. |
+#'  |status_checked_at |character |When CFBD last checked the game status (ISO 8601, UTC). |
+#'  |start_date |character |Game start date-time (ISO 8601, UTC). |
+#'  |start_time_tbd |logical |TRUE if the start time is still to be determined. |
+#'  |neutral_site |logical |TRUE if the game is at a neutral site. |
+#'  |conference_game |logical |TRUE if the game is a conference game. |
+#'  |playoff |logical |All-NA placeholder, present only when no game in the slate has playoff context; otherwise the eight `playoff_*` columns after `venue_state` replace it. |
+#'  |home_team_id |integer |Home team id. |
+#'  |home_team_name |character |Home team name. |
+#'  |home_team_conference |character |Home team conference. |
+#'  |home_team_conference_abbreviation |character |Home team conference abbreviation. |
+#'  |home_team_classification |character |Home team division classification: fbs, fcs, ii, ii/iii or iii. |
+#'  |home_team_points |integer |Home team points; NA until the game has a score. |
+#'  |away_team_id |integer |Away team id. |
+#'  |away_team_name |character |Away team name. |
+#'  |away_team_conference |character |Away team conference. |
+#'  |away_team_conference_abbreviation |character |Away team conference abbreviation. |
+#'  |away_team_classification |character |Away team division classification: fbs, fcs, ii, ii/iii or iii. |
+#'  |away_team_points |integer |Away team points; NA until the game has a score. |
+#'  |venue_id |integer |Venue id. |
+#'  |venue_name |character |Venue name. |
+#'  |venue_city |character |Venue city. |
+#'  |venue_state |character |Venue state abbreviation; empty for venues outside the US. |
+#'  |playoff_competition |character |Playoff competition (cfp). Present only when at least one game in the slate has playoff context, as are the other `playoff_*` columns; NA for the other games. |
+#'  |playoff_format |character |Playoff format (e.g. twelve_team_2024). |
+#'  |playoff_round |character |Playoff round: first_round, quarterfinal, semifinal or championship. |
+#'  |playoff_round_name |character |Display name of the round (e.g. First Round). |
+#'  |playoff_bracket_slot |character |Bracket slot code (e.g. FR3). |
+#'  |playoff_home_seed |integer |Home team playoff seed. |
+#'  |playoff_away_seed |integer |Away team playoff seed. |
+#'  |playoff_bowl_name |character |Name of the bowl hosting the game; NA when none. |
+#'  |broadcasts_status |character |Broadcast section status: available, no_data or unavailable. |
+#'  |broadcasts_reason |character |Why the broadcast section has no data: no_data, no_results_yet, source_error or invalid_data; NA when available. |
+#'  |broadcasts_assembled_at |character |When CFBD assembled the broadcast section (ISO 8601, UTC). |
+#'  |broadcasts_source_updated_at |character |Publication time of the broadcast snapshot, not a games-through cutoff (ISO 8601, UTC); NA when CFBD sends none. |
+#'  |broadcasts_data |list |Broadcasts: one data frame per game of `mediaType` (tv, radio, web, ppv or mobile) and `outlet`; NULL or empty when the section has no data. |
+#'  |odds_status |character |Odds section status: available, no_data or unavailable. |
+#'  |odds_reason |character |Why the odds section has no data: no_data, no_results_yet, source_error or invalid_data; NA when available. |
+#'  |odds_assembled_at |character |When CFBD assembled the odds section (ISO 8601, UTC). |
+#'  |odds_source_updated_at |character |Publication time of the odds snapshot, not a games-through cutoff (ISO 8601, UTC); NA when CFBD sends none. |
+#'  |odds_data_provider_id |integer |Sportsbook provider id; NA when the game has no odds. |
+#'  |odds_data_provider |character |Sportsbook: DraftKings or Bovada. |
+#'  |odds_data_spread |double |Home-relative point spread; negative favors home. |
+#'  |odds_data_over_under |double |Total points line. |
+#'  |odds_data_home_moneyline |integer |Home team moneyline (American odds). |
+#'  |odds_data_away_moneyline |integer |Away team moneyline (American odds). |
 #'
 #' @keywords Game Schedule
 #' @importFrom jsonlite fromJSON
@@ -1900,86 +1960,228 @@ cfbd_game_schedule <- function(year = NULL,
 #'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables.
-#' @return [cfbd_game_preview()] - A named list of tibbles: `game`,
-#' `broadcasts`, `odds`, `teams`, `key_players`, `recent_results`, `series`,
-#' `series_meetings`. The sections have different row grains, so they are not
-#' joined. A section CFBD did not fill (for example every analysis section once
-#' `availability` is `metadata_only`) is a 0-column tibble. Nested objects are
-#' flattened into prefixed columns.
+#' @return A named list of data frames: `game`, `broadcasts`, `odds`, `teams`,
+#' `key_players`, `recent_results`, `series`, `series_meetings`. The sections have
+#' different row grains, so they are not joined. A section CFBD did not fill is a
+#' 0-column tibble: once `availability` is `metadata_only` (for example a completed
+#' game) every section except `game` is empty. Nested objects are flattened into
+#' prefixed columns, and a nested object CFBD sends as null (`venue`, `playoff`,
+#' `latest_meeting`, `streak`, a statistics block) becomes one all-NA column named
+#' after it instead of its prefixed columns. An empty list is returned if the
+#' request fails.
 #'
 #' **game** - one row:
 #'
-#'   |col_name                          |types     |description                                              |
-#'   |:---------------------------------|:---------|:--------------------------------------------------------|
-#'   |game_id                           |integer   |Referencing game id.                                     |
-#'   |season                            |integer   |Season of the game.                                      |
-#'   |week                              |integer   |Game week.                                               |
-#'   |season_type                       |character |Season type of the game.                                 |
-#'   |start_date                        |character |Game start date-time (ISO 8601, UTC).                    |
-#'   |start_time_tbd                    |logical   |TRUE if the start time is still to be determined.       |
-#'   |status                            |character |Game status.                                             |
-#'   |status_checked_at                 |character |When CFBD last checked the game status.                  |
-#'   |neutral_site                      |logical   |TRUE if the game is at a neutral site.                   |
-#'   |conference_game                   |logical   |TRUE if the game is a conference game.                   |
-#'   |venue_id, venue_name, venue_city, venue_state |mixed |Venue (a single `venue` NA column when absent). |
-#'   |home_team_id                      |integer   |Home team id.                                            |
-#'   |home_team_name                    |character |Home team name.                                          |
-#'   |home_team_conference              |character |Home team conference.                                    |
-#'   |home_team_conference_abbreviation |character |Home team conference abbreviation.                       |
-#'   |home_team_classification          |character |Home team division classification.                       |
-#'   |home_team_points                  |integer   |Home team points.                                        |
-#'   |away_team_*                       |mixed     |The same six columns for the away team.                  |
-#'   |playoff_*                         |mixed     |`competition`, `format`, `round`, `round_name`, `bracket_slot`, `home_seed`, `away_seed`, `bowl_name` (a single `playoff` NA column when absent). |
-#'   |availability                      |character |pregame or metadata_only.                                |
-#'   |reason                            |character |Why analysis is not available.                           |
-#'   |assembled_at                      |character |When the preview was assembled.                          |
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |game_id |integer |Unique CFBD game identifier. |
+#'  |season |integer |Season of the game. |
+#'  |week |integer |Game week (postseason games restart at week 1). |
+#'  |season_type |character |Season type of the game (e.g. regular, postseason). |
+#'  |status |character |Game status: scheduled, in_progress or completed. |
+#'  |status_checked_at |character |When CFBD last checked the game status (ISO 8601, UTC). |
+#'  |start_date |character |Game start date-time (ISO 8601, UTC). |
+#'  |start_time_tbd |logical |TRUE if the start time is still to be determined. |
+#'  |neutral_site |logical |TRUE if the game is at a neutral site. |
+#'  |conference_game |logical |TRUE if the game is a conference game. |
+#'  |home_team_id |integer |Home team id. |
+#'  |home_team_name |character |Home team name. |
+#'  |home_team_conference |character |Home team conference. |
+#'  |home_team_conference_abbreviation |character |Home team conference abbreviation. |
+#'  |home_team_classification |character |Home team division classification: fbs, fcs, ii, ii/iii or iii. |
+#'  |home_team_points |integer |Home team points; NA until the game has a score. |
+#'  |away_team_id |integer |Away team id. |
+#'  |away_team_name |character |Away team name. |
+#'  |away_team_conference |character |Away team conference. |
+#'  |away_team_conference_abbreviation |character |Away team conference abbreviation. |
+#'  |away_team_classification |character |Away team division classification: fbs, fcs, ii, ii/iii or iii. |
+#'  |away_team_points |integer |Away team points; NA until the game has a score. |
+#'  |venue_id |integer |Venue id. |
+#'  |venue_name |character |Venue name. |
+#'  |venue_city |character |Venue city. |
+#'  |venue_state |character |Venue state abbreviation. |
+#'  |playoff |logical |All-NA placeholder, present only when the game is not a College Football Playoff game (the eight `playoff_*` columns replace it for CFP games). |
+#'  |playoff_competition |character |Playoff competition (cfp); present only for CFP games. |
+#'  |playoff_format |character |Playoff format (e.g. twelve_team_2025); present only for CFP games. |
+#'  |playoff_round |character |Playoff round: first_round, quarterfinal, semifinal or championship; present only for CFP games. |
+#'  |playoff_round_name |character |Display name of the round (e.g. Quarterfinal); present only for CFP games. |
+#'  |playoff_bracket_slot |character |Bracket slot code (e.g. FR4, QF1); present only for CFP games. |
+#'  |playoff_home_seed |integer |Home team playoff seed; present only for CFP games. |
+#'  |playoff_away_seed |integer |Away team playoff seed; present only for CFP games. |
+#'  |playoff_bowl_name |character |Name of the bowl hosting the game (e.g. Rose Bowl), NA when none; present only for CFP games. |
+#'  |availability |character |pregame (analysis sections filled) or metadata_only (only `game` is filled). |
+#'  |reason |character |Why analysis is not available: game_started, game_completed, kickoff_reached or kickoff_unknown; NA when `availability` is pregame. |
+#'  |assembled_at |character |When CFBD assembled the preview (ISO 8601, UTC). |
 #'
-#' **broadcasts** - one row per broadcast: `media_type` (character), `outlet` (character).
+#' **broadcasts** - one row per broadcast:
 #'
-#' **odds** - one row: `provider_id` (integer), `provider` (character),
-#' `spread` (numeric, home-relative; negative favors home), `over_under`,
-#' `home_moneyline`, `away_moneyline` (numeric).
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |media_type |character |Broadcast medium: tv, radio, web, ppv or mobile. |
+#'  |outlet |character |Broadcast outlet (e.g. ABC). |
 #'
-#' **teams** - one row per side (`side` = home or away), then `team_id`
-#' (integer) and `season` (integer). Each of the `record`, `ratings` and
-#' `statistics` sections contributes `<section>_status`, `<section>_reason`,
-#' `<section>_assembled_at`, `<section>_source_updated_at` and its payload as
-#' `<section>_data_*`: `record_data_*` carries the `record` section of
-#' [cfbd_team_season_overview()]; `ratings_data_*` is that function's padded
-#' `ratings` section (`elo`, then `<system>_<unit>_rating` / `_rank` for `srs`,
-#' `sp`, `fpi`, `core`), typed and present even when CFBD omits a system;
-#' `statistics_data_*` holds `season`, `is_previous_season`,
-#' `advanced_*` (the `advanced` section of [cfbd_team_season_overview()]),
-#' `passing_*` (the passing production block of [cfbd_passing_teams_season()],
-#' per side of the ball, including `locations_<bucket>_*`) and `rushing_*` (the
-#' rushing production block of [cfbd_rushing_teams_season()]).
+#' **odds** - one row, the line from the selected sportsbook:
 #'
-#' **key_players** - one row per player:
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |provider_id |integer |Sportsbook provider id. |
+#'  |provider |character |Sportsbook: DraftKings or Bovada. |
+#'  |spread |double |Home-relative point spread; negative favors home. A whole-number spread parses as integer. |
+#'  |over_under |double |Total points line. |
+#'  |home_moneyline |integer |Home team moneyline (American odds). |
+#'  |away_moneyline |integer |Away team moneyline (American odds). |
 #'
-#'   |col_name    |types     |description                                           |
-#'   |:-----------|:---------|:-----------------------------------------------------|
-#'   |side        |character |home or away.                                         |
-#'   |category    |character |passing, rushing or receiving.                        |
-#'   |athlete_id  |character |Player id.                                            |
-#'   |name        |character |Player name.                                          |
-#'   |position    |character |Player position.                                      |
-#'   |usage       |numeric   |Pass/rush involvement, not receiving target share.    |
-#'   |average_ppa |numeric   |Average predicted points added.                       |
-#'   |total_ppa   |numeric   |Total predicted points added.                         |
+#' **teams** - one row per side (home, away). The rows `ppa` through
+#' `field_position_average_predicted_points` (metrics) and `rank` through
+#' `percentile` (stats) are base names: each metric appears as the columns
+#' `statistics_data_stat_rankings_<side>_<metric>_<stat>`, for `<side>` `offense`
+#' then `defense`, every metric in row order and every stat in row order (160
+#' columns), except that a metric CFBD sends as null (in the sample,
+#' `power_success`) is one all-NA `statistics_data_stat_rankings_<side>_<metric>`
+#' column instead of four:
 #'
-#' **recent_results** - one row per recent game: `side`, `game_id`, `season`,
-#' `start_date`, `opponent_id`, `opponent_name`, `home_away` (home, away), `neutral_site`,
-#' `venue_*`, `team_points`, `opponent_points`, `result` (win, loss, tie, unknown).
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |side |character |home or away: which team of this game the row describes. |
+#'  |team_id |integer |Team id. |
+#'  |season |integer |Season of the game. |
+#'  |statistics_status |character |Status of the team statistics section: available, no_data or unavailable. |
+#'  |statistics_reason |character |Why the statistics section has no data: no_data, no_results_yet, source_error or invalid_data; NA when available. |
+#'  |statistics_assembled_at |character |When CFBD assembled the statistics section (ISO 8601, UTC). |
+#'  |statistics_source_updated_at |character |Publication time of the statistics snapshot, not a games-through cutoff (ISO 8601, UTC). |
+#'  |statistics_data_season |integer |Season the team statistics come from. |
+#'  |statistics_data_is_previous_season |logical |TRUE when the statistics come from the season before the game season. |
+#'  |statistics_data_advanced_* |varies |The `advanced` section of [cfbd_team_season_overview()] for `statistics_data_season` (same columns and order), prefixed `statistics_data_advanced_`; each column is defined there. |
+#'  |statistics_data_passing_* |varies |All columns of [cfbd_passing_teams_season()], including `season`, `team` and `conference`, in the order of the `passing` section of [cfbd_team_season_overview()], prefixed `statistics_data_passing_`; each column is defined there, see [cfbd_passing]. |
+#'  |statistics_data_rushing_* |varies |All columns of [cfbd_rushing_teams_season()], including `season`, `team` and `conference`, in the order of the `rushing` section of [cfbd_team_season_overview()], prefixed `statistics_data_rushing_`; each column is defined there, see [cfbd_rushing]. |
+#'  |statistics_data_stat_rankings_team_id |integer |Team id the stat rankings are for. |
+#'  |statistics_data_stat_rankings_season |integer |Season the stat rankings are computed for. |
+#'  |statistics_data_stat_rankings_division |character |Division the team is ranked within: fbs, fcs, ii, ii/iii or iii. |
+#'  |statistics_data_stat_rankings_division_team_count |integer |Number of teams in that division. |
+#'  |statistics_data_stat_rankings_calculated_at |character |When CFBD calculated the stat rankings (ISO 8601, UTC). |
+#'  |statistics_data_stat_rankings_expires_at |character |When CFBD's cached stat rankings expire (ISO 8601, UTC). |
+#'  |statistics_data_stat_rankings_source_updated_at |character |Publication time of the statistics the rankings are built from (ISO 8601, UTC). |
+#'  |ppa |varies |Metric: predicted points added (EPA) per play, `statistics_data_advanced_<side>_ppa`. |
+#'  |success_rate |varies |Metric: success rate (proportion of successful plays), `statistics_data_advanced_<side>_success_rate`. |
+#'  |explosiveness |varies |Metric: explosiveness (average PPA on successful plays), `statistics_data_advanced_<side>_explosiveness`. |
+#'  |standard_downs_success_rate |varies |Metric: success rate on standard downs, `statistics_data_advanced_<side>_standard_downs_success_rate`. |
+#'  |passing_downs_success_rate |varies |Metric: success rate on passing downs, `statistics_data_advanced_<side>_passing_downs_success_rate`. |
+#'  |passing_plays_ppa |varies |Metric: PPA per pass play, `statistics_data_advanced_<side>_passing_plays_ppa`. |
+#'  |rushing_plays_ppa |varies |Metric: PPA per rush play, `statistics_data_advanced_<side>_rushing_plays_ppa`. |
+#'  |passing_plays_explosiveness |varies |Metric: explosiveness of pass plays, `statistics_data_advanced_<side>_passing_plays_explosiveness`. |
+#'  |rushing_plays_explosiveness |varies |Metric: explosiveness of rush plays, `statistics_data_advanced_<side>_rushing_plays_explosiveness`. |
+#'  |line_yards |varies |Metric: offensive line yards per rush, `statistics_data_advanced_<side>_line_yards`. |
+#'  |second_level_yards |varies |Metric: second-level yards per rush (5-10 yards past the line of scrimmage), `statistics_data_advanced_<side>_second_level_yards`. |
+#'  |open_field_yards |varies |Metric: open-field yards per rush (10+ yards past the line of scrimmage), `statistics_data_advanced_<side>_open_field_yards`. |
+#'  |stuff_rate |varies |Metric: proportion of rushes stopped at or behind the line of scrimmage, `statistics_data_advanced_<side>_stuff_rate`. |
+#'  |power_success |varies |Metric: power success (proportion of short-yardage runs that convert), `statistics_data_advanced_<side>_power_success`. |
+#'  |havoc_total |varies |Metric: havoc rate (share of plays with a tackle for loss, forced fumble, interception or pass breakup), `statistics_data_advanced_<side>_havoc_total`. |
+#'  |havoc_front_seven |varies |Metric: havoc rate from front-seven players, `statistics_data_advanced_<side>_havoc_front_seven`. |
+#'  |havoc_db |varies |Metric: havoc rate from defensive backs, `statistics_data_advanced_<side>_havoc_db`. |
+#'  |points_per_opportunity |varies |Metric: points per scoring opportunity, `statistics_data_advanced_<side>_points_per_opportunity`. |
+#'  |field_position_average_start |varies |Metric: average drive start in yards to the end zone, `statistics_data_advanced_<side>_field_position_average_start`. |
+#'  |field_position_average_predicted_points |varies |Metric: average predicted points of the drive start, `statistics_data_advanced_<side>_field_position_average_predicted_points`. |
+#'  |rank |integer |Stat: the team's rank on the metric within `statistics_data_stat_rankings_division`, 1 = best for that side of the ball. |
+#'  |population |integer |Stat: number of teams ranked on the metric. |
+#'  |tied |logical |Stat: TRUE when the rank is shared with another team. |
+#'  |percentile |double |Stat: percentile of the rank within the division, 0-100 (higher is better). |
+#'  |record_status |character |Status of the record section: available, no_data or unavailable. |
+#'  |record_reason |character |Why the record section has no data: no_data, no_results_yet, source_error or invalid_data; NA when available. |
+#'  |record_assembled_at |character |When CFBD assembled the record section (ISO 8601, UTC). |
+#'  |record_source_updated_at |character |Publication time of the record snapshot (ISO 8601, UTC); NA when CFBD reports none. |
+#'  |record_data_* |varies |The `record` section of [cfbd_team_season_overview()], prefixed `record_data_`; each column is defined there. |
+#'  |ratings_status |character |Status of the ratings section: available, no_data or unavailable. |
+#'  |ratings_reason |character |Why the ratings section has no data: no_data, no_results_yet, source_error or invalid_data; NA when available. |
+#'  |ratings_assembled_at |character |When CFBD assembled the ratings section (ISO 8601, UTC). |
+#'  |ratings_source_updated_at |character |Publication time of the ratings snapshot (ISO 8601, UTC); NA when CFBD reports none. |
+#'  |ratings_data_* |varies |The `ratings` section of [cfbd_team_season_overview()] (the same padded, typed 25 columns), prefixed `ratings_data_`; each column is defined there. Absent when the ratings section has no data. |
 #'
-#' **series** - one row: `home_team_id`, `away_team_id`, `meetings`,
-#' `known_results`, `unknown_results`, `home_wins`, `away_wins`, `ties`,
-#' `first_season`, `last_season` (integer), `latest_meeting_*` (the columns of
-#' `series_meetings`) and `streak_team_id`, `streak_wins`.
+#' **key_players** - one row per key player, per side and category:
 #'
-#' **series_meetings** - one row per recent meeting: `game_id`, `season`,
-#' `start_date`, `home_team_id`, `home_team`, `away_team_id`, `away_team`,
-#' `neutral_site`, `venue_*`, `home_points`, `away_points`, `winner_team_id`,
-#' `result` (win, tie, unknown).
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |side |character |home or away. |
+#'  |category |character |passing, rushing or receiving. |
+#'  |athlete_id |character |Player id. |
+#'  |name |character |Player name. |
+#'  |position |character |Player position. |
+#'  |usage |double |Pass/rush involvement (proportion 0-1), not receiving target share. |
+#'  |average_ppa |double |Average predicted points added per play. |
+#'  |total_ppa |double |Total predicted points added. |
+#'
+#' **recent_results** - one row per recent game of each side:
+#'
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |side |character |home or away: the team of this game the result belongs to. |
+#'  |game_id |integer |Game id of the recent game. |
+#'  |season |integer |Season of the recent game. |
+#'  |start_date |character |Start date-time of the recent game (ISO 8601, UTC). |
+#'  |home_away |character |Whether the side's team was home or away in that game. |
+#'  |neutral_site |logical |TRUE if that game was at a neutral site. |
+#'  |team_points |integer |Points scored by the side's team; NA when unknown. |
+#'  |opponent_points |integer |Points scored by the opponent; NA when unknown. |
+#'  |result |character |Result for the side's team: win, loss, tie or unknown. |
+#'  |opponent_id |integer |Opponent team id. |
+#'  |opponent_name |character |Opponent team name. |
+#'  |venue_id |integer |Venue id. |
+#'  |venue_name |character |Venue name. |
+#'  |venue_city |character |Venue city. |
+#'  |venue_state |character |Venue state abbreviation. |
+#'
+#' **series** - one row, the all-time series between the two teams:
+#'
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |home_team_id |integer |Team id of this game's home team. |
+#'  |away_team_id |integer |Team id of this game's away team. |
+#'  |meetings |integer |Number of all-time meetings. |
+#'  |known_results |integer |Meetings with a known result. |
+#'  |unknown_results |integer |Meetings with an unknown result. |
+#'  |home_wins |integer |Series wins by this game's home team, wherever played. |
+#'  |away_wins |integer |Series wins by this game's away team, wherever played. |
+#'  |ties |integer |Tied meetings. |
+#'  |first_season |integer |Season of the first meeting; NA when the teams have not met. |
+#'  |last_season |integer |Season of the most recent meeting; NA when the teams have not met. |
+#'  |latest_meeting_game_id |integer |Game id of the most recent meeting. |
+#'  |latest_meeting_season |integer |Season of the most recent meeting. |
+#'  |latest_meeting_start_date |character |Start date-time of the most recent meeting (ISO 8601, UTC). |
+#'  |latest_meeting_home_team_id |integer |Home team id in the most recent meeting. |
+#'  |latest_meeting_home_team |character |Home team name in the most recent meeting. |
+#'  |latest_meeting_away_team_id |integer |Away team id in the most recent meeting. |
+#'  |latest_meeting_away_team |character |Away team name in the most recent meeting. |
+#'  |latest_meeting_neutral_site |logical |TRUE if the most recent meeting was at a neutral site. |
+#'  |latest_meeting_venue_id |integer |Venue id of the most recent meeting. |
+#'  |latest_meeting_venue_name |character |Venue name of the most recent meeting. |
+#'  |latest_meeting_venue_city |character |Venue city of the most recent meeting. |
+#'  |latest_meeting_venue_state |character |Venue state abbreviation of the most recent meeting. |
+#'  |latest_meeting_home_points |integer |Home team points in the most recent meeting. |
+#'  |latest_meeting_away_points |integer |Away team points in the most recent meeting. |
+#'  |latest_meeting_winner_team_id |integer |Winning team id in the most recent meeting; NA for a tie or unknown result. |
+#'  |latest_meeting_result |character |Result of the most recent meeting: win (see winner id), tie or unknown. |
+#'  |streak_team_id |integer |Team id holding the current series winning streak. |
+#'  |streak_wins |integer |Length of that winning streak, in consecutive meetings won. |
+#'
+#' **series_meetings** - one row per recent meeting of the two teams:
+#'
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |game_id |integer |Game id of the meeting. |
+#'  |season |integer |Season of the meeting. |
+#'  |start_date |character |Start date-time of the meeting (ISO 8601, UTC). |
+#'  |home_team_id |integer |Home team id in the meeting. |
+#'  |home_team |character |Home team name in the meeting. |
+#'  |away_team_id |integer |Away team id in the meeting. |
+#'  |away_team |character |Away team name in the meeting. |
+#'  |neutral_site |logical |TRUE if the meeting was at a neutral site. |
+#'  |home_points |integer |Home team points; NA when unknown. |
+#'  |away_points |integer |Away team points; NA when unknown. |
+#'  |winner_team_id |integer |Winning team id; NA for a tie or unknown result. |
+#'  |result |character |Result of the meeting: win (see `winner_team_id`), tie or unknown. |
+#'  |venue_id |integer |Venue id. |
+#'  |venue_name |character |Venue name. |
+#'  |venue_city |character |Venue city. |
+#'  |venue_state |character |Venue state abbreviation. |
 #'
 #' @keywords Game Preview
 #' @importFrom jsonlite fromJSON
@@ -2080,41 +2282,137 @@ cfbd_game_preview <- function(game_id, proxy = NULL) {
 #'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables.
-#' @return [cfbd_game_preview_adjusted()] - A named list of tibbles: `game`,
-#' `team_metrics`, `passing`, `rushing`, `kicking`. A section CFBD did not fill
-#' is a 0-column tibble.
+#' @return A named list of data frames: `game`, `team_metrics`, `passing`,
+#' `rushing`, `kicking`. A section CFBD did not fill is a 0-column tibble: once
+#' `availability` is `metadata_only` (for example a completed game) every section
+#' except `game` is empty. Nested objects are flattened into prefixed columns, and
+#' a nested object CFBD sends as null (`venue`, `playoff`, a metrics block) becomes one all-NA
+#' column named after it instead of its prefixed columns. An empty list is
+#' returned if the request fails, including for a key without CFBD Patreon Tier 1.
 #'
-#' **game** - one row, the same columns as the `game` section of [cfbd_game_preview()].
+#' **game** - one row, the same columns as the `game` section of [cfbd_game_preview()]:
 #'
-#' **team_metrics** - one row per side (`side` = home or away): `team_id`,
-#' `season` (integer), `metrics_status`, `metrics_reason`,
-#' `metrics_assembled_at`, `metrics_source_updated_at` (character),
-#' `metrics_data_season` (integer), `metrics_data_is_previous_season` (logical)
-#' and `metrics_data_metrics_*`: `year`, `team_id`, `team`, `conference`,
-#' `epa_*` and `epa_allowed_*` (`total`, `passing`, `rushing`),
-#' `success_rate_*` and `success_rate_allowed_*` (`total`, `standard_downs`,
-#' `passing_downs`), `rushing_*` and `rushing_allowed_*` (`line_yards`,
-#' `second_level_yards`, `open_field_yards`, `highlight_yards`),
-#' `explosiveness`, `explosiveness_allowed` (numeric; see
-#' [cfbd_metrics_wepa_team_season()] for the adjusted metrics).
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |game_id |integer |Unique CFBD game identifier. |
+#'  |season |integer |Season of the game. |
+#'  |week |integer |Game week (postseason games restart at week 1). |
+#'  |season_type |character |Season type of the game (e.g. regular, postseason). |
+#'  |status |character |Game status: scheduled, in_progress or completed. |
+#'  |status_checked_at |character |When CFBD last checked the game status (ISO 8601, UTC). |
+#'  |start_date |character |Game start date-time (ISO 8601, UTC). |
+#'  |start_time_tbd |logical |TRUE if the start time is still to be determined. |
+#'  |neutral_site |logical |TRUE if the game is at a neutral site. |
+#'  |conference_game |logical |TRUE if the game is a conference game. |
+#'  |home_team_id |integer |Home team id. |
+#'  |home_team_name |character |Home team name. |
+#'  |home_team_conference |character |Home team conference. |
+#'  |home_team_conference_abbreviation |character |Home team conference abbreviation. |
+#'  |home_team_classification |character |Home team division classification: fbs, fcs, ii, ii/iii or iii. |
+#'  |home_team_points |integer |Home team points; NA until the game has a score. |
+#'  |away_team_id |integer |Away team id. |
+#'  |away_team_name |character |Away team name. |
+#'  |away_team_conference |character |Away team conference. |
+#'  |away_team_conference_abbreviation |character |Away team conference abbreviation. |
+#'  |away_team_classification |character |Away team division classification: fbs, fcs, ii, ii/iii or iii. |
+#'  |away_team_points |integer |Away team points; NA until the game has a score. |
+#'  |venue_id |integer |Venue id. |
+#'  |venue_name |character |Venue name. |
+#'  |venue_city |character |Venue city. |
+#'  |venue_state |character |Venue state abbreviation. |
+#'  |playoff |logical |All-NA placeholder, present only when the game is not a College Football Playoff game (the eight `playoff_*` columns replace it for CFP games). |
+#'  |playoff_competition |character |Playoff competition (cfp); present only for CFP games. |
+#'  |playoff_format |character |Playoff format (e.g. twelve_team_2025); present only for CFP games. |
+#'  |playoff_round |character |Playoff round: first_round, quarterfinal, semifinal or championship; present only for CFP games. |
+#'  |playoff_round_name |character |Display name of the round (e.g. Quarterfinal); present only for CFP games. |
+#'  |playoff_bracket_slot |character |Bracket slot code (e.g. FR4, QF1); present only for CFP games. |
+#'  |playoff_home_seed |integer |Home team playoff seed; present only for CFP games. |
+#'  |playoff_away_seed |integer |Away team playoff seed; present only for CFP games. |
+#'  |playoff_bowl_name |character |Name of the bowl hosting the game (e.g. Rose Bowl), NA when none; present only for CFP games. |
+#'  |availability |character |pregame (analysis sections filled) or metadata_only (only `game` is filled). |
+#'  |reason |character |Why analysis is not available: game_started, game_completed, kickoff_reached or kickoff_unknown; NA when `availability` is pregame. |
+#'  |assembled_at |character |When CFBD assembled the preview (ISO 8601, UTC). |
 #'
-#' **passing**, **rushing** - one row per player:
+#' **team_metrics** - one row per side (home, away):
 #'
-#'   |col_name     |types     |description                                  |
-#'   |:------------|:---------|:--------------------------------------------|
-#'   |side         |character |home or away.                                |
-#'   |team         |character |Team name.                                   |
-#'   |year         |integer   |Season.                                      |
-#'   |athlete_id   |character |Player id.                                   |
-#'   |athlete_name |character |Player name.                                 |
-#'   |position     |character |Player position.                             |
-#'   |conference   |character |Conference.                                  |
-#'   |wepa         |numeric   |Opponent-adjusted EPA per play.              |
-#'   |plays        |integer   |Plays.                                       |
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |side |character |home or away: which team of this game the row describes. |
+#'  |team_id |integer |Team id. |
+#'  |season |integer |Season of the game. |
+#'  |metrics_status |character |Status of the team metrics section: available, no_data or unavailable. |
+#'  |metrics_reason |character |Why the team metrics section has no data: no_data, no_results_yet, source_error or invalid_data; NA when available. |
+#'  |metrics_assembled_at |character |When CFBD assembled the team metrics section (ISO 8601, UTC). |
+#'  |metrics_source_updated_at |character |Publication time of the team metrics snapshot (ISO 8601, UTC); NA when CFBD reports none. |
+#'  |metrics_data_season |integer |Season the adjusted team metrics come from. |
+#'  |metrics_data_is_previous_season |logical |TRUE when the metrics come from the season before the game season. |
+#'  |metrics_data_metrics_year |integer |Four-digit season year of the metrics (e.g. 2026). |
+#'  |metrics_data_metrics_team_id |integer |CFBD internal team identifier. |
+#'  |metrics_data_metrics_team |character |Full team name (e.g. "Alabama"). |
+#'  |metrics_data_metrics_conference |character |Team conference name (e.g. "SEC"). |
+#'  |metrics_data_metrics_epa_total |double |Opponent-adjusted total offensive EPA per play (predicted points added). |
+#'  |metrics_data_metrics_epa_passing |double |Opponent-adjusted offensive passing EPA per play. |
+#'  |metrics_data_metrics_epa_rushing |double |Opponent-adjusted offensive rushing EPA per play. |
+#'  |metrics_data_metrics_epa_allowed_total |double |Opponent-adjusted total defensive EPA per play allowed. |
+#'  |metrics_data_metrics_epa_allowed_passing |double |Opponent-adjusted defensive passing EPA per play allowed. |
+#'  |metrics_data_metrics_epa_allowed_rushing |double |Opponent-adjusted defensive rushing EPA per play allowed. |
+#'  |metrics_data_metrics_success_rate_total |double |Opponent-adjusted offensive success rate across all plays (proportion 0-1). |
+#'  |metrics_data_metrics_success_rate_standard_downs |double |Opponent-adjusted offensive success rate on standard downs (proportion 0-1). |
+#'  |metrics_data_metrics_success_rate_passing_downs |double |Opponent-adjusted offensive success rate on passing downs (proportion 0-1). |
+#'  |metrics_data_metrics_success_rate_allowed_total |double |Opponent-adjusted defensive success rate allowed across all plays (proportion 0-1). |
+#'  |metrics_data_metrics_success_rate_allowed_standard_downs |double |Opponent-adjusted defensive success rate allowed on standard downs (proportion 0-1). |
+#'  |metrics_data_metrics_success_rate_allowed_passing_downs |double |Opponent-adjusted defensive success rate allowed on passing downs (proportion 0-1). |
+#'  |metrics_data_metrics_rushing_line_yards |double |Opponent-adjusted offensive line yards per rush (Football Outsiders methodology). |
+#'  |metrics_data_metrics_rushing_second_level_yards |double |Opponent-adjusted offensive second-level yards per rush (5-10 yards past line of scrimmage). |
+#'  |metrics_data_metrics_rushing_open_field_yards |double |Opponent-adjusted offensive open-field yards per rush (10+ yards past line of scrimmage). |
+#'  |metrics_data_metrics_rushing_highlight_yards |double |Opponent-adjusted offensive highlight yards per opportunity rush. |
+#'  |metrics_data_metrics_rushing_allowed_line_yards |double |Opponent-adjusted defensive line yards per rush allowed. |
+#'  |metrics_data_metrics_rushing_allowed_second_level_yards |double |Opponent-adjusted defensive second-level yards per rush allowed. |
+#'  |metrics_data_metrics_rushing_allowed_open_field_yards |double |Opponent-adjusted defensive open-field yards per rush allowed. |
+#'  |metrics_data_metrics_rushing_allowed_highlight_yards |double |Opponent-adjusted defensive highlight yards per opportunity rush allowed. |
+#'  |metrics_data_metrics_explosiveness |double |Opponent-adjusted offensive explosiveness (higher = more big plays). |
+#'  |metrics_data_metrics_explosiveness_allowed |double |Opponent-adjusted defensive explosiveness allowed. |
 #'
-#' **kicking** - one row per kicker: `side`, `team`, `year`, `athlete_id`,
-#' `athlete_name`, `conference`, `paar` (numeric, points added above
-#' replacement), `attempts` (integer).
+#' **passing** - one row per passing player listed for each side:
+#'
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |side |character |home or away. |
+#'  |year |integer |Four-digit season year of the player metrics (e.g. 2026). |
+#'  |athlete_id |character |CFBD athlete identifier (use with [cfbd_player_info()]). |
+#'  |athlete_name |character |Player full name. |
+#'  |team |character |Full team name (e.g. "Alabama"). |
+#'  |conference |character |Team conference name (e.g. "SEC"). |
+#'  |position |character |Player position abbreviation (e.g. "QB", "RB"). |
+#'  |wepa |double |Opponent-adjusted weighted EPA (WEPA) per passing play. |
+#'  |plays |integer |Total qualifying passing plays included in the WEPA calculation. |
+#'
+#' **rushing** - one row per rushing player listed for each side:
+#'
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |side |character |home or away. |
+#'  |year |integer |Four-digit season year of the player metrics (e.g. 2026). |
+#'  |athlete_id |character |CFBD athlete identifier (use with [cfbd_player_info()]). |
+#'  |athlete_name |character |Player full name. |
+#'  |team |character |Full team name (e.g. "Alabama"). |
+#'  |conference |character |Team conference name (e.g. "SEC"). |
+#'  |position |character |Player position abbreviation (e.g. "QB", "RB"). |
+#'  |wepa |double |Opponent-adjusted weighted EPA (WEPA) per rushing play. |
+#'  |plays |integer |Total qualifying rushing plays included in the WEPA calculation. |
+#'
+#' **kicking** - one row per kicker listed for each side:
+#'
+#'  |col_name |type |description |
+#'  |:--------|:----|:-----------|
+#'  |side |character |home or away. |
+#'  |year |integer |Four-digit season year of the kicker metrics (e.g. 2026). |
+#'  |athlete_id |character |CFBD athlete identifier (use with [cfbd_player_info()]). |
+#'  |athlete_name |character |Kicker full name. |
+#'  |team |character |Full team name (e.g. "Alabama"). |
+#'  |conference |character |Team conference name (e.g. "SEC"). |
+#'  |paar |double |Points Added Above Replacement on field goal attempts (kicker value vs baseline). |
+#'  |attempts |integer |Total field goal attempts included in the PAAR calculation. |
 #'
 #' @keywords Game Preview
 #' @importFrom jsonlite fromJSON

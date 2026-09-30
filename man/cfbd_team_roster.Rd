@@ -16,7 +16,7 @@ Minimum value accepted: 2004}
 }
 \value{
 \code{\link[=cfbd_team_roster]{cfbd_team_roster()}} - A data frame with 18 variables:\tabular{lll}{
-   col_name \tab types \tab description \cr
+   col_name \tab type \tab description \cr
    athlete_id \tab character \tab Referencing athlete id. \cr
    first_name \tab character \tab Athlete first name. \cr
    last_name \tab character \tab Athlete last name. \cr
@@ -29,9 +29,9 @@ Minimum value accepted: 2004}
    home_city \tab character \tab Hometown of the athlete. \cr
    home_state \tab character \tab Hometown state of the athlete. \cr
    home_country \tab character \tab Hometown country of the athlete. \cr
-   home_latitude \tab numeric \tab Hometown latitude. \cr
-   home_longitude \tab numeric \tab Hometown longitude. \cr
-   home_county_fips \tab integer \tab Hometown FIPS code. \cr
+   home_latitude \tab double \tab Hometown latitude. \cr
+   home_longitude \tab double \tab Hometown longitude. \cr
+   home_county_fips \tab character \tab Hometown FIPS code. \cr
    recruit_ids \tab list \tab 247Sports recruit ids as character strings; a scalar \code{0L} when the athlete has none. \cr
    headshot_url \tab character \tab Player ESPN headshot url. \cr
    season \tab integer \tab Season the roster was requested for (the \code{year} argument). \cr
