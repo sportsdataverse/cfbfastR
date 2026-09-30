@@ -60,14 +60,14 @@ column-set selector. Ignored on the legacy path.}
 }
 \value{
 A \code{cfbfastR_data} data frame of plays, or \code{NULL} when CFBD returns no plays.
-With \code{epa_wpa = TRUE} and the default \code{output = "default"} it has the 362 columns in the first
-table (358 when the four betting columns \code{provider}, \code{spread}, \code{formatted_spread} and
+With \code{epa_wpa = TRUE} and the default \code{output = "default"} it has the 368 columns in the first
+table (364 when the four betting columns \code{provider}, \code{spread}, \code{formatted_spread} and
 \code{over_under} are not joined: before 2013, or if the betting-lines request fails); games with
 fewer than 20 plays are skipped. \code{output = "lean"} drops the 12 WPA scratchpad columns
 \code{lead_wp_before2} through \code{lead_pos_team2}; \code{output = "full"} also keeps the 91 pipeline
 columns in the second table, interleaved with the first. With
-\code{epa_wpa = FALSE} (the argument default) no modeling runs and only these 54 columns of the first
-table are returned, in CFBD order (\code{yards_to_goal}, \code{down}, \code{distance}, \code{yards_gained} and
+\code{epa_wpa = FALSE} (the argument default) no modeling runs and only 60 columns of the first
+table are returned: these 54 in CFBD order (\code{yards_to_goal}, \code{down}, \code{distance}, \code{yards_gained} and
 \code{drive_start_yards_to_goal} stay integer and \code{drive_scoring} is logical):
 \code{game_id}, \code{drive_id}, \code{id_play}, \code{drive_number}, \code{play_number}, \code{offense_play},
 \code{offense_conference}, \code{offense_score}, \code{defense_play}, \code{defense_conference},
@@ -80,7 +80,9 @@ table are returned, in CFBD order (\code{yards_to_goal}, \code{down}, \code{dist
 \code{drive_start_offense_score}, \code{drive_start_defense_score}, \code{drive_end_offense_score},
 \code{drive_end_defense_score}, \code{drive_time_minutes_start}, \code{drive_time_seconds_start},
 \code{drive_time_minutes_end}, \code{drive_time_seconds_end}, \code{drive_time_minutes_elapsed},
-\code{drive_time_seconds_elapsed}, \code{drive_pts}, \code{season}, \code{wk}.
+\code{drive_time_seconds_elapsed}, \code{drive_pts}, \code{season}, \code{wk}, then the six team-identity columns
+\code{home_team_id}, \code{away_team_id}, \code{home_team_abbreviation}, \code{away_team_abbreviation},
+\code{offense_play_id} and \code{defense_play_id}.
 \code{engine = "legacy"} returns the older pre-v2 frame, which these tables do not describe.
 
 \strong{Default columns} - one row per play (\code{epa_wpa = TRUE}, \code{output = "default"}):\tabular{lll}{
@@ -122,56 +124,56 @@ table are returned, in CFBD order (\code{yards_to_goal}, \code{down}, \code{dist
    penalty_all_declined \tab logical \tab TRUE only when the play has at least one penalty and every one was declined, so the play stood. \cr
    penalty_enforcement \tab character \tab How the penalty was enforced: \code{no_play}, \code{declined}, \code{offsetting}, \code{negating_foul}, \code{play_stands} or \code{unknown}; NA on plays without a penalty. \cr
    penalty_negated_play \tab logical \tab TRUE when a penalty wiped out the play (\code{no_play}, \code{offsetting}, \code{negating_foul}), FALSE when the play stood or had no penalty; NA when enforcement is \code{unknown}. \cr
-   rusher_player_id \tab character \tab ESPN athlete id of \code{rusher_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   passer_player_id \tab character \tab ESPN athlete id of \code{passer_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   receiver_player_id \tab character \tab ESPN athlete id of \code{receiver_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   fumble_player_id \tab character \tab ESPN athlete id of \code{fumble_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   sack_player_id \tab character \tab ESPN athlete id of \code{sack_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   sack_player_id2 \tab character \tab ESPN athlete id of \code{sack_player_name2}. Always NA from this function, which has no game roster to resolve names against. \cr
-   interception_player_id \tab character \tab ESPN athlete id of \code{interception_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   pass_breakup_player_id \tab character \tab ESPN athlete id of \code{pass_breakup_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   fumble_forced_player_id \tab character \tab ESPN athlete id of \code{fumble_forced_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   fumble_recovered_player_id \tab character \tab ESPN athlete id of \code{fumble_recovered_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   fg_kicker_player_id \tab character \tab ESPN athlete id of \code{fg_kicker_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   punter_player_id \tab character \tab ESPN athlete id of \code{punter_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   kickoff_player_id \tab character \tab ESPN athlete id of \code{kickoff_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   kickoff_return_player_id \tab character \tab ESPN athlete id of \code{kickoff_return_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   punt_return_player_id \tab character \tab ESPN athlete id of \code{punt_return_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   fg_block_player_id \tab character \tab ESPN athlete id of \code{fg_block_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   punt_block_player_id \tab character \tab ESPN athlete id of \code{punt_block_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   fg_return_player_id \tab character \tab ESPN athlete id of \code{fg_return_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   punt_block_return_player_id \tab character \tab ESPN athlete id of \code{punt_block_return_player_name}. Always NA from this function, which has no game roster to resolve names against. \cr
-   pos_team_id \tab character \tab ESPN team id of \code{pos_team}. Always NA from this function: CFBD plays carry team names, not ids. \cr
-   def_pos_team_id \tab character \tab ESPN team id of \code{def_pos_team}. Always NA from this function: CFBD plays carry team names, not ids. \cr
-   kicking_team \tab character \tab Team id of the kicking team on kickoffs, punts and field goals; NA on other plays. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
-   return_team \tab character \tab Team id of the receiving team on kickoffs, punts and field goals; NA on other plays. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
-   punt_return_team \tab character \tab Team id of the punt-returning team (copy of \code{return_team}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
-   kick_return_team \tab character \tab Team id of the kick-returning team (copy of \code{return_team}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
-   fg_team \tab character \tab Team id of the field-goal kicking team (copy of \code{kicking_team}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
-   punt_team \tab character \tab Team id of the punting team (copy of \code{kicking_team}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
-   sack_team \tab character \tab Team id credited with a sack (the defense, \code{def_pos_team_id}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
-   interception_team \tab character \tab Team id credited with an interception (the defense, \code{def_pos_team_id}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
-   pass_breakup_team \tab character \tab Team id credited with a pass breakup (the defense, \code{def_pos_team_id}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
-   forced_fumble_team \tab character \tab Team id credited with a forced fumble (the defense, \code{def_pos_team_id}). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
-   fumble_recovery_team \tab character \tab Team id that recovered a fumble or muff: the first \verb{recovered by} team in the text, else inferred from the turnover. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   rusher_player_id \tab character \tab ESPN athlete id of \code{rusher_player_name}. NA when the name does not match a player on the season roster. \cr
+   passer_player_id \tab character \tab ESPN athlete id of \code{passer_player_name}. NA when the name does not match a player on the season roster. \cr
+   receiver_player_id \tab character \tab ESPN athlete id of \code{receiver_player_name}. NA when the name does not match a player on the season roster. \cr
+   fumble_player_id \tab character \tab ESPN athlete id of \code{fumble_player_name}. NA when the name does not match a player on the season roster. \cr
+   sack_player_id \tab character \tab ESPN athlete id of \code{sack_player_name}. NA when the name does not match a player on the season roster. \cr
+   sack_player_id2 \tab character \tab ESPN athlete id of \code{sack_player_name2}. NA when the name does not match a player on the season roster. \cr
+   interception_player_id \tab character \tab ESPN athlete id of \code{interception_player_name}. NA when the name does not match a player on the season roster. \cr
+   pass_breakup_player_id \tab character \tab ESPN athlete id of \code{pass_breakup_player_name}. NA when the name does not match a player on the season roster. \cr
+   fumble_forced_player_id \tab character \tab ESPN athlete id of \code{fumble_forced_player_name}. NA when the name does not match a player on the season roster. \cr
+   fumble_recovered_player_id \tab character \tab ESPN athlete id of \code{fumble_recovered_player_name}. NA when the name does not match a player on the season roster. \cr
+   fg_kicker_player_id \tab character \tab ESPN athlete id of \code{fg_kicker_player_name}. NA when the name does not match a player on the season roster. \cr
+   punter_player_id \tab character \tab ESPN athlete id of \code{punter_player_name}. NA when the name does not match a player on the season roster. \cr
+   kickoff_player_id \tab character \tab ESPN athlete id of \code{kickoff_player_name}. NA when the name does not match a player on the season roster. \cr
+   kickoff_return_player_id \tab character \tab ESPN athlete id of \code{kickoff_return_player_name}. NA when the name does not match a player on the season roster. \cr
+   punt_return_player_id \tab character \tab ESPN athlete id of \code{punt_return_player_name}. NA when the name does not match a player on the season roster. \cr
+   fg_block_player_id \tab character \tab ESPN athlete id of \code{fg_block_player_name}. NA when the name does not match a player on the season roster. \cr
+   punt_block_player_id \tab character \tab ESPN athlete id of \code{punt_block_player_name}. NA when the name does not match a player on the season roster. \cr
+   fg_return_player_id \tab character \tab ESPN athlete id of \code{fg_return_player_name}. NA when the name does not match a player on the season roster. \cr
+   punt_block_return_player_id \tab character \tab ESPN athlete id of \code{punt_block_return_player_name}. NA when the name does not match a player on the season roster. \cr
+   pos_team_id \tab character \tab ESPN team id of \code{pos_team}. \cr
+   def_pos_team_id \tab character \tab ESPN team id of \code{def_pos_team}. \cr
+   kicking_team \tab character \tab Team id of the kicking team on kickoffs, punts and field goals; NA on other plays. \cr
+   return_team \tab character \tab Team id of the receiving team on kickoffs, punts and field goals; NA on other plays. \cr
+   punt_return_team \tab character \tab Team id of the punt-returning team (copy of \code{return_team}). \cr
+   kick_return_team \tab character \tab Team id of the kick-returning team (copy of \code{return_team}). \cr
+   fg_team \tab character \tab Team id of the field-goal kicking team (copy of \code{kicking_team}). \cr
+   punt_team \tab character \tab Team id of the punting team (copy of \code{kicking_team}). \cr
+   sack_team \tab character \tab Team id credited with a sack (the defense, \code{def_pos_team_id}). \cr
+   interception_team \tab character \tab Team id credited with an interception (the defense, \code{def_pos_team_id}). \cr
+   pass_breakup_team \tab character \tab Team id credited with a pass breakup (the defense, \code{def_pos_team_id}). \cr
+   forced_fumble_team \tab character \tab Team id credited with a forced fumble (the defense, \code{def_pos_team_id}). \cr
+   fumble_recovery_team \tab character \tab Team id that recovered a fumble or muff: the first \verb{recovered by} team in the text, else inferred from the turnover. \cr
    fumble_or_muff \tab logical \tab TRUE when the play has a fumble (\code{fumble_vec}) or the play text mentions a muff. \cr
-   fumbling_team \tab character \tab Team id that fumbled or muffed; NA when \code{fumble_or_muff} is FALSE. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
-   recovery_team \tab character \tab Team id from the first \verb{recovered by} clause in the play text. Always NA from this function: matching the clause needs home/away team ids and abbreviations that CFBD plays do not carry. \cr
-   recovery_team_2 \tab character \tab Team id from a second \verb{recovered by} clause (the ball changed hands twice). Always NA from this function (see \code{recovery_team}). \cr
+   fumbling_team \tab character \tab Team id that fumbled or muffed; NA when \code{fumble_or_muff} is FALSE. \cr
+   recovery_team \tab character \tab Team id from the first \verb{recovered by} clause in the play text. \cr
+   recovery_team_2 \tab character \tab Team id from a second \verb{recovered by} clause (the ball changed hands twice). \cr
    int_turnover \tab logical \tab TRUE when the play is an interception (from \code{int}). \cr
-   pos_fumble_lost \tab logical \tab TRUE when the team in possession lost a fumble. Always FALSE from this function, because it needs the team ids CFBD plays do not carry. \cr
-   def_fumble_lost \tab logical \tab TRUE when the defense recovered and then lost a fumble on the same play. Always FALSE from this function (see \code{pos_fumble_lost}). \cr
-   is_pos_team_turnover \tab logical \tab TRUE when the team in possession gave the ball away (\code{int_turnover} or \code{pos_fumble_lost}); from this function, interceptions only. \cr
-   is_def_pos_team_turnover \tab logical \tab TRUE when the defense gave the ball back on the same play (\code{def_fumble_lost}). Always FALSE from this function. \cr
-   is_turnover \tab logical \tab TRUE when either side gave the ball away (interceptions and lost fumbles; blocked kicks excluded); from this function, interceptions only. \cr
-   turnover_team \tab character \tab Team id that gave the ball away; NA when \code{is_turnover} is FALSE. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
-   is_st_turnover \tab logical \tab TRUE when a lost fumble happened on a special-teams play. Always FALSE from this function (see \code{pos_fumble_lost}). \cr
+   pos_fumble_lost \tab logical \tab TRUE when the team in possession lost a fumble. \cr
+   def_fumble_lost \tab logical \tab TRUE when the defense recovered and then lost a fumble on the same play. \cr
+   is_pos_team_turnover \tab logical \tab TRUE when the team in possession gave the ball away (\code{int_turnover} or \code{pos_fumble_lost}). \cr
+   is_def_pos_team_turnover \tab logical \tab TRUE when the defense gave the ball back on the same play (\code{def_fumble_lost}). \cr
+   is_turnover \tab logical \tab TRUE when either side gave the ball away (interceptions and lost fumbles; blocked kicks excluded). \cr
+   turnover_team \tab character \tab Team id that gave the ball away; NA when \code{is_turnover} is FALSE. \cr
+   is_st_turnover \tab logical \tab TRUE when a lost fumble happened on a special-teams play. \cr
    is_blocked_punt_turnover \tab logical \tab TRUE on a blocked punt returned for a touchdown or that changed possession; not counted in \code{is_turnover}. \cr
    is_blocked_fg_turnover \tab logical \tab TRUE on a blocked field goal returned for a touchdown or that changed possession; not counted in \code{is_turnover}. \cr
-   penalized_team \tab character \tab Team id charged with the penalty; NA on plays without a penalty. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
-   penalty_team_id \tab character \tab Copy of \code{penalized_team}. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. \cr
+   penalized_team \tab character \tab Team id charged with the penalty; NA on plays without a penalty. \cr
+   penalty_team_id \tab character \tab Copy of \code{penalized_team}. \cr
    penalty_yards_signed \tab integer \tab Penalty yardage parsed from \code{yds_penalty} as an integer, 0 when none. The magnitude is reliable; the sign is not a dependable direction. \cr
-   air_yardsToEndzone \tab integer \tab Catch point in yards from the end zone, parsed from \verb{caught at} or \verb{thrown to} in the play text. NA from this function except a spot at the 50, because siding the spot needs team ids CFBD plays do not carry. \cr
+   air_yardsToEndzone \tab integer \tab Catch point in yards from the end zone, parsed from \verb{caught at} or \verb{thrown to} in the play text. NA when the play text names no catch spot, which is most plays. \cr
    air_yards \tab integer \tab Air yards: \code{yards_to_goal} minus \code{air_yardsToEndzone}; NA whenever \code{air_yardsToEndzone} is NA. \cr
    yards_after_catch \tab integer \tab Yards after the catch on completions: \code{yards_gained} minus \code{air_yards}; NA on other plays or when \code{air_yards} is NA. \cr
    pass_depth \tab character \tab Pass depth stated in the text of a pass play (\code{short} or \code{deep}); NA when not stated or not a pass. \cr
@@ -406,6 +408,12 @@ table are returned, in CFBD order (\code{yards_to_goal}, \code{down}, \code{dist
    drive_start_defense_score \tab integer \tab Defense score at the start of the drive. \cr
    drive_end_offense_score \tab integer \tab Offense score at the end of the drive. \cr
    drive_end_defense_score \tab integer \tab Defense score at the end of the drive. \cr
+   home_team_id \tab character \tab Home team id (CFBD /games \code{homeId}; CFBD team ids are ESPN team ids). \cr
+   away_team_id \tab character \tab Away team id (CFBD /games \code{awayId}). \cr
+   home_team_abbreviation \tab character \tab Home team abbreviation from CFBD /teams. \cr
+   away_team_abbreviation \tab character \tab Away team abbreviation from CFBD /teams. \cr
+   offense_play_id \tab character \tab Team id of the offense on the play; NA when \code{offense_play} names neither team in the game. \cr
+   defense_play_id \tab character \tab Team id of the defense on the play; NA when \code{defense_play} names neither team in the game. \cr
    cleaned_text \tab character \tab \code{play_text} with the leading clock stamp, the first pass depth and direction words, and No Huddle/Shotgun tags removed. \cr
    play \tab double \tab Binary flag indicating the row is a counted play (excludes end markers/timeouts/penalties). \cr
    event \tab double \tab Binary flag indicating the row is a counted game event (excludes end markers). \cr

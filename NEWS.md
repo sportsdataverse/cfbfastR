@@ -69,7 +69,7 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   `cfbd_pbp_data(offense =)` and, on `cfbd_pbp_data_v2()`, `offense`, `defense`,
   `offense_conference`, `defense_conference`, `conference` and `division`.
 
-## Fixed: CFBD game box score and team stats
+## Fixed: CFBD game box score, team stats and play-by-play
 
 * `cfbd_game_team_stats(team =)` returned both teams of every game. Inside
   `dplyr::filter()` the bare `team` resolved to the frame's own `team` column,
@@ -83,6 +83,20 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   columns and coercion warnings, are no longer returned; the output keeps its
   documented 69 columns. If a section's team names cannot be matched, it
   warns instead of silently pairing by position.
+* `cfbd_pbp_data(epa_wpa = TRUE)` (the v2 engine) left `pos_team_id`, every
+  `*_player_id`, and the turnover, penalty, sack and return attribution `NA`,
+  and never counted a lost fumble: CFBD plays name the teams but carry no ids,
+  and the engine keys on ids. The plays now get `home_team_id`,
+  `away_team_id`, `home_team_abbreviation`, `away_team_abbreviation`,
+  `offense_play_id` and `defense_play_id` from CFBD `/games` and `/teams`
+  (60 columns with `epa_wpa = FALSE`, 368 by default), and player ids resolve
+  against the season's CFBD roster. On four 2025 games these columns now agree
+  with `espn_cfb_pbp()` on every play.
+* `punt_return_player_name` and `kickoff_return_player_name` were always `NA`
+  from both `cfbd_pbp_data()` and `espn_cfb_pbp()`: the player-name stage
+  filled `punt_returner_player_name` / `kickoff_returner_player_name`, and the
+  documented names were never set from them.
+
 ## Documentation: CFBD return tables
 
 * Every `cfbd_*` wrapper added or changed in this cycle now documents its
