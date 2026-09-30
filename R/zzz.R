@@ -10,13 +10,20 @@
 #' player ids -- and a season sweep asks for it once per game. Memoising by
 #' `game_id` collapses both to a single request.
 #'
+#' `.cfbd_team_catalog` and `.cfbd_roster_year` are the per-season CFBD
+#' `/teams` and `/roster` lookups `cfbd_pbp_data()` uses for team and player
+#' ids. Keyed on `year` alone, they cannot return another query's rows, which
+#' is why the public `cfbd_*` wrappers stay uncached while these do not.
+#'
 #' @keywords internal
 #' @noRd
 .espn_memoised_helpers <- c(
   ".espn_cfb_team_lookup",
   ".espn_cfb_position_lookup",
   ".espn_cfb_participant_roster",
-  ".espn_cfb_pbp_sidecar"
+  ".espn_cfb_pbp_sidecar",
+  ".cfbd_team_catalog",
+  ".cfbd_roster_year"
 )
 
 .onLoad <- function(libname, pkgname) {
@@ -65,7 +72,9 @@
     cache <- if (cache_mode == "filesystem") {
       cache_dir <- tools::R_user_dir("cfbfastR", which = "cache")
       dir.create(cache_dir, recursive = TRUE, showWarnings = FALSE)
-      cachem::cache_disk(dir = cache_dir)
+      # max_age: each TTL window writes a new copy (a season roster is ~30k
+      # rows), so let expired ones go instead of piling up to the size cap.
+      cachem::cache_disk(dir = cache_dir, max_age = ttl)
     } else {
       cachem::cache_mem()
     }

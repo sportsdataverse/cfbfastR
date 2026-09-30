@@ -25,6 +25,115 @@
     )
 }
 
+#' Modular PBP -- attach team identity to CFBD plays
+#'
+#' CFBD plays carry team NAMES only, but every team-aware stage the modeled path
+#' shares with the ESPN path -- possession ids, turnover / penalty / return
+#' attribution, air-yard siding, roster matching -- keys on `home_team_id`,
+#' `away_team_id`, `offense_play_id` and the team abbreviations. Only the ESPN
+#' adapter supplied them, so on this path they all came back NA and, for one, a
+#' lost fumble never counted. CFBD's `/games` carries the ids and `/teams` the
+#' abbreviations; both are the ids and abbreviations ESPN uses.
+#'
+#' @param play_df CFBD plays with `game_id`, `home`, `away`, `offense_play` and
+#'   `defense_play` (names).
+#' @param games [cfbd_game_info()] rows: `game_id`, `home_id`, `away_id`.
+#' @param teams Team catalog: `team_id`, `abbreviation`.
+#' @return `play_df` plus character `home_team_id`, `away_team_id`,
+#'   `home_team_abbreviation`, `away_team_abbreviation`, `offense_play_id` and
+#'   `defense_play_id`. Plays whose game is not in `games` keep NA ids.
+#' @keywords internal
+#' @noRd
+.cfbd_team_identity <- function(play_df, games, teams) {
+  # match() rather than a join: play order and the integer `game_id` stay as
+  # they are, and a duplicated game row cannot fan the plays out. Numeric, not
+  # character: as.character(401000000) is "4.01e+08" unless scipen is raised.
+  i <- match(as.numeric(play_df$game_id), as.numeric(games$game_id))
+  # /plays and /games are both CFBD, but if they ever disagree on the home team
+  # the ids would land on the wrong sides; leave that game unknown instead.
+  if ("home_team" %in% names(games)) {
+    same <- play_df$home == as.character(games$home_team)[i]
+    i[is.na(same) | !same] <- NA
+  }
+  home_id <- as.character(games$home_id)[i]
+  away_id <- as.character(games$away_id)[i]
+  abbrev <- stats::setNames(as.character(teams$abbreviation), as.character(teams$team_id))
+  # Same rule as the ESPN adapter: a name that is neither team stays unknown,
+  # never a confirmed away possession that every downstream stage then trusts.
+  side <- function(team) {
+    dplyr::case_when(
+      is.na(team) ~ NA_character_,
+      team == play_df$home ~ home_id,
+      team == play_df$away ~ away_id
+    )
+  }
+  play_df$home_team_id <- home_id
+  play_df$away_team_id <- away_id
+  play_df$home_team_abbreviation <- unname(abbrev[home_id])
+  play_df$away_team_abbreviation <- unname(abbrev[away_id])
+  play_df$offense_play_id <- side(play_df$offense_play)
+  play_df$defense_play_id <- side(play_df$defense_play)
+  play_df
+}
+
+#' CFBD team catalog (`team_id`, `school`, `abbreviation`) for a season
+#'
+#' Memoised per `year` (see `.espn_memoised_helpers` in `zzz.R`), so repeated
+#' pbp calls in a season reuse one `/teams` request. Aborts on an empty
+#' response instead of returning it: memoise does not cache errors, and an
+#' empty catalog must not stick for the cache's lifetime.
+#' @keywords internal
+#' @noRd
+.cfbd_team_catalog <- function(year) {
+  x <- cfbd_team_info(only_fbs = FALSE, year = year)
+  if (!is.data.frame(x) || !nrow(x)) {
+    cli::cli_abort("CFBD /teams returned no teams for {year}.")
+  }
+  data.frame(team_id = as.character(x$team_id), school = as.character(x$school),
+             abbreviation = as.character(x$abbreviation), stringsAsFactors = FALSE)
+}
+
+#' CFBD season-wide roster (`athlete_id`, `first_name`, `last_name`, `team`)
+#'
+#' One `/roster` request per season, memoised per `year` (see
+#' `.espn_memoised_helpers` in `zzz.R`). Aborts on an empty response so a
+#' failed request is retried next time rather than cached.
+#' @keywords internal
+#' @noRd
+.cfbd_roster_year <- function(year) {
+  r <- cfbd_team_roster(year = year)
+  if (!is.data.frame(r) || !nrow(r)) {
+    cli::cli_abort("CFBD /roster returned no players for {year}.")
+  }
+  as.data.frame(r)[c("athlete_id", "first_name", "last_name", "team")]
+}
+
+#' CFBD season roster in the engine's roster contract
+#'
+#' Built from the season-wide `/roster` (about 30,000 rows, roughly 20 s),
+#' which `.cfbd_roster_year()` fetches once per season and memoises. CFBD
+#' athlete ids are ESPN athlete ids, so the ids resolved here agree with the
+#' ESPN path's.
+#' @return `athlete_id`, `display_name`, `team_id` (character), or NULL.
+#' @keywords internal
+#' @noRd
+.cfbd_season_roster <- function(year, teams) {
+  r <- tryCatch(.cfbd_roster_year(year), error = function(e) {
+    cli::cli_alert_warning("CFBD /roster failed for {year}: {conditionMessage(e)}; player ids will be NA.")
+    NULL
+  })
+  if (is.null(r)) return(NULL)
+  out <- data.frame(
+    athlete_id   = as.character(r$athlete_id),
+    display_name = trimws(paste(dplyr::coalesce(r$first_name, ""), dplyr::coalesce(r$last_name, ""))),
+    team_id      = teams$team_id[match(r$team, teams$school)],
+    stringsAsFactors = FALSE
+  )
+  # A player whose school is missing from /teams cannot be scoped to a game,
+  # and kept he would join every game that also lacks ids (NA %in% NA is TRUE).
+  out[!is.na(out$team_id), , drop = FALSE]
+}
+
 #' Modular PBP -- adapt an ESPN core-v2 plays frame into the modeling input
 #'
 #' Extracts the rename / mutate / timeout block that's currently duplicated

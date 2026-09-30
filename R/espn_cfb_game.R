@@ -333,10 +333,10 @@ NULL
 }
 
 
-#' **Clear the cfbfastR ESPN catalog cache**
+#' **Clear the cfbfastR lookup cache**
 #'
 #' @title
-#' **Clear the cfbfastR ESPN catalog cache**
+#' **Clear the cfbfastR lookup cache**
 #' @description
 #' The ESPN college football game wrappers enrich their output with team
 #' and position detail drawn from two static catalogs --
@@ -346,8 +346,9 @@ NULL
 #' loop over many games does not re-hit ESPN for the catalogs on every
 #' call.
 #'
-#' `espn_cfb_clear_cache()` forgets those memoised lookups. The next
-#' wrapper call that needs a catalog will fetch a fresh copy from ESPN.
+#' `espn_cfb_clear_cache()` forgets those memoised lookups, and also the
+#' per-season CFBD team catalog and roster that [cfbd_pbp_data()] memoises to
+#' attach team and player ids. The next call that needs one fetches it again.
 #' Use it when you want to force a refresh -- for example after a
 #' long-running session, or when debugging.
 #'
@@ -357,8 +358,8 @@ NULL
 #' * `cfbfastR.cache` -- cache backend. One of `"memory"` (default;
 #'   in-memory `cachem::cache_mem()`, cleared when the session ends),
 #'   `"filesystem"` (persistent on-disk `cachem::cache_disk()` under
-#'   [tools::R_user_dir()]), or `"off"` (no memoisation -- every catalog
-#'   fetch hits ESPN).
+#'   [tools::R_user_dir()]), or `"off"` (no memoisation -- every lookup
+#'   hits the API).
 #' * `cfbfastR.cache_duration` -- cache time-to-live in seconds.
 #'   Defaults to `86400` (24 hours).
 #'

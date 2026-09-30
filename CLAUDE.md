@@ -151,6 +151,9 @@ ESPN catalog calls are memoised (`cachem` + `memoise`, wired in `zzz.R` `.onLoad
 `options(cfbfastR.cache_duration = 86400)` (TTL seconds). `espn_cfb_clear_cache()` forgets
 all cached endpoints; filesystem backend persists under `tools::R_user_dir("cfbfastR","cache")`.
 **CFBD endpoints are NOT cached** (pagination/date variation would return wrong rows).
+Exception: `cfbd_pbp_data()`'s per-season id lookups (`.cfbd_team_catalog`,
+`.cfbd_roster_year`, keyed on `year` alone) are memoised on the same cache, so a
+season sweep makes one `/teams` and one `/roster` request, not one per call.
 
 ## Testing
 

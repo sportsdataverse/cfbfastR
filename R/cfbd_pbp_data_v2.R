@@ -289,6 +289,30 @@ cfbd_pbp_data_v2 <- function(year,
 
   play_df <- .cfbd_to_epa_input(play_df, year = year, week = week)
 
+  # --- team identity (every call) ----------------------------------------
+  # CFBD plays name the teams but carry no ids, and the modeled path's
+  # team-aware stages key on ids and abbreviations (see .cfbd_team_identity()).
+  # Without them pos_team_id, every *_player_id and the turnover / penalty /
+  # return attribution came back NA, and a lost fumble never counted.
+  # division must be passed: cfbd_game_info() defaults to "fbs".
+  id_games <- cfbd_game_info(
+    year = year, week = week, season_type = season_type, team = team,
+    conference = conference, division = division
+  )
+  id_teams <- tryCatch(.cfbd_team_catalog(year), error = function(e) {
+    cli::cli_alert_warning(
+      "CFBD /teams failed for {year}: {conditionMessage(e)}; team abbreviations and player ids will be NA."
+    )
+    data.frame(team_id = character(), school = character(), abbreviation = character())
+  })
+  play_df <- .cfbd_team_identity(play_df, id_games, id_teams)
+  no_ids <- unique(play_df$game_id[is.na(play_df$home_team_id)])
+  if (length(no_ids)) {
+    cli::cli_alert_warning(
+      "CFBD /games has no or conflicting team ids for game{?s} {no_ids}; team attribution and player ids will be NA there."
+    )
+  }
+
   if (!pt_abb_exists) {
     play_df <- play_df |>
       dplyr::filter(tolower(.data$play_type) == tolower(!!play_type))
@@ -301,6 +325,20 @@ cfbd_pbp_data_v2 <- function(year,
         "Data quality prior to 2005 is inconsistent; EPA/WPA may be unreliable."
       )
     }
+    # Player ids resolve against a roster. One season-wide CFBD roster, scoped
+    # to each game's two teams so the engine never applies one game's roster
+    # to another (CFBD athlete ids are ESPN athlete ids).
+    # Without /teams no roster row can be scoped to a game; skip the ~20 s fetch.
+    season_roster <- if (nrow(id_teams)) .cfbd_season_roster(year, teams = id_teams)
+    rosters <- NULL
+    if (!is.null(season_roster)) {
+      g <- unique(play_df[, c("game_id", "home_team_id", "away_team_id")])
+      rosters <- dplyr::bind_rows(lapply(seq_len(nrow(g)), function(k) {
+        r <- season_roster[season_roster$team_id %in%
+                             c(g$home_team_id[k], g$away_team_id[k]), , drop = FALSE]
+        if (nrow(r)) cbind(game_id = g$game_id[k], r) else NULL
+      }))
+    }
     play_df <- .run_epa_wpa_by_game(
       play_df,
       ep_model   = ep_model,
@@ -308,6 +346,7 @@ cfbd_pbp_data_v2 <- function(year,
       wp_model   = wp_model,
       clean_text = TRUE,
       min_plays  = 20L,
+      rosters    = rosters,
       # The era-aware FG model needs the season.
       season     = year
     ) |>

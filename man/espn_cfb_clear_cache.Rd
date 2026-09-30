@@ -2,7 +2,7 @@
 % Please edit documentation in R/espn_cfb_game.R
 \name{espn_cfb_clear_cache}
 \alias{espn_cfb_clear_cache}
-\title{\strong{Clear the cfbfastR ESPN catalog cache}}
+\title{\strong{Clear the cfbfastR lookup cache}}
 \usage{
 espn_cfb_clear_cache()
 }
@@ -19,21 +19,22 @@ lookups built from them are memoised with \code{cachem} + \code{memoise}, so a
 loop over many games does not re-hit ESPN for the catalogs on every
 call.
 
-\code{espn_cfb_clear_cache()} forgets those memoised lookups. The next
-wrapper call that needs a catalog will fetch a fresh copy from ESPN.
+\code{espn_cfb_clear_cache()} forgets those memoised lookups, and also the
+per-season CFBD team catalog and roster that \code{\link[=cfbd_pbp_data]{cfbd_pbp_data()}} memoises to
+attach team and player ids. The next call that needs one fetches it again.
 Use it when you want to force a refresh -- for example after a
 long-running session, or when debugging.
 }
 \details{
-\strong{Clear the cfbfastR ESPN catalog cache}
+\strong{Clear the cfbfastR lookup cache}
 
 Caching is configured at package load via two \code{options()}:
 \itemize{
 \item \code{cfbfastR.cache} -- cache backend. One of \code{"memory"} (default;
 in-memory \code{cachem::cache_mem()}, cleared when the session ends),
 \code{"filesystem"} (persistent on-disk \code{cachem::cache_disk()} under
-\code{\link[tools:R_user_dir]{tools::R_user_dir()}}), or \code{"off"} (no memoisation -- every catalog
-fetch hits ESPN).
+\code{\link[tools:R_user_dir]{tools::R_user_dir()}}), or \code{"off"} (no memoisation -- every lookup
+hits the API).
 \item \code{cfbfastR.cache_duration} -- cache time-to-live in seconds.
 Defaults to \code{86400} (24 hours).
 }
