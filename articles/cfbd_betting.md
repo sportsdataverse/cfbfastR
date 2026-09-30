@@ -32,12 +32,12 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
-    ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
 
+    ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
     ## Reading package lists...
@@ -71,13 +71,11 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## After this operation, 47.4 MB of additional disk space will be used.
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Ign:2 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode72 amd64 12.22.9~dfsg-1ubuntu3.6
+    ## Get:2 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode72 amd64 12.22.9~dfsg-1ubuntu3.6 [10.8 MB]
 
     ## Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode-dev amd64 12.22.9~dfsg-1ubuntu3.6 [609 kB]
 
-    ## Get:2 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode72 amd64 12.22.9~dfsg-1ubuntu3.6 [10.8 MB]
-
-    ## Fetched 11.4 MB in 2s (6060 kB/s)
+    ## Fetched 11.4 MB in 1min 31s (125 kB/s)
 
     ## Selecting previously unselected package libnode72:amd64.
     ## (Reading database ...
@@ -150,7 +148,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## 
     ## No VM guests are running outdated hypervisor (qemu) binaries on this host.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [14.3s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [1m 44.9s]
 
 ``` r
 
@@ -189,7 +187,7 @@ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 
     ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-09-30 14:51:21 UTC
+    ## ℹ Data updated: 2026-09-30 15:24:32 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -212,8 +210,7 @@ cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC
 ```
 
     ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
-
-    ## ℹ Data updated: 2026-09-30 14:51:22 UTC
+    ## ℹ Data updated: 2026-09-30 15:24:32 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team

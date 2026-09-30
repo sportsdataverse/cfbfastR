@@ -160,11 +160,13 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   [`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md),
   the same rule sdv-py applied to the EP model’s training data. Scored
   at 0 they skewed EPA on those plays and on the play before each: on
-  2025 LSU at Clemson the CFBD and ESPN paths now agree on 166 of 168
-  plays’ EPA (was 159). The other two are ESPN “2nd & 0 at” rows, which
-  ESPN also writes for a plain missing distance and the model learned at
-  0, so they stay as sent. Raw (`epa_wpa = FALSE`) output keeps the
-  feed’s value.
+  2025 LSU at Clemson the CFBD and ESPN paths now agree on every play’s
+  EPA (was 159 of 168). ESPN’s “& 0 at” downs (no “Goal”) are resolved
+  from the previous snap’s end state, as sportsdataverse-py
+  [\#636](https://github.com/sportsdataverse/cfbfastR/issues/636) does:
+  a “Goal” end gives the yards to the goal, a real end distance gives
+  that distance, anything else stays 0. Raw (`epa_wpa = FALSE`) output
+  keeps the feed’s value.
 
 ### Documentation: CFBD return tables
 

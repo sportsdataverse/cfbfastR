@@ -163,7 +163,7 @@ the package disables it.
 | play_type | character | CFBD play type label (e.g. "Rush", "Pass Reception", "Field Goal Good"). |
 | play_text | character | Free-text description of the play from CFBD. |
 | down | double | Down number at the start of the play (1-4). |
-| distance | double | Yards to gain for a first down at the start of the play; on goal-to-go downs the yards to the goal line (a 0 the feed sends on a down ESPN labels Goal, or that CFBD sends at the 10 or closer, is replaced). |
+| distance | double | Yards to gain for a first down at the start of the play; on goal-to-go downs the yards to the goal line (a 0 the feed sends on a down ESPN labels Goal, or that CFBD sends at the 10 or closer, is replaced; an ESPN "& 0 at" down takes the previous snap's end state). |
 | yards_to_goal | double | Yards from the offense to the opponent's end zone at the start of the play. |
 | yards_gained | double | Yards gained (or lost) by the offense on the play. |
 | EPA | double | Expected Points Added on the play (cfbfastR EPA model output). |
