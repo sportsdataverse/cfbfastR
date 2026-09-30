@@ -82,7 +82,8 @@ table are returned: these 54 in CFBD order (\code{yards_to_goal}, \code{down}, \
 \code{drive_time_minutes_end}, \code{drive_time_seconds_end}, \code{drive_time_minutes_elapsed},
 \code{drive_time_seconds_elapsed}, \code{drive_pts}, \code{season}, \code{wk}, then the six team-identity columns
 \code{home_team_id}, \code{away_team_id}, \code{home_team_abbreviation}, \code{away_team_abbreviation},
-\code{offense_play_id} and \code{defense_play_id}.
+\code{offense_play_id} and \code{defense_play_id}. As on the modeled path, \code{provider}, \code{spread},
+\code{formatted_spread} and \code{over_under} are absent when betting lines are not joined.
 \code{engine = "legacy"} returns the older pre-v2 frame, which these tables do not describe.
 
 \strong{Default columns} - one row per play (\code{epa_wpa = TRUE}, \code{output = "default"}):\tabular{lll}{

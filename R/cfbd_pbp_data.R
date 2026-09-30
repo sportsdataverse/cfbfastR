@@ -54,7 +54,8 @@ NULL
 #' `drive_time_minutes_end`, `drive_time_seconds_end`, `drive_time_minutes_elapsed`,
 #' `drive_time_seconds_elapsed`, `drive_pts`, `season`, `wk`, then the six team-identity columns
 #' `home_team_id`, `away_team_id`, `home_team_abbreviation`, `away_team_abbreviation`,
-#' `offense_play_id` and `defense_play_id`.
+#' `offense_play_id` and `defense_play_id`. As on the modeled path, `provider`, `spread`,
+#' `formatted_spread` and `over_under` are absent when betting lines are not joined.
 #' `engine = "legacy"` returns the older pre-v2 frame, which these tables do not describe.
 #'
 #' **Default columns** - one row per play (`epa_wpa = TRUE`, `output = "default"`):
