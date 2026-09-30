@@ -325,6 +325,8 @@ cfbd_pbp_data_v2 <- function(year,
         "Data quality prior to 2005 is inconsistent; EPA/WPA may be unreliable."
       )
     }
+    # Goal-to-go downs CFBD sends as distance 0 (see .goal_to_go_distance()).
+    play_df$distance <- .goal_to_go_distance(play_df$distance, play_df$down, play_df$yards_to_goal)
     # Player ids resolve against a roster. One season-wide CFBD roster, scoped
     # to each game's two teams so the engine never applies one game's roster
     # to another (CFBD athlete ids are ESPN athlete ids).

@@ -6245,6 +6245,13 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
         # season, and `season` is one of the columns the chain below renames
         # away. Without it every FG/XP play aborts in .fg_make_prob().
         .legacy_season <- suppressWarnings(as.numeric(plays_df$season[1]))
+        plays_df$plays_start_distance <- .goal_to_go_distance(
+          plays_df$plays_start_distance, plays_df$plays_start_down,
+          plays_df$plays_start_yards_to_endzone,
+          # NA, not NULL, when an old payload lacks the text: NULL means "no
+          # text to check" and would let kickoffs (down 1, distance 0) through.
+          text = plays_df$plays_start_down_distance_text %||% NA_character_
+        )
         plays_df <- plays_df |>
           dplyr::rename(
             "play_text" = "plays_text",
@@ -6696,7 +6703,10 @@ espn_cfb_pbp_v2 <- function(game_id,
           plays_text                   = .data$text,
           plays_type_text              = .data$type_text,
           plays_start_down             = .data$start_down,
-          plays_start_distance         = .data$start_distance,
+          plays_start_distance         = .goal_to_go_distance(
+            .data$start_distance, .data$start_down, .data$start_yards_to_endzone,
+            text = .data$start_down_distance_text
+          ),
           plays_period_number          = .data$period,
           plays_id                     = .data$play_id,
           plays_start_yards_to_endzone = .data$start_yards_to_endzone,

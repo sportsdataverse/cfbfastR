@@ -134,6 +134,32 @@
   out[!is.na(out$team_id), , drop = FALSE]
 }
 
+#' Goal-to-go distance
+#'
+#' Some games' feeds send `distance = 0` on goal-to-go downs, where the line
+#' to gain is the goal line: ESPN ("1st & Goal at LSU 4") and, more rarely,
+#' CFBD. The EP model was trained on sdv-py's ESPN output, which sets those to
+#' yards-to-goal (cfb_pbp.py, the `start.distance` goal rewrite), so scoring
+#' the raw 0 puts the model outside its training data.
+#'
+#' ESPN callers pass the down-and-distance `text` and, exactly like sdv-py,
+#' only rows reading "Goal" change. ESPN also writes "& 0 at" for a missing
+#' distance: mostly goal-to-go, but not always ("1st & 0 at WYO 19"), and the
+#' model learned those rows at 0, so they stay as sent. Telling them apart
+#' needs the previous play's end state and a retrain, in sdv-py first. ESPN
+#' kickoffs (down 1, distance 0) have no text and never match. CFBD has no
+#' text, so without one only rows at the 10 or closer change: there any down
+#' at distance 0 is goal-to-go.
+#' @return `distance` with those downs set to `yards_to_goal`.
+#' @keywords internal
+#' @noRd
+.goal_to_go_distance <- function(distance, down, yards_to_goal, text = NULL) {
+  g2g <- distance %in% 0 & down %in% 1:4 & yards_to_goal %in% 1:99
+  g2g <- g2g & if (is.null(text)) yards_to_goal <= 10 else grepl("goal", text, ignore.case = TRUE)
+  distance[g2g] <- yards_to_goal[g2g]
+  distance
+}
+
 #' Modular PBP -- adapt an ESPN core-v2 plays frame into the modeling input
 #'
 #' Extracts the rename / mutate / timeout block that's currently duplicated

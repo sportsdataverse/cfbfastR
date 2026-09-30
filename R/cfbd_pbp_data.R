@@ -801,6 +801,9 @@ cfbd_pbp_data <- function(year,
           cli::cli_alert_danger(glue::glue("Skipping game_id {x} with only {nrow(game_plays)} plays"))
           return(NULL)
         }
+        # Before add_play_counts(): the previous play's end state reads
+        # lead_distance, so a later fix would leave its EP_end at distance 0.
+        game_plays$distance <- .goal_to_go_distance(game_plays$distance, game_plays$down, game_plays$yards_to_goal)
         game_plays <- game_plays |>
           clean_play_text() |>
           penalty_detection() |>
