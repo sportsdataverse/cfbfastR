@@ -167,6 +167,13 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   a “Goal” end gives the yards to the goal, a real end distance gives
   that distance, anything else stays 0. Raw (`epa_wpa = FALSE`) output
   keeps the feed’s value.
+- ESPN “& 0 at” downs after a snap with no usable end state now stay
+  goal-to-go while the series is the same one (same offense and period,
+  no possession-ending snap, no down reset), as sportsdataverse-py
+  [\#638](https://github.com/sportsdataverse/cfbfastR/issues/638)/#639
+  do: “1st & 0 at TULN 15” after a penalty backs “1st & Goal at TULN 10”
+  up is modeled at 15. An overtime possession (“1st & 0 at OHIO 25”)
+  never inherits the previous goal line.
 
 ### Documentation: CFBD return tables
 

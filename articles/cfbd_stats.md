@@ -32,8 +32,9 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
     ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
+
+    ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
@@ -60,7 +61,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
     ## 0 upgraded, 0 newly installed, 0 to remove and 13 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [9.5s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [8.3s]
 
 ``` r
 
@@ -242,7 +243,7 @@ tex_pass |>
 
     ## ── Player season passing data from CollegeFootballData.com ─────────────────────
 
-    ## ℹ Data updated: 2026-09-30 15:25:33 UTC
+    ## ℹ Data updated: 2026-09-30 19:49:38 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts completion_rate average_depth_of_target   ppa
@@ -309,7 +310,7 @@ tex_pass |>
 
     ## ── Player season passing data from CollegeFootballData.com ─────────────────────
 
-    ## ℹ Data updated: 2026-09-30 15:25:33 UTC
+    ## ℹ Data updated: 2026-09-30 19:49:38 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts air_yards_parsed adot_correct adot_naive
@@ -330,7 +331,7 @@ cfbd_passing_plays(year = 2025, week = 5, outcome = "completion") |>
 
     ## ── Passing plays data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-09-30 15:25:34 UTC
+    ## ℹ Data updated: 2026-09-30 19:49:40 UTC
 
     ## # A tibble: 10 × 7
     ##    offense    defense    passer       target         total_yards   ppa success
@@ -368,7 +369,7 @@ cfbd_stats_categories()
 
     ## ── Stat categories for CollegeFootballData.com ────────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-09-30 15:25:35 UTC
+    ## ℹ Data updated: 2026-09-30 19:49:41 UTC
 
     ## # A tibble: 38 × 1
     ##    category          
