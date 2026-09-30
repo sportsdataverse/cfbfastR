@@ -69,6 +69,22 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   `cfbd_pbp_data(offense =)` and, on `cfbd_pbp_data_v2()`, `offense`, `defense`,
   `offense_conference`, `defense_conference`, `conference` and `division`.
 
+## Fixed: CFBD game box score and team stats
+
+* `cfbd_game_team_stats(team =)` returned both teams of every game. Inside
+  `dplyr::filter()` the bare `team` resolved to the frame's own `team` column,
+  so the filter compared the column with itself. It now keeps only the
+  requested team.
+* `cfbd_game_box_advanced()` gave each team its opponent's `havoc_*` columns.
+  CFBD lists the `havoc` section in the opposite team order to the other
+  sections, and the parser paired entries by position. Rows are now matched to
+  teams by name, so `havoc_*` is the havoc the row's own defense created. The
+  2025 `passing` / `rushingAdvanced` sections, which added ~550 unrenamed
+  columns and coercion warnings, are no longer returned; the output keeps its
+  documented 69 columns.
+* Every `cfbd_*` wrapper added or changed in this cycle now documents its
+  return value as a column table generated from live output.
+
 ## New: CFBD passing and rushing endpoint families
 
 Ten new `cfbd_*()` wrappers close the last gaps against the CollegeFootballData
