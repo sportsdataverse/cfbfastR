@@ -6209,8 +6209,10 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
           plays_curr <- jsonlite::fromJSON(jsonlite::toJSON(drives_curr), flatten = TRUE)
         }
 
-        plays_df <- plays_curr |>
-          dplyr::bind_rows(plays_prev) |>
+        # Completed drives first, then the live one: .espn_amp0_distance() reads
+        # each play's predecessor in this order (the pipeline re-sorts later).
+        plays_df <- plays_prev |>
+          dplyr::bind_rows(plays_curr) |>
           janitor::clean_names() |>
           dplyr::select(-"drive_team_logos")
 
@@ -6251,6 +6253,15 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
           # NA, not NULL, when an old payload lacks the text: NULL means "no
           # text to check" and would let kickoffs (down 1, distance 0) through.
           text = plays_df$plays_start_down_distance_text %||% NA_character_
+        )
+        plays_df$plays_start_distance <- .espn_amp0_distance(
+          plays_df$plays_start_distance, plays_df$plays_start_down,
+          plays_df$plays_start_yards_to_endzone,
+          plays_df$plays_start_down_distance_text %||% NA_character_,
+          plays_df$plays_type_text %||% NA_character_,
+          plays_df$plays_end_down %||% NA_integer_,
+          plays_df$plays_end_distance %||% NA_integer_,
+          plays_df$plays_end_down_distance_text %||% NA_character_
         )
         plays_df <- plays_df |>
           dplyr::rename(
@@ -6703,9 +6714,13 @@ espn_cfb_pbp_v2 <- function(game_id,
           plays_text                   = .data$text,
           plays_type_text              = .data$type_text,
           plays_start_down             = .data$start_down,
-          plays_start_distance         = .goal_to_go_distance(
-            .data$start_distance, .data$start_down, .data$start_yards_to_endzone,
-            text = .data$start_down_distance_text
+          plays_start_distance         = .espn_amp0_distance(
+            .goal_to_go_distance(
+              .data$start_distance, .data$start_down, .data$start_yards_to_endzone,
+              text = .data$start_down_distance_text
+            ),
+            .data$start_down, .data$start_yards_to_endzone, .data$start_down_distance_text,
+            .data$type_text, .data$end_down, .data$end_distance, .data$end_down_distance_text
           ),
           plays_period_number          = .data$period,
           plays_id                     = .data$play_id,
