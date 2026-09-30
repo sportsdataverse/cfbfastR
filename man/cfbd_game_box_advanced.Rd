@@ -14,17 +14,13 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 }
 \value{
 A data frame with two rows, one per team, and 69 variables, all double
-except \code{team}. Rows are assembled by position: the first entry of every CFBD
-section goes to the first team (the first team of the \code{ppa} section), so a section
-CFBD lists in the other team order lands on the other team's row. In sampled games
-that is \code{havoc}, which CFBD lists in reverse order (see the \code{long = TRUE} output,
-whose \code{havoc_team} row names the team behind each value). For games from 2025 on,
-CFBD also sends enriched \code{passing} and \code{rushingAdvanced} sections, which this parser
-appends as about 550 extra columns with raw dotted names (e.g.
-\code{passing.defense.ppa}, \code{rushing_dvanced.offense.attempts}) coerced to double with
-warnings; they are not described here, and the same data comes from
-\code{\link[=cfbd_passing_teams_games]{cfbd_passing_teams_games()}} and \code{\link[=cfbd_rushing_teams_games]{cfbd_rushing_teams_games()}}. PPA is predicted
-points added. An empty data frame is returned if the request fails.
+except \code{team}. Each CFBD section is matched to the teams by name, in the team
+order of its \code{ppa} section, so every value on a row belongs to that row's team
+(CFBD lists \code{havoc} in the opposite order to the other sections). From 2025 on,
+CFBD also sends \code{passing} and \code{rushingAdvanced} sections; they are not returned
+here -- the same data comes from \code{\link[=cfbd_passing_teams_games]{cfbd_passing_teams_games()}} and
+\code{\link[=cfbd_rushing_teams_games]{cfbd_rushing_teams_games()}}. PPA is predicted points added. An empty data frame
+is returned if the request fails.
 
 \strong{wide} (\code{long = FALSE}, the default) - one row per team:\tabular{lll}{
    col_name \tab type \tab description \cr
@@ -89,9 +85,9 @@ points added. An empty data frame is returned if the request fails.
    rushing_second_lvl_yds_avg \tab double \tab Second-level yards per rush. \cr
    rushing_open_field_yds \tab double \tab Total open-field yards: rushing yards gained more than 10 yards past the line of scrimmage. \cr
    rushing_open_field_yds_avg \tab double \tab Open-field yards per rush. \cr
-   havoc_total \tab double \tab Havoc rate the team's offense faced: the opponent defense's proportion of plays with a tackle for loss, forced fumble, interception or pass breakup (positional pairing, see above). \cr
-   havoc_front_seven \tab double \tab Front-seven havoc rate the team's offense faced (opponent defense's value, see above). \cr
-   havoc_db \tab double \tab Defensive-back havoc rate the team's offense faced (opponent defense's value, see above). \cr
+   havoc_total \tab double \tab Havoc rate created by the team's defense: proportion of the opponent's plays with a tackle for loss, forced fumble, interception or pass breakup. \cr
+   havoc_front_seven \tab double \tab Havoc rate created by the team's front seven (defensive linemen and linebackers). \cr
+   havoc_db \tab double \tab Havoc rate created by the team's defensive backs. \cr
    scoring_opps_opportunities \tab double \tab Scoring opportunities: drives with a first down inside the opponent 40. \cr
    scoring_opps_points \tab double \tab Points scored on scoring-opportunity drives. \cr
    scoring_opps_pts_per_opp \tab double \tab Points per scoring opportunity. \cr
@@ -104,8 +100,8 @@ points added. An empty data frame is returned if the request fails.
 statistic in CFBD order:\tabular{lll}{
    col_name \tab type \tab description \cr
    stat \tab character \tab Statistic name, as in the wide columns except that the three rushing averages end in \verb{_yd_avg} (e.g. \code{rushing_line_yd_avg}), plus one \verb{<section>_team} row per section (e.g. \code{havoc_team}) naming the team whose values fill \code{team1} and \code{team2} for that section. \cr
-   team1 \tab character \tab Value for the first team listed in the section, as text. \cr
-   team2 \tab character \tab Value for the second team listed in the section, as text. \cr
+   team1 \tab character \tab Value for the first team of CFBD's \code{ppa} section (every section is aligned to it), as text. \cr
+   team2 \tab character \tab Value for the second team of CFBD's \code{ppa} section, as text. \cr
 }
 }
 \description{

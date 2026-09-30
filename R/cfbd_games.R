@@ -608,17 +608,13 @@ cfbd_game_media <- function(year,
 #' Can be found using the [cfbd_game_info()] function
 #' @param long (*Logical* default `FALSE`): Return the data in a long format.
 #' @return A data frame with two rows, one per team, and 69 variables, all double
-#' except `team`. Rows are assembled by position: the first entry of every CFBD
-#' section goes to the first team (the first team of the `ppa` section), so a section
-#' CFBD lists in the other team order lands on the other team's row. In sampled games
-#' that is `havoc`, which CFBD lists in reverse order (see the `long = TRUE` output,
-#' whose `havoc_team` row names the team behind each value). For games from 2025 on,
-#' CFBD also sends enriched `passing` and `rushingAdvanced` sections, which this parser
-#' appends as about 550 extra columns with raw dotted names (e.g.
-#' `passing.defense.ppa`, `rushing_dvanced.offense.attempts`) coerced to double with
-#' warnings; they are not described here, and the same data comes from
-#' [cfbd_passing_teams_games()] and [cfbd_rushing_teams_games()]. PPA is predicted
-#' points added. An empty data frame is returned if the request fails.
+#' except `team`. Each CFBD section is matched to the teams by name, in the team
+#' order of its `ppa` section, so every value on a row belongs to that row's team
+#' (CFBD lists `havoc` in the opposite order to the other sections). From 2025 on,
+#' CFBD also sends `passing` and `rushingAdvanced` sections; they are not returned
+#' here -- the same data comes from [cfbd_passing_teams_games()] and
+#' [cfbd_rushing_teams_games()]. PPA is predicted points added. An empty data frame
+#' is returned if the request fails.
 #'
 #' **wide** (`long = FALSE`, the default) - one row per team:
 #'
@@ -685,9 +681,9 @@ cfbd_game_media <- function(year,
 #'  |rushing_second_lvl_yds_avg |double |Second-level yards per rush. |
 #'  |rushing_open_field_yds |double |Total open-field yards: rushing yards gained more than 10 yards past the line of scrimmage. |
 #'  |rushing_open_field_yds_avg |double |Open-field yards per rush. |
-#'  |havoc_total |double |Havoc rate the team's offense faced: the opponent defense's proportion of plays with a tackle for loss, forced fumble, interception or pass breakup (positional pairing, see above). |
-#'  |havoc_front_seven |double |Front-seven havoc rate the team's offense faced (opponent defense's value, see above). |
-#'  |havoc_db |double |Defensive-back havoc rate the team's offense faced (opponent defense's value, see above). |
+#'  |havoc_total |double |Havoc rate created by the team's defense: proportion of the opponent's plays with a tackle for loss, forced fumble, interception or pass breakup. |
+#'  |havoc_front_seven |double |Havoc rate created by the team's front seven (defensive linemen and linebackers). |
+#'  |havoc_db |double |Havoc rate created by the team's defensive backs. |
 #'  |scoring_opps_opportunities |double |Scoring opportunities: drives with a first down inside the opponent 40. |
 #'  |scoring_opps_points |double |Points scored on scoring-opportunity drives. |
 #'  |scoring_opps_pts_per_opp |double |Points per scoring opportunity. |
@@ -700,8 +696,8 @@ cfbd_game_media <- function(year,
 #'  |col_name |type |description |
 #'  |:--------|:----|:-----------|
 #'  |stat |character |Statistic name, as in the wide columns except that the three rushing averages end in `_yd_avg` (e.g. `rushing_line_yd_avg`), plus one `<section>_team` row per section (e.g. `havoc_team`) naming the team whose values fill `team1` and `team2` for that section. |
-#'  |team1 |character |Value for the first team listed in the section, as text. |
-#'  |team2 |character |Value for the second team listed in the section, as text. |
+#'  |team1 |character |Value for the first team of CFBD's `ppa` section (every section is aligned to it), as text. |
+#'  |team2 |character |Value for the second team of CFBD's `ppa` section, as text. |
 #'
 #' @keywords Game Advanced Box Score
 #' @importFrom tibble enframe
@@ -1349,8 +1345,8 @@ cfbd_game_records <- function(year,
 #' @param rows_per_team (*Integer* default 1): Both Teams for each game on one or two row(s), Options: 1 or 2
 #'
 #' @return A data frame with one row per team per game and 78 variables. A `team` query
-#' keeps both teams of each of that team's games; a `conference` query keeps only the
-#' rows of that conference's teams. The box-score statistics are character, as CFBD
+#' keeps only that team's rows (CFBD returns both teams of each game); a `conference`
+#' query keeps only the rows of that conference's teams. The box-score statistics are character, as CFBD
 #' sends them, and NA when CFBD has no value for that team. Every column from `points`
 #' to `possession_time` is repeated with the suffix `_allowed`, holding the opponent's
 #' value from the same game. With `rows_per_team = 2`, `opponent`,

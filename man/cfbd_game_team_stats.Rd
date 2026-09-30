@@ -39,8 +39,8 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 }
 \value{
 A data frame with one row per team per game and 78 variables. A \code{team} query
-keeps both teams of each of that team's games; a \code{conference} query keeps only the
-rows of that conference's teams. The box-score statistics are character, as CFBD
+keeps only that team's rows (CFBD returns both teams of each game); a \code{conference}
+query keeps only the rows of that conference's teams. The box-score statistics are character, as CFBD
 sends them, and NA when CFBD has no value for that team. Every column from \code{points}
 to \code{possession_time} is repeated with the suffix \verb{_allowed}, holding the opponent's
 value from the same game. With \code{rows_per_team = 2}, \code{opponent},
