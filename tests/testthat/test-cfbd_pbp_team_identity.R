@@ -61,28 +61,46 @@ test_that("CFBD plays whose home team disagrees with /games stay unknown", {
   expect_true(all(is.na(x$offense_play_id)))
 })
 
-test_that("CFBD season roster drops players it cannot scope to a team", {
+cfbd_roster_rows <- function() {
   # Real 2025 /roster rows; Caldwell's first name blanked to exercise the NA
   # path. Cumberland (TN) is not in /teams, so its player has no team id.
-  rows <- data.frame(
+  data.frame(
     athlete_id = c("4870906", "4877717", "5078278", "4696126"),
     first_name = c("Arch", NA, "Lincoln", "Shaikyi"),
     last_name  = c("Manning", "Caldwell", "Kienholz", "Hannah"),
     team       = c("Texas", "Texas", "Ohio State", "Cumberland (TN)")
   )
-  asked <- character()
-  local_mocked_bindings(cfbd_team_roster = function(year, team = NULL, ...) {
-    asked <<- c(asked, if (is.null(team)) "<season>" else team)
-    if (is.null(team)) rows else rows[rows$team == team, ]
-  })
+}
+
+test_that("CFBD season roster drops players it cannot scope to a team", {
+  local_mocked_bindings(.cfbd_roster_year = function(year) cfbd_roster_rows())
   r <- .cfbd_season_roster(2025, teams = cfbd_identity_teams())
   expect_identical(r$athlete_id, c("4870906", "4877717", "5078278"))
   expect_identical(r$display_name, c("Arch Manning", "Caldwell", "Lincoln Kienholz"))
   expect_identical(r$team_id, c("251", "251", "194"))
-  asked <- character()
-  r2 <- .cfbd_season_roster(2025, teams = cfbd_identity_teams(), schools = c("Ohio State", "Texas"))
-  expect_identical(asked, c("Ohio State", "Texas"))
-  expect_setequal(r2$athlete_id, r$athlete_id)
+  local_mocked_bindings(.cfbd_roster_year = function(year) stop("CFBD down"))
+  expect_null(.cfbd_season_roster(2025, teams = cfbd_identity_teams()))
+})
+
+test_that("CFBD season roster is fetched once per season, and a failure is not cached", {
+  skip_if_not_installed("memoise")
+  skip_if(identical(getOption("cfbfastR.cache"), "off"), "cfbfastR.cache is off")
+  # Falling out of .espn_memoised_helpers turns one request into one per call.
+  expect_true(memoise::is.memoised(.cfbd_roster_year))
+  expect_true(memoise::is.memoised(.cfbd_team_catalog))
+  memoise::forget(.cfbd_roster_year)
+  withr::defer(memoise::forget(.cfbd_roster_year))
+  calls <- 0L
+  answer <- data.frame()
+  local_mocked_bindings(cfbd_team_roster = function(year, ...) {
+    calls <<- calls + 1L
+    answer
+  })
+  expect_error(.cfbd_roster_year(2025), "no players")   # empty response
+  answer <- cfbd_roster_rows()
+  .cfbd_roster_year(2025)                               # retried, not cached
+  .cfbd_roster_year(2025)                               # served from cache
+  expect_identical(calls, 2L)
 })
 
 test_that("CFBD pbp possession ids match the ESPN path play for play", {

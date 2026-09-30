@@ -78,36 +78,48 @@
 
 #' CFBD team catalog (`team_id`, `school`, `abbreviation`) for a season
 #'
-#' Fetched once per call and shared by every game in it. Not memoised: CFBD
-#' endpoints stay uncached package-wide (see CLAUDE.md, Caching).
+#' Memoised per `year` (see `.espn_memoised_helpers` in `zzz.R`), so repeated
+#' pbp calls in a season reuse one `/teams` request. Aborts on an empty
+#' response instead of returning it: memoise does not cache errors, and an
+#' empty catalog must not stick for the cache's lifetime.
 #' @keywords internal
 #' @noRd
 .cfbd_team_catalog <- function(year) {
   x <- cfbd_team_info(only_fbs = FALSE, year = year)
   if (!is.data.frame(x) || !nrow(x)) {
-    return(data.frame(team_id = character(), school = character(),
-                      abbreviation = character()))
+    cli::cli_abort("CFBD /teams returned no teams for {year}.")
   }
   data.frame(team_id = as.character(x$team_id), school = as.character(x$school),
              abbreviation = as.character(x$abbreviation), stringsAsFactors = FALSE)
 }
 
+#' CFBD season-wide roster (`athlete_id`, `first_name`, `last_name`, `team`)
+#'
+#' One `/roster` request per season, memoised per `year` (see
+#' `.espn_memoised_helpers` in `zzz.R`). Aborts on an empty response so a
+#' failed request is retried next time rather than cached.
+#' @keywords internal
+#' @noRd
+.cfbd_roster_year <- function(year) {
+  r <- cfbd_team_roster(year = year)
+  if (!is.data.frame(r) || !nrow(r)) {
+    cli::cli_abort("CFBD /roster returned no players for {year}.")
+  }
+  as.data.frame(r)[c("athlete_id", "first_name", "last_name", "team")]
+}
+
 #' CFBD season roster in the engine's roster contract
 #'
-#' With `schools`, one `/roster` request per school (about 0.3 s each);
-#' without, one season-wide request (about 30,000 rows, roughly 20 s). CFBD
+#' Built from the season-wide `/roster` (about 30,000 rows, roughly 20 s),
+#' which `.cfbd_roster_year()` fetches once per season and memoises. CFBD
 #' athlete ids are ESPN athlete ids, so the ids resolved here agree with the
 #' ESPN path's.
 #' @return `athlete_id`, `display_name`, `team_id` (character), or NULL.
 #' @keywords internal
 #' @noRd
-.cfbd_season_roster <- function(year, teams = .cfbd_team_catalog(year), schools = NULL) {
-  r <- if (is.null(schools)) {
-    cfbd_team_roster(year = year)
-  } else {
-    dplyr::bind_rows(lapply(schools, function(s) as.data.frame(cfbd_team_roster(year = year, team = s))))
-  }
-  if (!is.data.frame(r) || !nrow(r)) return(NULL)
+.cfbd_season_roster <- function(year, teams) {
+  r <- tryCatch(.cfbd_roster_year(year), error = function(e) NULL)
+  if (is.null(r)) return(NULL)
   out <- data.frame(
     athlete_id   = as.character(r$athlete_id),
     display_name = trimws(paste(dplyr::coalesce(r$first_name, ""), dplyr::coalesce(r$last_name, ""))),

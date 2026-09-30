@@ -346,8 +346,9 @@ NULL
 #' loop over many games does not re-hit ESPN for the catalogs on every
 #' call.
 #'
-#' `espn_cfb_clear_cache()` forgets those memoised lookups. The next
-#' wrapper call that needs a catalog will fetch a fresh copy from ESPN.
+#' `espn_cfb_clear_cache()` forgets those memoised lookups, and also the
+#' per-season CFBD team catalog and roster that [cfbd_pbp_data()] memoises to
+#' attach team and player ids. The next call that needs one fetches it again.
 #' Use it when you want to force a refresh -- for example after a
 #' long-running session, or when debugging.
 #'

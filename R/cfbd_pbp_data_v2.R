@@ -299,7 +299,9 @@ cfbd_pbp_data_v2 <- function(year,
     year = year, week = week, season_type = season_type, team = team,
     conference = conference, division = division
   )
-  id_teams <- .cfbd_team_catalog(year)
+  id_teams <- tryCatch(.cfbd_team_catalog(year), error = function(e) {
+    data.frame(team_id = character(), school = character(), abbreviation = character())
+  })
   play_df <- .cfbd_team_identity(play_df, id_games, id_teams)
   no_ids <- unique(play_df$game_id[is.na(play_df$home_team_id)])
   if (length(no_ids)) {
@@ -328,10 +330,7 @@ cfbd_pbp_data_v2 <- function(year,
     # Player ids resolve against a roster. One season-wide CFBD roster, scoped
     # to each game's two teams so the engine never applies one game's roster
     # to another (CFBD athlete ids are ESPN athlete ids).
-    # A team= call covers a handful of schools: fetch just those rosters
-    # rather than the ~20 s season-wide one.
-    schools <- if (!is.null(team)) unique(c(play_df$home, play_df$away))
-    season_roster <- .cfbd_season_roster(year, teams = id_teams, schools = schools)
+    season_roster <- .cfbd_season_roster(year, teams = id_teams)
     rosters <- NULL
     if (!is.null(season_roster)) {
       g <- unique(play_df[, c("game_id", "home_team_id", "away_team_id")])
