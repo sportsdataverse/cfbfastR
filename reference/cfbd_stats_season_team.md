@@ -123,7 +123,7 @@ Other CFBD Stats:
 # \donttest{
    try(cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8))
 #> ── Season stats from CollegeFootballData.com ──────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-30 19:41:05 UTC
+#> ℹ Data updated: 2026-09-30 20:34:00 UTC
 #> # A tibble: 10 × 32
 #>    season team          conference games time_of_poss_total pass_comps pass_atts
 #>     <int> <chr>         <chr>      <int>              <int>      <int>     <int>
@@ -147,7 +147,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_season_team(2019, team = "LSU"))
 #> ── Season stats from CollegeFootballData.com ──────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-30 19:41:09 UTC
+#> ℹ Data updated: 2026-09-30 20:34:07 UTC
 #> # A tibble: 1 × 32
 #>   season team  conference games time_of_poss_total pass_comps pass_atts
 #>    <int> <chr> <chr>      <int>              <int>      <int>     <int>
@@ -162,7 +162,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_season_team(2013, team = "Florida State"))
 #> ── Season stats from CollegeFootballData.com ──────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-30 19:41:12 UTC
+#> ℹ Data updated: 2026-09-30 20:34:11 UTC
 #> # A tibble: 1 × 32
 #>   season team          conference games time_of_poss_total pass_comps pass_atts
 #>    <int> <chr>         <chr>      <int>              <int>      <int>     <int>

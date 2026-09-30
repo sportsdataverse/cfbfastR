@@ -174,6 +174,12 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   do: “1st & 0 at TULN 15” after a penalty backs “1st & Goal at TULN 10”
   up is modeled at 15. An overtime possession (“1st & 0 at OHIO 25”)
   never inherits the previous goal line.
+- [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
+  (v2 engine) returns rows in the order EPA and WPA were computed on. It
+  used to return them in the ESPN feed’s order, which differs for most
+  pre-2014 games (the feed lists plays out of id order), so
+  `game_play_number` stepped backwards and a lag over the returned rows
+  read the wrong play.
 
 ### Documentation: CFBD return tables
 

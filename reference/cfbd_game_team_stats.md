@@ -184,21 +184,21 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_team_stats(2022, team = "LSU"))
 #> ── Team stats data from CollegeFootballData.com ───────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-30 19:36:20 UTC
+#> ℹ Data updated: 2026-09-30 20:28:08 UTC
 #> # A tibble: 13 × 78
 #>      game_id school conference home_away opponent     opponent_conference points
 #>        <int> <chr>  <chr>      <chr>     <chr>        <chr>                <int>
 #>  1 401403923 LSU    SEC        home      Ole Miss     SEC                     45
-#>  2 401403939 LSU    SEC        away      Arkansas     SEC                     13
-#>  3 401403873 LSU    SEC        home      Southern     SWAC                    65
-#>  4 401403885 LSU    SEC        home      Mississippi… SEC                     31
-#>  5 401403903 LSU    SEC        away      Auburn       SEC                     21
-#>  6 401403867 LSU    SEC        away      Florida Sta… ACC                     23
-#>  7 401403934 LSU    SEC        home      Alabama      SEC                     32
-#>  8 401403963 LSU    SEC        away      Texas A&M    SEC                     23
-#>  9 401426612 LSU    SEC        home      UAB          Conference USA          41
-#> 10 401403897 LSU    SEC        home      New Mexico   Mountain West           38
-#> 11 401437036 LSU    SEC        away      Georgia      SEC                     30
+#>  2 401403873 LSU    SEC        home      Southern     SWAC                    65
+#>  3 401403963 LSU    SEC        away      Texas A&M    SEC                     23
+#>  4 401403903 LSU    SEC        away      Auburn       SEC                     21
+#>  5 401403934 LSU    SEC        home      Alabama      SEC                     32
+#>  6 401403939 LSU    SEC        away      Arkansas     SEC                     13
+#>  7 401426612 LSU    SEC        home      UAB          Conference USA          41
+#>  8 401403885 LSU    SEC        home      Mississippi… SEC                     31
+#>  9 401403867 LSU    SEC        away      Florida Sta… ACC                     23
+#> 10 401437036 LSU    SEC        away      Georgia      SEC                     30
+#> 11 401403897 LSU    SEC        home      New Mexico   Mountain West           38
 #> 12 401403913 LSU    SEC        home      Tennessee    SEC                     13
 #> 13 401403917 LSU    SEC        away      Florida      SEC                     45
 #> # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
@@ -211,7 +211,7 @@ Other CFBD Games:
 
   try(cfbd_game_team_stats(2013, team = "Florida State"))
 #> ── Team stats data from CollegeFootballData.com ───────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-30 19:36:21 UTC
+#> ℹ Data updated: 2026-09-30 20:28:09 UTC
 #> # A tibble: 13 × 78
 #>      game_id school     conference home_away opponent opponent_conference points
 #>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
