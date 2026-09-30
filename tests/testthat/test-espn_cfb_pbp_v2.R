@@ -80,3 +80,15 @@ test_that("ESPN CFB PBP v2 (core-v2) -- epa_wpa = TRUE columns superset FALSE", 
   )
   expect_in(sort(context_cols), sort(colnames(v1)))
 })
+
+test_that("espn_cfb_pbp_v2() returns rows in the order EPA was computed on", {
+  skip_on_cran()
+  # 312810077 (2011): the ESPN feed lists "4th & 3" (...007) before "3rd & 3"
+  # (...004). The engine sorts by id before modeling, but the output used to come
+  # back in the feed's order, so game_play_number stepped backwards 15 times.
+  d <- suppressWarnings(suppressMessages(espn_cfb_pbp(game_id = 312810077, epa_wpa = TRUE)))
+  if (!is.data.frame(d) || !nrow(d)) skip("ESPN returned no plays")
+  gp <- d$game_play_number[!is.na(d$game_play_number)]
+  expect_true(all(diff(gp) >= 0))
+  expect_lt(match("312810077004", d$id_play), match("312810077007", d$id_play))
+})
