@@ -87,21 +87,21 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_passing(2004))
 #> ── college football advanced passing from the SportsDataverse data repo ────────
-#> ℹ Data updated: 2026-09-27 11:08:46 UTC
-#> # A tibble: 1,506 × 37
+#> ℹ Data updated: 2026-09-30 09:46:57 UTC
+#> # A tibble: 1,520 × 37
 #>    pos_team_id pos_team passer_player_name  Comp   Att xComp   Yds Pass_TD   Int
 #>          <int> <chr>    <chr>              <int> <int> <dbl> <dbl>   <int> <int>
-#>  1          30 USC Tro… Matt Leinart          17    27 16.6     96       3     0
-#>  2         259 Virgini… Bryan Randall         12    27 18.1    102       1     1
-#>  3         245 Texas A… Reggie McNeal         11    32 16.9    154       0     0
-#>  4         254 Utah Ut… Alex Smith            20    28 17.2    218       3     0
-#>  5         245 Texas A… Ty Branyon             4     6  2.91    34       0     0
+#>  1          30 USC Tro… Matt Leinart          19    29 17.8    155       3     0
+#>  2         259 Virgini… Bryan Randall         14    29 19.3    141       1     1
+#>  3         245 Texas A… Reggie McNeal         13    34 18.0    212       0     0
+#>  4         254 Utah Ut… Alex Smith            21    29 17.9    230       3     0
+#>  5         245 Texas A… Ty Branyon             6     8  4.01    60       0     0
 #>  6         254 Utah Ut… Brian Johnson          1     2  1.24    11       0     0
-#>  7        2050 Ball St… Joey Lynch            16    30 19.0    109       0     0
-#>  8         103 Boston … Paul Peterson         11    22 13.0     97       1     1
-#>  9          77 Northwe… Brett Basanez         35    57 30.1    323       4     1
-#> 10        2628 TCU Hor… Tye Gunn              19    36 21.2    196       4     1
-#> # ℹ 1,496 more rows
+#>  7        2050 Ball St… Joey Lynch            19    33 20.7    146       0     0
+#>  8         103 Boston … Paul Peterson         13    24 14.2    124       1     1
+#>  9          77 Northwe… Brett Basanez         37    59 31.2    349       4     1
+#> 10        2628 TCU Hor… Tye Gunn              20    38 22.3    209       4     1
+#> # ℹ 1,510 more rows
 #> # ℹ 28 more variables: YPA <dbl>, EPA <dbl>, EPA_per_Play <dbl>, WPA <dbl>,
 #> #   SR <dbl>, Sck <int>, CompPct <dbl>, xCompPct <dbl>, CPOE <dbl>,
 #> #   AirYds <lgl>, aDOT <lgl>, CompAirYds <lgl>, YAC <lgl>, AirYdsPct <lgl>,

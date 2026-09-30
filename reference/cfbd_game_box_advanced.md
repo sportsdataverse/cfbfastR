@@ -23,80 +23,102 @@ cfbd_game_box_advanced(game_id, long = FALSE)
 
 ## Value
 
-`cfbd_game_box_advanced()` - A data frame with 2 rows and 69 variables:
+A data frame with two rows, one per team, and 69 variables, all double
+except `team`. Each CFBD section is matched to the teams by name, in the
+team order of its `ppa` section, so every value on a row belongs to that
+row's team (CFBD lists `havoc` in the opposite order to the other
+sections). From 2025 on, CFBD also sends `passing` and `rushingAdvanced`
+sections; they are not returned here – the same data comes from
+[`cfbd_passing_teams_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_teams_games.md)
+and
+[`cfbd_rushing_teams_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_teams_games.md).
+PPA is predicted points added. An empty data frame is returned if the
+request fails.
+
+**wide** (`long = FALSE`, the default) - one row per team:
 
 |  |  |  |
 |----|----|----|
-| col_name | types | description |
+| col_name | type | description |
 | team | character | Team name. |
-| plays | numeric | Number of plays. |
-| ppa_overall_total | numeric | Predicted points added (PPA) overall total. |
-| ppa_overall_quarter1 | numeric | Predicted points added (PPA) overall Q1. |
-| ppa_overall_quarter2 | numeric | Predicted points added (PPA) overall Q2. |
-| ppa_overall_quarter3 | numeric | Predicted points added (PPA) overall Q3. |
-| ppa_overall_quarter4 | numeric | Predicted points added (PPA) overall Q4. |
-| ppa_passing_total | numeric | Passing predicted points added (PPA) total. |
-| ppa_passing_quarter1 | numeric | Passing predicted points added (PPA) Q1. |
-| ppa_passing_quarter2 | numeric | Passing predicted points added (PPA) Q2. |
-| ppa_passing_quarter3 | numeric | Passing predicted points added (PPA) Q3. |
-| ppa_passing_quarter4 | numeric | Passing predicted points added (PPA) Q4. |
-| ppa_rushing_total | numeric | Rushing predicted points added (PPA) total. |
-| ppa_rushing_quarter1 | numeric | Rushing predicted points added (PPA) Q1. |
-| ppa_rushing_quarter2 | numeric | Rushing predicted points added (PPA) Q2. |
-| ppa_rushing_quarter3 | numeric | Rushing predicted points added (PPA) Q3. |
-| ppa_rushing_quarter4 | numeric | Rushing predicted points added (PPA) Q4. |
-| cumulative_ppa_plays | numeric | Cumulative predicted points added (PPA) added total. |
-| cumulative_ppa_overall_total | numeric | Cumulative predicted points added (PPA) total. |
-| cumulative_ppa_overall_quarter1 | numeric | Cumulative predicted points added (PPA) Q1. |
-| cumulative_ppa_overall_quarter2 | numeric | Cumulative predicted points added (PPA) Q2. |
-| cumulative_ppa_overall_quarter3 | numeric | Cumulative predicted points added (PPA) Q3. |
-| cumulative_ppa_overall_quarter4 | numeric | Cumulative predicted points added (PPA) Q4. |
-| cumulative_ppa_passing_total | numeric | Cumulative passing predicted points added (PPA) total. |
-| cumulative_ppa_passing_quarter1 | numeric | Cumulative passing predicted points added (PPA) Q1. |
-| cumulative_ppa_passing_quarter2 | numeric | Cumulative passing predicted points added (PPA) Q2. |
-| cumulative_ppa_passing_quarter3 | numeric | Cumulative passing predicted points added (PPA) Q3. |
-| cumulative_ppa_passing_quarter4 | numeric | Cumulative passing predicted points added (PPA) Q4. |
-| cumulative_ppa_rushing_total | numeric | Cumulative rushing predicted points added (PPA) total. |
-| cumulative_ppa_rushing_quarter1 | numeric | Cumulative rushing predicted points added (PPA) Q1. |
-| cumulative_ppa_rushing_quarter2 | numeric | Cumulative rushing predicted points added (PPA) Q2. |
-| cumulative_ppa_rushing_quarter3 | numeric | Cumulative rushing predicted points added (PPA) Q3. |
-| cumulative_ppa_rushing_quarter4 | numeric | Cumulative rushing predicted points added (PPA) Q4. |
-| success_rates_overall_total | numeric | Success rates overall total. |
-| success_rates_overall_quarter1 | numeric | Success rates overall Q1. |
-| success_rates_overall_quarter2 | numeric | Success rates overall Q2. |
-| success_rates_overall_quarter3 | numeric | Success rates overall Q3. |
-| success_rates_overall_quarter4 | numeric | Success rates overall Q4. |
-| success_rates_standard_downs_total | numeric | Success rates standard downs total. |
-| success_rates_standard_downs_quarter1 | numeric | Success rates standard downs Q1. |
-| success_rates_standard_downs_quarter2 | numeric | Success rates standard downs Q2. |
-| success_rates_standard_downs_quarter3 | numeric | Success rates standard downs Q3. |
-| success_rates_standard_downs_quarter4 | numeric | Success rates standard downs Q4. |
-| success_rates_passing_downs_total | numeric | Success rates passing downs total. |
-| success_rates_passing_downs_quarter1 | numeric | Success rates passing downs Q1. |
-| success_rates_passing_downs_quarter2 | numeric | Success rates passing downs Q2. |
-| success_rates_passing_downs_quarter3 | numeric | Success rates passing downs Q3. |
-| success_rates_passing_downs_quarter4 | numeric | Success rates passing downs Q4. |
-| explosiveness_overall_total | numeric | Explosiveness rates overall total. |
-| explosiveness_overall_quarter1 | numeric | Explosiveness rates overall Q1. |
-| explosiveness_overall_quarter2 | numeric | Explosiveness rates overall Q2. |
-| explosiveness_overall_quarter3 | numeric | Explosiveness rates overall Q3. |
-| explosiveness_overall_quarter4 | numeric | Explosiveness rates overall Q4. |
-| rushing_power_success | numeric | Rushing power success rate. |
-| rushing_stuff_rate | numeric | Rushing stuff rate. |
-| rushing_line_yds | numeric | Rushing offensive line yards. |
-| rushing_line_yds_avg | numeric | Rushing line yards average. |
-| rushing_second_lvl_yds | numeric | Rushing second-level yards. |
-| rushing_second_lvl_yds_avg | numeric | Average second level yards per rush. |
-| rushing_open_field_yds | numeric | Rushing open field yards. |
-| rushing_open_field_yds_avg | numeric | Average rushing open field yards average. |
-| havoc_total | numeric | Total havoc rate. |
-| havoc_front_seven | numeric | Front-7 players havoc rate. |
-| havoc_db | numeric | Defensive back players havoc rate. |
-| scoring_opps_opportunities | numeric | Number of scoring opportunities. |
-| scoring_opps_points | numeric | Points on scoring opportunity drives. |
-| scoring_opps_pts_per_opp | numeric | Points per scoring opportunity drives. |
-| field_pos_avg_start | numeric | Average starting field position. |
-| field_pos_avg_starting_predicted_pts | numeric | Average starting predicted points (PP) for the average starting field position. |
+| ppa_plays | double | Number of plays in the team's PPA sample. |
+| ppa_overall_total | double | Average PPA per play, whole game. |
+| ppa_overall_quarter1 | double | Average PPA per play, first quarter. |
+| ppa_overall_quarter2 | double | Average PPA per play, second quarter. |
+| ppa_overall_quarter3 | double | Average PPA per play, third quarter. |
+| ppa_overall_quarter4 | double | Average PPA per play, fourth quarter. |
+| ppa_passing_total | double | Average PPA per pass play, whole game. |
+| ppa_passing_quarter1 | double | Average PPA per pass play, first quarter. |
+| ppa_passing_quarter2 | double | Average PPA per pass play, second quarter. |
+| ppa_passing_quarter3 | double | Average PPA per pass play, third quarter. |
+| ppa_passing_quarter4 | double | Average PPA per pass play, fourth quarter. |
+| ppa_rushing_total | double | Average PPA per rush, whole game. |
+| ppa_rushing_quarter1 | double | Average PPA per rush, first quarter. |
+| ppa_rushing_quarter2 | double | Average PPA per rush, second quarter. |
+| ppa_rushing_quarter3 | double | Average PPA per rush, third quarter. |
+| ppa_rushing_quarter4 | double | Average PPA per rush, fourth quarter. |
+| cumulative_ppa_plays | double | Number of plays in the cumulative PPA sample (same as `ppa_plays`). |
+| cumulative_ppa_overall_total | double | Total PPA summed over all plays, whole game. |
+| cumulative_ppa_overall_quarter1 | double | Total PPA, first quarter. |
+| cumulative_ppa_overall_quarter2 | double | Total PPA, second quarter. |
+| cumulative_ppa_overall_quarter3 | double | Total PPA, third quarter. |
+| cumulative_ppa_overall_quarter4 | double | Total PPA, fourth quarter. |
+| cumulative_ppa_passing_total | double | Total PPA on pass plays, whole game. |
+| cumulative_ppa_passing_quarter1 | double | Total PPA on pass plays, first quarter. |
+| cumulative_ppa_passing_quarter2 | double | Total PPA on pass plays, second quarter. |
+| cumulative_ppa_passing_quarter3 | double | Total PPA on pass plays, third quarter. |
+| cumulative_ppa_passing_quarter4 | double | Total PPA on pass plays, fourth quarter. |
+| cumulative_ppa_rushing_total | double | Total PPA on rushes, whole game. |
+| cumulative_ppa_rushing_quarter1 | double | Total PPA on rushes, first quarter. |
+| cumulative_ppa_rushing_quarter2 | double | Total PPA on rushes, second quarter. |
+| cumulative_ppa_rushing_quarter3 | double | Total PPA on rushes, third quarter. |
+| cumulative_ppa_rushing_quarter4 | double | Total PPA on rushes, fourth quarter. |
+| success_rates_overall_total | double | Success rate (proportion 0-1 of plays that were successful), whole game. |
+| success_rates_overall_quarter1 | double | Success rate, first quarter; NA when the team had no plays in the quarter. |
+| success_rates_overall_quarter2 | double | Success rate, second quarter; NA when the team had no plays in the quarter. |
+| success_rates_overall_quarter3 | double | Success rate, third quarter; NA when the team had no plays in the quarter. |
+| success_rates_overall_quarter4 | double | Success rate, fourth quarter; NA when the team had no plays in the quarter. |
+| success_rates_standard_downs_total | double | Success rate on standard downs, whole game. |
+| success_rates_standard_downs_quarter1 | double | Success rate on standard downs, first quarter; NA when there were none. |
+| success_rates_standard_downs_quarter2 | double | Success rate on standard downs, second quarter; NA when there were none. |
+| success_rates_standard_downs_quarter3 | double | Success rate on standard downs, third quarter; NA when there were none. |
+| success_rates_standard_downs_quarter4 | double | Success rate on standard downs, fourth quarter; NA when there were none. |
+| success_rates_passing_downs_total | double | Success rate on passing downs, whole game. |
+| success_rates_passing_downs_quarter1 | double | Success rate on passing downs, first quarter; NA when there were none. |
+| success_rates_passing_downs_quarter2 | double | Success rate on passing downs, second quarter; NA when there were none. |
+| success_rates_passing_downs_quarter3 | double | Success rate on passing downs, third quarter; NA when there were none. |
+| success_rates_passing_downs_quarter4 | double | Success rate on passing downs, fourth quarter; NA when there were none. |
+| explosiveness_overall_total | double | Explosiveness (average PPA on successful plays), whole game. |
+| explosiveness_overall_quarter1 | double | Explosiveness, first quarter; NA when the team had no successful plays. |
+| explosiveness_overall_quarter2 | double | Explosiveness, second quarter; NA when the team had no successful plays. |
+| explosiveness_overall_quarter3 | double | Explosiveness, third quarter; NA when the team had no successful plays. |
+| explosiveness_overall_quarter4 | double | Explosiveness, fourth quarter; NA when the team had no successful plays. |
+| rushing_power_success | double | Proportion of short-yardage runs (third or fourth down, 2 yards or fewer to go) that gained a first down or touchdown. |
+| rushing_stuff_rate | double | Proportion of rushes stopped at or behind the line of scrimmage. |
+| rushing_line_yds | double | Total offensive line yards (Football Outsiders line-yards method). |
+| rushing_line_yds_avg | double | Offensive line yards per rush. |
+| rushing_second_lvl_yds | double | Total second-level yards: rushing yards gained 5 to 10 yards past the line of scrimmage. |
+| rushing_second_lvl_yds_avg | double | Second-level yards per rush. |
+| rushing_open_field_yds | double | Total open-field yards: rushing yards gained more than 10 yards past the line of scrimmage. |
+| rushing_open_field_yds_avg | double | Open-field yards per rush. |
+| havoc_total | double | Havoc rate created by the team's defense: proportion of the opponent's plays with a tackle for loss, forced fumble, interception or pass breakup. |
+| havoc_front_seven | double | Havoc rate created by the team's front seven (defensive linemen and linebackers). |
+| havoc_db | double | Havoc rate created by the team's defensive backs. |
+| scoring_opps_opportunities | double | Scoring opportunities: drives with a first down inside the opponent 40. |
+| scoring_opps_points | double | Points scored on scoring-opportunity drives. |
+| scoring_opps_pts_per_opp | double | Points per scoring opportunity. |
+| field_pos_avg_start | double | Average drive start, in yards to the end zone being attacked (70 = own 30). |
+| field_pos_avg_starting_predicted_pts | double | Average predicted points of the team's drive starts. |
+
+**long** (`long = TRUE`) - a plain data frame (not `cfbfastR_data`), one
+row per statistic in CFBD order:
+
+|  |  |  |
+|----|----|----|
+| col_name | type | description |
+| stat | character | Statistic name, as in the wide columns except that the three rushing averages end in `_yd_avg` (e.g. `rushing_line_yd_avg`), plus one `<section>_team` row per section (e.g. `havoc_team`) naming the team whose values fill `team1` and `team2` for that section. |
+| team1 | character | Value for the first team of CFBD's `ppa` section (every section is aligned to it), as text. |
+| team2 | character | Value for the second team of CFBD's `ppa` section, as text. |
 
 ## See also
 
@@ -119,7 +141,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_box_advanced(game_id = 401114233))
 #> ── Advanced box score data from CollegeFootballData.com ────────────────────────
-#> ℹ Data updated: 2026-09-27 10:58:02 UTC
+#> ℹ Data updated: 2026-09-30 09:39:54 UTC
 #> # A tibble: 2 × 69
 #>   team     ppa_plays ppa_overall_total ppa_overall_quarter1 ppa_overall_quarter2
 #>   <chr>        <dbl>             <dbl>                <dbl>                <dbl>

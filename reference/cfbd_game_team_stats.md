@@ -70,88 +70,97 @@ cfbd_game_team_stats(
 
 ## Value
 
-`cfbd_game_team_stats()` - A data frame with 78 variables:
+A data frame with one row per team per game and 78 variables. A `team`
+query keeps only that team's rows (CFBD returns both teams of each
+game); a `conference` query keeps only the rows of that conference's
+teams. The box-score statistics are character, as CFBD sends them, and
+NA when CFBD has no value for that team. Every column from `points` to
+`possession_time` is repeated with the suffix `_allowed`, holding the
+opponent's value from the same game. With `rows_per_team = 2`,
+`opponent`, `opponent_conference` and the `_allowed` columns are dropped
+(40 variables). `NULL` is returned with a warning when CFBD returns no
+games (e.g. a bye week), and an empty data frame if the request fails.
 
 |  |  |  |
 |----|----|----|
-| col_name | types | description |
-| game_id | integer | Referencing game id. |
-| team | character | Team name. |
+| col_name | type | description |
+| game_id | integer | Unique CFBD game identifier. |
+| school | character | Team name (CFBD `team`, renamed). |
 | conference | character | Conference of the team. |
-| home_away | character | Home/Away Flag. |
-| opponent | character | Opponent team name. |
-| opponent_conference | character | Conference of the opponent team. |
+| home_away | character | home or away. |
+| opponent | character | Opponent team name; absent with `rows_per_team = 2`. |
+| opponent_conference | character | Conference of the opponent; absent with `rows_per_team = 2`. |
 | points | integer | Team points. |
-| total_yards | character | Team total yards. |
-| net_passing_yards | character | Team net passing yards. |
-| completion_attempts | character | Team completion attempts. |
-| passing_tds | character | Team passing touchdowns. |
-| yards_per_pass | character | Team game yards per pass. |
-| passes_intercepted | character | Team passes intercepted. |
-| interception_yards | character | Interception yards. |
-| interception_tds | character | Interceptions returned for a touchdown. |
-| rushing_attempts | character | Team rushing attempts. |
-| rushing_yards | character | Team rushing yards. |
-| rush_tds | character | Team rushing touchdowns. |
-| yards_per_rush_attempt | character | Team yards per rush attempt. |
-| first_downs | character | First downs earned by the team. |
-| third_down_eff | character | Third down efficiency. |
-| fourth_down_eff | character | Fourth down efficiency. |
-| punt_returns | character | Team punt returns. |
-| punt_return_yards | character | Team punt return yards. |
-| punt_return_tds | character | Team punt return touchdowns. |
-| kick_return_yards | character | Team kick return yards. |
-| kick_return_tds | character | Team kick return touchdowns. |
-| kick_returns | character | Team kick returns. |
-| kicking_points | character | Team points from kicking the ball. |
-| fumbles_recovered | character | Team fumbles recovered. |
-| fumbles_lost | character | Team fumbles lost. |
-| total_fumbles | character | Team total fumbles. |
-| tackles | character | Team tackles. |
-| tackles_for_loss | character | Team tackles for a loss. |
-| sacks | character | Team sacks. |
-| qb_hurries | character | Team QB hurries. |
-| interceptions | character | Team interceptions. |
-| passes_deflected | character | Team passes deflected. |
-| turnovers | character | Team turnovers. |
-| defensive_tds | character | Team defensive touchdowns. |
-| total_penalties_yards | character | Team total penalty yards. |
-| possession_time | character | Team time of possession. |
-| points_allowed | integer | Points for the opponent. |
-| total_yards_allowed | character | Opponent total yards. |
+| total_yards | character | Total offensive yards. |
+| net_passing_yards | character | Net passing yards. |
+| completion_attempts | character | Completions and pass attempts as completions-attempts text (e.g. 21-28). |
+| passing_tds | character | Passing touchdowns. |
+| yards_per_pass | character | Yards per pass attempt. |
+| passes_intercepted | character | Opponent passes the team intercepted; NA when none recorded. |
+| interception_yards | character | Return yards on the team's interceptions. |
+| interception_tds | character | Interceptions the team returned for a touchdown. |
+| rushing_attempts | character | Rushing attempts. |
+| rushing_yards | character | Rushing yards. |
+| rush_tds | character | Rushing touchdowns. |
+| yards_per_rush_attempt | character | Yards per rushing attempt. |
+| first_downs | character | First downs. |
+| third_down_eff | character | Third-down conversions as conversions-attempts text (e.g. 6-11). |
+| fourth_down_eff | character | Fourth-down conversions as conversions-attempts text (e.g. 1-1). |
+| punt_returns | character | Punt returns; NA when none recorded. |
+| punt_return_yards | character | Punt return yards. |
+| punt_return_tds | character | Punt return touchdowns. |
+| kick_return_yards | character | Kickoff return yards. |
+| kick_return_tds | character | Kickoff return touchdowns. |
+| kick_returns | character | Kickoff returns. |
+| kicking_points | character | Points from kicking (field goals and extra points). |
+| fumbles_recovered | character | Fumbles recovered. |
+| fumbles_lost | character | Fumbles lost to the opponent. |
+| total_fumbles | character | Total fumbles; NA when none recorded. |
+| tackles | character | Tackles. |
+| tackles_for_loss | character | Tackles for loss. |
+| sacks | character | Sacks by the team's defense. |
+| qb_hurries | character | Quarterback hurries by the team's defense. |
+| interceptions | character | Interceptions thrown by the team (counted in `turnovers`). |
+| passes_deflected | character | Passes deflected by the team's defense. |
+| turnovers | character | Turnovers committed. |
+| defensive_tds | character | Defensive touchdowns. |
+| total_penalties_yards | character | Penalties and penalty yards as penalties-yards text (e.g. 8-71). |
+| possession_time | character | Time of possession as minutes:seconds text (e.g. 36:19). |
+| points_allowed | integer | Points scored by the opponent. |
+| total_yards_allowed | character | Opponent total offensive yards. |
 | net_passing_yards_allowed | character | Opponent net passing yards. |
-| completion_attempts_allowed | character | Opponent completion attempts. |
-| passing_tds_allowed | character | Opponent passing TDs. |
-| yards_per_pass_allowed | character | Opponent yards per pass allowed. |
-| passes_intercepted_allowed | character | Opponent passes intercepted. |
-| interception_yards_allowed | character | Opponent interception yards. |
-| interception_tds_allowed | character | Opponent interception TDs. |
+| completion_attempts_allowed | character | Opponent completions and pass attempts as completions-attempts text. |
+| passing_tds_allowed | character | Opponent passing touchdowns. |
+| yards_per_pass_allowed | character | Opponent yards per pass attempt. |
+| passes_intercepted_allowed | character | Team passes the opponent intercepted; NA when none recorded. |
+| interception_yards_allowed | character | Return yards on the opponent's interceptions. |
+| interception_tds_allowed | character | Interceptions the opponent returned for a touchdown. |
 | rushing_attempts_allowed | character | Opponent rushing attempts. |
 | rushing_yards_allowed | character | Opponent rushing yards. |
 | rush_tds_allowed | character | Opponent rushing touchdowns. |
-| yards_per_rush_attempt_allowed | character | Opponent rushing yards per attempt. |
+| yards_per_rush_attempt_allowed | character | Opponent yards per rushing attempt. |
 | first_downs_allowed | character | Opponent first downs. |
-| third_down_eff_allowed | character | Opponent third down efficiency. |
-| fourth_down_eff_allowed | character | Opponent fourth down efficiency. |
-| punt_returns_allowed | character | Opponent punt returns. |
+| third_down_eff_allowed | character | Opponent third-down conversions as conversions-attempts text. |
+| fourth_down_eff_allowed | character | Opponent fourth-down conversions as conversions-attempts text. |
+| punt_returns_allowed | character | Opponent punt returns; NA when none recorded. |
 | punt_return_yards_allowed | character | Opponent punt return yards. |
 | punt_return_tds_allowed | character | Opponent punt return touchdowns. |
-| kick_return_yards_allowed | character | Opponent kick return yards. |
-| kick_return_tds_allowed | character | Opponent kick return touchdowns. |
-| kick_returns_allowed | character | Opponent kick returns. |
+| kick_return_yards_allowed | character | Opponent kickoff return yards. |
+| kick_return_tds_allowed | character | Opponent kickoff return touchdowns. |
+| kick_returns_allowed | character | Opponent kickoff returns. |
 | kicking_points_allowed | character | Opponent points from kicking. |
 | fumbles_recovered_allowed | character | Opponent fumbles recovered. |
-| fumbles_lost_allowed | character | Opponent fumbles lost. |
-| total_fumbles_allowed | character | Opponent total number of fumbles. |
+| fumbles_lost_allowed | character | Fumbles the opponent lost. |
+| total_fumbles_allowed | character | Opponent total fumbles; NA when none recorded. |
 | tackles_allowed | character | Opponent tackles. |
 | tackles_for_loss_allowed | character | Opponent tackles for loss. |
-| sacks_allowed | character | Opponent sacks. |
-| qb_hurries_allowed | character | Opponent quarterback hurries. |
-| interceptions_allowed | character | Opponent interceptions. |
-| passes_deflected_allowed | character | Opponent passes deflected. |
-| turnovers_allowed | character | Opponent turnovers. |
+| sacks_allowed | character | Sacks by the opponent's defense. |
+| qb_hurries_allowed | character | Quarterback hurries by the opponent's defense. |
+| interceptions_allowed | character | Interceptions thrown by the opponent. |
+| passes_deflected_allowed | character | Passes deflected by the opponent's defense. |
+| turnovers_allowed | character | Turnovers committed by the opponent. |
 | defensive_tds_allowed | character | Opponent defensive touchdowns. |
-| total_penalties_yards_allowed | character | Opponent total penalty yards. |
+| total_penalties_yards_allowed | character | Opponent penalties and penalty yards as penalties-yards text. |
 | possession_time_allowed | character | Opponent time of possession. |
 
 ## See also
@@ -175,50 +184,56 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_team_stats(2022, team = "LSU"))
 #> ── Team stats data from CollegeFootballData.com ───────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 10:58:09 UTC
-#> # A tibble: 26 × 78
-#>      game_id school     conference home_away opponent opponent_conference points
-#>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
-#>  1 401403923 LSU        SEC        home      Ole Miss SEC                     45
-#>  2 401403923 Ole Miss   SEC        away      LSU      SEC                     20
-#>  3 401403939 Arkansas   SEC        home      LSU      SEC                     10
-#>  4 401403939 LSU        SEC        away      Arkansas SEC                     13
-#>  5 401403873 Southern   SWAC       away      LSU      SEC                     17
-#>  6 401403873 LSU        SEC        home      Southern SWAC                    65
-#>  7 401403885 LSU        SEC        home      Mississ… SEC                     31
-#>  8 401403885 Mississip… SEC        away      LSU      SEC                     16
-#>  9 401403934 Alabama    SEC        away      LSU      SEC                     31
-#> 10 401403934 LSU        SEC        home      Alabama  SEC                     32
-#> # ℹ 16 more rows
+#> ℹ Data updated: 2026-09-30 09:40:06 UTC
+#> # A tibble: 13 × 78
+#>      game_id school conference home_away opponent     opponent_conference points
+#>        <int> <chr>  <chr>      <chr>     <chr>        <chr>                <int>
+#>  1 401403923 LSU    SEC        home      Ole Miss     SEC                     45
+#>  2 401403939 LSU    SEC        away      Arkansas     SEC                     13
+#>  3 401403963 LSU    SEC        away      Texas A&M    SEC                     23
+#>  4 401403885 LSU    SEC        home      Mississippi… SEC                     31
+#>  5 401403867 LSU    SEC        away      Florida Sta… ACC                     23
+#>  6 401403934 LSU    SEC        home      Alabama      SEC                     32
+#>  7 401403873 LSU    SEC        home      Southern     SWAC                    65
+#>  8 401403903 LSU    SEC        away      Auburn       SEC                     21
+#>  9 401437036 LSU    SEC        away      Georgia      SEC                     30
+#> 10 401426612 LSU    SEC        home      UAB          Conference USA          41
+#> 11 401403897 LSU    SEC        home      New Mexico   Mountain West           38
+#> 12 401403917 LSU    SEC        away      Florida      SEC                     45
+#> 13 401403913 LSU    SEC        home      Tennessee    SEC                     13
 #> # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
 #> #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
 #> #   passes_intercepted <chr>, interception_yards <chr>, interception_tds <chr>,
 #> #   rushing_attempts <chr>, rushing_yards <chr>, rush_tds <chr>,
 #> #   yards_per_rush_attempt <chr>, first_downs <chr>, third_down_eff <chr>,
-#> #   fourth_down_eff <chr>, punt_returns <chr>, punt_return_yards <chr>, …
+#> #   fourth_down_eff <chr>, punt_returns <chr>, punt_return_yards <chr>,
+#> #   punt_return_tds <chr>, kick_return_yards <chr>, kick_return_tds <chr>, …
 
   try(cfbd_game_team_stats(2013, team = "Florida State"))
 #> ── Team stats data from CollegeFootballData.com ───────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 10:58:10 UTC
-#> # A tibble: 26 × 78
+#> ℹ Data updated: 2026-09-30 09:40:07 UTC
+#> # A tibble: 13 × 78
 #>      game_id school     conference home_away opponent opponent_conference points
 #>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
 #>  1 332640052 Florida S… ACC        home      Bethune… MEAC                    54
-#>  2 332640052 Bethune-C… MEAC       away      Florida… ACC                      6
-#>  3 332450221 Pittsburgh ACC        home      Florida… ACC                     13
-#>  4 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
-#>  5 332710103 Boston Co… ACC        home      Florida… ACC                     34
-#>  6 332710103 Florida S… ACC        away      Boston … ACC                     48
-#>  7 332780052 Florida S… ACC        home      Maryland ACC                     63
-#>  8 332780052 Maryland   ACC        away      Florida… ACC                      0
-#>  9 333410052 Florida S… ACC        home      Duke     ACC                     45
-#> 10 333410052 Duke       ACC        away      Florida… ACC                      7
-#> # ℹ 16 more rows
+#>  2 332570052 Florida S… ACC        home      Nevada   Mountain West           62
+#>  3 332990052 Florida S… ACC        home      NC State ACC                     49
+#>  4 333060052 Florida S… ACC        home      Miami    ACC                     41
+#>  5 333340057 Florida S… ACC        away      Florida  SEC                     37
+#>  6 333410052 Florida S… ACC        home      Duke     ACC                     45
+#>  7 333130154 Florida S… ACC        away      Wake Fo… ACC                     59
+#>  8 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
+#>  9 332710103 Florida S… ACC        away      Boston … ACC                     48
+#> 10 332780052 Florida S… ACC        home      Maryland ACC                     63
+#> 11 333200052 Florida S… ACC        home      Syracuse ACC                     59
+#> 12 332920228 Florida S… ACC        away      Clemson  ACC                     51
+#> 13 333270052 Florida S… ACC        home      Idaho    FBS Independents        80
 #> # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
 #> #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
 #> #   passes_intercepted <chr>, interception_yards <chr>, interception_tds <chr>,
 #> #   rushing_attempts <chr>, rushing_yards <chr>, rush_tds <chr>,
 #> #   yards_per_rush_attempt <chr>, first_downs <chr>, third_down_eff <chr>,
-#> #   fourth_down_eff <chr>, punt_returns <chr>, punt_return_yards <chr>, …
+#> #   fourth_down_eff <chr>, punt_returns <chr>, punt_return_yards <chr>,
+#> #   punt_return_tds <chr>, kick_return_yards <chr>, kick_return_tds <chr>, …
 # }
 ```

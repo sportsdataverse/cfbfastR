@@ -72,21 +72,21 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_rushing(2004))
 #> ── college football advanced rushing from the SportsDataverse data repo ────────
-#> ℹ Data updated: 2026-09-27 11:08:49 UTC
-#> # A tibble: 4,690 × 16
+#> ℹ Data updated: 2026-09-30 09:46:59 UTC
+#> # A tibble: 4,758 × 16
 #>    pos_team_id pos_team       rusher_player_name   Car   Yds Rush_TD   YPC   EPA
 #>          <int> <chr>          <chr>              <int> <dbl>   <int> <dbl> <dbl>
-#>  1          30 USC Trojans    LenDale White         14    62       0  4.43 -0.38
-#>  2         259 Virginia Tech… Bryan Randall         10    83       0  8.3   6.93
-#>  3          30 USC Trojans    Reggie Bush            9    32       0  3.56 -2.27
+#>  1          30 USC Trojans    LenDale White         15    73       0  4.87  0.37
+#>  2         259 Virginia Tech… Bryan Randall         12   110       0  9.17  9.32
+#>  3          30 USC Trojans    Reggie Bush            9    27       0  3    -2.36
 #>  4         259 Virginia Tech… Cedric Humes           9    23       0  2.56 -3.15
-#>  5         259 Virginia Tech… Justin Hamilton        7    20       0  2.86 -2.46
+#>  5         259 Virginia Tech… Justin Hamilton        8    32       0  4    -1.56
 #>  6          30 USC Trojans    Matt Leinart           2     9       0  4.5   1.72
-#>  7          30 USC Trojans    Steve Smith            1     0       0  0    -0.61
-#>  8         254 Utah Utes      Marty Johnson         20    80       0  4    -4.91
-#>  9         245 Texas A&M Agg… Reggie McNeal         12   104       2  8.67  5.29
-#> 10         254 Utah Utes      Alex Smith            12    88       2  7.33 -1.87
-#> # ℹ 4,680 more rows
+#>  7          30 USC Trojans    Steve Smith            1    -1       0 -1    -0.61
+#>  8         254 Utah Utes      Marty Johnson         20    76       0  3.8  -4.97
+#>  9         245 Texas A&M Agg… Reggie McNeal         13    96       2  7.38  6.48
+#> 10         254 Utah Utes      Alex Smith            13    92       2  7.08 -0.99
+#> # ℹ 4,748 more rows
 #> # ℹ 8 more variables: EPA_per_Play <dbl>, WPA <dbl>, SR <dbl>, Fum <int>,
 #> #   Fum_Lost <int>, game_id <int>, season <int>, week <int>
 # }

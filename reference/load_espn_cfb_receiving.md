@@ -87,21 +87,21 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_receiving(2004))
 #> ── college football receiving EPA splits from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-09-27 11:09:16 UTC
-#> # A tibble: 1,390 × 55
+#> ℹ Data updated: 2026-09-30 09:47:22 UTC
+#> # A tibble: 1,418 × 55
 #>    team_id pos_team    division conference season player_id receiver_player_name
 #>    <chr>   <chr>       <chr>    <chr>       <int>     <int> <chr>               
-#>  1 2006    Akron       fbs      Mid-Ameri…   2004    135759 Mark Tetzel         
-#>  2 70      Idaho       fbs      Sun Belt     2004    138545 Wendell Octave      
-#>  3 2390    Miami       fbs      ACC          2004    120144 Quadtrine Hill      
-#>  4 158     Nebraska    fbs      Big 12       2004    137496 Mark LeFlore        
-#>  5 265     Washington… fbs      Pac-10       2004    123378 Allen Thompson      
-#>  6 2628    TCU         fbs      Conferenc…   2004    137467 Michael DePriest    
-#>  7 276     Marshall    fbs      Mid-Ameri…   2004    162097 Ahmad Bradshaw      
-#>  8 97      Louisville  fbs      Conferenc…   2004    112529 Adam McCauley       
-#>  9 2579    South Caro… fbs      SEC          2004    134875 Andy Boyd           
-#> 10 2628    TCU         fbs      Conferenc…   2004    104811 Reggie Harrell      
-#> # ℹ 1,380 more rows
+#>  1 2483    Oregon      fbs      Pac-10       2004    120706 Terrence Whitehead  
+#>  2 96      Kentucky    fbs      SEC          2004    146704 John Logan          
+#>  3 57      Florida     fbs      SEC          2004    134548 Kenneth Tookes      
+#>  4 221     Pittsburgh  fbs      Big East     2004    163206 Derek Kinder        
+#>  5 2649    Toledo      fbs      Mid-Ameri…   2004    162026 Chris Hopkins       
+#>  6 153     North Caro… fbs      ACC          2004    145834 Ronnie McGill       
+#>  7 2390    Miami       fbs      ACC          2004    133197 Talib Humphrey      
+#>  8 202     Tulsa       fbs      Western A…   2004    106000 Montiese Culton     
+#>  9 2440    Nevada      fbs      Western A…   2004    133567 Anthony Pudewell    
+#> 10 52      Florida St… fbs      ACC          2004    145745 James Coleman       
+#> # ℹ 1,408 more rows
 #> # ℹ 48 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, comp <int>, targets <int>,
 #> #   passing_td <dbl>, fumbles <dbl>, playsgame <dbl>, EPAgame <dbl>,

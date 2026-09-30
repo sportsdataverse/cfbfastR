@@ -219,21 +219,21 @@ writes the season data into a database.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">load_espn_cfb_adv_rushing</span><span class="op">(</span><span class="fl">2004</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── college football advanced rushing from the SportsDataverse data repo ────────</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-27 11:08:49 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4,690 × 16</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-30 09:46:59 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4,758 × 16</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    pos_team_id pos_team       rusher_player_name   Car   Yds Rush_TD   YPC   EPA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>          30 USC Trojans    LenDale White         14    62       0  4.43 -<span style="color: #BB0000;">0.38</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>         259 Virginia Tech… Bryan Randall         10    83       0  8.3   6.93</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>          30 USC Trojans    Reggie Bush            9    32       0  3.56 -<span style="color: #BB0000;">2.27</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>          30 USC Trojans    LenDale White         15    73       0  4.87  0.37</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>         259 Virginia Tech… Bryan Randall         12   110       0  9.17  9.32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>          30 USC Trojans    Reggie Bush            9    27       0  3    -<span style="color: #BB0000;">2.36</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>         259 Virginia Tech… Cedric Humes           9    23       0  2.56 -<span style="color: #BB0000;">3.15</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>         259 Virginia Tech… Justin Hamilton        7    20       0  2.86 -<span style="color: #BB0000;">2.46</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>         259 Virginia Tech… Justin Hamilton        8    32       0  4    -<span style="color: #BB0000;">1.56</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>          30 USC Trojans    Matt Leinart           2     9       0  4.5   1.72</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>          30 USC Trojans    Steve Smith            1     0       0  0    -<span style="color: #BB0000;">0.61</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>         254 Utah Utes      Marty Johnson         20    80       0  4    -<span style="color: #BB0000;">4.91</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>         245 Texas A&amp;M Agg… Reggie McNeal         12   104       2  8.67  5.29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>         254 Utah Utes      Alex Smith            12    88       2  7.33 -<span style="color: #BB0000;">1.87</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4,680 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>          30 USC Trojans    Steve Smith            1    -<span style="color: #BB0000;">1</span>       0 -<span style="color: #BB0000;">1</span>    -<span style="color: #BB0000;">0.61</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>         254 Utah Utes      Marty Johnson         20    76       0  3.8  -<span style="color: #BB0000;">4.97</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>         245 Texas A&amp;M Agg… Reggie McNeal         13    96       2  7.38  6.48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>         254 Utah Utes      Alex Smith            13    92       2  7.08 -<span style="color: #BB0000;">0.99</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4,748 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: EPA_per_Play &lt;dbl&gt;, WPA &lt;dbl&gt;, SR &lt;dbl&gt;, Fum &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   Fum_Lost &lt;int&gt;, game_id &lt;int&gt;, season &lt;int&gt;, week &lt;int&gt;</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>

@@ -53,7 +53,7 @@ cfbd_rushing_players_season(
 
 |  |  |  |
 |----|----|----|
-| col_name | types | description |
+| col_name | type | description |
 | season | integer | Four-digit season year (e.g. 2025). |
 | player_id | character | CFBD athlete identifier (use with [`cfbd_player_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_info.md)). |
 | player | character | Player full name. |
@@ -79,7 +79,7 @@ Other CFBD Rushing:
 # \donttest{
   try(cfbd_rushing_players_season(year = 2025, team = "Texas"))
 #> ── Player season rushing data from CollegeFootballData.com ─────────────────────
-#> ℹ Data updated: 2026-09-27 11:03:35 UTC
+#> ℹ Data updated: 2026-09-30 09:43:19 UTC
 #> # A tibble: 11 × 89
 #>    season player_id player      team  conference attempts rushing_yards_availa…¹
 #>     <int> <chr>     <chr>       <chr> <chr>         <int>                  <int>

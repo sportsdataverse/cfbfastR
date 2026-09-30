@@ -45,11 +45,11 @@ leaderboard headers plus `entity_id`.
 # \donttest{
   try(fox_cfb_league_leaders(category = "passing"))
 #> ── Statistical leaders from Fox Sports (Bifrost) ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 11:08:13 UTC
+#> ℹ Data updated: 2026-09-30 09:46:29 UTC
 #> # A tibble: 75 × 7
 #>    players v2             comp  gp    entity_id patt  att_g
 #>    <chr>   <chr>          <chr> <chr> <chr>     <chr> <chr>
-#>  1 1       C. Veltkamp    115   4     195564    NA    NA   
+#>  1 1       C. Veltkamp    114   4     195564    NA    NA   
 #>  2 2       J. Maiava      110   5     196106    NA    NA   
 #>  3 3       M. Alejado     109   4     222163    NA    NA   
 #>  4 4       N. Kim         106   5     177780    NA    NA   

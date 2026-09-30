@@ -73,7 +73,7 @@ Other CFBD Ratings and Rankings:
 # \donttest{
   try(cfbd_ratings_sp(year = 2018))
 #> ── SP+ data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 11:03:03 UTC
+#> ℹ Data updated: 2026-09-30 09:43:09 UTC
 #> # A tibble: 131 × 29
 #>     year team  conference rating ranking second_order_wins   sos offense_ranking
 #>    <int> <chr> <chr>       <dbl>   <int>             <dbl> <dbl>           <int>
@@ -97,20 +97,20 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_sp(team = "Texas A&M"))
 #> ── SP+ data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 11:03:04 UTC
+#> ℹ Data updated: 2026-09-30 09:43:09 UTC
 #> # A tibble: 114 × 29
 #>     year team  conference rating ranking second_order_wins   sos offense_ranking
 #>    <int> <chr> <chr>       <dbl>   <int>             <dbl> <dbl>           <int>
 #>  1  1970 Texa… SEC          -1.7      53                NA    NA              51
 #>  2  1971 Texa… SEC          -3.5      55                NA    NA              57
 #>  3  1972 Texa… SEC           3.7      49                NA    NA              54
-#>  4  1973 Texa… SEC           8.9      43                NA    NA              38
-#>  5  1974 Texa… SEC          14.9      28                NA    NA              50
+#>  4  1973 Texa… SEC           8.9      42                NA    NA              37
+#>  5  1974 Texa… SEC          14.9      27                NA    NA              50
 #>  6  1975 Texa… SEC          19.1      17                NA    NA              45
-#>  7  1976 Texa… SEC          20.8      10                NA    NA              24
-#>  8  1977 Texa… SEC          11.8      35                NA    NA              11
+#>  7  1976 Texa… SEC          20.8      10                NA    NA              23
+#>  8  1977 Texa… SEC          11.8      34                NA    NA              11
 #>  9  1978 Texa… SEC           8.2      44                NA    NA              46
-#> 10  1979 Texa… SEC          21.4       7                NA    NA              40
+#> 10  1979 Texa… SEC          21.4       7                NA    NA              39
 #> # ℹ 104 more rows
 #> # ℹ 21 more variables: offense_rating <dbl>, offense_success <dbl>,
 #> #   offense_explosiveness <dbl>, offense_rushing <dbl>, offense_passing <dbl>,
@@ -121,7 +121,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_sp(year = 2019, team = "Texas"))
 #> ── SP+ data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 11:03:04 UTC
+#> ℹ Data updated: 2026-09-30 09:43:09 UTC
 #> # A tibble: 2 × 29
 #>    year team   conference rating ranking second_order_wins sos   offense_ranking
 #>   <int> <chr>  <chr>       <dbl>   <int> <lgl>             <lgl>           <int>

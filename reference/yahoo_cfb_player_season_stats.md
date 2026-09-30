@@ -68,7 +68,7 @@ Other Yahoo CFB Functions:
 # \donttest{
   try(yahoo_cfb_player_season_stats(season = 2024))
 #> ── Player season stats from Yahoo Sports (shangrila) ──── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 11:10:53 UTC
+#> ℹ Data updated: 2026-09-30 09:48:39 UTC
 #> # A tibble: 200 × 89
 #>    player_id      display_name     team      team_abbreviation all_purpose_yards
 #>    <chr>          <chr>            <chr>     <chr>             <chr>            
@@ -83,11 +83,11 @@ Other Yahoo CFB Functions:
 #>  9 ncaaf.p.276361 Spencer Curtis   Hawaii    HAW               244              
 #> 10 ncaaf.p.276368 Logan Lutui      BYU       BYU               0                
 #> # ℹ 190 more rows
-#> # ℹ 84 more variables: field_goals_made_0_19 <chr>, field_goals_0_to_19 <chr>,
-#> #   kickoff_return_yards <chr>, passing_yards_per_game <chr>,
-#> #   punt_returns <chr>, solo_tackles <chr>, punt_yards <chr>,
-#> #   games_offense <chr>, passing_touchdowns <chr>,
-#> #   field_goals_made_50_plus <chr>, longest_reception <chr>,
-#> #   interception_return_yards <chr>, games_rushing <chr>, …
+#> # ℹ 84 more variables: passing_yards_per_attempt <chr>, longest_punt <chr>,
+#> #   passing_attempts <chr>, rushing_attempts_per_game <chr>,
+#> #   interceptions_forced <chr>, receptions <chr>, field_goals_made <chr>,
+#> #   passing_yards <chr>, targets <chr>, total_tackles <chr>,
+#> #   field_goals_made_0_19 <chr>, receiving_touchdowns <chr>,
+#> #   interception_return_touchdowns <chr>, games_offense <chr>, …
 # }
 ```

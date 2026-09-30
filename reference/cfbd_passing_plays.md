@@ -84,7 +84,7 @@ cfbd_passing_plays(
 
 |  |  |  |
 |----|----|----|
-| col_name | types | description |
+| col_name | type | description |
 | game_id | integer | Unique game identifier - `game_id`. |
 | play_id | character | Unique play identifier - `play_id`. |
 | drive_id | character | Unique drive identifier - `drive_id`. |
@@ -121,7 +121,7 @@ cfbd_passing_plays(
 | is_throwaway | logical | TRUE when the pass was a deliberate throwaway. |
 | is_intentional_grounding | logical | TRUE when the play was flagged intentional grounding. |
 | parse_status | character | How completely CFBD parsed the play text for this row. |
-| ppa | numeric | Predicted points added on the play. |
+| ppa | double | Predicted points added on the play. |
 | success | logical | TRUE when the play met the success threshold for its down and distance. |
 | location_analysis_eligible | logical | TRUE when the play is eligible to be counted in a location split. |
 
@@ -147,7 +147,28 @@ Other CFBD Passing:
 
 ``` r
 # \donttest{
-  try(cfbd_passing_plays(year = 2025, week = 5, team = "Texas"))
-#> data frame with 0 columns and 0 rows
+  try(cfbd_passing_plays(year = 2025, week = 1, team = "Texas"))
+#> ── Passing plays data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-09-30 09:40:24 UTC
+#> # A tibble: 128 × 39
+#>      game_id play_id        drive_id season  week season_type offense_id offense
+#>        <int> <chr>          <chr>     <int> <int> <chr>            <int> <chr>  
+#>  1 401752677 4017526771019… 4017526…   2025     1 regular            251 Texas  
+#>  2 401752677 4017526771018… 4017526…   2025     1 regular            251 Texas  
+#>  3 401752677 4017526771019… 4017526…   2025     1 regular            194 Ohio S…
+#>  4 401752677 4017526771019… 4017526…   2025     1 regular            194 Ohio S…
+#>  5 401752677 4017526771019… 4017526…   2025     1 regular            194 Ohio S…
+#>  6 401752677 4017526771018… 4017526…   2025     1 regular            251 Texas  
+#>  7 401752677 4017526771019… 4017526…   2025     1 regular            194 Ohio S…
+#>  8 401752677 4017526771019… 4017526…   2025     1 regular            251 Texas  
+#>  9 401752677 4017526771019… 4017526…   2025     1 regular            194 Ohio S…
+#> 10 401752677 4017526771019… 4017526…   2025     1 regular            194 Ohio S…
+#> # ℹ 118 more rows
+#> # ℹ 31 more variables: offense_conference <chr>, defense_id <int>,
+#> #   defense <chr>, defense_conference <chr>, period <int>, down <int>,
+#> #   distance <int>, play_text <chr>, passer_id <chr>, passer <chr>,
+#> #   target_id <chr>, target <chr>, outcome <chr>, air_yards <int>,
+#> #   pass_depth <chr>, pass_direction <chr>, pass_location <chr>,
+#> #   total_yards <int>, yards_after_catch <int>, start_yardline <int>, …
 # }
 ```

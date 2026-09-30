@@ -31,7 +31,7 @@ cfbd_team_roster(year, team = NULL, division = NULL)
 
 |  |  |  |
 |----|----|----|
-| col_name | types | description |
+| col_name | type | description |
 | athlete_id | character | Referencing athlete id. |
 | first_name | character | Athlete first name. |
 | last_name | character | Athlete last name. |
@@ -44,9 +44,9 @@ cfbd_team_roster(year, team = NULL, division = NULL)
 | home_city | character | Hometown of the athlete. |
 | home_state | character | Hometown state of the athlete. |
 | home_country | character | Hometown country of the athlete. |
-| home_latitude | numeric | Hometown latitude. |
-| home_longitude | numeric | Hometown longitude. |
-| home_county_fips | integer | Hometown FIPS code. |
+| home_latitude | double | Hometown latitude. |
+| home_longitude | double | Hometown longitude. |
+| home_county_fips | character | Hometown FIPS code. |
 | recruit_ids | list | 247Sports recruit ids as character strings; a scalar `0L` when the athlete has none. |
 | headshot_url | character | Player ESPN headshot url. |
 | season | integer | Season the roster was requested for (the `year` argument). |
@@ -66,7 +66,7 @@ Other CFBD Teams:
 # \donttest{
   try(cfbd_team_roster(year = 2013, team = "Florida State"))
 #> ── Team roster data from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 11:04:36 UTC
+#> ℹ Data updated: 2026-09-30 09:43:51 UTC
 #> # A tibble: 134 × 18
 #>    athlete_id first_name last_name   team    weight height jersey  year position
 #>    <chr>      <chr>      <chr>       <chr>    <int>  <int>  <int> <int> <chr>   

@@ -85,41 +85,57 @@ cfbd_game_info(
 
 ## Value
 
-`cfbd_game_info()` - A data frame with 30 variables:
+A data frame with one row per game and 32 variables. With
+`quarter_scores = TRUE` the per-period scores are inserted after
+`home_points` and after `away_points`: one `home_scores_Q<n>` and one
+`away_scores_Q<n>` column per period played by any game in the result,
+so overtime adds `_Q5` onward (the seven-overtime 2018 LSU at Texas A&M
+game reaches `_Q11`). An empty data frame is returned if the request
+fails.
 
 |  |  |  |
 |----|----|----|
-| col_name | types | description |
-| game_id | integer | Referencing game id. |
+| col_name | type | description |
+| game_id | integer | Unique CFBD game identifier. |
 | season | integer | Season of the game. |
-| week | integer | Game week. |
-| season_type | character | Season type of the game. |
-| start_date | character | Game date. |
+| week | integer | Game week (postseason games restart at week 1). |
+| season_type | character | Season type of the game (e.g. regular, postseason). |
+| start_date | character | Game start date-time (ISO 8601, UTC). |
 | start_time_tbd | logical | TRUE/FALSE flag for if the game's start time is to be determined. |
+| completed | logical | TRUE if the game has been completed. |
 | neutral_site | logical | TRUE/FALSE flag for the game taking place at a neutral site. |
 | conference_game | logical | TRUE/FALSE flag for this game qualifying as a conference game. |
-| attendance | integer | Reported attendance at the game. |
-| venue_id | integer | Referencing venue id. |
+| attendance | integer | Reported attendance at the game; NA when not reported. |
+| venue_id | integer | CFBD venue id. |
 | venue | character | Venue name. |
-| home_id | integer | Home team referencing id. |
+| home_id | integer | Home team CFBD id. |
 | home_team | character | Home team name. |
+| home_division | character | Home team division (CFBD classification): fbs, fcs, ii, ii/iii or iii. |
 | home_conference | character | Home team conference. |
-| home_division | character | Home team division. |
-| home_points | integer | Home team points. |
-| home_post_win_prob | character | Home team post-game win probability. |
-| home_pregame_elo | character | Home team pre-game ELO rating. |
-| home_postgame_elo | character | Home team post-game ELO rating. |
-| away_id | integer | Away team referencing id. |
+| home_points | integer | Home team points; NA until the game has a score. |
+| home_scores_Q1 | integer | Home team points in the first quarter; present only with `quarter_scores = TRUE`. |
+| home_scores_Q2 | integer | Home team points in the second quarter; present only with `quarter_scores = TRUE`. |
+| home_scores_Q3 | integer | Home team points in the third quarter; present only with `quarter_scores = TRUE`. |
+| home_scores_Q4 | integer | Home team points in the fourth quarter; present only with `quarter_scores = TRUE`. |
+| home_post_win_prob | double | Home team post-game win probability (proportion 0-1). |
+| home_pregame_elo | integer | Home team pre-game Elo rating. |
+| home_postgame_elo | integer | Home team post-game Elo rating. |
+| away_id | integer | Away team CFBD id. |
 | away_team | character | Away team name. |
+| away_division | character | Away team division (CFBD classification): fbs, fcs, ii, ii/iii or iii. |
 | away_conference | character | Away team conference. |
-| away_division | character | Away team division. |
-| away_points | integer | Away team points. |
-| away_post_win_prob | character | Away team post-game win probability. |
-| away_pregame_elo | character | Away team pre-game ELO rating. |
-| away_postgame_elo | character | Away team post-game ELO rating. |
-| excitement_index | character | Game excitement index. |
-| highlights | character | Game highlight urls. |
-| notes | character | Game notes. |
+| away_points | integer | Away team points; NA until the game has a score. |
+| away_scores_Q1 | integer | Away team points in the first quarter; present only with `quarter_scores = TRUE`. |
+| away_scores_Q2 | integer | Away team points in the second quarter; present only with `quarter_scores = TRUE`. |
+| away_scores_Q3 | integer | Away team points in the third quarter; present only with `quarter_scores = TRUE`. |
+| away_scores_Q4 | integer | Away team points in the fourth quarter; present only with `quarter_scores = TRUE`. |
+| away_post_win_prob | double | Away team post-game win probability (proportion 0-1). |
+| away_pregame_elo | integer | Away team pre-game Elo rating. |
+| away_postgame_elo | integer | Away team post-game Elo rating. |
+| excitement_index | double | Game excitement index (CFBD measure of in-game win-probability swings; higher is more exciting). |
+| highlights | character | Game highlight URL; NA or empty when none. |
+| notes | character | Game notes (e.g. the bowl name); NA when none. |
+| playoff | data.frame | Playoff context. An all-NA logical column when no game in the result has playoff context; otherwise a nested data frame column (not flattened) of `competition`, `format`, `round`, `roundName`, `bracketSlot`, `homeSeed`, `awaySeed`, `bowlName`, NA for non-playoff games. See the `playoff_*` columns of [`cfbd_game_schedule()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_schedule.md) for their meaning. |
 
 ## See also
 
@@ -142,7 +158,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_info(2018, week = 7, conference = "Ind"))
 #> ── Game information from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 10:58:03 UTC
+#> ℹ Data updated: 2026-09-30 09:39:55 UTC
 #> # A tibble: 5 × 32
 #>     game_id season  week season_type start_date         start_time_tbd completed
 #>       <int>  <int> <int> <chr>       <chr>              <lgl>          <lgl>    

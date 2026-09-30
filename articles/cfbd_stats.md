@@ -33,7 +33,6 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
     ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
-
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
@@ -57,13 +56,13 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## pandoc is already the newest version (2.9.2.1-3ubuntu2).
     ## cmake is already the newest version (3.22.1-1ubuntu1.22.04.2).
     ## libcurl4-openssl-dev is already the newest version (7.81.0-1ubuntu1.29).
-    ## libssl-dev is already the newest version (3.0.2-0ubuntu1.29).
+    ## libssl-dev is already the newest version (3.0.2-0ubuntu1.30).
     ## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).
     ## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.13).
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
-    ## 0 upgraded, 0 newly installed, 0 to remove and 25 not upgraded.
+    ## 0 upgraded, 0 newly installed, 0 to remove and 30 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [9.2s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [8.5s]
 
 ``` r
 
@@ -245,7 +244,7 @@ tex_pass |>
 
     ## ── Player season passing data from CollegeFootballData.com ─────────────────────
 
-    ## ℹ Data updated: 2026-09-27 11:14:04 UTC
+    ## ℹ Data updated: 2026-09-30 09:51:31 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts completion_rate average_depth_of_target   ppa
@@ -312,7 +311,7 @@ tex_pass |>
 
     ## ── Player season passing data from CollegeFootballData.com ─────────────────────
 
-    ## ℹ Data updated: 2026-09-27 11:14:04 UTC
+    ## ℹ Data updated: 2026-09-30 09:51:31 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts air_yards_parsed adot_correct adot_naive
@@ -333,7 +332,7 @@ cfbd_passing_plays(year = 2025, week = 5, outcome = "completion") |>
 
     ## ── Passing plays data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-09-27 11:14:05 UTC
+    ## ℹ Data updated: 2026-09-30 09:51:32 UTC
 
     ## # A tibble: 10 × 7
     ##    offense    defense    passer       target         total_yards   ppa success
@@ -371,7 +370,7 @@ cfbd_stats_categories()
 
     ## ── Stat categories for CollegeFootballData.com ────────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-09-27 11:14:05 UTC
+    ## ℹ Data updated: 2026-09-30 09:51:32 UTC
 
     ## # A tibble: 38 × 1
     ##    category          

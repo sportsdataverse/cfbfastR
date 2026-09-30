@@ -53,7 +53,7 @@ cfbd_passing_players_season(
 
 |  |  |  |
 |----|----|----|
-| col_name | types | description |
+| col_name | type | description |
 | season | integer | Four-digit season year (e.g. 2025). |
 | player_id | character | CFBD athlete identifier (use with [`cfbd_player_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_info.md)). |
 | player | character | Player full name. |
@@ -79,7 +79,7 @@ Other CFBD Passing:
 # \donttest{
   try(cfbd_passing_players_season(year = 2025, team = "Texas"))
 #> ── Player season passing data from CollegeFootballData.com ─────────────────────
-#> ℹ Data updated: 2026-09-27 10:58:28 UTC
+#> ℹ Data updated: 2026-09-30 09:40:23 UTC
 #> # A tibble: 7 × 189
 #>   season player_id player    team  conference attempts completions incompletions
 #>    <int> <chr>     <chr>     <chr> <chr>         <int>       <int>         <int>

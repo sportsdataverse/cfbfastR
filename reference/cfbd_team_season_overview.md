@@ -28,69 +28,176 @@ cfbd_team_season_overview(year, team, proxy = NULL)
 
 ## Value
 
-`cfbd_team_season_overview()` - A named list of tibbles: `overview`,
-`record`, `ratings`, `advanced`, `passing`, `rushing`, `players`. Nested
-objects are flattened into prefixed columns. A section CFBD did not fill
-(`passing` and `rushing` start in 2025) is a 0-column tibble.
+A named list of data frames: `overview`, `record`, `ratings`,
+`advanced`, `passing`, `rushing`, `players`. The sections have different
+row grains, so they are not joined. A section CFBD did not fill is a
+0-column tibble (`passing` and `rushing` start in 2025). Nested objects
+are flattened into prefixed columns. An empty list is returned if the
+request fails.
 
-**overview** - one row: `season` (integer), `team_id` (integer), `team`
-(character).
+**overview** - one row:
 
-**record** - one row: completed games for the requested season,
-including postseason: `games`, `wins`, `losses`, `ties` (integer).
+|          |           |                         |
+|----------|-----------|-------------------------|
+| col_name | type      | description             |
+| season   | integer   | Season of the overview. |
+| team_id  | integer   | CFBD team id.           |
+| team     | character | Team name.              |
 
-**ratings** - one row: current available ratings for the requested
-season; unavailable systems are `NA`. `elo` (numeric, latest postgame
-Elo from a completed game this season), then a `<system>_<unit>_rating`
-(numeric, rounded to two decimals) and `<system>_<unit>_rank` (integer,
-rank within the season and division) pair for `srs` (no unit), `sp_*`
-and `fpi_*` (`overall`, `offense`, `defense`, `special_teams`; FPI
-values are efficiencies, higher is better) and `core_*` (`overall`,
-`offense`, `defense`).
+**record** - one row, completed games for the requested season,
+including postseason:
 
-**advanced** - one row: `season` (integer), `team`, `conference`
-(character), then for each of `offense_` and `defense_`:
+|          |         |                  |
+|----------|---------|------------------|
+| col_name | type    | description      |
+| games    | integer | Completed games. |
+| wins     | integer | Wins.            |
+| losses   | integer | Losses.          |
+| ties     | integer | Ties.            |
 
-|  |  |
-|----|----|
-| col_name (after the side prefix) | types |
-| plays, drives | integer |
-| ppa, total_ppa, success_rate, explosiveness | numeric |
-| power_success, stuff_rate | numeric |
-| line_yards, line_yards_total | numeric, integer |
-| second_level_yards, second_level_yards_total | numeric, integer |
-| open_field_yards, open_field_yards_total | numeric, integer |
-| total_opportunies, points_per_opportunity | integer, numeric (upstream spelling kept) |
-| field_position_average_start, field_position_average_predicted_points | numeric |
-| havoc_total, havoc_front_seven, havoc_db | numeric |
-| `standard_downs_*`, `passing_downs_*` | numeric: `rate`, `ppa`, `success_rate`, `explosiveness` (`total_ppa` too on defense passing downs) |
-| `passing_plays_*`, `rushing_plays_*` | numeric: `rate`, `ppa`, `total_ppa`, `success_rate`, `explosiveness` |
-
-**passing** - one row: `season` (integer), `team`, `conference`
-(character), then `offense_*` and `defense_*`, each the passing
-production block (with `locations_<bucket>_*`) documented in
-[`cfbd_passing_teams_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_teams_season.md).
-
-**rushing** - one row: `season` (integer), `team`, `conference`
-(character), then `offense_*` and `defense_*`, each the rushing
-production block (with `directions_<direction>_*`) documented in
-[`cfbd_rushing_teams_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_teams_season.md).
-
-**players** - one row per player per `category` (`usage` or `ppa`):
+**ratings** - one row, the ratings currently available for the season.
+All 25 columns are always present and typed; a system CFBD has no value
+for is NA, and any rating CFBD adds later follows them. Ratings are
+rounded to two decimals; each rank is the competition rank within the
+season and division (1 = best), computed on unrounded values:
 
 |  |  |  |
 |----|----|----|
-| col_name | types | description |
-| category | character | usage or ppa: which player list the row comes from. |
-| season | integer | Season. |
-| id | character | Player id. |
-| name | character | Player name. |
-| position | character | Player position. |
+| col_name | type | description |
+| elo | double | Latest postgame Elo rating from a completed game this season. |
+| srs_rating | double | Simple Rating System (SRS) rating; higher is better. |
+| srs_rank | integer | Rank of `srs_rating`. |
+| sp_overall_rating | double | SP+ overall rating; higher is better. |
+| sp_overall_rank | integer | Rank of `sp_overall_rating`. |
+| sp_offense_rating | double | SP+ offense rating; higher is better. |
+| sp_offense_rank | integer | Rank of `sp_offense_rating`. |
+| sp_defense_rating | double | SP+ defense rating; lower is better. |
+| sp_defense_rank | integer | Rank of `sp_defense_rating`. |
+| sp_special_teams_rating | double | SP+ special teams rating; higher is better. |
+| sp_special_teams_rank | integer | Rank of `sp_special_teams_rating`. |
+| fpi_overall_rating | double | FPI overall efficiency (not the FPI points rating); higher is better. |
+| fpi_overall_rank | integer | Rank of `fpi_overall_rating`. |
+| fpi_offense_rating | double | FPI offense efficiency; higher is better. |
+| fpi_offense_rank | integer | Rank of `fpi_offense_rating`. |
+| fpi_defense_rating | double | FPI defense efficiency; higher is better. |
+| fpi_defense_rank | integer | Rank of `fpi_defense_rating`. |
+| fpi_special_teams_rating | double | FPI special teams efficiency; higher is better. |
+| fpi_special_teams_rank | integer | Rank of `fpi_special_teams_rating`. |
+| core_overall_rating | double | CFBD CORE overall rating, `core_offense_rating` minus `core_defense_rating`; higher is better. See [`cfbd_ratings_core()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_core.md). |
+| core_overall_rank | integer | Rank of `core_overall_rating`. |
+| core_offense_rating | double | CFBD CORE offense rating: points created above average per 100 qualifying plays; higher is better. |
+| core_offense_rank | integer | Rank of `core_offense_rating`. |
+| core_defense_rating | double | CFBD CORE defense rating: points allowed above average per 100 qualifying plays; lower is better. |
+| core_defense_rank | integer | Rank of `core_defense_rating`. |
+
+**advanced** - one row. After `team` and `season`, each base column
+below appears twice, first prefixed `defense_` (what opponents did
+against the team) and then prefixed `offense_`, in the order shown;
+`conference` comes last. The one exception is `passing_downs_total_ppa`,
+which CFBD sends for the defense only
+(`defense_passing_downs_total_ppa`). Rates are proportions 0-1 and PPA
+is predicted points added. A double that happens to be a whole number
+parses as integer in this one-row frame (e.g. `offense_open_field_yards`
+in the 2025 Texas sample):
+
+|  |  |  |
+|----|----|----|
+| col_name | type | description |
 | team | character | Team name. |
-| conference | character | Conference. |
-| usage\_\* | numeric | Usage rows: `overall`, `pass`, `rush`, `first_down`, `second_down`, `third_down`, `standard_downs`, `passing_downs`. |
-| average_ppa\_\* | numeric | PPA rows: average PPA for `all`, `pass`, `rush`, `first_down`, `second_down`, `third_down`, `standard_downs`, `passing_downs`. |
-| total_ppa\_\* | numeric | PPA rows: total PPA for the same splits. |
+| season | integer | Season of the statistics. |
+| ppa | double | Average PPA per play. |
+| havoc_total | double | Havoc rate: proportion of plays with a tackle for loss, forced fumble, interception or pass breakup. |
+| havoc_front_seven | double | Havoc rate from front-seven defenders. |
+| havoc_db | double | Havoc rate from defensive backs. |
+| plays | integer | Plays. |
+| drives | integer | Drives. |
+| total_ppa | double | Total PPA over all plays. |
+| line_yards | double | Offensive line yards per rush (Football Outsiders line-yards method). |
+| stuff_rate | double | Proportion of rushes stopped at or behind the line of scrimmage. |
+| success_rate | double | Proportion of plays that were successful. |
+| passing_downs_ppa | double | Average PPA per play on passing downs. |
+| passing_downs_rate | double | Proportion of plays that came on passing downs. |
+| passing_downs_total_ppa | double | Labelled by CFBD as total PPA on passing downs; defense only (`defense_passing_downs_total_ppa`). In every sampled season (2023-2025) it equals `passing_plays_total_ppa`, so it looks like an upstream copy. |
+| passing_downs_success_rate | double | Success rate on passing downs. |
+| passing_downs_explosiveness | double | Explosiveness (average PPA on successful plays) on passing downs. |
+| passing_plays_ppa | double | Average PPA per pass play. |
+| passing_plays_rate | double | Proportion of plays that were passes. |
+| passing_plays_total_ppa | double | Total PPA on pass plays. |
+| passing_plays_success_rate | double | Success rate on pass plays. |
+| passing_plays_explosiveness | double | Explosiveness on pass plays. |
+| power_success | double | Proportion of short-yardage runs (third or fourth down, 2 yards or fewer to go) that gained a first down or touchdown. |
+| rushing_plays_ppa | double | Average PPA per rush. |
+| rushing_plays_rate | double | Proportion of plays that were rushes. |
+| rushing_plays_total_ppa | double | Total PPA on rushes. |
+| rushing_plays_success_rate | double | Success rate on rushes. |
+| rushing_plays_explosiveness | double | Explosiveness on rushes. |
+| explosiveness | double | Explosiveness: average PPA on successful plays. |
+| field_position_average_start | double | Average drive start, in yards to the end zone being attacked (70 = own 30). |
+| field_position_average_predicted_points | double | Average predicted points of the drive start, from this side's view: the defense value is negative when opponents start with positive expected points. |
+| standard_downs_ppa | double | Average PPA per play on standard downs. |
+| standard_downs_rate | double | Proportion of plays that came on standard downs. |
+| standard_downs_success_rate | double | Success rate on standard downs. |
+| standard_downs_explosiveness | double | Explosiveness on standard downs. |
+| line_yards_total | integer | Total offensive line yards. |
+| open_field_yards | double | Open-field yards per rush: rushing yards gained more than 10 yards past the line of scrimmage, averaged over all rushes. |
+| second_level_yards | double | Second-level yards per rush: rushing yards gained 5 to 10 yards past the line of scrimmage, averaged over all rushes. |
+| total_opportunies | integer | Scoring opportunities: drives with a first down inside the opponent 40 (CFBD spelling kept). |
+| open_field_yards_total | integer | Total open-field yards. |
+| points_per_opportunity | double | Points per scoring opportunity. |
+| second_level_yards_total | integer | Total second-level yards. |
+| conference | character | Team conference. |
+
+**passing** - one row, 0 columns before 2025:
+
+|  |  |  |
+|----|----|----|
+| col_name | type | description |
+| \* | varies | The same columns, names and types, as [`cfbd_passing_teams_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_teams_season.md) for this team and season, in CFBD key order: `team`, `season`, the `defense_` block, the `offense_` block, then `conference`; each column is defined there, see [cfbd_passing](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing.md). |
+
+**rushing** - one row, 0 columns before 2025:
+
+|  |  |  |
+|----|----|----|
+| col_name | type | description |
+| \* | varies | The same columns, names and types, as [`cfbd_rushing_teams_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_teams_season.md) for this team and season, in CFBD key order: `team`, `season`, the `defense_` block, the `offense_` block, then `conference`; each column is defined there, see [cfbd_rushing](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing.md). |
+
+**players** - one row per player per `category`; a player in both CFBD
+lists has two rows, and the other list's columns are NA on each:
+
+|  |  |  |
+|----|----|----|
+| col_name | type | description |
+| category | character | Which CFBD player list the row comes from: ppa or usage. |
+| id | character | CFBD athlete id. |
+| name | character | Player name. |
+| team | character | Team name. |
+| season | integer | Season. |
+| position | character | Position abbreviation (e.g. QB, RB, WR). |
+| conference | character | Team conference. |
+| total_ppa_all | double | Total PPA on all of the player's plays; NA on usage rows. |
+| total_ppa_pass | double | Total PPA on pass plays; NA on usage rows. |
+| total_ppa_rush | double | Total PPA on rushes; NA on usage rows. |
+| total_ppa_first_down | double | Total PPA on first downs; NA on usage rows. |
+| total_ppa_third_down | double | Total PPA on third downs; NA on usage rows. |
+| total_ppa_second_down | double | Total PPA on second downs; NA on usage rows. |
+| total_ppa_passing_downs | double | Total PPA on passing downs; NA on usage rows. |
+| total_ppa_standard_downs | double | Total PPA on standard downs; NA on usage rows. |
+| average_ppa_all | double | Average PPA per play on all of the player's plays; NA on usage rows. |
+| average_ppa_pass | double | Average PPA per pass play; NA on usage rows. |
+| average_ppa_rush | double | Average PPA per rush; NA on usage rows. |
+| average_ppa_first_down | double | Average PPA per first-down play; NA on usage rows. |
+| average_ppa_third_down | double | Average PPA per third-down play; NA on usage rows. |
+| average_ppa_second_down | double | Average PPA per second-down play; NA on usage rows. |
+| average_ppa_passing_downs | double | Average PPA per passing-down play; NA on usage rows. |
+| average_ppa_standard_downs | double | Average PPA per standard-down play; NA on usage rows. |
+| usage_pass | double | Player share of team passing usage (proportion 0-1); NA on ppa rows. |
+| usage_rush | double | Player share of team rushing usage (proportion 0-1); NA on ppa rows. |
+| usage_overall | double | Player share of overall offensive usage (proportion 0-1); NA on ppa rows. |
+| usage_first_down | double | Player share of team usage on first downs; NA on ppa rows. |
+| usage_third_down | double | Player share of team usage on third downs; NA on ppa rows. |
+| usage_second_down | double | Player share of team usage on second downs; NA on ppa rows. |
+| usage_passing_downs | double | Player share of team usage on passing downs; NA on ppa rows. |
+| usage_standard_downs | double | Player share of team usage on standard downs; NA on ppa rows. |
 
 ## See also
 
@@ -108,7 +215,7 @@ Other CFBD Teams:
   try(cfbd_team_season_overview(year = 2024, team = "Texas"))
 #> $overview
 #> ── Team season overview data from CollegeFootballData.com ──────────────────────
-#> ℹ Data updated: 2026-09-27 11:04:37 UTC
+#> ℹ Data updated: 2026-09-30 09:43:52 UTC
 #> # A tibble: 1 × 3
 #>   season team_id team 
 #>    <int>   <int> <chr>
@@ -116,7 +223,7 @@ Other CFBD Teams:
 #> 
 #> $record
 #> ── Team season overview data from CollegeFootballData.com ──────────────────────
-#> ℹ Data updated: 2026-09-27 11:04:37 UTC
+#> ℹ Data updated: 2026-09-30 09:43:52 UTC
 #> # A tibble: 1 × 4
 #>   games  wins losses  ties
 #>   <int> <int>  <int> <int>
@@ -124,7 +231,7 @@ Other CFBD Teams:
 #> 
 #> $ratings
 #> ── Team season overview data from CollegeFootballData.com ──────────────────────
-#> ℹ Data updated: 2026-09-27 11:04:37 UTC
+#> ℹ Data updated: 2026-09-30 09:43:52 UTC
 #> # A tibble: 1 × 25
 #>     elo srs_rating srs_rank sp_overall_rating sp_overall_rank sp_offense_rating
 #>   <dbl>      <dbl>    <int>             <dbl>           <int>             <dbl>
@@ -139,7 +246,7 @@ Other CFBD Teams:
 #> 
 #> $advanced
 #> ── Team season overview data from CollegeFootballData.com ──────────────────────
-#> ℹ Data updated: 2026-09-27 11:04:37 UTC
+#> ℹ Data updated: 2026-09-30 09:43:52 UTC
 #> # A tibble: 1 × 82
 #>   team  season defense_ppa defense_havoc_total defense_havoc_front_seven
 #>   <chr>  <int>       <dbl>               <dbl>                     <dbl>
@@ -154,17 +261,17 @@ Other CFBD Teams:
 #> 
 #> $passing
 #> ── Team season overview data from CollegeFootballData.com ──────────────────────
-#> ℹ Data updated: 2026-09-27 11:04:37 UTC
+#> ℹ Data updated: 2026-09-30 09:43:52 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $rushing
 #> ── Team season overview data from CollegeFootballData.com ──────────────────────
-#> ℹ Data updated: 2026-09-27 11:04:37 UTC
+#> ℹ Data updated: 2026-09-30 09:43:52 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $players
 #> ── Team season overview data from CollegeFootballData.com ──────────────────────
-#> ℹ Data updated: 2026-09-27 11:04:37 UTC
+#> ℹ Data updated: 2026-09-30 09:43:52 UTC
 #> # A tibble: 36 × 31
 #>    category id      name          team  season position conference total_ppa_all
 #>    <chr>    <chr>   <chr>         <chr>  <int> <chr>    <chr>              <dbl>

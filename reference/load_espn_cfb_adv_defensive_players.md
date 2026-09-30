@@ -70,8 +70,8 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_defensive_players(2004))
 #> ── college football advanced defensive players from the SportsDataverse data rep
-#> ℹ Data updated: 2026-09-27 11:08:44 UTC
-#> # A tibble: 1,590 × 10
+#> ℹ Data updated: 2026-09-30 09:46:55 UTC
+#> # A tibble: 1,593 × 10
 #>    def_pos_team_id def_pos_team    player_name interceptions interceptions_yards
 #>              <int> <chr>           <chr>               <int>               <int>
 #>  1              30 USC Trojans     Lofa Tatupu             1                  32
@@ -84,7 +84,7 @@ Saiem Gilani
 #>  8               9 Arizona State … Josh Barre…             0                   0
 #>  9               9 Arizona State … Mike Davis…             1                   8
 #> 10               9 Arizona State … Quency Dar…             1                   5
-#> # ℹ 1,580 more rows
+#> # ℹ 1,583 more rows
 #> # ℹ 5 more variables: fumble_recoveries <int>, fumble_recoveries_yards <int>,
 #> #   game_id <int>, season <int>, week <int>
 # }

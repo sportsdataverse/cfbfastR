@@ -101,21 +101,21 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_passing(2004))
 #> ── college football passing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-09-27 11:09:02 UTC
-#> # A tibble: 364 × 73
+#> ℹ Data updated: 2026-09-30 09:47:10 UTC
+#> # A tibble: 373 × 73
 #>    team_id pos_team      division conference season player_id passer_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 66      Iowa State    fbs      Big 12       2004    145404 Bret Meyer        
-#>  2 25      California    fbs      Pac-10       2004    116589 Terrell Williams  
-#>  3 120     Maryland      fbs      ACC          2004    145825 Ryan Mitch        
-#>  4 245     Texas A&M     fbs      Big 12       2004    138593 Chad Schroeder    
-#>  5 254     Utah          fbs      Mountain …   2004    105399 Paris Warren      
-#>  6 2459    Northern Ill… fbs      Mid-Ameri…   2004    138204 Phil Horvath      
-#>  7 202     Tulsa         fbs      Western A…   2004    105974 James Kilian      
-#>  8 135     Minnesota     fbs      Big Ten      2004    133808 Bryan Cupito      
-#>  9 59      Georgia Tech  fbs      ACC          2004    145781 Reggie Ball       
-#> 10 2426    Navy          fbs      FBS Indep…   2004    136727 Frank Divis       
-#> # ℹ 354 more rows
+#>  1 2628    TCU           fbs      Conferenc…   2004    113659 Tye Gunn          
+#>  2 151     East Carolina fbs      Conferenc…   2004    136126 James Pinkney     
+#>  3 8       Arkansas      fbs      SEC          2004    148627 Robert Johnson    
+#>  4 2751    Wyoming       fbs      Mountain …   2004    116533 J.J. Raterink     
+#>  5 2393    Middle Tenne… fbs      Sun Belt     2004    133319 Eugene Gross      
+#>  6 145     Ole Miss      fbs      SEC          2004    146810 Robert Lane       
+#>  7 23      San Jose Sta… fbs      Western A…   2004    148370 Adam Tafralis     
+#>  8 2309    Kent State    fbs      Mid-Ameri…   2004    147152 Tom Sitko         
+#>  9 239     Baylor        fbs      Big 12       2004    145265 Terrance Parks    
+#> 10 62      Hawai'i       fbs      Western A…   2004    122359 Kainoa Akina      
+#> # ℹ 363 more rows
 #> # ℹ 66 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <dbl>, success <dbl>, comp <dbl>, att <dbl>,
 #> #   comppct <dbl>, passing_td <dbl>, playsgame <dbl>, EPAgame <dbl>,

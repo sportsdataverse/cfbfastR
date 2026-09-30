@@ -54,8 +54,8 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_group_seasons())
 #> ── college football conference and division names by season from the SportsDatav
-#> ℹ Data updated: 2026-09-27 11:08:22 UTC
-#> # A tibble: 5,551 × 9
+#> ℹ Data updated: 2026-09-30 09:46:37 UTC
+#> # A tibble: 5,550 × 9
 #>    league group_id season level    name  short_name abbreviation parent_group_id
 #>    <chr>  <chr>     <int> <chr>    <chr> <chr>      <chr>        <chr>          
 #>  1 cfb    cfb:acc    1953 confere… Atla… ACC        ACC          cfb:fbs        
@@ -68,7 +68,7 @@ Saiem Gilani
 #>  8 cfb    cfb:acc    1960 confere… Atla… ACC        ACC          cfb:fbs        
 #>  9 cfb    cfb:acc    1961 confere… Atla… ACC        ACC          cfb:fbs        
 #> 10 cfb    cfb:acc    1962 confere… Atla… ACC        ACC          cfb:fbs        
-#> # ℹ 5,541 more rows
+#> # ℹ 5,540 more rows
 #> # ℹ 1 more variable: n_teams <int>
 # }
 ```

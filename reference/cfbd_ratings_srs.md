@@ -34,12 +34,12 @@ cfbd_ratings_srs(year = NULL, team = NULL, conference = NULL)
 
 |  |  |  |
 |----|----|----|
-| col_name | types | description |
+| col_name | type | description |
 | year | integer | Season of the SRS rating. |
 | team | character | Team name. |
 | conference | character | Conference of the team. |
 | division | character | Division in the conference for the team. |
-| rating | numeric | Simple Rating System (SRS) rating. |
+| rating | double | Simple Rating System (SRS) rating. |
 | ranking | integer | Simple Rating System ranking within the group returned. |
 
 ## See also
@@ -57,7 +57,7 @@ Other CFBD Ratings and Rankings:
 # \donttest{
   try(cfbd_ratings_srs(year = 2019, team = "Texas"))
 #> ── SRS data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 11:03:07 UTC
+#> ℹ Data updated: 2026-09-30 09:43:11 UTC
 #> # A tibble: 1 × 6
 #>    year team  conference division ranking rating
 #>   <int> <chr> <chr>      <lgl>      <int>  <dbl>
@@ -65,7 +65,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_srs(year = 2018, conference = "SEC"))
 #> ── SRS data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 11:03:09 UTC
+#> ℹ Data updated: 2026-09-30 09:43:11 UTC
 #> # A tibble: 14 × 6
 #>     year team              conference division ranking rating
 #>    <int> <chr>             <chr>      <chr>      <int>  <dbl>

@@ -67,20 +67,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_drives(2004))
 #> ── college football advanced drives from the SportsDataverse data repo ─────────
-#> ℹ Data updated: 2026-09-27 11:08:45 UTC
+#> ℹ Data updated: 2026-09-30 09:46:56 UTC
 #> # A tibble: 926 × 12
 #>    pos_team_id pos_team            drive_total_availabl…¹ drive_total_gained_y…²
 #>          <int> <chr>                                <dbl>                  <int>
-#>  1          30 USC Trojans                           4197                   2282
-#>  2         259 Virginia Tech Hoki…                   4722                   2106
-#>  3         254 Utah Utes                             5404                   3290
-#>  4         245 Texas A&M Aggies                      4956                   2285
-#>  5        2050 Ball State Cardina…                   4056                   1050
-#>  6         103 Boston College Eag…                   5759                   2162
-#>  7          77 Northwestern Wildc…                   6368                   4875
-#>  8        2628 TCU Horned Frogs                      5261                   3272
-#>  9        2638 UTEP Miners                           5329                   1477
-#> 10           9 Arizona State Sun …                   5412                   3262
+#>  1         259 Virginia Tech Hoki…                   5143                   2356
+#>  2          30 USC Trojans                           4434                   2485
+#>  3         254 Utah Utes                             5758                   3452
+#>  4         245 Texas A&M Aggies                      5406                   2628
+#>  5         103 Boston College Eag…                   6169                   2287
+#>  6        2050 Ball State Cardina…                   4397                   1289
+#>  7          77 Northwestern Wildc…                   6685                   5130
+#>  8        2628 TCU Horned Frogs                      5586                   3514
+#>  9        2638 UTEP Miners                           5922                   1808
+#> 10           9 Arizona State Sun …                   6045                   3656
 #> # ℹ 916 more rows
 #> # ℹ abbreviated names: ¹​drive_total_available_yards, ²​drive_total_gained_yards
 #> # ℹ 8 more variables: avg_field_position <dbl>, plays_per_drive <dbl>,

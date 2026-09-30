@@ -263,21 +263,21 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_scoreboard())
 #> ── Live Scoreboard Data from ESPN ─────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 11:06:40 UTC
-#> # A tibble: 71 × 60
+#> ℹ Data updated: 2026-09-30 09:45:23 UTC
+#> # A tibble: 59 × 60
 #>    matchup          matchup_short season type  slug  game_id game_uid game_date 
 #>    <chr>            <chr>          <int> <chr> <chr> <chr>   <chr>    <date>    
-#>  1 Liberty Flames … LIB @ CCU       2026 regu… regu… 401869… s:20~l:… 2026-09-24
-#>  2 Northwestern Wi… NU @ IU         2026 regu… regu… 401858… s:20~l:… 2026-09-25
-#>  3 Army Black Knig… ARMY @ TEM      2026 regu… regu… 401862… s:20~l:… 2026-09-25
-#>  4 Howard Bison at… HOW @ RUTG      2026 regu… regu… 401858… s:20~l:… 2026-09-25
-#>  5 Navy Midshipmen… NAVY @ UAB      2026 regu… regu… 401862… s:20~l:… 2026-09-25
-#>  6 Clemson Tigers … CLEM @ CAL      2026 regu… regu… 401858… s:20~l:… 2026-09-25
-#>  7 Texas Longhorns… TEX @ TENN      2026 regu… regu… 401856… s:20~l:… 2026-09-26
-#>  8 Oklahoma Sooner… OU @ UGA        2026 regu… regu… 401856… s:20~l:… 2026-09-26
-#>  9 Notre Dame Figh… ND @ PUR        2026 regu… regu… 401858… s:20~l:… 2026-09-26
-#> 10 Ole Miss Rebels… MISS @ FLA      2026 regu… regu… 401856… s:20~l:… 2026-09-26
-#> # ℹ 61 more rows
+#>  1 Western Kentuck… WKU @ NMSU      2026 regu… regu… 401871… s:20~l:… 2026-10-01
+#>  2 North Texas Mea… UNT @ TLSA      2026 regu… regu… 401862… s:20~l:… 2026-10-01
+#>  3 Pittsburgh Pant… PITT @ VT       2026 regu… regu… 401858… s:20~l:… 2026-10-02
+#>  4 Liberty Flames … LIB @ DEL       2026 regu… regu… 401871… s:20~l:… 2026-10-02
+#>  5 Penn State Nitt… PSU @ NU        2026 regu… regu… 401858… s:20~l:… 2026-10-02
+#>  6 Notre Dame Figh… ND @ UNC        2026 regu… regu… 401858… s:20~l:… 2026-10-03
+#>  7 Alabama Crimson… ALA @ MSST      2026 regu… regu… 401856… s:20~l:… 2026-10-03
+#>  8 UCF Knights at … UCF @ HOU       2026 regu… regu… 401856… s:20~l:… 2026-10-03
+#>  9 Boston College … BC @ SMU        2026 regu… regu… 401858… s:20~l:… 2026-10-03
+#> 10 Middle Tennesse… MTSU @ KU       2026 regu… regu… 401856… s:20~l:… 2026-10-03
+#> # ℹ 49 more rows
 #> # ℹ 52 more variables: attendance <int>, date_valid <lgl>,
 #> #   play_by_play_available <lgl>, home_team_name <chr>, home_team_logo <chr>,
 #> #   home_team_abb <chr>, home_team_id <chr>, home_team_location <chr>,
@@ -289,7 +289,7 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_schedule(2021, week = 8))
 #> ── Schedule Data from ESPN ────────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 11:06:40 UTC
+#> ℹ Data updated: 2026-09-30 09:45:23 UTC
 #> # A tibble: 54 × 62
 #>    season_type week    matchup matchup_short season type  slug  game_id game_uid
 #>    <chr>       <chr>   <chr>   <chr>          <int> <chr> <chr> <chr>   <chr>   

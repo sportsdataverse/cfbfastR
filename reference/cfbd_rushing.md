@@ -37,7 +37,7 @@
 
 ### **Get individual rushing plays**
 
-      cfbd_rushing_plays(year = 2025, week = 5, team = "Texas")
+      cfbd_rushing_plays(year = 2025, week = 1, team = "Texas")
 
 ## The rushing production block
 
@@ -48,11 +48,11 @@ carry 24 of these columns; team frames carry 26, adding
 
 |  |  |  |
 |----|----|----|
-| col_name | types | description |
+| col_name | type | description |
 | attempts | integer | Rush attempts. |
 | rushing_yards_available | integer | Attempts for which rushing yards were parsed (denominator for yardage means). |
 | total_rushing_yards | integer | Sum of rushing yards over those attempts. |
-| yards_per_carry | numeric | Mean rushing yards per carry. |
+| yards_per_carry | double | Mean rushing yards per carry. |
 | individual_attempts | integer | Attempts attributed to a single identified ball carrier. |
 | unattributed_attempts | integer | Attempts with no ball carrier resolved from the play text. |
 | sacks | integer | Sacks counted within the rushing play set. |
@@ -61,18 +61,18 @@ carry 24 of these columns; team frames carry 26, adding
 | multi_carrier_attempts | integer | Attempts where more than one carrier was identified. |
 | direction_eligible_attempts | integer | Attempts eligible for a direction split. |
 | direction_available_attempts | integer | Attempts for which a direction was actually parsed. |
-| success_rate | numeric | Proportion of attempts meeting the success threshold (0-1). |
-| ppa | numeric | Predicted points added per attempt. |
-| total_ppa | numeric | Sum of predicted points added. |
-| line_yards | numeric | Line yards per carry (Football Outsiders methodology). |
-| line_yards_total | numeric | Sum of line yards. |
-| second_level_yards | numeric | Second-level yards per carry (5-10 yards past the line of scrimmage). |
-| second_level_yards_total | numeric | Sum of second-level yards. |
-| open_field_yards | numeric | Open-field yards per carry (10+ yards past the line of scrimmage). |
-| open_field_yards_total | numeric | Sum of open-field yards. |
-| stuff_rate | numeric | Proportion of carries stopped at or behind the line of scrimmage (0-1). |
-| power_success | numeric | Conversion rate on short-yardage power runs (0-1). |
-| explosiveness | numeric | Mean PPA on successful carries. |
+| success_rate | double | Proportion of attempts meeting the success threshold (0-1). |
+| ppa | double | Predicted points added per attempt. |
+| total_ppa | double | Sum of predicted points added. |
+| line_yards | double | Line yards per carry (Football Outsiders methodology). |
+| line_yards_total | double | Sum of line yards. |
+| second_level_yards | double | Second-level yards per carry (5-10 yards past the line of scrimmage). |
+| second_level_yards_total | integer | Sum of second-level yards. |
+| open_field_yards | double | Open-field yards per carry (yards gained more than 10 yards past the line of scrimmage). |
+| open_field_yards_total | integer | Sum of open-field yards. |
+| stuff_rate | double | Proportion of carries stopped at or behind the line of scrimmage (0-1). |
+| power_success | double | Conversion rate on short-yardage power runs (0-1). |
+| explosiveness | double | Mean PPA on successful carries. |
 | touchdown_status_available | integer | *Team frames only.* Attempts for which touchdown status was parsed. |
 | rushing_touchdowns | integer | *Team frames only.* Rushing touchdowns over those attempts. |
 
@@ -88,11 +88,27 @@ A 15-column subset repeats for each of four run directions, prefixed
 `directions_<bucket>_`: `left`, `middle`, `right` and `unknown`
 (direction could not be parsed).
 
-Each bucket carries `carries`, `yards`, `yards_per_carry`,
-`success_rate`, `ppa`, `total_ppa`, `line_yards`, `line_yards_total`,
-`second_level_yards`, `second_level_yards_total`, `open_field_yards`,
-`open_field_yards_total`, `stuff_rate`, `power_success` and
-`explosiveness`.
+Each bucket carries these 15 columns, prefixed `directions_<bucket>_`
+(e.g. `directions_left_carries`):
+
+|  |  |  |
+|----|----|----|
+| col_name | type | description |
+| carries | integer | Carries in this direction. |
+| yards | integer | Rushing yards on those carries. |
+| yards_per_carry | double | Mean rushing yards per carry. |
+| success_rate | double | Proportion of attempts meeting the success threshold (0-1). |
+| ppa | double | Predicted points added per attempt. |
+| total_ppa | double | Sum of predicted points added. |
+| line_yards | double | Line yards per carry (Football Outsiders methodology). |
+| line_yards_total | double | Sum of line yards. |
+| second_level_yards | double | Second-level yards per carry (5-10 yards past the line of scrimmage). |
+| second_level_yards_total | integer | Sum of second-level yards. |
+| open_field_yards | double | Open-field yards per carry (yards gained more than 10 yards past the line of scrimmage). |
+| open_field_yards_total | integer | Sum of open-field yards. |
+| stuff_rate | double | Proportion of carries stopped at or behind the line of scrimmage (0-1). |
+| power_success | double | Conversion rate on short-yardage power runs (0-1). |
+| explosiveness | double | Mean PPA on successful carries. |
 
 So a player frame is 5 identity + 24 production + 4 x 15 direction =
 **89 columns**, and a team frame is 3 identity + 2 x (26 + 4 x 15) =

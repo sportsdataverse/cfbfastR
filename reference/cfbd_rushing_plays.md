@@ -109,7 +109,7 @@ cfbd_rushing_plays(
 
 |  |  |  |
 |----|----|----|
-| col_name | types | description |
+| col_name | type | description |
 | game_id | integer | Unique game identifier - `game_id`. |
 | play_id | character | Unique play identifier - `play_id`. |
 | drive_id | character | Unique drive identifier - `drive_id`. |
@@ -142,7 +142,7 @@ cfbd_rushing_plays(
 | attribution_status | character | How the carrier was resolved - individual, team, multi_carrier, unmatched, ... |
 | direction_analysis_eligible | logical | TRUE when the play is eligible to be counted in a direction split. |
 | parse_status | character | How completely CFBD parsed the play text for this row. |
-| ppa | numeric | Predicted points added on the play. |
+| ppa | double | Predicted points added on the play. |
 | success | logical | TRUE when the play met the success threshold for its down and distance. |
 
 `rush_direction` comes back all-`NA` for any request whose plays were
@@ -163,7 +163,28 @@ Other CFBD Rushing:
 
 ``` r
 # \donttest{
-  try(cfbd_rushing_plays(year = 2025, week = 5, team = "Texas"))
-#> data frame with 0 columns and 0 rows
+  try(cfbd_rushing_plays(year = 2025, week = 1, team = "Texas"))
+#> ── Rushing plays data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-09-30 09:43:19 UTC
+#> # A tibble: 142 × 34
+#>      game_id play_id        drive_id season  week season_type offense_id offense
+#>        <int> <chr>          <chr>     <int> <int> <chr>            <int> <chr>  
+#>  1 401752677 4017526771018… 4017526…   2025     1 regular            194 Ohio S…
+#>  2 401752677 4017526771019… 4017526…   2025     1 regular            251 Texas  
+#>  3 401752677 4017526771019… 4017526…   2025     1 regular            194 Ohio S…
+#>  4 401752677 4017526771019… 4017526…   2025     1 regular            194 Ohio S…
+#>  5 401752677 4017526771018… 4017526…   2025     1 regular            194 Ohio S…
+#>  6 401752677 4017526771019… 4017526…   2025     1 regular            251 Texas  
+#>  7 401752677 4017526771019… 4017526…   2025     1 regular            251 Texas  
+#>  8 401752677 4017526771018… 4017526…   2025     1 regular            251 Texas  
+#>  9 401752677 4017526771018… 4017526…   2025     1 regular            194 Ohio S…
+#> 10 401752677 4017526771019… 4017526…   2025     1 regular            251 Texas  
+#> # ℹ 132 more rows
+#> # ℹ 26 more variables: offense_conference <chr>, defense_id <int>,
+#> #   defense <chr>, defense_conference <chr>, period <int>, down <int>,
+#> #   distance <int>, play_text <chr>, start_yardline <int>,
+#> #   start_yards_to_goal <int>, rusher_id <chr>, rusher <chr>,
+#> #   rush_direction <chr>, rushing_yards <int>, rusher_yards <int>,
+#> #   is_rushing_touchdown <lgl>, is_sack <lgl>, is_kneel <lgl>, …
 # }
 ```

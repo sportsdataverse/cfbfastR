@@ -72,7 +72,7 @@ cfbd_game_player_stats(
 
 |  |  |  |
 |----|----|----|
-| col_name | types | description |
+| col_name | type | description |
 | game_id | integer | CFBD-internal game id; join key to other CFBD endpoints. |
 | team | character | Full team name (e.g. "Alabama") for the player's team. |
 | conference | character | Conference name of the player's team (e.g. "SEC"). |
@@ -80,59 +80,59 @@ cfbd_game_player_stats(
 | team_points | integer | Total points scored by the player's team in this game. |
 | athlete_id | integer | CFBD-internal athlete id for the player. |
 | athlete_name | character | Player's display name as reported by CFBD. |
-| defensive_td | numeric | Defensive touchdowns scored by the player. |
-| defensive_qb_hur | numeric | Quarterback hurries credited to the player. |
-| defensive_pd | numeric | Passes defended (pass breakups) by the player. |
-| defensive_tfl | numeric | Tackles for loss credited to the player. |
-| defensive_sacks | numeric | Sacks credited to the player. |
-| defensive_solo | numeric | Solo (unassisted) tackles by the player. |
-| defensive_tot | numeric | Total tackles (solo plus assisted) by the player. |
-| fumbles_rec | numeric | Fumbles recovered by the player. |
-| fumbles_lost | numeric | Fumbles by the player that were lost to the opposing team. |
-| fumbles_fum | numeric | Fumbles committed by the player. |
-| punting_long | numeric | Longest punt by the player, in yards. |
-| punting_in_20 | numeric | Punts downed inside the opponent 20-yard line. |
-| punting_tb | numeric | Punts resulting in a touchback. |
-| punting_avg | numeric | Average yards per punt. |
-| punting_yds | numeric | Total punting yards (gross). |
-| punting_no | numeric | Number of punts attempted. |
-| kicking_pts | numeric | Total points scored by the kicker (FGs + XPs). |
-| kicking_long | numeric | Longest made field goal, in yards. |
-| kicking_pct | numeric | Field-goal percentage (made / attempted), 0-100. |
-| punt_returns_td | numeric | Touchdowns scored on punt returns. |
-| punt_returns_long | numeric | Longest punt return, in yards. |
-| punt_returns_avg | numeric | Average yards per punt return. |
-| punt_returns_yds | numeric | Total punt-return yards. |
-| punt_returns_no | numeric | Number of punt returns. |
-| kick_returns_td | numeric | Touchdowns scored on kickoff returns. |
-| kick_returns_long | numeric | Longest kickoff return, in yards. |
-| kick_returns_avg | numeric | Average yards per kickoff return. |
-| kick_returns_yds | numeric | Total kickoff-return yards. |
-| kick_returns_no | numeric | Number of kickoff returns. |
-| interceptions_td | numeric | Touchdowns scored on interception returns (pick-sixes). |
-| interceptions_yds | numeric | Interception-return yards. |
-| interceptions_int | numeric | Number of interceptions made by the player. |
-| receiving_long | numeric | Longest reception by the player, in yards. |
-| receiving_td | numeric | Receiving touchdowns. |
-| receiving_avg | numeric | Average yards per reception. |
-| receiving_yds | numeric | Total receiving yards. |
-| receiving_rec | numeric | Number of receptions (catches). |
-| rushing_long | numeric | Longest rush by the player, in yards. |
-| rushing_td | numeric | Rushing touchdowns. |
-| rushing_avg | numeric | Average yards per rushing attempt. |
-| rushing_yds | numeric | Total rushing yards. |
-| rushing_car | numeric | Rushing carries (attempts). |
-| passing_int | numeric | Interceptions thrown by the passer. |
-| passing_td | numeric | Passing touchdowns thrown. |
-| passing_avg | numeric | Yards per pass attempt. |
-| passing_yds | numeric | Total passing yards. |
-| passing_completions | numeric | Pass completions (split from CFBD's `C/ATT` field). |
-| passing_attempts | numeric | Pass attempts (split from CFBD's `C/ATT` field). |
-| passing_qbr | numeric | ESPN Quarterback Rating (QBR) for the player in this game. |
-| kicking_xpm | numeric | Extra points made (split from CFBD's `XP` field). |
-| kicking_xpa | numeric | Extra points attempted (split from CFBD's `XP` field). |
-| kicking_fgm | numeric | Field goals made (split from CFBD's `FG` field). |
-| kicking_fga | numeric | Field goals attempted (split from CFBD's `FG` field). |
+| defensive_td | double | Defensive touchdowns scored by the player. |
+| defensive_qb_hur | double | Quarterback hurries credited to the player. |
+| defensive_pd | double | Passes defended (pass breakups) by the player. |
+| defensive_tfl | double | Tackles for loss credited to the player. |
+| defensive_sacks | double | Sacks credited to the player. |
+| defensive_solo | double | Solo (unassisted) tackles by the player. |
+| defensive_tot | double | Total tackles (solo plus assisted) by the player. |
+| fumbles_rec | double | Fumbles recovered by the player. |
+| fumbles_lost | double | Fumbles by the player that were lost to the opposing team. |
+| fumbles_fum | double | Fumbles committed by the player. |
+| punting_long | double | Longest punt by the player, in yards. |
+| punting_in_20 | double | Punts downed inside the opponent 20-yard line. |
+| punting_tb | double | Punts resulting in a touchback. |
+| punting_avg | double | Average yards per punt. |
+| punting_yds | double | Total punting yards (gross). |
+| punting_no | double | Number of punts attempted. |
+| kicking_pts | double | Total points scored by the kicker (FGs + XPs). |
+| kicking_long | double | Longest made field goal, in yards. |
+| kicking_pct | double | Field-goal percentage (made / attempted), 0-100. |
+| punt_returns_td | double | Touchdowns scored on punt returns. |
+| punt_returns_long | double | Longest punt return, in yards. |
+| punt_returns_avg | double | Average yards per punt return. |
+| punt_returns_yds | double | Total punt-return yards. |
+| punt_returns_no | double | Number of punt returns. |
+| kick_returns_td | double | Touchdowns scored on kickoff returns. |
+| kick_returns_long | double | Longest kickoff return, in yards. |
+| kick_returns_avg | double | Average yards per kickoff return. |
+| kick_returns_yds | double | Total kickoff-return yards. |
+| kick_returns_no | double | Number of kickoff returns. |
+| interceptions_td | double | Touchdowns scored on interception returns (pick-sixes). |
+| interceptions_yds | double | Interception-return yards. |
+| interceptions_int | double | Number of interceptions made by the player. |
+| receiving_long | double | Longest reception by the player, in yards. |
+| receiving_td | double | Receiving touchdowns. |
+| receiving_avg | double | Average yards per reception. |
+| receiving_yds | double | Total receiving yards. |
+| receiving_rec | double | Number of receptions (catches). |
+| rushing_long | double | Longest rush by the player, in yards. |
+| rushing_td | double | Rushing touchdowns. |
+| rushing_avg | double | Average yards per rushing attempt. |
+| rushing_yds | double | Total rushing yards. |
+| rushing_car | double | Rushing carries (attempts). |
+| passing_int | double | Interceptions thrown by the passer. |
+| passing_td | double | Passing touchdowns thrown. |
+| passing_avg | double | Yards per pass attempt. |
+| passing_yds | double | Total passing yards. |
+| passing_completions | double | Pass completions (split from CFBD's `C/ATT` field). |
+| passing_attempts | double | Pass attempts (split from CFBD's `C/ATT` field). |
+| passing_qbr | double | ESPN Quarterback Rating (QBR) for the player in this game. |
+| kicking_xpm | double | Extra points made (split from CFBD's `XP` field). |
+| kicking_xpa | double | Extra points attempted (split from CFBD's `XP` field). |
+| kicking_fgm | double | Field goals made (split from CFBD's `FG` field). |
+| kicking_fga | double | Field goals attempted (split from CFBD's `FG` field). |
 
 ## See also
 
@@ -155,7 +155,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_player_stats(year = 2020, week = 15, team = "Alabama"))
 #> ── Game player stats data from CollegeFootballData.com ── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 10:58:05 UTC
+#> ℹ Data updated: 2026-09-30 09:39:56 UTC
 #> # A tibble: 48 × 60
 #>      game_id team     conference home_away team_points athlete_id athlete_name  
 #>        <int> <chr>    <chr>      <chr>           <int>      <int> <chr>         
@@ -179,7 +179,7 @@ Other CFBD Games:
 
   try(cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing"))
 #> ── Game player stats data from CollegeFootballData.com ── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 10:58:05 UTC
+#> ℹ Data updated: 2026-09-30 09:39:56 UTC
 #> # A tibble: 3 × 60
 #>     game_id team        conference home_away team_points athlete_id athlete_name
 #>       <int> <chr>       <chr>      <chr>           <int>      <int> <chr>       

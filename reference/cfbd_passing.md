@@ -37,7 +37,7 @@
 
 ### **Get individual passing plays**
 
-      cfbd_passing_plays(year = 2025, week = 5, team = "Texas")
+      cfbd_passing_plays(year = 2025, week = 1, team = "Texas")
 
 ## The passing production block
 
@@ -48,24 +48,24 @@ splits*).
 
 |  |  |  |
 |----|----|----|
-| col_name | types | description |
+| col_name | type | description |
 | attempts | integer | Pass attempts. |
 | completions | integer | Completed passes. |
 | incompletions | integer | Incomplete passes. |
 | interceptions | integer | Passes intercepted. |
-| completion_rate | numeric | Completions divided by attempts (proportion 0-1). |
+| completion_rate | double | Completions divided by attempts (proportion 0-1). |
 | air_yards_attempts_available | integer | Attempts for which air yards were parsed (the denominator for air-yard means). |
 | total_air_yards | integer | Sum of air yards over `air_yards_attempts_available` attempts. |
-| average_depth_of_target | numeric | Mean air yards per attempt (aDOT). |
+| average_depth_of_target | double | Mean air yards per attempt (aDOT). |
 | total_yards_attempts_available | integer | Attempts for which total yards were parsed. |
 | total_yards | integer | Sum of passing yards over those attempts. |
 | yards_after_catch_attempts_available | integer | Attempts for which yards after catch were parsed. |
 | total_yards_after_catch | integer | Sum of yards after catch over those attempts. |
-| average_yards_after_catch | numeric | Mean yards after catch per completion. |
-| success_rate | numeric | Successful attempts divided by `success_attempts_available` (proportion 0-1). |
-| ppa | numeric | Predicted points added per attempt. |
-| total_ppa | numeric | Sum of predicted points added. |
-| explosiveness | numeric | Mean PPA on successful attempts. |
+| average_yards_after_catch | double | Mean yards after catch per completion. |
+| success_rate | double | Successful attempts divided by `success_attempts_available` (proportion 0-1). |
+| ppa | double | Predicted points added per attempt. |
+| total_ppa | double | Sum of predicted points added. |
+| explosiveness | double | Mean PPA on successful attempts. |
 | ppa_attempts_available | integer | Attempts carrying a PPA value (the denominator for `ppa`). |
 | success_attempts_available | integer | Attempts eligible for the success calculation. |
 | successful_attempts | integer | Attempts meeting the success threshold. |
@@ -80,14 +80,45 @@ of the matching `*_available` column understates every mean.
 
 ## Location splits
 
-The same block repeats for each of seven pass locations, prefixed
-`locations_<bucket>_`:
+Each of seven pass locations carries 23 columns, prefixed
+`locations_<bucket>_` (e.g. `locations_short_left_attempts`): the
+production block without its two `location_*` counts, plus
+`yards_per_attempt` and `air_yards_per_attempt`. The buckets are:
 
 - `short_left`, `short_middle`, `short_right`
 
 - `deep_left`, `deep_middle`, `deep_right`
 
 - `unknown` – location could not be parsed from the play text
+
+Each bucket's columns:
+
+|  |  |  |
+|----|----|----|
+| col_name | type | description |
+| attempts | integer | Pass attempts. |
+| completions | integer | Completed passes. |
+| incompletions | integer | Incomplete passes. |
+| interceptions | integer | Passes intercepted. |
+| completion_rate | double | Completions divided by attempts (proportion 0-1). |
+| air_yards_attempts_available | integer | Attempts for which air yards were parsed (the denominator for air-yard means). |
+| total_air_yards | integer | Sum of air yards over `air_yards_attempts_available` attempts. |
+| average_depth_of_target | double | Mean air yards per attempt (aDOT). |
+| total_yards_attempts_available | integer | Attempts for which total yards were parsed. |
+| total_yards | integer | Sum of passing yards over those attempts. |
+| yards_after_catch_attempts_available | integer | Attempts for which yards after catch were parsed. |
+| total_yards_after_catch | integer | Sum of yards after catch over those attempts. |
+| average_yards_after_catch | double | Mean yards after catch per completion. |
+| success_rate | double | Successful attempts divided by `success_attempts_available` (proportion 0-1). |
+| ppa | double | Predicted points added per attempt. |
+| total_ppa | double | Sum of predicted points added. |
+| explosiveness | double | Mean PPA on successful attempts. |
+| ppa_attempts_available | integer | Attempts carrying a PPA value (the denominator for `ppa`). |
+| success_attempts_available | integer | Attempts eligible for the success calculation. |
+| successful_attempts | integer | Attempts meeting the success threshold. |
+| successful_ppa_attempts_available | integer | Successful attempts carrying a PPA value (the denominator for `explosiveness`). |
+| yards_per_attempt | double | Passing yards per attempt: `total_yards` divided by `total_yards_attempts_available`, to one decimal; NA when no attempt has total yards. |
+| air_yards_per_attempt | double | Air yards per attempt: `total_air_yards` divided by `air_yards_attempts_available`, to one decimal. The same value as `average_depth_of_target`; NA when no attempt has air yards. |
 
 All seven buckets are always present, including empty ones. So a player
 frame is 5 identity columns + 23 production + 7 x 23 location = **189

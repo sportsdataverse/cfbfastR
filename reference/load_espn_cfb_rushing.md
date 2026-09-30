@@ -84,21 +84,21 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_rushing(2004))
 #> ── college football rushing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-09-27 11:09:17 UTC
-#> # A tibble: 1,109 × 47
+#> ℹ Data updated: 2026-09-30 09:47:23 UTC
+#> # A tibble: 1,122 × 47
 #>    team_id pos_team      division conference season player_id rusher_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 77      Northwestern  fbs      Big Ten      2004    146149 Chris Malleo      
-#>  2 127     Michigan Sta… fbs      Big Ten      2004    133795 Drew Stanton      
-#>  3 70      Idaho         fbs      Sun Belt     2004    150917 Brian Nooy        
-#>  4 309     Louisiana     fbs      Sun Belt     2004    136229 Jerry Babb        
-#>  5 151     East Carolina fbs      Conferenc…   2004    106007 Desmond Robinson  
-#>  6 251     Texas         fbs      Big 12       2004    108250 Will Matthews     
-#>  7 2483    Oregon        fbs      Pac-10       2004    134038 Chris Vincent     
-#>  8 2572    Southern Miss fbs      Conferenc…   2004    129244 Anthony Harris    
-#>  9 2440    Nevada        fbs      Western A…   2004    147768 Talib Wise        
-#> 10 2433    Louisiana Mo… fbs      Sun Belt     2004    150245 Jesse Blair       
-#> # ℹ 1,099 more rows
+#>  1 2638    UTEP          fbs      Western A…   2004    136751 Josh Chamois      
+#>  2 57      Florida       fbs      SEC          2004    134512 Gavin Dickey      
+#>  3 5       UAB           fbs      Conferenc…   2004    147964 Marculus Elliott  
+#>  4 201     Oklahoma      fbs      Big 12       2004    102478 Antonio Perkins   
+#>  5 2711    Western Mich… fbs      Mid-Ameri…   2004    115462 Blayne Baggett    
+#>  6 2628    TCU           fbs      Conferenc…   2004    137467 Michael DePriest  
+#>  7 201     Oklahoma      fbs      Big 12       2004     20847 Jason White       
+#>  8 2348    Louisiana Te… fbs      Western A…   2004    125548 Danny Wilson      
+#>  9 2483    Oregon        fbs      Pac-10       2004    134038 Chris Vincent     
+#> 10 99      LSU           fbs      SEC          2004    107723 Marcus Randall    
+#> # ℹ 1,112 more rows
 #> # ℹ 40 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, rushing_td <dbl>, fumbles <dbl>,
 #> #   playsgame <dbl>, EPAgame <dbl>, yardsplay <dbl>, yardsgame <dbl>,

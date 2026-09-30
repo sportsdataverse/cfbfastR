@@ -105,6 +105,34 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   `offense`, `defense`, `offense_conference`, `defense_conference`,
   `conference` and `division`.
 
+### Fixed: CFBD game box score and team stats
+
+- `cfbd_game_team_stats(team =)` returned both teams of every game.
+  Inside
+  [`dplyr::filter()`](https://dplyr.tidyverse.org/reference/filter.html)
+  the bare `team` resolved to the frame’s own `team` column, so the
+  filter compared the column with itself. It now keeps only the
+  requested team, matched case-insensitively as CFBD matches `team=`.
+
+- [`cfbd_game_box_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_box_advanced.md)
+  gave each team its opponent’s `havoc_*` columns. CFBD lists the
+  `havoc` section in the opposite team order to the other sections, and
+  the parser paired entries by position. Rows are now matched to teams
+  by name, so `havoc_*` is the havoc the row’s own defense created. The
+  2025 `passing` / `rushingAdvanced` sections, which added ~550
+  unrenamed columns and coercion warnings, are no longer returned; the
+  output keeps its documented 69 columns. If a section’s team names
+  cannot be matched, it warns instead of silently pairing by position.
+  \## Documentation: CFBD return tables
+
+- Every `cfbd_*` wrapper added or changed in this cycle now documents
+  its return value as a column table generated from live output.
+
+- [`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md):
+  the score columns (`offense_score`, `pos_team_score`, `score_diff`, …)
+  were documented as pre-play; they are after the play, and
+  `score_diff_start` / `pos_score_diff_start` hold the pre-play values.
+
 ### New: CFBD passing and rushing endpoint families
 
 Ten new `cfbd_*()` wrappers close the last gaps against the

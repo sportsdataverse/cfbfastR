@@ -28,7 +28,7 @@ cfbd_teams_fbs(year = NULL, proxy = NULL)
 
 |  |  |  |
 |----|----|----|
-| col_name | types | description |
+| col_name | type | description |
 | id | integer | Record identifier. |
 | school | character | School name. |
 | mascot | character | Team mascot. |
@@ -65,8 +65,8 @@ cfbd_teams_fbs(year = NULL, proxy = NULL)
 | location_zip | character | Venue zip. |
 | location_country_code | character | Venue country code. |
 | location_timezone | character | Venue timezone. |
-| location_latitude | numeric | Venue latitude. |
-| location_longitude | numeric | Venue longitude. |
+| location_latitude | double | Venue latitude. |
+| location_longitude | double | Venue longitude. |
 | location_elevation | character | Venue elevation. |
 | location_capacity | integer | Venue capacity. |
 | location_construction_year | integer | Venue construction year. |
@@ -79,7 +79,7 @@ cfbd_teams_fbs(year = NULL, proxy = NULL)
 # \donttest{
   try(cfbd_teams_fbs(year = 2024))
 #> ── Get FBS teams from CollegeFootballData.com ─────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 11:04:39 UTC
+#> ℹ Data updated: 2026-09-30 09:43:54 UTC
 #> # A tibble: 134 × 43
 #>       id school         mascot  abbreviation alternate_names_1 alternate_names_2
 #>    <int> <chr>          <chr>   <chr>        <chr>             <chr>            

@@ -53,7 +53,7 @@ cfbd_passing_teams_games(
 
 |             |           |                                         |
 |-------------|-----------|-----------------------------------------|
-| col_name    | types     | description                             |
+| col_name    | type      | description                             |
 | game_id     | integer   | Unique game identifier - `game_id`.     |
 | season      | integer   | Four-digit season year (e.g. 2025).     |
 | week        | integer   | Week of the season.                     |
@@ -82,7 +82,7 @@ Other CFBD Passing:
 # \donttest{
   try(cfbd_passing_teams_games(year = 2025, week = 5))
 #> ── Team game passing data from CollegeFootballData.com ── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 10:58:31 UTC
+#> ℹ Data updated: 2026-09-30 09:40:26 UTC
 #> # A tibble: 104 × 375
 #>      game_id season  week season_type team  conference opponent offense_attempts
 #>        <int>  <int> <int> <chr>       <chr> <chr>      <chr>               <int>

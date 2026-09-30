@@ -62,21 +62,21 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_returning_production(2005))
 #> ── college football returning production from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-09-27 11:08:30 UTC
-#> # A tibble: 161 × 7
+#> ℹ Data updated: 2026-09-30 09:46:43 UTC
+#> # A tibble: 161 × 9
 #>    season team_id off_returning def_returning overall_returning n_returning
 #>     <int> <chr>           <dbl>         <dbl>             <dbl>       <int>
-#>  1   2005 2466            1                NA             1               5
-#>  2   2005 2026            1                NA             1               5
-#>  3   2005 113             1                NA             1               4
-#>  4   2005 2464            1                NA             1               4
-#>  5   2005 2460            1                NA             1               5
-#>  6   2005 311             1                NA             1               6
-#>  7   2005 2502            1                NA             1               3
+#>  1   2005 113             1                NA             1               4
+#>  2   2005 2502            1                NA             1               3
+#>  3   2005 2026            1                NA             1               5
+#>  4   2005 311             1                NA             1               6
+#>  5   2005 2464            1                NA             1               4
+#>  6   2005 2460            1                NA             1               5
+#>  7   2005 2466            1                NA             1               5
 #>  8   2005 2630            0.997            NA             0.997           6
-#>  9   2005 221             0.992            NA             0.992          14
-#> 10   2005 2546            0.986            NA             0.986           6
+#>  9   2005 2546            0.986            NA             0.986           6
+#> 10   2005 2710            0.982            NA             0.982           5
 #> # ℹ 151 more rows
-#> # ℹ 1 more variable: is_estimated <lgl>
+#> # ℹ 3 more variables: def_basis <chr>, overall_basis <chr>, is_estimated <lgl>
 # }
 ```

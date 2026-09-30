@@ -60,7 +60,7 @@ Saiem Gilani
 # \donttest{
   try(load_ncaa_mfb_officials(2013))
 #> ── NCAA men's football officials (stats.ncaa.org) from the SportsDataverse data 
-#> ℹ Data updated: 2026-09-27 11:09:24 UTC
+#> ℹ Data updated: 2026-09-30 09:47:29 UTC
 #> # A tibble: 11,334 × 5
 #>    contest_id role  official        espn_game_id season
 #>    <chr>      <chr> <chr>           <chr>         <int>

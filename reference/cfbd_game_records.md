@@ -32,14 +32,14 @@ cfbd_game_records(year, team = NULL, conference = NULL)
 
 |  |  |  |
 |----|----|----|
-| col_name | types | description |
+| col_name | type | description |
 | year | integer | Season of the games. |
 | team_id | integer | Referencing team id. |
 | team | character | Team name. |
 | classification | character | Conference classification (fbs, fcs, ii, iii). |
 | conference | character | Conference of the team. |
 | division | character | Division in the conference of the team. |
-| expected_wins | numeric | Expected number of wins based on post-game win probability. |
+| expected_wins | double | Expected number of wins based on post-game win probability. |
 | total_games | integer | Total number of games played. |
 | total_wins | integer | Total wins. |
 | total_losses | integer | Total losses. |
@@ -90,7 +90,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_records(2018, team = "Notre Dame"))
 #> ── Game records data from CollegeFootballData.com ─────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 10:58:07 UTC
+#> ℹ Data updated: 2026-09-30 09:39:59 UTC
 #> # A tibble: 1 × 35
 #>    year team_id team       classification conference      division expected_wins
 #>   <int>   <int> <chr>      <chr>          <chr>           <chr>            <dbl>
@@ -105,7 +105,7 @@ Other CFBD Games:
 
   try(cfbd_game_records(2013, team = "Florida State"))
 #> ── Game records data from CollegeFootballData.com ─────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 10:58:08 UTC
+#> ℹ Data updated: 2026-09-30 09:40:00 UTC
 #> # A tibble: 1 × 35
 #>    year team_id team          classification conference division expected_wins
 #>   <int>   <int> <chr>         <chr>          <chr>      <chr>            <dbl>
