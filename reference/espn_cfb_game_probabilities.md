@@ -171,7 +171,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_probabilities(game_id = 401628339))
 #> ── Game win probabilities data from ESPN ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-30 13:18:19 UTC
+#> ℹ Data updated: 2026-09-30 14:43:39 UTC
 #> # A tibble: 157 × 41
 #>    game_id   play_id            sequence_number home_team_id home_team_name
 #>    <chr>     <chr>              <chr>           <chr>        <chr>         
@@ -195,7 +195,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_probabilities(game_id = 401628339,
                                   team_detail = FALSE))
 #> ── Game win probabilities data from ESPN ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-30 13:18:19 UTC
+#> ℹ Data updated: 2026-09-30 14:43:40 UTC
 #> # A tibble: 157 × 21
 #>    game_id play_id sequence_number home_team_id away_team_id home_win_percentage
 #>    <chr>   <chr>   <chr>           <chr>        <chr>                      <dbl>

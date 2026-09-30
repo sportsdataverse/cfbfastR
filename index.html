@@ -177,6 +177,7 @@
     <li><a class="external-link dropdown-item" href="https://github.com/sportsdataverse/cfbfastR-raw">Raw Data Repository</a></li>
   </ul>
 </li>
+<li class="nav-item"><a class="external-link nav-link" href="https://sportsdataverse.org/status">Data status</a></li>
 <li class="nav-item"><a class="external-link nav-link" href="http://gameonpaper.com/cfb"><span class="fa fas fa-football-ball"></span>  GP</a></li>
       </ul>
 <ul class="navbar-nav">
@@ -213,6 +214,60 @@
 <!-- badges: start -->
 
 <p>The goal of <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a> is to provide the community with an R package for working with CFB data. It is an R API wrapper around <a href="https://collegefootballdata.com/" class="external-link uri">https://collegefootballdata.com/</a>. Beyond data aggregation and tidying ease, one of the multitude of services that <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a> provides is for benchmarking open-source expected points and win probability metrics.</p>
+<div class="section level2">
+<h2 id="data-status">
+<strong>Data status</strong><a class="anchor" aria-label="anchor" href="#data-status"></a>
+</h2>
+<p>The <code>load_*()</code> functions read release assets on <a href="https://github.com/sportsdataverse/sportsdataverse-data/releases" class="external-link">sportsdataverse-data</a>. The badges below are rebuilt nightly from each producer’s latest workflow run and newest release files; idle means the sport is out of season. Full detail: <a href="https://sportsdataverse.org/status" class="external-link">sportsdataverse.org/status</a>.</p>
+<table class="table">
+<colgroup>
+<col width="3%">
+<col width="9%">
+<col width="9%">
+<col width="9%">
+<col width="67%">
+</colgroup>
+<thead><tr>
+<th align="left">Dataset</th>
+<th align="left">Data updated</th>
+<th align="left">Through</th>
+<th align="left">Pipeline</th>
+<th align="left">Update workflows</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://github.com/sportsdataverse/cfbfastR-cfb-data" class="external-link">College football (ESPN)</a></td>
+<td align="left"><a href="https://github.com/sportsdataverse/sportsdataverse-data/releases" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2FcfbfastR-cfb-data%2Fupdated.json" alt="cfbfastR-cfb-data data updated"></a></td>
+<td align="left"><a href="https://github.com/sportsdataverse/sportsdataverse-data/releases" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2FcfbfastR-cfb-data%2Fthrough.json" alt="cfbfastR-cfb-data through season"></a></td>
+<td align="left"><a href="https://sportsdataverse.org/status#cfbfastR-cfb-data" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2FcfbfastR-cfb-data%2Fstatus.json" alt="cfbfastR-cfb-data pipeline state"></a></td>
+<td align="left">
+<a href="https://github.com/sportsdataverse/cfbfastR-cfb-data/actions/workflows/daily_cfb.yml" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2FcfbfastR-cfb-data%2Fwf-daily_cfb.json" alt="cfbfastR-cfb-data daily_cfb"></a> <a href="https://github.com/sportsdataverse/cfbfastR-cfb-data/actions/workflows/cfb_ratings_cron.yml" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2FcfbfastR-cfb-data%2Fwf-cfb_ratings_cron.json" alt="cfbfastR-cfb-data cfb_ratings_cron"></a> <a href="https://github.com/sportsdataverse/cfbfastR-cfb-data/actions/workflows/cfb_fpi_weekly.yml" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2FcfbfastR-cfb-data%2Fwf-cfb_fpi_weekly.json" alt="cfbfastR-cfb-data cfb_fpi_weekly"></a> <a href="https://github.com/sportsdataverse/cfbfastR-cfb-data/actions/workflows/cfb_recruiting_proj_cron.yml" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2FcfbfastR-cfb-data%2Fwf-cfb_recruiting_proj_cron.json" alt="cfbfastR-cfb-data cfb_recruiting_proj_cron"></a> <a href="https://github.com/sportsdataverse/cfbfastR-cfb-data/actions/workflows/cfb_model_pipeline.yml" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2FcfbfastR-cfb-data%2Fwf-cfb_model_pipeline.json" alt="cfbfastR-cfb-data cfb_model_pipeline"></a> <a href="https://github.com/sportsdataverse/cfbfastR-cfb-data/actions/workflows/espn_daily_snapshots.yml" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2FcfbfastR-cfb-data%2Fwf-espn_daily_snapshots.json" alt="cfbfastR-cfb-data espn_daily_snapshots"></a>
+</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/sportsdataverse/cfbfastR-data" class="external-link">College football play-by-play (CollegeFootballData)</a></td>
+<td align="left"><a href="https://github.com/sportsdataverse/sportsdataverse-data/releases" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2FcfbfastR-data%2Fupdated.json" alt="cfbfastR-data data updated"></a></td>
+<td align="left"><a href="https://github.com/sportsdataverse/sportsdataverse-data/releases" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2FcfbfastR-data%2Fthrough.json" alt="cfbfastR-data through season"></a></td>
+<td align="left"><a href="https://sportsdataverse.org/status#cfbfastR-data" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2FcfbfastR-data%2Fstatus.json" alt="cfbfastR-data pipeline state"></a></td>
+<td align="left"><a href="https://github.com/sportsdataverse/cfbfastR-data/actions/workflows/daily_cfb.yml" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2FcfbfastR-data%2Fwf-daily_cfb.json" alt="cfbfastR-data daily_cfb"></a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/sportsdataverse/ncaa-mfb-football-data" class="external-link">College football (stats.ncaa.org)</a></td>
+<td align="left"><a href="https://github.com/sportsdataverse/sportsdataverse-data/releases" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2Fncaa-mfb-football-data%2Fupdated.json" alt="ncaa-mfb-football-data data updated"></a></td>
+<td align="left"><a href="https://github.com/sportsdataverse/sportsdataverse-data/releases" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2Fncaa-mfb-football-data%2Fthrough.json" alt="ncaa-mfb-football-data through season"></a></td>
+<td align="left"><a href="https://sportsdataverse.org/status#ncaa-mfb-football-data" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2Fncaa-mfb-football-data%2Fstatus.json" alt="ncaa-mfb-football-data pipeline state"></a></td>
+<td align="left"><a href="https://github.com/sportsdataverse/ncaa-mfb-football-data/actions/workflows/daily_ncaa_mfb_data.yml" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2Fncaa-mfb-football-data%2Fwf-daily_ncaa_mfb_data.json" alt="ncaa-mfb-football-data daily_ncaa_mfb_data"></a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/sportsdataverse/sdv-reference-data" class="external-link">Conference, division and ballpark reference</a></td>
+<td align="left"><a href="https://github.com/sportsdataverse/sportsdataverse-data/releases" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2Fsdv-reference-data%2Fupdated.json" alt="sdv-reference-data data updated"></a></td>
+<td align="left"><a href="https://github.com/sportsdataverse/sportsdataverse-data/releases" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2Fsdv-reference-data%2Fthrough.json" alt="sdv-reference-data through season"></a></td>
+<td align="left"><a href="https://sportsdataverse.org/status#sdv-reference-data" class="external-link"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsportsdataverse%2F.github%2Fmain%2Fstatus%2Fbadges%2Fsdv-reference-data%2Fstatus.json" alt="sdv-reference-data pipeline state"></a></td>
+<td align="left">—</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section level2">
 <h2 id="installation">
 <strong>Installation</strong><a class="anchor" aria-label="anchor" href="#installation"></a>
