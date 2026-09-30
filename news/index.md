@@ -180,6 +180,29 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   pre-2014 games (the feed lists plays out of id order), so
   `game_play_number` stepped backwards and a lag over the returned rows
   read the wrong play.
+- [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
+  (v2) now models plays in sportsdataverse-py’s play order instead of
+  ESPN’s id order. Since 2024 the feed files some plays under later ids
+  (re-keyed field goals, touchdown drives entered after the fact), so
+  every previous/next-play feature – EPA’s end state, drive and play
+  counters, WPA – read the wrong neighbour. The engine now repairs the
+  order the way sdv-py does: late inserts go back by sequence number, a
+  row filed inside a later drive rejoins its own drive, tries filed
+  after the kickoff return behind their touchdown, and overtime is
+  ordered by sequence or id, whichever steps the score back less. On an
+  83-game 2004-2026 sample the engine’s order now equals sdv-py’s in all
+  83 games (2024-2026: 12 of 12, was 5); on plays whose previous snap
+  changed, the median EPA gap to sdv-py fell from 0.25 to 0.05. A
+  separate 130-game check against sdv-py’s full pipeline found one game
+  that still differs, 401525903: sdv-py first retypes an untyped
+  two-point try, a relabel cfbfastR does not port.
+  [`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md)
+  carries none of the fields the repairs read, so it runs in plain id
+  order. Its drive and play counters used to run in clock order instead,
+  and about 9% of 2024 games get a different previous play for some
+  rows. Measured against sdv-py’s order on 270 ESPN games, clock order
+  put 685 plays after the wrong neighbour, against 151 for id order.
+  `engine = "legacy"` on either function is unchanged.
 
 ### Documentation: CFBD return tables
 

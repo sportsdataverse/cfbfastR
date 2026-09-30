@@ -51,7 +51,7 @@ Saiem Gilani
  # \donttest{
    try(espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE))
 #> ── Play-by-play data from ESPN (core-v2) ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-30 20:36:29 UTC
+#> ℹ Data updated: 2026-09-30 21:56:59 UTC
 #> # A tibble: 196 × 536
 #>    season id_play    game_id game_play_number half_play_number drive_play_number
 #>     <int> <chr>      <chr>              <dbl>            <dbl>             <dbl>
@@ -61,10 +61,10 @@ Saiem Gilani
 #>  4   2021 401282614… 401282…                3                3                 3
 #>  5   2021 401282614… 401282…                4                4                 4
 #>  6   2021 401282614… 401282…                5                5                 5
-#>  7   2021 401282614… 401282…                6                7                 2
-#>  8   2021 401282614… 401282…                7                6                 1
-#>  9   2021 401282614… 401282…                8                8                 3
-#> 10   2021 401282614… 401282…                8                8                 3
+#>  7   2021 401282614… 401282…                6                6                 6
+#>  8   2021 401282614… 401282…                7                7                 1
+#>  9   2021 401282614… 401282…                8                8                 2
+#> 10   2021 401282614… 401282…                8                8                 2
 #> # ℹ 186 more rows
 #> # ℹ 530 more variables: pos_team <chr>, def_pos_team <chr>,
 #> #   pos_team_score <int>, def_pos_team_score <int>, half <fct>, period <int>,
