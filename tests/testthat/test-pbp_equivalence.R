@@ -192,6 +192,11 @@
   expect_false(identical(attr(legacy, "cfbfastR_type"), attr(v2, "cfbfastR_type")),
                info = paste0(sample_label, ": legacy and v2 came from the same engine"))
 
+  # A canonical column one engine returns, the other must return too; the
+  # intersection below would otherwise skip it (ESPN has no `wk` on either side).
+  expect_setequal(intersect(.eq_canonical_cols(), colnames(v2)),
+                  intersect(.eq_canonical_cols(), colnames(legacy)))
+
   # Pipeline-canonical columns that exist on BOTH sides.
   both_have <- intersect(colnames(legacy), colnames(v2))
   canonical <- intersect(both_have, .eq_canonical_cols())
@@ -209,6 +214,11 @@
   # v2 character/lossless).
   ord_l <- order(.eq_id_play_key(legacy$id_play), legacy$game_id)
   ord_v <- order(.eq_id_play_key(v2$id_play),     v2$game_id)
+  # The ids are allow-listed for their storage type only; their values must match.
+  for (key in c("game_id", "id_play")) {
+    expect_identical(.eq_id_play_key(v2[[key]])[ord_v], .eq_id_play_key(legacy[[key]])[ord_l],
+                     info = paste0(sample_label, ": ", key, " values"))
+  }
   for (col in cols_to_check) {
     expect_equal(
       v2[[col]][ord_v],
