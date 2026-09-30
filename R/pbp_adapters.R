@@ -143,13 +143,11 @@
 #' the raw 0 puts the model outside its training data.
 #'
 #' ESPN callers pass the down-and-distance `text` and, exactly like sdv-py,
-#' only rows reading "Goal" change. ESPN also writes "& 0 at" for a missing
-#' distance: mostly goal-to-go, but not always ("1st & 0 at WYO 19"), and the
-#' model learned those rows at 0, so they stay as sent. Telling them apart
-#' needs the previous play's end state and a retrain, in sdv-py first. ESPN
-#' kickoffs (down 1, distance 0) have no text and never match. CFBD has no
-#' text, so without one only rows at the 10 or closer change: there any down
-#' at distance 0 is goal-to-go.
+#' only rows reading "Goal" change here; ESPN's "& 0 at" rows are resolved
+#' from the previous snap by `.espn_amp0_distance()`. ESPN kickoffs (down 1,
+#' distance 0) have no text and never match. CFBD has no text, so without one
+#' only rows at the 10 or closer change: there any down at distance 0 is
+#' goal-to-go.
 #' @return `distance` with those downs set to `yards_to_goal`.
 #' @keywords internal
 #' @noRd
@@ -157,6 +155,50 @@
   g2g <- distance %in% 0 & down %in% 1:4 & yards_to_goal %in% 1:99
   g2g <- g2g & if (is.null(text)) yards_to_goal <= 10 else grepl("goal", text, ignore.case = TRUE)
   distance[g2g] <- yards_to_goal[g2g]
+  distance
+}
+
+#' ESPN "& 0 at" distance, from the previous snap's end state
+#'
+#' ESPN writes "& 0 at" (no "Goal") for two things: goal-to-go after the ball
+#' moved back ("2nd & 0 at LSU 14" follows a sack that ended "2nd & Goal at
+#' LSU 14") and a distance it lost ("2nd & 0 at UWA 21" follows "2nd & 18 at
+#' UWA 21"). Mirrors sdv-py's `_repair_amp0_distance()` (sportsdataverse-py
+#' #636): the previous real snap -- skipping up to two timeout / period-end
+#' rows -- must end on the same down at the same "at <spot>" text; an end
+#' reading "Goal" gives the yards to the goal, a real end distance gives that
+#' distance capped at the yards to the goal, and anything else stays 0. The
+#' spot is compared as text because field-goal rows' yards-to-goal run a yard
+#' deeper than their text. Vectors are one game in play order.
+#' @return `distance` with those rows resolved.
+#' @keywords internal
+#' @noRd
+.espn_amp0_distance <- function(distance, down, yards_to_goal, text, type,
+                                end_down, end_distance, end_text) {
+  n <- length(distance)
+  if (!n) return(distance)
+  admin <- grepl("^(timeout|end period|end of (half|game)|official)", type,
+                 ignore.case = TRUE, perl = TRUE)
+  i <- seq_len(n)
+  lag_admin <- function(k) c(rep(FALSE, k), admin)[i]
+  j <- ifelse(lag_admin(1), ifelse(lag_admin(2), i - 3L, i - 2L), i - 1L)
+  j[j < 1L] <- NA_integer_
+  spot <- function(x) {
+    m <- regexpr("at (.+)$", x, perl = TRUE)
+    out <- rep(NA_character_, length(x))
+    ok <- !is.na(m) & m > 0
+    out[ok] <- substring(x[ok], m[ok] + 3L)
+    out
+  }
+  prev_text <- end_text[j]
+  amp0 <- distance %in% 0 & grepl("& 0 at", text, fixed = TRUE) &
+    down %in% 1:4 & yards_to_goal %in% 1:99 &
+    !grepl("kickoff|extra point|two[- ]point|2pt", type, ignore.case = TRUE) &
+    (end_down[j] == down) %in% TRUE & (spot(prev_text) == spot(text)) %in% TRUE
+  goal <- amp0 & grepl("goal", prev_text, ignore.case = TRUE)
+  lost <- amp0 & !goal & (end_distance[j] > 0) %in% TRUE
+  distance[goal] <- yards_to_goal[goal]
+  distance[lost] <- pmin(end_distance[j][lost], yards_to_goal[lost])
   distance
 }
 

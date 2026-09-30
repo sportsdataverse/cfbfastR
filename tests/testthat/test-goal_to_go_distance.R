@@ -12,10 +12,9 @@ test_that("ESPN goal-to-go downs sent as distance 0 get the yards to the goal", 
     text = c("1st & Goal at LSU 4", "2nd & 0 at LSU 14", "3rd & 0 at LSU 14",
              "1st & Goal at CLEM 5", "2nd & 7 at LSU 30", NA, NA, "1st & 0 at WYO 19")
   )
-  # "Goal" downs fixed, as sdv-py does for the training data. "& 0 at" is
-  # ESPN's missing-distance text (a 1st & 0 at the 19 is no goal-to-go), so it
-  # stays as sent, matching training; a real 2nd & 7, a kickoff (down 1, no
-  # text, at the 65) and a timeout row are untouched.
+  # "Goal" downs fixed, as sdv-py does. "& 0 at" rows are left for
+  # .espn_amp0_distance(), which needs the previous snap; a real 2nd & 7, a
+  # kickoff (down 1, no text, at the 65) and a timeout row are untouched.
   expect_identical(x, c(4, 0, 0, 5, 7, 0, 0, 0))
   # An old payload with no text column must not open the gate for kickoffs.
   expect_identical(.goal_to_go_distance(0, 1, 65, text = NA_character_), 0)
@@ -38,30 +37,62 @@ test_that("CFBD goal-to-go downs sent as distance 0 are fixed without a text", {
   expect_equal(x, c(4, 10, 0))
 })
 
-test_that("CFBD and ESPN agree on 401752671's EPA wherever their distances agree", {
+test_that("CFBD and ESPN agree on 401752671's EPA on every play and engine", {
   skip_on_cran()
   skip_if(!has_cfbd_key(), "CFBD API key not available")
-  # ESPN sends two "Goal" downs of this game as distance 0 and CFBD one; scored
-  # raw, those plays and the plays before them (whose end state reads the next
-  # play's distance) disagreed on EPA between the sources. ESPN's two "2nd/3rd
-  # & 0 at LSU 14" rows stay at 0 by design (see .goal_to_go_distance()), so
-  # the comparison keeps plays whose own and next distance match across feeds.
-  goal_ids <- c("401752671102945901", "401752671103905201")
-  k <- function(d) data.frame(id_play = as.character(d$id_play), EPA = d$EPA,
-                              dist = as.numeric(d$distance), nxt = dplyr::lead(as.numeric(d$distance)))
+  # ESPN sends two "Goal" downs of this game as distance 0, two "& 0 at LSU 14"
+  # downs after a sack, and CFBD one "2nd & Goal at CLEM 4" as 0. Scored raw,
+  # those plays and the plays before them (whose end state reads the next
+  # play's distance) disagreed on EPA between the sources.
+  espn_ids <- c("401752671102945901", "401752671102948001", "401752671102948901", "401752671103905201")
   for (eng in c("v2", "legacy")) {
     e  <- suppressWarnings(suppressMessages(espn_cfb_pbp(game_id = 401752671, epa_wpa = TRUE, engine = eng)))
     cf <- suppressWarnings(suppressMessages(cfbd_pbp_data(year = 2025, week = 1, team = "LSU",
                                                           epa_wpa = TRUE, engine = eng)))
     if (!is.data.frame(e) || !nrow(e) || !is.data.frame(cf) || !nrow(cf)) skip("no plays returned")
-    g <- e[as.character(e$id_play) %in% goal_ids, ]
+    g <- e[as.character(e$id_play) %in% espn_ids, ]
     expect_equal(as.numeric(g$distance), as.numeric(g$yards_to_goal), label = paste("ESPN goal downs,", eng))
     expect_equal(as.numeric(cf$distance[as.character(cf$id_play) == "401752671103909201"]), 4,
                  label = paste("CFBD 2nd & Goal at CLEM 4,", eng))
-    j <- merge(k(cf[as.character(cf$game_id) == "401752671", ]), k(e), by = "id_play", suffixes = c(".c", ".e"))
-    same <- (j$dist.c == j$dist.e) %in% TRUE &
-      ((j$nxt.c == j$nxt.e) %in% TRUE | (is.na(j$nxt.c) & is.na(j$nxt.e)))
-    expect_gt(sum(same), 160L)
-    expect_equal(j$EPA.c[same], j$EPA.e[same], tolerance = 1e-6, label = paste("CFBD vs ESPN EPA,", eng))
+    j <- merge(data.frame(id_play = as.character(cf$id_play), c = cf$EPA),
+               data.frame(id_play = as.character(e$id_play), e = e$EPA), by = "id_play")
+    expect_gt(nrow(j), 160L)
+    expect_equal(j$c, j$e, tolerance = 1e-6, label = paste("CFBD vs ESPN EPA,", eng))
   }
+})
+
+# Rows for .espn_amp0_distance(): values from real plays (401752671 LSU @
+# Clemson; 400559176 "2nd & 0 at UWA 21" after "2nd & 18"; 400547673 TULN).
+amp0 <- function(prev, row) {
+  r <- rbind(prev, row)
+  .espn_amp0_distance(r$distance, r$down, r$ytg, r$text, r$type, r$end_down, r$end_distance, r$end_text)
+}
+play <- function(type, down, distance, ytg, text, end_down, end_distance, end_text) {
+  data.frame(type = type, down = down, distance = distance, ytg = ytg, text = text,
+             end_down = end_down, end_distance = end_distance, end_text = end_text)
+}
+
+test_that("ESPN '& 0 at' downs follow the previous snap's end state", {
+  sack <- play("Sack", 1, 4, 4, "1st & Goal at LSU 4", 2, 14, "2nd & Goal at LSU 14")
+  inc  <- play("Pass Incompletion", 2, 0, 14, "2nd & 0 at LSU 14", 3, 14, "3rd & Goal at LSU 14")
+  # goal-to-go after a sack -> yards to the goal; the rows before are untouched
+  expect_identical(amp0(sack, inc), c(4, 14))
+  # ...also through a timeout, and when ESPN encodes the Goal end as distance 0
+  to <- play("Timeout", 2, 14, 14, NA, 2, 14, NA)
+  expect_identical(amp0(rbind(sack, to), inc), c(4, 14, 14))
+  expect_identical(amp0(transform(sack, end_distance = 0), inc), c(4, 14))
+  # a lost distance -> the previous end distance, capped at the yards to go
+  rush <- play("Rush", 1, 10, 23, "1st & 10 at UWA 23", 2, 18, "2nd & 18 at UWA 21")
+  row  <- play("Rush", 2, 0, 21, "2nd & 0 at UWA 21", 3, 0, NA)
+  expect_identical(amp0(rush, row), c(10, 18))
+  expect_identical(amp0(transform(rush, end_distance = 48, end_text = "2nd & 48 at UWA 21"), row), c(10, 21))
+  # nothing to read: spot differs, down differs, end distance missing, a kickoff
+  expect_identical(amp0(transform(rush, end_text = "2nd & 18 at UWA 25"), row), c(10, 0))
+  expect_identical(amp0(transform(rush, end_down = 3), row), c(10, 0))
+  expect_identical(amp0(transform(rush, end_distance = NA, end_text = "2nd & 0 at UWA 21"), row), c(10, 0))
+  expect_identical(amp0(rush, transform(row, type = "Kickoff")), c(10, 0))
+  # KNOWN GAP (as in sdv-py): TULN 15 is really goal-to-go, but the penalty
+  # before it carries no end state, so there is nothing to read.
+  pen <- play("Penalty", 1, 10, 10, "1st & Goal at TULN 10", 1, 0, NA)
+  expect_identical(amp0(pen, play("Rush", 1, 0, 15, "1st & 0 at TULN 15", 2, 0, NA)), c(10, 0))
 })
