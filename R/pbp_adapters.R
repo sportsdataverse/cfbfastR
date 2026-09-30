@@ -169,19 +169,22 @@
 #' reading "Goal" gives the yards to the goal, a real end distance gives that
 #' distance capped at the yards to the goal, and anything else stays 0. The
 #' spot is compared as text because field-goal rows' yards-to-goal run a yard
-#' deeper than their text. Vectors are one game in ESPN's drive order.
+#' deeper than their text. When the previous snap has no usable end state, a
+#' series that started "Goal" for the same `team` (offense id) stays goal-to-go
+#' ("1st & 0 at TULN 15" after a penalty on "1st & Goal at TULN 10") while the
+#' series is the same one: same `period`, no possession-ending previous snap, no
+#' down reset. Without `team` and `period` that branch is skipped. Vectors are one game in ESPN's drive order.
 #'
-#' One deliberate divergence: sdv-py sorts plays by id, and ESPN sometimes
-#' re-keys a field-goal row with a later id, which puts it after the opponent's
-#' next drive, so sdv-py reads the wrong previous snap and leaves the row at 0.
-#' R keeps ESPN's drive order and resolves it (about 7 rows in the 20.7k banked
-#' summaries, e.g. 400548134 "4th & 0 at KENT 14" -> 14). The parity test lists
-#' them.
+#' sdv-py sorts plays by id, and ESPN sometimes files a drive-ending play with
+#' an id past the next drive's plays; since sportsdataverse-py #638 (#637) sdv-py
+#' moves such a row back to its drive, so its previous snap agrees with the drive
+#' order R reads here (e.g. 400548134 "4th & 0 at KENT 14" -> 14 on both).
 #' @return `distance` with those rows resolved.
 #' @keywords internal
 #' @noRd
 .espn_amp0_distance <- function(distance, down, yards_to_goal, text, type,
-                                end_down, end_distance, end_text) {
+                                end_down, end_distance, end_text, team = NULL,
+                                period = NULL) {
   n <- length(distance)
   if (!n) return(distance)
   admin <- grepl("^(timeout|end period|end of (half|game)|official)", type,
@@ -198,13 +201,27 @@
     out
   }
   prev_text <- end_text[j]
-  amp0 <- distance %in% 0 & grepl("& 0 at", text, fixed = TRUE) &
+  base <- distance %in% 0 & grepl("& 0 at", text, fixed = TRUE) &
     down %in% 1:4 & yards_to_goal %in% 1:99 &
-    !is.na(type) & !grepl("kickoff|extra point|two[- ]point|2pt", type, ignore.case = TRUE) &
-    (end_down[j] == down) %in% TRUE & (spot(prev_text) == spot(text)) %in% TRUE
+    !is.na(type) & !grepl("kickoff|extra point|two[- ]point|2pt", type, ignore.case = TRUE)
+  amp0 <- base & (end_down[j] == down) %in% TRUE & (spot(prev_text) == spot(text)) %in% TRUE
   goal <- amp0 & grepl("goal", prev_text, ignore.case = TRUE)
   lost <- amp0 & !goal & (end_distance[j] > 0) %in% TRUE
-  distance[goal] <- yards_to_goal[goal]
+  # Same series: when the previous snap left no usable end state (a penalty that
+  # backs a goal-to-go series up often carries none), a series that started
+  # "Goal" for the same offense stays goal-to-go -- sdv-py's third branch.
+  # A present, non-goal end text would contradict the series, so it is never
+  # overridden; and the series must still be the same one -- same period, no
+  # possession-ending previous snap, no down reset -- or a team opening an
+  # overtime period would inherit its own goal line (sdv-py #639).
+  ends_possession <- grepl(paste0("touchdown|field goal|punt|safety|interception|",
+                                  "fumble recovery \\(opponent\\)|turnover|downs|kickoff"),
+                           type[j], ignore.case = TRUE)
+  series <- if (is.null(team) || is.null(period)) rep(FALSE, n) else
+    base & !goal & !lost & grepl("goal", text[j], ignore.case = TRUE) & (team[j] == team) %in% TRUE &
+    (is.na(prev_text) | prev_text == "" | grepl("goal", prev_text, ignore.case = TRUE)) &
+    (period[j] == period) %in% TRUE & !ends_possession & (down >= down[j]) %in% TRUE
+  distance[goal | series] <- yards_to_goal[goal | series]
   distance[lost] <- pmin(end_distance[j][lost], yards_to_goal[lost])
   distance
 }

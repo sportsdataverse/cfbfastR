@@ -6261,7 +6261,9 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
           plays_df$plays_type_text %||% NA_character_,
           plays_df$plays_end_down %||% NA_integer_,
           plays_df$plays_end_distance %||% NA_integer_,
-          plays_df$plays_end_down_distance_text %||% NA_character_
+          plays_df$plays_end_down_distance_text %||% NA_character_,
+          team = plays_df$plays_start_team_id,
+          period = plays_df$plays_period_number
         )
         plays_df <- plays_df |>
           dplyr::rename(
@@ -6720,7 +6722,8 @@ espn_cfb_pbp_v2 <- function(game_id,
               text = .data$start_down_distance_text
             ),
             .data$start_down, .data$start_yards_to_endzone, .data$start_down_distance_text,
-            .data$type_text, .data$end_down, .data$end_distance, .data$end_down_distance_text
+            .data$type_text, .data$end_down, .data$end_distance, .data$end_down_distance_text,
+            team = .data$start_team_id, period = .data$period
           ),
           plays_period_number          = .data$period,
           plays_id                     = .data$play_id,
