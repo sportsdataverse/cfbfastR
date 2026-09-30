@@ -289,6 +289,23 @@ cfbd_pbp_data_v2 <- function(year,
 
   play_df <- .cfbd_to_epa_input(play_df, year = year, week = week)
 
+  # --- team identity (every call) ----------------------------------------
+  # CFBD plays name the teams but carry no ids, and the modeled path's
+  # team-aware stages key on ids and abbreviations (see .cfbd_team_identity()).
+  # Without them pos_team_id, every *_player_id and the turnover / penalty /
+  # return attribution came back NA, and a lost fumble never counted.
+  id_games <- cfbd_game_info(
+    year = year, week = week, season_type = season_type, team = team,
+    conference = conference, division = division
+  )
+  id_teams <- .cfbd_team_catalog(year)
+  play_df <- .cfbd_team_identity(play_df, id_games, id_teams)
+  if (all(is.na(play_df$offense_play_id))) {
+    cli::cli_alert_warning(
+      "CFBD returned no team ids for {year} wk {week}; team attribution and player ids will be NA."
+    )
+  }
+
   if (!pt_abb_exists) {
     play_df <- play_df |>
       dplyr::filter(tolower(.data$play_type) == tolower(!!play_type))
@@ -301,6 +318,19 @@ cfbd_pbp_data_v2 <- function(year,
         "Data quality prior to 2005 is inconsistent; EPA/WPA may be unreliable."
       )
     }
+    # Player ids resolve against a roster. One season-wide CFBD roster, scoped
+    # to each game's two teams so the engine never applies one game's roster
+    # to another (CFBD athlete ids are ESPN athlete ids).
+    season_roster <- .cfbd_season_roster(year, teams = id_teams)
+    rosters <- NULL
+    if (!is.null(season_roster)) {
+      g <- unique(play_df[, c("game_id", "home_team_id", "away_team_id")])
+      rosters <- dplyr::bind_rows(lapply(seq_len(nrow(g)), function(k) {
+        r <- season_roster[season_roster$team_id %in%
+                             c(g$home_team_id[k], g$away_team_id[k]), , drop = FALSE]
+        if (nrow(r)) cbind(game_id = g$game_id[k], r) else NULL
+      }))
+    }
     play_df <- .run_epa_wpa_by_game(
       play_df,
       ep_model   = ep_model,
@@ -308,6 +338,7 @@ cfbd_pbp_data_v2 <- function(year,
       wp_model   = wp_model,
       clean_text = TRUE,
       min_plays  = 20L,
+      rosters    = rosters,
       # The era-aware FG model needs the season.
       season     = year
     ) |>
