@@ -80,7 +80,7 @@ request fails.
    col_name \tab type \tab description \cr
    provider_id \tab integer \tab Sportsbook provider id. \cr
    provider \tab character \tab Sportsbook: DraftKings or Bovada. \cr
-   spread \tab double \tab Home-relative point spread; negative favors home. A whole-number spread parses as integer. \cr
+   spread \tab double \tab Home-relative point spread; negative favors home. Integer when every spread in the result is a whole number. \cr
    over_under \tab double \tab Total points line. \cr
    home_moneyline \tab integer \tab Home team moneyline (American odds). \cr
    away_moneyline \tab integer \tab Away team moneyline (American odds). \cr
@@ -126,7 +126,7 @@ column instead of four:\tabular{lll}{
    rushing_plays_explosiveness \tab varies \tab Metric: explosiveness of rush plays, \verb{statistics_data_advanced_<side>_rushing_plays_explosiveness}. \cr
    line_yards \tab varies \tab Metric: offensive line yards per rush, \verb{statistics_data_advanced_<side>_line_yards}. \cr
    second_level_yards \tab varies \tab Metric: second-level yards per rush (5-10 yards past the line of scrimmage), \verb{statistics_data_advanced_<side>_second_level_yards}. \cr
-   open_field_yards \tab varies \tab Metric: open-field yards per rush (10+ yards past the line of scrimmage), \verb{statistics_data_advanced_<side>_open_field_yards}. \cr
+   open_field_yards \tab varies \tab Metric: open-field yards per rush (yards gained more than 10 yards past the line of scrimmage), \verb{statistics_data_advanced_<side>_open_field_yards}. \cr
    stuff_rate \tab varies \tab Metric: proportion of rushes stopped at or behind the line of scrimmage, \verb{statistics_data_advanced_<side>_stuff_rate}. \cr
    power_success \tab varies \tab Metric: power success (proportion of short-yardage runs that convert), \verb{statistics_data_advanced_<side>_power_success}. \cr
    havoc_total \tab varies \tab Metric: havoc rate (share of plays with a tackle for loss, forced fumble, interception or pass breakup), \verb{statistics_data_advanced_<side>_havoc_total}. \cr

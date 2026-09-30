@@ -70,7 +70,7 @@ columns; team frames carry 26, adding \code{touchdown_status_available} and
    line_yards_total \tab double \tab Sum of line yards. \cr
    second_level_yards \tab double \tab Second-level yards per carry (5-10 yards past the line of scrimmage). \cr
    second_level_yards_total \tab integer \tab Sum of second-level yards. \cr
-   open_field_yards \tab double \tab Open-field yards per carry (10+ yards past the line of scrimmage). \cr
+   open_field_yards \tab double \tab Open-field yards per carry (yards gained more than 10 yards past the line of scrimmage). \cr
    open_field_yards_total \tab integer \tab Sum of open-field yards. \cr
    stuff_rate \tab double \tab Proportion of carries stopped at or behind the line of scrimmage (0-1). \cr
    power_success \tab double \tab Conversion rate on short-yardage power runs (0-1). \cr
@@ -106,7 +106,7 @@ Each bucket carries these 15 columns, prefixed \verb{directions_<bucket>_}
    line_yards_total \tab double \tab Sum of line yards. \cr
    second_level_yards \tab double \tab Second-level yards per carry (5-10 yards past the line of scrimmage). \cr
    second_level_yards_total \tab integer \tab Sum of second-level yards. \cr
-   open_field_yards \tab double \tab Open-field yards per carry (10+ yards past the line of scrimmage). \cr
+   open_field_yards \tab double \tab Open-field yards per carry (yards gained more than 10 yards past the line of scrimmage). \cr
    open_field_yards_total \tab integer \tab Sum of open-field yards. \cr
    stuff_rate \tab double \tab Proportion of carries stopped at or behind the line of scrimmage (0-1). \cr
    power_success \tab double \tab Conversion rate on short-yardage power runs (0-1). \cr

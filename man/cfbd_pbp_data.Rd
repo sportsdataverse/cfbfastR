@@ -94,8 +94,8 @@ table are returned, in CFBD order (\code{yards_to_goal}, \code{down}, \code{dist
    drive_play_number \tab double \tab Sequential play number within the current drive. \cr
    pos_team \tab character \tab Team name in possession at the start of the play (offense, kickoff-aware). \cr
    def_pos_team \tab character \tab Team name on defense at the start of the play. \cr
-   pos_team_score \tab integer \tab Score for the team in possession at the start of the play. \cr
-   def_pos_team_score \tab integer \tab Score for the defensive team at the start of the play. \cr
+   pos_team_score \tab integer \tab Score for the team in possession after the play (includes points scored on it). \cr
+   def_pos_team_score \tab integer \tab Score for the defensive team after the play. \cr
    half \tab factor \tab Half indicator (1 or 2). \cr
    period \tab integer \tab Quarter number (1-4, 5+ for overtime). \cr
    clock_minutes \tab integer \tab Minutes remaining on the period clock at the start of the play. \cr
@@ -247,7 +247,7 @@ table are returned, in CFBD order (\code{yards_to_goal}, \code{down}, \code{dist
    def_pos_team_timeouts_rem_before \tab double \tab Defensive team timeouts remaining before the play. \cr
    pos_team_timeouts \tab integer \tab Possession team timeouts remaining after the play. \cr
    def_pos_team_timeouts \tab integer \tab Defensive team timeouts remaining after the play. \cr
-   pos_score_diff \tab integer \tab Score differential from the possession team's perspective. \cr
+   pos_score_diff \tab integer \tab Score differential from the possession team's perspective after the play; \code{pos_score_diff_start} is the pre-play value. \cr
    pos_score_diff_start_end \tab double \tab Score differential for the post-play EP state: \code{pos_score_diff}, negated when possession changed on the play. \cr
    offense_play \tab character \tab Offensive team name as labeled by CFBD on the play. \cr
    defense_play \tab character \tab Defensive team name as labeled by CFBD on the play. \cr
@@ -255,9 +255,9 @@ table are returned, in CFBD order (\code{yards_to_goal}, \code{down}, \code{dist
    change_of_poss \tab double \tab Binary flag for change of possession on the play (CFBD offense field). \cr
    score_pts \tab double \tab Points scored on the play. \cr
    score_diff_start \tab double \tab Score differential at the start of the play. \cr
-   score_diff \tab integer \tab Score differential (offense_score - defense_score) at the start. \cr
-   offense_score \tab integer \tab Offense team score at the start of the play. \cr
-   defense_score \tab integer \tab Defense team score at the start of the play. \cr
+   score_diff \tab integer \tab Score differential (offense_score - defense_score) after the play; \code{score_diff_start} is the pre-play value. \cr
+   offense_score \tab integer \tab Offense team score after the play (includes points scored on it). \cr
+   defense_score \tab integer \tab Defense team score after the play. \cr
    offense_conference \tab character \tab Conference name of the offensive team. \cr
    defense_conference \tab character \tab Conference name of the defensive team. \cr
    off_timeout_called \tab double \tab Binary flag for an offensive timeout called during the play. \cr
@@ -329,7 +329,7 @@ table are returned, in CFBD order (\code{yards_to_goal}, \code{down}, \code{dist
    completion \tab double \tab Binary flag for a completed pass. \cr
    pass_attempt \tab double \tab Binary flag for a pass attempt. \cr
    target \tab double \tab Binary flag for a targeted receiver on the play. \cr
-   sack \tab double \tab Binary flag for a sack (duplicate of sack_vec for downstream use). \cr
+   sack \tab double \tab Binary flag for a sack; unlike \code{sack_vec}, excludes sack and fumble-return touchdowns. \cr
    int \tab double \tab Binary flag for an interception. \cr
    int_td \tab double \tab Binary flag for an interception returned for a touchdown. \cr
    turnover_vec \tab double \tab Binary flag for any play classified as a turnover. \cr
@@ -337,7 +337,7 @@ table are returned, in CFBD order (\code{yards_to_goal}, \code{down}, \code{dist
    receives_2H_kickoff \tab double \tab Binary flag for the team receiving the second-half kickoff. \cr
    scoring_play \tab double \tab Binary flag for any scoring play. \cr
    td_play \tab double \tab Binary flag for a touchdown play. \cr
-   touchdown \tab double \tab Binary flag for a touchdown (duplicate of td_play for downstream use). \cr
+   touchdown \tab double \tab Binary flag: 1 when \code{play_type} contains Touchdown (\code{td_play} reads \code{play_text} instead). \cr
    safety \tab double \tab Binary flag for a safety. \cr
    fumble_vec \tab double \tab Binary flag for a play involving a fumble. \cr
    kickoff_tb \tab double \tab Binary flag for a kickoff touchback. \cr

@@ -96,7 +96,7 @@ returned if the request fails, including for a key without CFBD Patreon Tier 1.
    metrics_data_metrics_success_rate_allowed_passing_downs \tab double \tab Opponent-adjusted defensive success rate allowed on passing downs (proportion 0-1). \cr
    metrics_data_metrics_rushing_line_yards \tab double \tab Opponent-adjusted offensive line yards per rush (Football Outsiders methodology). \cr
    metrics_data_metrics_rushing_second_level_yards \tab double \tab Opponent-adjusted offensive second-level yards per rush (5-10 yards past line of scrimmage). \cr
-   metrics_data_metrics_rushing_open_field_yards \tab double \tab Opponent-adjusted offensive open-field yards per rush (10+ yards past line of scrimmage). \cr
+   metrics_data_metrics_rushing_open_field_yards \tab double \tab Opponent-adjusted offensive open-field yards per rush (yards gained more than 10 yards past the line of scrimmage). \cr
    metrics_data_metrics_rushing_highlight_yards \tab double \tab Opponent-adjusted offensive highlight yards per opportunity rush. \cr
    metrics_data_metrics_rushing_allowed_line_yards \tab double \tab Opponent-adjusted defensive line yards per rush allowed. \cr
    metrics_data_metrics_rushing_allowed_second_level_yards \tab double \tab Opponent-adjusted defensive second-level yards per rush allowed. \cr

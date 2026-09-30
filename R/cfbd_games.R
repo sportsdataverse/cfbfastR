@@ -2045,7 +2045,7 @@ cfbd_game_schedule <- function(year = NULL,
 #'  |:--------|:----|:-----------|
 #'  |provider_id |integer |Sportsbook provider id. |
 #'  |provider |character |Sportsbook: DraftKings or Bovada. |
-#'  |spread |double |Home-relative point spread; negative favors home. A whole-number spread parses as integer. |
+#'  |spread |double |Home-relative point spread; negative favors home. Integer when every spread in the result is a whole number. |
 #'  |over_under |double |Total points line. |
 #'  |home_moneyline |integer |Home team moneyline (American odds). |
 #'  |away_moneyline |integer |Away team moneyline (American odds). |
@@ -2091,7 +2091,7 @@ cfbd_game_schedule <- function(year = NULL,
 #'  |rushing_plays_explosiveness |varies |Metric: explosiveness of rush plays, `statistics_data_advanced_<side>_rushing_plays_explosiveness`. |
 #'  |line_yards |varies |Metric: offensive line yards per rush, `statistics_data_advanced_<side>_line_yards`. |
 #'  |second_level_yards |varies |Metric: second-level yards per rush (5-10 yards past the line of scrimmage), `statistics_data_advanced_<side>_second_level_yards`. |
-#'  |open_field_yards |varies |Metric: open-field yards per rush (10+ yards past the line of scrimmage), `statistics_data_advanced_<side>_open_field_yards`. |
+#'  |open_field_yards |varies |Metric: open-field yards per rush (yards gained more than 10 yards past the line of scrimmage), `statistics_data_advanced_<side>_open_field_yards`. |
 #'  |stuff_rate |varies |Metric: proportion of rushes stopped at or behind the line of scrimmage, `statistics_data_advanced_<side>_stuff_rate`. |
 #'  |power_success |varies |Metric: power success (proportion of short-yardage runs that convert), `statistics_data_advanced_<side>_power_success`. |
 #'  |havoc_total |varies |Metric: havoc rate (share of plays with a tackle for loss, forced fumble, interception or pass breakup), `statistics_data_advanced_<side>_havoc_total`. |
@@ -2383,7 +2383,7 @@ cfbd_game_preview <- function(game_id, proxy = NULL) {
 #'  |metrics_data_metrics_success_rate_allowed_passing_downs |double |Opponent-adjusted defensive success rate allowed on passing downs (proportion 0-1). |
 #'  |metrics_data_metrics_rushing_line_yards |double |Opponent-adjusted offensive line yards per rush (Football Outsiders methodology). |
 #'  |metrics_data_metrics_rushing_second_level_yards |double |Opponent-adjusted offensive second-level yards per rush (5-10 yards past line of scrimmage). |
-#'  |metrics_data_metrics_rushing_open_field_yards |double |Opponent-adjusted offensive open-field yards per rush (10+ yards past line of scrimmage). |
+#'  |metrics_data_metrics_rushing_open_field_yards |double |Opponent-adjusted offensive open-field yards per rush (yards gained more than 10 yards past the line of scrimmage). |
 #'  |metrics_data_metrics_rushing_highlight_yards |double |Opponent-adjusted offensive highlight yards per opportunity rush. |
 #'  |metrics_data_metrics_rushing_allowed_line_yards |double |Opponent-adjusted defensive line yards per rush allowed. |
 #'  |metrics_data_metrics_rushing_allowed_second_level_yards |double |Opponent-adjusted defensive second-level yards per rush allowed. |

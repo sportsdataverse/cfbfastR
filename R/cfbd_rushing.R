@@ -59,7 +59,7 @@
 #'  |line_yards_total             |double    |Sum of line yards.                                                                 |
 #'  |second_level_yards           |double    |Second-level yards per carry (5-10 yards past the line of scrimmage).              |
 #'  |second_level_yards_total     |integer   |Sum of second-level yards.                                                         |
-#'  |open_field_yards             |double    |Open-field yards per carry (10+ yards past the line of scrimmage).                 |
+#'  |open_field_yards             |double    |Open-field yards per carry (yards gained more than 10 yards past the line of scrimmage).                 |
 #'  |open_field_yards_total       |integer   |Sum of open-field yards.                                                           |
 #'  |stuff_rate                   |double    |Proportion of carries stopped at or behind the line of scrimmage (0-1).            |
 #'  |power_success                |double    |Conversion rate on short-yardage power runs (0-1).                                 |
@@ -93,7 +93,7 @@
 #'  |line_yards_total         |double    |Sum of line yards. |
 #'  |second_level_yards       |double    |Second-level yards per carry (5-10 yards past the line of scrimmage). |
 #'  |second_level_yards_total |integer   |Sum of second-level yards. |
-#'  |open_field_yards         |double    |Open-field yards per carry (10+ yards past the line of scrimmage). |
+#'  |open_field_yards         |double    |Open-field yards per carry (yards gained more than 10 yards past the line of scrimmage). |
 #'  |open_field_yards_total   |integer   |Sum of open-field yards. |
 #'  |stuff_rate               |double    |Proportion of carries stopped at or behind the line of scrimmage (0-1). |
 #'  |power_success            |double    |Conversion rate on short-yardage power runs (0-1). |

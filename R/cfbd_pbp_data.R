@@ -68,8 +68,8 @@ NULL
 #'  |drive_play_number |double |Sequential play number within the current drive. |
 #'  |pos_team |character |Team name in possession at the start of the play (offense, kickoff-aware). |
 #'  |def_pos_team |character |Team name on defense at the start of the play. |
-#'  |pos_team_score |integer |Score for the team in possession at the start of the play. |
-#'  |def_pos_team_score |integer |Score for the defensive team at the start of the play. |
+#'  |pos_team_score |integer |Score for the team in possession after the play (includes points scored on it). |
+#'  |def_pos_team_score |integer |Score for the defensive team after the play. |
 #'  |half |factor |Half indicator (1 or 2). |
 #'  |period |integer |Quarter number (1-4, 5+ for overtime). |
 #'  |clock_minutes |integer |Minutes remaining on the period clock at the start of the play. |
@@ -221,7 +221,7 @@ NULL
 #'  |def_pos_team_timeouts_rem_before |double |Defensive team timeouts remaining before the play. |
 #'  |pos_team_timeouts |integer |Possession team timeouts remaining after the play. |
 #'  |def_pos_team_timeouts |integer |Defensive team timeouts remaining after the play. |
-#'  |pos_score_diff |integer |Score differential from the possession team's perspective. |
+#'  |pos_score_diff |integer |Score differential from the possession team's perspective after the play; `pos_score_diff_start` is the pre-play value. |
 #'  |pos_score_diff_start_end |double |Score differential for the post-play EP state: `pos_score_diff`, negated when possession changed on the play. |
 #'  |offense_play |character |Offensive team name as labeled by CFBD on the play. |
 #'  |defense_play |character |Defensive team name as labeled by CFBD on the play. |
@@ -229,9 +229,9 @@ NULL
 #'  |change_of_poss |double |Binary flag for change of possession on the play (CFBD offense field). |
 #'  |score_pts |double |Points scored on the play. |
 #'  |score_diff_start |double |Score differential at the start of the play. |
-#'  |score_diff |integer |Score differential (offense_score - defense_score) at the start. |
-#'  |offense_score |integer |Offense team score at the start of the play. |
-#'  |defense_score |integer |Defense team score at the start of the play. |
+#'  |score_diff |integer |Score differential (offense_score - defense_score) after the play; `score_diff_start` is the pre-play value. |
+#'  |offense_score |integer |Offense team score after the play (includes points scored on it). |
+#'  |defense_score |integer |Defense team score after the play. |
 #'  |offense_conference |character |Conference name of the offensive team. |
 #'  |defense_conference |character |Conference name of the defensive team. |
 #'  |off_timeout_called |double |Binary flag for an offensive timeout called during the play. |
@@ -303,7 +303,7 @@ NULL
 #'  |completion |double |Binary flag for a completed pass. |
 #'  |pass_attempt |double |Binary flag for a pass attempt. |
 #'  |target |double |Binary flag for a targeted receiver on the play. |
-#'  |sack |double |Binary flag for a sack (duplicate of sack_vec for downstream use). |
+#'  |sack |double |Binary flag for a sack; unlike `sack_vec`, excludes sack and fumble-return touchdowns. |
 #'  |int |double |Binary flag for an interception. |
 #'  |int_td |double |Binary flag for an interception returned for a touchdown. |
 #'  |turnover_vec |double |Binary flag for any play classified as a turnover. |
@@ -311,7 +311,7 @@ NULL
 #'  |receives_2H_kickoff |double |Binary flag for the team receiving the second-half kickoff. |
 #'  |scoring_play |double |Binary flag for any scoring play. |
 #'  |td_play |double |Binary flag for a touchdown play. |
-#'  |touchdown |double |Binary flag for a touchdown (duplicate of td_play for downstream use). |
+#'  |touchdown |double |Binary flag: 1 when `play_type` contains Touchdown (`td_play` reads `play_text` instead). |
 #'  |safety |double |Binary flag for a safety. |
 #'  |fumble_vec |double |Binary flag for a play involving a fumble. |
 #'  |kickoff_tb |double |Binary flag for a kickoff touchback. |
