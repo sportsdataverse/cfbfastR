@@ -7,6 +7,10 @@
 #
 # Allow-list: columns permitted to differ are explicitly enumerated below
 # with a rationale per entry. Every other canonical column must match.
+#
+# The legacy side must pin engine = "legacy": the default engine is "v2". v2
+# carries fixes the legacy engine does not (sdv-py's play order for the 2024+
+# ESPN feed, #173), so the sample games are ones those fixes leave unchanged.
 
 # --- helpers -----------------------------------------------------------
 .eq_canonical_cols <- function() {
@@ -181,6 +185,13 @@
     skip(paste0("v2 returned no rows for ", sample_label))
   }
 
+  # The two sides must come from different engines. The default engine is
+  # "v2", so a legacy call that does not pin engine = "legacy" returns v2 output
+  # and this harness would compare v2 with itself (it did from the switch to
+  # the v2 default until the legacy calls were pinned).
+  expect_false(identical(attr(legacy, "cfbfastR_type"), attr(v2, "cfbfastR_type")),
+               info = paste0(sample_label, ": legacy and v2 came from the same engine"))
+
   # Pipeline-canonical columns that exist on BOTH sides.
   both_have <- intersect(colnames(legacy), colnames(v2))
   canonical <- intersect(both_have, .eq_canonical_cols())
@@ -215,7 +226,8 @@ test_that("espn_cfb_pbp_v2(epa_wpa = TRUE) matches espn_cfb_pbp(epa_wpa = TRUE)"
 
   game_id <- 401628339  # Texas vs Washington (CFP semifinal), one stable game.
 
-  legacy <- try(espn_cfb_pbp(game_id    = game_id, epa_wpa = TRUE),
+  legacy <- try(espn_cfb_pbp(game_id    = game_id, epa_wpa = TRUE,
+                             engine     = "legacy"),
                 silent = TRUE)
   v2     <- try(espn_cfb_pbp_v2(game_id = game_id, epa_wpa = TRUE),
                 silent = TRUE)
@@ -238,7 +250,7 @@ test_that("cfbd_pbp_data_v2(epa_wpa = TRUE) matches cfbd_pbp_data(epa_wpa = TRUE
   args <- list(year = 2024, week = 1, season_type = "regular",
                team = "Texas", epa_wpa = TRUE)
 
-  legacy <- try(do.call(cfbd_pbp_data,    args), silent = TRUE)
+  legacy <- try(do.call(cfbd_pbp_data,    c(args, engine = "legacy")), silent = TRUE)
   v2     <- try(do.call(cfbd_pbp_data_v2, args), silent = TRUE)
 
   if (inherits(legacy, "try-error") || inherits(v2, "try-error")) {
