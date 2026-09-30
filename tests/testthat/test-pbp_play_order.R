@@ -25,6 +25,9 @@ test_that(".pbp_ensure_play_order() falls back to exact id order", {
   # 18-digit ids sit past 2^53, where as.numeric() can no longer tell them apart
   df <- data.frame(game_id = 1, id_play = c("401635534101849911", "401635534101849902", "4016355341018499"))
   expect_identical(.pbp_ensure_play_order(df)$play_order, c(3L, 2L, 1L))
+  # numeric ids: as.character(4e17) is "4e+17", which would sort by its length
+  num <- data.frame(game_id = 1, id_play = c(4e17, 39e16 + 1))
+  expect_identical(.pbp_ensure_play_order(num)$play_order, c(2L, 1L))
   df$play_order <- c(1L, 2L, 3L)
   expect_identical(.pbp_ensure_play_order(df)$play_order, c(1L, 2L, 3L))
 })

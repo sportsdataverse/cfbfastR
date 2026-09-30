@@ -50,6 +50,6 @@ Re-capture: `python data-raw/parity_airyards_oracle.py` (env `SDV_PY_ROOT`, `CFB
 default droplet paths); do not hand-edit the parquet."""
 # replace only this oracle's section; the README also documents the other oracles
 readme = OUT / 'README.md'
-text = readme.read_text() if readme.exists() else '# Parity oracles\n\n'
+text = readme.read_text(encoding='utf-8') if readme.exists() else '# Parity oracles\n\n'
 pat = re.compile(r'`airyards_oracle\.parquet` — .*?(?=\n\n`[\w.]+` — |\Z)', re.S)
-readme.write_text(pat.sub(lambda _: section, text, count=1) if pat.search(text) else text.rstrip('\n') + '\n\n' + section + '\n')
+readme.write_text(pat.sub(lambda _: section, text, count=1) if pat.search(text) else text.rstrip('\n') + '\n\n' + section + '\n', encoding='utf-8')

@@ -96,7 +96,7 @@ COLS = [
 ]
 out = []
 for gid in GAMES:
-    d = json.loads((RAW / f"{gid}.json").read_text())
+    d = json.loads((RAW / f"{gid}.json").read_text(encoding="utf-8"))
     season = ((d.get("header") or {}).get("season") or {}).get("year")
     rows = []
     for key in sorted((d.get("drives") or {}).keys(), key=lambda k: k == "current"):

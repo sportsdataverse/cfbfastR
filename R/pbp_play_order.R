@@ -41,7 +41,7 @@
   # 2014+ play ids are 18 digits -- past 2^53, where doubles stop being exact
   # (as.numeric() ordered 401635534101849911 before ...849902). Compare them as
   # digit strings: by length, then byte order, which is numeric order.
-  idc <- as.character(id); idl <- nchar(idc)
+  idc <- .id_digits(id); idl <- nchar(idc)
   seqn <- num(sequence); per <- num(period)
   mm <- num(sub(":.*$", "", clock)); ss <- num(sub("^.*:", "", clock))
   # an NA period falls through to 0 like polars' when/otherwise chain
@@ -187,7 +187,12 @@
 #' @noRd
 .pbp_ensure_play_order <- function(df) {
   if ("play_order" %in% names(df) && !anyNA(df$play_order)) return(df)
-  idc <- as.character(df$id_play)
+  idc <- .id_digits(df$id_play)
   df$play_order <- order(order(as.character(df$game_id), nchar(idc), idc, method = "radix"))
   df
 }
+
+#' Play ids as digit strings; as.character() writes a round double as "4e+17"
+#' @keywords internal
+#' @noRd
+.id_digits <- function(x) if (is.numeric(x)) sprintf("%.0f", x) else as.character(x)

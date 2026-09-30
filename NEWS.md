@@ -130,10 +130,11 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   late inserts go back by sequence number, a row filed inside a later drive rejoins
   its own drive, tries filed after the kickoff return behind their touchdown, and
   overtime is ordered by sequence or id, whichever steps the score back less. On an
-  83-game 2004-2026 sample the order now equals sdv-py's in every game (2024-2026:
-  12 of 12, was 5); on plays whose previous snap changed, the median EPA gap to
-  sdv-py fell from 0.25 to 0.05. One game found so far still differs, 401525903:
-  sdv-py first retypes an untyped two-point try, a relabel cfbfastR does not port.
+  83-game 2004-2026 sample the engine's order now equals sdv-py's in all 83 games
+  (2024-2026: 12 of 12, was 5); on plays whose previous snap changed, the median EPA
+  gap to sdv-py fell from 0.25 to 0.05. A separate 130-game check against sdv-py's
+  full pipeline found one game that still differs, 401525903: sdv-py first retypes
+  an untyped two-point try, a relabel cfbfastR does not port.
   `cfbd_pbp_data()` carries none of the fields the repairs read, so it runs in
   plain id order. Its drive and play counters used to run in clock order instead,
   and about 9% of 2024 games get a different previous play for some rows. Measured
