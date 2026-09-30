@@ -37,7 +37,7 @@ left out here: its order depends on that relabel, which `.espn_retype_plays()` p
 (`retype_oracle.csv.gz`). Re-capture: `python data-raw/parity_play_order_oracle.py` (env
 `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file.
 
-`retype_oracle.csv.gz` — captured 2026-09-30 from sportsdataverse-py `71a8f0863`: every play of 19
+`retype_oracle.csv.gz` — captured 2026-09-30 from sportsdataverse-py `71a8f0863`: every play of 21
 games as it leaves `__helper_cfb_pbp_features()` (same offline pipeline, in that stage's order),
 with the inputs `.espn_retype_plays()` reads, the type before the relabel block at its end
 (`orig_play_type`), after it (`sdvpy_type`, `sdvpy_start_ytg`) and after the later pre-2014 label
@@ -48,8 +48,12 @@ kick rows (292832449, 312462638, 332782638, 302602440) and two a single team sta
 (273000264, 322660194); defensive try returns (312530264, 272650152); kick-typed misfiles
 (303100030, 303170158); the untyped two-point try 401525903 and the overtime copies that stay
 "Unknown" (401426542); a failed bare "2pt Conversion" (292542649) and an onside "Kickoff Return
-(Defense)" (242480152); two games with nothing to relabel. The relabel block's four "Extra Point
-Missed" string rules are not ported (a later sdv-py stage restores the type) and touch no row here.
+(Defense)" (242480152); two games with nothing to relabel; and a documented divergence (400547866,
+400547865). The relabel block's four "Extra Point Missed" string rules are deliberately not ported:
+on ESPN's types they only match "Blocked Field Goal (Touchdown)", and the relabel sends those rows
+through the kick rules, so sdv-py's output types about 71 corpus rows wrongly (12 blocked field
+goals as "Penalty", 4 as "Extra Point Missed", 55 blocked-field-goal return touchdowns as a plain
+"Blocked Field Goal"). R keeps ESPN's type; the test asserts that on those rows instead of sdv-py's.
 Five conditions change no row in the 20,719-game raw corpus and so decide no fixture row: the
 untyped try's period <= 4 and same-clock checks, the return touchdown's no-play check, and the
 normalization's untyped "field goal / extra point is good" rules (`scoringType` already types those

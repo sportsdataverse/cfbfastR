@@ -16,9 +16,12 @@
 #'   the text's "for N yards"), a return / fumble touchdown its return type, and a
 #'   kickoff, field goal, penalty or period marker typed as a kick its own type.
 #'
-#' Not ported: the four "Extra Point Missed" string rules. sdv-py applies them in
-#' the same block but a later stage restores the original type, so its output
-#' never shows them (a "Blocked Field Goal" stays one).
+#' Deliberately not ported: the block's four "Extra Point Missed" string rules.
+#' On ESPN's types they only match "Blocked Field Goal (Touchdown)", and the
+#' relabel sends those rows through the kick rules: sdv-py's output types about
+#' 71 corpus rows wrongly (a blocked field goal as "Penalty" or "Extra Point
+#' Missed", a blocked-field-goal return as a plain "Blocked Field Goal"). R keeps
+#' ESPN's type (400547866, 400547865; see fixtures/parity/README.md).
 #'
 #' @param type,text Play type and text.
 #' @param scoring_type ESPN `scoringType.displayName`.
@@ -43,7 +46,9 @@
   # polars comparisons with a null are null, and a null condition never fires
   def_try <- (type %in% .try_types | type == "Unknown") & has(.defensive_try_return)
   td_row <- grepl("touchdown", type, ignore.case = TRUE)
-  # `x` on the last touchdown-typed row strictly before each row
+  # `x` on the last touchdown-typed row strictly before each row. sdv-py forward-fills
+  # each column on its own, so a touchdown row with a null period / clock / text
+  # reads an older touchdown's value there; R reads NA (no such row in the corpus)
   prev_td <- c(0L, cummax(ifelse(td_row, seq_len(n), 0L))[-n])
   last_td <- function(x) x[ifelse(prev_td > 0L, prev_td, NA_integer_)]
   untyped_2pt <- type == "Unknown" & (period <= 4) %in% TRUE & scoring_play %in% FALSE &
@@ -128,12 +133,12 @@
 #' @noRd
 .espn_retype_frame <- function(df, season) {
   if (!nrow(df)) return(df)
-  col <- function(x) df[[x]] %||% rep(NA, nrow(df))
+  stopifnot(c("scoring_type_display_name", "scoring_play") %in% names(df))
   o <- .espn_play_order(df$play_id, df$sequence_number, df$period, df$clock, df$drive_drive_id,
                         df$type_text, df$start_down_distance_text, df$end_down_distance_text,
                         season, df$home_score, df$away_score)
-  rt <- .espn_retype_plays(df$type_text[o], df$text[o], col("scoring_type_display_name")[o],
-                           df$period[o], col("scoring_play")[o], df$clock[o],
+  rt <- .espn_retype_plays(df$type_text[o], df$text[o], df$scoring_type_display_name[o],
+                           df$period[o], df$scoring_play[o], df$clock[o],
                            df$start_team_id[o], df$end_team_id[o], df$start_yards_to_endzone[o])
   df$type_text[o] <- rt$type
   df$start_yards_to_endzone[o] <- rt$start_ytg

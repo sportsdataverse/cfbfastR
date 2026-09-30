@@ -41,6 +41,10 @@ GAMES = [
     # pre-2014 labels: a bare "2pt Conversion" that failed, an onside "Kickoff Return (Defense)"
     292542649,
     242480152,
+    # documented divergence: sdv-py's unported "Extra Point Missed" string rules mistype blocked
+    # field goals (a Penalty, a lost return touchdown); R keeps ESPN's type
+    400547866,
+    400547865,
     # nothing to relabel
     401628339,
     400547699,
