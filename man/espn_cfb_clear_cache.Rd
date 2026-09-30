@@ -2,7 +2,7 @@
 % Please edit documentation in R/espn_cfb_game.R
 \name{espn_cfb_clear_cache}
 \alias{espn_cfb_clear_cache}
-\title{\strong{Clear the cfbfastR ESPN catalog cache}}
+\title{\strong{Clear the cfbfastR lookup cache}}
 \usage{
 espn_cfb_clear_cache()
 }
@@ -26,15 +26,15 @@ Use it when you want to force a refresh -- for example after a
 long-running session, or when debugging.
 }
 \details{
-\strong{Clear the cfbfastR ESPN catalog cache}
+\strong{Clear the cfbfastR lookup cache}
 
 Caching is configured at package load via two \code{options()}:
 \itemize{
 \item \code{cfbfastR.cache} -- cache backend. One of \code{"memory"} (default;
 in-memory \code{cachem::cache_mem()}, cleared when the session ends),
 \code{"filesystem"} (persistent on-disk \code{cachem::cache_disk()} under
-\code{\link[tools:R_user_dir]{tools::R_user_dir()}}), or \code{"off"} (no memoisation -- every catalog
-fetch hits ESPN).
+\code{\link[tools:R_user_dir]{tools::R_user_dir()}}), or \code{"off"} (no memoisation -- every lookup
+hits the API).
 \item \code{cfbfastR.cache_duration} -- cache time-to-live in seconds.
 Defaults to \code{86400} (24 hours).
 }

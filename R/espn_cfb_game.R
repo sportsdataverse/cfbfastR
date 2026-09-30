@@ -333,10 +333,10 @@ NULL
 }
 
 
-#' **Clear the cfbfastR ESPN catalog cache**
+#' **Clear the cfbfastR lookup cache**
 #'
 #' @title
-#' **Clear the cfbfastR ESPN catalog cache**
+#' **Clear the cfbfastR lookup cache**
 #' @description
 #' The ESPN college football game wrappers enrich their output with team
 #' and position detail drawn from two static catalogs --
@@ -358,8 +358,8 @@ NULL
 #' * `cfbfastR.cache` -- cache backend. One of `"memory"` (default;
 #'   in-memory `cachem::cache_mem()`, cleared when the session ends),
 #'   `"filesystem"` (persistent on-disk `cachem::cache_disk()` under
-#'   [tools::R_user_dir()]), or `"off"` (no memoisation -- every catalog
-#'   fetch hits ESPN).
+#'   [tools::R_user_dir()]), or `"off"` (no memoisation -- every lookup
+#'   hits the API).
 #' * `cfbfastR.cache_duration` -- cache time-to-live in seconds.
 #'   Defaults to `86400` (24 hours).
 #'

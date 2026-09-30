@@ -78,8 +78,10 @@ test_that("CFBD season roster drops players it cannot scope to a team", {
   expect_identical(r$athlete_id, c("4870906", "4877717", "5078278"))
   expect_identical(r$display_name, c("Arch Manning", "Caldwell", "Lincoln Kienholz"))
   expect_identical(r$team_id, c("251", "251", "194"))
+  # A failed fetch (or a renamed column) must say so, not leave ids NA silently.
   local_mocked_bindings(.cfbd_roster_year = function(year) stop("CFBD down"))
-  expect_null(.cfbd_season_roster(2025, teams = cfbd_identity_teams()))
+  expect_message(r <- .cfbd_season_roster(2025, teams = cfbd_identity_teams()), "CFBD /roster failed")
+  expect_null(r)
 })
 
 test_that("CFBD season roster is fetched once per season, and a failure is not cached", {

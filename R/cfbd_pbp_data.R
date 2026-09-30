@@ -57,6 +57,10 @@ NULL
 #' `offense_play_id` and `defense_play_id`. As on the modeled path, `provider`, `spread`,
 #' `formatted_spread` and `over_under` are absent when betting lines are not joined.
 #' `engine = "legacy"` returns the older pre-v2 frame, which these tables do not describe.
+#' Team and player ids come from CFBD `/games`, `/teams` and the season `/roster`. The `/teams`
+#' and `/roster` lookups are cached per season until the next UTC midnight (the
+#' `cfbfastR.cache_duration` window), so a season sweep requests each once; [espn_cfb_clear_cache()]
+#' refetches them, and `options(cfbfastR.cache = "off")` set before loading the package disables it.
 #'
 #' **Default columns** - one row per play (`epa_wpa = TRUE`, `output = "default"`):
 #'

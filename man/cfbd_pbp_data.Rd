@@ -85,6 +85,10 @@ table are returned: these 54 in CFBD order (\code{yards_to_goal}, \code{down}, \
 \code{offense_play_id} and \code{defense_play_id}. As on the modeled path, \code{provider}, \code{spread},
 \code{formatted_spread} and \code{over_under} are absent when betting lines are not joined.
 \code{engine = "legacy"} returns the older pre-v2 frame, which these tables do not describe.
+Team and player ids come from CFBD \verb{/games}, \verb{/teams} and the season \verb{/roster}. The \verb{/teams}
+and \verb{/roster} lookups are cached per season until the next UTC midnight (the
+\code{cfbfastR.cache_duration} window), so a season sweep requests each once; \code{\link[=espn_cfb_clear_cache]{espn_cfb_clear_cache()}}
+refetches them, and \code{options(cfbfastR.cache = "off")} set before loading the package disables it.
 
 \strong{Default columns} - one row per play (\code{epa_wpa = TRUE}, \code{output = "default"}):\tabular{lll}{
    col_name \tab type \tab description \cr

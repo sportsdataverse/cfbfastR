@@ -118,7 +118,10 @@
 #' @keywords internal
 #' @noRd
 .cfbd_season_roster <- function(year, teams) {
-  r <- tryCatch(.cfbd_roster_year(year), error = function(e) NULL)
+  r <- tryCatch(.cfbd_roster_year(year), error = function(e) {
+    cli::cli_alert_warning("CFBD /roster failed for {year}: {conditionMessage(e)}; player ids will be NA.")
+    NULL
+  })
   if (is.null(r)) return(NULL)
   out <- data.frame(
     athlete_id   = as.character(r$athlete_id),

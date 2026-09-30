@@ -72,7 +72,9 @@
     cache <- if (cache_mode == "filesystem") {
       cache_dir <- tools::R_user_dir("cfbfastR", which = "cache")
       dir.create(cache_dir, recursive = TRUE, showWarnings = FALSE)
-      cachem::cache_disk(dir = cache_dir)
+      # max_age: each TTL window writes a new copy (a season roster is ~30k
+      # rows), so let expired ones go instead of piling up to the size cap.
+      cachem::cache_disk(dir = cache_dir, max_age = ttl)
     } else {
       cachem::cache_mem()
     }

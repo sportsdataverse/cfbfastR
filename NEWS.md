@@ -99,6 +99,10 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
 * Kneel-downs ("J. Sayin takes a knee") now name the rusher on the
   text-parsed paths (`cfbd_pbp_data()`, `espn_cfb_pbp(engine = "legacy")`); the
   text has no "run", so `rusher_player_name` and its id were `NA`.
+* The CFBD `/teams` and season `/roster` lookups behind those ids are cached per
+  season (until the next UTC midnight, on the same cache as the ESPN catalogs), so
+  a season sweep spends one request on each instead of one per call.
+  `espn_cfb_clear_cache()` refetches them.
 
 ## Documentation: CFBD return tables
 

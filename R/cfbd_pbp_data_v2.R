@@ -300,18 +300,16 @@ cfbd_pbp_data_v2 <- function(year,
     conference = conference, division = division
   )
   id_teams <- tryCatch(.cfbd_team_catalog(year), error = function(e) {
+    cli::cli_alert_warning(
+      "CFBD /teams failed for {year}: {conditionMessage(e)}; team abbreviations and player ids will be NA."
+    )
     data.frame(team_id = character(), school = character(), abbreviation = character())
   })
   play_df <- .cfbd_team_identity(play_df, id_games, id_teams)
   no_ids <- unique(play_df$game_id[is.na(play_df$home_team_id)])
   if (length(no_ids)) {
     cli::cli_alert_warning(
-      "CFBD /games has no team ids for game{?s} {no_ids}; team attribution and player ids will be NA there."
-    )
-  }
-  if (!nrow(id_teams)) {
-    cli::cli_alert_warning(
-      "CFBD /teams returned nothing for {year}; team abbreviations and player ids will be NA."
+      "CFBD /games has no or conflicting team ids for game{?s} {no_ids}; team attribution and player ids will be NA there."
     )
   }
 
@@ -330,7 +328,8 @@ cfbd_pbp_data_v2 <- function(year,
     # Player ids resolve against a roster. One season-wide CFBD roster, scoped
     # to each game's two teams so the engine never applies one game's roster
     # to another (CFBD athlete ids are ESPN athlete ids).
-    season_roster <- .cfbd_season_roster(year, teams = id_teams)
+    # Without /teams no roster row can be scoped to a game; skip the ~20 s fetch.
+    season_roster <- if (nrow(id_teams)) .cfbd_season_roster(year, teams = id_teams)
     rosters <- NULL
     if (!is.null(season_roster)) {
       g <- unique(play_df[, c("game_id", "home_team_id", "away_team_id")])
