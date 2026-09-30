@@ -16,8 +16,7 @@
 .pbp_clean_drive_dat <- function(play_df) {
   play_df <- play_df |>
     dplyr::group_by(.data$game_id, .data$half) |>
-    dplyr::arrange(.data$game_id, .data$half, .data$period,
-                   -.data$TimeSecsRem, -.data$lead_TimeSecsRem, .data$id_play,
+    dplyr::arrange(.data$game_id, .data$half, .data$play_order,
                    .by_group = TRUE
     ) |>
     dplyr::mutate(
@@ -258,16 +257,12 @@
     ) |>
     dplyr::ungroup() |>
     dplyr::group_by(.data$game_id) |>
-    dplyr::arrange(.data$game_id, .data$half, .data$period,
-                   -.data$TimeSecsRem, -.data$lead_TimeSecsRem,
-                   .data$id_play,
+    dplyr::arrange(.data$game_id, .data$half, .data$play_order,
                    .by_group = TRUE
     ) |>
     dplyr::mutate(drive_num = cumsum(.data$drive_numbers)) |>
     dplyr::group_by(.data$game_id, .data$half, .data$drive_num) |>
-    dplyr::arrange(.data$game_id, .data$half, .data$period,
-                   -.data$TimeSecsRem, -.data$lead_TimeSecsRem,
-                   .data$id_play,
+    dplyr::arrange(.data$game_id, .data$half, .data$play_order,
                    .by_group = TRUE
     ) |>
     tidyr::fill("drive_result_detailed", .direction = c("updown")) |>
@@ -276,9 +271,7 @@
     tidyr::fill("new_drive_pts", .direction = c("updown")) |>
     dplyr::ungroup() |>
     dplyr::arrange(
-      .data$game_id, .data$half, .data$period,
-      -.data$TimeSecsRem, -.data$lead_TimeSecsRem,
-      .data$id_play
+      .data$game_id, .data$half, .data$play_order
     ) |>
     dplyr::mutate(
       lag_drive_result_detailed = dplyr::lag(.data$drive_result_detailed, 1),
@@ -298,8 +291,7 @@
       id_drive = paste0(.data$game_id, .data$drive_num)
     ) |>
     dplyr::group_by(.data$game_id, .data$id_drive) |>
-    dplyr::arrange(.data$game_id, .data$half, .data$period,
-                   -.data$TimeSecsRem, -.data$lead_TimeSecsRem, .data$id_play,
+    dplyr::arrange(.data$game_id, .data$half, .data$play_order,
                    .by_group = TRUE
     ) |>
     dplyr::mutate(

@@ -6624,6 +6624,10 @@ espn_cfb_pbp_v2 <- function(game_id,
 
       # --- meta bridge: full reconciled meta union (name/color/rank/...)
       meta <- .espn_pbp_game_meta(game_id)
+      # meta$season is NA when the event's week/season $ref could not be resolved;
+      # the play order (late inserts run from 2014) and the era-aware FG model both
+      # need it, so fall back to deriving it from the game date
+      game_season <- .cfb_season_or_date(meta$season, meta$game_date)
 
       plays_df <- expand_df |>
         dplyr::mutate(
@@ -6727,6 +6731,13 @@ espn_cfb_pbp_v2 <- function(game_id,
           ),
           plays_period_number          = .data$period,
           plays_id                     = .data$play_id,
+          # sdv-py's play order (late inserts, drive reunite, tries, overtime);
+          # the engine sorts on it -- see .espn_play_order()
+          play_order                   = order(.espn_play_order(
+            .data$play_id, .data$sequence_number, .data$period, .data$clock,
+            .data$drive_drive_id, .data$type_text, .data$start_down_distance_text,
+            .data$end_down_distance_text, .env$game_season, .data$home_score, .data$away_score
+          )),
           plays_start_yards_to_endzone = .data$start_yards_to_endzone,
           # ESPN's end-of-play yardline: the air-yards helper learns each game's
           # text abbreviations from it (see .spot_side_map); nothing else reads it.
@@ -6786,11 +6797,9 @@ espn_cfb_pbp_v2 <- function(game_id,
         wp_model     = wp_model,
         roster       = roster_df,
         participants = participants_df,
-        # The era-aware FG model needs the season. meta$season is NA when the
-        # event's week/season $ref could not be resolved, so fall back to
-        # deriving it from the game date -- otherwise FG scoring aborts and the
-        # outer handler hands back a silently unmodeled game.
-        season       = .cfb_season_or_date(meta$season, meta$game_date)
+        # without a season FG scoring aborts and the outer handler hands back a
+        # silently unmodeled game (see game_season above)
+        season       = game_season
       ) |>
         dplyr::select(-dplyr::any_of("ppa"))   # drop the placeholder
 

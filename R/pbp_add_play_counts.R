@@ -40,7 +40,7 @@
   play_df <-
     play_df |>
     dplyr::group_by(.data$game_id) |>
-    dplyr::arrange(.data$id_play, .by_group = TRUE) |>
+    dplyr::arrange(.data$play_order, .by_group = TRUE) |>
     dplyr::mutate(
       play_type = ifelse(.data$play_type != "End of Half" & .data$play_text %in% c("End of 2nd Quarter"),
                          "End of Half", .data$play_type
@@ -148,8 +148,7 @@
       )
     ) |>
     dplyr::group_by(.data$game_id, .data$half) |>
-    dplyr::arrange(.data$game_id, .data$half, .data$period,
-                   -.data$TimeSecsRem, .data$id_play,
+    dplyr::arrange(.data$game_id, .data$half, .data$play_order,
                    .by_group = TRUE
     ) |>
     dplyr::mutate(
@@ -239,8 +238,7 @@
     ) |>
     dplyr::ungroup() |>
     dplyr::arrange(
-      .data$game_id, .data$half, .data$period,
-      -.data$TimeSecsRem, -.data$lead_TimeSecsRem, .data$id_play
+      .data$game_id, .data$half, .data$play_order
     )
   return(play_df)
 }

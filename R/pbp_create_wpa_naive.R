@@ -19,7 +19,7 @@
 #' @importFrom rlang .data
 .pbp_create_wpa_naive <- function(df, wp_model) {
   df <- df |>
-    dplyr::arrange(.data$game_id, .data$new_id)
+    dplyr::arrange(.data$game_id, .data$play_order)
   # .wp_predict() handles either model generation and derives `is_home`, the
   # one bundle feature the frame does not already carry.
   df$wp_before <- .wp_predict(wp_model, df)
