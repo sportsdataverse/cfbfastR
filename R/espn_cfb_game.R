@@ -6804,6 +6804,11 @@ espn_cfb_pbp_v2 <- function(game_id,
       plays_df <- context_df |>
         dplyr::mutate(play_id = as.character(.data$play_id)) |>
         dplyr::left_join(epa_join, by = c("play_id" = "id_play")) |>
+        # Rows in the engine's order -- the one EPA/WPA were computed on -- not the
+        # feed's: context_df is the pre-engine frame, and pre-2014 feeds list plays
+        # out of id order (27 of 33 sampled games). Rows the engine did not model
+        # keep their relative order at the end.
+        (\(x) x[order(match(x$play_id, epa_join$id_play)), , drop = FALSE])() |>
         .pbp_apply_output_schema(output = output) |>
         make_cfbfastR_data(
           "Play-by-play data from ESPN (core-v2)", Sys.time()
