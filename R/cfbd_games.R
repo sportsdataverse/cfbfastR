@@ -1589,7 +1589,7 @@ cfbd_game_team_stats <- function(year = NULL,
           team <- URLdecode(team)
 
           df <- df |>
-            dplyr::filter(.data$team == team) |>
+            dplyr::filter(.data$team == {{ team }}) |>
             dplyr::select(dplyr::all_of(cols1))
 
 
@@ -1626,7 +1626,7 @@ cfbd_game_team_stats <- function(year = NULL,
           team <- URLdecode(team)
 
           df <- df |>
-            dplyr::filter(.data$team == team) |>
+            dplyr::filter(.data$team == {{ team }}) |>
             dplyr::select(dplyr::all_of(cols2))
 
         } else if (!is.null(conference)) {
