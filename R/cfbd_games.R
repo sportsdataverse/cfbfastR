@@ -749,17 +749,25 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
       # Pair the two teams by NAME, not position: CFBD lists `havoc` in the
       # opposite team order to every other section, so pairing odd/even entries
       # gave each team its opponent's havoc. Keep only the sections the renames
-      # below were written for (in the order CFBD sends them): 2025 adds
+      # below were written for: 2025 adds
       # `passing` and `rushingAdvanced`, which otherwise land as ~550 raw dotted
       # columns, one mangled to `rushing_dvanced.*` by the "rushing." rename.
       known <- c("ppa", "cumulativePpa", "successRates", "explosiveness",
                  "rushing", "havoc", "fieldPosition", "scoringOpportunities")
       sections <- Filter(is.data.frame, df$teams[names(df$teams) %in% known])
       team_order <- sections$ppa$team
-      df$teams <- lapply(sections, function(s) {
-        i <- match(team_order, s$team)
-        if (anyNA(i)) s else s[i, , drop = FALSE]
-      })
+      if (length(team_order) == 2L) {
+        df$teams <- lapply(names(sections), function(nm) {
+          s <- sections[[nm]]
+          i <- match(team_order, s$team)
+          if (!anyNA(i)) return(s[i, , drop = FALSE])
+          cli::cli_warn("CFBD {.field {nm}} teams do not match {.field ppa}; its team1/team2 columns follow CFBD's order and may be swapped.")
+          s
+        })
+        names(df$teams) <- names(sections)
+      } else {
+        df$teams <- sections
+      }
 
       df <- tibble::enframe(unlist(df$teams, use.names = TRUE))
       team1 <- seq(1, nrow(df) - 1, by = 2)
@@ -1600,7 +1608,7 @@ cfbd_game_team_stats <- function(year = NULL,
           team <- URLdecode(team)
 
           df <- df |>
-            dplyr::filter(.data$team == {{ team }}) |>
+            dplyr::filter(tolower(.data$team) == tolower({{ team }})) |>
             dplyr::select(dplyr::all_of(cols1))
 
 
@@ -1637,7 +1645,7 @@ cfbd_game_team_stats <- function(year = NULL,
           team <- URLdecode(team)
 
           df <- df |>
-            dplyr::filter(.data$team == {{ team }}) |>
+            dplyr::filter(tolower(.data$team) == tolower({{ team }})) |>
             dplyr::select(dplyr::all_of(cols2))
 
         } else if (!is.null(conference)) {

@@ -90,3 +90,13 @@ test_that("CFBD - Game Team Stats keeps only the requested team", {
   y <- suppressWarnings(cfbd_game_team_stats(2024, week = 5, team = "Oregon", rows_per_team = 2))
   expect_equal(y$school, "Oregon")
 })
+
+test_that("CFBD - Game Team Stats team filter ignores case, as CFBD's team= does", {
+  # CFBD answers team = "oregon" with the whole game; an exact-case filter
+  # then dropped both rows.
+  local_cfbd_fixture("games_teams_2024_w5_oregon.json.gz")
+  x <- suppressWarnings(cfbd_game_team_stats(2024, week = 5, team = "oregon"))
+  expect_equal(x$school, "Oregon")
+  y <- suppressWarnings(cfbd_game_team_stats(2024, week = 5, team = "oregon", rows_per_team = 2))
+  expect_equal(y$school, "Oregon")
+})

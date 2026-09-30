@@ -90,3 +90,37 @@ test_that("CFBD - Game Box Advanced keeps its 69 columns when 2025 adds sections
   expect_identical(colnames(x), cols_2024)
   expect_setequal(x$team, c("Ohio State", "Texas"))
 })
+
+# Serve a recorded payload after editing it, to reach the paths CFBD rarely sends.
+local_cfbd_box_edited <- function(file, edit, env = parent.frame()) {
+  con <- gzfile(test_path("fixtures", "cfbd", file), "rb")
+  j <- jsonlite::fromJSON(rawToChar(readBin(con, "raw", n = 1e7)), simplifyVector = FALSE)
+  close(con)
+  body <- charToRaw(as.character(jsonlite::toJSON(edit(j), auto_unbox = TRUE, null = "null", digits = NA)))
+  local_mocked_bindings(
+    validate_api_key = function() invisible(TRUE),
+    get_req = function(full_url, proxy = NULL) {
+      httr2::response(status_code = 200L, url = full_url,
+                      headers = list(`Content-Type` = "application/json"), body = body)
+    },
+    .env = env
+  )
+}
+
+test_that("CFBD - Game Box Advanced warns instead of guessing when team names do not match", {
+  local_cfbd_box_edited("game_box_advanced_401628374.json.gz", function(j) {
+    j$teams$havoc[[1]]$team <- "Somebody Else"
+    j
+  })
+  expect_warning(x <- cfbd_game_box_advanced(game_id = 401628374), "havoc")
+  expect_equal(nrow(x), 2L)
+})
+
+test_that("CFBD - Game Box Advanced without a ppa section keeps the other sections", {
+  local_cfbd_box_edited("game_box_advanced_401628374.json.gz", function(j) {
+    j$teams$ppa <- list()
+    j
+  })
+  x <- cfbd_game_box_advanced(game_id = 401628374, long = TRUE)
+  expect_true("havoc_total" %in% x$stat)
+})
