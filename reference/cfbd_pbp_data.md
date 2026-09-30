@@ -100,15 +100,15 @@ cfbd_pbp_data(
 
 A `cfbfastR_data` data frame of plays, or `NULL` when CFBD returns no
 plays. With `epa_wpa = TRUE` and the default `output = "default"` it has
-the 362 columns in the first table (358 when the four betting columns
+the 368 columns in the first table (364 when the four betting columns
 `provider`, `spread`, `formatted_spread` and `over_under` are not
 joined: before 2013, or if the betting-lines request fails); games with
 fewer than 20 plays are skipped. `output = "lean"` drops the 12 WPA
 scratchpad columns `lead_wp_before2` through `lead_pos_team2`;
 `output = "full"` also keeps the 91 pipeline columns in the second
 table, interleaved with the first. With `epa_wpa = FALSE` (the argument
-default) no modeling runs and only these 54 columns of the first table
-are returned, in CFBD order (`yards_to_goal`, `down`, `distance`,
+default) no modeling runs and only 60 columns of the first table are
+returned: these 54 in CFBD order (`yards_to_goal`, `down`, `distance`,
 `yards_gained` and `drive_start_yards_to_goal` stay integer and
 `drive_scoring` is logical): `game_id`, `drive_id`, `id_play`,
 `drive_number`, `play_number`, `offense_play`, `offense_conference`,
@@ -125,10 +125,19 @@ are returned, in CFBD order (`yards_to_goal`, `down`, `distance`,
 `drive_end_defense_score`, `drive_time_minutes_start`,
 `drive_time_seconds_start`, `drive_time_minutes_end`,
 `drive_time_seconds_end`, `drive_time_minutes_elapsed`,
-`drive_time_seconds_elapsed`, `drive_pts`, `season`, `wk`. As on the
-modeled path, `provider`, `spread`, `formatted_spread` and `over_under`
-are absent when betting lines are not joined. `engine = "legacy"`
-returns the older pre-v2 frame, which these tables do not describe.
+`drive_time_seconds_elapsed`, `drive_pts`, `season`, `wk`, then the six
+team-identity columns `home_team_id`, `away_team_id`,
+`home_team_abbreviation`, `away_team_abbreviation`, `offense_play_id`
+and `defense_play_id`. As on the modeled path, `provider`, `spread`,
+`formatted_spread` and `over_under` are absent when betting lines are
+not joined. `engine = "legacy"` returns the older pre-v2 frame, which
+these tables do not describe. Team and player ids come from CFBD
+`/games`, `/teams` and the season `/roster`. The `/teams` and `/roster`
+lookups are cached per season until the next UTC midnight (the
+`cfbfastR.cache_duration` window), so a season sweep requests each once;
+[`espn_cfb_clear_cache()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_clear_cache.md)
+refetches them, and `options(cfbfastR.cache = "off")` set before loading
+the package disables it.
 
 **Default columns** - one row per play (`epa_wpa = TRUE`,
 `output = "default"`):
@@ -173,56 +182,56 @@ returns the older pre-v2 frame, which these tables do not describe.
 | penalty_all_declined | logical | TRUE only when the play has at least one penalty and every one was declined, so the play stood. |
 | penalty_enforcement | character | How the penalty was enforced: `no_play`, `declined`, `offsetting`, `negating_foul`, `play_stands` or `unknown`; NA on plays without a penalty. |
 | penalty_negated_play | logical | TRUE when a penalty wiped out the play (`no_play`, `offsetting`, `negating_foul`), FALSE when the play stood or had no penalty; NA when enforcement is `unknown`. |
-| rusher_player_id | character | ESPN athlete id of `rusher_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| passer_player_id | character | ESPN athlete id of `passer_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| receiver_player_id | character | ESPN athlete id of `receiver_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| fumble_player_id | character | ESPN athlete id of `fumble_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| sack_player_id | character | ESPN athlete id of `sack_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| sack_player_id2 | character | ESPN athlete id of `sack_player_name2`. Always NA from this function, which has no game roster to resolve names against. |
-| interception_player_id | character | ESPN athlete id of `interception_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| pass_breakup_player_id | character | ESPN athlete id of `pass_breakup_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| fumble_forced_player_id | character | ESPN athlete id of `fumble_forced_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| fumble_recovered_player_id | character | ESPN athlete id of `fumble_recovered_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| fg_kicker_player_id | character | ESPN athlete id of `fg_kicker_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| punter_player_id | character | ESPN athlete id of `punter_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| kickoff_player_id | character | ESPN athlete id of `kickoff_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| kickoff_return_player_id | character | ESPN athlete id of `kickoff_return_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| punt_return_player_id | character | ESPN athlete id of `punt_return_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| fg_block_player_id | character | ESPN athlete id of `fg_block_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| punt_block_player_id | character | ESPN athlete id of `punt_block_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| fg_return_player_id | character | ESPN athlete id of `fg_return_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| punt_block_return_player_id | character | ESPN athlete id of `punt_block_return_player_name`. Always NA from this function, which has no game roster to resolve names against. |
-| pos_team_id | character | ESPN team id of `pos_team`. Always NA from this function: CFBD plays carry team names, not ids. |
-| def_pos_team_id | character | ESPN team id of `def_pos_team`. Always NA from this function: CFBD plays carry team names, not ids. |
-| kicking_team | character | Team id of the kicking team on kickoffs, punts and field goals; NA on other plays. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. |
-| return_team | character | Team id of the receiving team on kickoffs, punts and field goals; NA on other plays. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. |
-| punt_return_team | character | Team id of the punt-returning team (copy of `return_team`). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. |
-| kick_return_team | character | Team id of the kick-returning team (copy of `return_team`). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. |
-| fg_team | character | Team id of the field-goal kicking team (copy of `kicking_team`). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. |
-| punt_team | character | Team id of the punting team (copy of `kicking_team`). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. |
-| sack_team | character | Team id credited with a sack (the defense, `def_pos_team_id`). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. |
-| interception_team | character | Team id credited with an interception (the defense, `def_pos_team_id`). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. |
-| pass_breakup_team | character | Team id credited with a pass breakup (the defense, `def_pos_team_id`). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. |
-| forced_fumble_team | character | Team id credited with a forced fumble (the defense, `def_pos_team_id`). Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. |
-| fumble_recovery_team | character | Team id that recovered a fumble or muff: the first `recovered by` team in the text, else inferred from the turnover. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. |
+| rusher_player_id | character | ESPN athlete id of `rusher_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| passer_player_id | character | ESPN athlete id of `passer_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| receiver_player_id | character | ESPN athlete id of `receiver_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| fumble_player_id | character | ESPN athlete id of `fumble_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| sack_player_id | character | ESPN athlete id of `sack_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| sack_player_id2 | character | ESPN athlete id of `sack_player_name2`. NA when the name does not match a player on either team's CFBD season roster. |
+| interception_player_id | character | ESPN athlete id of `interception_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| pass_breakup_player_id | character | ESPN athlete id of `pass_breakup_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| fumble_forced_player_id | character | ESPN athlete id of `fumble_forced_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| fumble_recovered_player_id | character | ESPN athlete id of `fumble_recovered_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| fg_kicker_player_id | character | ESPN athlete id of `fg_kicker_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| punter_player_id | character | ESPN athlete id of `punter_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| kickoff_player_id | character | ESPN athlete id of `kickoff_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| kickoff_return_player_id | character | ESPN athlete id of `kickoff_return_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| punt_return_player_id | character | ESPN athlete id of `punt_return_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| fg_block_player_id | character | ESPN athlete id of `fg_block_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| punt_block_player_id | character | ESPN athlete id of `punt_block_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| fg_return_player_id | character | ESPN athlete id of `fg_return_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| punt_block_return_player_id | character | ESPN athlete id of `punt_block_return_player_name`. NA when the name does not match a player on either team's CFBD season roster. |
+| pos_team_id | character | ESPN team id of `pos_team`. |
+| def_pos_team_id | character | ESPN team id of `def_pos_team`. |
+| kicking_team | character | Team id of the kicking team on kickoffs, punts and field goals; NA on other plays. |
+| return_team | character | Team id of the receiving team on kickoffs, punts and field goals; NA on other plays. |
+| punt_return_team | character | Team id of the punt-returning team (copy of `return_team`). |
+| kick_return_team | character | Team id of the kick-returning team (copy of `return_team`). |
+| fg_team | character | Team id of the field-goal kicking team (copy of `kicking_team`). |
+| punt_team | character | Team id of the punting team (copy of `kicking_team`). |
+| sack_team | character | Team id credited with a sack (the defense, `def_pos_team_id`). |
+| interception_team | character | Team id credited with an interception (the defense, `def_pos_team_id`). |
+| pass_breakup_team | character | Team id credited with a pass breakup (the defense, `def_pos_team_id`). |
+| forced_fumble_team | character | Team id credited with a forced fumble (the defense, `def_pos_team_id`). |
+| fumble_recovery_team | character | Team id that recovered a fumble or muff: the first `recovered by` team in the text, else inferred from the turnover. |
 | fumble_or_muff | logical | TRUE when the play has a fumble (`fumble_vec`) or the play text mentions a muff. |
-| fumbling_team | character | Team id that fumbled or muffed; NA when `fumble_or_muff` is FALSE. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. |
-| recovery_team | character | Team id from the first `recovered by` clause in the play text. Always NA from this function: matching the clause needs home/away team ids and abbreviations that CFBD plays do not carry. |
-| recovery_team_2 | character | Team id from a second `recovered by` clause (the ball changed hands twice). Always NA from this function (see `recovery_team`). |
+| fumbling_team | character | Team id that fumbled or muffed; NA when `fumble_or_muff` is FALSE. |
+| recovery_team | character | Team id from the first `recovered by` clause in the play text. |
+| recovery_team_2 | character | Team id from a second `recovered by` clause (the ball changed hands twice). |
 | int_turnover | logical | TRUE when the play is an interception (from `int`). |
-| pos_fumble_lost | logical | TRUE when the team in possession lost a fumble. Always FALSE from this function, because it needs the team ids CFBD plays do not carry. |
-| def_fumble_lost | logical | TRUE when the defense recovered and then lost a fumble on the same play. Always FALSE from this function (see `pos_fumble_lost`). |
-| is_pos_team_turnover | logical | TRUE when the team in possession gave the ball away (`int_turnover` or `pos_fumble_lost`); from this function, interceptions only. |
-| is_def_pos_team_turnover | logical | TRUE when the defense gave the ball back on the same play (`def_fumble_lost`). Always FALSE from this function. |
-| is_turnover | logical | TRUE when either side gave the ball away (interceptions and lost fumbles; blocked kicks excluded); from this function, interceptions only. |
-| turnover_team | character | Team id that gave the ball away; NA when `is_turnover` is FALSE. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. |
-| is_st_turnover | logical | TRUE when a lost fumble happened on a special-teams play. Always FALSE from this function (see `pos_fumble_lost`). |
+| pos_fumble_lost | logical | TRUE when the team in possession lost a fumble. |
+| def_fumble_lost | logical | TRUE when the defense recovered and then lost a fumble on the same play. |
+| is_pos_team_turnover | logical | TRUE when the team in possession gave the ball away (`int_turnover` or `pos_fumble_lost`). |
+| is_def_pos_team_turnover | logical | TRUE when the defense gave the ball back on the same play (`def_fumble_lost`). |
+| is_turnover | logical | TRUE when either side gave the ball away (interceptions and lost fumbles; blocked kicks excluded). |
+| turnover_team | character | Team id that gave the ball away; NA when `is_turnover` is FALSE. |
+| is_st_turnover | logical | TRUE when a lost fumble happened on a special-teams play. |
 | is_blocked_punt_turnover | logical | TRUE on a blocked punt returned for a touchdown or that changed possession; not counted in `is_turnover`. |
 | is_blocked_fg_turnover | logical | TRUE on a blocked field goal returned for a touchdown or that changed possession; not counted in `is_turnover`. |
-| penalized_team | character | Team id charged with the penalty; NA on plays without a penalty. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. |
-| penalty_team_id | character | Copy of `penalized_team`. Always NA from this function: it is keyed on team ids, which CFBD plays do not carry. |
+| penalized_team | character | Team id charged with the penalty; NA on plays without a penalty. |
+| penalty_team_id | character | Copy of `penalized_team`. |
 | penalty_yards_signed | integer | Penalty yardage parsed from `yds_penalty` as an integer, 0 when none. The magnitude is reliable; the sign is not a dependable direction. |
-| air_yardsToEndzone | integer | Catch point in yards from the end zone, parsed from `caught at` or `thrown to` in the play text. NA from this function except a spot at the 50, because siding the spot needs team ids CFBD plays do not carry. |
+| air_yardsToEndzone | integer | Catch point in yards from the end zone, parsed from `caught at` or `thrown to` in the play text. NA when the play text names no catch spot, which is most plays. |
 | air_yards | integer | Air yards: `yards_to_goal` minus `air_yardsToEndzone`; NA whenever `air_yardsToEndzone` is NA. |
 | yards_after_catch | integer | Yards after the catch on completions: `yards_gained` minus `air_yards`; NA on other plays or when `air_yards` is NA. |
 | pass_depth | character | Pass depth stated in the text of a pass play (`short` or `deep`); NA when not stated or not a pass. |
@@ -457,6 +466,12 @@ returns the older pre-v2 frame, which these tables do not describe.
 | drive_start_defense_score | integer | Defense score at the start of the drive. |
 | drive_end_offense_score | integer | Offense score at the end of the drive. |
 | drive_end_defense_score | integer | Defense score at the end of the drive. |
+| home_team_id | character | Home team id (CFBD /games `homeId`; CFBD team ids are ESPN team ids); NA when the game is not in CFBD /games. |
+| away_team_id | character | Away team id (CFBD /games `awayId`); NA when the game is not in CFBD /games. |
+| home_team_abbreviation | character | Home team abbreviation from CFBD /teams; NA when the team is not in /teams. |
+| away_team_abbreviation | character | Away team abbreviation from CFBD /teams; NA when the team is not in /teams. |
+| offense_play_id | character | Team id of the offense on the play; NA when `offense_play` names neither team in the game. |
+| defense_play_id | character | Team id of the defense on the play; NA when `defense_play` names neither team in the game. |
 | cleaned_text | character | `play_text` with the leading clock stamp, the first pass depth and direction words, and No Huddle/Shotgun tags removed. |
 | play | double | Binary flag indicating the row is a counted play (excludes end markers/timeouts/penalties). |
 | event | double | Binary flag indicating the row is a counted game event (excludes end markers). |
@@ -470,8 +485,8 @@ returns the older pre-v2 frame, which these tables do not describe.
 | def_pos_unit | character | Unit of the defending team: `Defense`, `Punt Return`, `Kickoff Defense` or `Field Goal Defense`. |
 | drive_play | double | Binary flag indicating a counted play within the drive. |
 | drive_event | double | Binary flag indicating a counted event within the drive. |
-| punt_return_player_name | character | Not populated by this pipeline (always NA); the punt returner is in `punt_returner_player_name`. |
-| kickoff_return_player_name | character | Not populated by this pipeline (always NA); the kickoff returner is in `kickoff_returner_player_name`. |
+| punt_return_player_name | character | Name of the punt returner (same as `punt_returner_player_name`). |
+| kickoff_return_player_name | character | Name of the kickoff returner (same as `kickoff_returner_player_name`). |
 | vegas_wp | double | Spread-aware win probability for the team in possession before the play (proportion 0-1); NA when the game has no pre-game spread (always before 2013). |
 | vegas_wpa | double | Change in `vegas_wp` over the play, with the same possession-change handling as `wpa`; NA on the final rows of a game. |
 | vegas_wp_after | double | Spread-aware win probability after the play (`vegas_wp` plus `vegas_wpa`). |

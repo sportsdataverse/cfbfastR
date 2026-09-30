@@ -1567,7 +1567,7 @@ Catalog-cache management helpers
 - [`espn_cfb_clear_cache()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_clear_cache.md)
   :
 
-  **Clear the cfbfastR ESPN catalog cache**
+  **Clear the cfbfastR lookup cache**
 
 ## Yahoo Sports Data
 

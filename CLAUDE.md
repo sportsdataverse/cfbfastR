@@ -206,7 +206,11 @@ seconds).
 [`espn_cfb_clear_cache()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_clear_cache.md)
 forgets all cached endpoints; filesystem backend persists under
 `tools::R_user_dir("cfbfastR","cache")`. **CFBD endpoints are NOT
-cached** (pagination/date variation would return wrong rows).
+cached** (pagination/date variation would return wrong rows). Exception:
+[`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md)’s
+per-season id lookups (`.cfbd_team_catalog`, `.cfbd_roster_year`, keyed
+on `year` alone) are memoised on the same cache, so a season sweep makes
+one `/teams` and one `/roster` request, not one per call.
 
 ## Testing
 

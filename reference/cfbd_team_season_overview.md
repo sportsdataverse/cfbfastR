@@ -215,7 +215,7 @@ Other CFBD Teams:
   try(cfbd_team_season_overview(year = 2024, team = "Texas"))
 #> $overview
 #> ── Team season overview data from CollegeFootballData.com ──────────────────────
-#> ℹ Data updated: 2026-09-30 09:43:52 UTC
+#> ℹ Data updated: 2026-09-30 11:08:50 UTC
 #> # A tibble: 1 × 3
 #>   season team_id team 
 #>    <int>   <int> <chr>
@@ -223,7 +223,7 @@ Other CFBD Teams:
 #> 
 #> $record
 #> ── Team season overview data from CollegeFootballData.com ──────────────────────
-#> ℹ Data updated: 2026-09-30 09:43:52 UTC
+#> ℹ Data updated: 2026-09-30 11:08:50 UTC
 #> # A tibble: 1 × 4
 #>   games  wins losses  ties
 #>   <int> <int>  <int> <int>
@@ -231,7 +231,7 @@ Other CFBD Teams:
 #> 
 #> $ratings
 #> ── Team season overview data from CollegeFootballData.com ──────────────────────
-#> ℹ Data updated: 2026-09-30 09:43:52 UTC
+#> ℹ Data updated: 2026-09-30 11:08:50 UTC
 #> # A tibble: 1 × 25
 #>     elo srs_rating srs_rank sp_overall_rating sp_overall_rank sp_offense_rating
 #>   <dbl>      <dbl>    <int>             <dbl>           <int>             <dbl>
@@ -246,7 +246,7 @@ Other CFBD Teams:
 #> 
 #> $advanced
 #> ── Team season overview data from CollegeFootballData.com ──────────────────────
-#> ℹ Data updated: 2026-09-30 09:43:52 UTC
+#> ℹ Data updated: 2026-09-30 11:08:50 UTC
 #> # A tibble: 1 × 82
 #>   team  season defense_ppa defense_havoc_total defense_havoc_front_seven
 #>   <chr>  <int>       <dbl>               <dbl>                     <dbl>
@@ -261,17 +261,17 @@ Other CFBD Teams:
 #> 
 #> $passing
 #> ── Team season overview data from CollegeFootballData.com ──────────────────────
-#> ℹ Data updated: 2026-09-30 09:43:52 UTC
+#> ℹ Data updated: 2026-09-30 11:08:50 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $rushing
 #> ── Team season overview data from CollegeFootballData.com ──────────────────────
-#> ℹ Data updated: 2026-09-30 09:43:52 UTC
+#> ℹ Data updated: 2026-09-30 11:08:50 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $players
 #> ── Team season overview data from CollegeFootballData.com ──────────────────────
-#> ℹ Data updated: 2026-09-30 09:43:52 UTC
+#> ℹ Data updated: 2026-09-30 11:08:50 UTC
 #> # A tibble: 36 × 31
 #>    category id      name          team  season position conference total_ppa_all
 #>    <chr>    <chr>   <chr>         <chr>  <int> <chr>    <chr>              <dbl>

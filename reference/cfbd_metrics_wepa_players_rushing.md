@@ -80,7 +80,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_wepa_players_rushing(year = 2019, team = "TCU"))
 #> ── Opponent-adjusted players rushing PPA data from CollegeFootballData.com ─────
-#> ℹ Data updated: 2026-09-30 09:40:18 UTC
+#> ℹ Data updated: 2026-09-30 11:03:42 UTC
 #> # A tibble: 3 × 8
 #>    year athlete_id athlete_name    position team  conference  wepa plays
 #>   <int> <chr>      <chr>           <chr>    <chr> <chr>      <dbl> <int>

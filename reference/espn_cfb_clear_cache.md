@@ -1,4 +1,4 @@
-# **Clear the cfbfastR ESPN catalog cache**
+# **Clear the cfbfastR lookup cache**
 
 The ESPN college football game wrappers enrich their output with team
 and position detail drawn from two static catalogs –
@@ -10,10 +10,12 @@ internal lookups built from them are memoised with `cachem` + `memoise`,
 so a loop over many games does not re-hit ESPN for the catalogs on every
 call.
 
-`espn_cfb_clear_cache()` forgets those memoised lookups. The next
-wrapper call that needs a catalog will fetch a fresh copy from ESPN. Use
-it when you want to force a refresh – for example after a long-running
-session, or when debugging.
+`espn_cfb_clear_cache()` forgets those memoised lookups, and also the
+per-season CFBD team catalog and roster that
+[`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md)
+memoises to attach team and player ids. The next call that needs one
+fetches it again. Use it when you want to force a refresh – for example
+after a long-running session, or when debugging.
 
 ## Usage
 
@@ -28,7 +30,7 @@ memoised catalog lookups.
 
 ## Details
 
-**Clear the cfbfastR ESPN catalog cache**
+**Clear the cfbfastR lookup cache**
 
 Caching is configured at package load via two
 [`options()`](https://rdrr.io/r/base/options.html):
@@ -39,7 +41,7 @@ Caching is configured at package load via two
   cleared when the session ends), `"filesystem"` (persistent on-disk
   [`cachem::cache_disk()`](https://cachem.r-lib.org/reference/cache_disk.html)
   under [`tools::R_user_dir()`](https://rdrr.io/r/tools/userdir.html)),
-  or `"off"` (no memoisation – every catalog fetch hits ESPN).
+  or `"off"` (no memoisation – every lookup hits the API).
 
 - `cfbfastR.cache_duration` – cache time-to-live in seconds. Defaults to
   `86400` (24 hours).
