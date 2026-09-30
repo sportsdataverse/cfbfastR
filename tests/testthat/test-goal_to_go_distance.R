@@ -96,3 +96,29 @@ test_that("ESPN '& 0 at' downs follow the previous snap's end state", {
   pen <- play("Penalty", 1, 10, 10, "1st & Goal at TULN 10", 1, 0, NA)
   expect_identical(amp0(pen, play("Rush", 1, 0, 15, "1st & 0 at TULN 15", 2, 0, NA)), c(10, 0))
 })
+
+test_that("ESPN '& 0 at' rows match sdv-py's oracle, except its id-order misses", {
+  skip_on_cran()
+  # fixtures/parity/amp0_oracle.csv: every "& 0 at" row sdv-py 01d3c1ad6 (#636)
+  # changes in eight games (see fixtures/parity/README.md). R must change
+  # exactly those rows to the same distance, plus the rows sdv-py misses
+  # because its id sort puts a re-keyed field-goal row after the opponent's
+  # next drive (see .espn_amp0_distance()).
+  oracle <- utils::read.csv(test_path("fixtures", "parity", "amp0_oracle.csv"),
+                            colClasses = c("numeric", "character", "character", "integer"))
+  r_only <- data.frame(id_play = c("400548134101886613", "400787459102977201", "400763571101946705"),
+                       sdvpy_distance = c(14L, 11L, 14L))
+  want <- rbind(oracle[c("id_play", "sdvpy_distance")], r_only)
+  games <- c(401752671, 400559176, 400548315, 400787459, 400869264, 400763571, 400548134, 400547673)
+  got <- do.call(rbind, lapply(games, function(g) {
+    raw <- suppressWarnings(suppressMessages(espn_cfb_pbp(game_id = g, epa_wpa = FALSE)))
+    mod <- suppressWarnings(suppressMessages(espn_cfb_pbp(game_id = g, epa_wpa = TRUE)))
+    if (!is.data.frame(raw) || !nrow(raw) || !is.data.frame(mod) || !nrow(mod)) skip("ESPN returned no plays")
+    amp0 <- raw[raw$start_distance %in% 0 & grepl("& 0 at", raw$start_down_distance_text, fixed = TRUE), ]
+    m <- mod[as.character(mod$id_play) %in% as.character(amp0$id_play), c("id_play", "distance")]
+    m <- m[m$distance %in% 1:99, ]
+    data.frame(id_play = as.character(m$id_play), sdvpy_distance = as.integer(m$distance))
+  }))
+  key <- function(d) d[order(d$id_play), , drop = FALSE]
+  expect_equal(key(got), key(want), ignore_attr = TRUE)
+})

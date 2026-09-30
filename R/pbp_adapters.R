@@ -169,7 +169,14 @@
 #' reading "Goal" gives the yards to the goal, a real end distance gives that
 #' distance capped at the yards to the goal, and anything else stays 0. The
 #' spot is compared as text because field-goal rows' yards-to-goal run a yard
-#' deeper than their text. Vectors are one game in play order.
+#' deeper than their text. Vectors are one game in ESPN's drive order.
+#'
+#' One deliberate divergence: sdv-py sorts plays by id, and ESPN sometimes
+#' re-keys a field-goal row with a later id, which puts it after the opponent's
+#' next drive, so sdv-py reads the wrong previous snap and leaves the row at 0.
+#' R keeps ESPN's drive order and resolves it (about 7 rows in the 20.7k banked
+#' summaries, e.g. 400548134 "4th & 0 at KENT 14" -> 14). The parity test lists
+#' them.
 #' @return `distance` with those rows resolved.
 #' @keywords internal
 #' @noRd
@@ -193,7 +200,7 @@
   prev_text <- end_text[j]
   amp0 <- distance %in% 0 & grepl("& 0 at", text, fixed = TRUE) &
     down %in% 1:4 & yards_to_goal %in% 1:99 &
-    !grepl("kickoff|extra point|two[- ]point|2pt", type, ignore.case = TRUE) &
+    !is.na(type) & !grepl("kickoff|extra point|two[- ]point|2pt", type, ignore.case = TRUE) &
     (end_down[j] == down) %in% TRUE & (spot(prev_text) == spot(text)) %in% TRUE
   goal <- amp0 & grepl("goal", prev_text, ignore.case = TRUE)
   lost <- amp0 & !goal & (end_distance[j] > 0) %in% TRUE
