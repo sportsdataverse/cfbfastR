@@ -165,7 +165,7 @@ Other CFBD Rushing:
 # \donttest{
   try(cfbd_rushing_plays(year = 2025, week = 1, team = "Texas"))
 #> ── Rushing plays data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-01 05:27:56 UTC
+#> ℹ Data updated: 2026-10-01 10:16:42 UTC
 #> # A tibble: 142 × 34
 #>      game_id play_id        drive_id season  week season_type offense_id offense
 #>        <int> <chr>          <chr>     <int> <int> <chr>            <int> <chr>  

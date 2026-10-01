@@ -215,27 +215,27 @@ one row per team (all stat groups in one call).</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">yahoo_cfb_team_season_stats</span><span class="op">(</span>season <span class="op">=</span> <span class="fl">2024</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team season stats from Yahoo Sports (shangrila) ────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-01 05:36:23 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-01 10:24:47 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 134 × 101</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    team   team_abbreviation total_offensive_yard…¹ receiving_yards games_offense</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Clems… CLEM              451.9                  3908            14           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Duke   DUKE              336.8                  3180            13           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Flori… FSU               270.3                  2164            12           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Georg… GT                424.5                  3088            13           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Maryl… UMD               386.1                  3320            12           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> N. Ca… UNC               406.7                  2919            13           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> NC St… NCST              377.8                  3031            13           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Virgi… UVA               360.9                  2748            12           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Wake … WAKE              370.7                  2881            12           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Bosto… BC                365.4                  2591            13           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    team         team_abbreviation completion_percentage rushing_yards_per_atte…¹</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Clemson      CLEM              62.1                  5.1                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Duke         DUKE              60.0                  3.2                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Florida St.  FSU               50.4                  2.9                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Georgia Tech GT                65.3                  5.0                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Maryland     UMD               63.8                  3.6                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> N. Carolina  UNC               58.7                  4.8                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> NC State     NCST              65.2                  4.5                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Virginia     UVA               61.3                  3.7                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Wake Forest  WAKE              61.4                  3.5                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Boston Coll. BC                62.7                  4.1                     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 124 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​total_offensive_yards_per_game</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 96 more variables: receptions_per_game &lt;chr&gt;, points_per_game_rank &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   passing_yards_allowed_per_game_rank &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   passing_yards_allowed_per_game &lt;chr&gt;, rushing_attempts_allowed &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   offensive_penalties &lt;chr&gt;, rushing_yards_allowed_per_attempt &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   passing_yards &lt;chr&gt;, rushing_yards_allowed_per_game_rank &lt;chr&gt;, …</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​rushing_yards_per_attempt</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 97 more variables: interceptions_forced &lt;chr&gt;, team_penalties &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   rushing_touchdowns_allowed &lt;chr&gt;, points_rank &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   passing_completions &lt;chr&gt;, total_yards_allowed_per_game &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   passing_attempts_per_game &lt;chr&gt;, receiving_yards_per_game &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   total_offensive_yards_per_game &lt;chr&gt;, passing_touchdowns_allowed &lt;chr&gt;, …</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

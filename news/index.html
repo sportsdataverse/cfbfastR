@@ -231,6 +231,11 @@ Only the modeled <code>play_type</code> (and <code>yards_to_goal</code>) change;
 <li>an onside kick the kicking team recovers, typed a plain “Kickoff”, hands the receiving team the opponent’s next state.</li>
 </ul>
 Together with sportsdataverse-py <a href="https://github.com/sportsdataverse/cfbfastR/issues/646" class="external-link">#646</a> (a play ends at the next play’s clock), v2’s EPA agrees with sdv-py’s to a median of 0.000 on a 92-game 2004-2026 sample (was 0.015); timeouts off by more than 0.5 fall from 20% to 0%, and the game’s last play from 53% to 11%.</li>
+<li>The v2 engine books the scores ESPN marks and drops its copies and admin rows, as sportsdataverse-py <a href="https://github.com/sportsdataverse/cfbfastR/issues/651" class="external-link">#651</a> does:
+<ul><li>a row ESPN scored that no text rule named is typed from the row: who scored is the start team’s margin change, or on a frozen scoreboard the play’s family. Pick-sixes on a frozen board, “21 yd fumble return.” (2004-07) and fumble returns closed by “(X KICK)” (2014+) realised the model’s end state instead of the defence’s touchdown;</li>
+<li>a kickoff return touchdown is the receiver’s 7. The taxonomy listed it as a defensive score too, and that -7 won: every return touchdown was booked EPA about -7.7. A game-ending one keeps its score;</li>
+<li>a textless copy of a play in its drive (2007-15, 2021-22) is dropped, and so are untyped rows that are not plays (2004’s quarter markers, drive headers, a try alone in parentheses).</li>
+</ul></li>
 </ul></div>
 <div class="section level3">
 <h3 id="documentation-cfbd-return-tables-3-0-0-9000">Documentation: CFBD return tables<a class="anchor" aria-label="anchor" href="#documentation-cfbd-return-tables-3-0-0-9000"></a></h3>
