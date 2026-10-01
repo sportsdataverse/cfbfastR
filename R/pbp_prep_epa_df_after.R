@@ -311,17 +311,19 @@
     )
 
   #--End of Half Plays--------------------------
-  # The last real play of the first half (the half changes on the next real play)
-  # and the game's last real play, as sdv-py ends them: nothing follows, so the
-  # possession is worth nothing after them (sdv-py's EP_end at 0:00 is ~0). A 0:00
+  # The last real play of the first half (the half changes on the next real play),
+  # of regulation (overtime starts a fresh possession; add_play_counts files it as
+  # half 2) and of the game, as sdv-py ends them: nothing follows, so the possession
+  # is worth nothing after them (sdv-py scores a 0:00, own-1 state, ~-0.4). A 0:00
   # clock on the NEXT snap is not the end of the half: it flagged the
-  # second-to-last play of 400547699 and booked it -EP.
+  # second-to-last play of 400547699, and every overtime snap, and booked them -EP.
   real <- which(!(dat$play_type %in% c("End Period", "End of Half", "End of Game", "End of Regulation")))
   nxt <- c(real[-1L], NA_integer_)
   same_game <- (dat$game_id[real] == dat$game_id[nxt]) %in% TRUE
   end_of_half_plays <- rep(FALSE, nrow(dat))
   end_of_half_plays[real] <- !same_game |
-    (same_game & (dat$half[real] == 1) %in% TRUE & (dat$half[nxt] == 2) %in% TRUE)
+    (same_game & (dat$half[real] == 1) %in% TRUE & (dat$half[nxt] == 2) %in% TRUE) |
+    (same_game & (dat$period[real] == 4) %in% TRUE & (dat$period[nxt] > 4) %in% TRUE)
   dat$end_of_half <- as.integer(end_of_half_plays)
 
   if (any(end_of_half_plays)) {

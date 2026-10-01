@@ -35,6 +35,13 @@ test_that("v2 books period boundaries as sdv-py does", {
   # "on-side kick recovered by TROY", typed a plain Kickoff: the kicking team keeps the ball
   onside <- row(t, "400787460103849901")
   expect_equal(onside$ep_after, -next_ep(t, "400787460103849901"), tolerance = 1e-6)
+  # ...and goes to overtime: regulation's last play ends the possession (overtime starts a
+  # fresh one), while an overtime snap does not end anything (every one was booked -EP)
+  reg_end <- row(t, "400787460104998501")
+  expect_equal(c(reg_end$end_of_half, reg_end$ep_after), c(1, 0))
+  ot <- t[t$period >= 5 & !(t$play_type %in% c("End Period", "End of Half", "End of Game", "End of Regulation")), ]
+  expect_equal(sum(ot$end_of_half), 1)
+  expect_equal(ot$end_of_half[nrow(ot)], 1)
 
   # 400547730: a punt before "End of 3rd Quarter" hands the ball over at the next snap
   u <- pbp(400547730)
