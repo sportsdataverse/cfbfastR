@@ -84,3 +84,13 @@ test_that(".espn_fill_spots() rebuilds the 2004 feed's start spots as sdv-py doe
   # (untyped rows at yard line 0 / 100, two-point tries at the goal line)
   expect_gt(mean(out$start_yards_to_endzone[y04] > 0, na.rm = TRUE), 0.95)
 })
+
+test_that("v2 rebuilds a 2014+ play whose feed spot is 0", {
+  skip_on_cran()
+  skip_on_ci()
+  # 401628339: "1st & 10 at TNTC 27" (typed Penalty) arrives with yardsToEndzone 0; the
+  # yard line puts it at the 27, as sdv-py reads it
+  x <- suppressWarnings(suppressMessages(espn_cfb_pbp(401628339, epa_wpa = TRUE)))
+  if (!is.data.frame(x) || !nrow(x) || !("yards_to_goal" %in% names(x))) skip("no modeled play-by-play")
+  expect_equal(x$yards_to_goal[as.character(x$id_play) == "401628339103875504"], 27)
+})

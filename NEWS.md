@@ -159,11 +159,8 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   later fumble, return-touchdown and try retypes). sdv-py's four "Extra Point
   Missed" string rules are not followed: they mistyped about 71 blocked field
   goals, and sdv-py removed them in sportsdataverse-py #642; both keep ESPN's
-  type. The
-  retyped touchdowns keep a start down of -1, which R's EP model does not score,
-  so they stay without EPA as before. 2004 EPA remains far from sdv-py's on
-  every play (median gap 2.0), a separate difference in rebuilding that
-  season's spotless feed.
+  type. (The retyped touchdowns' down and the 2004 start spots are rebuilt too;
+  see below.)
 * `espn_cfb_pbp()` (v2) drops the plays ESPN files twice, as sdv-py does before
   it models them: a stub echo (the play repeated with no start spot; its play type
   is kept on the play, 401752854), a stale batch of a drive's plays filed at the

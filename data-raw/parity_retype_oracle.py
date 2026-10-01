@@ -129,7 +129,9 @@ for gid in GAMES:
     }
     start_of = lambda r: plays.get(str(r["id"]), {}).get("start") or {}  # noqa: E731
     comp = raw["header"]["competitions"][0]["competitors"]
-    home = next(str(c["id"]) for c in comp if c.get("homeAway") == "home")
+    home = next((str(c["id"]) for c in comp if c.get("homeAway") == "home"), None)
+    if home is None:
+        raise ValueError(f"game {gid}: no home competitor in the raw header")
     p = C(gameId=gid, path_to_json=str(RAW))
     p.join_participants = False
     p.cfb_pbp_disk()
