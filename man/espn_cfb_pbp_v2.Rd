@@ -16,7 +16,10 @@ espn_cfb_pbp_v2(
 
 \item{epa_wpa}{(\emph{Logical}): when \code{TRUE}, run the full EPA/WPA modeling
 pipeline and return the modeled frame; when \code{FALSE} (default) return the
-assembled core-v2 play-by-play frame.}
+assembled core-v2 play-by-play frame. Both drop the plays ESPN files twice
+(a stub echo with no start spot, a stale batch of a drive's plays, the same
+play on both sides of a timeout or period marker, an adjacent repeat), as
+sportsdataverse-py does.}
 
 \item{output}{(\emph{Character}): controls the modeled-output column set when
 \code{epa_wpa = TRUE}. Ignored when \code{epa_wpa = FALSE}. Defaults to \code{"default"}.

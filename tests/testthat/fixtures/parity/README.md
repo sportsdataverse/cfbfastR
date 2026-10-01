@@ -59,3 +59,20 @@ untyped try's period <= 4 and same-clock checks, the return touchdown's no-play 
 normalization's untyped "field goal / extra point is good" rules (`scoringType` already types those
 rows). Re-capture: `python data-raw/parity_retype_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do
 not hand-edit the file.
+
+`copies_oracle.csv.gz` — captured 2026-09-30 from sportsdataverse-py `71a8f0863`: the frame sdv-py
+hands `_drop_espn_play_copies()` (after its first play sort, in that order; `row` is the position)
+for 17 games, with the inputs `.espn_play_copies()` reads, whether sdv-py drops the row there or in
+the adjacent-copy rule after it (`sdvpy_drop`), the type a stub echo leaves on the play it repeats
+(`sdvpy_type`), and the fields `.espn_play_order()` reads (`sequence`, `start_text`, `end_text`,
+`home_score`, `away_score`) so the Core-v2 wrapper can be replayed in sdv-py's order. Games: stub
+echoes, stale drive batches and copies across a marker (401752854 carries all three, and the only
+stub echo in the corpus whose type differs from its play's), 272512348, 282640084, 283330145,
+312810077, 313232005, 401287947, 401525890; adjacent copies and same-id live repeats (401411109,
+302750249, 401645383, 401754601); guard cases found by running each mutant over 487 captured games
+(a batch with one exact twin 400548311, a spotless pair 242620052, the same play across a marker at
+another clock 292552084); two games with nothing to drop. No game in those 487 or in the 20,719-game
+raw corpus decides four conditions: the stub rule's marker check, the twin key reading a
+stub-corrected type, the no-spot exclusion from the twin and echo rules, and the adjacent rule's
+same-id arm (a same-id pair always matches on text and start state too). Re-capture: `python
+data-raw/parity_copies_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file.
