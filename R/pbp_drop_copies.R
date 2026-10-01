@@ -15,6 +15,10 @@
 #'   on both sides of a timeout or end-of-period row; the first copy goes.
 #' * **adjacent copy** -- the next row carries the same id, or the same text,
 #'   period and start state (not a timeout); the first goes.
+#' * **textless echo** -- a row with no text whose drive has a texted row of the
+#'   same type, period and start state (filed before the play at the previous
+#'   play's clock, 2009-13 and 2021-22, or after it, 2007-15). It goes first, and
+#'   the other rules read the rows without it, as sdv-py filters it out before them.
 #'
 #' Timeouts and end-of-period rows are never dropped, and the first three rules
 #' skip plays without a start spot (the spotless 2004 feed).
@@ -29,6 +33,26 @@
   n <- length(type)
   out <- list(drop = rep(FALSE, n), retype = rep(FALSE, n))
   if (n < 2L) return(out)
+  tx <- as.character(text)
+  textless <- is.na(tx) | !nzchar(trimws(tx))
+  is_marker0 <- grepl("^(?:timeout|end\\b)", type, ignore.case = TRUE, perl = TRUE) |
+    grepl("^end of", tx, ignore.case = TRUE, perl = TRUE)
+  keyed <- !is.na(drive) & !is.na(period) & !is.na(team) & !is.na(down) & !is.na(distance) &
+    !is.na(ytg) & !is.na(type)
+  key <- paste(drive, period, team, down, distance, ytg, type, sep = "\r")
+  echo_tl <- textless & !is_marker0 & (ytg != 0) %in% TRUE & keyed & key %in% key[!textless & keyed]
+  if (any(echo_tl)) {
+    keep <- which(!echo_tl)
+    rest <- .espn_play_copies(type[keep], text[keep], drive[keep], period[keep], team[keep], down[keep],
+                              distance[keep], ytg[keep], clock[keep], id[keep])
+    out$drop <- echo_tl
+    out$drop[keep] <- rest$drop
+    # a stub echo takes the next kept row's type; that row is the next row here unless an
+    # echo sits between them (never in the corpus), and then the type is left alone
+    rt <- keep[rest$retype]
+    out$retype[rt[match(rt, keep) < length(keep) & keep[match(rt, keep) + 1L] == rt + 1L]] <- TRUE
+    return(out)
+  }
   # a comparison with a null is null in polars, and a null condition never fires
   eq <- function(a, b) (a == b) %in% TRUE
   prev <- function(x) c(x[NA_integer_], x[-n])
@@ -96,6 +120,10 @@
 #' @keywords internal
 #' @noRd
 .espn_drop_play_copies <- function(df, season) {
+  # an untyped row that is not a play goes before the order is set, as sdv-py does
+  admin <- is.na(df$type_text) &
+    grepl(.untyped_admin_re, ifelse(is.na(df$text), "", df$text), ignore.case = TRUE, perl = TRUE)
+  df <- df[!admin, , drop = FALSE]
   if (nrow(df) < 2L) return(df)
   o <- .espn_play_order(df$play_id, df$sequence_number, df$period, df$clock, df$drive_drive_id,
                         df$type_text, df$start_down_distance_text, df$end_down_distance_text,
@@ -109,3 +137,14 @@
   d <- d[!cp$drop, , drop = FALSE]
   d[order(o[!cp$drop]), , drop = FALSE]
 }
+
+#' An untyped row that is not a play, as sdv-py's `_UNTYPED_ADMIN_RE`: a period or
+#' game marker (2004 files "Start of the 2nd quarter." with no type), "Begin Drive",
+#' "PURDUE drive start at 15:00 (OT ).", an empty row, or a try alone in
+#' parentheses ("(Sean O'Haire Kick)" ahead of the touchdown row that carries it).
+#' @keywords internal
+#' @noRd
+.untyped_admin_re <- paste0(
+  "(start|end) of (the )?.*(quarter|half|game|overtime|regulation)|^\\s*$|^begin drive\\b",
+  "|\\bdrive start at\\b|^\\s*\\([^()]*\\b(?:kick|pat|two-point|2-point)\\b[^()]*\\)\\s*$"
+)

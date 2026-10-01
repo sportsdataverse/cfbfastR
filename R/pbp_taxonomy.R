@@ -53,11 +53,14 @@
       "Kickoff Touchdown", "Kickoff Team Fumble Recovery Touchdown",
       "Kickoff Return Touchdown"
     ),
+    # not "Kickoff Return Touchdown": the receiving team (the kickoff's possession team)
+    # scores it, and listed on both sides the defence's -7 overwrote the offence's 7
+    # (every return touchdown booked EPA about -7.7; sdv-py's defense_score_vec has it not)
     defense_score = c(
       "Blocked Punt Touchdown", "Blocked Field Goal Touchdown",
       "Missed Field Goal Return Touchdown", "Punt Return Touchdown",
       "Fumble Recovery (Opponent) Touchdown", "Fumble Return Touchdown",
-      "Kickoff Return Touchdown", "Defensive 2pt Conversion",
+      "Defensive 2pt Conversion",
       "Safety", "Kickoff (Safety)",
       "Blocked Punt (Safety)", "Punt (Safety)", "Penalty (Safety)",
       "Sack Touchdown",

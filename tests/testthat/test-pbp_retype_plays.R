@@ -94,3 +94,16 @@ test_that("v2 rebuilds a 2014+ play whose feed spot is 0", {
   if (!is.data.frame(x) || !nrow(x) || !("yards_to_goal" %in% names(x))) skip("no modeled play-by-play")
   expect_equal(x$yards_to_goal[as.character(x$id_play) == "401628339103875504"], 27)
 })
+
+test_that(".espn_type_scored_rows() types the scores ESPN marks as sdv-py does", {
+  # fixtures/parity/scored_oracle.csv.gz: every ESPN-scored row of 20 games as sdv-py hands
+  # _type_espn_scored_rows() its type (after the relabels), text, the start team's margin change
+  # and ESPN's touchdown flag, and the type it returns -- frozen-board pick-sixes, fumble returns
+  # with no touchdown word, field goals typed as a snap, and the rows it leaves alone
+  o <- utils::read.csv(test_path("fixtures", "parity", "scored_oracle.csv.gz"),
+                       colClasses = "character", na.strings = "")
+  got <- .espn_type_scored_rows(o$type, o$text, o$scoring_play == "True", as.numeric(o$delta),
+                                o$espn_td == "True")
+  expect_identical(got, o$sdvpy_type)
+  expect_gte(sum(o$type != o$sdvpy_type), 15L)
+})

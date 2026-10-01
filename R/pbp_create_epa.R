@@ -285,8 +285,11 @@
       home_EPA = NA_real_,
       away_EPA = NA_real_,
       # the half (or game) ends after the play: the possession is worth nothing
-      ep_after = ifelse(.data$scoring_play == 0 & .data$end_of_half == 1, 0, .data$ep_after),
-      EPA = ifelse(.data$scoring_play == 0 & .data$end_of_half == 1, -1 * .data$ep_before, .data$ep_after - .data$ep_before),
+      # (a scoring type the scoring flag leaves out -- a kickoff return touchdown -- keeps its score)
+      ep_after = ifelse(.data$scoring_play == 0 & .data$end_of_half == 1 & !(.data$play_type %in% c(off_TD, def_TD)),
+                        0, .data$ep_after),
+      EPA = ifelse(.data$scoring_play == 0 & .data$end_of_half == 1 & !(.data$play_type %in% c(off_TD, def_TD)),
+                   -1 * .data$ep_before, .data$ep_after - .data$ep_before),
       # a timeout is not a play: sdv-py books it 0 (R read the next row's state, which
       # before a period marker was the marker's)
       EPA = ifelse(.data$play_type %in% "Timeout", 0, .data$EPA),

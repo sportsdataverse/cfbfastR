@@ -46,6 +46,11 @@ GAMES = [
     400548311,
     242620052,
     292552084,
+    # textless echoes: before the play at the previous play's clock (401403886, 2022), and ahead of
+    # their plays in another order (292760096); textless FCS rushes that are real plays (401540473)
+    401403886,
+    292760096,
+    401540473,
     # nothing to drop
     401628339,
     242900265,

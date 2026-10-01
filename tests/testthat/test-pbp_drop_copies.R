@@ -52,3 +52,16 @@ test_that(".espn_drop_play_copies() drops copies from a Core-v2 frame in any row
   expect_identical(out$type_abbreviation, paste0("ab:", want))
   expect_true(any(out$type_text != df$type_text[match(out$tag, df$tag)], na.rm = TRUE))
 })
+
+test_that(".espn_drop_play_copies() drops untyped rows that are not plays, as sdv-py does", {
+  # sdv-py drops these before it orders the plays (_UNTYPED_ADMIN_RE): 2004's untyped markers,
+  # drive headers, empty rows and a try alone in parentheses
+  admin <- c("Start of the 2nd quarter.", "End of the game.", "Begin Drive",
+             "PURDUE drive start at 15:00 (OT ).", "", "(Sean O'Haire Kick)",
+             "(Two-Point Pass Conversion Failed)")
+  plays <- c("Josh Burton return for 8 yds for a TD, (Josh Kealamakia KICK)",
+             "fumbled, recovered by Rice Jake Constantine",
+             "35 yard field goal by Ryan Killeen (USC) is no good.")
+  expect_true(all(grepl(.untyped_admin_re, admin, ignore.case = TRUE, perl = TRUE)))
+  expect_false(any(grepl(.untyped_admin_re, plays, ignore.case = TRUE, perl = TRUE)))
+})

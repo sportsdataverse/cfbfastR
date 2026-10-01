@@ -60,9 +60,10 @@ checks, the return touchdown's no-play check, and the normalization's untyped "f
 point is good" rules (`scoringType` already types those rows). Re-capture: `python
 data-raw/parity_retype_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file.
 
-`copies_oracle.csv.gz` — captured 2026-09-30 from sportsdataverse-py `71a8f0863`: the frame sdv-py
+`copies_oracle.csv.gz` — re-captured 2026-10-01 from sportsdataverse-py `1f7ad730b` (#651, first
+captured 2026-09-30 at `71a8f0863`): the frame sdv-py
 hands `_drop_espn_play_copies()` (after its first play sort, in that order; `row` is the position)
-for 17 games, with the inputs `.espn_play_copies()` reads, whether sdv-py drops the row there or in
+for 20 games, with the inputs `.espn_play_copies()` reads, whether sdv-py drops the row there or in
 the adjacent-copy rule after it (`sdvpy_drop`), the type a stub echo leaves on the play it repeats
 (`sdvpy_type`), and the fields `.espn_play_order()` reads (`sequence`, `start_text`, `end_text`,
 `home_score`, `away_score`) so the Core-v2 wrapper can be replayed in sdv-py's order. Games: stub
@@ -71,8 +72,25 @@ stub echo in the corpus whose type differs from its play's), 272512348, 28264008
 312810077, 313232005, 401287947, 401525890; adjacent copies and same-id live repeats (401411109,
 302750249, 401645383, 401754601); guard cases found by running each mutant over 487 captured games
 (a batch with one exact twin 400548311, a spotless pair 242620052, the same play across a marker at
-another clock 292552084); two games with nothing to drop. No game in those 487 or in the 20,719-game
+another clock 292552084); textless echoes, before the play at the previous play's clock (401403886)
+and ahead of their plays in another order (292760096), and textless FCS rushes that are real plays
+(401540473); two games with nothing to drop. sdv-py drops untyped admin rows before this frame
+(`_UNTYPED_ADMIN_RE`), so they are not in it; `.espn_drop_play_copies()` drops them first. No game in those 487 or in the 20,719-game
 raw corpus decides four conditions: the stub rule's marker check, the twin key reading a
 stub-corrected type, the no-spot exclusion from the twin and echo rules, and the adjacent rule's
 same-id arm (a same-id pair always matches on text and start state too). Re-capture: `python
 data-raw/parity_copies_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file.
+
+`scored_oracle.csv.gz` — captured 2026-10-01 from sportsdataverse-py `1f7ad730b` (#651): every
+ESPN-scored row (`scoringPlay`) of 20 games as sdv-py hands `_type_espn_scored_rows()` its type (after
+its relabels), text, the start team's margin change on the row (`delta`) and whether ESPN's
+`scoringType` is a touchdown (`espn_td`), with the type it returns (`sdvpy_type`). Games: frozen-board
+pick-sixes (282640084, 262922117, 292970166), 2004-07 fumble returns with no touchdown word
+(272650194), 2014+ fumble returns closed by the kick (401234617, 400547643), strip-sacks at the 0
+(253090038), a kickoff team's recovery (282780036), kick and punt returns typed Kickoff / Punt
+(400548343, 400548079, 401309833), field goals typed as a snap (292832633, 283340228, 312912032,
+303310150), Miami's game-ending kickoff return at Duke (400756970), a blocked field goal returned on
+a frozen board (332640098), and rows left alone: ESPN's start team is the returner (272512655), a
+frozen-board rush fumble (292970254), "fumbled in the endzone" with no touchdown (302890062).
+Re-capture: `python data-raw/parity_scored_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not
+hand-edit the file.

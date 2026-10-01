@@ -163,6 +163,24 @@
                            df$start_team_id[o], df$end_team_id[o], df$start_yards_to_endzone[o],
                            df$start_down[o], df$start_distance[o],
                            df$end_down[o], df$end_distance[o], df$end_yards_to_endzone[o])
+  # the start team's margin change on the row (a kickoff's start team is the receiver):
+  # this row's score against the row before it, the first row against 0-0
+  n <- length(o)
+  home <- as.character(df$home_team_id[o])
+  away <- as.character(df$away_team_id[o])
+  st <- as.character(df$start_team_id[o])
+  pos <- ifelse(rt$type %in% .sdvpy_kickoff_types,
+                ifelse(st == home, away, ifelse(st == away, home, st)), st)
+  hs <- suppressWarnings(as.numeric(df$home_score[o]))
+  as_ <- suppressWarnings(as.numeric(df$away_score[o]))
+  hs0 <- c(0, hs[-n])
+  as0 <- c(0, as_[-n])
+  hs0[is.na(hs0)] <- 0
+  as0[is.na(as0)] <- 0
+  margin <- function(h, a) ifelse(pos == home, h - a, a - h)
+  rt$type <- .espn_type_scored_rows(rt$type, df$text[o], df$scoring_play[o],
+                                    margin(hs, as_) - margin(hs0, as0),
+                                    tolower(df$scoring_type_display_name[o]) %in% "touchdown")
   df$type_text[o] <- rt$type
   df$start_yards_to_endzone[o] <- rt$start_ytg
   df$start_down[o] <- rt$start_down
@@ -187,3 +205,110 @@
                                       df$start_yards_to_endzone)
   df
 }
+
+#' Type the rows ESPN scored that no text rule did, as sdv-py does
+#'
+#' Port of sportsdataverse-py's `_type_espn_scored_rows()` (cfb_pbp.py), the last
+#' pass of its play-type fixes. A row ESPN marks `scoringPlay` whose type is still
+#' not a score realised the play's model end state instead of the points. Who
+#' scored is the start team's margin change on the row: +6 to +8 the offence, -6
+#' to -8 the defence, +3 a field goal. Where ESPN's scoreboard does not move (2006-11
+#' feeds freeze it across a pick-six), the play family says, when the text or ESPN's
+#' `scoringType` says touchdown. A row whose margin credits the other side than its
+#' family, and a frozen-board fumble on a rush or pass, are left as they are.
+#'
+#' @param type,text Play type (after [.espn_retype_plays()]) and text.
+#' @param scoring_play ESPN `scoringPlay`.
+#' @param delta The start team's margin change on the row.
+#' @param espn_td ESPN's `scoringType` is a touchdown.
+#' @return The play types.
+#' @keywords internal
+#' @noRd
+.espn_type_scored_rows <- function(type, text, scoring_play, delta, espn_td) {
+  ty <- ifelse(is.na(type), "", as.character(type))
+  tx <- ifelse(is.na(text), "", as.character(text))
+  has <- function(pattern) grepl(pattern, tx, ignore.case = TRUE, perl = TRUE)
+  head <- sub("(touchdown, clock \\d{1,2}:\\d{2}).*$", "\\1", tx, ignore.case = TRUE, perl = TRUE)
+  negated <- ifelse(scoring_play %in% TRUE,
+                    grepl(.penalty_negated_text, head, ignore.case = TRUE, perl = TRUE),
+                    has(.penalty_negated_text))
+  scored <- scoring_play %in% TRUE & !(ty %in% .sdvpy_scored_types)
+  td_evidence <- (has("touchdown|\\bfor a TD\\b") | has(.try_paren_re) | espn_td %in% TRUE) & !negated
+  fam_int <- ty %in% .sdvpy_int_types | has("intercept")
+  fam_punt <- ty %in% .sdvpy_punt_types | has("\\bpunt")
+  fam_blocked_punt <- ty == "Blocked Punt" | (fam_punt & has("block"))
+  fam_fg <- ty %in% c("Blocked Field Goal", "Field Goal Missed", "Missed Field Goal Return") |
+    has("field goal|\\bfg\\b")
+  # by type only: a kickoff's start team is the receiver, so its margin reads the other way
+  fam_kick <- ty %in% .sdvpy_kickoff_types
+  fam_fumble <- has("fumble")
+  fam_pass <- grepl("^pass|reception|completion", ty, ignore.case = TRUE, perl = TRUE) |
+    has("\\bpass(?:ed)?\\b")
+  fam_rush <- ty %in% c("Rush", "Sack") | has("\\brush|\\brun\\b|\\bsacked\\b|\\bscrambl")
+  defence_family <- fam_int | ty == "Fumble Recovery (Opponent)" | fam_blocked_punt |
+    (fam_fg & has("block") & has("return"))
+  moved <- (abs(delta) >= 6 & abs(delta) <= 8) %in% TRUE
+  frozen <- (delta == 0) %in% TRUE & td_evidence
+  td <- moved | frozen
+  defence <- (moved & (delta < 0) %in% TRUE) | (frozen & defence_family)
+  offence <- (moved & (delta > 0) %in% TRUE & !defence_family) |
+    (frozen & !defence_family & !fam_fumble & (fam_pass | fam_rush))
+  field_goal <- (delta %in% c(3, 0)) & !fam_kick & has("field goal\\b.*\\bgood|\\bfg good")
+  # the defence scores on a rush or pass only through a turnover: a fumble, or a sack's
+  def_turnover <- fam_fumble | ty == "Fumble Recovery (Opponent)" | ty == "Sack" | has("\\bsacked\\b")
+  out <- as.character(type)
+  pick <- function(cond, value) {
+    hit <- cond & is.na(new)
+    new[hit] <<- value
+  }
+  new <- rep(NA_character_, length(ty))
+  pick(scored & field_goal & !td, "Field Goal Good")
+  pick(scored & defence & fam_int, "Interception Return Touchdown")
+  pick(scored & defence & fam_blocked_punt, "Blocked Punt Touchdown")
+  pick(scored & defence & fam_punt, "Punt Return Touchdown")
+  pick(scored & defence & fam_fg & has("block"), "Blocked Field Goal Touchdown")
+  pick(scored & defence & fam_fg, "Missed Field Goal Return Touchdown")
+  pick(scored & defence & fam_kick, "Kickoff Team Fumble Recovery Touchdown")
+  pick(scored & defence & def_turnover, "Fumble Recovery (Opponent) Touchdown")
+  pick(scored & offence & fam_kick, "Kickoff Return Touchdown")
+  pick(scored & offence & fam_punt, "Punt Team Fumble Recovery Touchdown")
+  pick(scored & offence & fam_fumble, "Fumble Recovery (Own) Touchdown")
+  pick(scored & offence & fam_pass, "Passing Touchdown")
+  pick(scored & offence & fam_rush, "Rushing Touchdown")
+  ifelse(is.na(new), out, new)
+}
+
+#: A try or kick in parentheses closing a touchdown row: "(Aaron Boumerhi KICK)".
+.try_paren_re <- "\\([^()]*\\b(?:kick|pat|two-point|2-point)\\b[^()]*\\)"
+
+# sdv-py's model_vars lists, verbatim: the backstop reads sdv-py's notion of a score,
+# not the engine taxonomy's (which files "Kickoff Return Touchdown" on both sides)
+.sdvpy_kickoff_types <- c(
+  "Kickoff", "Kickoff Return (Offense)", "Kickoff Return Touchdown", "Kickoff Touchdown",
+  "Kickoff Team Fumble Recovery", "Kickoff Team Fumble Recovery Touchdown", "Kickoff (Safety)",
+  "Penalty (Kickoff)"
+)
+.sdvpy_punt_types <- c(
+  "Blocked Punt", "Blocked Punt Touchdown", "Blocked Punt (Safety)", "Punt (Safety)", "Punt",
+  "Punt Return", "Punt Touchdown", "Punt Team Fumble Recovery", "Punt Team Fumble Recovery Touchdown",
+  "Punt Return Touchdown"
+)
+.sdvpy_int_types <- c(
+  "Interception", "Interception Return", "Interception Return Touchdown", "Pass Interception",
+  "Pass Interception Return", "Pass Interception Return Touchdown"
+)
+.sdvpy_scored_types <- c(
+  # scores_vec
+  "Blocked Punt Touchdown", "Blocked Punt (Safety)", "Punt (Safety)", "Blocked Field Goal Touchdown",
+  "Missed Field Goal Return Touchdown", "Fumble Recovery (Opponent) Touchdown", "Fumble Return Touchdown",
+  "Interception Return Touchdown", "Pass Interception Return Touchdown", "Punt Touchdown",
+  "Punt Return Touchdown", "Sack Touchdown", "Uncategorized Touchdown", "Defensive 2pt Conversion",
+  "Uncategorized", "Two Point Rush", "Safety", "Penalty (Safety)", "Punt Team Fumble Recovery Touchdown",
+  "Kickoff Team Fumble Recovery Touchdown", "Kickoff (Safety)", "Passing Touchdown", "Rushing Touchdown",
+  "Field Goal Good", "Pass Reception Touchdown", "Fumble Recovery (Own) Touchdown",
+  # offense_score_vec / defense_score_vec beyond it
+  "Kickoff Return Touchdown", "Kickoff Touchdown",
+  # the try rows (_TRY_TYPES)
+  "Extra Point Good", "Extra Point Missed", "Two-Point Conversion Good", "Two-Point Conversion Missed",
+  "Two Point Pass", "Blocked PAT"
+)
