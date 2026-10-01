@@ -6,7 +6,7 @@ relabel block gives it. `orig_play_type` is the type before the block (sdv-py se
 `sdvpy_type_normalized` adds the later pre-2014 label normalization in `__add_new_play_types`.
 """
 
-import csv, gzip, io, json, logging, os, pathlib, subprocess, sys
+import csv, gzip, io, json, logging, os, pathlib, re, subprocess, sys
 
 SDV_PY = os.environ.get("SDV_PY_ROOT", "/mnt/sdv_repos/sportsdataverse-py")  # sdv-py checkout
 sys.path.insert(0, SDV_PY)
@@ -64,8 +64,32 @@ COLS = [
     "sdvpy_type",
     "sdvpy_start_ytg",
     "sdvpy_type_normalized",
+    # the merged-touchdown down rule: the feed's start down / distance, the end state the
+    # stage holds (what sdv-py's _prev_play reads), and sdv-py's start down / distance
+    "start_down",
+    "start_distance",
+    "end_down",
+    "end_distance",
+    "end_ytg",
+    "sdvpy_start_down",
+    "sdvpy_start_distance",
+    # .espn_fill_spots(): the feed's start yard line and team, and the home team
+    "start_yard_line",
+    "start_team_feed",
+    "home_team",
 ]
 rec = {}
+
+
+def team(side: dict):
+    # a play's start / end team id, inline or as a $ref
+    t = side.get("team") or {}
+    if t.get("id") is not None:
+        return str(t["id"])
+    m = re.search(r"teams/(\d+)", t.get("$ref", ""))
+    return m.group(1) if m else None
+
+
 C = M.CFBPlayProcess
 orig_feat = C._CFBPlayProcess__helper_cfb_pbp_features
 
@@ -94,13 +118,16 @@ C._CFBPlayProcess__add_new_play_types = new_types
 rows = []
 for gid in GAMES:
     raw = json.loads((RAW / f"{gid}.json").read_text(encoding="utf-8"))
-    # the block rewrites start.yardsToEndzone; its input is the feed's
-    ytg = {
-        str(p["id"]): (p.get("start") or {}).get("yardsToEndzone")
+    # the block rewrites the start state of the touchdowns it retypes; its input is the feed's
+    plays = {
+        str(p["id"]): p
         for k in (raw.get("drives") or {})
         for dr in (raw["drives"][k] if isinstance(raw["drives"][k], list) else [raw["drives"][k]])
         for p in dr.get("plays") or []
     }
+    start_of = lambda r: plays.get(str(r["id"]), {}).get("start") or {}  # noqa: E731
+    comp = raw["header"]["competitions"][0]["competitors"]
+    home = next(str(c["id"]) for c in comp if c.get("homeAway") == "home")
     p = C(gameId=gid, path_to_json=str(RAW))
     p.join_participants = False
     p.cfb_pbp_disk()
@@ -120,10 +147,20 @@ for gid in GAMES:
                 r["clock.displayValue"],
                 r["start.pos_team.id"],
                 r["end.pos_team.id"],
-                ytg.get(str(r["id"])),
+                start_of(r).get("yardsToEndzone"),
                 r["type.text"],
                 r["start.yardsToEndzone"],
                 rec["norm"].get(str(r["id"]), r["type.text"]),
+                start_of(r).get("down"),
+                start_of(r).get("distance"),
+                r["end.down"],
+                r["end.distance"],
+                r["end.yardsToEndzone"],
+                r["start.down"],
+                r["start.distance"],
+                start_of(r).get("yardLine"),
+                team(start_of(r)),
+                home,
             ]
         )
 sha = subprocess.check_output(["git", "-C", SDV_PY, "rev-parse", "--short", "HEAD"]).decode().strip()

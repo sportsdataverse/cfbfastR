@@ -175,6 +175,17 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   its rows. R still models the end-of-period
   and end-of-half marker rows sdv-py drops before its features (213 in that
   sample); its engine reads them, a separate difference.
+* `espn_cfb_pbp()` (v2) rebuilds the start state sdv-py rebuilds before it models
+  a play:
+  - the 2004 feed's start spot, which ESPN writes as 0 on every play, comes from
+    its home-relative yard line. R modeled every 2004 snap as if at the goal line:
+    on 242900265 (2004) the median EPA gap to sdv-py falls from 1.96
+    to 0.01 and the yards to goal match on all 198 plays (7 before);
+  - a 2007-13 touchdown ESPN filed as its own extra point keeps the try's down -1
+    (ESPN's 2005-13 "no down", right for kickoffs and tries), which R's EP model
+    could not score: those plays had no EPA. The down and distance are now the
+    end state of the play before when it ended at the snap's spot, otherwise 1st
+    and 10 (goal to go inside the 10), as sportsdataverse-py #643 does.
 
 ## Documentation: CFBD return tables
 
