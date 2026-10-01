@@ -221,13 +221,12 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   and `start_yards_to_endzone` keep ESPN’s values. On a 138-game
   2004-2025 sample, play types that differ from sdv-py’s fell from 426
   to 45 (the rest are sdv-py’s later fumble, return-touchdown and try
-  retypes). sdv-py’s four “Extra Point Missed” string rules are
-  deliberately not followed: they mistype about 71 blocked field goals
-  in its output, and R keeps ESPN’s type. The retyped touchdowns keep a
-  start down of -1, which R’s EP model does not score, so they stay
-  without EPA as before. 2004 EPA remains far from sdv-py’s on every
-  play (median gap 2.0), a separate difference in rebuilding that
-  season’s spotless feed.
+  retypes). sdv-py’s four “Extra Point Missed” string rules are not
+  followed: they mistyped about 71 blocked field goals, and sdv-py
+  removed them in sportsdataverse-py
+  [\#642](https://github.com/sportsdataverse/cfbfastR/issues/642); both
+  keep ESPN’s type. (The retyped touchdowns’ down and the 2004 start
+  spots are rebuilt too; see below.)
 - [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
   (v2) drops the plays ESPN files twice, as sdv-py does before it models
   them: a stub echo (the play repeated with no start spot; its play type
@@ -242,6 +241,21 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   exactly its rows. R still models the end-of-period and end-of-half
   marker rows sdv-py drops before its features (213 in that sample); its
   engine reads them, a separate difference.
+- [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
+  (v2) rebuilds the start state sdv-py rebuilds before it models a play:
+  - the 2004 feed’s start spot, which ESPN writes as 0 on every play,
+    comes from its home-relative yard line. R modeled every 2004 snap as
+    if at the goal line: on 242900265 (2004) the median EPA gap to
+    sdv-py falls from 1.96 to 0.01 and the yards to goal match on all
+    198 plays (7 before);
+  - a 2007-13 touchdown ESPN filed as its own extra point keeps the
+    try’s down -1 (ESPN’s 2005-13 “no down”, right for kickoffs and
+    tries), which R’s EP model could not score: those plays had no EPA.
+    The down and distance are now the end state of the play before when
+    it ended at the snap’s spot, otherwise 1st and 10 (goal to go inside
+    the 10), as sportsdataverse-py
+    [\#643](https://github.com/sportsdataverse/cfbfastR/issues/643)
+    does.
 
 ### Documentation: CFBD return tables
 

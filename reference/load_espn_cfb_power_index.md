@@ -62,7 +62,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_power_index(2015))
 #> ── ESPN college football FPI power index from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-10-01 01:45:29 UTC
+#> ℹ Data updated: 2026-10-01 04:47:57 UTC
 #> # A tibble: 1,746 × 7
 #>    season   game_id team_id teampredptdiff gameprojection matchupquality
 #>     <int>     <int>   <int>          <dbl>          <dbl>          <dbl>
