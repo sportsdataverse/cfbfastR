@@ -235,8 +235,19 @@
       pos_team_timeouts_rem_before = ifelse(.data$kickoff_play == 1, .data$def_timeouts_rem_before, .data$off_timeouts_rem_before),
       def_pos_team_timeouts_rem_before = ifelse(.data$kickoff_play == 1, .data$off_timeouts_rem_before, .data$def_timeouts_rem_before),
       pos_score_diff_start = ifelse(is.na(.data$pos_score_diff_start), .data$pos_score_diff, .data$pos_score_diff_start),
+      # The play before a quarter's end marker takes its next state from the play
+      # after the marker, as the possession logic above already does: the marker
+      # carries no state of its own (sdv-py drops it before its features). A kickoff
+      # with 0:05 left in the first quarter took the kickoff's own spot as its result.
+      .over_marker = .data$lead_play_type %in% "End Period" &
+        !(.data$play_type %in% c("End Period", "End of Half", "End of Game")),
+      lead_TimeSecsRem = ifelse(.data$.over_marker, .data$lead_TimeSecsRem2, .data$lead_TimeSecsRem),
+      lead_yards_to_goal = ifelse(.data$.over_marker, .data$lead_yards_to_goal2, .data$lead_yards_to_goal),
+      lead_down = ifelse(.data$.over_marker, .data$lead_down2, .data$lead_down),
+      lead_distance = ifelse(.data$.over_marker, .data$lead_distance2, .data$lead_distance),
     ) |>
     dplyr::ungroup() |>
+    dplyr::select(-".over_marker") |>
     dplyr::arrange(
       .data$game_id, .data$half, .data$play_order
     )

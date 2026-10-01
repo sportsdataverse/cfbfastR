@@ -72,6 +72,7 @@
       "play_order",
       "play_type",
       "turnover",
+      "change_of_pos_team",
       "new_TimeSecsRem",
       "new_down",
       "new_distance",
@@ -172,9 +173,14 @@
   pred_df_after[kickoff_turnovers, "ep_after"] <- -1 * pred_df_after[kickoff_turnovers, "ep_after"]
   punt_turnovers <- which(pred_df_after$play_type %in% punt)
   pred_df_after[punt_turnovers, "ep_after"] <- -1 * pred_df_after[punt_turnovers, "ep_after"]
+  # An onside kick the kicking team recovers stays the kicking team's ball, but ESPN
+  # types it a plain "Kickoff" (400787460: "on-side kick recovered by TROY"); the
+  # receiving team's next state is the opponent's, as sdv-py reads it.
+  onside_kept <- which(kickoff_ind2 & pred_df_after$change_of_pos_team %in% 1 &
+                         !(pred_df_after$play_type %in% c("Kickoff Team Fumble Recovery",
+                                                          "Kickoff Team Fumble Recovery Touchdown")))
+  pred_df_after[onside_kept, "ep_after"] <- -1 * pred_df_after[onside_kept, "ep_after"]
 
-  # Game end EP is 0
-  pred_df[pred_df$end_of_half == 1, "ep_after"] <- 0
 
   ## Scoring plays from here on out
   pred_df_after[(pred_df_after$play_type %in% off_TD), "ep_after"] <- 7
@@ -222,7 +228,7 @@
   pred_df <- play_df |>
     dplyr::left_join(
       pred_df_after |>
-        dplyr::select(-"play_type", -"turnover", -"play_order"),
+        dplyr::select(-"play_type", -"turnover", -"play_order", -"change_of_pos_team"),
       by = c("game_id", "drive_id", "id_play")
     ) |>
     dplyr::left_join(
@@ -278,7 +284,12 @@
       def_EPA = NA_real_,
       home_EPA = NA_real_,
       away_EPA = NA_real_,
+      # the half (or game) ends after the play: the possession is worth nothing
+      ep_after = ifelse(.data$scoring_play == 0 & .data$end_of_half == 1, 0, .data$ep_after),
       EPA = ifelse(.data$scoring_play == 0 & .data$end_of_half == 1, -1 * .data$ep_before, .data$ep_after - .data$ep_before),
+      # a timeout is not a play: sdv-py books it 0 (R read the next row's state, which
+      # before a period marker was the marker's)
+      EPA = ifelse(.data$play_type %in% "Timeout", 0, .data$EPA),
       def_EPA = -1 * .data$EPA,
       home_EPA = ifelse(.data$pos_team == .data$home, .data$EPA, -1 * .data$EPA),
       away_EPA = -1 * .data$home_EPA,
@@ -409,9 +420,8 @@
   current_probs$fg_make_prob <- NA
   fg_dat <- dat[inds, ]
   if (nrow(fg_dat) > 0) {
-    # we are setting everything after 0 seconds to have 0 probs.
-    end_game_ind <- which(dat$TimeSecsRem <= 0)
-    current_probs[end_game_ind, ] <- 0
+    # A snap at 0:00 (an untimed down, a half's last play) keeps its EP, as in sdv-py;
+    # zeroing it booked the game's last play of 400547699 at EP 0 (sdv-py: 1.93).
 
     # Fix (c): drop the redundant first predict.bam() call (legacy line ~498).
     # Only the second call (below, wrapped in as.numeric()) is kept.
