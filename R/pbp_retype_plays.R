@@ -16,24 +16,23 @@
 #'   the text's "for N yards"), a return / fumble touchdown its return type, and a
 #'   kickoff, field goal, penalty or period marker typed as a kick its own type.
 #'
-#' Deliberately not ported: the block's four "Extra Point Missed" string rules.
-#' On ESPN's types they only match "Blocked Field Goal (Touchdown)", and the
-#' relabel sends those rows through the kick rules: sdv-py's output types about
-#' 71 corpus rows wrongly (a blocked field goal as "Penalty" or "Extra Point
-#' Missed", a blocked-field-goal return as a plain "Blocked Field Goal"). R keeps
-#' ESPN's type (400547866, 400547865; see fixtures/parity/README.md).
+#' Not ported: the four "Extra Point Missed" string rules the block carried until
+#' sportsdataverse-py #642. They only matched ESPN's "Blocked Field Goal
+#' (Touchdown)" and mistyped ~71 of them; both sides keep ESPN's type.
 #'
 #' @param type,text Play type and text.
 #' @param scoring_type ESPN `scoringType.displayName`.
 #' @param period,clock Period number and clock display value.
 #' @param scoring_play ESPN `scoringPlay`.
 #' @param start_team,end_team Start / end possession team ids.
-#' @param start_ytg Start yards to the end zone.
-#' @return List: `type` and `start_ytg`.
+#' @param start_ytg,start_down,start_distance Start yards to the end zone, down, distance.
+#' @param end_down,end_distance,end_ytg End down, distance, yards to the end zone.
+#' @return List: `type`, `start_ytg`, `start_down`, `start_distance`.
 #' @keywords internal
 #' @noRd
 .espn_retype_plays <- function(type, text, scoring_type, period, scoring_play, clock,
-                               start_team, end_team, start_ytg) {
+                               start_team, end_team, start_ytg, start_down, start_distance,
+                               end_down, end_distance, end_ytg) {
   n <- length(type)
   orig <- as.character(type)
   tx <- ifelse(is.na(text), "", as.character(text))
@@ -116,7 +115,28 @@
   spot[!has("\\bfor \\d{1,2} (?:yards?|yds?|yd)\\b")] <- NA
   moved <- orig %in% c(kick, "2pt Conversion") & type %in% c("Pass Completion", "Rush")
   start_ytg <- ifelse(moved & !is.na(spot), spot, start_ytg)
-  list(type = type, start_ytg = start_ytg)
+  # ... and its down and distance are the snap's, not the try's (-1, -1: ESPN's 2005-13
+  # "no down", which the EP model cannot score): the end state of the play before, when
+  # that play ended at the snap's spot; otherwise first down, goal to go inside the 10.
+  # ESPN writes "& Goal" as distance 0, the distance to the goal line.
+  real <- !grepl("^(?:timeout|end\\b)", type, ignore.case = TRUE, perl = TRUE)
+  prev_play <- function(x) {
+    # sdv-py: when(real).then(x).shift(1).forward_fill()
+    v <- c(x[NA_integer_], ifelse(real, x, NA)[-n])
+    i <- cummax(ifelse(is.na(v), 0L, seq_len(n)))
+    v[ifelse(i > 0L, i, NA_integer_)]
+  }
+  spot_ok <- (prev_play(end_ytg) == start_ytg) %in% TRUE & prev_play(end_down) %in% 1:4
+  prev_dist <- prev_play(end_distance)
+  start_down <- ifelse(moved, ifelse(spot_ok, prev_play(end_down), 1L), start_down)
+  # goal to go is the distance to the goal line however far out (303102638: 3rd and
+  # goal from the 13)
+  start_distance <- ifelse(
+    moved,
+    ifelse(spot_ok & (prev_dist > 0) %in% TRUE, pmin(prev_dist, start_ytg, na.rm = TRUE),
+           ifelse(spot_ok & (prev_dist == 0) %in% TRUE, start_ytg, pmin(10L, start_ytg, na.rm = TRUE))),
+    start_distance)
+  list(type = type, start_ytg = start_ytg, start_down = start_down, start_distance = start_distance)
 }
 
 .defensive_try_return <- paste0(
@@ -127,8 +147,9 @@
 
 #' Retype the ESPN v2 frame's plays before the adapter reads them
 #'
-#' Runs [.espn_retype_plays()] in play order and writes `type_text` and
-#' `start_yards_to_endzone` back in the frame's own row order.
+#' Runs [.espn_retype_plays()] in play order and writes `type_text` and the start
+#' state (`start_yards_to_endzone`, `start_down`, `start_distance`) back in the
+#' frame's own row order.
 #' @keywords internal
 #' @noRd
 .espn_retype_frame <- function(df, season) {
@@ -139,8 +160,30 @@
                         season, df$home_score, df$away_score)
   rt <- .espn_retype_plays(df$type_text[o], df$text[o], df$scoring_type_display_name[o],
                            df$period[o], df$scoring_play[o], df$clock[o],
-                           df$start_team_id[o], df$end_team_id[o], df$start_yards_to_endzone[o])
+                           df$start_team_id[o], df$end_team_id[o], df$start_yards_to_endzone[o],
+                           df$start_down[o], df$start_distance[o],
+                           df$end_down[o], df$end_distance[o], df$end_yards_to_endzone[o])
   df$type_text[o] <- rt$type
   df$start_yards_to_endzone[o] <- rt$start_ytg
+  df$start_down[o] <- rt$start_down
+  df$start_distance[o] <- rt$start_distance
+  df
+}
+
+#' Rebuild the start spot the 2004 feed leaves at 0, as sdv-py does
+#'
+#' The 2004 feed writes `start.yardsToEndzone` 0 on every play; its `start.yardLine`
+#' is the home-relative field position. sdv-py's features (cfb_pbp.py, `start.yard`)
+#' turn that into yards to the end zone for the offence and use it where the feed's
+#' is 0. (The end spot is not rebuilt: the engine builds the after-state from the
+#' next play and the gain, and sdv-py's end-state backfills are a separate chain.)
+#' @keywords internal
+#' @noRd
+.espn_fill_spots <- function(df) {
+  if (!nrow(df)) return(df)
+  home <- (as.character(df$start_team_id) == as.character(df$home_team_id)) %in% TRUE
+  start_yard <- ifelse(home, 100L - df$start_yard_line, df$start_yard_line)
+  df$start_yards_to_endzone <- ifelse((df$start_yards_to_endzone == 0) %in% TRUE, start_yard,
+                                      df$start_yards_to_endzone)
   df
 }
