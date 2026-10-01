@@ -165,8 +165,10 @@ season sweep makes one `/teams` and one `/roster` request, not one per call.
   right after every API call (`if (nrow(x)==0) skip(...)`) for transient 500s/429s.
 - **`test-pbp_equivalence.R`** asserts v2 reproduces legacy `cfbd_pbp_data()`/`espn_cfb_pbp()`
   column-for-column, with an explicit allow-list of intentional deltas (character `id_play`,
-  logical `scoring_play`, total-seconds `clock_seconds`, short-name `*_player_name`). Any other
-  diff is a regression. Tier-monotonicity tests verify `lean ⊆ default ⊆ full`.
+  logical `scoring_play`, total-seconds `clock_seconds`, short-name `*_player_name`), plus one
+  row-level delta: on timeouts, period markers and the play before a marker the after-play
+  columns (EPA/ep_after/wpa/wp_after) are not compared (v2 books period boundaries as sdv-py).
+  The legacy side must pin `engine = "legacy"`. Any other diff is a regression. Tier-monotonicity tests verify `lean ⊆ default ⊆ full`.
 
 ## Gotchas
 
