@@ -219,10 +219,21 @@
     expect_identical(.eq_id_play_key(v2[[key]])[ord_v], .eq_id_play_key(legacy[[key]])[ord_l],
                      info = paste0(sample_label, ": ", key, " values"))
   }
+  # Documented row-level deltas: v2 books period boundaries as sdv-py does and the
+  # legacy engine does not. A timeout's EPA is 0; a play before a quarter's end
+  # marker takes its next state from the play after the marker; a play that ends a
+  # half or the game is worth nothing after it (ep_after 0); the markers' own WPA
+  # follows. On those rows the after-play columns are not compared; the before-play
+  # state still is.
+  after_cols <- c("EPA", "ep_after", "home_EPA", "away_EPA", "wpa", "wp_after", "def_wp_after")
+  markers <- c("End Period", "End of Half", "End of Game", "End of Regulation")
+  boundary <- v2$play_type[ord_v] %in% c("Timeout", markers) |
+    c(v2$play_type[ord_v][-1], NA) %in% markers
   for (col in cols_to_check) {
+    keep <- if (col %in% after_cols) !boundary else rep(TRUE, length(ord_v))
     expect_equal(
-      v2[[col]][ord_v],
-      legacy[[col]][ord_l],
+      v2[[col]][ord_v][keep],
+      legacy[[col]][ord_l][keep],
       tolerance = 1e-6,
       info      = paste0(sample_label, ": column ", col)
     )

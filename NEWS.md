@@ -184,6 +184,26 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
     could not score: those plays had no EPA. The down and distance are now the
     end state of the play before when it ended at the snap's spot, otherwise 1st
     and 10 (goal to go inside the 10), as sportsdataverse-py #643 does.
+* The v2 engine books period boundaries as sdv-py does:
+  - a timeout's EPA is 0 (it read the next row's state; before a period marker,
+    the marker's);
+  - the play before a quarter's end marker takes its next state from the play
+    after the marker, as the possession logic already did (a kickoff with 0:05
+    left in the first quarter took its own spot as its result);
+  - a half ends after the last real play of the first half, of regulation in a
+    game that goes to overtime, or of the game; a 0:00 clock on the next snap no
+    longer marks the play before it (400547699's second-to-last play, and every
+    overtime snap, were booked -EP), and a 0:00 snap keeps its EP (it was zeroed
+    in every game with a kick);
+  - a half- or game-ending play's `ep_after` is 0, matching its EPA of
+    -`ep_before` (the line meant to do this wrote to a frame the join never read);
+  - an onside kick the kicking team recovers, typed a plain "Kickoff", hands the
+    receiving team the opponent's next state.
+
+  Together with sportsdataverse-py #646 (a play ends at the next play's clock),
+  v2's EPA agrees with sdv-py's to a median of 0.000 on a 92-game 2004-2026
+  sample (was 0.015); timeouts off by more than 0.5 fall from 20% to 0%, and
+  the game's last play from 53% to 11%.
 
 ## Documentation: CFBD return tables
 
