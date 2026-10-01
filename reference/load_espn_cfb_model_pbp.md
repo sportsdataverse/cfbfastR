@@ -102,7 +102,7 @@ Saiem Gilani
 #> Warning: Failed to readRDS from
 #> <https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_model_pbp/model_pbp_2004.rds>
 #> ── college football model-enriched play-by-play from the SportsDataverse data re
-#> ℹ Data updated: 2026-10-01 00:18:47 UTC
+#> ℹ Data updated: 2026-10-01 01:45:16 UTC
 #> # A tibble: 0 × 0
 # }
 ```

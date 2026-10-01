@@ -122,7 +122,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_situation(game_id = 401628339))
 #> ── Game situation data from ESPN ──────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-01 00:15:30 UTC
+#> ℹ Data updated: 2026-10-01 01:42:29 UTC
 #> # A tibble: 1 × 10
 #>   game_id    down distance yard_line is_red_zone home_timeouts away_timeouts
 #>   <chr>     <int>    <int>     <int> <lgl>               <int>         <int>

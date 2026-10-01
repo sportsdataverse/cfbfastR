@@ -34,7 +34,10 @@ espn_cfb_pbp_v2(
 
   (*Logical*): when `TRUE`, run the full EPA/WPA modeling pipeline and
   return the modeled frame; when `FALSE` (default) return the assembled
-  core-v2 play-by-play frame.
+  core-v2 play-by-play frame. Both drop the plays ESPN files twice (a
+  stub echo with no start spot, a stale batch of a drive's plays, the
+  same play on both sides of a timeout or period marker, an adjacent
+  repeat), as sportsdataverse-py does.
 
 - output:
 
@@ -238,7 +241,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE))
 #> ── Play-by-play data from ESPN (core-v2) ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-01 00:15:50 UTC
+#> ℹ Data updated: 2026-10-01 01:42:49 UTC
 #> # A tibble: 156 × 536
 #>    season id_play    game_id game_play_number half_play_number drive_play_number
 #>     <int> <chr>      <chr>              <dbl>            <dbl>             <dbl>

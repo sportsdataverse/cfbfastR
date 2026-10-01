@@ -228,6 +228,20 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   without EPA as before. 2004 EPA remains far from sdv-py’s on every
   play (median gap 2.0), a separate difference in rebuilding that
   season’s spotless feed.
+- [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
+  (v2) drops the plays ESPN files twice, as sdv-py does before it models
+  them: a stub echo (the play repeated with no start spot; its play type
+  is kept on the play, 401752854), a stale batch of a drive’s plays
+  filed at the drive’s start clock ahead of the same plays at their real
+  clocks, the same play on both sides of a timeout or period marker, and
+  a play the next row repeats (same id, or same text and start state).
+  They were modeled as extra snaps. On a 92-game 2004-2026 sample the 19
+  copies sdv-py drops are gone, no row sdv-py keeps is lost, and the
+  median EPA gap to sdv-py fell from 0.019 to 0.018. The
+  `epa_wpa = FALSE` frame drops them too, so the modeled frame still has
+  exactly its rows. R still models the end-of-period and end-of-half
+  marker rows sdv-py drops before its features (213 in that sample); its
+  engine reads them, a separate difference.
 
 ### Documentation: CFBD return tables
 
