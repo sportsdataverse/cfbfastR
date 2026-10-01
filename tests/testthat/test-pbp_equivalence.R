@@ -234,7 +234,9 @@ test_that("espn_cfb_pbp_v2(epa_wpa = TRUE) matches espn_cfb_pbp(epa_wpa = TRUE)"
   skip_on_cran()
   skip_on_ci()
 
-  game_id <- 401628339  # Texas vs Washington (CFP semifinal), one stable game.
+  # 401628339 left the sample when v2 began rebuilding a feed spot of 0 (a "1st & 10 at
+  # TNTC 27" row ESPN filed at the goal line), a fix the legacy engine does not carry.
+  game_id <- 401628409  # 2024, one game v2's fixes leave unchanged
 
   legacy <- try(espn_cfb_pbp(game_id    = game_id, epa_wpa = TRUE,
                              engine     = "legacy"),
