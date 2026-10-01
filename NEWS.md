@@ -149,7 +149,8 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   (same id, or same text and start state). They were modeled as extra snaps. On a
   92-game 2004-2026 sample the 19 copies sdv-py drops are gone, no row sdv-py
   keeps is lost, and the median EPA gap to sdv-py fell from 0.019 to 0.018. The
-  returned frame no longer carries them either. R still models the end-of-period
+  `epa_wpa = FALSE` frame drops them too, so the modeled frame still has exactly
+  its rows. R still models the end-of-period
   and end-of-half marker rows sdv-py drops before its features (213 in that
   sample); its engine reads them, a separate difference.
 

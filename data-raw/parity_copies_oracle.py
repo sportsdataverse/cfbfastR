@@ -65,6 +65,12 @@ COLS = [
     "start_ytg",
     "sdvpy_drop",
     "sdvpy_type",
+    # what .espn_play_order() reads, so the wrapper can be replayed in sdv-py's order
+    "sequence",
+    "start_text",
+    "end_text",
+    "home_score",
+    "away_score",
 ]
 rec = {}
 orig_copies = M._drop_espn_play_copies
@@ -117,6 +123,11 @@ for gid in GAMES:
                 r["start.yardsToEndzone"],
                 fx not in rec["feat"],
                 rec["out"].get(fx, r["type.text"]),
+                r["sequenceNumber"],
+                r["start.downDistanceText"],
+                r["end.downDistanceText"],
+                r["homeScore"],
+                r["awayScore"],
             ]
         )
 sha = (

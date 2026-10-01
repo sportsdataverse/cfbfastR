@@ -6517,7 +6517,10 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
 #' @param game_id (*Integer* required): ESPN game identifier.
 #' @param epa_wpa (*Logical*): when `TRUE`, run the full EPA/WPA modeling
 #' pipeline and return the modeled frame; when `FALSE` (default) return the
-#' assembled core-v2 play-by-play frame.
+#' assembled core-v2 play-by-play frame. Both drop the plays ESPN files twice
+#' (a stub echo with no start spot, a stale batch of a drive's plays, the same
+#' play on both sides of a timeout or period marker, an adjacent repeat), as
+#' sportsdataverse-py does.
 #' @param output (*Character*): controls the modeled-output column set when
 #' `epa_wpa = TRUE`. Ignored when `epa_wpa = FALSE`. Defaults to `"default"`.
 #' Must be one of:
@@ -6654,6 +6657,12 @@ espn_cfb_pbp_v2 <- function(game_id,
           id_play                   = as.character(.data$play_id)
         )
 
+      # ESPN files some plays twice (stub echoes, stale drive batches, copies
+      # across a marker, adjacent repeats); sdv-py drops them, and so do both
+      # returned frames, so epa_wpa = TRUE keeps exactly the epa_wpa = FALSE rows
+      feed_df <- plays_df
+      plays_df <- .espn_drop_play_copies(plays_df, game_season)
+
       if (!isTRUE(epa_wpa)) {
         plays_df <- plays_df |>
           make_cfbfastR_data(
@@ -6670,12 +6679,13 @@ espn_cfb_pbp_v2 <- function(game_id,
       # here or nowhere. `completed` is inferred from the frame rather than
       # fetched: a feed that reached the end of the game contains the play that
       # says so.
+      # counted on the feed, before its copies go, as sdv-py's gate counts
       completed <- any(grepl("^End of Game$",
-                             plays_df$type_text %||% character(0)))
-      if (.pbp_corrupt_check(plays_df, completed = completed)) {
+                             feed_df$type_text %||% character(0)))
+      if (.pbp_corrupt_check(feed_df, completed = completed)) {
         cli::cli_alert_warning(
           "Play-by-play for game {game_id} looks incomplete
-           ({nrow(plays_df)} play{?s}); skipping EPA/WPA modeling."
+           ({nrow(feed_df)} play{?s}); skipping EPA/WPA modeling."
         )
         return(plays_df |> make_cfbfastR_data(
           "Play-by-play data from ESPN (core-v2)", Sys.time()
@@ -6712,11 +6722,6 @@ espn_cfb_pbp_v2 <- function(game_id,
       if ("is_turnover" %in% names(plays_df)) {
         names(plays_df)[names(plays_df) == "is_turnover"] <- "espn_is_turnover"
       }
-
-      # ESPN files some plays twice (stub echoes, stale drive batches, copies
-      # across a marker, adjacent repeats); sdv-py drops them before modeling,
-      # and so does the returned frame -- they are the same play
-      plays_df <- .espn_drop_play_copies(plays_df, game_season)
 
       context_df <- plays_df
 

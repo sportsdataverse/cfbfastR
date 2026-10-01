@@ -52,6 +52,8 @@
   marker <- is_marker(type)
   elig <- which(!stub & !marker & (ytg != 0) %in% TRUE)
   # twins: same drive, period and start state and type, filed later at a lower clock
+  # A row with any NA key never twins. sdv-py's polars self-join matches null keys on
+  # 4+ key columns when no row has a full key (polars 1.40-1.44); no real game hits it.
   keyed <- elig[!is.na(drive[elig]) & !is.na(period[elig]) & !is.na(team[elig]) & !is.na(down[elig]) &
                   !is.na(distance[elig]) & !is.na(ytg[elig]) & !is.na(type[elig])]
   key <- paste(drive, period, team, down, distance, ytg, type, sep = "\r")[keyed]
