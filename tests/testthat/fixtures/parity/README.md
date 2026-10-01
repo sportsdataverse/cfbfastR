@@ -37,9 +37,9 @@ left out here: its order depends on that relabel, which `.espn_retype_plays()` p
 (`retype_oracle.csv.gz`). Re-capture: `python data-raw/parity_play_order_oracle.py` (env
 `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file.
 
-`retype_oracle.csv.gz` — captured 2026-09-30 from sportsdataverse-py `71a8f0863`: every play of 22
-games as it leaves `__helper_cfb_pbp_features()` (same offline pipeline, in that stage's order),
-with the inputs `.espn_retype_plays()` reads, the type before the relabel block at its end
+`retype_oracle.csv.gz` — captured 2026-10-01 from sportsdataverse-py `88acd48d2` (#642, #643): every
+play of 22 games as it leaves `__helper_cfb_pbp_features()` (same offline pipeline, in that stage's
+order), with the inputs `.espn_retype_plays()` reads, the type before the relabel block at its end
 (`orig_play_type`), after it (`sdvpy_type`, `sdvpy_start_ytg`) and after the later pre-2014 label
 normalization in `__add_new_play_types()` (`sdvpy_type_normalized`, recorded for the rows carrying
 the three labels it acts on); `start_ytg` is the feed's start spot. For the start state it also
