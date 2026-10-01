@@ -21,8 +21,10 @@ GAMES = [
     243250238,
     243582132,
     243392572,
-    # 2007-13 touchdown + kick rows: pass / rush, return and fumble touchdowns, a punt team's own
+    # 2007-13 touchdown + kick rows: pass / rush (303102638 from goal to go past the 10), return and
+    # fumble touchdowns, a punt team's own
     292832449,
+    303102638,
     312462638,
     332782638,
     302602440,

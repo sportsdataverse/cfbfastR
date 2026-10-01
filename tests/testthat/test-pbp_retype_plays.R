@@ -1,5 +1,5 @@
 test_that(".espn_retype_plays() retypes plays as sdv-py does", {
-  # fixtures/parity/retype_oracle.csv.gz: every play of 21 games as it leaves
+  # fixtures/parity/retype_oracle.csv.gz: every play of 22 games as it leaves
   # sdv-py's __helper_cfb_pbp_features (in that order), with the type before its
   # relabel block (orig_play_type) and after it and the later pre-2014 label
   # normalization (sdvpy_type_normalized). Offline; see fixtures/parity/README.md.
@@ -13,12 +13,11 @@ test_that(".espn_retype_plays() retypes plays as sdv-py does", {
     data.frame(type = rt$type, start_ytg = rt$start_ytg, start_down = rt$start_down,
                start_distance = rt$start_distance)
   }))
-  # documented divergence: sdv-py's unported "Extra Point Missed" string rules
-  # relabel ESPN's blocked field goals and mistype them; R keeps ESPN's type
+  expect_identical(got$type, o$sdvpy_type_normalized)
+  # blocked field goals keep ESPN's type on both sides since sportsdataverse-py #642
   bfg <- grepl("^Blocked Field Goal", o$orig_play_type)
-  expect_identical(got$type[!bfg], o$sdvpy_type_normalized[!bfg])
+  expect_true(any(bfg))
   expect_identical(got$type[bfg], o$orig_play_type[bfg])
-  expect_true(any(o$sdvpy_type[bfg] != o$orig_play_type[bfg]))
   moved <- o$orig_play_type %in% c("Extra Point Good", "Extra Point Missed", "2pt Conversion") &
     o$sdvpy_type %in% c("Pass Completion", "Rush")
   expect_identical(got$start_ytg[moved], as.integer(o$sdvpy_start_ytg[moved]))

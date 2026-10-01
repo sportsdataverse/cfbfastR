@@ -157,8 +157,9 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   `start_yards_to_endzone` keep ESPN's values. On a 138-game 2004-2025 sample,
   play types that differ from sdv-py's fell from 426 to 45 (the rest are sdv-py's
   later fumble, return-touchdown and try retypes). sdv-py's four "Extra Point
-  Missed" string rules are deliberately not followed: they mistype about 71
-  blocked field goals in its output, and R keeps ESPN's type. The
+  Missed" string rules are not followed: they mistyped about 71 blocked field
+  goals, and sdv-py removed them in sportsdataverse-py #642; both keep ESPN's
+  type. The
   retyped touchdowns keep a start down of -1, which R's EP model does not score,
   so they stay without EPA as before. 2004 EPA remains far from sdv-py's on
   every play (median gap 2.0), a separate difference in rebuilding that

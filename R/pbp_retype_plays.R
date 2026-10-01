@@ -16,12 +16,9 @@
 #'   the text's "for N yards"), a return / fumble touchdown its return type, and a
 #'   kickoff, field goal, penalty or period marker typed as a kick its own type.
 #'
-#' Deliberately not ported: the block's four "Extra Point Missed" string rules.
-#' On ESPN's types they only match "Blocked Field Goal (Touchdown)", and the
-#' relabel sends those rows through the kick rules: sdv-py's output types about
-#' 71 corpus rows wrongly (a blocked field goal as "Penalty" or "Extra Point
-#' Missed", a blocked-field-goal return as a plain "Blocked Field Goal"). R keeps
-#' ESPN's type (400547866, 400547865; see fixtures/parity/README.md).
+#' Not ported: the four "Extra Point Missed" string rules the block carried until
+#' sportsdataverse-py #642. They only matched ESPN's "Blocked Field Goal
+#' (Touchdown)" and mistyped ~71 of them; both sides keep ESPN's type.
 #'
 #' @param type,text Play type and text.
 #' @param scoring_type ESPN `scoringType.displayName`.
@@ -132,10 +129,12 @@
   spot_ok <- (prev_play(end_ytg) == start_ytg) %in% TRUE & prev_play(end_down) %in% 1:4
   prev_dist <- prev_play(end_distance)
   start_down <- ifelse(moved, ifelse(spot_ok, prev_play(end_down), 1L), start_down)
+  # goal to go is the distance to the goal line however far out (303102638: 3rd and
+  # goal from the 13)
   start_distance <- ifelse(
     moved,
     ifelse(spot_ok & (prev_dist > 0) %in% TRUE, pmin(prev_dist, start_ytg, na.rm = TRUE),
-           pmin(10L, start_ytg, na.rm = TRUE)),
+           ifelse(spot_ok & (prev_dist == 0) %in% TRUE, start_ytg, pmin(10L, start_ytg, na.rm = TRUE))),
     start_distance)
   list(type = type, start_ytg = start_ytg, start_down = start_down, start_distance = start_distance)
 }
