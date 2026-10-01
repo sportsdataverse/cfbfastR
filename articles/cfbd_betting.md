@@ -32,24 +32,14 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
 
-    ## Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+    ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
 
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
-
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
-    ## Get:7 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3875 kB]
-
-    ## Get:8 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main Translation-en [572 kB]
-
-    ## Get:9 http://azure.archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [6663 kB]
-
-    ## Get:10 http://azure.archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [1279 kB]
-
-    ## Fetched 12.5 MB in 2s (7524 kB/s)
     ## Reading package lists...
 
     ## ℹ Executing `sudo sh -c apt-get -y install libicu-dev libcurl4-openssl-dev libssl-dev cmake make libuv1-dev pandoc libnode-dev libxml2-dev`
@@ -85,7 +75,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode-dev amd64 12.22.9~dfsg-1ubuntu3.6 [609 kB]
 
-    ## Fetched 11.4 MB in 1s (15.5 MB/s)
+    ## Fetched 11.4 MB in 0s (60.2 MB/s)
 
     ## Selecting previously unselected package libnode72:amd64.
     ## (Reading database ...
@@ -158,7 +148,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## 
     ## No VM guests are running outdated hypervisor (qemu) binaries on this host.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [14.7s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [13.5s]
 
 ``` r
 
@@ -197,7 +187,7 @@ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 
     ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-09-30 23:26:47 UTC
+    ## ℹ Data updated: 2026-10-01 00:22:49 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -220,7 +210,7 @@ cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC
 ```
 
     ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
-    ## ℹ Data updated: 2026-09-30 23:26:47 UTC
+    ## ℹ Data updated: 2026-10-01 00:22:49 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team

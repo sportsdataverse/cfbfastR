@@ -194,8 +194,8 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   83 games (2024-2026: 12 of 12, was 5); on plays whose previous snap
   changed, the median EPA gap to sdv-py fell from 0.25 to 0.05. A
   separate 130-game check against sdv-py’s full pipeline found one game
-  that still differs, 401525903: sdv-py first retypes an untyped
-  two-point try, a relabel cfbfastR does not port.
+  that differed, 401525903: sdv-py first retypes an untyped two-point
+  try (that relabel is ported below, and the game now matches).
   [`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md)
   carries none of the fields the repairs read, so it runs in plain id
   order. Its drive and play counters used to run in clock order instead,
@@ -203,6 +203,31 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   rows. Measured against sdv-py’s order on 270 ESPN games, clock order
   put 685 plays after the wrong neighbour, against 151 for id order.
   `engine = "legacy"` on either function is unchanged.
+- [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
+  (v2) now models plays under the types sdv-py gives them:
+  - kicks ESPN scored as a field goal or extra point but left untyped
+    (the 2004 feed) take that type;
+  - a try the defence returned for two is a “Defensive 2pt Conversion”;
+  - an untyped two-point try filed after its kickoff is that try
+    (401525903, the last game whose play order differed from sdv-py’s);
+  - 2007-13 touchdowns filed as their own extra point become the pass,
+    rush or return touchdown they are, snapped from the distance the
+    text gives;
+  - pre-2014 labels are normalized: the bare “2pt Conversion” is good or
+    missed, 2004’s untyped quarter markers and kicks are typed from
+    their text, and an onside “Kickoff Return (Defense)” is a kickoff.
+
+  Only the modeled `play_type` (and `yards_to_goal`) change; `type_text`
+  and `start_yards_to_endzone` keep ESPN’s values. On a 138-game
+  2004-2025 sample, play types that differ from sdv-py’s fell from 426
+  to 45 (the rest are sdv-py’s later fumble, return-touchdown and try
+  retypes). sdv-py’s four “Extra Point Missed” string rules are
+  deliberately not followed: they mistype about 71 blocked field goals
+  in its output, and R keeps ESPN’s type. The retyped touchdowns keep a
+  start down of -1, which R’s EP model does not score, so they stay
+  without EPA as before. 2004 EPA remains far from sdv-py’s on every
+  play (median gap 2.0), a separate difference in rebuilding that
+  season’s spotless feed.
 
 ### Documentation: CFBD return tables
 
