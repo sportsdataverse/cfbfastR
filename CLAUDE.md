@@ -228,8 +228,12 @@ one `/teams` and one `/roster` request, not one per call.
   [`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md)/[`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
   column-for-column, with an explicit allow-list of intentional deltas
   (character `id_play`, logical `scoring_play`, total-seconds
-  `clock_seconds`, short-name `*_player_name`). Any other diff is a
-  regression. Tier-monotonicity tests verify `lean ⊆ default ⊆ full`.
+  `clock_seconds`, short-name `*_player_name`), plus one row-level
+  delta: on timeouts, period markers and the play before a marker the
+  after-play columns (EPA/ep_after/wpa/wp_after) are not compared (v2
+  books period boundaries as sdv-py). The legacy side must pin
+  `engine = "legacy"`. Any other diff is a regression. Tier-monotonicity
+  tests verify `lean ⊆ default ⊆ full`.
 
 ## Gotchas
 

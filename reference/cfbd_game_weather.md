@@ -109,7 +109,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_weather(year = 2025, week = 1, conference = "SEC"))
 #> ── Game weather data from CollegeFootballData.com ─────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-01 04:38:08 UTC
+#> ℹ Data updated: 2026-10-01 05:23:49 UTC
 #> # A tibble: 16 × 22
 #>      game_id season  week season_type start_time          game_indoors home_team
 #>        <int>  <int> <int> <chr>       <chr>               <lgl>        <chr>    

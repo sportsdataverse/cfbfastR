@@ -79,7 +79,7 @@ Other CFBD Passing:
 # \donttest{
   try(cfbd_passing_players_season(year = 2025, team = "Texas"))
 #> ── Player season passing data from CollegeFootballData.com ─────────────────────
-#> ℹ Data updated: 2026-10-01 04:38:25 UTC
+#> ℹ Data updated: 2026-10-01 05:24:08 UTC
 #> # A tibble: 7 × 189
 #>   season player_id player    team  conference attempts completions incompletions
 #>    <int> <chr>     <chr>     <chr> <chr>         <int>       <int>         <int>
