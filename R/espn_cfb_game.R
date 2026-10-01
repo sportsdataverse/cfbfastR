@@ -6715,7 +6715,10 @@ espn_cfb_pbp_v2 <- function(game_id,
 
       context_df <- plays_df
 
+      # sdv-py's type relabels (kick-typed touchdowns, defensive tries, the 2004
+      # scoringType kicks, ...) feed the engine; context_df keeps ESPN's type_text
       adapter <- plays_df |>
+        .espn_retype_frame(game_season) |>
         dplyr::transmute(
           plays_text                   = .data$text,
           plays_type_text              = .data$type_text,
