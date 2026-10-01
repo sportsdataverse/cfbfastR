@@ -1,69 +1,80 @@
 """Re-capture cfbfastR's ESPN scored-row parity oracle from sdv-py (offline, raw payloads on disk).
 
-Records what sdv-py hands `_type_espn_scored_rows` for each ESPN-scored row (`scoringPlay`) of a set
-of games -- the type after its relabels, the text, the start team's margin change on the row and
-whether ESPN's `scoringType` is a touchdown -- and the type it returns (`sdvpy_type`).
+Records every row `_type_espn_scored_rows` decides -- ESPN scored it (`scoringPlay`) and its type
+after sdv-py's relabels is not already a score -- in the 716 games of `parity_scored_games.txt`
+(every game of the 2004-26 finals with such a row) and a few hand-picked ones: the type, the text
+(`text_null` when sdv-py's is null rather than empty), the start team's margin change on the row,
+whether ESPN's `scoringType` is a touchdown, and the type sdv-py returns (`sdvpy_type`).
+The margin itself is checked by score_delta_oracle.csv.gz.
 """
 
-import csv, gzip, io, logging, os, pathlib, subprocess, sys
+import csv, gzip, io, logging, multiprocessing as mp, os, pathlib, subprocess, sys
 
 SDV_PY = os.environ.get("SDV_PY_ROOT", "/mnt/sdv_repos/sportsdataverse-py")  # sdv-py checkout
-sys.path.insert(0, SDV_PY)
-logging.disable(logging.CRITICAL)
-import polars as pl
-import sportsdataverse.cfb.cfb_pbp as M
-
 RAW = pathlib.Path(os.environ.get("CFB_RAW_JSON", "/mnt/sdv_repos/cfbfastR-cfb-raw/cfb/json/raw"))
-OUT = pathlib.Path(__file__).resolve().parents[1] / "tests" / "testthat" / "fixtures" / "parity"
-GAMES = [
-    # frozen-board pick-sixes; "X yd fumble return." (2004-07); "(X KICK)" fumble returns (2014+)
-    282640084, 262922117, 292970166, 272650194, 401234617, 400547643,
-    # strip-sacks at the 0; a kickoff team's recovery; kick and punt returns typed Kickoff / Punt
-    253090038, 282780036, 400548343, 400548079, 401309833,
-    # field goals typed as the snap before them (Pass Incompletion, Rush, Timeout, Penalty)
-    292832633, 283340228, 312912032, 303310150,
-    # Miami's game-ending eight-lateral kickoff return; a blocked field goal returned on a frozen board
-    400756970, 332640098,
-    # left alone: ESPN's start team is the returner (272512655), a frozen-board rush fumble
-    # (292970254), "fumbled in the endzone" with no touchdown (302890062)
-    272512655, 292970254, 302890062,
+HERE = pathlib.Path(__file__).resolve().parent
+OUT = HERE.parent / "tests" / "testthat" / "fixtures" / "parity"
+PICKED = [
+    # Miami's game-ending return at Duke; a blocked field goal returned on a frozen board; left
+    # alone: ESPN's start team is the returner, a frozen-board rush fumble, "fumbled in the endzone"
+    400756970, 332640098, 272512655, 292970254, 302890062,
 ]
-COLS = ["game_id", "id", "type", "text", "scoring_play", "delta", "espn_td", "sdvpy_type"]
-rec = []
-orig = M._type_espn_scored_rows
+COLS = ["game_id", "id", "type", "text", "text_null", "scoring_play", "delta", "espn_td", "sdvpy_type"]
 
 
-def hook(df):
-    out = orig(df)
-    keep = df["scoringPlay"] == True  # noqa: E712
-    td = (
-        df["scoringType.name"].cast(pl.Utf8).fill_null("") == "touchdown"
-        if "scoringType.name" in df.columns
-        else pl.Series([False] * df.height)
-    )
-    for r, t, new in zip(df.filter(keep).iter_rows(named=True), td.filter(keep), out.filter(keep)["type.text"]):
-        rec.append([r["id"], r["type.text"], r["text"], r["scoringPlay"],
-                    None if r["end.pos_score_diff"] is None or r["start.pos_score_diff"] is None
-                    else r["end.pos_score_diff"] - r["start.pos_score_diff"], t, new])
-    return out
+_REC = []
 
 
-M._type_espn_scored_rows = hook
-rows = []
-for gid in GAMES:
-    rec.clear()
-    p = M.CFBPlayProcess(gameId=gid, path_to_json=str(RAW))
-    p.join_participants = False
-    p.cfb_pbp_disk()
-    p.run_processing_pipeline()
-    rows += [[gid, *r] for r in rec]
-sha = subprocess.check_output(["git", "-C", SDV_PY, "rev-parse", "--short", "HEAD"]).decode().strip()
-# mtime=0 keeps the gzip bytes stable across re-captures
-with open(OUT / "scored_oracle.csv.gz", "wb") as fh_raw, gzip.GzipFile(fileobj=fh_raw, mode="wb", mtime=0) as gz:
-    fh = io.TextIOWrapper(gz, encoding="utf-8", newline="")
-    w = csv.writer(fh, lineterminator="\n")
-    w.writerow(COLS)
-    w.writerows(rows)
-    fh.flush()
-    fh.detach()
-print("games", len(GAMES), "rows", len(rows), "retyped", sum(r[2] != r[7] for r in rows), "sdv-py", sha)
+def _install():
+    # once per worker: re-patching per game would wrap the previous game's hook, and that hook
+    # would keep recording (under its own game id) into a list the pool has not sent back yet
+    sys.path.insert(0, SDV_PY)
+    logging.disable(logging.CRITICAL)
+    import polars as pl
+    import sportsdataverse.cfb.cfb_pbp as M
+
+    known = {*M.scores_vec, *M.offense_score_vec, *M.defense_score_vec, *M._TRY_TYPES, "Kickoff Return Touchdown"}
+    orig = M._type_espn_scored_rows
+
+    def hook(df):
+        out = orig(df)
+        td = (df["scoringType.name"].cast(pl.Utf8).fill_null("") == "touchdown") if "scoringType.name" in df.columns \
+            else pl.Series([False] * df.height)
+        for r, t, new in zip(df.iter_rows(named=True), td, out["type.text"]):
+            if r["scoringPlay"] is True and (r["type.text"] or "") not in known:
+                d = None if r["end.pos_score_diff"] is None or r["start.pos_score_diff"] is None \
+                    else r["end.pos_score_diff"] - r["start.pos_score_diff"]
+                _REC.append([r["id"], r["type.text"], r["text"], r["text"] is None, True, d, t, new])
+        return out
+
+    M._type_espn_scored_rows = hook
+
+
+def run(gid):
+    import sportsdataverse.cfb.cfb_pbp as M
+
+    _REC.clear()
+    try:
+        p = M.CFBPlayProcess(gameId=gid, path_to_json=str(RAW))
+        p.join_participants = False
+        p.cfb_pbp_disk()
+        p.run_processing_pipeline()
+    except Exception:
+        return []
+    return [[gid, *r] for r in _REC]
+
+
+if __name__ == "__main__":
+    listed = [int(x) for x in (HERE / "parity_scored_games.txt").read_text().split() if x.isdigit()]
+    games = list(dict.fromkeys(PICKED + listed))
+    with mp.get_context("spawn").Pool(6, initializer=_install) as pool:
+        rows = [r for rs in pool.map(run, games) for r in rs]
+    sha = subprocess.check_output(["git", "-C", SDV_PY, "rev-parse", "--short", "HEAD"]).decode().strip()
+    with open(OUT / "scored_oracle.csv.gz", "wb") as fh_raw, gzip.GzipFile(fileobj=fh_raw, mode="wb", mtime=0) as gz:
+        fh = io.TextIOWrapper(gz, encoding="utf-8", newline="")
+        w = csv.writer(fh, lineterminator="\n")
+        w.writerow(COLS)
+        w.writerows(rows)
+        fh.flush()
+        fh.detach()
+    print("games", len(games), "rows", len(rows), "retyped", sum(r[2] != r[8] for r in rows), "sdv-py", sha)

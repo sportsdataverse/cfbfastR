@@ -66,7 +66,8 @@
     !(try_td | has("intercept|fumble|punt|kick ?off|\\breturn"))
   # the touchdown stood unless a no-play marker negates it; on a scored row only
   # the text up to the touchdown's clock tail counts (the try follows it)
-  head <- sub("(touchdown, clock \\d{1,2}:\\d{2}).*$", "\\1", tx, ignore.case = TRUE, perl = TRUE)
+  # PCRE's $ also matches before a final newline; Rust's does not
+  head <- sub("(touchdown, clock \\d{1,2}:\\d{2}).*\\z", "\\1", tx, ignore.case = TRUE, perl = TRUE)
   negated <- ifelse(scoring_play %in% TRUE,
                     grepl(.penalty_negated_text, head, ignore.case = TRUE, perl = TRUE),
                     has(.penalty_negated_text))
@@ -152,7 +153,7 @@
 #' frame's own row order.
 #' @keywords internal
 #' @noRd
-.espn_retype_frame <- function(df, season) {
+.espn_retype_frame <- function(df, season, finals = c(NA_real_, NA_real_)) {
   if (!nrow(df)) return(df)
   stopifnot(c("scoring_type_display_name", "scoring_play") %in% names(df))
   o <- .espn_play_order(df$play_id, df$sequence_number, df$period, df$clock, df$drive_drive_id,
@@ -163,23 +164,12 @@
                            df$start_team_id[o], df$end_team_id[o], df$start_yards_to_endzone[o],
                            df$start_down[o], df$start_distance[o],
                            df$end_down[o], df$end_distance[o], df$end_yards_to_endzone[o])
-  # the start team's margin change on the row (a kickoff's start team is the receiver):
-  # this row's score against the row before it, the first row against 0-0
-  n <- length(o)
-  home <- as.character(df$home_team_id[o])
-  away <- as.character(df$away_team_id[o])
-  st <- as.character(df$start_team_id[o])
-  pos <- ifelse(rt$type %in% .sdvpy_kickoff_types,
-                ifelse(st == home, away, ifelse(st == away, home, st)), st)
-  hs <- suppressWarnings(as.numeric(df$home_score[o]))
-  as_ <- suppressWarnings(as.numeric(df$away_score[o]))
-  hs0 <- c(0, hs[-n])
-  as0 <- c(0, as_[-n])
-  hs0[is.na(hs0)] <- 0
-  as0[is.na(as0)] <- 0
-  margin <- function(h, a) ifelse(pos == home, h - a, a - h)
-  rt$type <- .espn_type_scored_rows(rt$type, df$text[o], df$scoring_play[o],
-                                    margin(hs, as_) - margin(hs0, as0),
+  # the start team's margin change on the row, from sdv-py's repaired scores
+  delta <- .espn_score_delta(rt$type, df$type_text[o], df$text[o], df$start_team_id[o],
+                             df$end_team_id[o], as.character(df$home_team_id[o]),
+                             as.character(df$away_team_id[o]), df$home_score[o], df$away_score[o],
+                             df$scoring_play[o], finals[1], finals[2])
+  rt$type <- .espn_type_scored_rows(rt$type, df$text[o], df$scoring_play[o], delta,
                                     tolower(df$scoring_type_display_name[o]) %in% "touchdown")
   df$type_text[o] <- rt$type
   df$start_yards_to_endzone[o] <- rt$start_ytg
@@ -228,10 +218,12 @@
   ty <- ifelse(is.na(type), "", as.character(type))
   tx <- ifelse(is.na(text), "", as.character(text))
   has <- function(pattern) grepl(pattern, tx, ignore.case = TRUE, perl = TRUE)
-  head <- sub("(touchdown, clock \\d{1,2}:\\d{2}).*$", "\\1", tx, ignore.case = TRUE, perl = TRUE)
-  negated <- ifelse(scoring_play %in% TRUE,
-                    grepl(.penalty_negated_text, head, ignore.case = TRUE, perl = TRUE),
-                    has(.penalty_negated_text))
+  # sdv-py reads the text unfilled here: a null text's negation is null, and so is the evidence
+  head <- sub("(touchdown, clock \\d{1,2}:\\d{2}).*\\z", "\\1", tx, ignore.case = TRUE, perl = TRUE)
+  negated <- ifelse(is.na(text), NA,
+                    ifelse(scoring_play %in% TRUE,
+                           grepl(.penalty_negated_text, head, ignore.case = TRUE, perl = TRUE),
+                           has(.penalty_negated_text)))
   scored <- scoring_play %in% TRUE & !(ty %in% .sdvpy_scored_types)
   td_evidence <- (has("touchdown|\\bfor a TD\\b") | has(.try_paren_re) | espn_td %in% TRUE) & !negated
   fam_int <- ty %in% .sdvpy_int_types | has("intercept")
@@ -248,7 +240,7 @@
   defence_family <- fam_int | ty == "Fumble Recovery (Opponent)" | fam_blocked_punt |
     (fam_fg & has("block") & has("return"))
   moved <- (abs(delta) >= 6 & abs(delta) <= 8) %in% TRUE
-  frozen <- (delta == 0) %in% TRUE & td_evidence
+  frozen <- (delta == 0) %in% TRUE & td_evidence %in% TRUE
   td <- moved | frozen
   defence <- (moved & (delta < 0) %in% TRUE) | (frozen & defence_family)
   offence <- (moved & (delta > 0) %in% TRUE & !defence_family) |
@@ -312,3 +304,110 @@
   "Extra Point Good", "Extra Point Missed", "Two-Point Conversion Good", "Two-Point Conversion Missed",
   "Two Point Pass", "Blocked PAT"
 )
+
+#' One team's per-row score with ESPN's feed errors repaired, as sdv-py does
+#'
+#' Port of sportsdataverse-py's `_repair_scores()` (cfb_pbp.py). A change is confirmed when
+#' the next two rows repeat it (past the last row the header's final stands in, and a missing
+#' value does not count against it). An unconfirmed drop is reverted, and so is a rise on a
+#' non-scoring row that is unconfirmed or that the feed takes back later. Each row is judged
+#' against the last accepted score, so a reverted row never re-seeds the error.
+#' @keywords internal
+#' @noRd
+.espn_repair_scores <- function(scores, scoring, final) {
+  n <- length(scores)
+  if (!n) return(scores)
+  next_change <- rep(NA_real_, n)
+  if (n > 1L) {
+    for (i in (n - 1L):1L) {
+      next_change[i] <- if (!identical(scores[i + 1L], scores[i]) && !(is.na(scores[i + 1L]) && is.na(scores[i])))
+        scores[i + 1L] else next_change[i + 1L]
+    }
+  }
+  ahead <- c(scores[-1L], final, final)
+  out <- scores
+  prev <- NA_real_
+  for (i in seq_len(n)) {
+    cur <- scores[i]
+    if (!is.na(cur) && !is.na(prev)) {
+      a <- ahead[i:(i + 1L)]
+      confirmed <- all(is.na(a) | a == cur)
+      taken_back <- !is.na(next_change[i]) && next_change[i] < cur
+      if ((cur < prev && !confirmed) ||
+          (cur > prev && identical(scoring[i], FALSE) && (!confirmed || taken_back))) {
+        cur <- prev
+      }
+    }
+    out[i] <- cur
+    if (!is.na(cur)) prev <- cur
+  }
+  out
+}
+
+#' The start team's margin change on each row, as sdv-py's start/end.pos_score_diff
+#'
+#' The rows in play order, after ESPN's copies are dropped. sdv-py fills a missing start
+#' team, gives a scored rush or pass touchdown's snap to the scorer, flips a kickoff's start
+#' team to the receiver (on the feed's type), carries a period marker's higher score back to
+#' the play before it, swaps a board kept reversed all game, drops the markers, repairs each
+#' team's score ([.espn_repair_scores()]) and lags it: a row starts at the score the row before
+#' it ended at (the first at 0-0).
+#' @param type,feed_type The type after the relabels (markers) and the feed's own (kickoffs).
+#' @param text,start_team,end_team Play text and ESPN's start / end team ids.
+#' @param home,away Home and away team ids.
+#' @param home_score,away_score Each row's score.
+#' @param scoring_play ESPN `scoringPlay`.
+#' @param home_final,away_final The header's final score.
+#' @return The margin change (`NA` on the marker rows sdv-py drops).
+#' @keywords internal
+#' @noRd
+.espn_score_delta <- function(type, feed_type, text, start_team, end_team, home, away,
+                              home_score, away_score, scoring_play, home_final, away_final) {
+  n <- length(type)
+  if (!n) return(numeric())
+  tx <- ifelse(is.na(text), "", as.character(text))
+  has <- function(p) grepl(p, tx, ignore.case = TRUE, perl = TRUE)
+  # polars fill_null(strategy = "forward"), then "backward"
+  fill <- function(x) {
+    i <- cummax(ifelse(is.na(x), 0L, seq_len(n)))
+    x <- x[ifelse(i > 0L, i, NA_integer_)]
+    j <- rev(cummin(rev(ifelse(is.na(x), n + 1L, seq_len(n)))))
+    x[is.na(x)] <- x[j[is.na(x)]]
+    x
+  }
+  st <- fill(as.character(start_team))
+  et <- as.character(end_team)
+  et <- ifelse(is.na(et), c(st[-1L], NA), et)
+  et <- ifelse(is.na(et), st, et)
+  # a scored rush or pass touchdown's snap is the scorer's
+  own_td <- scoring_play %in% TRUE & (st != et) %in% TRUE & has("touchdown|\\btd\\b") &
+    has("\\brush|\\bran\\b|\\brun\\b|pass complete|\\bpass\\b.*\\bto\\b") &
+    !has("intercept|fumbl|\\breturn|\\bpunt|kick|block|safety|conversion|lateral|no play|nullified") &
+    !grepl("kickoff|punt|field goal|interception|fumble|return", ifelse(is.na(feed_type), "", feed_type),
+           ignore.case = TRUE, perl = TRUE)
+  st <- ifelse(own_td, et, st)
+  pos <- ifelse(feed_type %in% .sdvpy_kickoff_types & st == home, away,
+                ifelse(feed_type %in% .sdvpy_kickoff_types & st == away, home, st))
+  hs <- suppressWarnings(as.numeric(home_score))
+  as_ <- suppressWarnings(as.numeric(away_score))
+  ty <- ifelse(is.na(type), "", as.character(type))
+  marker <- grepl("end of|end period", ty, ignore.case = TRUE, perl = TRUE)
+  nxt <- function(x) c(x[-1L], NA)
+  hs <- ifelse(c(marker[-1L], FALSE) & (nxt(hs) > hs) %in% TRUE, nxt(hs), hs)
+  as_ <- ifelse(c(marker[-1L], FALSE) & (nxt(as_) > as_) %in% TRUE, nxt(as_), as_)
+  # a board kept reversed all game: the last row is the header's final, reversed
+  if ((hs[n] == away_final) %in% TRUE && (as_[n] == home_final) %in% TRUE && (home_final != away_final) %in% TRUE) {
+    tmp <- hs; hs <- as_; as_ <- tmp
+  }
+  keep <- which(!grepl("end of|coin toss|end period|wins toss", ty, ignore.case = TRUE, perl = TRUE))
+  sp <- as.logical(scoring_play[keep])
+  h <- .espn_repair_scores(hs[keep], sp, home_final)
+  a <- .espn_repair_scores(as_[keep], sp, away_final)
+  h0 <- c(0, h[-length(h)]); a0 <- c(0, a[-length(a)])
+  h0[is.na(h0)] <- 0; a0[is.na(a0)] <- 0
+  p <- pos[keep]; hm <- home[keep]
+  margin <- function(x, y) ifelse(p == hm, x - y, y - x)
+  out <- rep(NA_real_, n)
+  out[keep] <- margin(h, a) - margin(h0, a0)
+  out
+}

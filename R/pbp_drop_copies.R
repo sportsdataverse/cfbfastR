@@ -26,15 +26,16 @@
 #' @param type,text,id Play type, text and id.
 #' @param drive,period,clock Drive id, period and clock display value.
 #' @param team,down,distance,ytg Start team id, down, distance, yards to the end zone.
-#' @return List: `drop` (rows to drop) and `retype` (rows that take the next row's type).
+#' @return List: `drop` (rows to drop), `retype` (rows that take another row's type) and `from`
+#'   (that row: the next kept row; NA elsewhere).
 #' @keywords internal
 #' @noRd
 .espn_play_copies <- function(type, text, drive, period, team, down, distance, ytg, clock, id) {
   n <- length(type)
-  out <- list(drop = rep(FALSE, n), retype = rep(FALSE, n))
+  out <- list(drop = rep(FALSE, n), retype = rep(FALSE, n), from = rep(NA_integer_, n))
   if (n < 2L) return(out)
   tx <- as.character(text)
-  textless <- is.na(tx) | !nzchar(trimws(tx))
+  textless <- is.na(tx) | !nzchar(trimws(tx, whitespace = "[\\h\\v]"))
   is_marker0 <- grepl("^(?:timeout|end\\b)", type, ignore.case = TRUE, perl = TRUE) |
     grepl("^end of", tx, ignore.case = TRUE, perl = TRUE)
   keyed <- !is.na(drive) & !is.na(period) & !is.na(team) & !is.na(down) & !is.na(distance) &
@@ -47,10 +48,9 @@
                               distance[keep], ytg[keep], clock[keep], id[keep])
     out$drop <- echo_tl
     out$drop[keep] <- rest$drop
-    # a stub echo takes the next kept row's type; that row is the next row here unless an
-    # echo sits between them (never in the corpus), and then the type is left alone
-    rt <- keep[rest$retype]
-    out$retype[rt[match(rt, keep) < length(keep) & keep[match(rt, keep) + 1L] == rt + 1L]] <- TRUE
+    # a stub echo takes the next kept row's type (sdv-py shifts the frame without the echo)
+    out$retype[keep] <- rest$retype
+    out$from[keep] <- keep[rest$from]
     return(out)
   }
   # a comparison with a null is null in polars, and a null condition never fires
@@ -110,7 +110,7 @@
        eq(distance[kept], distance[nk]) & eq(tx[kept], tx[nk]) & eq(period[kept], period[nk]) &
        (type[kept] != "Timeout") %in% TRUE)
   drop[kept[adjacent]] <- TRUE
-  list(drop = drop, retype = retype)
+  list(drop = drop, retype = retype, from = ifelse(retype, seq_len(n) + 1L, NA_integer_))
 }
 
 #' Drop ESPN's play copies from the v2 frame before it is modeled
@@ -132,7 +132,7 @@
   cp <- .espn_play_copies(d$type_text, d$text, d$drive_drive_id, d$period, d$start_team_id,
                           d$start_down, d$start_distance, d$start_yards_to_endzone, d$clock, d$play_id)
   for (col in intersect(c("type_id", "type_text", "type_abbreviation"), names(d))) {
-    d[[col]][cp$retype] <- d[[col]][which(cp$retype) + 1L]
+    d[[col]][cp$retype] <- d[[col]][cp$from[cp$retype]]
   }
   d <- d[!cp$drop, , drop = FALSE]
   d[order(o[!cp$drop]), , drop = FALSE]
@@ -145,6 +145,6 @@
 #' @keywords internal
 #' @noRd
 .untyped_admin_re <- paste0(
-  "(start|end) of (the )?.*(quarter|half|game|overtime|regulation)|^\\s*$|^begin drive\\b",
-  "|\\bdrive start at\\b|^\\s*\\([^()]*\\b(?:kick|pat|two-point|2-point)\\b[^()]*\\)\\s*$"
+  "(*UCP)(start|end) of (the )?.*(quarter|half|game|overtime|regulation)|^\\s*\\z|^begin drive\\b",
+  "|\\bdrive start at\\b|^\\s*\\([^()]*\\b(?:kick|pat|two-point|2-point)\\b[^()]*\\)\\s*\\z"
 )

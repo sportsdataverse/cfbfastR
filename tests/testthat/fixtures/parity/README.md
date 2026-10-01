@@ -75,22 +75,41 @@ stub echo in the corpus whose type differs from its play's), 272512348, 28264008
 another clock 292552084); textless echoes, before the play at the previous play's clock (401403886)
 and ahead of their plays in another order (292760096), and textless FCS rushes that are real plays
 (401540473); two games with nothing to drop. sdv-py drops untyped admin rows before this frame
-(`_UNTYPED_ADMIN_RE`), so they are not in it; `.espn_drop_play_copies()` drops them first. No game in those 487 or in the 20,719-game
+(`_UNTYPED_ADMIN_RE`), so they are not in it; `.espn_drop_play_copies()` drops them first (see
+`admin_oracle.csv.gz`). The textless rule's marker guard, its `ytg != 0` guard, and `type` / `drive`
+in its key are not decided by any of these games either. No game in those 487 or in the 20,719-game
 raw corpus decides four conditions: the stub rule's marker check, the twin key reading a
 stub-corrected type, the no-spot exclusion from the twin and echo rules, and the adjacent rule's
 same-id arm (a same-id pair always matches on text and start state too). Re-capture: `python
 data-raw/parity_copies_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file.
 
-`scored_oracle.csv.gz` — captured 2026-10-01 from sportsdataverse-py `1f7ad730b` (#651): every
-ESPN-scored row (`scoringPlay`) of 20 games as sdv-py hands `_type_espn_scored_rows()` its type (after
-its relabels), text, the start team's margin change on the row (`delta`) and whether ESPN's
-`scoringType` is a touchdown (`espn_td`), with the type it returns (`sdvpy_type`). Games: frozen-board
-pick-sixes (282640084, 262922117, 292970166), 2004-07 fumble returns with no touchdown word
-(272650194), 2014+ fumble returns closed by the kick (401234617, 400547643), strip-sacks at the 0
-(253090038), a kickoff team's recovery (282780036), kick and punt returns typed Kickoff / Punt
-(400548343, 400548079, 401309833), field goals typed as a snap (292832633, 283340228, 312912032,
-303310150), Miami's game-ending kickoff return at Duke (400756970), a blocked field goal returned on
-a frozen board (332640098), and rows left alone: ESPN's start team is the returner (272512655), a
-frozen-board rush fumble (292970254), "fumbled in the endzone" with no touchdown (302890062).
-Re-capture: `python data-raw/parity_scored_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not
-hand-edit the file.
+`scored_oracle.csv.gz` — captured 2026-10-01 from sportsdataverse-py `1f7ad730b` (#651): every row
+`_type_espn_scored_rows()` decides (ESPN scored it and its type after sdv-py's relabels is not
+already a score) in the 716 games of `data-raw/parity_scored_games.txt` -- every game of the 2004-26
+finals with such a row -- and five hand-picked ones: the type, the text (`text_null` where sdv-py's is
+null rather than empty), the start team's margin change sdv-py derives (`delta`), whether ESPN's
+`scoringType` is a touchdown (`espn_td`), and the type it returns (`sdvpy_type`). Re-capture: `python
+data-raw/parity_scored_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file.
+
+`scored_grid_oracle.csv.gz` — generated 2026-10-01 by sportsdataverse-py `1f7ad730b` (#651)'s own
+`_type_espn_scored_rows()`, a pure function, on 18,496 synthetic rows: 17 types x 17 texts (null
+included) x 16 margin changes x ESPN's touchdown flag x the scoring flag. The real-corpus oracle above
+leaves branches no 2004-26 game decides (the frozen-board offence, punt-team and missed-field-goal
+returns, the margin window's edges, the negation); the expected types still come from sdv-py, not a
+re-implementation. Re-capture: `python data-raw/parity_scored_grid_oracle.py`; do not hand-edit.
+
+`score_delta_oracle.csv.gz` — captured 2026-10-01 from sportsdataverse-py `1f7ad730b` (#651): every
+row sdv-py keeps after its copy rules in 18 games, with the feed's type, team ids and scores, the type
+after its relabels (for the period markers), the header's final score, and the start team's margin
+change sdv-py derives (`end.pos_score_diff - start.pos_score_diff`; empty on the markers it drops) --
+which `.espn_score_delta()` reproduces. Games: boards kept reversed all game (262590245, 400876038,
+400876049, 401135269), score glitches (401762835, 401752684, 401301042, 401628428), a touchdown snap
+filed for the other team (243110264, 322590228), scored rows (400756970, 300020151, 283130309,
+282640084, 272512655), kickoffs and fumble returns (400548343, 401234617, 272650194). Re-capture:
+`python data-raw/parity_score_delta_oracle.py`; do not hand-edit the file.
+
+`admin_oracle.csv.gz` — captured 2026-10-01 from sportsdataverse-py `1f7ad730b` (#651): every feed
+play of six games with sdv-py's untyped-admin filter applied (`type.text` null and the text matching
+`_UNTYPED_ADMIN_RE`): 2004's untyped markers (243042579) and "Begin Drive" (242462628), an OT drive
+header (262522509), empty rows (272870068), a lone kick (401752914), lone two-point tries in OT
+(401426542). Re-capture: `python data-raw/parity_admin_oracle.py`; do not hand-edit the file.

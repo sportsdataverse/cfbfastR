@@ -224,13 +224,24 @@
   # marker takes its next state from the play after the marker; a play that ends a
   # half or the game is worth nothing after it (ep_after 0); the markers' own WPA
   # follows. On those rows the after-play columns are not compared; the before-play
-  # state still is.
+  # state still is. And a kickoff's touchdown is filed once in v2's taxonomy (the
+  # receiver's return touchdown its 7, the kicking team's recovery the defence's), as
+  # sdv-py files it; the legacy vectors list them on both sides, so on those rows the
+  # scoring flags and the after-play columns differ too.
   after_cols <- c("EPA", "ep_after", "home_EPA", "away_EPA", "wpa", "wp_after", "def_wp_after")
   markers <- c("End Period", "End of Half", "End of Game", "End of Regulation")
   boundary <- v2$play_type[ord_v] %in% c("Timeout", markers) |
     c(v2$play_type[ord_v][-1], NA) %in% markers
+  kick_td <- v2$play_type[ord_v] %in% c("Kickoff Return Touchdown", "Kickoff Touchdown",
+                                        "Kickoff Team Fumble Recovery Touchdown")
   for (col in cols_to_check) {
-    keep <- if (col %in% after_cols) !boundary else rep(TRUE, length(ord_v))
+    keep <- if (col %in% c("offense_score_play", "defense_score_play")) {
+      !kick_td
+    } else if (col %in% after_cols) {
+      !(boundary | kick_td)
+    } else {
+      rep(TRUE, length(ord_v))
+    }
     expect_equal(
       v2[[col]][ord_v][keep],
       legacy[[col]][ord_l][keep],
