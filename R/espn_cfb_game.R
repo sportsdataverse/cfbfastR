@@ -6729,7 +6729,7 @@ espn_cfb_pbp_v2 <- function(game_id,
       # scoringType kicks, ...) feed the engine; context_df keeps ESPN's type_text
       adapter <- plays_df |>
         .espn_fill_spots() |>
-        .espn_retype_frame(game_season) |>
+        .espn_retype_frame(game_season, finals = c(meta$home_final_score, meta$away_final_score)) |>
         dplyr::transmute(
           plays_text                   = .data$text,
           plays_type_text              = .data$type_text,

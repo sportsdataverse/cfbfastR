@@ -94,3 +94,46 @@ test_that("v2 rebuilds a 2014+ play whose feed spot is 0", {
   if (!is.data.frame(x) || !nrow(x) || !("yards_to_goal" %in% names(x))) skip("no modeled play-by-play")
   expect_equal(x$yards_to_goal[as.character(x$id_play) == "401628339103875504"], 27)
 })
+
+test_that(".espn_type_scored_rows() types the scores ESPN marks as sdv-py does", {
+  # fixtures/parity/scored_oracle.csv.gz: every row _type_espn_scored_rows() decides in the 2004-26
+  # finals (ESPN scored it, no relabel typed it a score) -- frozen-board pick-sixes, fumble returns
+  # with no touchdown word, field goals typed as a snap, the rows it leaves alone -- with the type,
+  # text (null kept apart from empty), the start team's margin change and ESPN's touchdown flag,
+  # and the type sdv-py returns. The margin itself: score_delta_oracle.csv.gz below.
+  o <- utils::read.csv(test_path("fixtures", "parity", "scored_oracle.csv.gz"),
+                       colClasses = "character", na.strings = "")
+  text <- ifelse(o$text_null == "True", NA_character_, ifelse(is.na(o$text), "", o$text))
+  got <- .espn_type_scored_rows(o$type, text, o$scoring_play == "True", as.numeric(o$delta),
+                                o$espn_td == "True")
+  expect_identical(got, o$sdvpy_type)
+  expect_gte(sum(o$type != o$sdvpy_type), 400L)
+})
+
+test_that(".espn_score_delta() reproduces sdv-py's margin change on every row", {
+  # fixtures/parity/score_delta_oracle.csv.gz: every row sdv-py keeps after its copy rules in 18
+  # games -- reversed boards, score glitches, a touchdown snap named for the wrong team, kickoffs
+  # -- with the feed's fields and sdv-py's end.pos_score_diff - start.pos_score_diff
+  o <- utils::read.csv(test_path("fixtures", "parity", "score_delta_oracle.csv.gz"),
+                       colClasses = "character", na.strings = "")
+  for (g in unique(o$game_id)) {
+    d <- o[o$game_id == g, ]
+    got <- .espn_score_delta(d$type, d$feed_type, d$text, d$start_team, d$end_team, d$home, d$away,
+                             as.numeric(d$home_score), as.numeric(d$away_score), d$scoring_play == "True",
+                             as.numeric(d$home_final[1]), as.numeric(d$away_final[1]))
+    expect_identical(got, as.numeric(d$sdvpy_delta), info = g)
+  }
+})
+
+test_that(".espn_type_scored_rows() takes sdv-py's every branch, not only the ones the corpus decides", {
+  # fixtures/parity/scored_grid_oracle.csv.gz: sdv-py's own _type_espn_scored_rows() (a pure
+  # function) run on a grid of types x texts x margin changes x ESPN's touchdown flag, null text
+  # included: the frozen-board offence, punt-team and missed-field-goal returns, the margin window's
+  # edges and the negation, which no 2004-26 game decides
+  o <- utils::read.csv(test_path("fixtures", "parity", "scored_grid_oracle.csv.gz"),
+                       colClasses = "character", na.strings = "")
+  text <- ifelse(o$text_null == "True", NA_character_, ifelse(is.na(o$text), "", o$text))
+  got <- .espn_type_scored_rows(o$type, text, o$scoring_play == "True", as.numeric(o$delta),
+                                o$espn_td == "True")
+  expect_identical(got, o$sdvpy_type)
+})

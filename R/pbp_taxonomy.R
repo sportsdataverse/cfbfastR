@@ -44,20 +44,25 @@
       "Pass Reception Touchdown", "Fumble Recovery (Own) Touchdown"
     ),
     # offense_score: union of clean_pbp_dat / add_play_counts / create_epa
-    # off_TD -- includes "Kickoff Return Touchdown" (create_epa) and the
-    # Kickoff/Punt team fumble recovery TDs (clean_pbp_dat).
+    # off_TD -- includes "Kickoff Return Touchdown" (create_epa) and the punt
+    # team's fumble recovery TD (clean_pbp_dat). The kickoff team's recovery
+    # touchdown and "Kickoff Touchdown" are the defence's (the kickoff's possession
+    # team is the receiver), as in sdv-py; listed on both sides they set
+    # offense_score_play too.
     offense_score = c(
       "Passing Touchdown", "Rushing Touchdown", "Field Goal Good",
       "Pass Reception Touchdown", "Fumble Recovery (Own) Touchdown",
       "Punt Touchdown", "Punt Team Fumble Recovery Touchdown",
-      "Kickoff Touchdown", "Kickoff Team Fumble Recovery Touchdown",
       "Kickoff Return Touchdown"
     ),
+    # not "Kickoff Return Touchdown": the receiving team (the kickoff's possession team)
+    # scores it, and listed on both sides the defence's -7 overwrote the offence's 7
+    # (every return touchdown booked EPA about -7.7; sdv-py's defense_score_vec has it not)
     defense_score = c(
       "Blocked Punt Touchdown", "Blocked Field Goal Touchdown",
       "Missed Field Goal Return Touchdown", "Punt Return Touchdown",
       "Fumble Recovery (Opponent) Touchdown", "Fumble Return Touchdown",
-      "Kickoff Return Touchdown", "Defensive 2pt Conversion",
+      "Defensive 2pt Conversion",
       "Safety", "Kickoff (Safety)",
       "Blocked Punt (Safety)", "Punt (Safety)", "Penalty (Safety)",
       "Sack Touchdown",

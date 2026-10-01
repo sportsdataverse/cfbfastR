@@ -204,6 +204,19 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   v2's EPA agrees with sdv-py's to a median of 0.000 on a 92-game 2004-2026
   sample (was 0.015); timeouts off by more than 0.5 fall from 20% to 0%, and
   the game's last play from 53% to 11%.
+* The v2 engine books the scores ESPN marks and drops its copies and admin
+  rows, as sportsdataverse-py #651 does:
+  - a row ESPN scored that no text rule named is typed from the row: who scored
+    is the start team's margin change, or on a frozen scoreboard the play's
+    family. Pick-sixes on a frozen board, "21 yd fumble return." (2004-07) and
+    fumble returns closed by "(X KICK)" (2014+) realised the model's end state
+    instead of the defence's touchdown;
+  - a kickoff return touchdown is the receiver's 7. The taxonomy listed it as a
+    defensive score too, and that -7 won: every return touchdown was booked
+    EPA about -7.7. A game-ending one keeps its score;
+  - a textless copy of a play in its drive (2007-15, 2021-22) is dropped, and so
+    are untyped rows that are not plays (2004's quarter markers, drive headers,
+    a try alone in parentheses).
 
 ## Documentation: CFBD return tables
 

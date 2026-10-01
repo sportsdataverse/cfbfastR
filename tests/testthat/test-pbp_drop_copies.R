@@ -1,6 +1,6 @@
 test_that(".espn_play_copies() drops ESPN's play copies as sdv-py does", {
   # fixtures/parity/copies_oracle.csv.gz: the frame sdv-py hands
-  # _drop_espn_play_copies() for 17 games (in that order), whether sdv-py drops
+  # _drop_espn_play_copies() for 20 games (in that order), whether sdv-py drops
   # each row there or in the adjacent-copy rule after it, and the type a stub
   # echo leaves on the play it repeats. Offline; see fixtures/parity/README.md.
   o <- utils::read.csv(test_path("fixtures", "parity", "copies_oracle.csv.gz"),
@@ -11,7 +11,7 @@ test_that(".espn_play_copies() drops ESPN's play copies as sdv-py does", {
                             as.integer(d$start_down), as.integer(d$start_distance),
                             as.integer(d$start_ytg), d$clock, d$id)
     type <- d$type
-    type[cp$retype] <- type[which(cp$retype) + 1L]
+    type[cp$retype] <- type[cp$from[cp$retype]]
     data.frame(drop = cp$drop, type = type)
   }))
   expect_identical(got$drop, o$sdvpy_drop == "True")
@@ -51,4 +51,17 @@ test_that(".espn_drop_play_copies() drops copies from a Core-v2 frame in any row
   expect_identical(out$type_id, paste0("id:", want))
   expect_identical(out$type_abbreviation, paste0("ab:", want))
   expect_true(any(out$type_text != df$type_text[match(out$tag, df$tag)], na.rm = TRUE))
+})
+
+test_that(".untyped_admin_re flags the untyped rows sdv-py drops before ordering", {
+  # fixtures/parity/admin_oracle.csv.gz: every feed play of six games -- 2004's untyped markers,
+  # "Begin Drive", an OT drive header, empty rows, a lone kick, lone two-point tries in OT -- with
+  # sdv-py's own filter (type null and the text matching _UNTYPED_ADMIN_RE); the wrapper drops
+  # these rows, which is.na(type_text) & this regex reads
+  o <- utils::read.csv(test_path("fixtures", "parity", "admin_oracle.csv.gz"),
+                       colClasses = "character", na.strings = "")
+  text <- ifelse(o$text_null == "True", "", ifelse(is.na(o$text), "", o$text))
+  got <- is.na(o$type) & grepl(.untyped_admin_re, text, ignore.case = TRUE, perl = TRUE)
+  expect_identical(got, o$sdvpy_admin == "True")
+  expect_gte(sum(got), 15L)
 })

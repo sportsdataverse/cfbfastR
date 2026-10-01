@@ -428,7 +428,10 @@
     away_team_abbreviation    = NA_character_,
     away_team_color           = NA_character_,
     away_team_alternate_color = NA_character_,
-    away_team_rank            = NA_integer_
+    away_team_rank            = NA_integer_,
+    # the header's score (the final, once the game is over): sdv-py's score repairs read it
+    home_final_score          = NA_real_,
+    away_final_score          = NA_real_
   )
 
   headers <- c(
@@ -548,6 +551,23 @@
           meta[[paste0(side, "_team_color")]]           <- colr
           meta[[paste0(side, "_team_alternate_color")]] <- altc
           meta[[paste0(side, "_team_rank")]]            <- rank
+          # core-v2 files the score as a $ref; one small request per side, NA if it fails
+          sc <- c[["score"]]
+          meta[[paste0(side, "_final_score")]] <- suppressWarnings(as.numeric(
+            if (is.list(sc) && !is.null(sc[["value"]])) {
+              sc[["value"]]
+            } else if (is.list(sc) && !is.null(sc[["$ref"]])) {
+              tryCatch({
+                r <- httr2::request(sc[["$ref"]]) |>
+                  httr2::req_headers(!!!headers) |>
+                  httr2::req_retry(max_tries = 3) |>
+                  httr2::req_perform()
+                httr2::resp_body_json(r)[["value"]] %||% NA
+              }, error = function(e) NA)
+            } else {
+              NA
+            }
+          ))
         }
       } else {
         meta$game_date <- as.character(raw[["date"]] %||% NA)
