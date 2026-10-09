@@ -82,7 +82,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_percentiles(2004))
 #> ── college football team percentile profiles from the SportsDataverse data repo 
-#> ℹ Data updated: 2026-10-09 03:21:43 UTC
+#> ℹ Data updated: 2026-10-09 05:38:36 UTC
 #> # A tibble: 99 × 27
 #>    pctile   GEI EPAplay pass_success rush_success early_down_success
 #>     <dbl> <dbl>   <dbl>        <dbl>        <dbl>              <dbl>
