@@ -125,16 +125,20 @@ ESPN Schedule"><meta property="og:image" content="https://raw.githubusercontent.
     <li><a class="external-link dropdown-item" href="https://github.com/nwslR/nwslR/">nwslR</a></li>
     <li><a class="external-link dropdown-item" href="https://recruitR.sportsdataverse.org/">recruitR</a></li>
     <li><a class="external-link dropdown-item" href="https://puntalytics.github.io/puntr/">puntr</a></li>
+    <li><a class="external-link dropdown-item" href="https://cfbseedR.sportsdataverse.org/">cfbseedR</a></li>
+    <li><a class="external-link dropdown-item" href="https://sdvplotR.sportsdataverse.org/">sdvplotR</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Python Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://py.sportsdataverse.org/">sportsdataverse-py</a></li>
     <li><a class="external-link dropdown-item" href="https://sportypy.sportsdataverse.org/">sportypy</a></li>
     <li><a class="external-link dropdown-item" href="https://github.com/nwslR/nwslpy/">nwslpy</a></li>
     <li><a class="external-link dropdown-item" href="https://github.com/nathanblumenfeld/collegebaseball/">collegebaseball</a></li>
+    <li><a class="external-link dropdown-item" href="https://sdvplot.sportsdataverse.org/">sdvplot</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Node.js Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://js.sportsdataverse.org/">sportsdataverse.js</a></li>
     <li><a class="external-link dropdown-item" href="https://github.com/nntrn/nfl-nerd/">nfl-nerd</a></li>
+    <li><a class="external-link dropdown-item" href="https://plot.sportsdataverse.org/">sdvplot-js</a></li>
   </ul></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown--data" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><span class="fa fas fa-database"></span>  Data</button>
@@ -315,21 +319,21 @@ shared variables</p><ul><li><p><code>matchup</code>: character.: Long matchup de
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_scoreboard</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Live Scoreboard Data from ESPN ─────────────────────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-01 10:19:38 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 59 × 60</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-09 03:19:18 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 58 × 60</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    matchup          matchup_short season type  slug  game_id game_uid game_date </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Western Kentuck… WKU @ NMSU      <span style="text-decoration: underline;">2</span>026 regu… regu… 401871… s:20~l:… 2026-10-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> North Texas Mea… UNT @ TLSA      <span style="text-decoration: underline;">2</span>026 regu… regu… 401862… s:20~l:… 2026-10-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Pittsburgh Pant… PITT @ VT       <span style="text-decoration: underline;">2</span>026 regu… regu… 401858… s:20~l:… 2026-10-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Liberty Flames … LIB @ DEL       <span style="text-decoration: underline;">2</span>026 regu… regu… 401871… s:20~l:… 2026-10-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Penn State Nitt… PSU @ NU        <span style="text-decoration: underline;">2</span>026 regu… regu… 401858… s:20~l:… 2026-10-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Notre Dame Figh… ND @ UNC        <span style="text-decoration: underline;">2</span>026 regu… regu… 401858… s:20~l:… 2026-10-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Alabama Crimson… ALA @ MSST      <span style="text-decoration: underline;">2</span>026 regu… regu… 401856… s:20~l:… 2026-10-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> UCF Knights at … UCF @ HOU       <span style="text-decoration: underline;">2</span>026 regu… regu… 401856… s:20~l:… 2026-10-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Boston College … BC @ SMU        <span style="text-decoration: underline;">2</span>026 regu… regu… 401858… s:20~l:… 2026-10-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Middle Tennesse… MTSU @ KU       <span style="text-decoration: underline;">2</span>026 regu… regu… 401856… s:20~l:… 2026-10-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 49 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> South Florida B… USF @ UTSA      <span style="text-decoration: underline;">2</span>026 regu… regu… 401862… s:20~l:… 2026-10-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> South Alabama J… USA @ ARST      <span style="text-decoration: underline;">2</span>026 regu… regu… 401869… s:20~l:… 2026-10-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Sam Houston Bea… SHSU @ LIB      <span style="text-decoration: underline;">2</span>026 regu… regu… 401870… s:20~l:… 2026-10-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Missouri State … MOST @ WKU      <span style="text-decoration: underline;">2</span>026 regu… regu… 401871… s:20~l:… 2026-10-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Southern Miss G… USM @ TROY      <span style="text-decoration: underline;">2</span>026 regu… regu… 401871… s:20~l:… 2026-10-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Jacksonville St… JXST @ KENN     <span style="text-decoration: underline;">2</span>026 regu… regu… 401871… s:20~l:… 2026-10-07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> New Mexico Stat… NMSU @ FIU      <span style="text-decoration: underline;">2</span>026 regu… regu… 401871… s:20~l:… 2026-10-07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Florida State S… FSU @ LOU       <span style="text-decoration: underline;">2</span>026 regu… regu… 401858… s:20~l:… 2026-10-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Iowa Hawkeyes a… IOWA @ WASH     <span style="text-decoration: underline;">2</span>026 regu… regu… 401858… s:20~l:… 2026-10-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Washington Stat… WSU @ USU       <span style="text-decoration: underline;">2</span>026 regu… regu… 401860… s:20~l:… 2026-10-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 48 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 52 more variables: attendance &lt;int&gt;, date_valid &lt;lgl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   play_by_play_available &lt;lgl&gt;, home_team_name &lt;chr&gt;, home_team_logo &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_team_abb &lt;chr&gt;, home_team_id &lt;chr&gt;, home_team_location &lt;chr&gt;,</span></span>
@@ -341,7 +345,7 @@ shared variables</p><ul><li><p><code>matchup</code>: character.: Long matchup de
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_schedule</span><span class="op">(</span><span class="fl">2021</span>, week <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Schedule Data from ESPN ────────────────────────────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-01 10:19:38 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-09 03:19:18 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 54 × 62</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    season_type week    matchup matchup_short season type  slug  game_id game_uid</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>

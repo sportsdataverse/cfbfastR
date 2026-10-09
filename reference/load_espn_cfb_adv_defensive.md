@@ -77,20 +77,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_defensive(2004))
 #> ── college football advanced defensive from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-10-01 10:21:39 UTC
+#> ℹ Data updated: 2026-10-09 03:21:20 UTC
 #> # A tibble: 926 × 22
 #>    def_pos_team_id def_pos_team          scrimmage_plays   TFL TFL_pass TFL_rush
 #>              <int> <chr>                           <int> <int>    <int>    <int>
-#>  1              30 USC Trojans                        66     9        5        4
-#>  2             259 Virginia Tech Hokies               60     6        3        3
-#>  3             245 Texas A&M Aggies                   80     5        0        5
+#>  1              30 USC Trojans                        64     9        5        4
+#>  2             259 Virginia Tech Hokies               59     6        3        3
+#>  3             245 Texas A&M Aggies                   77     5        0        5
 #>  4             254 Utah Utes                          73     7        1        6
-#>  5            2050 Ball State Cardinals               75     6        1        4
-#>  6             103 Boston College Eagles              68     8        6        2
-#>  7              77 Northwestern Wildcats              82     7        0        7
-#>  8            2628 TCU Horned Frogs                   97     6        0        6
-#>  9            2638 UTEP Miners                        90    10        3        7
-#> 10               9 Arizona State Sun De…              79     9        3        6
+#>  5             103 Boston College Eagles              67     8        6        2
+#>  6            2050 Ball State Cardinals               73     6        1        4
+#>  7            2628 TCU Horned Frogs                   96     6        0        6
+#>  8              77 Northwestern Wildcats              77     7        0        7
+#>  9               9 Arizona State Sun De…              76     9        3        6
+#> 10            2638 UTEP Miners                        90    10        3        7
 #> # ℹ 916 more rows
 #> # ℹ 16 more variables: havoc_total <int>, havoc_total_rate <dbl>,
 #> #   fumbles <int>, def_int <int>, drive_stopped_rate <dbl>,

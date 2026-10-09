@@ -67,19 +67,19 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_drives(2004))
 #> ── college football advanced drives from the SportsDataverse data repo ─────────
-#> ℹ Data updated: 2026-10-01 10:21:41 UTC
+#> ℹ Data updated: 2026-10-09 03:21:22 UTC
 #> # A tibble: 926 × 12
 #>    pos_team_id pos_team            drive_total_availabl…¹ drive_total_gained_y…²
 #>          <int> <chr>                                <dbl>                  <int>
-#>  1         259 Virginia Tech Hoki…                   5143                   2356
-#>  2          30 USC Trojans                           4434                   2485
-#>  3         254 Utah Utes                             5758                   3452
+#>  1         259 Virginia Tech Hoki…                   4975                   2342
+#>  2          30 USC Trojans                           4352                   2426
+#>  3         254 Utah Utes                             5555                   3344
 #>  4         245 Texas A&M Aggies                      5406                   2628
-#>  5         103 Boston College Eag…                   6169                   2287
-#>  6        2050 Ball State Cardina…                   4397                   1289
-#>  7          77 Northwestern Wildc…                   6685                   5130
-#>  8        2628 TCU Horned Frogs                      5586                   3514
-#>  9        2638 UTEP Miners                           5922                   1808
+#>  5        2050 Ball State Cardina…                   4352                   1298
+#>  6         103 Boston College Eag…                   6045                   2220
+#>  7          77 Northwestern Wildc…                   6610                   5055
+#>  8        2628 TCU Horned Frogs                      5320                   3427
+#>  9        2638 UTEP Miners                           5736                   1756
 #> 10           9 Arizona State Sun …                   6045                   3656
 #> # ℹ 916 more rows
 #> # ℹ abbreviated names: ¹​drive_total_available_yards, ²​drive_total_gained_yards

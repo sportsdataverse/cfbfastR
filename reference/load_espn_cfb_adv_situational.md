@@ -130,20 +130,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_situational(2004))
 #> ── college football advanced situational from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-10-01 10:21:45 UTC
+#> ℹ Data updated: 2026-10-09 03:21:26 UTC
 #> # A tibble: 926 × 74
 #>    pos_team_id pos_team            EPA_success EPA_success_rate EPA_success_pass
 #>          <int> <chr>                     <int>            <dbl>            <int>
-#>  1          30 USC Trojans                  26            0.433               14
-#>  2         259 Virginia Tech Hoki…          22            0.333               11
-#>  3         245 Texas A&M Aggies             26            0.356               13
-#>  4         254 Utah Utes                    39            0.488               20
-#>  5         103 Boston College Eag…          28            0.373               10
-#>  6        2050 Ball State Cardina…          18            0.265               10
-#>  7          77 Northwestern Wildc…          48            0.495               31
-#>  8        2628 TCU Horned Frogs             39            0.476               19
-#>  9        2638 UTEP Miners                  21            0.266               13
-#> 10           9 Arizona State Sun …          32            0.356               19
+#>  1         259 Virginia Tech Hoki…          21            0.328               10
+#>  2          30 USC Trojans                  25            0.424               14
+#>  3         254 Utah Utes                    38            0.494               20
+#>  4         245 Texas A&M Aggies             27            0.370               14
+#>  5        2050 Ball State Cardina…          17            0.254                9
+#>  6         103 Boston College Eag…          26            0.356               10
+#>  7        2628 TCU Horned Frogs             36            0.468               19
+#>  8          77 Northwestern Wildc…          49            0.510               31
+#>  9        2638 UTEP Miners                  22            0.289               13
+#> 10           9 Arizona State Sun …          31            0.344               18
 #> # ℹ 916 more rows
 #> # ℹ 69 more variables: EPA_success_pass_rate <dbl>, EPA_success_rush <int>,
 #> #   EPA_success_rush_rate <dbl>, EPA_success_rz <int>,

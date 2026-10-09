@@ -31,27 +31,27 @@ template.
 # \donttest{
   try(fox_cfb_standings(team_id = "11"))
 #> ── Standings data from Fox Sports (Bifrost) ───────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-01 10:21:15 UTC
+#> ℹ Data updated: 2026-10-09 03:20:49 UTC
 #> # A tibble: 17 × 12
 #>    team_id section    atlantic_coast v2      conf  w_l   home  away  pf    pa   
 #>    <chr>   <chr>      <chr>          <chr>   <chr> <chr> <chr> <chr> <chr> <chr>
-#>  1 11      CONFERENCE 1              Miami … 2-0   4-0   2-0   2-0   207   36   
-#>  2 11      CONFERENCE 2              Clemson 2-0   3-1   2-0   1-1   84    88   
+#>  1 11      CONFERENCE 1              Miami … 3-0   5-0   2-0   3-0   248   49   
+#>  2 11      CONFERENCE 2              Pittsb… 2-0   5-0   4-0   1-0   192   67   
 #>  3 11      CONFERENCE 3              Duke    1-0   4-0   3-0   1-0   145   44   
-#>  4 11      CONFERENCE 4              Pittsb… 1-0   4-0   4-0   0-0   157   34   
-#>  5 11      CONFERENCE 5              Virgin… 1-0   4-0   2-0   2-0   173   64   
-#>  6 11      CONFERENCE 6              Virgin… 1-0   3-1   3-0   0-0   162   52   
-#>  7 11      CONFERENCE 7              SMU     1-1   3-1   2-0   1-1   148   99   
-#>  8 11      CONFERENCE 8              Wake F… 1-1   3-1   1-1   2-0   126   112  
-#>  9 11      CONFERENCE 9              Louisv… 1-1   2-2   2-1   0-0   165   115  
-#> 10 11      CONFERENCE 10             Califo… 1-1   2-2   1-2   1-0   104   94   
-#> 11 11      CONFERENCE 11             Stanfo… 1-2   2-2   2-1   0-1   84    134  
-#> 12 11      CONFERENCE 12             North … 0-1   2-1   1-0   0-1   70    41   
-#> 13 11      CONFERENCE 13             Florid… 0-1   2-2   2-1   0-1   128   101  
-#> 14 11      CONFERENCE 14             Boston… 0-1   2-2   2-1   0-1   79    92   
-#> 15 11      CONFERENCE 15             NC Sta… 0-1   2-2   2-0   0-2   153   100  
-#> 16 11      CONFERENCE 16             Georgi… 0-1   1-3   1-2   0-1   108   104  
-#> 17 11      CONFERENCE 17             Syracu… 0-2   1-2   1-1   0-1   97    51   
+#>  4 11      CONFERENCE 4              Wake F… 2-1   4-1   2-1   2-0   183   115  
+#>  5 11      CONFERENCE 5              SMU     2-1   4-1   3-0   1-1   173   115  
+#>  6 11      CONFERENCE 6              Clemson 2-1   3-2   2-1   1-1   97    129  
+#>  7 11      CONFERENCE 7              Virgin… 1-1   4-1   2-1   2-0   206   99   
+#>  8 11      CONFERENCE 8              Florid… 1-1   3-2   3-1   0-1   166   108  
+#>  9 11      CONFERENCE 9              Virgin… 1-1   3-2   3-0   0-1   169   90   
+#> 10 11      CONFERENCE 10             NC Sta… 1-1   3-2   3-0   0-2   184   128  
+#> 11 11      CONFERENCE 11             Califo… 1-1   2-3   1-2   1-1   135   133  
+#> 12 11      CONFERENCE 12             Louisv… 1-2   2-3   2-1   0-1   193   146  
+#> 13 11      CONFERENCE 13             Stanfo… 1-3   2-3   2-1   0-2   87    191  
+#> 14 11      CONFERENCE 14             North … 0-1   2-2   1-1   0-1   96    78   
+#> 15 11      CONFERENCE 15             Georgi… 0-1   1-3   1-2   0-1   108   104  
+#> 16 11      CONFERENCE 16             Syracu… 0-2   2-2   1-1   1-1   139   92   
+#> 17 11      CONFERENCE 17             Boston… 0-2   2-3   2-1   0-2   95    117  
 #> # ℹ 2 more variables: strk <chr>, entity_id <chr>
 # }
 ```

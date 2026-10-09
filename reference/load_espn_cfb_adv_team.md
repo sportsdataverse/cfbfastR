@@ -136,20 +136,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_team(2004))
 #> ── college football advanced team from the SportsDataverse data repo ───────────
-#> ℹ Data updated: 2026-10-01 10:21:47 UTC
+#> ℹ Data updated: 2026-10-09 03:21:28 UTC
 #> # A tibble: 926 × 80
 #>    pos_team_id pos_team       rushing_highlight_ya…¹ total_pen_yards EPA_penalty
 #>          <int> <chr>                           <dbl>           <int>       <dbl>
-#>  1         259 Virginia Tech…                   6.17               5        1.86
-#>  2          30 USC Trojans                      4.32              -5       -0.56
-#>  3         254 Utah Utes                        5.25             -45       -4.41
-#>  4         245 Texas A&M Agg…                   7.63             -50       -6.5 
-#>  5         103 Boston Colleg…                   4.91             -26       -1.14
-#>  6        2050 Ball State Ca…                   3.32              -8       -0.7 
-#>  7          77 Northwestern …                   5.4               45        6.3 
-#>  8        2628 TCU Horned Fr…                   4.21             -13       -1.69
-#>  9           9 Arizona State…                   3.21              -6        0.49
-#> 10        2638 UTEP Miners                      4.27              10        1.07
+#>  1          30 USC Trojans                      4.32              -5       -0.58
+#>  2         259 Virginia Tech…                   6.17               5        2.04
+#>  3         254 Utah Utes                        5.25             -45       -4.36
+#>  4         245 Texas A&M Agg…                   7.63             -50       -6.25
+#>  5        2050 Ball State Ca…                   3.32              -8       -0.87
+#>  6         103 Boston Colleg…                   4.91             -26       -1.35
+#>  7          77 Northwestern …                   5.4               45        6.51
+#>  8        2628 TCU Horned Fr…                   4.21             -13       -1.81
+#>  9        2638 UTEP Miners                      4.27              10        1.46
+#> 10           9 Arizona State…                   3.21              -6        0.6 
 #> # ℹ 916 more rows
 #> # ℹ abbreviated name: ¹​rushing_highlight_yards_per_opp
 #> # ℹ 75 more variables: penalty_first_downs_created <int>,

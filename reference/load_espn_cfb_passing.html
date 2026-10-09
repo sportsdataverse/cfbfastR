@@ -127,16 +127,20 @@ espn_cfb_passing release tag on the sportsdataverse-data repo."><meta property="
     <li><a class="external-link dropdown-item" href="https://github.com/nwslR/nwslR/">nwslR</a></li>
     <li><a class="external-link dropdown-item" href="https://recruitR.sportsdataverse.org/">recruitR</a></li>
     <li><a class="external-link dropdown-item" href="https://puntalytics.github.io/puntr/">puntr</a></li>
+    <li><a class="external-link dropdown-item" href="https://cfbseedR.sportsdataverse.org/">cfbseedR</a></li>
+    <li><a class="external-link dropdown-item" href="https://sdvplotR.sportsdataverse.org/">sdvplotR</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Python Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://py.sportsdataverse.org/">sportsdataverse-py</a></li>
     <li><a class="external-link dropdown-item" href="https://sportypy.sportsdataverse.org/">sportypy</a></li>
     <li><a class="external-link dropdown-item" href="https://github.com/nwslR/nwslpy/">nwslpy</a></li>
     <li><a class="external-link dropdown-item" href="https://github.com/nathanblumenfeld/collegebaseball/">collegebaseball</a></li>
+    <li><a class="external-link dropdown-item" href="https://sdvplot.sportsdataverse.org/">sdvplot</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Node.js Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://js.sportsdataverse.org/">sportsdataverse.js</a></li>
     <li><a class="external-link dropdown-item" href="https://github.com/nntrn/nfl-nerd/">nfl-nerd</a></li>
+    <li><a class="external-link dropdown-item" href="https://plot.sportsdataverse.org/">sdvplot-js</a></li>
   </ul></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown--data" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><span class="fa fas fa-database"></span>  Data</button>
@@ -220,22 +224,22 @@ writes the season data into a database.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">load_espn_cfb_passing</span><span class="op">(</span><span class="fl">2004</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── college football passing EPA splits from the SportsDataverse data repo ──────</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-01 10:21:56 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 373 × 73</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-09 03:21:37 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 373 × 98</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    team_id pos_team      division conference season player_id passer_player_name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 52      Florida State fbs      ACC          <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">100</span>622 Chris Rix         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 70      Idaho         fbs      Sun Belt     <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">150</span>917 Brian Nooy        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2711    Western Mich… fbs      Mid-Ameri…   <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">115</span>823 Ryan Cubit        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2390    Miami         fbs      ACC          <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">100</span>223 Brock Berlin      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 264     Washington    fbs      Pac-10       <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">119</span>010 Casey Paus        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 97      Louisville    fbs      Conferenc…   <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">112</span>516 Stefan LeFors     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2426    Navy          fbs      FBS Indep…   <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">136</span>727 Frank Divis       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 197     Oklahoma Sta… fbs      Big 12       <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">145</span>776 Al Pena           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2655    Tulane        fbs      Conferenc…   <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">134</span>032 Lester Ricard     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2440    Nevada        fbs      Western A…   <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">120</span>993 Andy Heiser       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2572    Southern Miss fbs      Conferenc…   <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">147</span>930 Jeremy Young      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 152     NC State      fbs      ACC          <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">118</span>122 Jay Davis         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 24      Stanford      fbs      Pac-10       <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">137</span>101 Trent Edwards     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2509    Purdue        fbs      Big Ten      <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">119</span>363 Brandon Jones     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2348    Louisiana Te… fbs      Western A…   <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">120</span>824 Matt Kubik        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2711    Western Mich… fbs      Mid-Ameri…   <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">115</span>462 Blayne Baggett    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2199    Eastern Mich… fbs      Mid-Ameri…   <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">122</span>358 Jeff Crooks       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2309    Kent State    fbs      Mid-Ameri…   <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">135</span>519 Antwan Smith      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 238     Vanderbilt    fbs      SEC          <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">134</span>201 Steven Bright     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 154     Wake Forest   fbs      ACC          <span style="text-decoration: underline;">2</span>004    <span style="text-decoration: underline;">116</span>872 Cory Randolph     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 363 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 66 more variables: plays &lt;int&gt;, games &lt;int&gt;, team_games &lt;int&gt;, TEPA &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 91 more variables: plays &lt;int&gt;, games &lt;int&gt;, team_games &lt;int&gt;, TEPA &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   EPAplay &lt;dbl&gt;, yards &lt;dbl&gt;, success &lt;dbl&gt;, comp &lt;dbl&gt;, att &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   comppct &lt;dbl&gt;, passing_td &lt;dbl&gt;, playsgame &lt;dbl&gt;, EPAgame &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   yardsplay &lt;dbl&gt;, yardsgame &lt;dbl&gt;, sacked &lt;int&gt;, sack_yds &lt;int&gt;,</span></span>

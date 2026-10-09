@@ -87,20 +87,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_passing(2004))
 #> ── college football advanced passing from the SportsDataverse data repo ────────
-#> ℹ Data updated: 2026-10-01 10:21:42 UTC
+#> ℹ Data updated: 2026-10-09 03:21:23 UTC
 #> # A tibble: 1,520 × 37
 #>    pos_team_id pos_team passer_player_name  Comp   Att xComp   Yds Pass_TD   Int
 #>          <int> <chr>    <chr>              <int> <int> <dbl> <dbl>   <int> <int>
-#>  1          30 USC Tro… Matt Leinart          19    29 17.8    155       3     0
-#>  2         259 Virgini… Bryan Randall         14    29 19.3    141       1     1
+#>  1          30 USC Tro… Matt Leinart          19    29 17.8    272       3     0
+#>  2         259 Virgini… Bryan Randall         14    29 19.3    153       1     1
 #>  3         245 Texas A… Reggie McNeal         13    34 18.0    212       0     0
-#>  4         254 Utah Ut… Alex Smith            21    29 17.9    230       3     0
+#>  4         254 Utah Ut… Alex Smith            21    29 17.9    359       3     0
 #>  5         245 Texas A… Ty Branyon             6     8  4.01    60       0     0
 #>  6         254 Utah Ut… Brian Johnson          1     2  1.24    11       0     0
 #>  7        2050 Ball St… Joey Lynch            19    33 20.7    146       0     0
-#>  8         103 Boston … Paul Peterson         13    24 14.2    124       1     1
-#>  9          77 Northwe… Brett Basanez         37    59 31.2    349       4     1
-#> 10        2628 TCU Hor… Tye Gunn              20    38 22.3    209       4     1
+#>  8         103 Boston … Paul Peterson         13    24 14.2    140       1     1
+#>  9          77 Northwe… Brett Basanez         37    59 31.2    495       4     1
+#> 10        2628 TCU Hor… Tye Gunn              20    38 22.3    375       4     1
 #> # ℹ 1,510 more rows
 #> # ℹ 28 more variables: YPA <dbl>, EPA <dbl>, EPA_per_Play <dbl>, WPA <dbl>,
 #> #   SR <dbl>, Sck <int>, CompPct <dbl>, xCompPct <dbl>, CPOE <dbl>,

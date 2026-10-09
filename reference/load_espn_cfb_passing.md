@@ -101,22 +101,22 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_passing(2004))
 #> ── college football passing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-10-01 10:21:56 UTC
-#> # A tibble: 373 × 73
+#> ℹ Data updated: 2026-10-09 03:21:37 UTC
+#> # A tibble: 373 × 98
 #>    team_id pos_team      division conference season player_id passer_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 52      Florida State fbs      ACC          2004    100622 Chris Rix         
-#>  2 70      Idaho         fbs      Sun Belt     2004    150917 Brian Nooy        
-#>  3 2711    Western Mich… fbs      Mid-Ameri…   2004    115823 Ryan Cubit        
-#>  4 2390    Miami         fbs      ACC          2004    100223 Brock Berlin      
-#>  5 264     Washington    fbs      Pac-10       2004    119010 Casey Paus        
-#>  6 97      Louisville    fbs      Conferenc…   2004    112516 Stefan LeFors     
-#>  7 2426    Navy          fbs      FBS Indep…   2004    136727 Frank Divis       
-#>  8 197     Oklahoma Sta… fbs      Big 12       2004    145776 Al Pena           
-#>  9 2655    Tulane        fbs      Conferenc…   2004    134032 Lester Ricard     
-#> 10 2440    Nevada        fbs      Western A…   2004    120993 Andy Heiser       
+#>  1 2572    Southern Miss fbs      Conferenc…   2004    147930 Jeremy Young      
+#>  2 152     NC State      fbs      ACC          2004    118122 Jay Davis         
+#>  3 24      Stanford      fbs      Pac-10       2004    137101 Trent Edwards     
+#>  4 2509    Purdue        fbs      Big Ten      2004    119363 Brandon Jones     
+#>  5 2348    Louisiana Te… fbs      Western A…   2004    120824 Matt Kubik        
+#>  6 2711    Western Mich… fbs      Mid-Ameri…   2004    115462 Blayne Baggett    
+#>  7 2199    Eastern Mich… fbs      Mid-Ameri…   2004    122358 Jeff Crooks       
+#>  8 2309    Kent State    fbs      Mid-Ameri…   2004    135519 Antwan Smith      
+#>  9 238     Vanderbilt    fbs      SEC          2004    134201 Steven Bright     
+#> 10 154     Wake Forest   fbs      ACC          2004    116872 Cory Randolph     
 #> # ℹ 363 more rows
-#> # ℹ 66 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
+#> # ℹ 91 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <dbl>, success <dbl>, comp <dbl>, att <dbl>,
 #> #   comppct <dbl>, passing_td <dbl>, playsgame <dbl>, EPAgame <dbl>,
 #> #   yardsplay <dbl>, yardsgame <dbl>, sacked <int>, sack_yds <int>,

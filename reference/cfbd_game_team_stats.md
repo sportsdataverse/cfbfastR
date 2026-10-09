@@ -184,22 +184,22 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_team_stats(2022, team = "LSU"))
 #> ── Team stats data from CollegeFootballData.com ───────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-01 10:12:36 UTC
+#> ℹ Data updated: 2026-10-09 03:12:55 UTC
 #> # A tibble: 13 × 78
 #>      game_id school conference home_away opponent     opponent_conference points
 #>        <int> <chr>  <chr>      <chr>     <chr>        <chr>                <int>
 #>  1 401403923 LSU    SEC        home      Ole Miss     SEC                     45
 #>  2 401403939 LSU    SEC        away      Arkansas     SEC                     13
-#>  3 401403873 LSU    SEC        home      Southern     SWAC                    65
-#>  4 401403903 LSU    SEC        away      Auburn       SEC                     21
-#>  5 401403867 LSU    SEC        away      Florida Sta… ACC                     23
-#>  6 401403934 LSU    SEC        home      Alabama      SEC                     32
-#>  7 401437036 LSU    SEC        away      Georgia      SEC                     30
-#>  8 401403963 LSU    SEC        away      Texas A&M    SEC                     23
-#>  9 401426612 LSU    SEC        home      UAB          Conference USA          41
-#> 10 401403897 LSU    SEC        home      New Mexico   Mountain West           38
-#> 11 401403917 LSU    SEC        away      Florida      SEC                     45
-#> 12 401403885 LSU    SEC        home      Mississippi… SEC                     31
+#>  3 401403963 LSU    SEC        away      Texas A&M    SEC                     23
+#>  4 401403885 LSU    SEC        home      Mississippi… SEC                     31
+#>  5 401437036 LSU    SEC        away      Georgia      SEC                     30
+#>  6 401403867 LSU    SEC        away      Florida Sta… ACC                     23
+#>  7 401403873 LSU    SEC        home      Southern     SWAC                    65
+#>  8 401403903 LSU    SEC        away      Auburn       SEC                     21
+#>  9 401403934 LSU    SEC        home      Alabama      SEC                     32
+#> 10 401426612 LSU    SEC        home      UAB          Conference USA          41
+#> 11 401403897 LSU    SEC        home      New Mexico   Mountain West           38
+#> 12 401403917 LSU    SEC        away      Florida      SEC                     45
 #> 13 401403913 LSU    SEC        home      Tennessee    SEC                     13
 #> # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
 #> #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
@@ -211,22 +211,22 @@ Other CFBD Games:
 
   try(cfbd_game_team_stats(2013, team = "Florida State"))
 #> ── Team stats data from CollegeFootballData.com ───────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-01 10:12:36 UTC
+#> ℹ Data updated: 2026-10-09 03:12:55 UTC
 #> # A tibble: 13 × 78
 #>      game_id school     conference home_away opponent opponent_conference points
 #>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
 #>  1 332640052 Florida S… ACC        home      Bethune… MEAC                    54
-#>  2 332570052 Florida S… ACC        home      Nevada   Mountain West           62
-#>  3 332710103 Florida S… ACC        away      Boston … ACC                     48
-#>  4 332780052 Florida S… ACC        home      Maryland ACC                     63
-#>  5 333060052 Florida S… ACC        home      Miami    ACC                     41
-#>  6 333340057 Florida S… ACC        away      Florida  SEC                     37
-#>  7 333410052 Florida S… ACC        home      Duke     ACC                     45
+#>  2 332990052 Florida S… ACC        home      NC State ACC                     49
+#>  3 333060052 Florida S… ACC        home      Miami    ACC                     41
+#>  4 333200052 Florida S… ACC        home      Syracuse ACC                     59
+#>  5 333340057 Florida S… ACC        away      Florida  SEC                     37
+#>  6 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
+#>  7 333130154 Florida S… ACC        away      Wake Fo… ACC                     59
 #>  8 333270052 Florida S… ACC        home      Idaho    FBS Independents        80
-#>  9 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
-#> 10 332990052 Florida S… ACC        home      NC State ACC                     49
-#> 11 333200052 Florida S… ACC        home      Syracuse ACC                     59
-#> 12 333130154 Florida S… ACC        away      Wake Fo… ACC                     59
+#>  9 332570052 Florida S… ACC        home      Nevada   Mountain West           62
+#> 10 332710103 Florida S… ACC        away      Boston … ACC                     48
+#> 11 332780052 Florida S… ACC        home      Maryland ACC                     63
+#> 12 333410052 Florida S… ACC        home      Duke     ACC                     45
 #> 13 332920228 Florida S… ACC        away      Clemson  ACC                     51
 #> # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
 #> #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,

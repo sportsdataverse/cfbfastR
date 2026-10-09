@@ -84,26 +84,26 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_rushing(2004))
 #> ── college football rushing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-10-01 10:22:10 UTC
-#> # A tibble: 1,122 × 47
+#> ℹ Data updated: 2026-10-09 03:21:50 UTC
+#> # A tibble: 1,122 × 78
 #>    team_id pos_team      division conference season player_id rusher_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 2132    Cincinnati    fbs      Conferenc…   2004    162868 Bradley Glatthaar 
-#>  2 275     Wisconsin     fbs      Big Ten      2004    133680 John Stocco       
-#>  3 52      Florida State fbs      ACC          2004    166664 Jamaal Edwards    
-#>  4 2579    South Caroli… fbs      SEC          2004    107316 Dondrial Pinkins  
-#>  5 328     Utah State    fbs      Sun Belt     2004    149350 Tyrone McKinney   
-#>  6 66      Iowa State    fbs      Big 12       2004    133885 Stevie Hicks      
-#>  7 221     Pittsburgh    fbs      Big East     2004    146284 Chris McKillop    
-#>  8 2483    Oregon        fbs      Pac-10       2004    120705 Jared Siegel      
-#>  9 2641    Texas Tech    fbs      Big 12       2004    160411 Danny Amendola    
-#> 10 2633    Tennessee     fbs      SEC          2004    148820 David Yancey      
+#>  1 2751    Wyoming       fbs      Mountain …   2004    116535 Jovon Bouknight   
+#>  2 344     Mississippi … fbs      SEC          2004    102584 Fred Reid         
+#>  3 189     Bowling Green fbs      Mid-Ameri…   2004    147083 Dan Macon         
+#>  4 36      Colorado Sta… fbs      Mountain …   2004    166677 a Johnson         
+#>  5 245     Texas A&M     fbs      Big 12       2004    120246 Terrence Murphy   
+#>  6 349     Army          fbs      Conferenc…   2004    130159 Reggie Nevels     
+#>  7 135     Minnesota     fbs      Big Ten      2004    146122 Justin Valentine  
+#>  8 150     Duke          fbs      ACC          2004    137096 Curt Dukes        
+#>  9 2294    Iowa          fbs      Big Ten      2004    145995 Champ Davis       
+#> 10 2348    Louisiana Te… fbs      Western A…   2004    150699 Donald Allen      
 #> # ℹ 1,112 more rows
-#> # ℹ 40 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
+#> # ℹ 71 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, rushing_td <dbl>, fumbles <dbl>,
 #> #   playsgame <dbl>, EPAgame <dbl>, yardsplay <dbl>, yardsgame <dbl>,
-#> #   TEPA_rank <dbl>, EPAgame_rank <dbl>, EPAplay_rank <dbl>,
-#> #   success_rank <dbl>, plays_rank <dbl>, yards_rank <dbl>,
-#> #   rushing_td_rank <dbl>, fumbles_rank <dbl>, yardsplay_rank <dbl>, …
+#> #   dispersion_games <int>, EPAplay_sd <dbl>, EPAplay_p10 <dbl>,
+#> #   EPAplay_p90 <dbl>, boom_rate <dbl>, bust_rate <dbl>,
+#> #   line_yards_share <dbl>, second_level_share <dbl>, open_field_share <dbl>, …
 # }
 ```

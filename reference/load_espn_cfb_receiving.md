@@ -87,26 +87,26 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_receiving(2004))
 #> ── college football receiving EPA splits from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-10-01 10:22:09 UTC
-#> # A tibble: 1,418 × 55
+#> ℹ Data updated: 2026-10-09 03:21:49 UTC
+#> # A tibble: 1,418 × 77
 #>    team_id pos_team    division conference season player_id receiver_player_name
 #>    <chr>   <chr>       <chr>    <chr>       <int>     <int> <chr>               
-#>  1 154     Wake Forest fbs      ACC          2004    116873 Cornelius Birgs     
-#>  2 2509    Purdue      fbs      Big Ten      2004    119366 Jerod Void          
-#>  3 356     Illinois    fbs      Big Ten      2004    125169 Ade Adeyemo         
-#>  4 59      Georgia Te… fbs      ACC          2004    100610 Darius Williams     
-#>  5 41      Connecticut fbs      Big East     2004    103324 Keron Henry         
-#>  6 26      UCLA        fbs      Pac-10       2004    137177 Marcedes Lewis      
-#>  7 26      UCLA        fbs      Pac-10       2004    159806 Marcus Everett      
-#>  8 228     Clemson     fbs      ACC          2004    116343 Charlie Whitehurst  
-#>  9 50      Florida A&M fbs      FBS Indep…   2004    140683 Rashard Pompey      
-#> 10 2711    Western Mi… fbs      Mid-Ameri…   2004    115461 Greg Jennings       
+#>  1 2638    UTEP        fbs      Western A…   2004    107928 Jahmal Fenner       
+#>  2 103     Boston Col… fbs      Big East     2004    102291 Grant Adams         
+#>  3 2294    Iowa        fbs      Big Ten      2004    113714 Marques Simmons     
+#>  4 277     West Virgi… fbs      Big East     2004    134809 Charles Hales       
+#>  5 57      Florida     fbs      SEC          2004    146519 Chad Jackson        
+#>  6 259     Virginia T… fbs      ACC          2004    146415 Duane Brown         
+#>  7 2572    Southern M… fbs      Conferenc…   2004    147923 Anthony Perine      
+#>  8 242     Rice        fbs      Western A…   2004    138694 Mike Falco          
+#>  9 356     Illinois    fbs      Big Ten      2004    120315 Kendrick Jones      
+#> 10 264     Washington  fbs      Pac-10       2004    120846 Shelton Sampson     
 #> # ℹ 1,408 more rows
-#> # ℹ 48 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
+#> # ℹ 70 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, comp <int>, targets <int>,
 #> #   passing_td <dbl>, fumbles <dbl>, playsgame <dbl>, EPAgame <dbl>,
-#> #   yardsplay <dbl>, yardsgame <dbl>, catchpct <dbl>, TEPA_rank <dbl>,
-#> #   EPAgame_rank <dbl>, EPAplay_rank <dbl>, success_rank <dbl>,
-#> #   comp_rank <dbl>, targets_rank <dbl>, catchpct_rank <dbl>, …
+#> #   yardsplay <dbl>, yardsgame <dbl>, catchpct <dbl>, dispersion_games <int>,
+#> #   EPAplay_sd <dbl>, EPAplay_p10 <dbl>, EPAplay_p90 <dbl>, boom_rate <dbl>,
+#> #   bust_rate <dbl>, TEPA_rank <dbl>, EPAgame_rank <dbl>, EPAplay_rank <dbl>, …
 # }
 ```

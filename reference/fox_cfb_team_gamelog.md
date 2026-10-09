@@ -44,20 +44,20 @@ A `cfbfastR`-tagged tibble with one row per (game, stat):
 # \donttest{
   try(fox_cfb_team_gamelog(team_id = "11"))
 #> ── Team game log from Fox Sports (Bifrost) ────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-01 10:21:16 UTC
-#> # A tibble: 272 × 8
+#> ℹ Data updated: 2026-10-09 03:20:50 UTC
+#> # A tibble: 340 × 8
 #>    team_id season_type    category game_id game_date opponent stat     value
 #>    <chr>   <chr>          <chr>    <chr>   <chr>     <chr>    <chr>    <chr>
-#>  1 11      REGULAR SEASON passing  43397   9/26      CMU      comp     27   
-#>  2 11      REGULAR SEASON passing  43397   9/26      CMU      att      34   
-#>  3 11      REGULAR SEASON passing  43397   9/26      CMU      pct      79.4 
-#>  4 11      REGULAR SEASON passing  43397   9/26      CMU      yds      371  
-#>  5 11      REGULAR SEASON passing  43397   9/26      CMU      pyds_att 16.8 
-#>  6 11      REGULAR SEASON passing  43397   9/26      CMU      td       3    
-#>  7 11      REGULAR SEASON passing  43397   9/26      CMU      int      0    
-#>  8 11      REGULAR SEASON passing  43397   9/26      CMU      sck      2    
-#>  9 11      REGULAR SEASON passing  43397   9/26      CMU      yds_2    18   
-#> 10 11      REGULAR SEASON passing  43397   9/26      CMU      qbr      200.2
-#> # ℹ 262 more rows
+#>  1 11      REGULAR SEASON passing  43479   10/3      @CLEM    comp     18   
+#>  2 11      REGULAR SEASON passing  43479   10/3      @CLEM    att      27   
+#>  3 11      REGULAR SEASON passing  43479   10/3      @CLEM    pct      66.7 
+#>  4 11      REGULAR SEASON passing  43479   10/3      @CLEM    yds      227  
+#>  5 11      REGULAR SEASON passing  43479   10/3      @CLEM    pyds_att 15.5 
+#>  6 11      REGULAR SEASON passing  43479   10/3      @CLEM    td       1    
+#>  7 11      REGULAR SEASON passing  43479   10/3      @CLEM    int      0    
+#>  8 11      REGULAR SEASON passing  43479   10/3      @CLEM    sck      2    
+#>  9 11      REGULAR SEASON passing  43479   10/3      @CLEM    yds_2    7    
+#> 10 11      REGULAR SEASON passing  43479   10/3      @CLEM    qbr      149.5
+#> # ℹ 330 more rows
 # }
 ```
