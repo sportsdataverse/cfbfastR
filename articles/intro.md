@@ -169,9 +169,9 @@ progressr::with_progress({
 tictoc::toc()
 ```
 
-    ## 77.437 sec elapsed
+    ## 80.515 sec elapsed
 
-In the selected seasons, there are 13563 games for which the data
+In the selected seasons, there are 13601 games for which the data
 repository has play by play data. In the present term, the data
 repository supplies over a million rows of play by play data with 362
 columns of data. The most relevant play columns are kept to the left of
@@ -182,7 +182,7 @@ the data frame for clarity, let’s take a look at the first 40 or so.
 glimpse(pbp[1:40])
 ```
 
-    ## Rows: 2,420,039
+    ## Rows: 2,426,658
     ## Columns: 40
     ## $ year               <int> 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 201…
     ## $ week               <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …

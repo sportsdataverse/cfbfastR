@@ -67,20 +67,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_drives(2004))
 #> ── college football advanced drives from the SportsDataverse data repo ─────────
-#> ℹ Data updated: 2026-10-09 05:38:15 UTC
+#> ℹ Data updated: 2026-10-10 23:21:48 UTC
 #> # A tibble: 926 × 12
 #>    pos_team_id pos_team            drive_total_availabl…¹ drive_total_gained_y…²
 #>          <int> <chr>                                <dbl>                  <int>
-#>  1         259 Virginia Tech Hoki…                   4975                   2342
-#>  2          30 USC Trojans                           4352                   2426
-#>  3         254 Utah Utes                             5555                   3344
-#>  4         245 Texas A&M Aggies                      5406                   2628
-#>  5        2050 Ball State Cardina…                   4352                   1298
-#>  6         103 Boston College Eag…                   6045                   2220
-#>  7          77 Northwestern Wildc…                   6610                   5055
-#>  8        2628 TCU Horned Frogs                      5320                   3427
-#>  9        2638 UTEP Miners                           5736                   1756
-#> 10           9 Arizona State Sun …                   6045                   3656
+#>  1         259 Virginia Tech Hoki…                    904                    295
+#>  2          30 USC Trojans                            759                    370
+#>  3         254 Utah Utes                             1038                    538
+#>  4         245 Texas A&M Aggies                      1112                    400
+#>  5        2050 Ball State Cardina…                    896                    207
+#>  6         103 Boston College Eag…                   1117                    305
+#>  7        2628 TCU Horned Frogs                      1164                    514
+#>  8          77 Northwestern Wildc…                    946                    655
+#>  9           9 Arizona State Sun …                   1055                    484
+#> 10        2638 UTEP Miners                           1363                    350
 #> # ℹ 916 more rows
 #> # ℹ abbreviated names: ¹​drive_total_available_yards, ²​drive_total_gained_yards
 #> # ℹ 8 more variables: avg_field_position <dbl>, plays_per_drive <dbl>,

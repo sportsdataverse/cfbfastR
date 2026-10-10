@@ -56,15 +56,15 @@ Other CFBD Teams:
 # \donttest{
   try(cfbd_team_matchup_records("Texas", "Oklahoma"))
 #> ── Team matchup record from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-09 05:33:49 UTC
+#> ℹ Data updated: 2026-10-10 23:16:22 UTC
 #> # A tibble: 1 × 7
 #>   start_year end_year team1 team1_wins team2    team2_wins  ties
 #>        <int>    <int> <chr>      <int> <chr>         <int> <int>
-#> 1       1902     2025 Texas         62 Oklahoma         51     5
+#> 1       1902     2026 Texas         62 Oklahoma         51     6
 
   try(cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975))
 #> ── Team matchup record from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-09 05:33:49 UTC
+#> ℹ Data updated: 2026-10-10 23:16:23 UTC
 #> # A tibble: 1 × 7
 #>   start_year end_year team1     team1_wins team2 team2_wins  ties
 #>        <int>    <int> <chr>          <int> <chr>      <int> <int>

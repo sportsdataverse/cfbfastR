@@ -263,20 +263,20 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_scoreboard())
 #> ── Live Scoreboard Data from ESPN ─────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-09 05:36:08 UTC
+#> ℹ Data updated: 2026-10-10 23:19:13 UTC
 #> # A tibble: 58 × 60
 #>    matchup          matchup_short season type  slug  game_id game_uid game_date 
 #>    <chr>            <chr>          <int> <chr> <chr> <chr>   <chr>    <date>    
-#>  1 Florida State S… FSU @ LOU       2026 regu… regu… 401858… s:20~l:… 2026-10-09
-#>  2 Iowa Hawkeyes a… IOWA @ WASH     2026 regu… regu… 401858… s:20~l:… 2026-10-09
-#>  3 Washington Stat… WSU @ USU       2026 regu… regu… 401860… s:20~l:… 2026-10-09
-#>  4 Wyoming Cowboys… WYO @ SJSU      2026 regu… regu… 401864… s:20~l:… 2026-10-09
-#>  5 Iowa State Cycl… ISU @ BYU       2026 regu… regu… 401856… s:20~l:… 2026-10-09
-#>  6 Southern Miss G… USM @ TROY      2026 regu… regu… 401871… s:20~l:… 2026-10-06
-#>  7 Jacksonville St… JXST @ KENN     2026 regu… regu… 401871… s:20~l:… 2026-10-07
-#>  8 New Mexico Stat… NMSU @ FIU      2026 regu… regu… 401871… s:20~l:… 2026-10-07
-#>  9 Sam Houston Bea… SHSU @ LIB      2026 regu… regu… 401870… s:20~l:… 2026-10-08
-#> 10 Missouri State … MOST @ WKU      2026 regu… regu… 401871… s:20~l:… 2026-10-08
+#>  1 Texas Longhorns… TEX VS OU       2026 regu… regu… 401856… s:20~l:… 2026-10-10
+#>  2 Stanford Cardin… STAN @ ND       2026 regu… regu… 401858… s:20~l:… 2026-10-10
+#>  3 Ole Miss Rebels… MISS @ VAN      2026 regu… regu… 401856… s:20~l:… 2026-10-10
+#>  4 UCLA Bruins at … UCLA @ ORE      2026 regu… regu… 401858… s:20~l:… 2026-10-10
+#>  5 Houston Cougars… HOU @ KSU       2026 regu… regu… 401856… s:20~l:… 2026-10-10
+#>  6 Duke Blue Devil… DUKE @ GT       2026 regu… regu… 401858… s:20~l:… 2026-10-10
+#>  7 Virginia Tech H… VT @ CAL        2026 regu… regu… 401858… s:20~l:… 2026-10-10
+#>  8 Illinois Fighti… ILL @ MSU       2026 regu… regu… 401858… s:20~l:… 2026-10-10
+#>  9 Charlotte 49ers… CLT @ UNT       2026 regu… regu… 401862… s:20~l:… 2026-10-10
+#> 10 Tulsa Golden Hu… TLSA @ NAVY     2026 regu… regu… 401862… s:20~l:… 2026-10-10
 #> # ℹ 48 more rows
 #> # ℹ 52 more variables: attendance <int>, date_valid <lgl>,
 #> #   play_by_play_available <lgl>, home_team_name <chr>, home_team_logo <chr>,
@@ -289,7 +289,7 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_schedule(2021, week = 8))
 #> ── Schedule Data from ESPN ────────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-09 05:36:09 UTC
+#> ℹ Data updated: 2026-10-10 23:19:13 UTC
 #> # A tibble: 54 × 62
 #>    season_type week    matchup matchup_short season type  slug  game_id game_uid
 #>    <chr>       <chr>   <chr>   <chr>          <int> <chr> <chr> <chr>   <chr>   

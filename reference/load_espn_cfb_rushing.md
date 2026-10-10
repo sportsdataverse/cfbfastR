@@ -84,20 +84,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_rushing(2004))
 #> ── college football rushing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-10-09 05:38:42 UTC
+#> ℹ Data updated: 2026-10-10 23:22:24 UTC
 #> # A tibble: 1,122 × 78
 #>    team_id pos_team      division conference season player_id rusher_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 2751    Wyoming       fbs      Mountain …   2004    116535 Jovon Bouknight   
-#>  2 344     Mississippi … fbs      SEC          2004    102584 Fred Reid         
-#>  3 189     Bowling Green fbs      Mid-Ameri…   2004    147083 Dan Macon         
-#>  4 36      Colorado Sta… fbs      Mountain …   2004    166677 a Johnson         
-#>  5 245     Texas A&M     fbs      Big 12       2004    120246 Terrence Murphy   
-#>  6 349     Army          fbs      Conferenc…   2004    130159 Reggie Nevels     
-#>  7 135     Minnesota     fbs      Big Ten      2004    146122 Justin Valentine  
-#>  8 150     Duke          fbs      ACC          2004    137096 Curt Dukes        
-#>  9 2294    Iowa          fbs      Big Ten      2004    145995 Champ Davis       
-#> 10 2348    Louisiana Te… fbs      Western A…   2004    150699 Donald Allen      
+#>  1 59      Georgia Tech  fbs      ACC          2004    100579 Mark Logan        
+#>  2 204     Oregon State  fbs      Pac-10       2004    145041 Yvenson Bernard   
+#>  3 2116    UCF           fbs      Mid-Ameri…   2004    157896 Kyle Israel       
+#>  4 2084    Buffalo       fbs      Mid-Ameri…   2004    127676 Dave Dawson       
+#>  5 264     Washington    fbs      Pac-10       2004    145204 Sonny Shackelford 
+#>  6 193     Miami (OH)    fbs      Mid-Ameri…   2004    147316 Brandon Murphy    
+#>  7 5       UAB           fbs      Conferenc…   2004    115044 Darrell Hackney   
+#>  8 96      Kentucky      fbs      SEC          2004    134064 Glenn Holt Jr.    
+#>  9 130     Michigan      fbs      Big Ten      2004    116385 Braylon Edwards   
+#> 10 2711    Western Mich… fbs      Mid-Ameri…   2004    115467 Trovon Riley      
 #> # ℹ 1,112 more rows
 #> # ℹ 71 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, rushing_td <dbl>, fumbles <dbl>,

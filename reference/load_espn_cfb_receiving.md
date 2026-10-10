@@ -87,20 +87,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_receiving(2004))
 #> ── college football receiving EPA splits from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-10-09 05:38:41 UTC
+#> ℹ Data updated: 2026-10-10 23:22:22 UTC
 #> # A tibble: 1,418 × 77
 #>    team_id pos_team    division conference season player_id receiver_player_name
 #>    <chr>   <chr>       <chr>    <chr>       <int>     <int> <chr>               
-#>  1 2638    UTEP        fbs      Western A…   2004    107928 Jahmal Fenner       
-#>  2 103     Boston Col… fbs      Big East     2004    102291 Grant Adams         
-#>  3 2294    Iowa        fbs      Big Ten      2004    113714 Marques Simmons     
-#>  4 277     West Virgi… fbs      Big East     2004    134809 Charles Hales       
-#>  5 57      Florida     fbs      SEC          2004    146519 Chad Jackson        
-#>  6 259     Virginia T… fbs      ACC          2004    146415 Duane Brown         
-#>  7 2572    Southern M… fbs      Conferenc…   2004    147923 Anthony Perine      
-#>  8 242     Rice        fbs      Western A…   2004    138694 Mike Falco          
-#>  9 356     Illinois    fbs      Big Ten      2004    120315 Kendrick Jones      
-#> 10 264     Washington  fbs      Pac-10       2004    120846 Shelton Sampson     
+#>  1 197     Oklahoma S… fbs      Big 12       2004    135622 Julius Crosslin     
+#>  2 356     Illinois    fbs      Big Ten      2004    133661 Zach Gray           
+#>  3 2572    Southern M… fbs      Conferenc…   2004    116114 Patrick Corbett     
+#>  4 2641    Texas Tech  fbs      Big 12       2004    135873 Jarrett Hicks       
+#>  5 221     Pittsburgh  fbs      Big East     2004    134927 Steve Buches        
+#>  6 252     BYU         fbs      Mountain …   2004     36262 Chris Hale          
+#>  7 235     Memphis     fbs      Conferenc…   2004    133397 John Doucette       
+#>  8 2393    Middle Ten… fbs      Sun Belt     2004    133319 Eugene Gross        
+#>  9 264     Washington  fbs      Pac-10       2004    120846 Shelton Sampson     
+#> 10 23      San Jose S… fbs      Western A…   2004    148346 Casey Miranda       
 #> # ℹ 1,408 more rows
 #> # ℹ 70 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, comp <int>, targets <int>,

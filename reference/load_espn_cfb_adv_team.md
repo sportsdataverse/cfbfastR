@@ -136,23 +136,23 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_team(2004))
 #> ── college football advanced team from the SportsDataverse data repo ───────────
-#> ℹ Data updated: 2026-10-09 05:38:21 UTC
-#> # A tibble: 926 × 80
+#> ℹ Data updated: 2026-10-10 23:21:56 UTC
+#> # A tibble: 926 × 81
 #>    pos_team_id pos_team       rushing_highlight_ya…¹ total_pen_yards EPA_penalty
 #>          <int> <chr>                           <dbl>           <int>       <dbl>
 #>  1          30 USC Trojans                      4.32              -5       -0.58
 #>  2         259 Virginia Tech…                   6.17               5        2.04
-#>  3         254 Utah Utes                        5.25             -45       -4.36
-#>  4         245 Texas A&M Agg…                   7.63             -50       -6.25
-#>  5        2050 Ball State Ca…                   3.32              -8       -0.87
-#>  6         103 Boston Colleg…                   4.91             -26       -1.35
+#>  3         245 Texas A&M Agg…                   7.63             -50       -6.25
+#>  4         254 Utah Utes                        5.25             -45       -4.36
+#>  5         103 Boston Colleg…                   4.91             -26       -1.35
+#>  6        2050 Ball State Ca…                   3.32              -8       -0.87
 #>  7          77 Northwestern …                   5.4               45        6.51
 #>  8        2628 TCU Horned Fr…                   4.21             -13       -1.81
-#>  9        2638 UTEP Miners                      4.27              10        1.46
-#> 10           9 Arizona State…                   3.21              -6        0.6 
+#>  9           9 Arizona State…                   3.21              -6        0.6 
+#> 10        2638 UTEP Miners                      4.27              10        1.46
 #> # ℹ 916 more rows
 #> # ℹ abbreviated name: ¹​rushing_highlight_yards_per_opp
-#> # ℹ 75 more variables: penalty_first_downs_created <int>,
+#> # ℹ 76 more variables: penalty_first_downs_created <int>,
 #> #   penalty_first_downs_created_rate <dbl>, penalties <int>,
 #> #   penalty_yards <int>, special_teams_plays <int>, EPA_sp <dbl>,
 #> #   EPA_special_teams <dbl>, field_goals <int>, EPA_fg <dbl>, punt_plays <int>,

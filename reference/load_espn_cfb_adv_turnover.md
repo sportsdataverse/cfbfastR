@@ -79,8 +79,8 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_turnover(2004))
 #> ── college football advanced turnover from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-10-09 05:38:23 UTC
-#> # A tibble: 926 × 24
+#> ℹ Data updated: 2026-10-10 23:21:59 UTC
+#> # A tibble: 926 × 25
 #>    pos_team_id pos_team           turnovers st_turnovers_lost   Int fumbles_lost
 #>          <int> <chr>                  <int>             <int> <int>        <int>
 #>  1         259 Virginia Tech Hok…         3                 0     1            2
@@ -94,11 +94,11 @@ Saiem Gilani
 #>  9           9 Arizona State Sun…         1                 0     1            0
 #> 10        2638 UTEP Miners                5                 0     4            1
 #> # ℹ 916 more rows
-#> # ℹ 18 more variables: pass_breakups <int>, total_fumbles <int>,
+#> # ℹ 19 more variables: pass_breakups <int>, total_fumbles <int>,
 #> #   fumbles_recovered <int>, team_id <int>, turnovers_pbp <int>, Int_pbp <int>,
-#> #   fumbles_lost_pbp <int>, espn_sourced <lgl>, expected_turnovers <dbl>,
-#> #   expected_turnover_margin <dbl>, turnover_margin <int>, turnover_luck <dbl>,
-#> #   takeaways <int>, st_turnovers_gained <int>, fumble_recoveries_gained <int>,
-#> #   game_id <int>, season <int>, week <int>
+#> #   fumbles_lost_pbp <int>, espn_sourced <lgl>, passes_defended <lgl>,
+#> #   expected_turnovers <dbl>, expected_turnover_margin <dbl>,
+#> #   turnover_margin <int>, turnover_luck <dbl>, takeaways <int>,
+#> #   st_turnovers_gained <int>, fumble_recoveries_gained <int>, game_id <int>, …
 # }
 ```
