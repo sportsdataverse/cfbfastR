@@ -800,7 +800,7 @@ NULL
 
 #' Two-point conversion feature contract
 #'
-#' Uses the ORDINAL era ([.cfb_era_ordinal()], cuts 2006/2013/2017), the same
+#' Uses the ORDINAL era ([.cfb_era_ordinal()], cuts 2006/2013/2020, i.e. `.XPASS_ERA_CUTS`), the same
 #' encoding `xpass_model` takes -- not the one-hot set the FG model uses.
 #'
 #' @keywords internal
