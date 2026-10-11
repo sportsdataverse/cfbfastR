@@ -34,7 +34,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    havoc_total_rate \tab double \tab Share of the defense's scrimmage plays producing a havoc event, a 0-to-1 fraction equal to havoc_total divided by scrimmage_plays. \cr
    fumbles \tab integer \tab Fumbles the defense forced, counted from plays whose narrative contains the phrase forced by, not the total number of fumbles on the play. \cr
    def_int \tab integer \tab Interceptions the defense recorded, counted from plays ESPN types as Interception Return or Interception Return Touchdown. \cr
-   drive_stopped_rate \tab double \tab Percentage from 0 to 100 of the defense's scrimmage plays that occurred on drives ending in a punt, fumble, interception, or turnover on downs; the denominator is plays, not drives. \cr
+   drive_stopped_rate \tab double \tab Percentage from 0 to 100 of opponents' drives against this defense, one row per drive, that ended in a punt, fumble, interception (ESPN's INT or INT TD) or turnover on downs. \cr
    num_pass_plays \tab integer \tab Number of pass scrimmage plays the defense faced, the denominator behind havoc_total_pass_rate and sacks_rate. \cr
    havoc_total_pass \tab integer \tab Havoc events (tackle for loss, sack, interception, forced fumble, or pass breakup) recorded on the pass plays the defense faced. \cr
    havoc_total_pass_rate \tab double \tab havoc_total_pass divided by num_pass_plays, the defense's havoc rate against the pass as a 0-to-1 fraction. \cr

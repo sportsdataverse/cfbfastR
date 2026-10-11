@@ -36,9 +36,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    explosive_off \tab double \tab Explosive-play rate -- the share of plays carrying the explosive flag, with the team on offense. \cr
    TEPA_off \tab double \tab Total EPA summed over every play, with the team on offense. \cr
    EPAplay_off \tab double \tab EPA per play, with the team on offense. \cr
-   yards_off \tab integer \tab Total yards gained, with the team on offense. \cr
-   yardsplay_off \tab double \tab Yards gained per play, with the team on offense. \cr
-   play_stuffed_off \tab double \tab Stuffed-play rate -- the share of plays carrying the stuffed flag, with the team on offense. \cr
+   yards_off \tab integer \tab Total yards gained (an interception counts as 0 yards), with the team on offense. \cr
+   yardsplay_off \tab double \tab Yards gained per play (an interception counts as 0 yards), with the team on offense. \cr
+   play_stuffed_off \tab double \tab Run-stuff rate -- the share of rushes stopped for 0 or fewer yards, with the team on offense. \cr
    success_off \tab double \tab Success rate -- the share of plays flagged as successful by EPA, with the team on offense. \cr
    red_zone_success_off \tab double \tab Success rate on red-zone plays, with the team on offense. \cr
    third_down_success_off \tab double \tab Success rate on third-down plays, with the team on offense. \cr
@@ -48,7 +48,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    start_position_off \tab double \tab Average drive start position, measured in yards from the opponent goal line, with the team on offense. \cr
    nonExplosiveEpaPerPlay_off \tab double \tab EPA per play with explosive plays excluded, with the team on offense. \cr
    line_yards_off \tab double \tab Average line yards credited to the offensive line on rushes, with the team on offense. \cr
-   opportunity_rate_off \tab double \tab Opportunity rate -- the share of rushes carrying the opportunity flag, with the team on offense. \cr
+   opportunity_rate_off \tab double \tab Opportunity rate -- the share of rushes gaining 4 or more yards, with the team on offense. \cr
    playsgame_off \tab double \tab Plays run per game, with the team on offense. \cr
    EPAdrive_off \tab double \tab EPA per drive (total EPA divided by drives), with the team on offense. \cr
    EPAgame_off \tab double \tab EPA per game (total EPA divided by games), with the team on offense. \cr
@@ -57,32 +57,32 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    drivesgame_off \tab double \tab Drives per game, with the team on offense. \cr
    yardsdrive_off \tab double \tab Yards gained per drive, with the team on offense. \cr
    playsdrive_off \tab double \tab Plays run per drive, with the team on offense. \cr
-   playsgame_off_rank \tab double \tab National rank of the team's plays run per game with the team on offense, where 1 is best. \cr
-   TEPA_off_rank \tab double \tab National rank of the team's total EPA summed over every play with the team on offense, where 1 is best. \cr
-   EPAgame_off_rank \tab double \tab National rank of the team's EPA per game (total EPA divided by games) with the team on offense, where 1 is best. \cr
-   EPAplay_off_rank \tab double \tab National rank of the team's EPA per play with the team on offense, where 1 is best. \cr
-   EPAdrive_off_rank \tab double \tab National rank of the team's EPA per drive (total EPA divided by drives) with the team on offense, where 1 is best. \cr
-   early_down_EPA_off_rank \tab double \tab National rank of the team's EPA per early-down play with the team on offense, where 1 is best. \cr
-   success_off_rank \tab double \tab National rank of the team's success rate -- the share of plays flagged as successful by EPA with the team on offense, where 1 is best. \cr
-   yards_off_rank \tab double \tab National rank of the team's total yards gained with the team on offense, where 1 is best. \cr
-   yardsplay_off_rank \tab double \tab National rank of the team's yards gained per play with the team on offense, where 1 is best. \cr
-   yardsgame_off_rank \tab double \tab National rank of the team's yards gained per game with the team on offense, where 1 is best. \cr
-   drivesgame_off_rank \tab double \tab National rank of the team's drives per game with the team on offense, where 1 is best. \cr
-   yardsdrive_off_rank \tab double \tab National rank of the team's yards gained per drive with the team on offense, where 1 is best. \cr
-   playsdrive_off_rank \tab double \tab National rank of the team's plays run per drive with the team on offense, where 1 is best. \cr
-   play_stuffed_off_rank \tab double \tab National rank of the team's stuffed-play rate -- the share of plays carrying the stuffed flag with the team on offense, where 1 is best. \cr
-   red_zone_success_off_rank \tab double \tab National rank of the team's success rate on red-zone plays with the team on offense, where 1 is best. \cr
-   third_down_success_off_rank \tab double \tab National rank of the team's success rate on third-down plays with the team on offense, where 1 is best. \cr
-   late_down_success_off_rank \tab double \tab National rank of the team's success rate on late-down plays with the team on offense, where 1 is best. \cr
-   third_down_distance_off_rank \tab double \tab National rank of the team's average yards to go on third down with the team on offense, where 1 is best. \cr
-   start_position_off_rank \tab double \tab National rank of the team's average drive start position, measured in yards from the opponent goal line with the team on offense, where 1 is best. \cr
-   havoc_off_rank \tab double \tab National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag with the team on offense, where 1 is best. \cr
-   explosive_off_rank \tab double \tab National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag with the team on offense, where 1 is best. \cr
-   passrate_off_rank \tab double \tab National rank of the team's share of plays that were pass plays with the team on offense, where 1 is best. \cr
-   rushrate_off_rank \tab double \tab National rank of the team's share of plays that were rush plays with the team on offense, where 1 is best. \cr
-   nonExplosiveEpaPerPlay_off_rank \tab double \tab National rank of the team's EPA per play with explosive plays excluded with the team on offense, where 1 is best. \cr
-   line_yards_off_rank \tab double \tab National rank of the team's average line yards credited to the offensive line on rushes with the team on offense, where 1 is best. \cr
-   opportunity_rate_off_rank \tab double \tab National rank of the team's opportunity rate -- the share of rushes carrying the opportunity flag with the team on offense, where 1 is best. \cr
+   playsgame_off_rank \tab double \tab National rank of the team's plays run per game with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   TEPA_off_rank \tab double \tab National rank of the team's total EPA summed over every play with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAgame_off_rank \tab double \tab National rank of the team's EPA per game (total EPA divided by games) with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAplay_off_rank \tab double \tab National rank of the team's EPA per play with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAdrive_off_rank \tab double \tab National rank of the team's EPA per drive (total EPA divided by drives) with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   early_down_EPA_off_rank \tab double \tab National rank of the team's EPA per early-down play with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   success_off_rank \tab double \tab National rank of the team's success rate -- the share of plays flagged as successful by EPA with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yards_off_rank \tab double \tab National rank of the team's total yards gained (an interception counts as 0 yards) with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsplay_off_rank \tab double \tab National rank of the team's yards gained per play (an interception counts as 0 yards) with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsgame_off_rank \tab double \tab National rank of the team's yards gained per game with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   drivesgame_off_rank \tab double \tab National rank of the team's drives per game with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsdrive_off_rank \tab double \tab National rank of the team's yards gained per drive with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   playsdrive_off_rank \tab double \tab National rank of the team's plays run per drive with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   play_stuffed_off_rank \tab double \tab National rank of the team's run-stuff rate -- the share of rushes stopped for 0 or fewer yards with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   red_zone_success_off_rank \tab double \tab National rank of the team's success rate on red-zone plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   third_down_success_off_rank \tab double \tab National rank of the team's success rate on third-down plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   late_down_success_off_rank \tab double \tab National rank of the team's success rate on late-down plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   third_down_distance_off_rank \tab double \tab National rank of the team's average yards to go on third down with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   start_position_off_rank \tab double \tab National rank of the team's average drive start position, measured in yards from the opponent goal line with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   havoc_off_rank \tab double \tab National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   explosive_off_rank \tab double \tab National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   passrate_off_rank \tab double \tab National rank of the team's share of plays that were pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   rushrate_off_rank \tab double \tab National rank of the team's share of plays that were rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   nonExplosiveEpaPerPlay_off_rank \tab double \tab National rank of the team's EPA per play with explosive plays excluded with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   line_yards_off_rank \tab double \tab National rank of the team's average line yards credited to the offensive line on rushes with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   opportunity_rate_off_rank \tab double \tab National rank of the team's opportunity rate -- the share of rushes gaining 4 or more yards with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
    plays_def \tab integer \tab Plays run, with the team on defense (i.e. allowed to opponents). \cr
    passrate_def \tab double \tab Share of plays that were pass plays, with the team on defense (i.e. allowed to opponents). \cr
    rushrate_def \tab double \tab Share of plays that were rush plays, with the team on defense (i.e. allowed to opponents). \cr
@@ -90,9 +90,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    explosive_def \tab double \tab Explosive-play rate -- the share of plays carrying the explosive flag, with the team on defense (i.e. allowed to opponents). \cr
    TEPA_def \tab double \tab Total EPA summed over every play, with the team on defense (i.e. allowed to opponents). \cr
    EPAplay_def \tab double \tab EPA per play, with the team on defense (i.e. allowed to opponents). \cr
-   yards_def \tab integer \tab Total yards gained, with the team on defense (i.e. allowed to opponents). \cr
-   yardsplay_def \tab double \tab Yards gained per play, with the team on defense (i.e. allowed to opponents). \cr
-   play_stuffed_def \tab double \tab Stuffed-play rate -- the share of plays carrying the stuffed flag, with the team on defense (i.e. allowed to opponents). \cr
+   yards_def \tab integer \tab Total yards gained (an interception counts as 0 yards), with the team on defense (i.e. allowed to opponents). \cr
+   yardsplay_def \tab double \tab Yards gained per play (an interception counts as 0 yards), with the team on defense (i.e. allowed to opponents). \cr
+   play_stuffed_def \tab double \tab Run-stuff rate -- the share of rushes stopped for 0 or fewer yards, with the team on defense (i.e. allowed to opponents). \cr
    success_def \tab double \tab Success rate -- the share of plays flagged as successful by EPA, with the team on defense (i.e. allowed to opponents). \cr
    red_zone_success_def \tab double \tab Success rate on red-zone plays, with the team on defense (i.e. allowed to opponents). \cr
    third_down_success_def \tab double \tab Success rate on third-down plays, with the team on defense (i.e. allowed to opponents). \cr
@@ -102,7 +102,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    start_position_def \tab double \tab Average drive start position, measured in yards from the opponent goal line, with the team on defense (i.e. allowed to opponents). \cr
    nonExplosiveEpaPerPlay_def \tab double \tab EPA per play with explosive plays excluded, with the team on defense (i.e. allowed to opponents). \cr
    line_yards_def \tab double \tab Average line yards credited to the offensive line on rushes, with the team on defense (i.e. allowed to opponents). \cr
-   opportunity_rate_def \tab double \tab Opportunity rate -- the share of rushes carrying the opportunity flag, with the team on defense (i.e. allowed to opponents). \cr
+   opportunity_rate_def \tab double \tab Opportunity rate -- the share of rushes gaining 4 or more yards, with the team on defense (i.e. allowed to opponents). \cr
    playsgame_def \tab double \tab Plays run per game, with the team on defense (i.e. allowed to opponents). \cr
    EPAdrive_def \tab double \tab EPA per drive (total EPA divided by drives), with the team on defense (i.e. allowed to opponents). \cr
    EPAgame_def \tab double \tab EPA per game (total EPA divided by games), with the team on defense (i.e. allowed to opponents). \cr
@@ -111,60 +111,60 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    drivesgame_def \tab double \tab Drives per game, with the team on defense (i.e. allowed to opponents). \cr
    yardsdrive_def \tab double \tab Yards gained per drive, with the team on defense (i.e. allowed to opponents). \cr
    playsdrive_def \tab double \tab Plays run per drive, with the team on defense (i.e. allowed to opponents). \cr
-   playsgame_def_rank \tab double \tab National rank of the team's plays run per game with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   TEPA_def_rank \tab double \tab National rank of the team's total EPA summed over every play with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   EPAgame_def_rank \tab double \tab National rank of the team's EPA per game (total EPA divided by games) with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   EPAplay_def_rank \tab double \tab National rank of the team's EPA per play with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   EPAdrive_def_rank \tab double \tab National rank of the team's EPA per drive (total EPA divided by drives) with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   early_down_EPA_def_rank \tab double \tab National rank of the team's EPA per early-down play with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   success_def_rank \tab double \tab National rank of the team's success rate -- the share of plays flagged as successful by EPA with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   yards_def_rank \tab double \tab National rank of the team's total yards gained with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   yardsplay_def_rank \tab double \tab National rank of the team's yards gained per play with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   yardsgame_def_rank \tab double \tab National rank of the team's yards gained per game with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   drivesgame_def_rank \tab double \tab National rank of the team's drives per game with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   yardsdrive_def_rank \tab double \tab National rank of the team's yards gained per drive with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   playsdrive_def_rank \tab double \tab National rank of the team's plays run per drive with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   play_stuffed_def_rank \tab double \tab National rank of the team's stuffed-play rate -- the share of plays carrying the stuffed flag with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   red_zone_success_def_rank \tab double \tab National rank of the team's success rate on red-zone plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   third_down_success_def_rank \tab double \tab National rank of the team's success rate on third-down plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   late_down_success_def_rank \tab double \tab National rank of the team's success rate on late-down plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   third_down_distance_def_rank \tab double \tab National rank of the team's average yards to go on third down with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   start_position_def_rank \tab double \tab National rank of the team's average drive start position, measured in yards from the opponent goal line with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   havoc_def_rank \tab double \tab National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   explosive_def_rank \tab double \tab National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   passrate_def_rank \tab double \tab National rank of the team's share of plays that were pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   rushrate_def_rank \tab double \tab National rank of the team's share of plays that were rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   nonExplosiveEpaPerPlay_def_rank \tab double \tab National rank of the team's EPA per play with explosive plays excluded with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   line_yards_def_rank \tab double \tab National rank of the team's average line yards credited to the offensive line on rushes with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   opportunity_rate_def_rank \tab double \tab National rank of the team's opportunity rate -- the share of rushes carrying the opportunity flag with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
+   playsgame_def_rank \tab double \tab National rank of the team's plays run per game with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   TEPA_def_rank \tab double \tab National rank of the team's total EPA summed over every play with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAgame_def_rank \tab double \tab National rank of the team's EPA per game (total EPA divided by games) with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAplay_def_rank \tab double \tab National rank of the team's EPA per play with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAdrive_def_rank \tab double \tab National rank of the team's EPA per drive (total EPA divided by drives) with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   early_down_EPA_def_rank \tab double \tab National rank of the team's EPA per early-down play with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   success_def_rank \tab double \tab National rank of the team's success rate -- the share of plays flagged as successful by EPA with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yards_def_rank \tab double \tab National rank of the team's total yards gained (an interception counts as 0 yards) with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsplay_def_rank \tab double \tab National rank of the team's yards gained per play (an interception counts as 0 yards) with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsgame_def_rank \tab double \tab National rank of the team's yards gained per game with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   drivesgame_def_rank \tab double \tab National rank of the team's drives per game with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsdrive_def_rank \tab double \tab National rank of the team's yards gained per drive with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   playsdrive_def_rank \tab double \tab National rank of the team's plays run per drive with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   play_stuffed_def_rank \tab double \tab National rank of the team's run-stuff rate -- the share of rushes stopped for 0 or fewer yards with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   red_zone_success_def_rank \tab double \tab National rank of the team's success rate on red-zone plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   third_down_success_def_rank \tab double \tab National rank of the team's success rate on third-down plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   late_down_success_def_rank \tab double \tab National rank of the team's success rate on late-down plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   third_down_distance_def_rank \tab double \tab National rank of the team's average yards to go on third down with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   start_position_def_rank \tab double \tab National rank of the team's average drive start position, measured in yards from the opponent goal line with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   havoc_def_rank \tab double \tab National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   explosive_def_rank \tab double \tab National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   passrate_def_rank \tab double \tab National rank of the team's share of plays that were pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   rushrate_def_rank \tab double \tab National rank of the team's share of plays that were rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   nonExplosiveEpaPerPlay_def_rank \tab double \tab National rank of the team's EPA per play with explosive plays excluded with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   line_yards_def_rank \tab double \tab National rank of the team's average line yards credited to the offensive line on rushes with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   opportunity_rate_def_rank \tab double \tab National rank of the team's opportunity rate -- the share of rushes gaining 4 or more yards with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
    TEPA_margin \tab double \tab Margin in total EPA summed over every play: the team's offensive value minus the value it allowed on defense. \cr
    EPAplay_margin \tab double \tab Margin in EPA per play: the team's offensive value minus the value it allowed on defense. \cr
    EPAdrive_margin \tab double \tab Margin in EPA per drive (total EPA divided by drives): the team's offensive value minus the value it allowed on defense. \cr
    EPAgame_margin \tab double \tab Margin in EPA per game (total EPA divided by games): the team's offensive value minus the value it allowed on defense. \cr
    success_margin \tab double \tab Margin in success rate -- the share of plays flagged as successful by EPA: the team's offensive value minus the value it allowed on defense. \cr
-   yardsplay_margin \tab double \tab Margin in yards gained per play: the team's offensive value minus the value it allowed on defense. \cr
-   TEPA_margin_rank \tab double \tab Margin in total EPA summed over every play: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
-   EPAplay_margin_rank \tab double \tab Margin in EPA per play: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
-   EPAdrive_margin_rank \tab double \tab Margin in EPA per drive (total EPA divided by drives): the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
-   EPAgame_margin_rank \tab double \tab Margin in EPA per game (total EPA divided by games): the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
-   success_margin_rank \tab double \tab Margin in success rate -- the share of plays flagged as successful by EPA: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
-   yardsplay_margin_rank \tab double \tab Margin in yards gained per play: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
+   yardsplay_margin \tab double \tab Margin in yards gained per play (an interception counts as 0 yards): the team's offensive value minus the value it allowed on defense. \cr
+   TEPA_margin_rank \tab double \tab Margin in total EPA summed over every play: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAplay_margin_rank \tab double \tab Margin in EPA per play: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAdrive_margin_rank \tab double \tab Margin in EPA per drive (total EPA divided by drives): the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAgame_margin_rank \tab double \tab Margin in EPA per game (total EPA divided by games): the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   success_margin_rank \tab double \tab Margin in success rate -- the share of plays flagged as successful by EPA: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsplay_margin_rank \tab double \tab Margin in yards gained per play (an interception counts as 0 yards): the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
    start_position_margin \tab double \tab Field-position margin: the team's own average starting field position minus the average starting field position it allowed, both measured as yards gained from their own goal line. Positive means the team started closer to scoring than its opponents. \cr
-   start_position_margin_rank \tab double \tab Field-position margin: the team's own average starting field position minus the average starting field position it allowed, both measured as yards gained from their own goal line. Positive means the team started closer to scoring than its opponents. National rank of that margin, 1 = largest. \cr
-   total_available_yards_off \tab double \tab Available yards are the yards a drive could theoretically gain, summed from each drive's starting distance to the opponent goal line. Total available yards on the team's own drives. \cr
-   total_gained_yards_off \tab integer \tab Total yards the team actually gained across its own drives. \cr
-   available_yards_pct_off \tab double \tab Share of available yards the team's offense actually gained (total_gained_yards_off divided by total_available_yards_off). Higher is better. \cr
-   available_yards_pct_off_rank \tab double \tab National rank of the team's offensive available-yards share, where 1 is best. \cr
-   total_available_yards_def \tab double \tab Available yards are the yards a drive could theoretically gain, summed from each drive's starting distance to the opponent goal line. Total available yards on drives the team defended. \cr
-   total_gained_yards_def \tab integer \tab Total yards the team allowed across the drives it defended. \cr
-   available_yards_pct_def \tab double \tab Share of available yards the team's defense allowed opponents to gain. Lower is better. \cr
-   available_yards_pct_def_rank \tab double \tab National rank of the team's defensive available-yards share, where 1 is best. \cr
+   start_position_margin_rank \tab double \tab Field-position margin: the team's own average starting field position minus the average starting field position it allowed, both measured as yards gained from their own goal line. Positive means the team started closer to scoring than its opponents. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   total_available_yards_off \tab double \tab Available yards are the yards a drive could theoretically gain, summed from each drive's starting distance to the opponent goal line. Total available yards on the team's own drives (ESPN's drive team). A drive's start is its header oriented to agree with its first snap, or that snap when the header is a 0 or missing placeholder. \cr
+   total_gained_yards_off \tab integer \tab Total yards the team gained across its own drives, each drive's gain capped at its available yards. \cr
+   available_yards_pct_off \tab double \tab Share of available yards the team's offense actually gained (total_gained_yards_off divided by total_available_yards_off), from 0 to 1. Null when no available yards are on record. Higher is better. \cr
+   available_yards_pct_off_rank \tab double \tab National rank of the team's offensive available-yards share, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   total_available_yards_def \tab double \tab Available yards are the yards a drive could theoretically gain, summed from each drive's starting distance to the opponent goal line. Total available yards on opponents' drives against the team's defense (ESPN's drive team). A drive's start is its header oriented to agree with its first snap, or that snap when the header is a 0 or missing placeholder. \cr
+   total_gained_yards_def \tab integer \tab Total yards the team allowed across opponents' drives against its defense, each drive's gain capped at its available yards. \cr
+   available_yards_pct_def \tab double \tab Share of available yards the team's defense allowed opponents to gain (total_gained_yards_def divided by total_available_yards_def), from 0 to 1. Null when no available yards are on record. Lower is better. \cr
+   available_yards_pct_def_rank \tab double \tab National rank of the team's defensive available-yards share, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
    total_available_yards_margin \tab double \tab Available yards on the team's own drives minus available yards on drives it defended. \cr
    total_gained_yards_margin \tab integer \tab Yards the team gained minus yards it allowed. \cr
    available_yards_pct_margin \tab double \tab Available-yards share gained by the offense minus the share allowed by the defense. Higher is better. \cr
-   total_available_yards_margin_rank \tab double \tab National rank of total_available_yards_margin, 1 = largest margin. \cr
-   total_gained_yards_margin_rank \tab double \tab National rank of total_gained_yards_margin, 1 = largest margin. \cr
-   available_yards_pct_margin_rank \tab double \tab National rank of available_yards_pct_margin, 1 = largest margin. \cr
+   total_available_yards_margin_rank \tab double \tab National rank of total_available_yards_margin, 1 = largest margin. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   total_gained_yards_margin_rank \tab double \tab National rank of total_gained_yards_margin, 1 = largest margin. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   available_yards_pct_margin_rank \tab double \tab National rank of available_yards_pct_margin, 1 = largest margin. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
    plays_off_pass \tab integer \tab Plays run on pass plays, with the team on offense. \cr
    passrate_off_pass \tab double \tab Share of plays that were pass plays on pass plays, with the team on offense. \cr
    rushrate_off_pass \tab double \tab Share of plays that were rush plays on pass plays, with the team on offense. \cr
@@ -172,9 +172,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    explosive_off_pass \tab double \tab Explosive-play rate -- the share of plays carrying the explosive flag on pass plays, with the team on offense. \cr
    TEPA_off_pass \tab double \tab Total EPA summed over every play on pass plays, with the team on offense. \cr
    EPAplay_off_pass \tab double \tab EPA per play on pass plays, with the team on offense. \cr
-   yards_off_pass \tab integer \tab Total yards gained on pass plays, with the team on offense. \cr
-   yardsplay_off_pass \tab double \tab Yards gained per play on pass plays, with the team on offense. \cr
-   play_stuffed_off_pass \tab double \tab Stuffed-play rate -- the share of plays carrying the stuffed flag on pass plays, with the team on offense. \cr
+   yards_off_pass \tab integer \tab Total yards gained (an interception counts as 0 yards) on pass plays, with the team on offense. \cr
+   yardsplay_off_pass \tab double \tab Yards gained per play (an interception counts as 0 yards) on pass plays, with the team on offense. \cr
+   play_stuffed_off_pass \tab double \tab Run-stuff rate (always null: only rushes carry the stuffed flag) on pass plays, with the team on offense. \cr
    success_off_pass \tab double \tab Success rate -- the share of plays flagged as successful by EPA on pass plays, with the team on offense. \cr
    red_zone_success_off_pass \tab double \tab Success rate on red-zone plays on pass plays, with the team on offense. \cr
    third_down_success_off_pass \tab double \tab Success rate on third-down plays on pass plays, with the team on offense. \cr
@@ -183,7 +183,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    early_down_EPA_off_pass \tab double \tab EPA per early-down play on pass plays, with the team on offense. \cr
    nonExplosiveEpaPerPlay_off_pass \tab double \tab EPA per play with explosive plays excluded on pass plays, with the team on offense. \cr
    line_yards_off_pass \tab double \tab Average line yards credited to the offensive line on rushes on pass plays, with the team on offense. \cr
-   opportunity_rate_off_pass \tab double \tab Opportunity rate -- the share of rushes carrying the opportunity flag on pass plays, with the team on offense. \cr
+   opportunity_rate_off_pass \tab double \tab Opportunity rate (always null: only rushes carry the opportunity flag) on pass plays, with the team on offense. \cr
    playsgame_off_pass \tab double \tab Plays run per game on pass plays, with the team on offense. \cr
    EPAdrive_off_pass \tab double \tab EPA per drive (total EPA divided by drives) on pass plays, with the team on offense. \cr
    EPAgame_off_pass \tab double \tab EPA per game (total EPA divided by games) on pass plays, with the team on offense. \cr
@@ -192,31 +192,31 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    drivesgame_off_pass \tab double \tab Drives per game on pass plays, with the team on offense. \cr
    yardsdrive_off_pass \tab double \tab Yards gained per drive on pass plays, with the team on offense. \cr
    playsdrive_off_pass \tab double \tab Plays run per drive on pass plays, with the team on offense. \cr
-   playsgame_off_pass_rank \tab double \tab National rank of the team's plays run per game on pass plays with the team on offense, where 1 is best. \cr
-   TEPA_off_pass_rank \tab double \tab National rank of the team's total EPA summed over every play on pass plays with the team on offense, where 1 is best. \cr
-   EPAgame_off_pass_rank \tab double \tab National rank of the team's EPA per game (total EPA divided by games) on pass plays with the team on offense, where 1 is best. \cr
-   EPAplay_off_pass_rank \tab double \tab National rank of the team's EPA per play on pass plays with the team on offense, where 1 is best. \cr
-   EPAdrive_off_pass_rank \tab double \tab National rank of the team's EPA per drive (total EPA divided by drives) on pass plays with the team on offense, where 1 is best. \cr
-   early_down_EPA_off_pass_rank \tab double \tab National rank of the team's EPA per early-down play on pass plays with the team on offense, where 1 is best. \cr
-   success_off_pass_rank \tab double \tab National rank of the team's success rate -- the share of plays flagged as successful by EPA on pass plays with the team on offense, where 1 is best. \cr
-   yards_off_pass_rank \tab double \tab National rank of the team's total yards gained on pass plays with the team on offense, where 1 is best. \cr
-   yardsplay_off_pass_rank \tab double \tab National rank of the team's yards gained per play on pass plays with the team on offense, where 1 is best. \cr
-   yardsgame_off_pass_rank \tab double \tab National rank of the team's yards gained per game on pass plays with the team on offense, where 1 is best. \cr
-   drivesgame_off_pass_rank \tab double \tab National rank of the team's drives per game on pass plays with the team on offense, where 1 is best. \cr
-   yardsdrive_off_pass_rank \tab double \tab National rank of the team's yards gained per drive on pass plays with the team on offense, where 1 is best. \cr
-   playsdrive_off_pass_rank \tab double \tab National rank of the team's plays run per drive on pass plays with the team on offense, where 1 is best. \cr
-   play_stuffed_off_pass_rank \tab double \tab National rank of the team's stuffed-play rate -- the share of plays carrying the stuffed flag on pass plays with the team on offense, where 1 is best. \cr
-   red_zone_success_off_pass_rank \tab double \tab National rank of the team's success rate on red-zone plays on pass plays with the team on offense, where 1 is best. \cr
-   third_down_success_off_pass_rank \tab double \tab National rank of the team's success rate on third-down plays on pass plays with the team on offense, where 1 is best. \cr
-   late_down_success_off_pass_rank \tab double \tab National rank of the team's success rate on late-down plays on pass plays with the team on offense, where 1 is best. \cr
-   third_down_distance_off_pass_rank \tab double \tab National rank of the team's average yards to go on third down on pass plays with the team on offense, where 1 is best. \cr
-   havoc_off_pass_rank \tab double \tab National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on pass plays with the team on offense, where 1 is best. \cr
-   explosive_off_pass_rank \tab double \tab National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on pass plays with the team on offense, where 1 is best. \cr
-   passrate_off_pass_rank \tab double \tab National rank of the team's share of plays that were pass plays on pass plays with the team on offense, where 1 is best. \cr
-   rushrate_off_pass_rank \tab double \tab National rank of the team's share of plays that were rush plays on pass plays with the team on offense, where 1 is best. \cr
-   nonExplosiveEpaPerPlay_off_pass_rank \tab double \tab National rank of the team's EPA per play with explosive plays excluded on pass plays with the team on offense, where 1 is best. \cr
-   line_yards_off_pass_rank \tab double \tab National rank of the team's average line yards credited to the offensive line on rushes on pass plays with the team on offense, where 1 is best. \cr
-   opportunity_rate_off_pass_rank \tab double \tab National rank of the team's opportunity rate -- the share of rushes carrying the opportunity flag on pass plays with the team on offense, where 1 is best. \cr
+   playsgame_off_pass_rank \tab double \tab National rank of the team's plays run per game on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   TEPA_off_pass_rank \tab double \tab National rank of the team's total EPA summed over every play on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAgame_off_pass_rank \tab double \tab National rank of the team's EPA per game (total EPA divided by games) on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAplay_off_pass_rank \tab double \tab National rank of the team's EPA per play on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAdrive_off_pass_rank \tab double \tab National rank of the team's EPA per drive (total EPA divided by drives) on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   early_down_EPA_off_pass_rank \tab double \tab National rank of the team's EPA per early-down play on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   success_off_pass_rank \tab double \tab National rank of the team's success rate -- the share of plays flagged as successful by EPA on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yards_off_pass_rank \tab double \tab National rank of the team's total yards gained (an interception counts as 0 yards) on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsplay_off_pass_rank \tab double \tab National rank of the team's yards gained per play (an interception counts as 0 yards) on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsgame_off_pass_rank \tab double \tab National rank of the team's yards gained per game on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   drivesgame_off_pass_rank \tab double \tab National rank of the team's drives per game on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsdrive_off_pass_rank \tab double \tab National rank of the team's yards gained per drive on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   playsdrive_off_pass_rank \tab double \tab National rank of the team's plays run per drive on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   play_stuffed_off_pass_rank \tab double \tab National rank of the team's run-stuff rate (always null: only rushes carry the stuffed flag) on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   red_zone_success_off_pass_rank \tab double \tab National rank of the team's success rate on red-zone plays on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   third_down_success_off_pass_rank \tab double \tab National rank of the team's success rate on third-down plays on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   late_down_success_off_pass_rank \tab double \tab National rank of the team's success rate on late-down plays on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   third_down_distance_off_pass_rank \tab double \tab National rank of the team's average yards to go on third down on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   havoc_off_pass_rank \tab double \tab National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   explosive_off_pass_rank \tab double \tab National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   passrate_off_pass_rank \tab double \tab National rank of the team's share of plays that were pass plays on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   rushrate_off_pass_rank \tab double \tab National rank of the team's share of plays that were rush plays on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   nonExplosiveEpaPerPlay_off_pass_rank \tab double \tab National rank of the team's EPA per play with explosive plays excluded on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   line_yards_off_pass_rank \tab double \tab National rank of the team's average line yards credited to the offensive line on rushes on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   opportunity_rate_off_pass_rank \tab double \tab National rank of the team's opportunity rate (always null: only rushes carry the opportunity flag) on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
    plays_def_pass \tab integer \tab Plays run on pass plays, with the team on defense (i.e. allowed to opponents). \cr
    passrate_def_pass \tab double \tab Share of plays that were pass plays on pass plays, with the team on defense (i.e. allowed to opponents). \cr
    rushrate_def_pass \tab double \tab Share of plays that were rush plays on pass plays, with the team on defense (i.e. allowed to opponents). \cr
@@ -224,9 +224,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    explosive_def_pass \tab double \tab Explosive-play rate -- the share of plays carrying the explosive flag on pass plays, with the team on defense (i.e. allowed to opponents). \cr
    TEPA_def_pass \tab double \tab Total EPA summed over every play on pass plays, with the team on defense (i.e. allowed to opponents). \cr
    EPAplay_def_pass \tab double \tab EPA per play on pass plays, with the team on defense (i.e. allowed to opponents). \cr
-   yards_def_pass \tab integer \tab Total yards gained on pass plays, with the team on defense (i.e. allowed to opponents). \cr
-   yardsplay_def_pass \tab double \tab Yards gained per play on pass plays, with the team on defense (i.e. allowed to opponents). \cr
-   play_stuffed_def_pass \tab double \tab Stuffed-play rate -- the share of plays carrying the stuffed flag on pass plays, with the team on defense (i.e. allowed to opponents). \cr
+   yards_def_pass \tab integer \tab Total yards gained (an interception counts as 0 yards) on pass plays, with the team on defense (i.e. allowed to opponents). \cr
+   yardsplay_def_pass \tab double \tab Yards gained per play (an interception counts as 0 yards) on pass plays, with the team on defense (i.e. allowed to opponents). \cr
+   play_stuffed_def_pass \tab double \tab Run-stuff rate (always null: only rushes carry the stuffed flag) on pass plays, with the team on defense (i.e. allowed to opponents). \cr
    success_def_pass \tab double \tab Success rate -- the share of plays flagged as successful by EPA on pass plays, with the team on defense (i.e. allowed to opponents). \cr
    red_zone_success_def_pass \tab double \tab Success rate on red-zone plays on pass plays, with the team on defense (i.e. allowed to opponents). \cr
    third_down_success_def_pass \tab double \tab Success rate on third-down plays on pass plays, with the team on defense (i.e. allowed to opponents). \cr
@@ -235,7 +235,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    early_down_EPA_def_pass \tab double \tab EPA per early-down play on pass plays, with the team on defense (i.e. allowed to opponents). \cr
    nonExplosiveEpaPerPlay_def_pass \tab double \tab EPA per play with explosive plays excluded on pass plays, with the team on defense (i.e. allowed to opponents). \cr
    line_yards_def_pass \tab double \tab Average line yards credited to the offensive line on rushes on pass plays, with the team on defense (i.e. allowed to opponents). \cr
-   opportunity_rate_def_pass \tab double \tab Opportunity rate -- the share of rushes carrying the opportunity flag on pass plays, with the team on defense (i.e. allowed to opponents). \cr
+   opportunity_rate_def_pass \tab double \tab Opportunity rate (always null: only rushes carry the opportunity flag) on pass plays, with the team on defense (i.e. allowed to opponents). \cr
    playsgame_def_pass \tab double \tab Plays run per game on pass plays, with the team on defense (i.e. allowed to opponents). \cr
    EPAdrive_def_pass \tab double \tab EPA per drive (total EPA divided by drives) on pass plays, with the team on defense (i.e. allowed to opponents). \cr
    EPAgame_def_pass \tab double \tab EPA per game (total EPA divided by games) on pass plays, with the team on defense (i.e. allowed to opponents). \cr
@@ -244,43 +244,43 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    drivesgame_def_pass \tab double \tab Drives per game on pass plays, with the team on defense (i.e. allowed to opponents). \cr
    yardsdrive_def_pass \tab double \tab Yards gained per drive on pass plays, with the team on defense (i.e. allowed to opponents). \cr
    playsdrive_def_pass \tab double \tab Plays run per drive on pass plays, with the team on defense (i.e. allowed to opponents). \cr
-   playsgame_def_pass_rank \tab double \tab National rank of the team's plays run per game on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   TEPA_def_pass_rank \tab double \tab National rank of the team's total EPA summed over every play on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   EPAgame_def_pass_rank \tab double \tab National rank of the team's EPA per game (total EPA divided by games) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   EPAplay_def_pass_rank \tab double \tab National rank of the team's EPA per play on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   EPAdrive_def_pass_rank \tab double \tab National rank of the team's EPA per drive (total EPA divided by drives) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   early_down_EPA_def_pass_rank \tab double \tab National rank of the team's EPA per early-down play on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   success_def_pass_rank \tab double \tab National rank of the team's success rate -- the share of plays flagged as successful by EPA on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   yards_def_pass_rank \tab double \tab National rank of the team's total yards gained on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   yardsplay_def_pass_rank \tab double \tab National rank of the team's yards gained per play on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   yardsgame_def_pass_rank \tab double \tab National rank of the team's yards gained per game on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   drivesgame_def_pass_rank \tab double \tab National rank of the team's drives per game on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   yardsdrive_def_pass_rank \tab double \tab National rank of the team's yards gained per drive on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   playsdrive_def_pass_rank \tab double \tab National rank of the team's plays run per drive on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   play_stuffed_def_pass_rank \tab double \tab National rank of the team's stuffed-play rate -- the share of plays carrying the stuffed flag on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   red_zone_success_def_pass_rank \tab double \tab National rank of the team's success rate on red-zone plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   third_down_success_def_pass_rank \tab double \tab National rank of the team's success rate on third-down plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   late_down_success_def_pass_rank \tab double \tab National rank of the team's success rate on late-down plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   third_down_distance_def_pass_rank \tab double \tab National rank of the team's average yards to go on third down on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   havoc_def_pass_rank \tab double \tab National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   explosive_def_pass_rank \tab double \tab National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   passrate_def_pass_rank \tab double \tab National rank of the team's share of plays that were pass plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   rushrate_def_pass_rank \tab double \tab National rank of the team's share of plays that were rush plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   nonExplosiveEpaPerPlay_def_pass_rank \tab double \tab National rank of the team's EPA per play with explosive plays excluded on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   line_yards_def_pass_rank \tab double \tab National rank of the team's average line yards credited to the offensive line on rushes on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   opportunity_rate_def_pass_rank \tab double \tab National rank of the team's opportunity rate -- the share of rushes carrying the opportunity flag on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
+   playsgame_def_pass_rank \tab double \tab National rank of the team's plays run per game on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   TEPA_def_pass_rank \tab double \tab National rank of the team's total EPA summed over every play on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAgame_def_pass_rank \tab double \tab National rank of the team's EPA per game (total EPA divided by games) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAplay_def_pass_rank \tab double \tab National rank of the team's EPA per play on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAdrive_def_pass_rank \tab double \tab National rank of the team's EPA per drive (total EPA divided by drives) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   early_down_EPA_def_pass_rank \tab double \tab National rank of the team's EPA per early-down play on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   success_def_pass_rank \tab double \tab National rank of the team's success rate -- the share of plays flagged as successful by EPA on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yards_def_pass_rank \tab double \tab National rank of the team's total yards gained (an interception counts as 0 yards) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsplay_def_pass_rank \tab double \tab National rank of the team's yards gained per play (an interception counts as 0 yards) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsgame_def_pass_rank \tab double \tab National rank of the team's yards gained per game on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   drivesgame_def_pass_rank \tab double \tab National rank of the team's drives per game on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsdrive_def_pass_rank \tab double \tab National rank of the team's yards gained per drive on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   playsdrive_def_pass_rank \tab double \tab National rank of the team's plays run per drive on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   play_stuffed_def_pass_rank \tab double \tab National rank of the team's run-stuff rate (always null: only rushes carry the stuffed flag) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   red_zone_success_def_pass_rank \tab double \tab National rank of the team's success rate on red-zone plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   third_down_success_def_pass_rank \tab double \tab National rank of the team's success rate on third-down plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   late_down_success_def_pass_rank \tab double \tab National rank of the team's success rate on late-down plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   third_down_distance_def_pass_rank \tab double \tab National rank of the team's average yards to go on third down on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   havoc_def_pass_rank \tab double \tab National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   explosive_def_pass_rank \tab double \tab National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   passrate_def_pass_rank \tab double \tab National rank of the team's share of plays that were pass plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   rushrate_def_pass_rank \tab double \tab National rank of the team's share of plays that were rush plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   nonExplosiveEpaPerPlay_def_pass_rank \tab double \tab National rank of the team's EPA per play with explosive plays excluded on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   line_yards_def_pass_rank \tab double \tab National rank of the team's average line yards credited to the offensive line on rushes on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   opportunity_rate_def_pass_rank \tab double \tab National rank of the team's opportunity rate (always null: only rushes carry the opportunity flag) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
    TEPA_margin_pass \tab double \tab Margin in total EPA summed over every play on pass plays: the team's offensive value minus the value it allowed on defense. \cr
    EPAplay_margin_pass \tab double \tab Margin in EPA per play on pass plays: the team's offensive value minus the value it allowed on defense. \cr
    EPAdrive_margin_pass \tab double \tab Margin in EPA per drive (total EPA divided by drives) on pass plays: the team's offensive value minus the value it allowed on defense. \cr
    EPAgame_margin_pass \tab double \tab Margin in EPA per game (total EPA divided by games) on pass plays: the team's offensive value minus the value it allowed on defense. \cr
    success_margin_pass \tab double \tab Margin in success rate -- the share of plays flagged as successful by EPA on pass plays: the team's offensive value minus the value it allowed on defense. \cr
-   yardsplay_margin_pass \tab double \tab Margin in yards gained per play on pass plays: the team's offensive value minus the value it allowed on defense. \cr
-   TEPA_margin_pass_rank \tab double \tab Margin in total EPA summed over every play on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
-   EPAplay_margin_pass_rank \tab double \tab Margin in EPA per play on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
-   EPAdrive_margin_pass_rank \tab double \tab Margin in EPA per drive (total EPA divided by drives) on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
-   EPAgame_margin_pass_rank \tab double \tab Margin in EPA per game (total EPA divided by games) on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
-   success_margin_pass_rank \tab double \tab Margin in success rate -- the share of plays flagged as successful by EPA on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
-   yardsplay_margin_pass_rank \tab double \tab Margin in yards gained per play on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
+   yardsplay_margin_pass \tab double \tab Margin in yards gained per play (an interception counts as 0 yards) on pass plays: the team's offensive value minus the value it allowed on defense. \cr
+   TEPA_margin_pass_rank \tab double \tab Margin in total EPA summed over every play on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAplay_margin_pass_rank \tab double \tab Margin in EPA per play on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAdrive_margin_pass_rank \tab double \tab Margin in EPA per drive (total EPA divided by drives) on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAgame_margin_pass_rank \tab double \tab Margin in EPA per game (total EPA divided by games) on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   success_margin_pass_rank \tab double \tab Margin in success rate -- the share of plays flagged as successful by EPA on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsplay_margin_pass_rank \tab double \tab Margin in yards gained per play (an interception counts as 0 yards) on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
    plays_off_rush \tab integer \tab Plays run on rush plays, with the team on offense. \cr
    passrate_off_rush \tab double \tab Share of plays that were pass plays on rush plays, with the team on offense. \cr
    rushrate_off_rush \tab double \tab Share of plays that were rush plays on rush plays, with the team on offense. \cr
@@ -288,9 +288,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    explosive_off_rush \tab double \tab Explosive-play rate -- the share of plays carrying the explosive flag on rush plays, with the team on offense. \cr
    TEPA_off_rush \tab double \tab Total EPA summed over every play on rush plays, with the team on offense. \cr
    EPAplay_off_rush \tab double \tab EPA per play on rush plays, with the team on offense. \cr
-   yards_off_rush \tab integer \tab Total yards gained on rush plays, with the team on offense. \cr
-   yardsplay_off_rush \tab double \tab Yards gained per play on rush plays, with the team on offense. \cr
-   play_stuffed_off_rush \tab double \tab Stuffed-play rate -- the share of plays carrying the stuffed flag on rush plays, with the team on offense. \cr
+   yards_off_rush \tab integer \tab Total yards gained (an interception counts as 0 yards) on rush plays, with the team on offense. \cr
+   yardsplay_off_rush \tab double \tab Yards gained per play (an interception counts as 0 yards) on rush plays, with the team on offense. \cr
+   play_stuffed_off_rush \tab double \tab Run-stuff rate -- the share of rushes stopped for 0 or fewer yards on rush plays, with the team on offense. \cr
    success_off_rush \tab double \tab Success rate -- the share of plays flagged as successful by EPA on rush plays, with the team on offense. \cr
    red_zone_success_off_rush \tab double \tab Success rate on red-zone plays on rush plays, with the team on offense. \cr
    third_down_success_off_rush \tab double \tab Success rate on third-down plays on rush plays, with the team on offense. \cr
@@ -299,7 +299,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    early_down_EPA_off_rush \tab double \tab EPA per early-down play on rush plays, with the team on offense. \cr
    nonExplosiveEpaPerPlay_off_rush \tab double \tab EPA per play with explosive plays excluded on rush plays, with the team on offense. \cr
    line_yards_off_rush \tab double \tab Average line yards credited to the offensive line on rushes on rush plays, with the team on offense. \cr
-   opportunity_rate_off_rush \tab double \tab Opportunity rate -- the share of rushes carrying the opportunity flag on rush plays, with the team on offense. \cr
+   opportunity_rate_off_rush \tab double \tab Opportunity rate -- the share of rushes gaining 4 or more yards on rush plays, with the team on offense. \cr
    playsgame_off_rush \tab double \tab Plays run per game on rush plays, with the team on offense. \cr
    EPAdrive_off_rush \tab double \tab EPA per drive (total EPA divided by drives) on rush plays, with the team on offense. \cr
    EPAgame_off_rush \tab double \tab EPA per game (total EPA divided by games) on rush plays, with the team on offense. \cr
@@ -308,31 +308,31 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    drivesgame_off_rush \tab double \tab Drives per game on rush plays, with the team on offense. \cr
    yardsdrive_off_rush \tab double \tab Yards gained per drive on rush plays, with the team on offense. \cr
    playsdrive_off_rush \tab double \tab Plays run per drive on rush plays, with the team on offense. \cr
-   playsgame_off_rush_rank \tab double \tab National rank of the team's plays run per game on rush plays with the team on offense, where 1 is best. \cr
-   TEPA_off_rush_rank \tab double \tab National rank of the team's total EPA summed over every play on rush plays with the team on offense, where 1 is best. \cr
-   EPAgame_off_rush_rank \tab double \tab National rank of the team's EPA per game (total EPA divided by games) on rush plays with the team on offense, where 1 is best. \cr
-   EPAplay_off_rush_rank \tab double \tab National rank of the team's EPA per play on rush plays with the team on offense, where 1 is best. \cr
-   EPAdrive_off_rush_rank \tab double \tab National rank of the team's EPA per drive (total EPA divided by drives) on rush plays with the team on offense, where 1 is best. \cr
-   early_down_EPA_off_rush_rank \tab double \tab National rank of the team's EPA per early-down play on rush plays with the team on offense, where 1 is best. \cr
-   success_off_rush_rank \tab double \tab National rank of the team's success rate -- the share of plays flagged as successful by EPA on rush plays with the team on offense, where 1 is best. \cr
-   yards_off_rush_rank \tab double \tab National rank of the team's total yards gained on rush plays with the team on offense, where 1 is best. \cr
-   yardsplay_off_rush_rank \tab double \tab National rank of the team's yards gained per play on rush plays with the team on offense, where 1 is best. \cr
-   yardsgame_off_rush_rank \tab double \tab National rank of the team's yards gained per game on rush plays with the team on offense, where 1 is best. \cr
-   drivesgame_off_rush_rank \tab double \tab National rank of the team's drives per game on rush plays with the team on offense, where 1 is best. \cr
-   yardsdrive_off_rush_rank \tab double \tab National rank of the team's yards gained per drive on rush plays with the team on offense, where 1 is best. \cr
-   playsdrive_off_rush_rank \tab double \tab National rank of the team's plays run per drive on rush plays with the team on offense, where 1 is best. \cr
-   play_stuffed_off_rush_rank \tab double \tab National rank of the team's stuffed-play rate -- the share of plays carrying the stuffed flag on rush plays with the team on offense, where 1 is best. \cr
-   red_zone_success_off_rush_rank \tab double \tab National rank of the team's success rate on red-zone plays on rush plays with the team on offense, where 1 is best. \cr
-   third_down_success_off_rush_rank \tab double \tab National rank of the team's success rate on third-down plays on rush plays with the team on offense, where 1 is best. \cr
-   late_down_success_off_rush_rank \tab double \tab National rank of the team's success rate on late-down plays on rush plays with the team on offense, where 1 is best. \cr
-   third_down_distance_off_rush_rank \tab double \tab National rank of the team's average yards to go on third down on rush plays with the team on offense, where 1 is best. \cr
-   havoc_off_rush_rank \tab double \tab National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on rush plays with the team on offense, where 1 is best. \cr
-   explosive_off_rush_rank \tab double \tab National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on rush plays with the team on offense, where 1 is best. \cr
-   passrate_off_rush_rank \tab double \tab National rank of the team's share of plays that were pass plays on rush plays with the team on offense, where 1 is best. \cr
-   rushrate_off_rush_rank \tab double \tab National rank of the team's share of plays that were rush plays on rush plays with the team on offense, where 1 is best. \cr
-   nonExplosiveEpaPerPlay_off_rush_rank \tab double \tab National rank of the team's EPA per play with explosive plays excluded on rush plays with the team on offense, where 1 is best. \cr
-   line_yards_off_rush_rank \tab double \tab National rank of the team's average line yards credited to the offensive line on rushes on rush plays with the team on offense, where 1 is best. \cr
-   opportunity_rate_off_rush_rank \tab double \tab National rank of the team's opportunity rate -- the share of rushes carrying the opportunity flag on rush plays with the team on offense, where 1 is best. \cr
+   playsgame_off_rush_rank \tab double \tab National rank of the team's plays run per game on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   TEPA_off_rush_rank \tab double \tab National rank of the team's total EPA summed over every play on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAgame_off_rush_rank \tab double \tab National rank of the team's EPA per game (total EPA divided by games) on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAplay_off_rush_rank \tab double \tab National rank of the team's EPA per play on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAdrive_off_rush_rank \tab double \tab National rank of the team's EPA per drive (total EPA divided by drives) on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   early_down_EPA_off_rush_rank \tab double \tab National rank of the team's EPA per early-down play on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   success_off_rush_rank \tab double \tab National rank of the team's success rate -- the share of plays flagged as successful by EPA on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yards_off_rush_rank \tab double \tab National rank of the team's total yards gained (an interception counts as 0 yards) on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsplay_off_rush_rank \tab double \tab National rank of the team's yards gained per play (an interception counts as 0 yards) on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsgame_off_rush_rank \tab double \tab National rank of the team's yards gained per game on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   drivesgame_off_rush_rank \tab double \tab National rank of the team's drives per game on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsdrive_off_rush_rank \tab double \tab National rank of the team's yards gained per drive on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   playsdrive_off_rush_rank \tab double \tab National rank of the team's plays run per drive on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   play_stuffed_off_rush_rank \tab double \tab National rank of the team's run-stuff rate -- the share of rushes stopped for 0 or fewer yards on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   red_zone_success_off_rush_rank \tab double \tab National rank of the team's success rate on red-zone plays on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   third_down_success_off_rush_rank \tab double \tab National rank of the team's success rate on third-down plays on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   late_down_success_off_rush_rank \tab double \tab National rank of the team's success rate on late-down plays on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   third_down_distance_off_rush_rank \tab double \tab National rank of the team's average yards to go on third down on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   havoc_off_rush_rank \tab double \tab National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   explosive_off_rush_rank \tab double \tab National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   passrate_off_rush_rank \tab double \tab National rank of the team's share of plays that were pass plays on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   rushrate_off_rush_rank \tab double \tab National rank of the team's share of plays that were rush plays on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   nonExplosiveEpaPerPlay_off_rush_rank \tab double \tab National rank of the team's EPA per play with explosive plays excluded on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   line_yards_off_rush_rank \tab double \tab National rank of the team's average line yards credited to the offensive line on rushes on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   opportunity_rate_off_rush_rank \tab double \tab National rank of the team's opportunity rate -- the share of rushes gaining 4 or more yards on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
    plays_def_rush \tab integer \tab Plays run on rush plays, with the team on defense (i.e. allowed to opponents). \cr
    passrate_def_rush \tab double \tab Share of plays that were pass plays on rush plays, with the team on defense (i.e. allowed to opponents). \cr
    rushrate_def_rush \tab double \tab Share of plays that were rush plays on rush plays, with the team on defense (i.e. allowed to opponents). \cr
@@ -340,9 +340,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    explosive_def_rush \tab double \tab Explosive-play rate -- the share of plays carrying the explosive flag on rush plays, with the team on defense (i.e. allowed to opponents). \cr
    TEPA_def_rush \tab double \tab Total EPA summed over every play on rush plays, with the team on defense (i.e. allowed to opponents). \cr
    EPAplay_def_rush \tab double \tab EPA per play on rush plays, with the team on defense (i.e. allowed to opponents). \cr
-   yards_def_rush \tab integer \tab Total yards gained on rush plays, with the team on defense (i.e. allowed to opponents). \cr
-   yardsplay_def_rush \tab double \tab Yards gained per play on rush plays, with the team on defense (i.e. allowed to opponents). \cr
-   play_stuffed_def_rush \tab double \tab Stuffed-play rate -- the share of plays carrying the stuffed flag on rush plays, with the team on defense (i.e. allowed to opponents). \cr
+   yards_def_rush \tab integer \tab Total yards gained (an interception counts as 0 yards) on rush plays, with the team on defense (i.e. allowed to opponents). \cr
+   yardsplay_def_rush \tab double \tab Yards gained per play (an interception counts as 0 yards) on rush plays, with the team on defense (i.e. allowed to opponents). \cr
+   play_stuffed_def_rush \tab double \tab Run-stuff rate -- the share of rushes stopped for 0 or fewer yards on rush plays, with the team on defense (i.e. allowed to opponents). \cr
    success_def_rush \tab double \tab Success rate -- the share of plays flagged as successful by EPA on rush plays, with the team on defense (i.e. allowed to opponents). \cr
    red_zone_success_def_rush \tab double \tab Success rate on red-zone plays on rush plays, with the team on defense (i.e. allowed to opponents). \cr
    third_down_success_def_rush \tab double \tab Success rate on third-down plays on rush plays, with the team on defense (i.e. allowed to opponents). \cr
@@ -351,7 +351,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    early_down_EPA_def_rush \tab double \tab EPA per early-down play on rush plays, with the team on defense (i.e. allowed to opponents). \cr
    nonExplosiveEpaPerPlay_def_rush \tab double \tab EPA per play with explosive plays excluded on rush plays, with the team on defense (i.e. allowed to opponents). \cr
    line_yards_def_rush \tab double \tab Average line yards credited to the offensive line on rushes on rush plays, with the team on defense (i.e. allowed to opponents). \cr
-   opportunity_rate_def_rush \tab double \tab Opportunity rate -- the share of rushes carrying the opportunity flag on rush plays, with the team on defense (i.e. allowed to opponents). \cr
+   opportunity_rate_def_rush \tab double \tab Opportunity rate -- the share of rushes gaining 4 or more yards on rush plays, with the team on defense (i.e. allowed to opponents). \cr
    playsgame_def_rush \tab double \tab Plays run per game on rush plays, with the team on defense (i.e. allowed to opponents). \cr
    EPAdrive_def_rush \tab double \tab EPA per drive (total EPA divided by drives) on rush plays, with the team on defense (i.e. allowed to opponents). \cr
    EPAgame_def_rush \tab double \tab EPA per game (total EPA divided by games) on rush plays, with the team on defense (i.e. allowed to opponents). \cr
@@ -360,53 +360,53 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    drivesgame_def_rush \tab double \tab Drives per game on rush plays, with the team on defense (i.e. allowed to opponents). \cr
    yardsdrive_def_rush \tab double \tab Yards gained per drive on rush plays, with the team on defense (i.e. allowed to opponents). \cr
    playsdrive_def_rush \tab double \tab Plays run per drive on rush plays, with the team on defense (i.e. allowed to opponents). \cr
-   playsgame_def_rush_rank \tab double \tab National rank of the team's plays run per game on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   TEPA_def_rush_rank \tab double \tab National rank of the team's total EPA summed over every play on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   EPAgame_def_rush_rank \tab double \tab National rank of the team's EPA per game (total EPA divided by games) on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   EPAplay_def_rush_rank \tab double \tab National rank of the team's EPA per play on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   EPAdrive_def_rush_rank \tab double \tab National rank of the team's EPA per drive (total EPA divided by drives) on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   early_down_EPA_def_rush_rank \tab double \tab National rank of the team's EPA per early-down play on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   success_def_rush_rank \tab double \tab National rank of the team's success rate -- the share of plays flagged as successful by EPA on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   yards_def_rush_rank \tab double \tab National rank of the team's total yards gained on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   yardsplay_def_rush_rank \tab double \tab National rank of the team's yards gained per play on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   yardsgame_def_rush_rank \tab double \tab National rank of the team's yards gained per game on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   drivesgame_def_rush_rank \tab double \tab National rank of the team's drives per game on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   yardsdrive_def_rush_rank \tab double \tab National rank of the team's yards gained per drive on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   playsdrive_def_rush_rank \tab double \tab National rank of the team's plays run per drive on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   play_stuffed_def_rush_rank \tab double \tab National rank of the team's stuffed-play rate -- the share of plays carrying the stuffed flag on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   red_zone_success_def_rush_rank \tab double \tab National rank of the team's success rate on red-zone plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   third_down_success_def_rush_rank \tab double \tab National rank of the team's success rate on third-down plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   late_down_success_def_rush_rank \tab double \tab National rank of the team's success rate on late-down plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   third_down_distance_def_rush_rank \tab double \tab National rank of the team's average yards to go on third down on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   havoc_def_rush_rank \tab double \tab National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   explosive_def_rush_rank \tab double \tab National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   passrate_def_rush_rank \tab double \tab National rank of the team's share of plays that were pass plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   rushrate_def_rush_rank \tab double \tab National rank of the team's share of plays that were rush plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   nonExplosiveEpaPerPlay_def_rush_rank \tab double \tab National rank of the team's EPA per play with explosive plays excluded on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   line_yards_def_rush_rank \tab double \tab National rank of the team's average line yards credited to the offensive line on rushes on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
-   opportunity_rate_def_rush_rank \tab double \tab National rank of the team's opportunity rate -- the share of rushes carrying the opportunity flag on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. \cr
+   playsgame_def_rush_rank \tab double \tab National rank of the team's plays run per game on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   TEPA_def_rush_rank \tab double \tab National rank of the team's total EPA summed over every play on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAgame_def_rush_rank \tab double \tab National rank of the team's EPA per game (total EPA divided by games) on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAplay_def_rush_rank \tab double \tab National rank of the team's EPA per play on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAdrive_def_rush_rank \tab double \tab National rank of the team's EPA per drive (total EPA divided by drives) on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   early_down_EPA_def_rush_rank \tab double \tab National rank of the team's EPA per early-down play on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   success_def_rush_rank \tab double \tab National rank of the team's success rate -- the share of plays flagged as successful by EPA on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yards_def_rush_rank \tab double \tab National rank of the team's total yards gained (an interception counts as 0 yards) on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsplay_def_rush_rank \tab double \tab National rank of the team's yards gained per play (an interception counts as 0 yards) on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsgame_def_rush_rank \tab double \tab National rank of the team's yards gained per game on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   drivesgame_def_rush_rank \tab double \tab National rank of the team's drives per game on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsdrive_def_rush_rank \tab double \tab National rank of the team's yards gained per drive on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   playsdrive_def_rush_rank \tab double \tab National rank of the team's plays run per drive on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   play_stuffed_def_rush_rank \tab double \tab National rank of the team's run-stuff rate -- the share of rushes stopped for 0 or fewer yards on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   red_zone_success_def_rush_rank \tab double \tab National rank of the team's success rate on red-zone plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   third_down_success_def_rush_rank \tab double \tab National rank of the team's success rate on third-down plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   late_down_success_def_rush_rank \tab double \tab National rank of the team's success rate on late-down plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   third_down_distance_def_rush_rank \tab double \tab National rank of the team's average yards to go on third down on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   havoc_def_rush_rank \tab double \tab National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   explosive_def_rush_rank \tab double \tab National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   passrate_def_rush_rank \tab double \tab National rank of the team's share of plays that were pass plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   rushrate_def_rush_rank \tab double \tab National rank of the team's share of plays that were rush plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   nonExplosiveEpaPerPlay_def_rush_rank \tab double \tab National rank of the team's EPA per play with explosive plays excluded on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   line_yards_def_rush_rank \tab double \tab National rank of the team's average line yards credited to the offensive line on rushes on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   opportunity_rate_def_rush_rank \tab double \tab National rank of the team's opportunity rate -- the share of rushes gaining 4 or more yards on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
    TEPA_margin_rush \tab double \tab Margin in total EPA summed over every play on rush plays: the team's offensive value minus the value it allowed on defense. \cr
    EPAplay_margin_rush \tab double \tab Margin in EPA per play on rush plays: the team's offensive value minus the value it allowed on defense. \cr
    EPAdrive_margin_rush \tab double \tab Margin in EPA per drive (total EPA divided by drives) on rush plays: the team's offensive value minus the value it allowed on defense. \cr
    EPAgame_margin_rush \tab double \tab Margin in EPA per game (total EPA divided by games) on rush plays: the team's offensive value minus the value it allowed on defense. \cr
    success_margin_rush \tab double \tab Margin in success rate -- the share of plays flagged as successful by EPA on rush plays: the team's offensive value minus the value it allowed on defense. \cr
-   yardsplay_margin_rush \tab double \tab Margin in yards gained per play on rush plays: the team's offensive value minus the value it allowed on defense. \cr
-   TEPA_margin_rush_rank \tab double \tab Margin in total EPA summed over every play on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
-   EPAplay_margin_rush_rank \tab double \tab Margin in EPA per play on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
-   EPAdrive_margin_rush_rank \tab double \tab Margin in EPA per drive (total EPA divided by drives) on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
-   EPAgame_margin_rush_rank \tab double \tab Margin in EPA per game (total EPA divided by games) on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
-   success_margin_rush_rank \tab double \tab Margin in success rate -- the share of plays flagged as successful by EPA on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
-   yardsplay_margin_rush_rank \tab double \tab Margin in yards gained per play on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. \cr
+   yardsplay_margin_rush \tab double \tab Margin in yards gained per play (an interception counts as 0 yards) on rush plays: the team's offensive value minus the value it allowed on defense. \cr
+   TEPA_margin_rush_rank \tab double \tab Margin in total EPA summed over every play on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAplay_margin_rush_rank \tab double \tab Margin in EPA per play on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAdrive_margin_rush_rank \tab double \tab Margin in EPA per drive (total EPA divided by drives) on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   EPAgame_margin_rush_rank \tab double \tab Margin in EPA per game (total EPA divided by games) on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   success_margin_rush_rank \tab double \tab Margin in success rate -- the share of plays flagged as successful by EPA on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   yardsplay_margin_rush_rank \tab double \tab Margin in yards gained per play (an interception counts as 0 yards) on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
    fbs_class \tab character \tab Power/Group classification for the season: P4 or G6 from 2024 on, P5 or G5 through 2023, derived from conference membership (Notre Dame is classified with the power group). Null for teams outside FBS. \cr
    valid_games \tab integer \tab Number of the team's games that produced both an offensive and a defensive adjusted-EPA value; teams below two valid games are dropped from the adjusted ratings. \cr
    adj_off_epa \tab double \tab Offensive opponent-adjusted EPA per play from the ridge (RAPM-style) regression on offense/defense team indicators plus home field -- cfbfastR's adjust_epa adjustment, fit in-sample across the season, so the value is descriptive of that window rather than predictive. \cr
    adj_def_epa \tab double \tab Defensive opponent-adjusted EPA per play from the ridge (RAPM-style) regression on offense/defense team indicators plus home field -- cfbfastR's adjust_epa adjustment, fit in-sample across the season, so the value is descriptive of that window rather than predictive. Lower is better -- it is EPA allowed. \cr
-   off_strength_faced \tab double \tab Average opponent-defense strength the team's offense faced, taken as the mean of the ridge's defensive coefficients across its opponents. Higher means a tougher slate. \cr
-   def_strength_faced \tab double \tab Average opponent-offense strength the team's defense faced, taken as the mean of the ridge's offensive coefficients across its opponents. Higher means a tougher slate. \cr
+   off_strength_faced \tab double \tab Average strength of the opposing offenses the team's defense faced: the mean over its games of each opponent's ridge-fitted offensive EPA per play. Higher means a tougher slate. Null when the team has fewer than two valid games. \cr
+   def_strength_faced \tab double \tab Average strength of the opposing defenses the team's offense faced: the mean over its games of the EPA per play each opponent's defense is fitted to allow. Lower means a tougher slate. Null when the team has fewer than two valid games. \cr
    net_adj_epa \tab double \tab Net opponent-adjusted EPA per play: adj_off_epa minus adj_def_epa. Higher is better. \cr
-   adj_off_epa_rank \tab double \tab National rank of the team's adj_off_epa, where 1 is best. \cr
-   adj_def_epa_rank \tab double \tab National rank of the team's adj_def_epa, where 1 is best (fewest EPA allowed). \cr
-   net_adj_epa_rank \tab double \tab National rank of the team's net_adj_epa, 1 = largest net adjusted EPA. \cr
+   adj_off_epa_rank \tab double \tab National rank of the team's adj_off_epa, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   adj_def_epa_rank \tab double \tab National rank of the team's adj_def_epa, where 1 is best (fewest EPA allowed). Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
+   net_adj_epa_rank \tab double \tab National rank of the team's net_adj_epa, 1 = largest net adjusted EPA. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. \cr
 }
 }
 \description{

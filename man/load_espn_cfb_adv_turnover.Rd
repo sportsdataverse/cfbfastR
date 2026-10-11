@@ -29,16 +29,17 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    turnovers \tab integer \tab  \cr
    st_turnovers_lost \tab integer \tab Turnovers the team lost on special-teams plays. \cr
    Int \tab integer \tab Interceptions thrown. \cr
-   fumbles_lost \tab integer \tab  \cr
+   fumbles_lost \tab integer \tab Fumbles this team lost to the opponent on every play, special teams included: ESPN's team box fumblesLost where the game has one, else the play-by-play count (fumbles_lost_pbp). \cr
    pass_breakups \tab integer \tab Passes thrown by this offense that the opposing defense broke up; it equals the opponent's row in the advanced defensive table exactly. \cr
-   total_fumbles \tab integer \tab  \cr
-   fumbles_recovered \tab integer \tab  \cr
+   total_fumbles \tab integer \tab Fumbles by this team on every play, special teams included, charged to the team that fumbled (a returner's muffed punt counts against the return team): the same plays fumbles_lost counts. \cr
+   fumbles_recovered \tab integer \tab Of total_fumbles, the ones this team recovered itself. \cr
    team_id \tab integer \tab  \cr
    turnovers_pbp \tab integer \tab Turnover count derived from the play-by-play, retained unchanged so it can be reconciled against the ESPN-sourced turnovers total. \cr
    Int_pbp \tab integer \tab Interception count derived from the play-by-play, kept alongside the ESPN-sourced Int for reconciliation. \cr
    fumbles_lost_pbp \tab integer \tab Fumbles-lost count derived from the play-by-play, kept alongside the ESPN-sourced fumbles_lost for reconciliation. \cr
    espn_sourced \tab logical \tab CONSTANT: true on every published row. It records that the row was built from the ESPN feed rather than an alternate provider, and no other provider is currently used. \cr
-   expected_turnovers \tab double \tab Turnover expectation for this team, computed as half its total fumbles plus 0.22 times the sum of its pass breakups and interceptions. \cr
+   passes_defended \tab integer \tab Passes thrown by this offense that the opposing defense defended, from ESPN's box score (the defense's passesDefended, which excludes interceptions, plus Int). Null where ESPN's box has no passesDefended, mostly before 2023. \cr
+   expected_turnovers \tab double \tab Turnover expectation for this team, computed as \code{0.5 * total_fumbles + 0.22 * passes_defended} where passes_defended is present, otherwise \code{0.5 * total_fumbles + 0.22 * (pass_breakups + Int)}. \cr
    expected_turnover_margin \tab double \tab The opponent's expected_turnovers minus this team's, so positive means the team was expected to win the turnover battle. \cr
    turnover_margin \tab integer \tab The opponent's turnovers minus this team's turnovers, positive when the team gained more possessions than it gave away. \cr
    turnover_luck \tab double \tab Points of scoring luck attributed to turnovers, five points per turnover times the gap between turnover_margin and expected_turnover_margin. \cr

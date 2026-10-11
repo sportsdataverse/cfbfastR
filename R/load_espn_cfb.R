@@ -1436,7 +1436,7 @@ NULL
 #'    |early_down_EPA         |double |Value of EPA per early-down play at the percentile this row reports. |
 #'    |late_down_success      |double |Value of success rate on late downs at the percentile this row reports. |
 #'    |success                |double |Value of success rate across the team plays at the percentile this row reports. |
-#'    |yardsplay              |double |Value of yards per play at the percentile this row reports. |
+#'    |yardsplay              |double |Value of yards per play (an interception counts as 0 yards) at the percentile this row reports. |
 #'    |dropbacks              |double |Value of dropbacks taken by the passer at the percentile this row reports. |
 #'    |rushes                 |double |Value of rushing attempts at the percentile this row reports. |
 #'    |EPAdropback            |double |Value of EPA generated per dropback at the percentile this row reports. |
@@ -1447,12 +1447,12 @@ NULL
 #'    |explosive              |double |Value of explosive-play rate at the percentile this row reports. |
 #'    |third_down_success     |double |Value of success rate on third down at the percentile this row reports. |
 #'    |red_zone_success       |double |Value of success rate in the red zone at the percentile this row reports. |
-#'    |play_stuffed           |double |Value of stuffed-play rate at the percentile this row reports. |
+#'    |play_stuffed           |double |Value of run-stuff rate (the share of rushes stopped for 0 or fewer yards) at the percentile this row reports. |
 #'    |nonExplosiveEpaPerPlay |double |Value of EPA per play excluding explosive plays at the percentile this row reports. |
 #'    |havoc                  |double |Value of havoc rate at the percentile this row reports. |
 #'    |yardsrush              |double |Value of yards per rush at the percentile this row reports. |
 #'    |lineyards              |double |Value of line yards per rush at the percentile this row reports. |
-#'    |opportunity_run        |double |Value of opportunity-run rate at the percentile this row reports. |
+#'    |opportunity_run        |double |Value of opportunity-run rate (the share of rushes gaining 4 or more yards) at the percentile this row reports. |
 #'    |third_down_distance    |double |Value of average yards to go on third down at the percentile this row reports. |
 #'
 #' @examples
@@ -1530,7 +1530,7 @@ NULL
 #'    |TEPA                |double    |Total EPA summed over every play. |
 #'    |EPAplay             |double    |EPA generated per play. |
 #'    |yards               |double    | |
-#'    |success             |double    |Success rate across the team plays. |
+#'    |success             |double    |Success rate over the passer's dropbacks (completions, incompletions, sacks and interceptions), like EPAplay. A sack keeps its own success value; an interception is never a success. |
 #'    |comp                |double    |Completed passes. |
 #'    |att                 |double    |Pass attempts thrown. |
 #'    |comppct             |double    |Completion percentage. |
@@ -1552,7 +1552,7 @@ NULL
 #'    |TEPA_rank           |double    |National rank of the team's total EPA summed over every play, where 1 is best. |
 #'    |EPAgame_rank        |double    |National rank of the team's EPA generated per game, where 1 is best. |
 #'    |EPAplay_rank        |double    |National rank of the team's EPA generated per play, where 1 is best. |
-#'    |success_rank        |double    |National rank of the team's success rate across the team plays, where 1 is best. |
+#'    |success_rank        |double    |Rank of the passer's success rate over dropbacks among passers clearing the leaderboard minimum of 14 dropbacks per team game, where 1 is best. |
 #'    |comppct_rank        |double    |National rank of the team's completion percentage, where 1 is best. |
 #'    |yards_rank          |double    |National rank of the team's total yards, where 1 is best. |
 #'    |yardsplay_rank      |double    |National rank of the team's yards per play, where 1 is best. |
@@ -1722,22 +1722,22 @@ NULL
 #'    |season               |integer   | |
 #'    |player_id            |integer   | |
 #'    |receiver_player_name |character |Display name of the targeted receiver -- the FIRST participant in that role on the play. |
-#'    |plays                |integer   | |
+#'    |plays                |integer   |Attributed targets: pass plays naming the receiver as the target or the catcher. |
 #'    |games                |integer   | |
 #'    |team_games           |integer   |Games the team played, used as the per-game denominator. |
 #'    |TEPA                 |double    |Total EPA summed over every play. |
-#'    |EPAplay              |double    |EPA generated per play. |
+#'    |EPAplay              |double    |EPA per target. Null, with any _rank, _pct and _pos_pct, in seasons where more than 30% of incompletions name no receiver (2021-2024): those throws drop out of every receiver's targets, so per-target rates would read high. |
 #'    |yards                |integer   | |
-#'    |success              |double    |Success rate across the team plays. |
+#'    |success              |double    |Success rate over the receiver's targets. Null, with any _rank, _pct and _pos_pct, in seasons where more than 30% of incompletions name no receiver (2021-2024): those throws drop out of every receiver's targets, so per-target rates would read high. |
 #'    |comp                 |integer   |Completed passes. |
-#'    |targets              |integer   | |
+#'    |targets              |integer   |Attributed targets: passes ESPN charts to this receiver. An incompletion that names no receiver counts for nobody, so this undercounts real targets: 22-24% of incompletions name no receiver in 2014-2020, 42-77% in 2021-2024 and under 10% from 2025. |
 #'    |passing_td           |double    | |
 #'    |fumbles              |double    |Count of the receiver's targeted pass plays across the season whose play text mentions a fumble by either team. |
 #'    |playsgame            |double    |Plays per game. |
 #'    |EPAgame              |double    |EPA generated per game. |
-#'    |yardsplay            |double    |Yards per play. |
+#'    |yardsplay            |double    |Yards per target. Null, with any _rank, _pct and _pos_pct, in seasons where more than 30% of incompletions name no receiver (2021-2024): those throws drop out of every receiver's targets, so per-target rates would read high. |
 #'    |yardsgame            |double    |Yards per game. |
-#'    |catchpct             |double    |Catch rate on a 0-to-1 scale, receptions divided by targets for the season. |
+#'    |catchpct             |double    |Catch rate on a 0-to-1 scale, receptions divided by targets for the season. Null, with any _rank, _pct and _pos_pct, in seasons where more than 30% of incompletions name no receiver (2021-2024): those throws drop out of every receiver's targets, so per-target rates would read high. |
 #'    |TEPA_rank            |double    |National rank of the team's total EPA summed over every play, where 1 is best. |
 #'    |EPAgame_rank         |double    |National rank of the team's EPA generated per game, where 1 is best. |
 #'    |EPAplay_rank         |double    |National rank of the team's EPA generated per play, where 1 is best. |
@@ -1823,9 +1823,9 @@ NULL
 #'    |explosive_off                        |double    |Explosive-play rate -- the share of plays carrying the explosive flag, with the team on offense. |
 #'    |TEPA_off                             |double    |Total EPA summed over every play, with the team on offense. |
 #'    |EPAplay_off                          |double    |EPA per play, with the team on offense. |
-#'    |yards_off                            |integer   |Total yards gained, with the team on offense. |
-#'    |yardsplay_off                        |double    |Yards gained per play, with the team on offense. |
-#'    |play_stuffed_off                     |double    |Stuffed-play rate -- the share of plays carrying the stuffed flag, with the team on offense. |
+#'    |yards_off                            |integer   |Total yards gained (an interception counts as 0 yards), with the team on offense. |
+#'    |yardsplay_off                        |double    |Yards gained per play (an interception counts as 0 yards), with the team on offense. |
+#'    |play_stuffed_off                     |double    |Run-stuff rate -- the share of rushes stopped for 0 or fewer yards, with the team on offense. |
 #'    |success_off                          |double    |Success rate -- the share of plays flagged as successful by EPA, with the team on offense. |
 #'    |red_zone_success_off                 |double    |Success rate on red-zone plays, with the team on offense. |
 #'    |third_down_success_off               |double    |Success rate on third-down plays, with the team on offense. |
@@ -1835,7 +1835,7 @@ NULL
 #'    |start_position_off                   |double    |Average drive start position, measured in yards from the opponent goal line, with the team on offense. |
 #'    |nonExplosiveEpaPerPlay_off           |double    |EPA per play with explosive plays excluded, with the team on offense. |
 #'    |line_yards_off                       |double    |Average line yards credited to the offensive line on rushes, with the team on offense. |
-#'    |opportunity_rate_off                 |double    |Opportunity rate -- the share of rushes carrying the opportunity flag, with the team on offense. |
+#'    |opportunity_rate_off                 |double    |Opportunity rate -- the share of rushes gaining 4 or more yards, with the team on offense. |
 #'    |playsgame_off                        |double    |Plays run per game, with the team on offense. |
 #'    |EPAdrive_off                         |double    |EPA per drive (total EPA divided by drives), with the team on offense. |
 #'    |EPAgame_off                          |double    |EPA per game (total EPA divided by games), with the team on offense. |
@@ -1844,32 +1844,32 @@ NULL
 #'    |drivesgame_off                       |double    |Drives per game, with the team on offense. |
 #'    |yardsdrive_off                       |double    |Yards gained per drive, with the team on offense. |
 #'    |playsdrive_off                       |double    |Plays run per drive, with the team on offense. |
-#'    |playsgame_off_rank                   |double    |National rank of the team's plays run per game with the team on offense, where 1 is best. |
-#'    |TEPA_off_rank                        |double    |National rank of the team's total EPA summed over every play with the team on offense, where 1 is best. |
-#'    |EPAgame_off_rank                     |double    |National rank of the team's EPA per game (total EPA divided by games) with the team on offense, where 1 is best. |
-#'    |EPAplay_off_rank                     |double    |National rank of the team's EPA per play with the team on offense, where 1 is best. |
-#'    |EPAdrive_off_rank                    |double    |National rank of the team's EPA per drive (total EPA divided by drives) with the team on offense, where 1 is best. |
-#'    |early_down_EPA_off_rank              |double    |National rank of the team's EPA per early-down play with the team on offense, where 1 is best. |
-#'    |success_off_rank                     |double    |National rank of the team's success rate -- the share of plays flagged as successful by EPA with the team on offense, where 1 is best. |
-#'    |yards_off_rank                       |double    |National rank of the team's total yards gained with the team on offense, where 1 is best. |
-#'    |yardsplay_off_rank                   |double    |National rank of the team's yards gained per play with the team on offense, where 1 is best. |
-#'    |yardsgame_off_rank                   |double    |National rank of the team's yards gained per game with the team on offense, where 1 is best. |
-#'    |drivesgame_off_rank                  |double    |National rank of the team's drives per game with the team on offense, where 1 is best. |
-#'    |yardsdrive_off_rank                  |double    |National rank of the team's yards gained per drive with the team on offense, where 1 is best. |
-#'    |playsdrive_off_rank                  |double    |National rank of the team's plays run per drive with the team on offense, where 1 is best. |
-#'    |play_stuffed_off_rank                |double    |National rank of the team's stuffed-play rate -- the share of plays carrying the stuffed flag with the team on offense, where 1 is best. |
-#'    |red_zone_success_off_rank            |double    |National rank of the team's success rate on red-zone plays with the team on offense, where 1 is best. |
-#'    |third_down_success_off_rank          |double    |National rank of the team's success rate on third-down plays with the team on offense, where 1 is best. |
-#'    |late_down_success_off_rank           |double    |National rank of the team's success rate on late-down plays with the team on offense, where 1 is best. |
-#'    |third_down_distance_off_rank         |double    |National rank of the team's average yards to go on third down with the team on offense, where 1 is best. |
-#'    |start_position_off_rank              |double    |National rank of the team's average drive start position, measured in yards from the opponent goal line with the team on offense, where 1 is best. |
-#'    |havoc_off_rank                       |double    |National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag with the team on offense, where 1 is best. |
-#'    |explosive_off_rank                   |double    |National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag with the team on offense, where 1 is best. |
-#'    |passrate_off_rank                    |double    |National rank of the team's share of plays that were pass plays with the team on offense, where 1 is best. |
-#'    |rushrate_off_rank                    |double    |National rank of the team's share of plays that were rush plays with the team on offense, where 1 is best. |
-#'    |nonExplosiveEpaPerPlay_off_rank      |double    |National rank of the team's EPA per play with explosive plays excluded with the team on offense, where 1 is best. |
-#'    |line_yards_off_rank                  |double    |National rank of the team's average line yards credited to the offensive line on rushes with the team on offense, where 1 is best. |
-#'    |opportunity_rate_off_rank            |double    |National rank of the team's opportunity rate -- the share of rushes carrying the opportunity flag with the team on offense, where 1 is best. |
+#'    |playsgame_off_rank                   |double    |National rank of the team's plays run per game with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |TEPA_off_rank                        |double    |National rank of the team's total EPA summed over every play with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAgame_off_rank                     |double    |National rank of the team's EPA per game (total EPA divided by games) with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAplay_off_rank                     |double    |National rank of the team's EPA per play with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAdrive_off_rank                    |double    |National rank of the team's EPA per drive (total EPA divided by drives) with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |early_down_EPA_off_rank              |double    |National rank of the team's EPA per early-down play with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |success_off_rank                     |double    |National rank of the team's success rate -- the share of plays flagged as successful by EPA with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yards_off_rank                       |double    |National rank of the team's total yards gained (an interception counts as 0 yards) with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsplay_off_rank                   |double    |National rank of the team's yards gained per play (an interception counts as 0 yards) with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsgame_off_rank                   |double    |National rank of the team's yards gained per game with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |drivesgame_off_rank                  |double    |National rank of the team's drives per game with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsdrive_off_rank                  |double    |National rank of the team's yards gained per drive with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |playsdrive_off_rank                  |double    |National rank of the team's plays run per drive with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |play_stuffed_off_rank                |double    |National rank of the team's run-stuff rate -- the share of rushes stopped for 0 or fewer yards with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |red_zone_success_off_rank            |double    |National rank of the team's success rate on red-zone plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |third_down_success_off_rank          |double    |National rank of the team's success rate on third-down plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |late_down_success_off_rank           |double    |National rank of the team's success rate on late-down plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |third_down_distance_off_rank         |double    |National rank of the team's average yards to go on third down with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |start_position_off_rank              |double    |National rank of the team's average drive start position, measured in yards from the opponent goal line with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |havoc_off_rank                       |double    |National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |explosive_off_rank                   |double    |National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |passrate_off_rank                    |double    |National rank of the team's share of plays that were pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |rushrate_off_rank                    |double    |National rank of the team's share of plays that were rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |nonExplosiveEpaPerPlay_off_rank      |double    |National rank of the team's EPA per play with explosive plays excluded with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |line_yards_off_rank                  |double    |National rank of the team's average line yards credited to the offensive line on rushes with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |opportunity_rate_off_rank            |double    |National rank of the team's opportunity rate -- the share of rushes gaining 4 or more yards with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 #'    |plays_def                            |integer   |Plays run, with the team on defense (i.e. allowed to opponents). |
 #'    |passrate_def                         |double    |Share of plays that were pass plays, with the team on defense (i.e. allowed to opponents). |
 #'    |rushrate_def                         |double    |Share of plays that were rush plays, with the team on defense (i.e. allowed to opponents). |
@@ -1877,9 +1877,9 @@ NULL
 #'    |explosive_def                        |double    |Explosive-play rate -- the share of plays carrying the explosive flag, with the team on defense (i.e. allowed to opponents). |
 #'    |TEPA_def                             |double    |Total EPA summed over every play, with the team on defense (i.e. allowed to opponents). |
 #'    |EPAplay_def                          |double    |EPA per play, with the team on defense (i.e. allowed to opponents). |
-#'    |yards_def                            |integer   |Total yards gained, with the team on defense (i.e. allowed to opponents). |
-#'    |yardsplay_def                        |double    |Yards gained per play, with the team on defense (i.e. allowed to opponents). |
-#'    |play_stuffed_def                     |double    |Stuffed-play rate -- the share of plays carrying the stuffed flag, with the team on defense (i.e. allowed to opponents). |
+#'    |yards_def                            |integer   |Total yards gained (an interception counts as 0 yards), with the team on defense (i.e. allowed to opponents). |
+#'    |yardsplay_def                        |double    |Yards gained per play (an interception counts as 0 yards), with the team on defense (i.e. allowed to opponents). |
+#'    |play_stuffed_def                     |double    |Run-stuff rate -- the share of rushes stopped for 0 or fewer yards, with the team on defense (i.e. allowed to opponents). |
 #'    |success_def                          |double    |Success rate -- the share of plays flagged as successful by EPA, with the team on defense (i.e. allowed to opponents). |
 #'    |red_zone_success_def                 |double    |Success rate on red-zone plays, with the team on defense (i.e. allowed to opponents). |
 #'    |third_down_success_def               |double    |Success rate on third-down plays, with the team on defense (i.e. allowed to opponents). |
@@ -1889,7 +1889,7 @@ NULL
 #'    |start_position_def                   |double    |Average drive start position, measured in yards from the opponent goal line, with the team on defense (i.e. allowed to opponents). |
 #'    |nonExplosiveEpaPerPlay_def           |double    |EPA per play with explosive plays excluded, with the team on defense (i.e. allowed to opponents). |
 #'    |line_yards_def                       |double    |Average line yards credited to the offensive line on rushes, with the team on defense (i.e. allowed to opponents). |
-#'    |opportunity_rate_def                 |double    |Opportunity rate -- the share of rushes carrying the opportunity flag, with the team on defense (i.e. allowed to opponents). |
+#'    |opportunity_rate_def                 |double    |Opportunity rate -- the share of rushes gaining 4 or more yards, with the team on defense (i.e. allowed to opponents). |
 #'    |playsgame_def                        |double    |Plays run per game, with the team on defense (i.e. allowed to opponents). |
 #'    |EPAdrive_def                         |double    |EPA per drive (total EPA divided by drives), with the team on defense (i.e. allowed to opponents). |
 #'    |EPAgame_def                          |double    |EPA per game (total EPA divided by games), with the team on defense (i.e. allowed to opponents). |
@@ -1898,60 +1898,60 @@ NULL
 #'    |drivesgame_def                       |double    |Drives per game, with the team on defense (i.e. allowed to opponents). |
 #'    |yardsdrive_def                       |double    |Yards gained per drive, with the team on defense (i.e. allowed to opponents). |
 #'    |playsdrive_def                       |double    |Plays run per drive, with the team on defense (i.e. allowed to opponents). |
-#'    |playsgame_def_rank                   |double    |National rank of the team's plays run per game with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |TEPA_def_rank                        |double    |National rank of the team's total EPA summed over every play with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |EPAgame_def_rank                     |double    |National rank of the team's EPA per game (total EPA divided by games) with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |EPAplay_def_rank                     |double    |National rank of the team's EPA per play with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |EPAdrive_def_rank                    |double    |National rank of the team's EPA per drive (total EPA divided by drives) with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |early_down_EPA_def_rank              |double    |National rank of the team's EPA per early-down play with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |success_def_rank                     |double    |National rank of the team's success rate -- the share of plays flagged as successful by EPA with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |yards_def_rank                       |double    |National rank of the team's total yards gained with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |yardsplay_def_rank                   |double    |National rank of the team's yards gained per play with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |yardsgame_def_rank                   |double    |National rank of the team's yards gained per game with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |drivesgame_def_rank                  |double    |National rank of the team's drives per game with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |yardsdrive_def_rank                  |double    |National rank of the team's yards gained per drive with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |playsdrive_def_rank                  |double    |National rank of the team's plays run per drive with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |play_stuffed_def_rank                |double    |National rank of the team's stuffed-play rate -- the share of plays carrying the stuffed flag with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |red_zone_success_def_rank            |double    |National rank of the team's success rate on red-zone plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |third_down_success_def_rank          |double    |National rank of the team's success rate on third-down plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |late_down_success_def_rank           |double    |National rank of the team's success rate on late-down plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |third_down_distance_def_rank         |double    |National rank of the team's average yards to go on third down with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |start_position_def_rank              |double    |National rank of the team's average drive start position, measured in yards from the opponent goal line with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |havoc_def_rank                       |double    |National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |explosive_def_rank                   |double    |National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |passrate_def_rank                    |double    |National rank of the team's share of plays that were pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |rushrate_def_rank                    |double    |National rank of the team's share of plays that were rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |nonExplosiveEpaPerPlay_def_rank      |double    |National rank of the team's EPA per play with explosive plays excluded with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |line_yards_def_rank                  |double    |National rank of the team's average line yards credited to the offensive line on rushes with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |opportunity_rate_def_rank            |double    |National rank of the team's opportunity rate -- the share of rushes carrying the opportunity flag with the team on defense (i.e. allowed to opponents), where 1 is best. |
+#'    |playsgame_def_rank                   |double    |National rank of the team's plays run per game with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |TEPA_def_rank                        |double    |National rank of the team's total EPA summed over every play with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAgame_def_rank                     |double    |National rank of the team's EPA per game (total EPA divided by games) with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAplay_def_rank                     |double    |National rank of the team's EPA per play with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAdrive_def_rank                    |double    |National rank of the team's EPA per drive (total EPA divided by drives) with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |early_down_EPA_def_rank              |double    |National rank of the team's EPA per early-down play with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |success_def_rank                     |double    |National rank of the team's success rate -- the share of plays flagged as successful by EPA with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yards_def_rank                       |double    |National rank of the team's total yards gained (an interception counts as 0 yards) with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsplay_def_rank                   |double    |National rank of the team's yards gained per play (an interception counts as 0 yards) with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsgame_def_rank                   |double    |National rank of the team's yards gained per game with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |drivesgame_def_rank                  |double    |National rank of the team's drives per game with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsdrive_def_rank                  |double    |National rank of the team's yards gained per drive with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |playsdrive_def_rank                  |double    |National rank of the team's plays run per drive with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |play_stuffed_def_rank                |double    |National rank of the team's run-stuff rate -- the share of rushes stopped for 0 or fewer yards with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |red_zone_success_def_rank            |double    |National rank of the team's success rate on red-zone plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |third_down_success_def_rank          |double    |National rank of the team's success rate on third-down plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |late_down_success_def_rank           |double    |National rank of the team's success rate on late-down plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |third_down_distance_def_rank         |double    |National rank of the team's average yards to go on third down with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |start_position_def_rank              |double    |National rank of the team's average drive start position, measured in yards from the opponent goal line with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |havoc_def_rank                       |double    |National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |explosive_def_rank                   |double    |National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |passrate_def_rank                    |double    |National rank of the team's share of plays that were pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |rushrate_def_rank                    |double    |National rank of the team's share of plays that were rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |nonExplosiveEpaPerPlay_def_rank      |double    |National rank of the team's EPA per play with explosive plays excluded with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |line_yards_def_rank                  |double    |National rank of the team's average line yards credited to the offensive line on rushes with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |opportunity_rate_def_rank            |double    |National rank of the team's opportunity rate -- the share of rushes gaining 4 or more yards with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 #'    |TEPA_margin                          |double    |Margin in total EPA summed over every play: the team's offensive value minus the value it allowed on defense. |
 #'    |EPAplay_margin                       |double    |Margin in EPA per play: the team's offensive value minus the value it allowed on defense. |
 #'    |EPAdrive_margin                      |double    |Margin in EPA per drive (total EPA divided by drives): the team's offensive value minus the value it allowed on defense. |
 #'    |EPAgame_margin                       |double    |Margin in EPA per game (total EPA divided by games): the team's offensive value minus the value it allowed on defense. |
 #'    |success_margin                       |double    |Margin in success rate -- the share of plays flagged as successful by EPA: the team's offensive value minus the value it allowed on defense. |
-#'    |yardsplay_margin                     |double    |Margin in yards gained per play: the team's offensive value minus the value it allowed on defense. |
-#'    |TEPA_margin_rank                     |double    |Margin in total EPA summed over every play: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
-#'    |EPAplay_margin_rank                  |double    |Margin in EPA per play: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
-#'    |EPAdrive_margin_rank                 |double    |Margin in EPA per drive (total EPA divided by drives): the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
-#'    |EPAgame_margin_rank                  |double    |Margin in EPA per game (total EPA divided by games): the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
-#'    |success_margin_rank                  |double    |Margin in success rate -- the share of plays flagged as successful by EPA: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
-#'    |yardsplay_margin_rank                |double    |Margin in yards gained per play: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
+#'    |yardsplay_margin                     |double    |Margin in yards gained per play (an interception counts as 0 yards): the team's offensive value minus the value it allowed on defense. |
+#'    |TEPA_margin_rank                     |double    |Margin in total EPA summed over every play: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAplay_margin_rank                  |double    |Margin in EPA per play: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAdrive_margin_rank                 |double    |Margin in EPA per drive (total EPA divided by drives): the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAgame_margin_rank                  |double    |Margin in EPA per game (total EPA divided by games): the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |success_margin_rank                  |double    |Margin in success rate -- the share of plays flagged as successful by EPA: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsplay_margin_rank                |double    |Margin in yards gained per play (an interception counts as 0 yards): the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 #'    |start_position_margin                |double    |Field-position margin: the team's own average starting field position minus the average starting field position it allowed, both measured as yards gained from their own goal line. Positive means the team started closer to scoring than its opponents. |
-#'    |start_position_margin_rank           |double    |Field-position margin: the team's own average starting field position minus the average starting field position it allowed, both measured as yards gained from their own goal line. Positive means the team started closer to scoring than its opponents. National rank of that margin, 1 = largest. |
-#'    |total_available_yards_off            |double    |Available yards are the yards a drive could theoretically gain, summed from each drive's starting distance to the opponent goal line. Total available yards on the team's own drives. |
-#'    |total_gained_yards_off               |integer   |Total yards the team actually gained across its own drives. |
-#'    |available_yards_pct_off              |double    |Share of available yards the team's offense actually gained (total_gained_yards_off divided by total_available_yards_off). Higher is better. |
-#'    |available_yards_pct_off_rank         |double    |National rank of the team's offensive available-yards share, where 1 is best. |
-#'    |total_available_yards_def            |double    |Available yards are the yards a drive could theoretically gain, summed from each drive's starting distance to the opponent goal line. Total available yards on drives the team defended. |
-#'    |total_gained_yards_def               |integer   |Total yards the team allowed across the drives it defended. |
-#'    |available_yards_pct_def              |double    |Share of available yards the team's defense allowed opponents to gain. Lower is better. |
-#'    |available_yards_pct_def_rank         |double    |National rank of the team's defensive available-yards share, where 1 is best. |
+#'    |start_position_margin_rank           |double    |Field-position margin: the team's own average starting field position minus the average starting field position it allowed, both measured as yards gained from their own goal line. Positive means the team started closer to scoring than its opponents. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |total_available_yards_off            |double    |Available yards are the yards a drive could theoretically gain, summed from each drive's starting distance to the opponent goal line. Total available yards on the team's own drives (ESPN's drive team). A drive's start is its header oriented to agree with its first snap, or that snap when the header is a 0 or missing placeholder. |
+#'    |total_gained_yards_off               |integer   |Total yards the team gained across its own drives, each drive's gain capped at its available yards. |
+#'    |available_yards_pct_off              |double    |Share of available yards the team's offense actually gained (total_gained_yards_off divided by total_available_yards_off), from 0 to 1. Null when no available yards are on record. Higher is better. |
+#'    |available_yards_pct_off_rank         |double    |National rank of the team's offensive available-yards share, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |total_available_yards_def            |double    |Available yards are the yards a drive could theoretically gain, summed from each drive's starting distance to the opponent goal line. Total available yards on opponents' drives against the team's defense (ESPN's drive team). A drive's start is its header oriented to agree with its first snap, or that snap when the header is a 0 or missing placeholder. |
+#'    |total_gained_yards_def               |integer   |Total yards the team allowed across opponents' drives against its defense, each drive's gain capped at its available yards. |
+#'    |available_yards_pct_def              |double    |Share of available yards the team's defense allowed opponents to gain (total_gained_yards_def divided by total_available_yards_def), from 0 to 1. Null when no available yards are on record. Lower is better. |
+#'    |available_yards_pct_def_rank         |double    |National rank of the team's defensive available-yards share, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 #'    |total_available_yards_margin         |double    |Available yards on the team's own drives minus available yards on drives it defended. |
 #'    |total_gained_yards_margin            |integer   |Yards the team gained minus yards it allowed. |
 #'    |available_yards_pct_margin           |double    |Available-yards share gained by the offense minus the share allowed by the defense. Higher is better. |
-#'    |total_available_yards_margin_rank    |double    |National rank of total_available_yards_margin, 1 = largest margin. |
-#'    |total_gained_yards_margin_rank       |double    |National rank of total_gained_yards_margin, 1 = largest margin. |
-#'    |available_yards_pct_margin_rank      |double    |National rank of available_yards_pct_margin, 1 = largest margin. |
+#'    |total_available_yards_margin_rank    |double    |National rank of total_available_yards_margin, 1 = largest margin. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |total_gained_yards_margin_rank       |double    |National rank of total_gained_yards_margin, 1 = largest margin. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |available_yards_pct_margin_rank      |double    |National rank of available_yards_pct_margin, 1 = largest margin. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 #'    |plays_off_pass                       |integer   |Plays run on pass plays, with the team on offense. |
 #'    |passrate_off_pass                    |double    |Share of plays that were pass plays on pass plays, with the team on offense. |
 #'    |rushrate_off_pass                    |double    |Share of plays that were rush plays on pass plays, with the team on offense. |
@@ -1959,9 +1959,9 @@ NULL
 #'    |explosive_off_pass                   |double    |Explosive-play rate -- the share of plays carrying the explosive flag on pass plays, with the team on offense. |
 #'    |TEPA_off_pass                        |double    |Total EPA summed over every play on pass plays, with the team on offense. |
 #'    |EPAplay_off_pass                     |double    |EPA per play on pass plays, with the team on offense. |
-#'    |yards_off_pass                       |integer   |Total yards gained on pass plays, with the team on offense. |
-#'    |yardsplay_off_pass                   |double    |Yards gained per play on pass plays, with the team on offense. |
-#'    |play_stuffed_off_pass                |double    |Stuffed-play rate -- the share of plays carrying the stuffed flag on pass plays, with the team on offense. |
+#'    |yards_off_pass                       |integer   |Total yards gained (an interception counts as 0 yards) on pass plays, with the team on offense. |
+#'    |yardsplay_off_pass                   |double    |Yards gained per play (an interception counts as 0 yards) on pass plays, with the team on offense. |
+#'    |play_stuffed_off_pass                |double    |Run-stuff rate (always null: only rushes carry the stuffed flag) on pass plays, with the team on offense. |
 #'    |success_off_pass                     |double    |Success rate -- the share of plays flagged as successful by EPA on pass plays, with the team on offense. |
 #'    |red_zone_success_off_pass            |double    |Success rate on red-zone plays on pass plays, with the team on offense. |
 #'    |third_down_success_off_pass          |double    |Success rate on third-down plays on pass plays, with the team on offense. |
@@ -1970,7 +1970,7 @@ NULL
 #'    |early_down_EPA_off_pass              |double    |EPA per early-down play on pass plays, with the team on offense. |
 #'    |nonExplosiveEpaPerPlay_off_pass      |double    |EPA per play with explosive plays excluded on pass plays, with the team on offense. |
 #'    |line_yards_off_pass                  |double    |Average line yards credited to the offensive line on rushes on pass plays, with the team on offense. |
-#'    |opportunity_rate_off_pass            |double    |Opportunity rate -- the share of rushes carrying the opportunity flag on pass plays, with the team on offense. |
+#'    |opportunity_rate_off_pass            |double    |Opportunity rate (always null: only rushes carry the opportunity flag) on pass plays, with the team on offense. |
 #'    |playsgame_off_pass                   |double    |Plays run per game on pass plays, with the team on offense. |
 #'    |EPAdrive_off_pass                    |double    |EPA per drive (total EPA divided by drives) on pass plays, with the team on offense. |
 #'    |EPAgame_off_pass                     |double    |EPA per game (total EPA divided by games) on pass plays, with the team on offense. |
@@ -1979,31 +1979,31 @@ NULL
 #'    |drivesgame_off_pass                  |double    |Drives per game on pass plays, with the team on offense. |
 #'    |yardsdrive_off_pass                  |double    |Yards gained per drive on pass plays, with the team on offense. |
 #'    |playsdrive_off_pass                  |double    |Plays run per drive on pass plays, with the team on offense. |
-#'    |playsgame_off_pass_rank              |double    |National rank of the team's plays run per game on pass plays with the team on offense, where 1 is best. |
-#'    |TEPA_off_pass_rank                   |double    |National rank of the team's total EPA summed over every play on pass plays with the team on offense, where 1 is best. |
-#'    |EPAgame_off_pass_rank                |double    |National rank of the team's EPA per game (total EPA divided by games) on pass plays with the team on offense, where 1 is best. |
-#'    |EPAplay_off_pass_rank                |double    |National rank of the team's EPA per play on pass plays with the team on offense, where 1 is best. |
-#'    |EPAdrive_off_pass_rank               |double    |National rank of the team's EPA per drive (total EPA divided by drives) on pass plays with the team on offense, where 1 is best. |
-#'    |early_down_EPA_off_pass_rank         |double    |National rank of the team's EPA per early-down play on pass plays with the team on offense, where 1 is best. |
-#'    |success_off_pass_rank                |double    |National rank of the team's success rate -- the share of plays flagged as successful by EPA on pass plays with the team on offense, where 1 is best. |
-#'    |yards_off_pass_rank                  |double    |National rank of the team's total yards gained on pass plays with the team on offense, where 1 is best. |
-#'    |yardsplay_off_pass_rank              |double    |National rank of the team's yards gained per play on pass plays with the team on offense, where 1 is best. |
-#'    |yardsgame_off_pass_rank              |double    |National rank of the team's yards gained per game on pass plays with the team on offense, where 1 is best. |
-#'    |drivesgame_off_pass_rank             |double    |National rank of the team's drives per game on pass plays with the team on offense, where 1 is best. |
-#'    |yardsdrive_off_pass_rank             |double    |National rank of the team's yards gained per drive on pass plays with the team on offense, where 1 is best. |
-#'    |playsdrive_off_pass_rank             |double    |National rank of the team's plays run per drive on pass plays with the team on offense, where 1 is best. |
-#'    |play_stuffed_off_pass_rank           |double    |National rank of the team's stuffed-play rate -- the share of plays carrying the stuffed flag on pass plays with the team on offense, where 1 is best. |
-#'    |red_zone_success_off_pass_rank       |double    |National rank of the team's success rate on red-zone plays on pass plays with the team on offense, where 1 is best. |
-#'    |third_down_success_off_pass_rank     |double    |National rank of the team's success rate on third-down plays on pass plays with the team on offense, where 1 is best. |
-#'    |late_down_success_off_pass_rank      |double    |National rank of the team's success rate on late-down plays on pass plays with the team on offense, where 1 is best. |
-#'    |third_down_distance_off_pass_rank    |double    |National rank of the team's average yards to go on third down on pass plays with the team on offense, where 1 is best. |
-#'    |havoc_off_pass_rank                  |double    |National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on pass plays with the team on offense, where 1 is best. |
-#'    |explosive_off_pass_rank              |double    |National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on pass plays with the team on offense, where 1 is best. |
-#'    |passrate_off_pass_rank               |double    |National rank of the team's share of plays that were pass plays on pass plays with the team on offense, where 1 is best. |
-#'    |rushrate_off_pass_rank               |double    |National rank of the team's share of plays that were rush plays on pass plays with the team on offense, where 1 is best. |
-#'    |nonExplosiveEpaPerPlay_off_pass_rank |double    |National rank of the team's EPA per play with explosive plays excluded on pass plays with the team on offense, where 1 is best. |
-#'    |line_yards_off_pass_rank             |double    |National rank of the team's average line yards credited to the offensive line on rushes on pass plays with the team on offense, where 1 is best. |
-#'    |opportunity_rate_off_pass_rank       |double    |National rank of the team's opportunity rate -- the share of rushes carrying the opportunity flag on pass plays with the team on offense, where 1 is best. |
+#'    |playsgame_off_pass_rank              |double    |National rank of the team's plays run per game on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |TEPA_off_pass_rank                   |double    |National rank of the team's total EPA summed over every play on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAgame_off_pass_rank                |double    |National rank of the team's EPA per game (total EPA divided by games) on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAplay_off_pass_rank                |double    |National rank of the team's EPA per play on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAdrive_off_pass_rank               |double    |National rank of the team's EPA per drive (total EPA divided by drives) on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |early_down_EPA_off_pass_rank         |double    |National rank of the team's EPA per early-down play on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |success_off_pass_rank                |double    |National rank of the team's success rate -- the share of plays flagged as successful by EPA on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yards_off_pass_rank                  |double    |National rank of the team's total yards gained (an interception counts as 0 yards) on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsplay_off_pass_rank              |double    |National rank of the team's yards gained per play (an interception counts as 0 yards) on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsgame_off_pass_rank              |double    |National rank of the team's yards gained per game on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |drivesgame_off_pass_rank             |double    |National rank of the team's drives per game on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsdrive_off_pass_rank             |double    |National rank of the team's yards gained per drive on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |playsdrive_off_pass_rank             |double    |National rank of the team's plays run per drive on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |play_stuffed_off_pass_rank           |double    |National rank of the team's run-stuff rate (always null: only rushes carry the stuffed flag) on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |red_zone_success_off_pass_rank       |double    |National rank of the team's success rate on red-zone plays on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |third_down_success_off_pass_rank     |double    |National rank of the team's success rate on third-down plays on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |late_down_success_off_pass_rank      |double    |National rank of the team's success rate on late-down plays on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |third_down_distance_off_pass_rank    |double    |National rank of the team's average yards to go on third down on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |havoc_off_pass_rank                  |double    |National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |explosive_off_pass_rank              |double    |National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |passrate_off_pass_rank               |double    |National rank of the team's share of plays that were pass plays on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |rushrate_off_pass_rank               |double    |National rank of the team's share of plays that were rush plays on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |nonExplosiveEpaPerPlay_off_pass_rank |double    |National rank of the team's EPA per play with explosive plays excluded on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |line_yards_off_pass_rank             |double    |National rank of the team's average line yards credited to the offensive line on rushes on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |opportunity_rate_off_pass_rank       |double    |National rank of the team's opportunity rate (always null: only rushes carry the opportunity flag) on pass plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 #'    |plays_def_pass                       |integer   |Plays run on pass plays, with the team on defense (i.e. allowed to opponents). |
 #'    |passrate_def_pass                    |double    |Share of plays that were pass plays on pass plays, with the team on defense (i.e. allowed to opponents). |
 #'    |rushrate_def_pass                    |double    |Share of plays that were rush plays on pass plays, with the team on defense (i.e. allowed to opponents). |
@@ -2011,9 +2011,9 @@ NULL
 #'    |explosive_def_pass                   |double    |Explosive-play rate -- the share of plays carrying the explosive flag on pass plays, with the team on defense (i.e. allowed to opponents). |
 #'    |TEPA_def_pass                        |double    |Total EPA summed over every play on pass plays, with the team on defense (i.e. allowed to opponents). |
 #'    |EPAplay_def_pass                     |double    |EPA per play on pass plays, with the team on defense (i.e. allowed to opponents). |
-#'    |yards_def_pass                       |integer   |Total yards gained on pass plays, with the team on defense (i.e. allowed to opponents). |
-#'    |yardsplay_def_pass                   |double    |Yards gained per play on pass plays, with the team on defense (i.e. allowed to opponents). |
-#'    |play_stuffed_def_pass                |double    |Stuffed-play rate -- the share of plays carrying the stuffed flag on pass plays, with the team on defense (i.e. allowed to opponents). |
+#'    |yards_def_pass                       |integer   |Total yards gained (an interception counts as 0 yards) on pass plays, with the team on defense (i.e. allowed to opponents). |
+#'    |yardsplay_def_pass                   |double    |Yards gained per play (an interception counts as 0 yards) on pass plays, with the team on defense (i.e. allowed to opponents). |
+#'    |play_stuffed_def_pass                |double    |Run-stuff rate (always null: only rushes carry the stuffed flag) on pass plays, with the team on defense (i.e. allowed to opponents). |
 #'    |success_def_pass                     |double    |Success rate -- the share of plays flagged as successful by EPA on pass plays, with the team on defense (i.e. allowed to opponents). |
 #'    |red_zone_success_def_pass            |double    |Success rate on red-zone plays on pass plays, with the team on defense (i.e. allowed to opponents). |
 #'    |third_down_success_def_pass          |double    |Success rate on third-down plays on pass plays, with the team on defense (i.e. allowed to opponents). |
@@ -2022,7 +2022,7 @@ NULL
 #'    |early_down_EPA_def_pass              |double    |EPA per early-down play on pass plays, with the team on defense (i.e. allowed to opponents). |
 #'    |nonExplosiveEpaPerPlay_def_pass      |double    |EPA per play with explosive plays excluded on pass plays, with the team on defense (i.e. allowed to opponents). |
 #'    |line_yards_def_pass                  |double    |Average line yards credited to the offensive line on rushes on pass plays, with the team on defense (i.e. allowed to opponents). |
-#'    |opportunity_rate_def_pass            |double    |Opportunity rate -- the share of rushes carrying the opportunity flag on pass plays, with the team on defense (i.e. allowed to opponents). |
+#'    |opportunity_rate_def_pass            |double    |Opportunity rate (always null: only rushes carry the opportunity flag) on pass plays, with the team on defense (i.e. allowed to opponents). |
 #'    |playsgame_def_pass                   |double    |Plays run per game on pass plays, with the team on defense (i.e. allowed to opponents). |
 #'    |EPAdrive_def_pass                    |double    |EPA per drive (total EPA divided by drives) on pass plays, with the team on defense (i.e. allowed to opponents). |
 #'    |EPAgame_def_pass                     |double    |EPA per game (total EPA divided by games) on pass plays, with the team on defense (i.e. allowed to opponents). |
@@ -2031,43 +2031,43 @@ NULL
 #'    |drivesgame_def_pass                  |double    |Drives per game on pass plays, with the team on defense (i.e. allowed to opponents). |
 #'    |yardsdrive_def_pass                  |double    |Yards gained per drive on pass plays, with the team on defense (i.e. allowed to opponents). |
 #'    |playsdrive_def_pass                  |double    |Plays run per drive on pass plays, with the team on defense (i.e. allowed to opponents). |
-#'    |playsgame_def_pass_rank              |double    |National rank of the team's plays run per game on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |TEPA_def_pass_rank                   |double    |National rank of the team's total EPA summed over every play on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |EPAgame_def_pass_rank                |double    |National rank of the team's EPA per game (total EPA divided by games) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |EPAplay_def_pass_rank                |double    |National rank of the team's EPA per play on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |EPAdrive_def_pass_rank               |double    |National rank of the team's EPA per drive (total EPA divided by drives) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |early_down_EPA_def_pass_rank         |double    |National rank of the team's EPA per early-down play on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |success_def_pass_rank                |double    |National rank of the team's success rate -- the share of plays flagged as successful by EPA on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |yards_def_pass_rank                  |double    |National rank of the team's total yards gained on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |yardsplay_def_pass_rank              |double    |National rank of the team's yards gained per play on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |yardsgame_def_pass_rank              |double    |National rank of the team's yards gained per game on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |drivesgame_def_pass_rank             |double    |National rank of the team's drives per game on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |yardsdrive_def_pass_rank             |double    |National rank of the team's yards gained per drive on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |playsdrive_def_pass_rank             |double    |National rank of the team's plays run per drive on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |play_stuffed_def_pass_rank           |double    |National rank of the team's stuffed-play rate -- the share of plays carrying the stuffed flag on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |red_zone_success_def_pass_rank       |double    |National rank of the team's success rate on red-zone plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |third_down_success_def_pass_rank     |double    |National rank of the team's success rate on third-down plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |late_down_success_def_pass_rank      |double    |National rank of the team's success rate on late-down plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |third_down_distance_def_pass_rank    |double    |National rank of the team's average yards to go on third down on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |havoc_def_pass_rank                  |double    |National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |explosive_def_pass_rank              |double    |National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |passrate_def_pass_rank               |double    |National rank of the team's share of plays that were pass plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |rushrate_def_pass_rank               |double    |National rank of the team's share of plays that were rush plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |nonExplosiveEpaPerPlay_def_pass_rank |double    |National rank of the team's EPA per play with explosive plays excluded on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |line_yards_def_pass_rank             |double    |National rank of the team's average line yards credited to the offensive line on rushes on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |opportunity_rate_def_pass_rank       |double    |National rank of the team's opportunity rate -- the share of rushes carrying the opportunity flag on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
+#'    |playsgame_def_pass_rank              |double    |National rank of the team's plays run per game on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |TEPA_def_pass_rank                   |double    |National rank of the team's total EPA summed over every play on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAgame_def_pass_rank                |double    |National rank of the team's EPA per game (total EPA divided by games) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAplay_def_pass_rank                |double    |National rank of the team's EPA per play on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAdrive_def_pass_rank               |double    |National rank of the team's EPA per drive (total EPA divided by drives) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |early_down_EPA_def_pass_rank         |double    |National rank of the team's EPA per early-down play on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |success_def_pass_rank                |double    |National rank of the team's success rate -- the share of plays flagged as successful by EPA on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yards_def_pass_rank                  |double    |National rank of the team's total yards gained (an interception counts as 0 yards) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsplay_def_pass_rank              |double    |National rank of the team's yards gained per play (an interception counts as 0 yards) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsgame_def_pass_rank              |double    |National rank of the team's yards gained per game on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |drivesgame_def_pass_rank             |double    |National rank of the team's drives per game on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsdrive_def_pass_rank             |double    |National rank of the team's yards gained per drive on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |playsdrive_def_pass_rank             |double    |National rank of the team's plays run per drive on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |play_stuffed_def_pass_rank           |double    |National rank of the team's run-stuff rate (always null: only rushes carry the stuffed flag) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |red_zone_success_def_pass_rank       |double    |National rank of the team's success rate on red-zone plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |third_down_success_def_pass_rank     |double    |National rank of the team's success rate on third-down plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |late_down_success_def_pass_rank      |double    |National rank of the team's success rate on late-down plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |third_down_distance_def_pass_rank    |double    |National rank of the team's average yards to go on third down on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |havoc_def_pass_rank                  |double    |National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |explosive_def_pass_rank              |double    |National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |passrate_def_pass_rank               |double    |National rank of the team's share of plays that were pass plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |rushrate_def_pass_rank               |double    |National rank of the team's share of plays that were rush plays on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |nonExplosiveEpaPerPlay_def_pass_rank |double    |National rank of the team's EPA per play with explosive plays excluded on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |line_yards_def_pass_rank             |double    |National rank of the team's average line yards credited to the offensive line on rushes on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |opportunity_rate_def_pass_rank       |double    |National rank of the team's opportunity rate (always null: only rushes carry the opportunity flag) on pass plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 #'    |TEPA_margin_pass                     |double    |Margin in total EPA summed over every play on pass plays: the team's offensive value minus the value it allowed on defense. |
 #'    |EPAplay_margin_pass                  |double    |Margin in EPA per play on pass plays: the team's offensive value minus the value it allowed on defense. |
 #'    |EPAdrive_margin_pass                 |double    |Margin in EPA per drive (total EPA divided by drives) on pass plays: the team's offensive value minus the value it allowed on defense. |
 #'    |EPAgame_margin_pass                  |double    |Margin in EPA per game (total EPA divided by games) on pass plays: the team's offensive value minus the value it allowed on defense. |
 #'    |success_margin_pass                  |double    |Margin in success rate -- the share of plays flagged as successful by EPA on pass plays: the team's offensive value minus the value it allowed on defense. |
-#'    |yardsplay_margin_pass                |double    |Margin in yards gained per play on pass plays: the team's offensive value minus the value it allowed on defense. |
-#'    |TEPA_margin_pass_rank                |double    |Margin in total EPA summed over every play on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
-#'    |EPAplay_margin_pass_rank             |double    |Margin in EPA per play on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
-#'    |EPAdrive_margin_pass_rank            |double    |Margin in EPA per drive (total EPA divided by drives) on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
-#'    |EPAgame_margin_pass_rank             |double    |Margin in EPA per game (total EPA divided by games) on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
-#'    |success_margin_pass_rank             |double    |Margin in success rate -- the share of plays flagged as successful by EPA on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
-#'    |yardsplay_margin_pass_rank           |double    |Margin in yards gained per play on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
+#'    |yardsplay_margin_pass                |double    |Margin in yards gained per play (an interception counts as 0 yards) on pass plays: the team's offensive value minus the value it allowed on defense. |
+#'    |TEPA_margin_pass_rank                |double    |Margin in total EPA summed over every play on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAplay_margin_pass_rank             |double    |Margin in EPA per play on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAdrive_margin_pass_rank            |double    |Margin in EPA per drive (total EPA divided by drives) on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAgame_margin_pass_rank             |double    |Margin in EPA per game (total EPA divided by games) on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |success_margin_pass_rank             |double    |Margin in success rate -- the share of plays flagged as successful by EPA on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsplay_margin_pass_rank           |double    |Margin in yards gained per play (an interception counts as 0 yards) on pass plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 #'    |plays_off_rush                       |integer   |Plays run on rush plays, with the team on offense. |
 #'    |passrate_off_rush                    |double    |Share of plays that were pass plays on rush plays, with the team on offense. |
 #'    |rushrate_off_rush                    |double    |Share of plays that were rush plays on rush plays, with the team on offense. |
@@ -2075,9 +2075,9 @@ NULL
 #'    |explosive_off_rush                   |double    |Explosive-play rate -- the share of plays carrying the explosive flag on rush plays, with the team on offense. |
 #'    |TEPA_off_rush                        |double    |Total EPA summed over every play on rush plays, with the team on offense. |
 #'    |EPAplay_off_rush                     |double    |EPA per play on rush plays, with the team on offense. |
-#'    |yards_off_rush                       |integer   |Total yards gained on rush plays, with the team on offense. |
-#'    |yardsplay_off_rush                   |double    |Yards gained per play on rush plays, with the team on offense. |
-#'    |play_stuffed_off_rush                |double    |Stuffed-play rate -- the share of plays carrying the stuffed flag on rush plays, with the team on offense. |
+#'    |yards_off_rush                       |integer   |Total yards gained (an interception counts as 0 yards) on rush plays, with the team on offense. |
+#'    |yardsplay_off_rush                   |double    |Yards gained per play (an interception counts as 0 yards) on rush plays, with the team on offense. |
+#'    |play_stuffed_off_rush                |double    |Run-stuff rate -- the share of rushes stopped for 0 or fewer yards on rush plays, with the team on offense. |
 #'    |success_off_rush                     |double    |Success rate -- the share of plays flagged as successful by EPA on rush plays, with the team on offense. |
 #'    |red_zone_success_off_rush            |double    |Success rate on red-zone plays on rush plays, with the team on offense. |
 #'    |third_down_success_off_rush          |double    |Success rate on third-down plays on rush plays, with the team on offense. |
@@ -2086,7 +2086,7 @@ NULL
 #'    |early_down_EPA_off_rush              |double    |EPA per early-down play on rush plays, with the team on offense. |
 #'    |nonExplosiveEpaPerPlay_off_rush      |double    |EPA per play with explosive plays excluded on rush plays, with the team on offense. |
 #'    |line_yards_off_rush                  |double    |Average line yards credited to the offensive line on rushes on rush plays, with the team on offense. |
-#'    |opportunity_rate_off_rush            |double    |Opportunity rate -- the share of rushes carrying the opportunity flag on rush plays, with the team on offense. |
+#'    |opportunity_rate_off_rush            |double    |Opportunity rate -- the share of rushes gaining 4 or more yards on rush plays, with the team on offense. |
 #'    |playsgame_off_rush                   |double    |Plays run per game on rush plays, with the team on offense. |
 #'    |EPAdrive_off_rush                    |double    |EPA per drive (total EPA divided by drives) on rush plays, with the team on offense. |
 #'    |EPAgame_off_rush                     |double    |EPA per game (total EPA divided by games) on rush plays, with the team on offense. |
@@ -2095,31 +2095,31 @@ NULL
 #'    |drivesgame_off_rush                  |double    |Drives per game on rush plays, with the team on offense. |
 #'    |yardsdrive_off_rush                  |double    |Yards gained per drive on rush plays, with the team on offense. |
 #'    |playsdrive_off_rush                  |double    |Plays run per drive on rush plays, with the team on offense. |
-#'    |playsgame_off_rush_rank              |double    |National rank of the team's plays run per game on rush plays with the team on offense, where 1 is best. |
-#'    |TEPA_off_rush_rank                   |double    |National rank of the team's total EPA summed over every play on rush plays with the team on offense, where 1 is best. |
-#'    |EPAgame_off_rush_rank                |double    |National rank of the team's EPA per game (total EPA divided by games) on rush plays with the team on offense, where 1 is best. |
-#'    |EPAplay_off_rush_rank                |double    |National rank of the team's EPA per play on rush plays with the team on offense, where 1 is best. |
-#'    |EPAdrive_off_rush_rank               |double    |National rank of the team's EPA per drive (total EPA divided by drives) on rush plays with the team on offense, where 1 is best. |
-#'    |early_down_EPA_off_rush_rank         |double    |National rank of the team's EPA per early-down play on rush plays with the team on offense, where 1 is best. |
-#'    |success_off_rush_rank                |double    |National rank of the team's success rate -- the share of plays flagged as successful by EPA on rush plays with the team on offense, where 1 is best. |
-#'    |yards_off_rush_rank                  |double    |National rank of the team's total yards gained on rush plays with the team on offense, where 1 is best. |
-#'    |yardsplay_off_rush_rank              |double    |National rank of the team's yards gained per play on rush plays with the team on offense, where 1 is best. |
-#'    |yardsgame_off_rush_rank              |double    |National rank of the team's yards gained per game on rush plays with the team on offense, where 1 is best. |
-#'    |drivesgame_off_rush_rank             |double    |National rank of the team's drives per game on rush plays with the team on offense, where 1 is best. |
-#'    |yardsdrive_off_rush_rank             |double    |National rank of the team's yards gained per drive on rush plays with the team on offense, where 1 is best. |
-#'    |playsdrive_off_rush_rank             |double    |National rank of the team's plays run per drive on rush plays with the team on offense, where 1 is best. |
-#'    |play_stuffed_off_rush_rank           |double    |National rank of the team's stuffed-play rate -- the share of plays carrying the stuffed flag on rush plays with the team on offense, where 1 is best. |
-#'    |red_zone_success_off_rush_rank       |double    |National rank of the team's success rate on red-zone plays on rush plays with the team on offense, where 1 is best. |
-#'    |third_down_success_off_rush_rank     |double    |National rank of the team's success rate on third-down plays on rush plays with the team on offense, where 1 is best. |
-#'    |late_down_success_off_rush_rank      |double    |National rank of the team's success rate on late-down plays on rush plays with the team on offense, where 1 is best. |
-#'    |third_down_distance_off_rush_rank    |double    |National rank of the team's average yards to go on third down on rush plays with the team on offense, where 1 is best. |
-#'    |havoc_off_rush_rank                  |double    |National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on rush plays with the team on offense, where 1 is best. |
-#'    |explosive_off_rush_rank              |double    |National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on rush plays with the team on offense, where 1 is best. |
-#'    |passrate_off_rush_rank               |double    |National rank of the team's share of plays that were pass plays on rush plays with the team on offense, where 1 is best. |
-#'    |rushrate_off_rush_rank               |double    |National rank of the team's share of plays that were rush plays on rush plays with the team on offense, where 1 is best. |
-#'    |nonExplosiveEpaPerPlay_off_rush_rank |double    |National rank of the team's EPA per play with explosive plays excluded on rush plays with the team on offense, where 1 is best. |
-#'    |line_yards_off_rush_rank             |double    |National rank of the team's average line yards credited to the offensive line on rushes on rush plays with the team on offense, where 1 is best. |
-#'    |opportunity_rate_off_rush_rank       |double    |National rank of the team's opportunity rate -- the share of rushes carrying the opportunity flag on rush plays with the team on offense, where 1 is best. |
+#'    |playsgame_off_rush_rank              |double    |National rank of the team's plays run per game on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |TEPA_off_rush_rank                   |double    |National rank of the team's total EPA summed over every play on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAgame_off_rush_rank                |double    |National rank of the team's EPA per game (total EPA divided by games) on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAplay_off_rush_rank                |double    |National rank of the team's EPA per play on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAdrive_off_rush_rank               |double    |National rank of the team's EPA per drive (total EPA divided by drives) on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |early_down_EPA_off_rush_rank         |double    |National rank of the team's EPA per early-down play on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |success_off_rush_rank                |double    |National rank of the team's success rate -- the share of plays flagged as successful by EPA on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yards_off_rush_rank                  |double    |National rank of the team's total yards gained (an interception counts as 0 yards) on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsplay_off_rush_rank              |double    |National rank of the team's yards gained per play (an interception counts as 0 yards) on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsgame_off_rush_rank              |double    |National rank of the team's yards gained per game on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |drivesgame_off_rush_rank             |double    |National rank of the team's drives per game on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsdrive_off_rush_rank             |double    |National rank of the team's yards gained per drive on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |playsdrive_off_rush_rank             |double    |National rank of the team's plays run per drive on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |play_stuffed_off_rush_rank           |double    |National rank of the team's run-stuff rate -- the share of rushes stopped for 0 or fewer yards on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |red_zone_success_off_rush_rank       |double    |National rank of the team's success rate on red-zone plays on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |third_down_success_off_rush_rank     |double    |National rank of the team's success rate on third-down plays on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |late_down_success_off_rush_rank      |double    |National rank of the team's success rate on late-down plays on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |third_down_distance_off_rush_rank    |double    |National rank of the team's average yards to go on third down on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |havoc_off_rush_rank                  |double    |National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |explosive_off_rush_rank              |double    |National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |passrate_off_rush_rank               |double    |National rank of the team's share of plays that were pass plays on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |rushrate_off_rush_rank               |double    |National rank of the team's share of plays that were rush plays on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |nonExplosiveEpaPerPlay_off_rush_rank |double    |National rank of the team's EPA per play with explosive plays excluded on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |line_yards_off_rush_rank             |double    |National rank of the team's average line yards credited to the offensive line on rushes on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |opportunity_rate_off_rush_rank       |double    |National rank of the team's opportunity rate -- the share of rushes gaining 4 or more yards on rush plays with the team on offense, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 #'    |plays_def_rush                       |integer   |Plays run on rush plays, with the team on defense (i.e. allowed to opponents). |
 #'    |passrate_def_rush                    |double    |Share of plays that were pass plays on rush plays, with the team on defense (i.e. allowed to opponents). |
 #'    |rushrate_def_rush                    |double    |Share of plays that were rush plays on rush plays, with the team on defense (i.e. allowed to opponents). |
@@ -2127,9 +2127,9 @@ NULL
 #'    |explosive_def_rush                   |double    |Explosive-play rate -- the share of plays carrying the explosive flag on rush plays, with the team on defense (i.e. allowed to opponents). |
 #'    |TEPA_def_rush                        |double    |Total EPA summed over every play on rush plays, with the team on defense (i.e. allowed to opponents). |
 #'    |EPAplay_def_rush                     |double    |EPA per play on rush plays, with the team on defense (i.e. allowed to opponents). |
-#'    |yards_def_rush                       |integer   |Total yards gained on rush plays, with the team on defense (i.e. allowed to opponents). |
-#'    |yardsplay_def_rush                   |double    |Yards gained per play on rush plays, with the team on defense (i.e. allowed to opponents). |
-#'    |play_stuffed_def_rush                |double    |Stuffed-play rate -- the share of plays carrying the stuffed flag on rush plays, with the team on defense (i.e. allowed to opponents). |
+#'    |yards_def_rush                       |integer   |Total yards gained (an interception counts as 0 yards) on rush plays, with the team on defense (i.e. allowed to opponents). |
+#'    |yardsplay_def_rush                   |double    |Yards gained per play (an interception counts as 0 yards) on rush plays, with the team on defense (i.e. allowed to opponents). |
+#'    |play_stuffed_def_rush                |double    |Run-stuff rate -- the share of rushes stopped for 0 or fewer yards on rush plays, with the team on defense (i.e. allowed to opponents). |
 #'    |success_def_rush                     |double    |Success rate -- the share of plays flagged as successful by EPA on rush plays, with the team on defense (i.e. allowed to opponents). |
 #'    |red_zone_success_def_rush            |double    |Success rate on red-zone plays on rush plays, with the team on defense (i.e. allowed to opponents). |
 #'    |third_down_success_def_rush          |double    |Success rate on third-down plays on rush plays, with the team on defense (i.e. allowed to opponents). |
@@ -2138,7 +2138,7 @@ NULL
 #'    |early_down_EPA_def_rush              |double    |EPA per early-down play on rush plays, with the team on defense (i.e. allowed to opponents). |
 #'    |nonExplosiveEpaPerPlay_def_rush      |double    |EPA per play with explosive plays excluded on rush plays, with the team on defense (i.e. allowed to opponents). |
 #'    |line_yards_def_rush                  |double    |Average line yards credited to the offensive line on rushes on rush plays, with the team on defense (i.e. allowed to opponents). |
-#'    |opportunity_rate_def_rush            |double    |Opportunity rate -- the share of rushes carrying the opportunity flag on rush plays, with the team on defense (i.e. allowed to opponents). |
+#'    |opportunity_rate_def_rush            |double    |Opportunity rate -- the share of rushes gaining 4 or more yards on rush plays, with the team on defense (i.e. allowed to opponents). |
 #'    |playsgame_def_rush                   |double    |Plays run per game on rush plays, with the team on defense (i.e. allowed to opponents). |
 #'    |EPAdrive_def_rush                    |double    |EPA per drive (total EPA divided by drives) on rush plays, with the team on defense (i.e. allowed to opponents). |
 #'    |EPAgame_def_rush                     |double    |EPA per game (total EPA divided by games) on rush plays, with the team on defense (i.e. allowed to opponents). |
@@ -2147,53 +2147,53 @@ NULL
 #'    |drivesgame_def_rush                  |double    |Drives per game on rush plays, with the team on defense (i.e. allowed to opponents). |
 #'    |yardsdrive_def_rush                  |double    |Yards gained per drive on rush plays, with the team on defense (i.e. allowed to opponents). |
 #'    |playsdrive_def_rush                  |double    |Plays run per drive on rush plays, with the team on defense (i.e. allowed to opponents). |
-#'    |playsgame_def_rush_rank              |double    |National rank of the team's plays run per game on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |TEPA_def_rush_rank                   |double    |National rank of the team's total EPA summed over every play on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |EPAgame_def_rush_rank                |double    |National rank of the team's EPA per game (total EPA divided by games) on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |EPAplay_def_rush_rank                |double    |National rank of the team's EPA per play on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |EPAdrive_def_rush_rank               |double    |National rank of the team's EPA per drive (total EPA divided by drives) on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |early_down_EPA_def_rush_rank         |double    |National rank of the team's EPA per early-down play on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |success_def_rush_rank                |double    |National rank of the team's success rate -- the share of plays flagged as successful by EPA on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |yards_def_rush_rank                  |double    |National rank of the team's total yards gained on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |yardsplay_def_rush_rank              |double    |National rank of the team's yards gained per play on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |yardsgame_def_rush_rank              |double    |National rank of the team's yards gained per game on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |drivesgame_def_rush_rank             |double    |National rank of the team's drives per game on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |yardsdrive_def_rush_rank             |double    |National rank of the team's yards gained per drive on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |playsdrive_def_rush_rank             |double    |National rank of the team's plays run per drive on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |play_stuffed_def_rush_rank           |double    |National rank of the team's stuffed-play rate -- the share of plays carrying the stuffed flag on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |red_zone_success_def_rush_rank       |double    |National rank of the team's success rate on red-zone plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |third_down_success_def_rush_rank     |double    |National rank of the team's success rate on third-down plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |late_down_success_def_rush_rank      |double    |National rank of the team's success rate on late-down plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |third_down_distance_def_rush_rank    |double    |National rank of the team's average yards to go on third down on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |havoc_def_rush_rank                  |double    |National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |explosive_def_rush_rank              |double    |National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |passrate_def_rush_rank               |double    |National rank of the team's share of plays that were pass plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |rushrate_def_rush_rank               |double    |National rank of the team's share of plays that were rush plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |nonExplosiveEpaPerPlay_def_rush_rank |double    |National rank of the team's EPA per play with explosive plays excluded on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |line_yards_def_rush_rank             |double    |National rank of the team's average line yards credited to the offensive line on rushes on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
-#'    |opportunity_rate_def_rush_rank       |double    |National rank of the team's opportunity rate -- the share of rushes carrying the opportunity flag on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. |
+#'    |playsgame_def_rush_rank              |double    |National rank of the team's plays run per game on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |TEPA_def_rush_rank                   |double    |National rank of the team's total EPA summed over every play on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAgame_def_rush_rank                |double    |National rank of the team's EPA per game (total EPA divided by games) on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAplay_def_rush_rank                |double    |National rank of the team's EPA per play on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAdrive_def_rush_rank               |double    |National rank of the team's EPA per drive (total EPA divided by drives) on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |early_down_EPA_def_rush_rank         |double    |National rank of the team's EPA per early-down play on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |success_def_rush_rank                |double    |National rank of the team's success rate -- the share of plays flagged as successful by EPA on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yards_def_rush_rank                  |double    |National rank of the team's total yards gained (an interception counts as 0 yards) on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsplay_def_rush_rank              |double    |National rank of the team's yards gained per play (an interception counts as 0 yards) on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsgame_def_rush_rank              |double    |National rank of the team's yards gained per game on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |drivesgame_def_rush_rank             |double    |National rank of the team's drives per game on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsdrive_def_rush_rank             |double    |National rank of the team's yards gained per drive on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |playsdrive_def_rush_rank             |double    |National rank of the team's plays run per drive on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |play_stuffed_def_rush_rank           |double    |National rank of the team's run-stuff rate -- the share of rushes stopped for 0 or fewer yards on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |red_zone_success_def_rush_rank       |double    |National rank of the team's success rate on red-zone plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |third_down_success_def_rush_rank     |double    |National rank of the team's success rate on third-down plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |late_down_success_def_rush_rank      |double    |National rank of the team's success rate on late-down plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |third_down_distance_def_rush_rank    |double    |National rank of the team's average yards to go on third down on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |havoc_def_rush_rank                  |double    |National rank of the team's havoc rate -- the share of plays carrying the defensive-disruption flag on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |explosive_def_rush_rank              |double    |National rank of the team's explosive-play rate -- the share of plays carrying the explosive flag on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |passrate_def_rush_rank               |double    |National rank of the team's share of plays that were pass plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |rushrate_def_rush_rank               |double    |National rank of the team's share of plays that were rush plays on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |nonExplosiveEpaPerPlay_def_rush_rank |double    |National rank of the team's EPA per play with explosive plays excluded on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |line_yards_def_rush_rank             |double    |National rank of the team's average line yards credited to the offensive line on rushes on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |opportunity_rate_def_rush_rank       |double    |National rank of the team's opportunity rate -- the share of rushes gaining 4 or more yards on rush plays with the team on defense (i.e. allowed to opponents), where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 #'    |TEPA_margin_rush                     |double    |Margin in total EPA summed over every play on rush plays: the team's offensive value minus the value it allowed on defense. |
 #'    |EPAplay_margin_rush                  |double    |Margin in EPA per play on rush plays: the team's offensive value minus the value it allowed on defense. |
 #'    |EPAdrive_margin_rush                 |double    |Margin in EPA per drive (total EPA divided by drives) on rush plays: the team's offensive value minus the value it allowed on defense. |
 #'    |EPAgame_margin_rush                  |double    |Margin in EPA per game (total EPA divided by games) on rush plays: the team's offensive value minus the value it allowed on defense. |
 #'    |success_margin_rush                  |double    |Margin in success rate -- the share of plays flagged as successful by EPA on rush plays: the team's offensive value minus the value it allowed on defense. |
-#'    |yardsplay_margin_rush                |double    |Margin in yards gained per play on rush plays: the team's offensive value minus the value it allowed on defense. |
-#'    |TEPA_margin_rush_rank                |double    |Margin in total EPA summed over every play on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
-#'    |EPAplay_margin_rush_rank             |double    |Margin in EPA per play on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
-#'    |EPAdrive_margin_rush_rank            |double    |Margin in EPA per drive (total EPA divided by drives) on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
-#'    |EPAgame_margin_rush_rank             |double    |Margin in EPA per game (total EPA divided by games) on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
-#'    |success_margin_rush_rank             |double    |Margin in success rate -- the share of plays flagged as successful by EPA on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
-#'    |yardsplay_margin_rush_rank           |double    |Margin in yards gained per play on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. |
+#'    |yardsplay_margin_rush                |double    |Margin in yards gained per play (an interception counts as 0 yards) on rush plays: the team's offensive value minus the value it allowed on defense. |
+#'    |TEPA_margin_rush_rank                |double    |Margin in total EPA summed over every play on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAplay_margin_rush_rank             |double    |Margin in EPA per play on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAdrive_margin_rush_rank            |double    |Margin in EPA per drive (total EPA divided by drives) on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |EPAgame_margin_rush_rank             |double    |Margin in EPA per game (total EPA divided by games) on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |success_margin_rush_rank             |double    |Margin in success rate -- the share of plays flagged as successful by EPA on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |yardsplay_margin_rush_rank           |double    |Margin in yards gained per play (an interception counts as 0 yards) on rush plays: the team's offensive value minus the value it allowed on defense. National rank of that margin, 1 = largest. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 #'    |fbs_class                            |character |Power/Group classification for the season: P4 or G6 from 2024 on, P5 or G5 through 2023, derived from conference membership (Notre Dame is classified with the power group). Null for teams outside FBS. |
 #'    |valid_games                          |integer   |Number of the team's games that produced both an offensive and a defensive adjusted-EPA value; teams below two valid games are dropped from the adjusted ratings. |
 #'    |adj_off_epa                          |double    |Offensive opponent-adjusted EPA per play from the ridge (RAPM-style) regression on offense/defense team indicators plus home field -- cfbfastR's adjust_epa adjustment, fit in-sample across the season, so the value is descriptive of that window rather than predictive. |
 #'    |adj_def_epa                          |double    |Defensive opponent-adjusted EPA per play from the ridge (RAPM-style) regression on offense/defense team indicators plus home field -- cfbfastR's adjust_epa adjustment, fit in-sample across the season, so the value is descriptive of that window rather than predictive. Lower is better -- it is EPA allowed. |
-#'    |off_strength_faced                   |double    |Average opponent-defense strength the team's offense faced, taken as the mean of the ridge's defensive coefficients across its opponents. Higher means a tougher slate. |
-#'    |def_strength_faced                   |double    |Average opponent-offense strength the team's defense faced, taken as the mean of the ridge's offensive coefficients across its opponents. Higher means a tougher slate. |
+#'    |off_strength_faced                   |double    |Average strength of the opposing offenses the team's defense faced: the mean over its games of each opponent's ridge-fitted offensive EPA per play. Higher means a tougher slate. Null when the team has fewer than two valid games. |
+#'    |def_strength_faced                   |double    |Average strength of the opposing defenses the team's offense faced: the mean over its games of the EPA per play each opponent's defense is fitted to allow. Lower means a tougher slate. Null when the team has fewer than two valid games. |
 #'    |net_adj_epa                          |double    |Net opponent-adjusted EPA per play: adj_off_epa minus adj_def_epa. Higher is better. |
-#'    |adj_off_epa_rank                     |double    |National rank of the team's adj_off_epa, where 1 is best. |
-#'    |adj_def_epa_rank                     |double    |National rank of the team's adj_def_epa, where 1 is best (fewest EPA allowed). |
-#'    |net_adj_epa_rank                     |double    |National rank of the team's net_adj_epa, 1 = largest net adjusted EPA. |
+#'    |adj_off_epa_rank                     |double    |National rank of the team's adj_off_epa, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |adj_def_epa_rank                     |double    |National rank of the team's adj_def_epa, where 1 is best (fewest EPA allowed). Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |net_adj_epa_rank                     |double    |National rank of the team's net_adj_epa, 1 = largest net adjusted EPA. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 #'
 #' @examples
 #' \donttest{
@@ -2372,7 +2372,7 @@ NULL
 #'    |havoc_total_rate      |double    |Share of the defense's scrimmage plays producing a havoc event, a 0-to-1 fraction equal to havoc_total divided by scrimmage_plays. |
 #'    |fumbles               |integer   |Fumbles the defense forced, counted from plays whose narrative contains the phrase forced by, not the total number of fumbles on the play. |
 #'    |def_int               |integer   |Interceptions the defense recorded, counted from plays ESPN types as Interception Return or Interception Return Touchdown. |
-#'    |drive_stopped_rate    |double    |Percentage from 0 to 100 of the defense's scrimmage plays that occurred on drives ending in a punt, fumble, interception, or turnover on downs; the denominator is plays, not drives. |
+#'    |drive_stopped_rate    |double    |Percentage from 0 to 100 of opponents' drives against this defense, one row per drive, that ended in a punt, fumble, interception (ESPN's INT or INT TD) or turnover on downs. |
 #'    |num_pass_plays        |integer   |Number of pass scrimmage plays the defense faced, the denominator behind havoc_total_pass_rate and sacks_rate. |
 #'    |havoc_total_pass      |integer   |Havoc events (tackle for loss, sack, interception, forced fumble, or pass breakup) recorded on the pass plays the defense faced. |
 #'    |havoc_total_pass_rate |double    |havoc_total_pass divided by num_pass_plays, the defense's havoc rate against the pass as a 0-to-1 fraction. |
@@ -2527,13 +2527,13 @@ NULL
 #'    |------------------------------|----------|:-----------|
 #'    |pos_team_id                   |integer   |ESPN team id of the team on offense. Present for every season 2004+. |
 #'    |pos_team                      |character | |
-#'    |drive_total_available_yards   |double    |Sum of each drive's starting distance to the opponent end zone taken across every scrimmage play, so a drive contributes its available yards once per play rather than once per drive. |
-#'    |drive_total_gained_yards      |integer   |Sum of ESPN's per-drive yardage repeated across every scrimmage play of that drive, so a drive contributes its yardage once per play. |
-#'    |avg_field_position            |double    |Mean distance to the opponent end zone at drive start averaged over the team's scrimmage plays, exactly drive_total_available_yards divided by that play count. |
-#'    |plays_per_drive               |double    |Mean of ESPN's per-drive offensivePlays taken over plays rather than over drives, which weights every drive by its own length. |
-#'    |yards_per_drive               |double    |Mean of ESPN's per-drive yardage taken over plays rather than over drives, exactly drive_total_gained_yards divided by the team's scrimmage-play count. |
-#'    |drives                        |integer   |Number of distinct ESPN drive ids on which the team ran at least one scrimmage play. |
-#'    |drive_total_gained_yards_rate |double    |Available-yards conversion as a percentage, 100 times drive_total_gained_yards over drive_total_available_yards with both sums play-weighted. |
+#'    |drive_total_available_yards   |double    |Sum over the team's drives of each drive's starting distance to the opponent end zone, one row per drive. A drive counts under ESPN's drive team (all its snaps when none are that team's), and a start of 0 counts as missing. |
+#'    |drive_total_gained_yards      |integer   |Sum of ESPN's per-drive yardage over the team's drives, one row per drive. |
+#'    |avg_field_position            |double    |Mean distance to the opponent end zone at drive start over the team's drives with a known start, one row per drive. |
+#'    |plays_per_drive               |double    |Mean of ESPN's per-drive offensivePlays over the team's drives, one row per drive. |
+#'    |yards_per_drive               |double    |Mean of ESPN's per-drive yardage over the team's drives, one row per drive. |
+#'    |drives                        |integer   |Number of distinct ESPN drive ids credited to the team: drives ESPN labels with the team on which it ran at least one scrimmage play. |
+#'    |drive_total_gained_yards_rate |double    |Available-yards conversion as a percentage from 0 to 100: each drive's yardage capped at its available yards, summed over the team's drives and divided by drive_total_available_yards. Null when no drive start is known. |
 #'    |game_id                       |integer   | |
 #'    |season                        |integer   | |
 #'    |week                          |integer   | |
@@ -2604,7 +2604,7 @@ NULL
 #'    |passer_player_name |character |Display name of the passer -- the FIRST participant in that role on the play. |
 #'    |Comp               |integer   |Completed passes recorded in the advanced box score. |
 #'    |Att                |integer   |Pass attempts recorded in the advanced box score. |
-#'    |xComp              |double    |Expected completions, summed from the per-play completion model. |
+#'    |xComp              |double    |Expected completions: the per-play completion probability (cp_game_state) summed over the passer's pass attempts, sacks excluded. |
 #'    |Yds                |double    |Passing yards from the advanced box score. |
 #'    |Pass_TD            |integer   |Passing touchdowns. |
 #'    |Int                |integer   |Interceptions thrown. |
@@ -2615,8 +2615,8 @@ NULL
 #'    |SR                 |double    |Success rate on the passer's plays. |
 #'    |Sck                |integer   |Times the passer was sacked. |
 #'    |CompPct            |double    |Completion percentage from the advanced box score. |
-#'    |xCompPct           |double    |Expected completion percentage from the per-play completion model. |
-#'    |CPOE               |double    |Completion percentage over expected -- actual minus modelled completion rate. |
+#'    |xCompPct           |double    |Expected completion rate on a 0-to-1 scale: xComp divided by Att (sacks excluded). 0 when Att is 0. |
+#'    |CPOE               |double    |Completion rate over expected: CompPct minus xCompPct, both over the passer's attempts (sacks excluded), as a 0-to-1 difference. |
 #'    |qbr_epa            |double    |EPA variant used as an input to the QBR calculation. |
 #'    |sack_epa           |double    |EPA credited to the player's sacks taken. |
 #'    |pass_epa           |double    |EPA credited to the player's pass plays. |
@@ -2911,8 +2911,8 @@ NULL
 #'    |EPA_late_down                    |double    |Total EPA the team generated on late downs. |
 #'    |EPA_late_down_per_play           |double    |EPA per play on late downs. |
 #'    |EPA_success_late_down_rate       |double    |Success rate on late downs -- the share of those plays ESPN scored as successful. |
-#'    |EPA_success_late_down_pass_rate  |double    |Success rate on late downs on pass plays -- the share of those plays ESPN scored as successful. |
-#'    |EPA_success_late_down_rush_rate  |double    |Success rate on late downs on rush plays -- the share of those plays ESPN scored as successful. |
+#'    |EPA_success_late_down_pass_rate  |double    |Success rate on late-down pass plays: EPA_success_late_down_pass divided by late_down_pass. Null when the team ran no late-down pass play. |
+#'    |EPA_success_late_down_rush_rate  |double    |Success rate on late-down rush plays: EPA_success_late_down_rush divided by late_down_rush. Null when the team ran no late-down rush play. |
 #'    |late_down_pass_rate              |double    |Share of the team's plays on late downs that were pass plays. |
 #'    |late_down_rush_rate              |double    |Share of the team's plays on late downs that were rush plays. |
 #'    |EPA_success_standard_down        |integer   |Count of successful plays on standard downs (the team ahead of schedule for the series). Despite the EPA_ prefix this is a play COUNT, not an EPA total. |
@@ -2995,8 +2995,8 @@ NULL
 #'    |pos_team_id        |integer   |ESPN team id of the team on offense. Present for every season 2004+. |
 #'    |pos_team           |character | |
 #'    |player_name        |character | |
-#'    |field_goals        |integer   |Number of field-goal attempts. |
-#'    |field_goals_yards  |integer   |Sum of the field-goal attempt distances parsed out of the play text; it stays at zero when no distance could be parsed from the narrative. |
+#'    |field_goals        |integer   |Field-goal attempts credited to this kicker, counted on field-goal attempts only (never kickoffs or PATs), under the kicking team. |
+#'    |field_goals_yards  |integer   |Sum of the kicker's field-goal attempt distances parsed out of the play text; it stays at zero when no distance could be parsed from the narrative. |
 #'    |punts              |integer   |Punts attempted. |
 #'    |punts_yards        |integer   |Total gross punt yardage parsed from the play text for this punter, working out to roughly 42 yards per punt league-wide. |
 #'    |kick_returns       |integer   | |
@@ -3102,6 +3102,7 @@ NULL
 #'    |passes                             |integer   |Number of pass plays the team ran. |
 #'    |pass_yards                         |double    |Total yards the team gained on pass plays. |
 #'    |yards_per_pass                     |double    | |
+#'    |sack_yards                         |double    |Sack yardage on the team's pass plays: the sum of yds_sacked, 0 or negative. passes and yards_per_pass already include sacks, each as 0 yards. |
 #'    |passing_first_downs_created        |integer   |Number of first downs created on pass plays. |
 #'    |passing_first_downs_created_rate   |double    |Share of pass plays that created a first down. |
 #'    |EPA_passing_overall                |double    |Total EPA on pass plays. |
@@ -3258,6 +3259,7 @@ NULL
 #'    |passes                             |integer   |Number of pass plays the team ran. |
 #'    |pass_yards                         |double    |Total yards the team gained on pass plays. |
 #'    |yards_per_pass                     |double    | |
+#'    |sack_yards                         |double    |Sack yardage on the team's pass plays: the sum of yds_sacked, 0 or negative. passes and yards_per_pass already include sacks, each as 0 yards. |
 #'    |passing_first_downs_created        |integer   |Number of first downs created on pass plays. |
 #'    |passing_first_downs_created_rate   |double    |Share of pass plays that created a first down. |
 #'    |EPA_passing_overall                |double    |Total EPA on pass plays. |
@@ -3369,16 +3371,17 @@ NULL
 #'    |turnovers                |integer   | |
 #'    |st_turnovers_lost        |integer   |Turnovers the team lost on special-teams plays. |
 #'    |Int                      |integer   |Interceptions thrown. |
-#'    |fumbles_lost             |integer   | |
+#'    |fumbles_lost             |integer   |Fumbles this team lost to the opponent on every play, special teams included: ESPN's team box fumblesLost where the game has one, else the play-by-play count (fumbles_lost_pbp). |
 #'    |pass_breakups            |integer   |Passes thrown by this offense that the opposing defense broke up; it equals the opponent's row in the advanced defensive table exactly. |
-#'    |total_fumbles            |integer   | |
-#'    |fumbles_recovered        |integer   | |
+#'    |total_fumbles            |integer   |Fumbles by this team on every play, special teams included, charged to the team that fumbled (a returner's muffed punt counts against the return team): the same plays fumbles_lost counts. |
+#'    |fumbles_recovered        |integer   |Of total_fumbles, the ones this team recovered itself. |
 #'    |team_id                  |integer   | |
 #'    |turnovers_pbp            |integer   |Turnover count derived from the play-by-play, retained unchanged so it can be reconciled against the ESPN-sourced turnovers total. |
 #'    |Int_pbp                  |integer   |Interception count derived from the play-by-play, kept alongside the ESPN-sourced Int for reconciliation. |
 #'    |fumbles_lost_pbp         |integer   |Fumbles-lost count derived from the play-by-play, kept alongside the ESPN-sourced fumbles_lost for reconciliation. |
 #'    |espn_sourced             |logical   |CONSTANT: true on every published row. It records that the row was built from the ESPN feed rather than an alternate provider, and no other provider is currently used. |
-#'    |expected_turnovers       |double    |Turnover expectation for this team, computed as half its total fumbles plus 0.22 times the sum of its pass breakups and interceptions. |
+#'    |passes_defended          |integer   |Passes thrown by this offense that the opposing defense defended, from ESPN's box score (the defense's passesDefended, which excludes interceptions, plus Int). Null where ESPN's box has no passesDefended, mostly before 2023. |
+#'    |expected_turnovers       |double    |Turnover expectation for this team, computed as `0.5 * total_fumbles + 0.22 * passes_defended` where passes_defended is present, otherwise `0.5 * total_fumbles + 0.22 * (pass_breakups + Int)`. |
 #'    |expected_turnover_margin |double    |The opponent's expected_turnovers minus this team's, so positive means the team was expected to win the turnover battle. |
 #'    |turnover_margin          |integer   |The opponent's turnovers minus this team's turnovers, positive when the team gained more possessions than it gave away. |
 #'    |turnover_luck            |double    |Points of scoring luck attributed to turnovers, five points per turnover times the gap between turnover_margin and expected_turnover_margin. |

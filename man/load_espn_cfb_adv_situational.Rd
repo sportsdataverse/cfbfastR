@@ -81,8 +81,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    EPA_late_down \tab double \tab Total EPA the team generated on late downs. \cr
    EPA_late_down_per_play \tab double \tab EPA per play on late downs. \cr
    EPA_success_late_down_rate \tab double \tab Success rate on late downs -- the share of those plays ESPN scored as successful. \cr
-   EPA_success_late_down_pass_rate \tab double \tab Success rate on late downs on pass plays -- the share of those plays ESPN scored as successful. \cr
-   EPA_success_late_down_rush_rate \tab double \tab Success rate on late downs on rush plays -- the share of those plays ESPN scored as successful. \cr
+   EPA_success_late_down_pass_rate \tab double \tab Success rate on late-down pass plays: EPA_success_late_down_pass divided by late_down_pass. Null when the team ran no late-down pass play. \cr
+   EPA_success_late_down_rush_rate \tab double \tab Success rate on late-down rush plays: EPA_success_late_down_rush divided by late_down_rush. Null when the team ran no late-down rush play. \cr
    late_down_pass_rate \tab double \tab Share of the team's plays on late downs that were pass plays. \cr
    late_down_rush_rate \tab double \tab Share of the team's plays on late downs that were rush plays. \cr
    EPA_success_standard_down \tab integer \tab Count of successful plays on standard downs (the team ahead of schedule for the series). Despite the EPA_ prefix this is a play COUNT, not an EPA total. \cr

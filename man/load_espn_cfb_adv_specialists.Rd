@@ -27,8 +27,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    pos_team_id \tab integer \tab ESPN team id of the team on offense. Present for every season 2004+. \cr
    pos_team \tab character \tab  \cr
    player_name \tab character \tab  \cr
-   field_goals \tab integer \tab Number of field-goal attempts. \cr
-   field_goals_yards \tab integer \tab Sum of the field-goal attempt distances parsed out of the play text; it stays at zero when no distance could be parsed from the narrative. \cr
+   field_goals \tab integer \tab Field-goal attempts credited to this kicker, counted on field-goal attempts only (never kickoffs or PATs), under the kicking team. \cr
+   field_goals_yards \tab integer \tab Sum of the kicker's field-goal attempt distances parsed out of the play text; it stays at zero when no distance could be parsed from the narrative. \cr
    punts \tab integer \tab Punts attempted. \cr
    punts_yards \tab integer \tab Total gross punt yardage parsed from the play text for this punter, working out to roughly 42 yards per punt league-wide. \cr
    kick_returns \tab integer \tab  \cr

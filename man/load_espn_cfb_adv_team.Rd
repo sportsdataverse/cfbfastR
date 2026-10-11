@@ -57,6 +57,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    passes \tab integer \tab Number of pass plays the team ran. \cr
    pass_yards \tab double \tab Total yards the team gained on pass plays. \cr
    yards_per_pass \tab double \tab  \cr
+   sack_yards \tab double \tab Sack yardage on the team's pass plays: the sum of yds_sacked, 0 or negative. passes and yards_per_pass already include sacks, each as 0 yards. \cr
    passing_first_downs_created \tab integer \tab Number of first downs created on pass plays. \cr
    passing_first_downs_created_rate \tab double \tab Share of pass plays that created a first down. \cr
    EPA_passing_overall \tab double \tab Total EPA on pass plays. \cr
