@@ -6323,7 +6323,7 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
           add_play_counts() |>
           clean_pbp_dat() |>
           clean_drive_dat() |>
-          add_yardage() |>
+          add_yardage(season = .legacy_season) |>
           add_player_cols() |>
           prep_epa_df_after(season = .legacy_season) |>
           create_epa(ep_model = ep_model, fg_model = fg_model,

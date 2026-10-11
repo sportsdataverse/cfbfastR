@@ -539,23 +539,62 @@ validate_reqs <- function(...){
   }
 }
 
-#' Kickoff touchback spot, in yards to goal, by season
-#'
-#' The NCAA's 2012 kickoff rule (sdv-internal-refs
-#' `rules/cfb.yaml#cfb-2012-kickoff-35-touchback-25`) moved kickoffs to the 35
-#' and brought a touchback out to the receiving team's 25 (75 yards to goal);
-#' through the 2011 season it came out to the 20 (80). The Python twin is
-#' `_KICKOFF_2012_RULES_FROM` in sdv-py `cfb/cfb_pbp.py` (sportsdataverse-py#778).
-#'
-#' @param season Scalar or per-row season. `NULL` or `NA` reads as the current
-#'   rule (75), which is what every caller assumed before the season was passed.
-#' @return Numeric yards to goal, `length(season)` long (1 for `NULL`).
-#' @keywords internal
-#' @noRd
+# First season of the NCAA's 2012 kickoff rules (sdv-internal-refs
+# `rules/cfb.yaml#cfb-2012-kickoff-35-touchback-25`): kickoffs from the 35, a
+# touchback out to the receiving team's 25 (the 20 before) and a kickoff out of
+# bounds to the 35 (the 40 before). Python twin: `_KICKOFF_2012_RULES_FROM` in
+# sdv-py `cfb/cfb_pbp.py` (sportsdataverse-py#778).
 .KICKOFF_2012_RULES_FROM <- 2012
 
+#' Do the 2012 kickoff rules apply to this season?
+#'
+#' @param season Scalar season; only its first element is read. `NULL` or `NA`
+#'   reads as the current rules (`TRUE`).
+#' @return `TRUE` from 2012 (or when the season is unknown), `FALSE` through 2011.
+#' @keywords internal
+#' @noRd
+.kickoff_2012_rules <- function(season) {
+  s <- if (length(season)) suppressWarnings(as.numeric(season[[1]])) else NA_real_
+  is.na(s) || s >= .KICKOFF_2012_RULES_FROM
+}
+
+#' Kickoff touchback spot, in yards to goal, by season
+#'
+#' 75 (the 25) from 2012, 80 (the 20) through 2011; see
+#' `.KICKOFF_2012_RULES_FROM`.
+#'
+#' @param season Scalar season; only its first element is read. `NULL` or `NA`
+#'   reads as the current rule (75).
+#' @return 75 or 80.
+#' @keywords internal
+#' @noRd
 .kickoff_touchback_ytg <- function(season) {
-  s <- suppressWarnings(as.numeric(season))
-  if (!length(s)) return(75)
-  ifelse(!is.na(s) & s < .KICKOFF_2012_RULES_FROM, 80, 75)
+  if (.kickoff_2012_rules(season)) 75 else 80
+}
+
+#' The season an exported entry point applies the kickoff rules to
+#'
+#' An explicit `season` wins; otherwise the frame's own `season` column (its
+#' first non-missing value). With neither, warns once per session that
+#' kickoffs are scored under the 2012 rules, and returns `NA`.
+#'
+#' @param season `NULL` or a scalar season.
+#' @param df The play-by-play frame.
+#' @return A scalar season, or `NA_real_`.
+#' @keywords internal
+#' @noRd
+.kickoff_rule_season <- function(season, df) {
+  if (is.null(season) && "season" %in% names(df)) {
+    s <- df[["season"]]
+    season <- s[!is.na(s)][1]
+  }
+  season <- if (length(season)) suppressWarnings(as.numeric(season[[1]])) else NA_real_
+  if (is.na(season)) {
+    cli::cli_warn(
+      c("No {.arg season} given and no {.field season} column: kickoffs are scored under the 2012 rules (touchback at the 25, 75 yards to goal).",
+        "i" = "Pass {.arg season} for games before 2012, when a touchback came out to the 20."),
+      .frequency = "once", .frequency_id = "cfbfastR_kickoff_tb_season"
+    )
+  }
+  season
 }

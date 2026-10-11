@@ -15,9 +15,10 @@ wpa_calcs_naive(df)
 
 \item{wp_model}{(\emph{model} default cfbfastR:wp_model): Win Probability (WP) Model}
 
-\item{season}{(\emph{numeric} optional): Season of the game. The kickoff
+\item{season}{(\emph{numeric} scalar, optional): Season of the game. The kickoff
 \code{wp_before} is scored as a touchback at the 25 (\code{yards_to_goal} 75) from
-2012 and at the 20 (80) through 2011; \code{NULL} reads as the current rule (75).}
+2012 and at the 20 (80) through 2011. \code{NULL} reads the frame's \code{season}
+column; with neither, 75 is used and a warning is given once per session.}
 }
 \value{
 The original \code{df} with the following columns appended to it:

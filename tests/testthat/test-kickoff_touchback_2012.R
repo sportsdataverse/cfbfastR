@@ -3,7 +3,9 @@
 # touchback site scored 75 whatever the season. Twin of sdv-py #778.
 
 test_that("the touchback spot follows the 2012 rule", {
-  expect_equal(.kickoff_touchback_ytg(c(2011, 2012, 2013)), c(80, 75, 75))
+  expect_equal(.kickoff_touchback_ytg(2011), 80)
+  expect_equal(.kickoff_touchback_ytg(2012), 75)
+  expect_equal(.kickoff_touchback_ytg(2013), 75)
   expect_equal(.kickoff_touchback_ytg(NULL), 75)
   expect_equal(.kickoff_touchback_ytg(NA), 75)
 })
@@ -106,4 +108,38 @@ test_that("prep_epa_df_after ends a kickoff touchback at the 2011 and 2012 spots
       expect_equal(out$new_yardline[out$kickoff_play == 1], if (s == 2011) 80 else 75)
     }
   }
+})
+
+# A kickoff touchback and a kickoff out of bounds, for add_yardage().
+.yardage_rows <- function(season = NULL) {
+  df <- data.frame(
+    play_type = "Kickoff", kickoff_play = 1, kickoff_tb = c(1, 0),
+    play_text = c("Smith kickoff for 65 yds for a touchback",
+                  "Smith kickoff for 60 yds, out of bounds")
+  )
+  df[c("rush", "pass", "yards_gained", "int_td", "int", "fumble_vec",
+       "kickoff_downed", "kickoff_fair_catch", "punt", "punt_blocked",
+       "punt_tb", "punt_downed", "punt_oob", "punt_fair_catch", "sack",
+       "penalty_detail")] <- 0
+  if (!is.null(season)) df$season <- season
+  df
+}
+
+test_that("add_yardage spots a touchback and an out-of-bounds kickoff by season", {
+  expect_equal(add_yardage(.yardage_rows(), season = 2011)$yds_kickoff_return, c(20, 40))
+  expect_equal(add_yardage(.yardage_rows(), season = 2012)$yds_kickoff_return, c(25, 35))
+  # With no argument, the frame's own season column decides.
+  expect_equal(add_yardage(.yardage_rows(2011))$yds_kickoff_return, c(20, 40))
+})
+
+test_that("a missing season scores the 2012 rules and says so", {
+  rlang::local_options(rlib_warning_verbosity = "verbose")
+  for (s in list(NULL, NA)) {
+    expect_warning(out <- add_yardage(.yardage_rows(), season = s), "2012 rules")
+    expect_equal(out$yds_kickoff_return, c(25, 35))
+    expect_warning(out <- prep_epa_df_after(.prep_rows(), season = s), "2012 rules")
+    expect_equal(out$new_yardline[out$kickoff_play == 1], 75)
+  }
+  # A frame season column means no warning.
+  expect_no_warning(add_yardage(.yardage_rows(2013)))
 })

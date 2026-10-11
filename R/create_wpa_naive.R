@@ -5,9 +5,10 @@
 #' This is only for D1 football
 #' @param df (*data.frame* required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
 #' @param wp_model (*model* default cfbfastR:wp_model): Win Probability (WP) Model
-#' @param season (*numeric* optional): Season of the game. The kickoff
+#' @param season (*numeric* scalar, optional): Season of the game. The kickoff
 #'   `wp_before` is scored as a touchback at the 25 (`yards_to_goal` 75) from
-#'   2012 and at the 20 (80) through 2011; `NULL` reads as the current rule (75).
+#'   2012 and at the 20 (80) through 2011. `NULL` reads the frame's `season`
+#'   column; with neither, 75 is used and a warning is given once per session.
 #' @details Requires the following columns to be present in the input data frame.
 #' @return The original `df` with the following columns appended to it:
 #' \describe{
@@ -40,6 +41,7 @@
 #'
 
 create_wpa_naive <- function(df, wp_model, season = NULL) {
+  season <- .kickoff_rule_season(season, df)
   col_nec <- c(
     "ExpScoreDiff",
     "TimeSecsRem",

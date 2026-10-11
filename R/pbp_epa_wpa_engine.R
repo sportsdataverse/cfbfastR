@@ -82,7 +82,7 @@
     .pbp_add_play_counts() |>
     .pbp_clean_pbp_dat() |>
     .pbp_clean_drive_dat() |>
-    add_yardage() |>
+    add_yardage(season = season) |>
     # Air yards needs the possessing/defending team ids to side the catch-point
     # abbreviation, so it sits after .pbp_add_play_counts() and before the name
     # extraction -- the same position it holds in sdv-py.
