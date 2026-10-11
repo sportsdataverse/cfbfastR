@@ -3381,7 +3381,7 @@ NULL
 #'    |fumbles_lost_pbp         |integer   |Fumbles-lost count derived from the play-by-play, kept alongside the ESPN-sourced fumbles_lost for reconciliation. |
 #'    |espn_sourced             |logical   |CONSTANT: true on every published row. It records that the row was built from the ESPN feed rather than an alternate provider, and no other provider is currently used. |
 #'    |passes_defended          |integer   |Passes thrown by this offense that the opposing defense defended, from ESPN's box score (the defense's passesDefended, which excludes interceptions, plus Int). Null where ESPN's box has no passesDefended, mostly before 2023. |
-#'    |expected_turnovers       |double    |Turnover expectation for this team, computed as half its total fumbles plus 0.22 times its passes_defended, or 0.22 times its pass breakups plus interceptions where passes_defended is null. |
+#'    |expected_turnovers       |double    |Turnover expectation for this team, computed as `0.5 * total_fumbles + 0.22 * passes_defended` where passes_defended is present, otherwise `0.5 * total_fumbles + 0.22 * (pass_breakups + Int)`. |
 #'    |expected_turnover_margin |double    |The opponent's expected_turnovers minus this team's, so positive means the team was expected to win the turnover battle. |
 #'    |turnover_margin          |integer   |The opponent's turnovers minus this team's turnovers, positive when the team gained more possessions than it gave away. |
 #'    |turnover_luck            |double    |Points of scoring luck attributed to turnovers, five points per turnover times the gap between turnover_margin and expected_turnover_margin. |
