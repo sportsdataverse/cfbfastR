@@ -538,3 +538,24 @@ validate_reqs <- function(...){
                           paste0(map_vec(labs, as_label), collapse = ', ')))
   }
 }
+
+#' Kickoff touchback spot, in yards to goal, by season
+#'
+#' The NCAA's 2012 kickoff rule (sdv-internal-refs
+#' `rules/cfb.yaml#cfb-2012-kickoff-35-touchback-25`) moved kickoffs to the 35
+#' and brought a touchback out to the receiving team's 25 (75 yards to goal);
+#' through the 2011 season it came out to the 20 (80). The Python twin is
+#' `_KICKOFF_2012_RULES_FROM` in sdv-py `cfb/cfb_pbp.py` (sportsdataverse-py#778).
+#'
+#' @param season Scalar or per-row season. `NULL` or `NA` reads as the current
+#'   rule (75), which is what every caller assumed before the season was passed.
+#' @return Numeric yards to goal, `length(season)` long (1 for `NULL`).
+#' @keywords internal
+#' @noRd
+.KICKOFF_2012_RULES_FROM <- 2012
+
+.kickoff_touchback_ytg <- function(season) {
+  s <- suppressWarnings(as.numeric(season))
+  if (!length(s)) return(75)
+  ifelse(!is.na(s) & s < .KICKOFF_2012_RULES_FROM, 80, 75)
+}

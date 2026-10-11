@@ -19,7 +19,7 @@ add_play_counts(play_df)
 
 clean_drive_dat(play_df)
 
-prep_epa_df_after(dat)
+prep_epa_df_after(dat, season = NULL)
 
 clean_drive_info(drive_df)
 
@@ -37,6 +37,10 @@ penalty_detection(raw_df)
 \item{play_df}{(\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from \code{cfbd_pbp_data()}}
 
 \item{dat}{(\emph{Data.Frame} required) Clean Play-by-Play DataFrame pulled from \code{cfbd_pbp_dat()}}
+
+\item{season}{(\emph{numeric} optional): Season of the game. A kickoff touchback
+ends at the 25 (\code{new_yardline} 75) from 2012 and at the 20 (80) through
+2011; \code{NULL} reads as the current rule (75).}
 
 \item{drive_df}{(\emph{data.frame} required) Drive dataframe pulled from API via the \code{cfbd_drives()} function}
 

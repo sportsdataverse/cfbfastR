@@ -14,7 +14,9 @@
 #' @importFrom rlang .data
 #' @importFrom dplyr mutate arrange group_by case_when mutate_at ungroup n lag lead if_else
 #' @importFrom tidyr replace_na
-.pbp_prep_epa_df_after <- function(dat) {
+.pbp_prep_epa_df_after <- function(dat, season = NULL) {
+  # Kickoff touchback end spot: the 25 from 2012, the 20 through 2011.
+  tb_ytg <- .kickoff_touchback_ytg(season)
   tt                 <- .pbp_play_types()
   turnover_play_type <- tt$turnover_play_type
   turnover_vec       <- tt$turnover
@@ -297,7 +299,7 @@
     dplyr::arrange(.data$play_order, .by_group = TRUE) |>
     # dplyr::select(-.data$play, -.data$half_play, -.data$drive_play) |>
     dplyr::mutate(
-      new_yardline = ifelse(.data$kickoff_play == 1 & .data$kickoff_tb == 1, 75, .data$new_yardline),
+      new_yardline = ifelse(.data$kickoff_play == 1 & .data$kickoff_tb == 1, tb_ytg, .data$new_yardline),
       new_yardline = ifelse(.data$end_of_half == 1, 100, .data$new_yardline),
       new_distance = ifelse(.data$new_yardline <= 0, .data$lead_distance2, .data$new_distance),
       new_yardline = ifelse(.data$new_yardline <= 0, .data$lead_yards_to_goal, .data$new_yardline),

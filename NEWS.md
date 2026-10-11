@@ -69,6 +69,16 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   `cfbd_pbp_data(offense =)` and, on `cfbd_pbp_data_v2()`, `offense`, `defense`,
   `offense_conference`, `defense_conference`, `conference` and `division`.
 
+## Fixed: kickoff touchback spot before 2012
+
+* A kickoff touchback was scored at the 25 (75 yards to goal) in every season.
+  The NCAA moved kickoffs to the 35 and the touchback to the 25 in 2012; through
+  2011 a touchback came out to the 20. The kickoff `ep_before`, the kickoff
+  `wp_before` and a touchback's `new_yardline` now use 80 through 2011 and 75
+  from 2012, in both the v2 and the legacy engine. `prep_epa_df_after()` and
+  `create_wpa_naive()` gain an optional `season` argument (`NULL` keeps 75).
+  Seasons from 2012 are unchanged. Twin of sportsdataverse-py#778.
+
 ## Fixed: CFBD game box score, team stats and play-by-play
 
 * `cfbd_game_team_stats(team =)` returned both teams of every game. Inside

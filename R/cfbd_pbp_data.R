@@ -812,11 +812,11 @@ cfbd_pbp_data <- function(year,
           clean_drive_dat() |>
           add_yardage() |>
           add_player_cols() |>
-          prep_epa_df_after() |>
+          prep_epa_df_after(season = year) |>
           create_epa(ep_model = ep_model, fg_model = fg_model,
                      season = year) |>
           # create_wpa_betting() |>
-          create_wpa_naive(wp_model = wp_model)
+          create_wpa_naive(wp_model = wp_model, season = year)
         p(sprintf("x=%s", as.integer(x)))
         return(game_plays)
       }, ...)
@@ -1798,6 +1798,9 @@ clean_drive_dat <- function(play_df) {
 #' @rdname helpers_pbp
 #'
 #' @param dat (*Data.Frame* required) Clean Play-by-Play DataFrame pulled from `cfbd_pbp_dat()`
+#' @param season (*numeric* optional): Season of the game. A kickoff touchback
+#'   ends at the 25 (`new_yardline` 75) from 2012 and at the 20 (80) through
+#'   2011; `NULL` reads as the current rule (75).
 #' @details Prep for EPA calculations at the end of the play. Requires the following columns be present:
 #'
 #' * `game_id`: .
@@ -1848,7 +1851,9 @@ clean_drive_dat <- function(play_df) {
 #' @importFrom dplyr mutate arrange group_by case_when mutate_at ungroup n lag lead if_else
 #' @export
 
-prep_epa_df_after <- function(dat) {
+prep_epa_df_after <- function(dat, season = NULL) {
+  # Kickoff touchback end spot: the 25 from 2012, the 20 through 2011.
+  tb_ytg <- .kickoff_touchback_ytg(season)
   ## --Play type vectors------
   turnover_play_type <- c(
     "Blocked Field Goal",
@@ -2220,7 +2225,7 @@ prep_epa_df_after <- function(dat) {
     dplyr::arrange(.data$new_id, .by_group = TRUE) |>
     # dplyr::select(-.data$play, -.data$half_play, -.data$drive_play) |>
     dplyr::mutate(
-      new_yardline = ifelse(.data$kickoff_play == 1 & .data$kickoff_tb == 1, 75, .data$new_yardline),
+      new_yardline = ifelse(.data$kickoff_play == 1 & .data$kickoff_tb == 1, tb_ytg, .data$new_yardline),
       new_yardline = ifelse(.data$end_of_half == 1, 100, .data$new_yardline),
       new_distance = ifelse(.data$new_yardline <= 0, .data$lead_distance2, .data$new_distance),
       new_yardline = ifelse(.data$new_yardline <= 0, .data$lead_yards_to_goal, .data$new_yardline),
