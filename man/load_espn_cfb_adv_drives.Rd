@@ -26,13 +26,13 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    col_name \tab types \tab description \cr
    pos_team_id \tab integer \tab ESPN team id of the team on offense. Present for every season 2004+. \cr
    pos_team \tab character \tab  \cr
-   drive_total_available_yards \tab double \tab Sum of each drive's starting distance to the opponent end zone taken across every scrimmage play, so a drive contributes its available yards once per play rather than once per drive. \cr
-   drive_total_gained_yards \tab integer \tab Sum of ESPN's per-drive yardage repeated across every scrimmage play of that drive, so a drive contributes its yardage once per play. \cr
-   avg_field_position \tab double \tab Mean distance to the opponent end zone at drive start averaged over the team's scrimmage plays, exactly drive_total_available_yards divided by that play count. \cr
-   plays_per_drive \tab double \tab Mean of ESPN's per-drive offensivePlays taken over plays rather than over drives, which weights every drive by its own length. \cr
-   yards_per_drive \tab double \tab Mean of ESPN's per-drive yardage taken over plays rather than over drives, exactly drive_total_gained_yards divided by the team's scrimmage-play count. \cr
-   drives \tab integer \tab Number of distinct ESPN drive ids on which the team ran at least one scrimmage play. \cr
-   drive_total_gained_yards_rate \tab double \tab Available-yards conversion as a percentage, 100 times drive_total_gained_yards over drive_total_available_yards with both sums play-weighted. \cr
+   drive_total_available_yards \tab double \tab Sum over the team's drives of each drive's starting distance to the opponent end zone, one row per drive. A drive counts under ESPN's drive team (all its snaps when none are that team's), and a start of 0 counts as missing. \cr
+   drive_total_gained_yards \tab integer \tab Sum of ESPN's per-drive yardage over the team's drives, one row per drive. \cr
+   avg_field_position \tab double \tab Mean distance to the opponent end zone at drive start over the team's drives with a known start, one row per drive. \cr
+   plays_per_drive \tab double \tab Mean of ESPN's per-drive offensivePlays over the team's drives, one row per drive. \cr
+   yards_per_drive \tab double \tab Mean of ESPN's per-drive yardage over the team's drives, one row per drive. \cr
+   drives \tab integer \tab Number of distinct ESPN drive ids credited to the team: drives ESPN labels with the team on which it ran at least one scrimmage play. \cr
+   drive_total_gained_yards_rate \tab double \tab Available-yards conversion as a percentage from 0 to 100: each drive's yardage capped at its available yards, summed over the team's drives and divided by drive_total_available_yards. Null when no drive start is known. \cr
    game_id \tab integer \tab  \cr
    season \tab integer \tab  \cr
    week \tab integer \tab  \cr

@@ -31,22 +31,22 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    season \tab integer \tab  \cr
    player_id \tab integer \tab  \cr
    receiver_player_name \tab character \tab Display name of the targeted receiver -- the FIRST participant in that role on the play. \cr
-   plays \tab integer \tab  \cr
+   plays \tab integer \tab Attributed targets: pass plays naming the receiver as the target or the catcher. \cr
    games \tab integer \tab  \cr
    team_games \tab integer \tab Games the team played, used as the per-game denominator. \cr
    TEPA \tab double \tab Total EPA summed over every play. \cr
-   EPAplay \tab double \tab EPA generated per play. \cr
+   EPAplay \tab double \tab EPA per target. Null, with any _rank, _pct and _pos_pct, in seasons where more than 30\% of incompletions name no receiver (2021-2024): those throws drop out of every receiver's targets, so per-target rates would read high. \cr
    yards \tab integer \tab  \cr
-   success \tab double \tab Success rate across the team plays. \cr
+   success \tab double \tab Success rate over the receiver's targets. Null, with any _rank, _pct and _pos_pct, in seasons where more than 30\% of incompletions name no receiver (2021-2024): those throws drop out of every receiver's targets, so per-target rates would read high. \cr
    comp \tab integer \tab Completed passes. \cr
-   targets \tab integer \tab  \cr
+   targets \tab integer \tab Attributed targets: passes ESPN charts to this receiver. An incompletion that names no receiver counts for nobody, so this undercounts real targets: 22-24\% of incompletions name no receiver in 2014-2020, 42-77\% in 2021-2024 and under 10\% from 2025. \cr
    passing_td \tab double \tab  \cr
    fumbles \tab double \tab Count of the receiver's targeted pass plays across the season whose play text mentions a fumble by either team. \cr
    playsgame \tab double \tab Plays per game. \cr
    EPAgame \tab double \tab EPA generated per game. \cr
-   yardsplay \tab double \tab Yards per play. \cr
+   yardsplay \tab double \tab Yards per target. Null, with any _rank, _pct and _pos_pct, in seasons where more than 30\% of incompletions name no receiver (2021-2024): those throws drop out of every receiver's targets, so per-target rates would read high. \cr
    yardsgame \tab double \tab Yards per game. \cr
-   catchpct \tab double \tab Catch rate on a 0-to-1 scale, receptions divided by targets for the season. \cr
+   catchpct \tab double \tab Catch rate on a 0-to-1 scale, receptions divided by targets for the season. Null, with any _rank, _pct and _pos_pct, in seasons where more than 30\% of incompletions name no receiver (2021-2024): those throws drop out of every receiver's targets, so per-target rates would read high. \cr
    TEPA_rank \tab double \tab National rank of the team's total EPA summed over every play, where 1 is best. \cr
    EPAgame_rank \tab double \tab National rank of the team's EPA generated per game, where 1 is best. \cr
    EPAplay_rank \tab double \tab National rank of the team's EPA generated per play, where 1 is best. \cr

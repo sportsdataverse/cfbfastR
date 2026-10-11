@@ -29,7 +29,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    passer_player_name \tab character \tab Display name of the passer -- the FIRST participant in that role on the play. \cr
    Comp \tab integer \tab Completed passes recorded in the advanced box score. \cr
    Att \tab integer \tab Pass attempts recorded in the advanced box score. \cr
-   xComp \tab double \tab Expected completions, summed from the per-play completion model. \cr
+   xComp \tab double \tab Expected completions: the per-play completion probability (cp_game_state) summed over the passer's pass attempts, sacks excluded. \cr
    Yds \tab double \tab Passing yards from the advanced box score. \cr
    Pass_TD \tab integer \tab Passing touchdowns. \cr
    Int \tab integer \tab Interceptions thrown. \cr
@@ -40,8 +40,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    SR \tab double \tab Success rate on the passer's plays. \cr
    Sck \tab integer \tab Times the passer was sacked. \cr
    CompPct \tab double \tab Completion percentage from the advanced box score. \cr
-   xCompPct \tab double \tab Expected completion percentage from the per-play completion model. \cr
-   CPOE \tab double \tab Completion percentage over expected -- actual minus modelled completion rate. \cr
+   xCompPct \tab double \tab Expected completion rate on a 0-to-1 scale: xComp divided by Att (sacks excluded). 0 when Att is 0. \cr
+   CPOE \tab double \tab Completion rate over expected: CompPct minus xCompPct, both over the passer's attempts (sacks excluded), as a 0-to-1 difference. \cr
    qbr_epa \tab double \tab EPA variant used as an input to the QBR calculation. \cr
    sack_epa \tab double \tab EPA credited to the player's sacks taken. \cr
    pass_epa \tab double \tab EPA credited to the player's pass plays. \cr

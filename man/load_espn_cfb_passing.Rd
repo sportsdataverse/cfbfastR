@@ -37,7 +37,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    TEPA \tab double \tab Total EPA summed over every play. \cr
    EPAplay \tab double \tab EPA generated per play. \cr
    yards \tab double \tab  \cr
-   success \tab double \tab Success rate across the team plays. \cr
+   success \tab double \tab Success rate over the passer's dropbacks (completions, incompletions, sacks and interceptions), like EPAplay. A sack keeps its own success value; an interception is never a success. \cr
    comp \tab double \tab Completed passes. \cr
    att \tab double \tab Pass attempts thrown. \cr
    comppct \tab double \tab Completion percentage. \cr
@@ -59,7 +59,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    TEPA_rank \tab double \tab National rank of the team's total EPA summed over every play, where 1 is best. \cr
    EPAgame_rank \tab double \tab National rank of the team's EPA generated per game, where 1 is best. \cr
    EPAplay_rank \tab double \tab National rank of the team's EPA generated per play, where 1 is best. \cr
-   success_rank \tab double \tab National rank of the team's success rate across the team plays, where 1 is best. \cr
+   success_rank \tab double \tab Rank of the passer's success rate over dropbacks among passers clearing the leaderboard minimum of 14 dropbacks per team game, where 1 is best. \cr
    comppct_rank \tab double \tab National rank of the team's completion percentage, where 1 is best. \cr
    yards_rank \tab double \tab National rank of the team's total yards, where 1 is best. \cr
    yardsplay_rank \tab double \tab National rank of the team's yards per play, where 1 is best. \cr
