@@ -54,7 +54,7 @@ Returns a `cfbfastR_data` tibble.
 | havoc_total_rate | double | Share of the defense's scrimmage plays producing a havoc event, a 0-to-1 fraction equal to havoc_total divided by scrimmage_plays. |
 | fumbles | integer | Fumbles the defense forced, counted from plays whose narrative contains the phrase forced by, not the total number of fumbles on the play. |
 | def_int | integer | Interceptions the defense recorded, counted from plays ESPN types as Interception Return or Interception Return Touchdown. |
-| drive_stopped_rate | double | Percentage from 0 to 100 of the defense's scrimmage plays that occurred on drives ending in a punt, fumble, interception, or turnover on downs; the denominator is plays, not drives. |
+| drive_stopped_rate | double | Percentage from 0 to 100 of opponents' drives against this defense, one row per drive, that ended in a punt, fumble, interception (ESPN's INT or INT TD) or turnover on downs. |
 | num_pass_plays | integer | Number of pass scrimmage plays the defense faced, the denominator behind havoc_total_pass_rate and sacks_rate. |
 | havoc_total_pass | integer | Havoc events (tackle for loss, sack, interception, forced fumble, or pass breakup) recorded on the pass plays the defense faced. |
 | havoc_total_pass_rate | double | havoc_total_pass divided by num_pass_plays, the defense's havoc rate against the pass as a 0-to-1 fraction. |
@@ -77,7 +77,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_defensive(2004))
 #> ── college football advanced defensive from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-10-10 23:21:45 UTC
+#> ℹ Data updated: 2026-10-11 01:10:47 UTC
 #> # A tibble: 926 × 22
 #>    def_pos_team_id def_pos_team          scrimmage_plays   TFL TFL_pass TFL_rush
 #>              <int> <chr>                           <int> <int>    <int>    <int>

@@ -46,13 +46,13 @@ Returns a `cfbfastR_data` tibble.
 | col_name | types | description |
 | pos_team_id | integer | ESPN team id of the team on offense. Present for every season 2004+. |
 | pos_team | character |  |
-| drive_total_available_yards | double | Sum of each drive's starting distance to the opponent end zone taken across every scrimmage play, so a drive contributes its available yards once per play rather than once per drive. |
-| drive_total_gained_yards | integer | Sum of ESPN's per-drive yardage repeated across every scrimmage play of that drive, so a drive contributes its yardage once per play. |
-| avg_field_position | double | Mean distance to the opponent end zone at drive start averaged over the team's scrimmage plays, exactly drive_total_available_yards divided by that play count. |
-| plays_per_drive | double | Mean of ESPN's per-drive offensivePlays taken over plays rather than over drives, which weights every drive by its own length. |
-| yards_per_drive | double | Mean of ESPN's per-drive yardage taken over plays rather than over drives, exactly drive_total_gained_yards divided by the team's scrimmage-play count. |
-| drives | integer | Number of distinct ESPN drive ids on which the team ran at least one scrimmage play. |
-| drive_total_gained_yards_rate | double | Available-yards conversion as a percentage, 100 times drive_total_gained_yards over drive_total_available_yards with both sums play-weighted. |
+| drive_total_available_yards | double | Sum over the team's drives of each drive's starting distance to the opponent end zone, one row per drive. A drive counts under ESPN's drive team (all its snaps when none are that team's), and a start of 0 counts as missing. |
+| drive_total_gained_yards | integer | Sum of ESPN's per-drive yardage over the team's drives, one row per drive. |
+| avg_field_position | double | Mean distance to the opponent end zone at drive start over the team's drives with a known start, one row per drive. |
+| plays_per_drive | double | Mean of ESPN's per-drive offensivePlays over the team's drives, one row per drive. |
+| yards_per_drive | double | Mean of ESPN's per-drive yardage over the team's drives, one row per drive. |
+| drives | integer | Number of distinct ESPN drive ids credited to the team: drives ESPN labels with the team on which it ran at least one scrimmage play. |
+| drive_total_gained_yards_rate | double | Available-yards conversion as a percentage from 0 to 100: each drive's yardage capped at its available yards, summed over the team's drives and divided by drive_total_available_yards. Null when no drive start is known. |
 | game_id | integer |  |
 | season | integer |  |
 | week | integer |  |
@@ -67,7 +67,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_drives(2004))
 #> ── college football advanced drives from the SportsDataverse data repo ─────────
-#> ℹ Data updated: 2026-10-10 23:21:48 UTC
+#> ℹ Data updated: 2026-10-11 01:10:49 UTC
 #> # A tibble: 926 × 12
 #>    pos_team_id pos_team            drive_total_availabl…¹ drive_total_gained_y…²
 #>          <int> <chr>                                <dbl>                  <int>

@@ -101,7 +101,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_live_scoreboard(division='fbs', conference = "B12"))
 #> ── Live Scoreboard information from CollegeFootballData.com ────────────────────
-#> ℹ Data updated: 2026-10-10 23:08:48 UTC
+#> ℹ Data updated: 2026-10-11 01:03:42 UTC
 #> # A tibble: 6 × 43
 #>     game_id start_date  start_time_tbd tv    neutral_site conference_game status
 #>       <int> <chr>       <lgl>          <chr> <lgl>        <lgl>           <chr> 
@@ -109,14 +109,14 @@ Other CFBD Games:
 #> 2 401856823 2026-10-10… FALSE          TNT … FALSE        TRUE            compl…
 #> 3 401856824 2026-10-10… FALSE          ESPN2 FALSE        TRUE            compl…
 #> 4 401856825 2026-10-10… FALSE          Fox … FALSE        TRUE            compl…
-#> 5 401856827 2026-10-11… FALSE          ESPN  FALSE        TRUE            sched…
+#> 5 401856827 2026-10-11… FALSE          ESPN  FALSE        TRUE            in_pr…
 #> 6 401856808 2026-10-11… FALSE          FS1   FALSE        FALSE           sched…
-#> # ℹ 36 more variables: period <lgl>, clock <lgl>, situation <lgl>,
-#> #   possession <lgl>, last_play <chr>, venue_name <chr>, venue_city <chr>,
+#> # ℹ 36 more variables: period <int>, clock <chr>, situation <chr>,
+#> #   possession <chr>, last_play <chr>, venue_name <chr>, venue_city <chr>,
 #> #   venue_state <chr>, home_team_id <int>, home_team_name <chr>,
 #> #   home_team_conference <chr>, home_team_classification <chr>,
 #> #   home_team_points <int>, home_team_line_scores_Q1 <int>,
 #> #   home_team_line_scores_Q2 <int>, home_team_line_scores_Q3 <int>,
-#> #   home_team_line_scores_Q4 <int>, home_team_win_probability <lgl>, …
+#> #   home_team_line_scores_Q4 <int>, home_team_win_probability <dbl>, …
 # }
 ```

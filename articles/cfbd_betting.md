@@ -33,12 +33,14 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
-    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
 
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
+
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
+
+    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
 
     ## Reading package lists...
 
@@ -75,7 +77,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode-dev amd64 12.22.9~dfsg-1ubuntu3.6 [609 kB]
 
-    ## Fetched 11.4 MB in 0s (29.7 MB/s)
+    ## Fetched 11.4 MB in 1s (11.4 MB/s)
 
     ## Selecting previously unselected package libnode72:amd64.
     ## (Reading database ...
@@ -130,7 +132,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## 
     ## No VM guests are running outdated hypervisor (qemu) binaries on this host.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [13.2s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [8.8s]
 
 ``` r
 
@@ -169,7 +171,7 @@ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 
     ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-10-10 23:26:41 UTC
+    ## ℹ Data updated: 2026-10-11 01:13:29 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -192,7 +194,7 @@ cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC
 ```
 
     ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
-    ## ℹ Data updated: 2026-10-10 23:26:41 UTC
+    ## ℹ Data updated: 2026-10-11 01:13:29 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team

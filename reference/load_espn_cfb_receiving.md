@@ -51,22 +51,22 @@ Returns a `cfbfastR_data` tibble.
 | season | integer |  |
 | player_id | integer |  |
 | receiver_player_name | character | Display name of the targeted receiver – the FIRST participant in that role on the play. |
-| plays | integer |  |
+| plays | integer | Attributed targets: pass plays naming the receiver as the target or the catcher. |
 | games | integer |  |
 | team_games | integer | Games the team played, used as the per-game denominator. |
 | TEPA | double | Total EPA summed over every play. |
-| EPAplay | double | EPA generated per play. |
+| EPAplay | double | EPA per target. Null, with any \_rank, \_pct and \_pos_pct, in seasons where more than 30% of incompletions name no receiver (2021-2024): those throws drop out of every receiver's targets, so per-target rates would read high. |
 | yards | integer |  |
-| success | double | Success rate across the team plays. |
+| success | double | Success rate over the receiver's targets. Null, with any \_rank, \_pct and \_pos_pct, in seasons where more than 30% of incompletions name no receiver (2021-2024): those throws drop out of every receiver's targets, so per-target rates would read high. |
 | comp | integer | Completed passes. |
-| targets | integer |  |
+| targets | integer | Attributed targets: passes ESPN charts to this receiver. An incompletion that names no receiver counts for nobody, so this undercounts real targets: 22-24% of incompletions name no receiver in 2014-2020, 42-77% in 2021-2024 and under 10% from 2025. |
 | passing_td | double |  |
 | fumbles | double | Count of the receiver's targeted pass plays across the season whose play text mentions a fumble by either team. |
 | playsgame | double | Plays per game. |
 | EPAgame | double | EPA generated per game. |
-| yardsplay | double | Yards per play. |
+| yardsplay | double | Yards per target. Null, with any \_rank, \_pct and \_pos_pct, in seasons where more than 30% of incompletions name no receiver (2021-2024): those throws drop out of every receiver's targets, so per-target rates would read high. |
 | yardsgame | double | Yards per game. |
-| catchpct | double | Catch rate on a 0-to-1 scale, receptions divided by targets for the season. |
+| catchpct | double | Catch rate on a 0-to-1 scale, receptions divided by targets for the season. Null, with any \_rank, \_pct and \_pos_pct, in seasons where more than 30% of incompletions name no receiver (2021-2024): those throws drop out of every receiver's targets, so per-target rates would read high. |
 | TEPA_rank | double | National rank of the team's total EPA summed over every play, where 1 is best. |
 | EPAgame_rank | double | National rank of the team's EPA generated per game, where 1 is best. |
 | EPAplay_rank | double | National rank of the team's EPA generated per play, where 1 is best. |
@@ -87,7 +87,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_receiving(2004))
 #> ── college football receiving EPA splits from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-10-10 23:22:22 UTC
+#> ℹ Data updated: 2026-10-11 01:11:12 UTC
 #> # A tibble: 1,418 × 77
 #>    team_id pos_team    division conference season player_id receiver_player_name
 #>    <chr>   <chr>       <chr>    <chr>       <int>     <int> <chr>               

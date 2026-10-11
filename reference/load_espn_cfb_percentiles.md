@@ -53,7 +53,7 @@ Returns a `cfbfastR_data` tibble.
 | early_down_EPA | double | Value of EPA per early-down play at the percentile this row reports. |
 | late_down_success | double | Value of success rate on late downs at the percentile this row reports. |
 | success | double | Value of success rate across the team plays at the percentile this row reports. |
-| yardsplay | double | Value of yards per play at the percentile this row reports. |
+| yardsplay | double | Value of yards per play (an interception counts as 0 yards) at the percentile this row reports. |
 | dropbacks | double | Value of dropbacks taken by the passer at the percentile this row reports. |
 | rushes | double | Value of rushing attempts at the percentile this row reports. |
 | EPAdropback | double | Value of EPA generated per dropback at the percentile this row reports. |
@@ -64,12 +64,12 @@ Returns a `cfbfastR_data` tibble.
 | explosive | double | Value of explosive-play rate at the percentile this row reports. |
 | third_down_success | double | Value of success rate on third down at the percentile this row reports. |
 | red_zone_success | double | Value of success rate in the red zone at the percentile this row reports. |
-| play_stuffed | double | Value of stuffed-play rate at the percentile this row reports. |
+| play_stuffed | double | Value of run-stuff rate (the share of rushes stopped for 0 or fewer yards) at the percentile this row reports. |
 | nonExplosiveEpaPerPlay | double | Value of EPA per play excluding explosive plays at the percentile this row reports. |
 | havoc | double | Value of havoc rate at the percentile this row reports. |
 | yardsrush | double | Value of yards per rush at the percentile this row reports. |
 | lineyards | double | Value of line yards per rush at the percentile this row reports. |
-| opportunity_run | double | Value of opportunity-run rate at the percentile this row reports. |
+| opportunity_run | double | Value of opportunity-run rate (the share of rushes gaining 4 or more yards) at the percentile this row reports. |
 | third_down_distance | double | Value of average yards to go on third down at the percentile this row reports. |
 
 ## Author
@@ -82,7 +82,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_percentiles(2004))
 #> ── college football team percentile profiles from the SportsDataverse data repo 
-#> ℹ Data updated: 2026-10-10 23:22:15 UTC
+#> ℹ Data updated: 2026-10-11 01:11:07 UTC
 #> # A tibble: 99 × 27
 #>    pctile   GEI EPAplay pass_success rush_success early_down_success
 #>     <dbl> <dbl>   <dbl>        <dbl>        <dbl>              <dbl>

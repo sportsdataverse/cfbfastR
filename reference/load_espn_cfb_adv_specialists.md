@@ -48,8 +48,8 @@ Returns a `cfbfastR_data` tibble.
 | pos_team_id | integer | ESPN team id of the team on offense. Present for every season 2004+. |
 | pos_team | character |  |
 | player_name | character |  |
-| field_goals | integer | Number of field-goal attempts. |
-| field_goals_yards | integer | Sum of the field-goal attempt distances parsed out of the play text; it stays at zero when no distance could be parsed from the narrative. |
+| field_goals | integer | Field-goal attempts credited to this kicker, counted on field-goal attempts only (never kickoffs or PATs), under the kicking team. |
+| field_goals_yards | integer | Sum of the kicker's field-goal attempt distances parsed out of the play text; it stays at zero when no distance could be parsed from the narrative. |
 | punts | integer | Punts attempted. |
 | punts_yards | integer | Total gross punt yardage parsed from the play text for this punter, working out to roughly 42 yards per punt league-wide. |
 | kick_returns | integer |  |
@@ -70,7 +70,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_specialists(2004))
 #> ── college football advanced specialists from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-10-10 23:21:55 UTC
+#> ℹ Data updated: 2026-10-11 01:10:53 UTC
 #> # A tibble: 5,878 × 14
 #>    pos_team_id pos_team          player_name field_goals field_goals_yards punts
 #>          <int> <chr>             <chr>             <int>             <int> <int>

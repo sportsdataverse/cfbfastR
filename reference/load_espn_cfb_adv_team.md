@@ -78,6 +78,7 @@ Returns a `cfbfastR_data` tibble.
 | passes | integer | Number of pass plays the team ran. |
 | pass_yards | double | Total yards the team gained on pass plays. |
 | yards_per_pass | double |  |
+| sack_yards | double | Sack yardage on the team's pass plays: the sum of yds_sacked, 0 or negative. passes and yards_per_pass already include sacks, each as 0 yards. |
 | passing_first_downs_created | integer | Number of first downs created on pass plays. |
 | passing_first_downs_created_rate | double | Share of pass plays that created a first down. |
 | EPA_passing_overall | double | Total EPA on pass plays. |
@@ -136,7 +137,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_team(2004))
 #> ── college football advanced team from the SportsDataverse data repo ───────────
-#> ℹ Data updated: 2026-10-10 23:21:56 UTC
+#> ℹ Data updated: 2026-10-11 01:10:54 UTC
 #> # A tibble: 926 × 81
 #>    pos_team_id pos_team       rushing_highlight_ya…¹ total_pen_yards EPA_penalty
 #>          <int> <chr>                           <dbl>           <int>       <dbl>

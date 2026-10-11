@@ -141,7 +141,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_player_seasons(athlete_id = 102597))
 #> ── Player seasons from ESPN ───────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-10 23:18:50 UTC
+#> ℹ Data updated: 2026-10-11 01:08:56 UTC
 #> # A tibble: 10 × 11
 #>    athlete_id season stat_type season_ref    statistics_ref athlete_display_name
 #>    <chr>       <int> <chr>     <chr>         <chr>          <chr>               
@@ -160,7 +160,7 @@ Other ESPN CFB Functions:
 #> #   athlete_position_abbreviation <chr>
   try(espn_cfb_player_seasons(athlete_id = 102597, athlete_detail = FALSE))
 #> ── Player seasons from ESPN ───────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-10 23:18:50 UTC
+#> ℹ Data updated: 2026-10-11 01:08:56 UTC
 #> # A tibble: 10 × 5
 #>    athlete_id season stat_type season_ref                         statistics_ref
 #>    <chr>       <int> <chr>     <chr>                              <chr>         

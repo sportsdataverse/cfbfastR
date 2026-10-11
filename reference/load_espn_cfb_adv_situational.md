@@ -102,8 +102,8 @@ Returns a `cfbfastR_data` tibble.
 | EPA_late_down | double | Total EPA the team generated on late downs. |
 | EPA_late_down_per_play | double | EPA per play on late downs. |
 | EPA_success_late_down_rate | double | Success rate on late downs – the share of those plays ESPN scored as successful. |
-| EPA_success_late_down_pass_rate | double | Success rate on late downs on pass plays – the share of those plays ESPN scored as successful. |
-| EPA_success_late_down_rush_rate | double | Success rate on late downs on rush plays – the share of those plays ESPN scored as successful. |
+| EPA_success_late_down_pass_rate | double | Success rate on late-down pass plays: EPA_success_late_down_pass divided by late_down_pass. Null when the team ran no late-down pass play. |
+| EPA_success_late_down_rush_rate | double | Success rate on late-down rush plays: EPA_success_late_down_rush divided by late_down_rush. Null when the team ran no late-down rush play. |
 | late_down_pass_rate | double | Share of the team's plays on late downs that were pass plays. |
 | late_down_rush_rate | double | Share of the team's plays on late downs that were rush plays. |
 | EPA_success_standard_down | integer | Count of successful plays on standard downs (the team ahead of schedule for the series). Despite the EPA\_ prefix this is a play COUNT, not an EPA total. |
@@ -130,7 +130,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_situational(2004))
 #> ── college football advanced situational from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-10-10 23:21:53 UTC
+#> ℹ Data updated: 2026-10-11 01:10:52 UTC
 #> # A tibble: 926 × 74
 #>    pos_team_id pos_team            EPA_success EPA_success_rate EPA_success_pass
 #>          <int> <chr>                     <int>            <dbl>            <int>

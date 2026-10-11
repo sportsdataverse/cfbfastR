@@ -58,7 +58,7 @@ Returns a `cfbfastR_data` tibble.
 | TEPA | double | Total EPA summed over every play. |
 | EPAplay | double | EPA generated per play. |
 | yards | double |  |
-| success | double | Success rate across the team plays. |
+| success | double | Success rate over the passer's dropbacks (completions, incompletions, sacks and interceptions), like EPAplay. A sack keeps its own success value; an interception is never a success. |
 | comp | double | Completed passes. |
 | att | double | Pass attempts thrown. |
 | comppct | double | Completion percentage. |
@@ -80,7 +80,7 @@ Returns a `cfbfastR_data` tibble.
 | TEPA_rank | double | National rank of the team's total EPA summed over every play, where 1 is best. |
 | EPAgame_rank | double | National rank of the team's EPA generated per game, where 1 is best. |
 | EPAplay_rank | double | National rank of the team's EPA generated per play, where 1 is best. |
-| success_rank | double | National rank of the team's success rate across the team plays, where 1 is best. |
+| success_rank | double | Rank of the passer's success rate over dropbacks among passers clearing the leaderboard minimum of 14 dropbacks per team game, where 1 is best. |
 | comppct_rank | double | National rank of the team's completion percentage, where 1 is best. |
 | yards_rank | double | National rank of the team's total yards, where 1 is best. |
 | yardsplay_rank | double | National rank of the team's yards per play, where 1 is best. |
@@ -101,7 +101,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_passing(2004))
 #> ── college football passing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-10-10 23:22:08 UTC
+#> ℹ Data updated: 2026-10-11 01:11:01 UTC
 #> # A tibble: 373 × 98
 #>    team_id pos_team      division conference season player_id passer_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             

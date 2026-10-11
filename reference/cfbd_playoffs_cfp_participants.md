@@ -55,7 +55,7 @@ Other CFBD Playoff Functions:
 # \donttest{
   try(cfbd_playoffs_cfp_participants(year = 2024))
 #> ── Get College Football Playoff participants from CollegeFootballData.com ──────
-#> ℹ Data updated: 2026-10-10 23:13:32 UTC
+#> ℹ Data updated: 2026-10-11 01:06:31 UTC
 #> # A tibble: 12 × 12
 #>    committee_rank  seed bid_type  qualification_reason       conference_champion
 #>             <int> <int> <chr>     <chr>                      <lgl>              

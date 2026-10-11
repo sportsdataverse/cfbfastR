@@ -49,7 +49,7 @@ Returns a `cfbfastR_data` tibble.
 | passer_player_name | character | Display name of the passer – the FIRST participant in that role on the play. |
 | Comp | integer | Completed passes recorded in the advanced box score. |
 | Att | integer | Pass attempts recorded in the advanced box score. |
-| xComp | double | Expected completions, summed from the per-play completion model. |
+| xComp | double | Expected completions: the per-play completion probability (cp_game_state) summed over the passer's pass attempts, sacks excluded. |
 | Yds | double | Passing yards from the advanced box score. |
 | Pass_TD | integer | Passing touchdowns. |
 | Int | integer | Interceptions thrown. |
@@ -60,8 +60,8 @@ Returns a `cfbfastR_data` tibble.
 | SR | double | Success rate on the passer's plays. |
 | Sck | integer | Times the passer was sacked. |
 | CompPct | double | Completion percentage from the advanced box score. |
-| xCompPct | double | Expected completion percentage from the per-play completion model. |
-| CPOE | double | Completion percentage over expected – actual minus modelled completion rate. |
+| xCompPct | double | Expected completion rate on a 0-to-1 scale: xComp divided by Att (sacks excluded). 0 when Att is 0. |
+| CPOE | double | Completion rate over expected: CompPct minus xCompPct, both over the passer's attempts (sacks excluded), as a 0-to-1 difference. |
 | qbr_epa | double | EPA variant used as an input to the QBR calculation. |
 | sack_epa | double | EPA credited to the player's sacks taken. |
 | pass_epa | double | EPA credited to the player's pass plays. |
@@ -87,7 +87,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_passing(2004))
 #> ── college football advanced passing from the SportsDataverse data repo ────────
-#> ℹ Data updated: 2026-10-10 23:21:49 UTC
+#> ℹ Data updated: 2026-10-11 01:10:49 UTC
 #> # A tibble: 1,520 × 37
 #>    pos_team_id pos_team passer_player_name  Comp   Att xComp   Yds Pass_TD   Int
 #>          <int> <chr>    <chr>              <int> <int> <dbl> <dbl>   <int> <int>

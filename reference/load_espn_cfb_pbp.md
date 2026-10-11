@@ -538,7 +538,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_pbp(2004))
 #> ── ESPN college football play-by-play from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-10-10 23:22:13 UTC
+#> ℹ Data updated: 2026-10-11 01:11:06 UTC
 #> # A tibble: 87,214 × 498
 #>    season   game_id game_play_number pos_team_id pos_team        def_pos_team_id
 #>     <int>     <int>            <int>       <int> <chr>                     <int>
