@@ -135,9 +135,9 @@ test_that("add_yardage spots a touchback and an out-of-bounds kickoff by season"
 test_that("a missing season scores the 2012 rules and says so", {
   rlang::local_options(rlib_warning_verbosity = "verbose")
   for (s in list(NULL, NA)) {
-    expect_warning(out <- add_yardage(.yardage_rows(), season = s), "2012 rules")
+    expect_warning(out <- add_yardage(.yardage_rows(), season = s), "touchback at the 25.*out of bounds at the 35")
     expect_equal(out$yds_kickoff_return, c(25, 35))
-    expect_warning(out <- prep_epa_df_after(.prep_rows(), season = s), "2012 rules")
+    expect_warning(out <- prep_epa_df_after(.prep_rows(), season = s), "touchback at the 25.*out of bounds at the 35")
     expect_equal(out$new_yardline[out$kickoff_play == 1], 75)
   }
   # A frame season column means no warning.

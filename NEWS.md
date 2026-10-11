@@ -82,6 +82,9 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   they read the frame's `season` column, and with neither they keep the 2012
   rules and warn once per session. Seasons from 2012 are unchanged. Twin of
   sportsdataverse-py#778.
+* `add_yardage()` output changes for kickoffs out of bounds: `yds_kickoff_return`
+  was 40 in every season and is now 35 by default (the 2012 rule). Pass
+  `season`, or carry a `season` column, to get 40 for games through 2011.
 
 ## Fixed: CFBD game box score, team stats and play-by-play
 

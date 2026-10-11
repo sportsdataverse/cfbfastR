@@ -591,8 +591,8 @@ validate_reqs <- function(...){
   season <- if (length(season)) suppressWarnings(as.numeric(season[[1]])) else NA_real_
   if (is.na(season)) {
     cli::cli_warn(
-      c("No {.arg season} given and no {.field season} column: kickoffs are scored under the 2012 rules (touchback at the 25, 75 yards to goal).",
-        "i" = "Pass {.arg season} for games before 2012, when a touchback came out to the 20."),
+      c("No {.arg season} given and no {.field season} column: kickoffs are scored under the 2012 rules: a touchback at the 25 (75 yards to goal) and a kickoff out of bounds at the 35.",
+        "i" = "Pass {.arg season} for games before 2012, when a touchback came out to the 20 and a kickoff out of bounds to the 40."),
       .frequency = "once", .frequency_id = "cfbfastR_kickoff_tb_season"
     )
   }
