@@ -37,7 +37,6 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
 
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
-
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
     ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
@@ -77,7 +76,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode-dev amd64 12.22.9~dfsg-1ubuntu3.6 [609 kB]
 
-    ## Fetched 11.4 MB in 0s (45.6 MB/s)
+    ## Fetched 11.4 MB in 2s (7557 kB/s)
 
     ## Selecting previously unselected package libnode72:amd64.
     ## (Reading database ...
@@ -132,7 +131,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## 
     ## No VM guests are running outdated hypervisor (qemu) binaries on this host.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [9.4s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [12.6s]
 
 ``` r
 
@@ -171,7 +170,7 @@ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 
     ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-10-12 09:48:34 UTC
+    ## ℹ Data updated: 2026-10-12 10:14:19 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -194,7 +193,7 @@ cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC
 ```
 
     ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
-    ## ℹ Data updated: 2026-10-12 09:48:34 UTC
+    ## ℹ Data updated: 2026-10-12 10:14:19 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
