@@ -234,7 +234,7 @@ Other CFB Model Calculators:
 #>   season qbr_epa sack_epa pass_epa rush_epa pen_epa spread era0 era1 era2 era3
 #> 1   2024     0.1     -0.2      0.3     0.05       0     -3    0    0    0    1
 #>        qbr
-#> 1 64.32548
+#> 1 53.04573
 # }
 # \donttest{
   try(calculate_expected_points(data.frame(TimeSecsRem = 1800,

@@ -105,6 +105,16 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   `offense`, `defense`, `offense_conference`, `defense_conference`,
   `conference` and `division`.
 
+### Fixed: QBR scores the retrained model
+
+[`create_qbr()`](https://cfbfastR.sportsdataverse.org/reference/create_qbr.md)
+now passes the QBR booster the feature columns the booster itself
+declares. It used a fixed 10-column list that included `spread`, so the
+2026-09 xQBR retrain (9 features, no `spread`) would have made
+[`predict()`](https://rdrr.io/r/stats/predict.html) fail and every
+`exp_qbr` come back `NA` without an error once the shared
+`cfb_model_artifacts` release carries it. Both contracts now score.
+
 ### Fixed: kickoff rules before 2012
 
 - Kickoffs were scored under the 2012 rules in every season. The NCAA

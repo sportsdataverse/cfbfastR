@@ -35,7 +35,8 @@ create_qbr(play_df, qbr_model = NULL, season = NULL)
   Must carry `EPA`, `home_wp_before`, the `pass` / `rush` / `sack_vec` /
   `fumble_vec` / `penalty_flag` play flags, `passer_player_name` /
   `rusher_player_name` and `pos_team`. `spread` and `home` are
-  additionally needed for the `spread` feature.
+  additionally needed for the `spread` feature, which only models
+  trained before the 2026-09 xQBR retrain take.
 
 - qbr_model:
 
@@ -85,7 +86,7 @@ returns a zero-row frame carrying this schema.
     create_qbr(pbp)
   })
 #> ── QBR data ───────────────────────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-12 01:27:10 UTC
+#> ℹ Data updated: 2026-10-12 09:41:40 UTC
 #> # A tibble: 3 × 15
 #>   game_id pos_team athlete_name plays qbr_epa sack_epa pass_epa rush_epa pen_epa
 #>   <chr>   <chr>    <chr>        <int>   <dbl>    <dbl>    <dbl>    <dbl>   <dbl>

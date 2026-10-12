@@ -221,7 +221,8 @@ a pass in the game.</p>
 <code><a href="cfbd_pbp_data.html">cfbd_pbp_data()</a></code> or <code><a href="espn_cfb_pbp.html">espn_cfb_pbp()</a></code>. Must carry <code>EPA</code>, <code>home_wp_before</code>,
 the <code>pass</code> / <code>rush</code> / <code>sack_vec</code> / <code>fumble_vec</code> / <code>penalty_flag</code> play flags,
 <code>passer_player_name</code> / <code>rusher_player_name</code> and <code>pos_team</code>. <code>spread</code> and
-<code>home</code> are additionally needed for the <code>spread</code> feature.</p></dd>
+<code>home</code> are additionally needed for the <code>spread</code> feature, which only models
+trained before the 2026-09 xQBR retrain take.</p></dd>
 
 
 <dt id="arg-qbr-model">qbr_model<a class="anchor" aria-label="anchor" href="#arg-qbr-model"></a></dt>
@@ -251,7 +252,7 @@ zero-row frame carrying this schema.</p>
 <span class="r-in"><span>    <span class="fu">create_qbr</span><span class="op">(</span><span class="va">pbp</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── QBR data ───────────────────────────────────────────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-12 01:27:10 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-12 09:41:40 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 15</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   game_id pos_team athlete_name plays qbr_epa sack_epa pass_epa rush_epa pen_epa</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
