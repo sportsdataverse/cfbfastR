@@ -5,9 +5,12 @@
 what `sportsdataverse-py` produces for it.
 
 **Generated from sportsdataverse-py `e60c6df79`** (branch
-`fix/cfb-fourth-down-output`). Regenerate only from that commit or later, and
-record the new SHA here: a fixture without provenance cannot be reproduced or
-trusted.
+`fix/cfb-fourth-down-output`); `qbr` regenerated 2026-10-12 from `10e20cfdd`
+(main) when the `cfb_model_artifacts` bundle moved to 2026.10.12, whose QBR
+model is the 2026-09-30 retrain without `spread`. Every other column
+reproduced to float32 precision. Regenerate only from that commit or later,
+and record the new SHA here: a fixture without provenance cannot be
+reproduced or trusted.
 
 Both languages read the SAME published model cards from the `cfb_model_artifacts`
 bundle, so a divergence here means one of them derives features differently.
