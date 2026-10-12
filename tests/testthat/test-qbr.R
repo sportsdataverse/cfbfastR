@@ -139,6 +139,13 @@ test_that("create_qbr scores whichever QBR contract the booster declares", {
     out <- create_qbr(mk_pbp(), qbr_model = fit(feats))
     expect_false(anyNA(out$exp_qbr), info = paste(length(feats), "features"))
   }
+  # A contract cfbfastR cannot build is named, not silently NA.
+  agg$new_feature <- 1
+  expect_warning(
+    out <- create_qbr(mk_pbp(), qbr_model = fit(c(.QBR_FEATURES, "new_feature"))),
+    "new_feature"
+  )
+  expect_true(all(is.na(out$exp_qbr)))
 })
 
 test_that("pass eligibility is scoped to the game and team, not the name", {

@@ -328,7 +328,14 @@ create_qbr <- function(play_df, qbr_model = NULL, season = NULL) {
   # predict() below failing into an all-NA column.
   feats <- .booster_feature_names(model)
   if (!length(feats)) feats <- .QBR_FEATURES
-  if (!all(feats %in% names(agg))) return(rep(NA_real_, n))
+  missing <- setdiff(feats, names(agg))
+  if (length(missing)) {
+    cli::cli_warn(c(
+      "The QBR model expects feature{?s} {.val {missing}}, which {.fn create_qbr} does not build.",
+      "i" = "{.field exp_qbr} is {.code NA}; update cfbfastR to match the bundled model."
+    ))
+    return(rep(NA_real_, n))
+  }
   x <- as.matrix(agg[, feats, drop = FALSE])
   storage.mode(x) <- "double"
   colnames(x) <- feats
