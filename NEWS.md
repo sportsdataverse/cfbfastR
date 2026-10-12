@@ -71,17 +71,19 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
 
 ## Fixed: ESPN play-by-play carries the pre-game line
 
-`espn_cfb_pbp(epa_wpa = TRUE)` and `espn_cfb_pbp_v2(epa_wpa = TRUE)` now attach
-the pre-game `spread` (the home team's line, negative when the home team is
-favoured, as on the CFBD path) and `over_under`. Neither engine set them
-before, so `vegas_wp`, `vegas_wpa`, the fourth-down decision columns
-(`go_wp`, `fg_wp`, `punt_wp`, `go_boost`, ...) and the two-point columns were
-`NA` on every ESPN game. The line is ported from sportsdataverse-py: the
-summary `pickcenter` when it lists more than one provider (games before 2024),
-else ESPN's core odds collection (ESPN emptied `pickcenter` for 2024+),
-preferring ESPN BET. A game with no line keeps `NA` rather than a default.
-The v2 engine makes one extra request for it, only when `epa_wpa = TRUE`.
-Expected points, EPA and the naive win probability are unchanged.
+`espn_cfb_pbp(epa_wpa = TRUE)` on the default `v2` engine (and
+`espn_cfb_pbp_v2()`) now attaches the pre-game `spread` (the home team's line,
+negative when the home team is favoured, as on the CFBD path) and
+`over_under`. It never set them, so `vegas_wp`, `vegas_wpa`, the fourth-down
+decision columns (`go_wp`, `fg_wp`, `punt_wp`, `go_boost`, ...) and the
+two-point columns were `NA` on every ESPN game. The line is ported from
+sportsdataverse-py: the game summary's `pickcenter` when it lists more than one
+provider (games before 2024), else ESPN's core odds collection (ESPN emptied
+`pickcenter` for 2024+), preferring ESPN BET. A game with no line keeps `NA`
+rather than a default, and a failed request warns. It costs one request from
+2024 on and up to two before, only when `epa_wpa = TRUE`. Expected points,
+EPA and the naive win probability are unchanged, as is the `legacy` engine,
+which computes no spread-based column.
 
 ## Fixed: QBR scores the retrained model
 
