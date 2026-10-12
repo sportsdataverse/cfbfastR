@@ -6777,6 +6777,13 @@ espn_cfb_pbp_v2 <- function(game_id,
         ) |>
         .espn_to_epa_input(game_id = game_id)
 
+      # Pre-game line for the spread-based WP, two-point and fourth-down stages:
+      # the summary pickcenter before 2024, the odds collection after (one or
+      # two more requests, only when modelling).
+      line <- .espn_cfb_pbp_line(game_id, game_season)
+      adapter$spread <- line$spread
+      adapter$over_under <- line$over_under
+
       # ESPN's participants[] names are ALREADY on `plays_df` -- the drives call
       # above asked for `participants = "wide"`. Reshaping that in place costs
       # zero extra requests; fetching a participants feed here would double them.
