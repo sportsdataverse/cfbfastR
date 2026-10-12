@@ -73,7 +73,7 @@ Other CFBD Ratings and Rankings:
 # \donttest{
   try(cfbd_ratings_sp(year = 2018))
 #> ── SP+ data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-11 01:06:37 UTC
+#> ℹ Data updated: 2026-10-12 01:26:11 UTC
 #> # A tibble: 131 × 29
 #>     year team  conference rating ranking second_order_wins   sos offense_ranking
 #>    <int> <chr> <chr>       <dbl>   <int>             <dbl> <dbl>           <int>
@@ -97,7 +97,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_sp(team = "Texas A&M"))
 #> ── SP+ data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-11 01:06:37 UTC
+#> ℹ Data updated: 2026-10-12 01:26:11 UTC
 #> # A tibble: 114 × 29
 #>     year team  conference rating ranking second_order_wins   sos offense_ranking
 #>    <int> <chr> <chr>       <dbl>   <int>             <dbl> <dbl>           <int>
@@ -109,7 +109,7 @@ Other CFBD Ratings and Rankings:
 #>  6  1975 Texa… SEC          19.1      17                NA    NA              45
 #>  7  1976 Texa… SEC          20.8      10                NA    NA              23
 #>  8  1977 Texa… SEC          11.8      34                NA    NA              11
-#>  9  1978 Texa… SEC           8.2      44                NA    NA              46
+#>  9  1978 Texa… SEC           8.2      43                NA    NA              46
 #> 10  1979 Texa… SEC          21.4       7                NA    NA              39
 #> # ℹ 104 more rows
 #> # ℹ 21 more variables: offense_rating <dbl>, offense_success <dbl>,
@@ -121,7 +121,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_sp(year = 2019, team = "Texas"))
 #> ── SP+ data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-11 01:06:38 UTC
+#> ℹ Data updated: 2026-10-12 01:26:11 UTC
 #> # A tibble: 2 × 29
 #>    year team   conference rating ranking second_order_wins sos   offense_ranking
 #>   <int> <chr>  <chr>       <dbl>   <int> <lgl>             <lgl>           <int>

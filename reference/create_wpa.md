@@ -6,7 +6,7 @@ This is only for D1 football
 ## Usage
 
 ``` r
-create_wpa_naive(df, wp_model)
+create_wpa_naive(df, wp_model, season = NULL)
 
 wpa_calcs_naive(df)
 ```
@@ -21,6 +21,14 @@ wpa_calcs_naive(df)
 - wp_model:
 
   (*model* default cfbfastR:wp_model): Win Probability (WP) Model
+
+- season:
+
+  (*numeric* scalar, optional): Season of the game. The kickoff
+  `wp_before` is scored as a touchback at the 25 (`yards_to_goal` 75)
+  from 2012 and at the 20 (80) through 2011. `NULL` reads the frame's
+  `season` column; with neither, 75 is used and a warning is given once
+  per session.
 
 ## Value
 

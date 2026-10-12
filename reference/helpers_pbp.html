@@ -210,7 +210,7 @@ Cleans Play-by-Play data pulled from the API's raw game data"><meta property="og
 <span></span>
 <span><span class="fu">clean_drive_dat</span><span class="op">(</span><span class="va">play_df</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">prep_epa_df_after</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span><span class="fu">prep_epa_df_after</span><span class="op">(</span><span class="va">dat</span>, season <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">clean_drive_info</span><span class="op">(</span><span class="va">drive_df</span><span class="op">)</span></span>
 <span></span>
@@ -218,7 +218,7 @@ Cleans Play-by-Play data pulled from the API's raw game data"><meta property="og
 <span></span>
 <span><span class="fu">add_player_cols</span><span class="op">(</span><span class="va">pbp</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">add_yardage</span><span class="op">(</span><span class="va">play_df</span><span class="op">)</span></span>
+<span><span class="fu">add_yardage</span><span class="op">(</span><span class="va">play_df</span>, season <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">clean_pbp_dat</span><span class="op">(</span><span class="va">play_df</span><span class="op">)</span></span>
 <span></span>
@@ -235,6 +235,15 @@ Cleans Play-by-Play data pulled from the API's raw game data"><meta property="og
 
 <dt id="arg-dat">dat<a class="anchor" aria-label="anchor" href="#arg-dat"></a></dt>
 <dd><p>(<em>Data.Frame</em> required) Clean Play-by-Play DataFrame pulled from <code>cfbd_pbp_dat()</code></p></dd>
+
+
+<dt id="arg-season">season<a class="anchor" aria-label="anchor" href="#arg-season"></a></dt>
+<dd><p>(<em>numeric</em> scalar, optional): Season of the game, for the
+NCAA's 2012 kickoff rules. From 2012 a kickoff touchback ends at the 25
+(<code>new_yardline</code> 75, <code>yds_kickoff_return</code> 25) and a kickoff out of bounds at
+the 35 (<code>yds_kickoff_return</code> 35); through 2011 at the 20 (80, 20) and the
+40 (40). <code>NULL</code> reads the frame's <code>season</code> column; with neither, the 2012
+rules apply and a warning is given once per session.</p></dd>
 
 
 <dt id="arg-drive-df">drive_df<a class="anchor" aria-label="anchor" href="#arg-drive-df"></a></dt>

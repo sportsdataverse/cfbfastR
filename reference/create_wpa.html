@@ -176,7 +176,7 @@ This is only for D1 football</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_wpa_naive</span><span class="op">(</span><span class="va">df</span>, <span class="va">wp_model</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_wpa_naive</span><span class="op">(</span><span class="va">df</span>, <span class="va">wp_model</span>, season <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">wpa_calcs_naive</span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -191,6 +191,13 @@ This is only for D1 football</p>
 
 <dt id="arg-wp-model">wp_model<a class="anchor" aria-label="anchor" href="#arg-wp-model"></a></dt>
 <dd><p>(<em>model</em> default cfbfastR:wp_model): Win Probability (WP) Model</p></dd>
+
+
+<dt id="arg-season">season<a class="anchor" aria-label="anchor" href="#arg-season"></a></dt>
+<dd><p>(<em>numeric</em> scalar, optional): Season of the game. The kickoff
+<code>wp_before</code> is scored as a touchback at the 25 (<code>yards_to_goal</code> 75) from
+2012 and at the 20 (80) through 2011. <code>NULL</code> reads the frame's <code>season</code>
+column; with neither, 75 is used and a warning is given once per session.</p></dd>
 
 </dl></div>
     <div class="section level2">

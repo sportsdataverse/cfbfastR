@@ -195,8 +195,12 @@
 
 
 <dt id="arg-season">season<a class="anchor" aria-label="anchor" href="#arg-season"></a></dt>
-<dd><p>(<em>numeric</em> optional): Season of the game, required when the
-loaded FG model is era-aware. See <code>create_epa()</code>.</p></dd>
+<dd><p>(<em>numeric</em> scalar optional): Season of the game. Sets the
+kickoff touchback spot for the kickoff <code>ep_before</code> (the 25, 75 yards to
+goal, from 2012; the 20, 80, through 2011; <code>NULL</code> reads as 75), and is
+required when the loaded FG model is era-aware (the bundled
+<code>fg_model.ubj</code> takes one-hot rule-era features). Passing <code>NULL</code> with an
+era-aware model is an error rather than a silent all-zero era encoding.</p></dd>
 
 
 <dt id="arg-dat">dat<a class="anchor" aria-label="anchor" href="#arg-dat"></a></dt>

@@ -28,8 +28,13 @@ epa_fg_probs(dat, current_probs, ep_model, fg_mod, season = NULL)
 
 - season:
 
-  (*numeric* optional): Season of the game, required when the loaded FG
-  model is era-aware. See `create_epa()`.
+  (*numeric* scalar optional): Season of the game. Sets the kickoff
+  touchback spot for the kickoff `ep_before` (the 25, 75 yards to goal,
+  from 2012; the 20, 80, through 2011; `NULL` reads as 75), and is
+  required when the loaded FG model is era-aware (the bundled
+  `fg_model.ubj` takes one-hot rule-era features). Passing `NULL` with
+  an era-aware model is an error rather than a silent all-zero era
+  encoding.
 
 - dat:
 

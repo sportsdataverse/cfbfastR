@@ -96,7 +96,24 @@ Other CFBD Stats Functions:
 ``` r
 # \donttest{
   try(cfbd_stats_player_success_game(year = 2024, week = 5))
-#> 2026-10-11 01:06:59.371786: Invalid arguments or no stats data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Get player success rates by game from CollegeFootballData.com ───────────────
+#> ℹ Data updated: 2026-10-12 01:26:42 UTC
+#> # A tibble: 1,052 × 16
+#>    season season_type  week   game_id id      name     position team  conference
+#>     <int> <chr>       <int>     <int> <chr>   <chr>    <chr>    <chr> <chr>     
+#>  1   2024 regular         5 401632103 4686606 Isaiah … RB       Abil… UAC       
+#>  2   2024 regular         5 401632103 4701592 Jordon … RB       Abil… UAC       
+#>  3   2024 regular         5 401632103 4427966 Maveric… QB       Abil… UAC       
+#>  4   2024 regular         5 401632103 5086218 Sam Hic… RB       Abil… UAC       
+#>  5   2024 regular         5 401643718 5085138 Aiden C… RB       Air … MWC       
+#>  6   2024 regular         5 401643718 5085137 Cade Ha… WR       Air … MWC       
+#>  7   2024 regular         5 401643718 5151903 Christo… RB       Air … MWC       
+#>  8   2024 regular         5 401643718 5151906 Dylan C… RB       Air … MWC       
+#>  9   2024 regular         5 401643718 5151904 John Bu… QB       Air … MWC       
+#> 10   2024 regular         5 401643718 5223112 Kemper … QB       Air … MWC       
+#> # ℹ 1,042 more rows
+#> # ℹ 7 more variables: opponent <chr>, passing_plays <int>,
+#> #   passing_successes <int>, passing_success_rate <dbl>, rushing_plays <int>,
+#> #   rushing_successes <int>, rushing_success_rate <dbl>
 # }
 ```
