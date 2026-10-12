@@ -63,7 +63,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
     ## 0 upgraded, 0 newly installed, 0 to remove and 22 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [6.9s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [6.8s]
 
 ``` r
 
@@ -102,7 +102,7 @@ cfbd_team_info(conference = "SEC")
 
     ## ── Team information from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-10-12 12:32:25 UTC
+    ## ℹ Data updated: 2026-10-12 13:13:01 UTC
 
     ## # A tibble: 16 × 43
     ##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -137,7 +137,7 @@ cfbd_team_info(conference = "Ind")
 ```
 
     ## ── Team information from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-    ## ℹ Data updated: 2026-10-12 12:32:25 UTC
+    ## ℹ Data updated: 2026-10-12 13:13:01 UTC
 
     ## # A tibble: 2 × 43
     ##   team_id school    mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -158,7 +158,7 @@ cfbd_team_info(year = 2019)
 ```
 
     ## ── Team information from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-    ## ℹ Data updated: 2026-10-12 12:32:25 UTC
+    ## ℹ Data updated: 2026-10-12 13:13:01 UTC
 
     ## # A tibble: 130 × 43
     ##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -190,7 +190,7 @@ cfbd_team_matchup_records("Texas", "Oklahoma")
 
     ## ── Team matchup record from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-10-12 12:32:26 UTC
+    ## ℹ Data updated: 2026-10-12 13:13:02 UTC
 
     ## # A tibble: 1 × 7
     ##   start_year end_year team1 team1_wins team2    team2_wins  ties
@@ -203,7 +203,7 @@ cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
 ```
 
     ## ── Team matchup record from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
-    ## ℹ Data updated: 2026-10-12 12:32:26 UTC
+    ## ℹ Data updated: 2026-10-12 13:13:02 UTC
 
     ## # A tibble: 1 × 7
     ##   start_year end_year team1     team1_wins team2 team2_wins  ties
@@ -219,14 +219,14 @@ cfbd_team_matchup("Texas", "Oklahoma")
 
     ## ── Team matchup history from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-10-12 12:32:26 UTC
+    ## ℹ Data updated: 2026-10-12 13:13:02 UTC
 
     ## # A tibble: 119 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
     ##     <int> <int> <chr>       <chr>        <lgl>        <chr> <chr>          <int>
     ##  1   1902     4 regular     1902-10-04T… FALSE        NA    Texas             22
-    ##  2   1903    10 regular     1903-11-13T… FALSE        NA    Oklahoma           5
-    ##  3   1903     6 regular     1903-10-17T… FALSE        NA    Oklahoma           6
+    ##  2   1903     6 regular     1903-10-17T… FALSE        NA    Oklahoma           6
+    ##  3   1903    10 regular     1903-11-13T… FALSE        NA    Oklahoma           5
     ##  4   1904    10 regular     1904-11-16T… FALSE        NA    Texas             40
     ##  5   1905     8 regular     1905-11-03T… FALSE        NA    Oklahoma           2
     ##  6   1906     7 regular     1906-11-02T… FALSE        NA    Oklahoma           9
@@ -243,7 +243,8 @@ cfbd_team_matchup("Texas A&M", "TCU")
 ```
 
     ## ── Team matchup history from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
-    ## ℹ Data updated: 2026-10-12 12:32:26 UTC
+
+    ## ℹ Data updated: 2026-10-12 13:13:03 UTC
 
     ## # A tibble: 89 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -267,7 +268,8 @@ cfbd_team_matchup("Texas A&M", "TCU", min_year = 1975)
 ```
 
     ## ── Team matchup history from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
-    ## ℹ Data updated: 2026-10-12 12:32:26 UTC
+
+    ## ℹ Data updated: 2026-10-12 13:13:04 UTC
 
     ## # A tibble: 22 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -291,8 +293,7 @@ cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
 ```
 
     ## ── Team matchup history from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
-
-    ## ℹ Data updated: 2026-10-12 12:32:27 UTC
+    ## ℹ Data updated: 2026-10-12 13:13:04 UTC
 
     ## # A tibble: 52 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -319,7 +320,7 @@ cfbd_team_roster(year = 2013, team = "Florida State")
 
     ## ── Team roster data from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-10-12 12:32:27 UTC
+    ## ℹ Data updated: 2026-10-12 13:13:04 UTC
 
     ## # A tibble: 134 × 18
     ##    athlete_id first_name last_name   team    weight height jersey  year position
@@ -348,7 +349,7 @@ cfbd_team_talent()
 
     ## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
 
-    ## ℹ Data updated: 2026-10-12 12:32:27 UTC
+    ## ℹ Data updated: 2026-10-12 13:13:04 UTC
 
     ## # A tibble: 138 × 3
     ##     year school     talent
@@ -371,7 +372,7 @@ cfbd_team_talent(year = 2018)
 ```
 
     ## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
-    ## ℹ Data updated: 2026-10-12 12:32:27 UTC
+    ## ℹ Data updated: 2026-10-12 13:13:04 UTC
 
     ## # A tibble: 236 × 3
     ##     year school        talent

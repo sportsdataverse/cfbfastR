@@ -91,7 +91,7 @@ Other CFBD Players:
 # \donttest{
   try(cfbd_player_usage(year = 2019, position = "WR", team = "Florida State"))
 #> ── Player usage data from CollegeFootballData.com ─────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-12 12:23:39 UTC
+#> ℹ Data updated: 2026-10-12 13:02:21 UTC
 #> # A tibble: 9 × 14
 #>   season athlete_id name          position team  conference usg_overall usg_pass
 #>    <int> <chr>      <chr>         <chr>    <chr> <chr>            <dbl>    <dbl>
