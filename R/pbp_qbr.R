@@ -129,7 +129,8 @@ NULL
 #'   [cfbd_pbp_data()] or [espn_cfb_pbp()]. Must carry `EPA`, `home_wp_before`,
 #'   the `pass` / `rush` / `sack_vec` / `fumble_vec` / `penalty_flag` play flags,
 #'   `passer_player_name` / `rusher_player_name` and `pos_team`. `spread` and
-#'   `home` are additionally needed for the `spread` feature.
+#'   `home` are additionally needed for the `spread` feature, which only models
+#'   trained before the 2026-09 xQBR retrain take.
 #' @param qbr_model Optional pre-loaded `xgb.Booster`. Defaults to the bundled
 #'   `qbr_model.ubj` from the shared `cfb_model_artifacts` release.
 #' @param season Optional season, used for the one-hot rule era when the frame
@@ -322,9 +323,15 @@ create_qbr <- function(play_df, qbr_model = NULL, season = NULL) {
   # Anything that is not a booster -- an unavailable bundle, or a caller passing
   # the wrong object -- yields NA ratings rather than a partly-scored table.
   if (!inherits(model, "xgb.Booster")) return(rep(NA_real_, n))
-  x <- as.matrix(agg[, .QBR_FEATURES, drop = FALSE])
+  # Score the columns the booster itself declares, so a retrain that changes the
+  # contract (the 2026-09 xQBR dropped `spread`) still scores instead of the
+  # predict() below failing into an all-NA column.
+  feats <- .booster_feature_names(model)
+  if (!length(feats)) feats <- .QBR_FEATURES
+  if (!all(feats %in% names(agg))) return(rep(NA_real_, n))
+  x <- as.matrix(agg[, feats, drop = FALSE])
   storage.mode(x) <- "double"
-  colnames(x) <- .QBR_FEATURES
+  colnames(x) <- feats
   p <- try(as.numeric(stats::predict(model, x)), silent = TRUE)
   if (inherits(p, "try-error") || length(p) != n) return(rep(NA_real_, n))
   p

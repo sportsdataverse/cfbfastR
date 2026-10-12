@@ -11,7 +11,8 @@ create_qbr(play_df, qbr_model = NULL, season = NULL)
 \code{\link[=cfbd_pbp_data]{cfbd_pbp_data()}} or \code{\link[=espn_cfb_pbp]{espn_cfb_pbp()}}. Must carry \code{EPA}, \code{home_wp_before},
 the \code{pass} / \code{rush} / \code{sack_vec} / \code{fumble_vec} / \code{penalty_flag} play flags,
 \code{passer_player_name} / \code{rusher_player_name} and \code{pos_team}. \code{spread} and
-\code{home} are additionally needed for the \code{spread} feature.}
+\code{home} are additionally needed for the \code{spread} feature, which only models
+trained before the 2026-09 xQBR retrain take.}
 
 \item{qbr_model}{Optional pre-loaded \code{xgb.Booster}. Defaults to the bundled
 \code{qbr_model.ubj} from the shared \code{cfb_model_artifacts} release.}

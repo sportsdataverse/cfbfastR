@@ -122,6 +122,25 @@ test_that("create_qbr scores the bundled model onto a plausible scale", {
             out$exp_qbr[out$game_id == "1" & out$athlete_name == "QB One"])
 })
 
+test_that("create_qbr scores whichever QBR contract the booster declares", {
+  skip_if_not_installed("xgboost")
+  # The 2026-09 xQBR retrain dropped `spread` (10 -> 9 features). A hard-coded
+  # column list made predict() fail and every rating silently NA.
+  agg <- create_qbr(mk_pbp(), qbr_model = NA)
+  fit <- function(feats) {
+    x <- as.matrix(agg[, feats]); storage.mode(x) <- "double"
+    xgboost::xgb.train(
+      params = list(objective = "reg:squarederror", nthread = 1),
+      data = xgboost::xgb.DMatrix(x, label = seq_len(nrow(x)), missing = NA),
+      nrounds = 2
+    )
+  }
+  for (feats in list(.QBR_FEATURES, setdiff(.QBR_FEATURES, "spread"))) {
+    out <- create_qbr(mk_pbp(), qbr_model = fit(feats))
+    expect_false(anyNA(out$exp_qbr), info = paste(length(feats), "features"))
+  }
+})
+
 test_that("pass eligibility is scoped to the game and team, not the name", {
   # A quarterback who threw in game 1 but only carried in game 2 must not get a
   # game-2 QBR row: a name-only eligibility set produced one whose pass_epa was
