@@ -548,13 +548,14 @@ validate_reqs <- function(...){
 
 #' Do the 2012 kickoff rules apply to this season?
 #'
-#' @param season Scalar season; only its first element is read. `NULL` or `NA`
+#' @param season Scalar season (a factor is read by its label); only its first
+#'   element is read. `NULL` or `NA`
 #'   reads as the current rules (`TRUE`).
 #' @return `TRUE` from 2012 (or when the season is unknown), `FALSE` through 2011.
 #' @keywords internal
 #' @noRd
 .kickoff_2012_rules <- function(season) {
-  s <- if (length(season)) suppressWarnings(as.numeric(season[[1]])) else NA_real_
+  s <- if (length(season)) suppressWarnings(as.numeric(as.character(season[[1]]))) else NA_real_
   is.na(s) || s >= .KICKOFF_2012_RULES_FROM
 }
 
@@ -563,7 +564,8 @@ validate_reqs <- function(...){
 #' 75 (the 25) from 2012, 80 (the 20) through 2011; see
 #' `.KICKOFF_2012_RULES_FROM`.
 #'
-#' @param season Scalar season; only its first element is read. `NULL` or `NA`
+#' @param season Scalar season (a factor is read by its label); only its first
+#'   element is read. `NULL` or `NA`
 #'   reads as the current rule (75).
 #' @return 75 or 80.
 #' @keywords internal
@@ -588,7 +590,7 @@ validate_reqs <- function(...){
     s <- df[["season"]]
     season <- s[!is.na(s)][1]
   }
-  season <- if (length(season)) suppressWarnings(as.numeric(season[[1]])) else NA_real_
+  season <- if (length(season)) suppressWarnings(as.numeric(as.character(season[[1]]))) else NA_real_
   if (is.na(season)) {
     cli::cli_warn(
       c("No {.arg season} given and no {.field season} column: kickoffs are scored under the 2012 rules: a touchback at the 25 (75 yards to goal) and a kickoff out of bounds at the 35.",

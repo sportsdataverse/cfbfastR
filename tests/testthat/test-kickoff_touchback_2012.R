@@ -143,3 +143,10 @@ test_that("a missing season scores the 2012 rules and says so", {
   # A frame season column means no warning.
   expect_no_warning(add_yardage(.yardage_rows(2013)))
 })
+
+test_that("a factor season is read by its label, not its level index", {
+  expect_equal(.kickoff_touchback_ytg(factor(2011)), 80)
+  expect_equal(.kickoff_touchback_ytg(factor(2012)), 75)
+  expect_equal(add_yardage(.yardage_rows(), season = factor(2011))$yds_kickoff_return, c(20, 40))
+  expect_equal(add_yardage(.yardage_rows(factor(2012)))$yds_kickoff_return, c(25, 35))
+})
