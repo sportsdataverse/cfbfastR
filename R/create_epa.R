@@ -7,11 +7,12 @@
 #' @param play_df (*data.frame* required): Clean PBP as input from [cfbd_pbp_data()]
 #' @param ep_model (*model* default `cfbfastR`'s `ep_model`): Expected Points (EP) Model
 #' @param fg_model (*model* default `cfbfastR`'s `fg_model`): Field Goal (FG) Model
-#' @param season (*numeric* optional): Season of the game. Required when the
-#'   loaded FG model is era-aware (the bundled `fg_model.ubj` takes one-hot
-#'   rule-era features); ignored by the retired single-feature GAM. Passing
-#'   `NULL` with an era-aware model is an error rather than a silent
-#'   all-zero era encoding.
+#' @param season (*numeric* scalar optional): Season of the game. Sets the
+#'   kickoff touchback spot for the kickoff `ep_before` (the 25, 75 yards to
+#'   goal, from 2012; the 20, 80, through 2011; `NULL` reads as 75), and is
+#'   required when the loaded FG model is era-aware (the bundled
+#'   `fg_model.ubj` takes one-hot rule-era features). Passing `NULL` with an
+#'   era-aware model is an error rather than a silent all-zero era encoding.
 #' @details Code Description
 #' \describe{
 #'   \item{1. `pred_df`:}{Use select before play model variables -> Make predictions.}
@@ -223,14 +224,14 @@ create_epa <- function(play_df,
 
   ## 5) Kickoff plays -----
   ## Calculate EP before at kickoff as what happens if it was a touchback
-  ## 25 yard line in 2012 and onwards
+  ## 25 yard line in 2012 and onwards, the 20 through 2011
   ## Question for the class: where is the EPA on touchbacks being set to 0?
   kickoff_ind <- (pred_df$play_type %in% kickoff)
   if (any(kickoff_ind)) {
     new_kick <- pred_df[kickoff_ind, ]
     new_kick["down"] <- as.factor(1)
     new_kick["distance"] <- 10
-    new_kick["yards_to_goal"] <- 75
+    new_kick["yards_to_goal"] <- .kickoff_touchback_ytg(season)
     new_kick["log_ydstogo"] <- log(10)
     ep_kickoffs <- .ep_predict(ep_model, new_kick)
     if (table(kickoff_ind)[2] > 1) {
@@ -481,8 +482,6 @@ create_epa <- function(play_df,
 #' @param current_probs (__data.frame__ required): Expected Points (EP) model raw probability outputs from initial prediction
 #' @param ep_model (__model__, default `cfbfastR`'s `ep_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
 #' @param fg_mod (__model__, default `cfbfastR`'s `fg_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
-#' @param season (*numeric* optional): Season of the game, required when the
-#'   loaded FG model is era-aware. See [create_epa()].
 #'
 #' @return Updated expected points probabilities with FG make/miss weighted adjustment
 #' @keywords internal

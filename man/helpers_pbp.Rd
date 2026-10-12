@@ -19,7 +19,7 @@ add_play_counts(play_df)
 
 clean_drive_dat(play_df)
 
-prep_epa_df_after(dat)
+prep_epa_df_after(dat, season = NULL)
 
 clean_drive_info(drive_df)
 
@@ -27,7 +27,7 @@ clean_play_text(play_df)
 
 add_player_cols(pbp)
 
-add_yardage(play_df)
+add_yardage(play_df, season = NULL)
 
 clean_pbp_dat(play_df)
 
@@ -37,6 +37,13 @@ penalty_detection(raw_df)
 \item{play_df}{(\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from \code{cfbd_pbp_data()}}
 
 \item{dat}{(\emph{Data.Frame} required) Clean Play-by-Play DataFrame pulled from \code{cfbd_pbp_dat()}}
+
+\item{season}{(\emph{numeric} scalar, optional): Season of the game, for the
+NCAA's 2012 kickoff rules. From 2012 a kickoff touchback ends at the 25
+(\code{new_yardline} 75, \code{yds_kickoff_return} 25) and a kickoff out of bounds at
+the 35 (\code{yds_kickoff_return} 35); through 2011 at the 20 (80, 20) and the
+40 (40). \code{NULL} reads the frame's \code{season} column; with neither, the 2012
+rules apply and a warning is given once per session.}
 
 \item{drive_df}{(\emph{data.frame} required) Drive dataframe pulled from API via the \code{cfbd_drives()} function}
 

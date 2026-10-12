@@ -16,8 +16,12 @@ epa_fg_probs(dat, current_probs, ep_model, fg_mod, season = NULL)
 
 \item{fg_model}{(\emph{model} default \code{cfbfastR}'s \code{fg_model}): Field Goal (FG) Model}
 
-\item{season}{(\emph{numeric} optional): Season of the game, required when the
-loaded FG model is era-aware. See \code{\link[=create_epa]{create_epa()}}.}
+\item{season}{(\emph{numeric} scalar optional): Season of the game. Sets the
+kickoff touchback spot for the kickoff \code{ep_before} (the 25, 75 yards to
+goal, from 2012; the 20, 80, through 2011; \code{NULL} reads as 75), and is
+required when the loaded FG model is era-aware (the bundled
+\code{fg_model.ubj} takes one-hot rule-era features). Passing \code{NULL} with an
+era-aware model is an error rather than a silent all-zero era encoding.}
 
 \item{dat}{(\strong{data.frame} required): Clean Play-By-Play data.frame as can be pulled from \code{\link[=clean_pbp_dat]{clean_pbp_dat()}}}
 

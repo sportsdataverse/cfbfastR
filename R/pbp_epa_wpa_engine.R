@@ -82,7 +82,7 @@
     .pbp_add_play_counts() |>
     .pbp_clean_pbp_dat() |>
     .pbp_clean_drive_dat() |>
-    add_yardage() |>
+    add_yardage(season = season) |>
     # Air yards needs the possessing/defending team ids to side the catch-point
     # abbreviation, so it sits after .pbp_add_play_counts() and before the name
     # extraction -- the same position it holds in sdv-py.
@@ -105,7 +105,7 @@
     # otherwise cost an extra roster request per call, and a season sweep would
     # re-request the same two rosters for every game those teams played.
     .pbp_attach_player_ids(roster = roster) |>
-    .pbp_prep_epa_df_after() |>
+    .pbp_prep_epa_df_after(season = season) |>
     .pbp_create_epa(ep_model = ep_model, fg_model = fg_model,
                     season = season) |>
     # vegas_wp is scored BEFORE the WPA stage so that stage -- which already
@@ -113,7 +113,7 @@
     # without a second grouping pass. A lead() across a game boundary would
     # otherwise difference two different games.
     .pbp_add_vegas_wp() |>
-    .pbp_create_wpa_naive(wp_model = wp_model) |>
+    .pbp_create_wpa_naive(wp_model = wp_model, season = season) |>
     # Additive and self-contained: CP/CPOE lazily loads its own bundled model
     # and emits all-NA columns rather than raising when it or its inputs are
     # unavailable, matching sdv-py `__process_cpoe`.

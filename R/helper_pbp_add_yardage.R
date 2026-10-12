@@ -41,7 +41,12 @@
 #' @export
 #'
 
-add_yardage <- function(play_df) {
+add_yardage <- function(play_df, season = NULL) {
+  # Kickoff return spots: touchback to the 25 and out of bounds to the 35 from
+  # 2012; the 20 and the 40 through 2011.
+  rules_2012 <- .kickoff_2012_rules(.kickoff_rule_season(season, play_df))
+  tb_return <- if (rules_2012) 25 else 20
+  oob_return <- if (rules_2012) 35 else 40
   play_df$yds_rushed <- NA_real_
   play_df$yds_receiving <- NA_real_
   play_df$yds_int_return <- NA_real_
@@ -220,11 +225,11 @@ add_yardage <- function(play_df) {
       )), .data$yds_kickoff),
       yds_kickoff_return = NA_real_,
       yds_kickoff_return = dplyr::case_when(
-        .data$kickoff_play == 1 & .data$kickoff_tb == 1 ~ 25,
+        .data$kickoff_play == 1 & .data$kickoff_tb == 1 ~ tb_return,
         .data$kickoff_play == 1 & .data$fumble_vec == 0 &
           stringr::str_detect(.data$play_text, regex("for no gain|fair catch|fair caught", ignore_case = TRUE)) ~ 0,
         .data$kickoff_play == 1 & .data$fumble_vec == 0 &
-          stringr::str_detect(.data$play_text, regex("out-of-bounds|out of bounds", ignore_case = TRUE)) ~ 40,
+          stringr::str_detect(.data$play_text, regex("out-of-bounds|out of bounds", ignore_case = TRUE)) ~ oob_return,
         (.data$kickoff_downed == 1 | .data$kickoff_fair_catch == 1) ~ 0,
         .data$kickoff_play == 1 ~ as.numeric(stringr::str_extract(
           stringi::stri_extract_first_regex(.data$play_text, "(?<= return for)[^,]+"), "\\d+"

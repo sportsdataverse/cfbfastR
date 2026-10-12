@@ -17,7 +17,7 @@
 #' @importFrom purrr map list_rbind
 #' @importFrom stats predict
 #' @importFrom rlang .data
-.pbp_create_wpa_naive <- function(df, wp_model) {
+.pbp_create_wpa_naive <- function(df, wp_model, season = NULL) {
   df <- df |>
     dplyr::arrange(.data$game_id, .data$play_order)
   # .wp_predict() handles either model generation and derives `is_home`, the
@@ -25,13 +25,13 @@
   df$wp_before <- .wp_predict(wp_model, df)
   # Kickoff plays
   # Calculate EP before at kickoff as what happens if it was a touchback
-  # 25 yard line in 2012 and onwards
+  # 25 yard line in 2012 and onwards, the 20 through 2011
   kickoff_ind <- (df$kickoff_play == 1)
   if (any(kickoff_ind)) {
     new_kick <- df[kickoff_ind, ]
     new_kick["down"] <- as.factor(1)
     new_kick["distance"] <- 10
-    new_kick["yards_to_goal"] <- 75
+    new_kick["yards_to_goal"] <- .kickoff_touchback_ytg(season)
     new_kick["log_ydstogo"] <- log(10)
     new_kick["ExpScoreDiff"] <- new_kick["pos_score_diff_start"] + new_kick["ep_before"]
     new_kick["ExpScoreDiff_Time_Ratio"] <- new_kick["ExpScoreDiff"] / (new_kick["adj_TimeSecsRem"] + 1)

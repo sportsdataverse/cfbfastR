@@ -144,14 +144,14 @@
 
   ## 5) Kickoff plays -----
   ## Calculate EP before at kickoff as what happens if it was a touchback
-  ## 25 yard line in 2012 and onwards
+  ## 25 yard line in 2012 and onwards, the 20 through 2011
   ## Question for the class: where is the EPA on touchbacks being set to 0?
   kickoff_ind <- (pred_df$play_type %in% kickoff)
   if (any(kickoff_ind)) {
     new_kick <- pred_df[kickoff_ind, ]
     new_kick["down"] <- as.factor(1)
     new_kick["distance"] <- 10
-    new_kick["yards_to_goal"] <- 75
+    new_kick["yards_to_goal"] <- .kickoff_touchback_ytg(season)
     new_kick["log_ydstogo"] <- log(10)
     ep_kickoffs <- .ep_predict(ep_model, new_kick)
     if (table(kickoff_ind)[2] > 1) {

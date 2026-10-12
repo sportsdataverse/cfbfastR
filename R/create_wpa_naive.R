@@ -5,6 +5,10 @@
 #' This is only for D1 football
 #' @param df (*data.frame* required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
 #' @param wp_model (*model* default cfbfastR:wp_model): Win Probability (WP) Model
+#' @param season (*numeric* scalar, optional): Season of the game. The kickoff
+#'   `wp_before` is scored as a touchback at the 25 (`yards_to_goal` 75) from
+#'   2012 and at the 20 (80) through 2011. `NULL` reads the frame's `season`
+#'   column; with neither, 75 is used and a warning is given once per session.
 #' @details Requires the following columns to be present in the input data frame.
 #' @return The original `df` with the following columns appended to it:
 #' \describe{
@@ -36,7 +40,8 @@
 #' @export
 #'
 
-create_wpa_naive <- function(df, wp_model) {
+create_wpa_naive <- function(df, wp_model, season = NULL) {
+  season <- .kickoff_rule_season(season, df)
   col_nec <- c(
     "ExpScoreDiff",
     "TimeSecsRem",
@@ -119,13 +124,13 @@ create_wpa_naive <- function(df, wp_model) {
   df$wp_before <- Off_Win_Prob
   # Kickoff plays
   # Calculate EP before at kickoff as what happens if it was a touchback
-  # 25 yard line in 2012 and onwards
+  # 25 yard line in 2012 and onwards, the 20 through 2011
   kickoff_ind <- (df$kickoff_play == 1)
   if (any(kickoff_ind)) {
     new_kick <- df[kickoff_ind, ]
     new_kick["down"] <- as.factor(1)
     new_kick["distance"] <- 10
-    new_kick["yards_to_goal"] <- 75
+    new_kick["yards_to_goal"] <- .kickoff_touchback_ytg(season)
     new_kick["log_ydstogo"] <- log(10)
     new_kick["ExpScoreDiff"] <- new_kick["pos_score_diff_start"] + new_kick["ep_before"]
     new_kick["ExpScoreDiff_Time_Ratio"] <- new_kick["ExpScoreDiff"] / (new_kick["adj_TimeSecsRem"] + 1)

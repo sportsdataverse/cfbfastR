@@ -69,6 +69,23 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   `cfbd_pbp_data(offense =)` and, on `cfbd_pbp_data_v2()`, `offense`, `defense`,
   `offense_conference`, `defense_conference`, `conference` and `division`.
 
+## Fixed: kickoff rules before 2012
+
+* Kickoffs were scored under the 2012 rules in every season. The NCAA moved
+  kickoffs to the 35 in 2012, bringing a touchback out to the 25 (the 20 before)
+  and a kickoff out of bounds to the 35 (the 40 before). The kickoff
+  `ep_before`, the kickoff `wp_before` and a touchback's `new_yardline` now use
+  80 yards to goal through 2011 and 75 from 2012, and `yds_kickoff_return` is
+  20 / 25 for a touchback and 40 / 35 for a kickoff out of bounds, in both the
+  v2 and the legacy engine. `add_yardage()`, `prep_epa_df_after()` and
+  `create_wpa_naive()` gain an optional scalar `season` argument; with `NULL`
+  they read the frame's `season` column, and with neither they keep the 2012
+  rules and warn once per session. Seasons from 2012 are unchanged. Twin of
+  sportsdataverse-py#778.
+* `add_yardage()` output changes for kickoffs out of bounds: `yds_kickoff_return`
+  was 40 in every season and is now 35 by default (the 2012 rule). Pass
+  `season`, or carry a `season` column, to get 40 for games through 2011.
+
 ## Fixed: CFBD game box score, team stats and play-by-play
 
 * `cfbd_game_team_stats(team =)` returned both teams of every game. Inside
