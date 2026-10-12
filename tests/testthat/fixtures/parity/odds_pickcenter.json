@@ -1,0 +1,1124 @@
+{
+ "401112080": [
+  {
+   "provider": {
+    "id": "1004",
+    "name": "consensus",
+    "priority": 0
+   },
+   "details": "BAY -18",
+   "overUnder": 56.5,
+   "spread": -18.0,
+   "overOdds": -110.0,
+   "underOdds": -110.0,
+   "awayTeamOdds": {
+    "winPercentage": 28.0,
+    "favorite": false,
+    "underdog": true,
+    "moneyLine": 619,
+    "spreadOdds": -112.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "+18",
+      "american": "+18"
+     },
+     "spread": {
+      "alternateDisplayValue": "-112",
+      "american": "-112"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "+619",
+      "american": "+619"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2019/teams/277?lang=en&region=us"
+    },
+    "teamId": "277"
+   },
+   "homeTeamOdds": {
+    "winPercentage": 72.0,
+    "favorite": true,
+    "underdog": false,
+    "moneyLine": -1002,
+    "spreadOdds": -112.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "-18",
+      "american": "-18"
+     },
+     "spread": {
+      "alternateDisplayValue": "-112",
+      "american": "-112"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "-1002",
+      "american": "-1002"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2019/teams/239?lang=en&region=us"
+    },
+    "teamId": "239"
+   },
+   "current": {
+    "over": {
+     "alternateDisplayValue": "-110",
+     "american": "-110"
+    },
+    "under": {
+     "alternateDisplayValue": "-110",
+     "american": "-110"
+    },
+    "total": {
+     "alternateDisplayValue": "56.5",
+     "american": "56.5"
+    }
+   },
+   "moneyline": {
+    "displayName": "Moneyline",
+    "shortDisplayName": "ML",
+    "home": {},
+    "away": {}
+   },
+   "pointSpread": {
+    "displayName": "Spread",
+    "shortDisplayName": "Spread",
+    "home": {},
+    "away": {}
+   },
+   "total": {
+    "displayName": "Total",
+    "shortDisplayName": "Total",
+    "over": {},
+    "under": {}
+   },
+   "link": {
+    "text": "See More Odds",
+    "language": "en-US",
+    "rel": [
+     "main",
+     "desktop",
+     "bets"
+    ],
+    "isExternal": true,
+    "isPremium": false
+   }
+  },
+  {
+   "provider": {
+    "id": "1003",
+    "name": "numberfire",
+    "priority": 0
+   },
+   "details": "BAY -18.5",
+   "overUnder": 57.0,
+   "spread": -18.5,
+   "overOdds": 23.64,
+   "underOdds": 74.48,
+   "awayTeamOdds": {
+    "averageScore": 13.68,
+    "winPercentage": 7.05,
+    "favorite": false,
+    "underdog": true,
+    "moneyLine": 620,
+    "moneyLineOdds": 7.05,
+    "spreadOdds": 47.54,
+    "spreadReturn": -0.092,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "+18.5",
+      "american": "+18.5"
+     },
+     "spread": {
+      "alternateDisplayValue": "+48",
+      "american": "+48"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "+620",
+      "american": "+620"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2019/teams/277?lang=en&region=us"
+    },
+    "teamId": "277"
+   },
+   "homeTeamOdds": {
+    "averageScore": 32.08,
+    "winPercentage": 92.95,
+    "favorite": true,
+    "underdog": false,
+    "moneyLine": -925,
+    "moneyLineOdds": 92.95,
+    "spreadOdds": 52.46,
+    "spreadReturn": 0.002,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "-18.5",
+      "american": "-18.5"
+     },
+     "spread": {
+      "alternateDisplayValue": "+52",
+      "american": "+52"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "-925",
+      "american": "-925"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2019/teams/239?lang=en&region=us"
+    },
+    "teamId": "239"
+   },
+   "current": {
+    "over": {
+     "alternateDisplayValue": "+24",
+     "american": "+24"
+    },
+    "under": {
+     "alternateDisplayValue": "+74",
+     "american": "+74"
+    },
+    "total": {
+     "alternateDisplayValue": "57",
+     "american": "57"
+    }
+   },
+   "moneyline": {
+    "displayName": "Moneyline",
+    "shortDisplayName": "ML",
+    "home": {},
+    "away": {}
+   },
+   "pointSpread": {
+    "displayName": "Spread",
+    "shortDisplayName": "Spread",
+    "home": {},
+    "away": {}
+   },
+   "total": {
+    "displayName": "Total",
+    "shortDisplayName": "Total",
+    "over": {},
+    "under": {}
+   },
+   "link": {
+    "text": "See More Odds",
+    "language": "en-US",
+    "rel": [
+     "main",
+     "desktop",
+     "bets"
+    ],
+    "isExternal": true,
+    "isPremium": false
+   }
+  },
+  {
+   "provider": {
+    "id": "1002",
+    "name": "teamrankings",
+    "priority": 0
+   },
+   "details": "BAY -19",
+   "overUnder": 57.0,
+   "spread": -19.0,
+   "overOdds": -107.0,
+   "underOdds": -107.0,
+   "awayTeamOdds": {
+    "averageScore": 17.9,
+    "favorite": false,
+    "underdog": true,
+    "moneyLine": 609,
+    "spreadRecord": {
+     "wins": 0,
+     "losses": 0,
+     "pushes": 0,
+     "summary": "0-0-0"
+    },
+    "spreadOdds": -107.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "+19",
+      "american": "+19"
+     },
+     "spread": {
+      "alternateDisplayValue": "-107",
+      "american": "-107"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "+609",
+      "american": "+609"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2019/teams/277?lang=en&region=us"
+    },
+    "teamId": "277"
+   },
+   "homeTeamOdds": {
+    "averageScore": 37.8,
+    "favorite": true,
+    "underdog": false,
+    "moneyLine": -944,
+    "spreadRecord": {
+     "wins": 0,
+     "losses": 0,
+     "pushes": 0,
+     "summary": "0-0-0"
+    },
+    "spreadOdds": -105.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "-19",
+      "american": "-19"
+     },
+     "spread": {
+      "alternateDisplayValue": "-105",
+      "american": "-105"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "-944",
+      "american": "-944"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2019/teams/239?lang=en&region=us"
+    },
+    "teamId": "239"
+   },
+   "current": {
+    "over": {
+     "alternateDisplayValue": "-107",
+     "american": "-107"
+    },
+    "under": {
+     "alternateDisplayValue": "-107",
+     "american": "-107"
+    },
+    "total": {
+     "alternateDisplayValue": "57",
+     "american": "57"
+    }
+   },
+   "moneyline": {
+    "displayName": "Moneyline",
+    "shortDisplayName": "ML",
+    "home": {},
+    "away": {}
+   },
+   "pointSpread": {
+    "displayName": "Spread",
+    "shortDisplayName": "Spread",
+    "home": {},
+    "away": {}
+   },
+   "total": {
+    "displayName": "Total",
+    "shortDisplayName": "Total",
+    "over": {},
+    "under": {}
+   },
+   "link": {
+    "text": "See More Odds",
+    "language": "en-US",
+    "rel": [
+     "main",
+     "desktop",
+     "bets"
+    ],
+    "isExternal": true,
+    "isPremium": false
+   }
+  }
+ ],
+ "401121960": [
+  {
+   "provider": {
+    "id": "1004",
+    "name": "consensus",
+    "priority": 0
+   },
+   "details": "APP -13.5",
+   "overUnder": 41.5,
+   "spread": -13.5,
+   "overOdds": -112.0,
+   "underOdds": -111.0,
+   "awayTeamOdds": {
+    "winPercentage": 37.0,
+    "favorite": false,
+    "underdog": true,
+    "moneyLine": 474,
+    "spreadOdds": -110.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "+13.5",
+      "american": "+13.5"
+     },
+     "spread": {
+      "alternateDisplayValue": "-110",
+      "american": "-110"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "+474",
+      "american": "+474"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2019/teams/290?lang=en&region=us"
+    },
+    "teamId": "290"
+   },
+   "homeTeamOdds": {
+    "winPercentage": 63.0,
+    "favorite": true,
+    "underdog": false,
+    "moneyLine": -703,
+    "spreadOdds": -112.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "-13.5",
+      "american": "-13.5"
+     },
+     "spread": {
+      "alternateDisplayValue": "-112",
+      "american": "-112"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "-703",
+      "american": "-703"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2019/teams/2026?lang=en&region=us"
+    },
+    "teamId": "2026"
+   },
+   "current": {
+    "over": {
+     "alternateDisplayValue": "-112",
+     "american": "-112"
+    },
+    "under": {
+     "alternateDisplayValue": "-111",
+     "american": "-111"
+    },
+    "total": {
+     "alternateDisplayValue": "41.5",
+     "american": "41.5"
+    }
+   },
+   "moneyline": {
+    "displayName": "Moneyline",
+    "shortDisplayName": "ML",
+    "home": {},
+    "away": {}
+   },
+   "pointSpread": {
+    "displayName": "Spread",
+    "shortDisplayName": "Spread",
+    "home": {},
+    "away": {}
+   },
+   "total": {
+    "displayName": "Total",
+    "shortDisplayName": "Total",
+    "over": {},
+    "under": {}
+   },
+   "link": {
+    "text": "See More Odds",
+    "language": "en-US",
+    "rel": [
+     "main",
+     "desktop",
+     "bets"
+    ],
+    "isExternal": true,
+    "isPremium": false
+   }
+  },
+  {
+   "provider": {
+    "id": "1003",
+    "name": "numberfire",
+    "priority": 0
+   },
+   "details": "APP -14.5",
+   "overUnder": 42.0,
+   "spread": -14.5,
+   "overOdds": 58.27,
+   "underOdds": 38.11,
+   "awayTeamOdds": {
+    "averageScore": 14.26,
+    "winPercentage": 8.87,
+    "favorite": false,
+    "underdog": true,
+    "moneyLine": 490,
+    "moneyLineOdds": 8.87,
+    "spreadOdds": 43.45,
+    "spreadReturn": -0.171,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "+14.5",
+      "american": "+14.5"
+     },
+     "spread": {
+      "alternateDisplayValue": "+43",
+      "american": "+43"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "+490",
+      "american": "+490"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2019/teams/290?lang=en&region=us"
+    },
+    "teamId": "290"
+   },
+   "homeTeamOdds": {
+    "averageScore": 30.89,
+    "winPercentage": 91.13,
+    "favorite": true,
+    "underdog": false,
+    "moneyLine": -690,
+    "moneyLineOdds": 91.13,
+    "spreadOdds": 56.55,
+    "spreadReturn": 0.08,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "-14.5",
+      "american": "-14.5"
+     },
+     "spread": {
+      "alternateDisplayValue": "+57",
+      "american": "+57"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "-690",
+      "american": "-690"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2019/teams/2026?lang=en&region=us"
+    },
+    "teamId": "2026"
+   },
+   "current": {
+    "over": {
+     "alternateDisplayValue": "+58",
+     "american": "+58"
+    },
+    "under": {
+     "alternateDisplayValue": "+38",
+     "american": "+38"
+    },
+    "total": {
+     "alternateDisplayValue": "42",
+     "american": "42"
+    }
+   },
+   "moneyline": {
+    "displayName": "Moneyline",
+    "shortDisplayName": "ML",
+    "home": {},
+    "away": {}
+   },
+   "pointSpread": {
+    "displayName": "Spread",
+    "shortDisplayName": "Spread",
+    "home": {},
+    "away": {}
+   },
+   "total": {
+    "displayName": "Total",
+    "shortDisplayName": "Total",
+    "over": {},
+    "under": {}
+   },
+   "link": {
+    "text": "See More Odds",
+    "language": "en-US",
+    "rel": [
+     "main",
+     "desktop",
+     "bets"
+    ],
+    "isExternal": true,
+    "isPremium": false
+   }
+  },
+  {
+   "provider": {
+    "id": "1002",
+    "name": "teamrankings",
+    "priority": 0
+   },
+   "details": "APP -15",
+   "overUnder": 44.5,
+   "spread": -15.0,
+   "overOdds": -108.0,
+   "underOdds": -106.0,
+   "awayTeamOdds": {
+    "averageScore": 15.2,
+    "favorite": false,
+    "underdog": true,
+    "moneyLine": 491,
+    "spreadRecord": {
+     "wins": 0,
+     "losses": 0,
+     "pushes": 0,
+     "summary": "0-0-0"
+    },
+    "spreadOdds": -112.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "+15",
+      "american": "+15"
+     },
+     "spread": {
+      "alternateDisplayValue": "-112",
+      "american": "-112"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "+491",
+      "american": "+491"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2019/teams/290?lang=en&region=us"
+    },
+    "teamId": "290"
+   },
+   "homeTeamOdds": {
+    "averageScore": 31.7,
+    "favorite": true,
+    "underdog": false,
+    "moneyLine": -710,
+    "spreadRecord": {
+     "wins": 0,
+     "losses": 0,
+     "pushes": 0,
+     "summary": "0-0-0"
+    },
+    "spreadOdds": -100.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "-15",
+      "american": "-15"
+     },
+     "spread": {
+      "alternateDisplayValue": "-100",
+      "american": "-100"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "-710",
+      "american": "-710"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2019/teams/2026?lang=en&region=us"
+    },
+    "teamId": "2026"
+   },
+   "current": {
+    "over": {
+     "alternateDisplayValue": "-108",
+     "american": "-108"
+    },
+    "under": {
+     "alternateDisplayValue": "-106",
+     "american": "-106"
+    },
+    "total": {
+     "alternateDisplayValue": "44.5",
+     "american": "44.5"
+    }
+   },
+   "moneyline": {
+    "displayName": "Moneyline",
+    "shortDisplayName": "ML",
+    "home": {},
+    "away": {}
+   },
+   "pointSpread": {
+    "displayName": "Spread",
+    "shortDisplayName": "Spread",
+    "home": {},
+    "away": {}
+   },
+   "total": {
+    "displayName": "Total",
+    "shortDisplayName": "Total",
+    "over": {},
+    "under": {}
+   },
+   "link": {
+    "text": "See More Odds",
+    "language": "en-US",
+    "rel": [
+     "main",
+     "desktop",
+     "bets"
+    ],
+    "isExternal": true,
+    "isPremium": false
+   }
+  }
+ ],
+ "401416632": [
+  {
+   "provider": {
+    "id": "1004",
+    "name": "consensus",
+    "priority": 0
+   },
+   "details": "KENT -7",
+   "overUnder": 61.5,
+   "spread": -7.0,
+   "overOdds": -110.0,
+   "underOdds": -110.0,
+   "awayTeamOdds": {
+    "winPercentage": 67.0,
+    "favorite": false,
+    "underdog": true,
+    "moneyLine": 218,
+    "spreadOdds": -112.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "+7",
+      "american": "+7"
+     },
+     "spread": {
+      "alternateDisplayValue": "-112",
+      "american": "-112"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "+218",
+      "american": "+218"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2022/teams/2050?lang=en&region=us"
+    },
+    "teamId": "2050"
+   },
+   "homeTeamOdds": {
+    "winPercentage": 33.0,
+    "favorite": true,
+    "underdog": false,
+    "moneyLine": -270,
+    "spreadOdds": -108.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "-7",
+      "american": "-7"
+     },
+     "spread": {
+      "alternateDisplayValue": "-108",
+      "american": "-108"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "-270",
+      "american": "-270"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2022/teams/2309?lang=en&region=us"
+    },
+    "teamId": "2309"
+   },
+   "current": {
+    "over": {
+     "alternateDisplayValue": "-110",
+     "american": "-110"
+    },
+    "under": {
+     "alternateDisplayValue": "-110",
+     "american": "-110"
+    },
+    "total": {
+     "alternateDisplayValue": "61.5",
+     "american": "61.5"
+    }
+   },
+   "moneyline": {
+    "displayName": "Moneyline",
+    "shortDisplayName": "ML",
+    "home": {},
+    "away": {}
+   },
+   "pointSpread": {
+    "displayName": "Spread",
+    "shortDisplayName": "Spread",
+    "home": {},
+    "away": {}
+   },
+   "total": {
+    "displayName": "Total",
+    "shortDisplayName": "Total",
+    "over": {},
+    "under": {}
+   },
+   "link": {
+    "text": "See More Odds",
+    "language": "en-US",
+    "rel": [
+     "main",
+     "desktop",
+     "bets"
+    ],
+    "isExternal": true,
+    "isPremium": false
+   }
+  },
+  {
+   "provider": {
+    "id": "1002",
+    "name": "teamrankings",
+    "priority": 0
+   },
+   "details": "KENT -7",
+   "overUnder": 61.5,
+   "spread": -7.0,
+   "overOdds": -110.0,
+   "underOdds": -110.0,
+   "awayTeamOdds": {
+    "averageScore": 26.3,
+    "favorite": false,
+    "underdog": true,
+    "moneyLine": 216,
+    "spreadRecord": {
+     "wins": 0,
+     "losses": 0,
+     "pushes": 0,
+     "summary": "0-0-0"
+    },
+    "spreadOdds": -110.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "+7",
+      "american": "+7"
+     },
+     "spread": {
+      "alternateDisplayValue": "-110",
+      "american": "-110"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "+216",
+      "american": "+216"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2022/teams/2050?lang=en&region=us"
+    },
+    "teamId": "2050"
+   },
+   "homeTeamOdds": {
+    "averageScore": 33.2,
+    "favorite": true,
+    "underdog": false,
+    "moneyLine": -254,
+    "spreadRecord": {
+     "wins": 0,
+     "losses": 0,
+     "pushes": 0,
+     "summary": "0-0-0"
+    },
+    "spreadOdds": -102.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "-7",
+      "american": "-7"
+     },
+     "spread": {
+      "alternateDisplayValue": "-102",
+      "american": "-102"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "-254",
+      "american": "-254"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2022/teams/2309?lang=en&region=us"
+    },
+    "teamId": "2309"
+   },
+   "current": {
+    "over": {
+     "alternateDisplayValue": "-110",
+     "american": "-110"
+    },
+    "under": {
+     "alternateDisplayValue": "-110",
+     "american": "-110"
+    },
+    "total": {
+     "alternateDisplayValue": "61.5",
+     "american": "61.5"
+    }
+   },
+   "moneyline": {
+    "displayName": "Moneyline",
+    "shortDisplayName": "ML",
+    "home": {},
+    "away": {}
+   },
+   "pointSpread": {
+    "displayName": "Spread",
+    "shortDisplayName": "Spread",
+    "home": {},
+    "away": {}
+   },
+   "total": {
+    "displayName": "Total",
+    "shortDisplayName": "Total",
+    "over": {},
+    "under": {}
+   },
+   "link": {
+    "text": "See More Odds",
+    "language": "en-US",
+    "rel": [
+     "main",
+     "desktop",
+     "bets"
+    ],
+    "isExternal": true,
+    "isPremium": false
+   }
+  }
+ ],
+ "401416633": [
+  {
+   "provider": {
+    "id": "1004",
+    "name": "consensus",
+    "priority": 0
+   },
+   "details": "BUF -2.5",
+   "overUnder": 61.0,
+   "spread": 2.5,
+   "overOdds": -110.0,
+   "underOdds": -110.0,
+   "awayTeamOdds": {
+    "winPercentage": 34.0,
+    "favorite": true,
+    "underdog": false,
+    "moneyLine": -134,
+    "spreadOdds": -110.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "-2.5",
+      "american": "-2.5"
+     },
+     "spread": {
+      "alternateDisplayValue": "-110",
+      "american": "-110"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "-134",
+      "american": "-134"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2022/teams/2084?lang=en&region=us"
+    },
+    "teamId": "2084"
+   },
+   "homeTeamOdds": {
+    "winPercentage": 66.0,
+    "favorite": false,
+    "underdog": true,
+    "moneyLine": 111,
+    "spreadOdds": -112.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "+2.5",
+      "american": "+2.5"
+     },
+     "spread": {
+      "alternateDisplayValue": "-112",
+      "american": "-112"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "+111",
+      "american": "+111"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2022/teams/195?lang=en&region=us"
+    },
+    "teamId": "195"
+   },
+   "current": {
+    "over": {
+     "alternateDisplayValue": "-110",
+     "american": "-110"
+    },
+    "under": {
+     "alternateDisplayValue": "-110",
+     "american": "-110"
+    },
+    "total": {
+     "alternateDisplayValue": "61",
+     "american": "61"
+    }
+   },
+   "moneyline": {
+    "displayName": "Moneyline",
+    "shortDisplayName": "ML",
+    "home": {},
+    "away": {}
+   },
+   "pointSpread": {
+    "displayName": "Spread",
+    "shortDisplayName": "Spread",
+    "home": {},
+    "away": {}
+   },
+   "total": {
+    "displayName": "Total",
+    "shortDisplayName": "Total",
+    "over": {},
+    "under": {}
+   },
+   "link": {
+    "text": "See More Odds",
+    "language": "en-US",
+    "rel": [
+     "main",
+     "desktop",
+     "bets"
+    ],
+    "isExternal": true,
+    "isPremium": false
+   }
+  },
+  {
+   "provider": {
+    "id": "1002",
+    "name": "teamrankings",
+    "priority": 0
+   },
+   "details": "BUF -2.5",
+   "overUnder": 61.0,
+   "spread": 2.5,
+   "overOdds": -110.0,
+   "underOdds": -110.0,
+   "awayTeamOdds": {
+    "averageScore": 30.8,
+    "favorite": true,
+    "underdog": false,
+    "moneyLine": -135,
+    "spreadRecord": {
+     "wins": 0,
+     "losses": 0,
+     "pushes": 0,
+     "summary": "0-0-0"
+    },
+    "spreadOdds": -107.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "-2.5",
+      "american": "-2.5"
+     },
+     "spread": {
+      "alternateDisplayValue": "-107",
+      "american": "-107"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "-135",
+      "american": "-135"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2022/teams/2084?lang=en&region=us"
+    },
+    "teamId": "2084"
+   },
+   "homeTeamOdds": {
+    "averageScore": 28.2,
+    "favorite": false,
+    "underdog": true,
+    "moneyLine": 115,
+    "spreadRecord": {
+     "wins": 0,
+     "losses": 0,
+     "pushes": 0,
+     "summary": "0-0-0"
+    },
+    "spreadOdds": -107.0,
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "+2.5",
+      "american": "+2.5"
+     },
+     "spread": {
+      "alternateDisplayValue": "-107",
+      "american": "-107"
+     },
+     "moneyLine": {
+      "alternateDisplayValue": "+115",
+      "american": "+115"
+     }
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/seasons/2022/teams/195?lang=en&region=us"
+    },
+    "teamId": "195"
+   },
+   "current": {
+    "over": {
+     "alternateDisplayValue": "-110",
+     "american": "-110"
+    },
+    "under": {
+     "alternateDisplayValue": "-110",
+     "american": "-110"
+    },
+    "total": {
+     "alternateDisplayValue": "61",
+     "american": "61"
+    }
+   },
+   "moneyline": {
+    "displayName": "Moneyline",
+    "shortDisplayName": "ML",
+    "home": {},
+    "away": {}
+   },
+   "pointSpread": {
+    "displayName": "Spread",
+    "shortDisplayName": "Spread",
+    "home": {},
+    "away": {}
+   },
+   "total": {
+    "displayName": "Total",
+    "shortDisplayName": "Total",
+    "over": {},
+    "under": {}
+   },
+   "link": {
+    "text": "See More Odds",
+    "language": "en-US",
+    "rel": [
+     "main",
+     "desktop",
+     "bets"
+    ],
+    "isExternal": true,
+    "isPremium": false
+   }
+  }
+ ],
+ "401762862": [],
+ "401762864": [],
+ "401752912": [],
+ "401752776": []
+}

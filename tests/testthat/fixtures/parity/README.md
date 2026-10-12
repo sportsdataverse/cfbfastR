@@ -113,3 +113,12 @@ play of six games with sdv-py's untyped-admin filter applied (`type.text` null a
 `_UNTYPED_ADMIN_RE`): 2004's untyped markers (243042579) and "Begin Drive" (242462628), an OT drive
 header (262522509), empty rows (272870068), a lone kick (401752914), lone two-point tries in OT
 (401426542). Re-capture: `python data-raw/parity_admin_oracle.py`; do not hand-edit the file.
+
+`odds_oracle.csv` + `odds_pickcenter.json` — captured 2026-10-12 LIVE from sportsdataverse-py `f552e15dc`
+(`CFBPlayProcess.run_processing_pipeline()`; the pre-game line comes from `__helper_cfb_pickcenter`). Eight
+games: 401112080, 401121960 (2019) and 401416632, 401416633 (2022) resolve from the summary `pickcenter`;
+401762862, 401762864, 401752912, 401752776 (2025) from ESPN's core odds API, `pickcenter` being empty for 2024+.
+`spread` is the home line cfbfastR emits (negative = home favoured); every spread and total equals one CFBD
+provider's line for the same game. `odds_pickcenter.json` holds the raw `pickcenter` arrays, so that path is
+tested offline. Re-capture: `python data-raw/parity_odds_oracle.py` (env `SDV_PY_ROOT`; needs network); do not
+hand-edit the files.

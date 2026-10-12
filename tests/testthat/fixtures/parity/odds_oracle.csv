@@ -1,0 +1,9 @@
+game_id,season,n_pickcenter,odds_source,game_spread_available,sdvpy_game_spread,home_favorite,over_under,spread,expected_over_under
+401112080,2019,3,summary_pickcenter,True,-19.0,True,57.0,-19.0,57.0
+401121960,2019,3,summary_pickcenter,True,-15.0,True,44.5,-15.0,44.5
+401416632,2022,2,summary_pickcenter,True,-7.0,True,61.5,-7.0,61.5
+401416633,2022,2,summary_pickcenter,True,2.5,False,61.0,2.5,61.0
+401762862,2025,0,core_odds_api,True,-2.5,True,47.5,-2.5,47.5
+401762864,2025,0,core_odds_api,True,6.5,False,38.5,6.5,38.5
+401752912,2025,0,core_odds_api,True,-28.5,True,54.5,-28.5,54.5
+401752776,2025,0,core_odds_api,True,-42.5,True,53.5,-42.5,53.5

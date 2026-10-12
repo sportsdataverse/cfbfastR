@@ -69,6 +69,20 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   `cfbd_pbp_data(offense =)` and, on `cfbd_pbp_data_v2()`, `offense`, `defense`,
   `offense_conference`, `defense_conference`, `conference` and `division`.
 
+## Fixed: ESPN play-by-play carries the pre-game line
+
+`espn_cfb_pbp(epa_wpa = TRUE)` and `espn_cfb_pbp_v2(epa_wpa = TRUE)` now attach
+the pre-game `spread` (the home team's line, negative when the home team is
+favoured, as on the CFBD path) and `over_under`. Neither engine set them
+before, so `vegas_wp`, `vegas_wpa`, the fourth-down decision columns
+(`go_wp`, `fg_wp`, `punt_wp`, `go_boost`, ...) and the two-point columns were
+`NA` on every ESPN game. The line is ported from sportsdataverse-py: the
+summary `pickcenter` when it lists more than one provider (games before 2024),
+else ESPN's core odds collection (ESPN emptied `pickcenter` for 2024+),
+preferring ESPN BET. A game with no line keeps `NA` rather than a default.
+The v2 engine makes one extra request for it, only when `epa_wpa = TRUE`.
+Expected points, EPA and the naive win probability are unchanged.
+
 ## Fixed: QBR scores the retrained model
 
 `create_qbr()` now passes the QBR booster the feature columns the booster

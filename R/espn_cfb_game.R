@@ -6239,10 +6239,15 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
       plays_df$away_team_alternate_color <- (competitors |> dplyr::filter(.data$homeAway == 'away'))[['team.alternateColor']]
       plays_df$away_team_rank <- (competitors |> dplyr::filter(.data$homeAway == 'away'))[['rank']]
 
-      # #---- Pickcenter ------
-      # pickcenter <- raw_df[['pickcenter']]
-
       if (isTRUE(epa_wpa)) {
+        # Pre-game line for the spread-based WP, two-point and fourth-down
+        # models. Records, not the simplified frame: see .espn_cfb_pbp_line().
+        line <- .espn_cfb_pbp_line(
+          game_id,
+          jsonlite::fromJSON(jsonlite::toJSON(raw_df[["pickcenter"]], digits = NA), simplifyVector = FALSE)
+        )
+        plays_df$spread <- line$spread
+        plays_df$over_under <- line$over_under
         # Captured before the pipeline: the era-aware FG model needs a scalar
         # season, and `season` is one of the columns the chain below renames
         # away. Without it every FG/XP play aborts in .fg_make_prob().
@@ -6776,6 +6781,12 @@ espn_cfb_pbp_v2 <- function(game_id,
           away_team_abbreviation       = .data$away_team_abbreviation
         ) |>
         .espn_to_epa_input(game_id = game_id)
+
+      # Pre-game line: the second deliberate extra request. The core-v2 feeds
+      # carry no pickcenter, so this is the odds collection alone.
+      line <- .espn_cfb_pbp_line(game_id)
+      adapter$spread <- line$spread
+      adapter$over_under <- line$over_under
 
       # ESPN's participants[] names are ALREADY on `plays_df` -- the drives call
       # above asked for `participants = "wide"`. Reshaping that in place costs
