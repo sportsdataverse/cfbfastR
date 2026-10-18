@@ -181,15 +181,6 @@ See the [intro
 vignette](https://cfbfastR.sportsdataverse.org/articles/intro.html) and
 `CLAUDE.md` for full detail.
 
-## Star History
-
-<a href="https://github.com/sportsdataverse/cfbfastR/stargazers">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/sportsdataverse/cfbfastR/star-history/star-history-dark.svg">
-    <img alt="Star history of sportsdataverse/cfbfastR" src="https://raw.githubusercontent.com/sportsdataverse/cfbfastR/star-history/star-history.png" width="600">
-  </picture>
-</a>
-
 ## Follow [cfbfastR](https://x.com/cfbfastR) and the [SportsDataverse](https://x.com/SportsDataverse) on Twitter and star this repo
 
 [![X (formerly Twitter)
@@ -199,6 +190,13 @@ Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%
 
 [![GitHub
 stars](https://img.shields.io/github/stars/sportsdataverse/cfbfastR.svg?color=eee&logo=github&style=for-the-badge&label=Star%20cfbfastR&maxAge=2592000)](https://github.com/sportsdataverse/cfbfastR)
+
+<a href="https://github.com/sportsdataverse/cfbfastR/stargazers">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/sportsdataverse/cfbfastR/star-history/star-history-dark.svg">
+    <img alt="Star history of sportsdataverse/cfbfastR" src="https://raw.githubusercontent.com/sportsdataverse/cfbfastR/star-history/star-history.png" width="600">
+  </picture>
+</a>
 
 ## **Our Authors**
 
