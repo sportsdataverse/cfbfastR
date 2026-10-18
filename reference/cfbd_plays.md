@@ -126,21 +126,21 @@ Other CFBD PBP:
 # \donttest{
   try(cfbd_plays(year = 2021, week = 1))
 #> ── Play-by-play data from CollegeFootballData.com ─────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-12 13:03:29 UTC
-#> # A tibble: 15,066 × 28
+#> ℹ Data updated: 2026-10-18 11:35:12 UTC
+#> # A tibble: 14,944 × 28
 #>     game_id drive_id play_id drive_number play_number offense offense_conference
 #>       <int> <chr>    <chr>          <int>       <int> <chr>   <chr>             
 #>  1   4.01e8 4012819… 401281…            1           1 Auburn  SEC               
-#>  2   4.01e8 4012819… 401281…            1           4 Auburn  SEC               
-#>  3   4.01e8 4012819… 401281…            1           6 Akron   Mid-American      
-#>  4   4.01e8 4012819… 401281…            1          15 Akron   Mid-American      
-#>  5   4.01e8 4012819… 401281…            1           9 Akron   Mid-American      
-#>  6   4.01e8 4012819… 401281…            1           7 Akron   Mid-American      
-#>  7   4.01e8 4012819… 401281…            1           5 Akron   Mid-American      
-#>  8   4.01e8 4012819… 401281…            1           2 Akron   Mid-American      
-#>  9   4.01e8 4012819… 401281…            1          10 Akron   Mid-American      
-#> 10   4.01e8 4012819… 401281…            1          11 Akron   Mid-American      
-#> # ℹ 15,056 more rows
+#>  2   4.01e8 4012819… 401281…            1           6 Akron   Mid-American      
+#>  3   4.01e8 4012819… 401281…            1          15 Akron   Mid-American      
+#>  4   4.01e8 4012819… 401281…            1           9 Akron   Mid-American      
+#>  5   4.01e8 4012819… 401281…            1           7 Akron   Mid-American      
+#>  6   4.01e8 4012819… 401281…            1           2 Akron   Mid-American      
+#>  7   4.01e8 4012819… 401281…            1          10 Akron   Mid-American      
+#>  8   4.01e8 4012819… 401281…            1          11 Akron   Mid-American      
+#>  9   4.01e8 4012819… 401281…            1          12 Akron   Mid-American      
+#> 10   4.01e8 4012819… 401281…            1           3 Akron   Mid-American      
+#> # ℹ 14,934 more rows
 #> # ℹ 21 more variables: offense_score <int>, defense <chr>,
 #> #   defense_conference <chr>, defense_score <int>, home <chr>, away <chr>,
 #> #   period <int>, offense_timeouts <int>, defense_timeouts <int>,

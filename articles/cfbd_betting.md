@@ -20,11 +20,19 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## → Package library at /home/runner/work/_temp/Library.
 
+    ## → Will update 1 package.
+
+    ## → The package (0 B) is cached.
+
+    ## + gt 1.3.0 → 1.4.0
+
     ## → Will install 1 system package:
 
     ## + libnode-dev  - V8
 
-    ## ℹ No downloads are needed
+    ## ℹ No downloads are needed, 1 pkg is cached
+
+    ## ✔ Got gt 1.4.0 (x86_64-pc-linux-gnu-ubuntu-22.04) (6.54 MB)
 
     ## ℹ Installing system requirements
 
@@ -37,7 +45,6 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
-
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
 
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
@@ -56,10 +63,10 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## make is already the newest version (4.3-4.1build1).
     ## pandoc is already the newest version (2.9.2.1-3ubuntu2).
     ## cmake is already the newest version (3.22.1-1ubuntu1.22.04.2).
-    ## libcurl4-openssl-dev is already the newest version (7.81.0-1ubuntu1.29).
     ## libssl-dev is already the newest version (3.0.2-0ubuntu1.30).
     ## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).
     ## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.14).
+    ## libcurl4-openssl-dev is already the newest version (7.81.0-1ubuntu1.30).
     ## The following additional packages will be installed:
 
     ## libnode72
@@ -68,7 +75,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## libnode-dev libnode72
 
-    ## 0 upgraded, 2 newly installed, 0 to remove and 22 not upgraded.
+    ## 0 upgraded, 2 newly installed, 0 to remove and 36 not upgraded.
     ## Need to get 11.4 MB of archives.
     ## After this operation, 47.4 MB of additional disk space will be used.
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
@@ -77,7 +84,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode-dev amd64 12.22.9~dfsg-1ubuntu3.6 [609 kB]
 
-    ## Fetched 11.4 MB in 0s (30.2 MB/s)
+    ## Fetched 11.4 MB in 0s (37.5 MB/s)
 
     ## Selecting previously unselected package libnode72:amd64.
     ## (Reading database ...
@@ -100,7 +107,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## (Reading database ... 95%
 
-    ## (Reading database ... 100%(Reading database ... 307447 files and directories currently installed.)
+    ## (Reading database ... 100%(Reading database ... 307796 files and directories currently installed.)
 
     ## Preparing to unpack .../libnode72_12.22.9~dfsg-1ubuntu3.6_amd64.deb ...
 
@@ -122,8 +129,6 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## 
     ## Services to be restarted:
 
-    ## systemctl restart packagekit.service
-
     ## systemctl restart php8.1-fpm.service
 
     ## No containers need to be restarted.
@@ -132,7 +137,9 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## 
     ## No VM guests are running outdated hypervisor (qemu) binaries on this host.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [13.7s]
+    ## ✔ Installed gt 1.4.0  (105ms)
+
+    ## ✔ 3 pkgs + 56 deps: kept 58, upd 1, dld 1 (6.54 MB) [14.3s]
 
 ``` r
 
@@ -171,7 +178,7 @@ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 
     ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-10-12 13:12:06 UTC
+    ## ℹ Data updated: 2026-10-18 11:45:19 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -195,7 +202,7 @@ cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC
 
     ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-10-12 13:12:07 UTC
+    ## ℹ Data updated: 2026-10-18 11:45:20 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team

@@ -60,21 +60,21 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_rosters_crosswalk())
 #> ── college football roster id crosswalk from the SportsDataverse data repo ─────
-#> ℹ Data updated: 2026-10-12 13:08:59 UTC
-#> # A tibble: 37,740 × 14
-#>    espn_team_id fox_team_id person_key       espn_athlete_id fox_athlete_id
-#>           <int> <chr>       <chr>                      <int> <chr>         
-#>  1         2400 231         bernatski boone          5160679 219173        
-#>  2         2400 231         ahmari borden            4870620 212439        
-#>  3         2400 231         josh brown               5233879 243883        
-#>  4         2400 231         landon brown             5304074 243842        
-#>  5         2400 231         caleb brownlow           5304085 243856        
-#>  6         2400 231         diego camboia            5225242 227518        
-#>  7         2400 231         miguel camboia           5168613 220503        
-#>  8         2400 231         joey davis               5304086 243875        
-#>  9         2400 231         tristen davis            5311016 249108        
-#> 10         2400 231         d cameron demoss         5304048 243884        
-#> # ℹ 37,730 more rows
+#> ℹ Data updated: 2026-10-18 11:40:57 UTC
+#> # A tibble: 45,533 × 14
+#>    espn_team_id fox_team_id person_key          espn_athlete_id fox_athlete_id
+#>           <int> <chr>       <chr>                         <int> <chr>         
+#>  1         2834 575         christen barnwell           5297312 243759        
+#>  2         2834 575         elton caldwell              5297316 243764        
+#>  3         2834 575         kye callicoatte             5297317 243771        
+#>  4         2834 575         diego coleman               5297308 243781        
+#>  5         2834 575         landen drake                5297285 243761        
+#>  6         2834 575         omarion dumas               5297319 243784        
+#>  7         2834 575         malik francis               5297320 243749        
+#>  8         2834 575         gunner hammond              5297284 243755        
+#>  9         2834 575         kendrick jefferson          5297280 243753        
+#> 10         2834 575         marcus jefferson jr         5297302 243776        
+#> # ℹ 45,523 more rows
 #> # ℹ 9 more variables: yahoo_athlete_id <chr>, name <chr>, espn_jersey <chr>,
 #> #   fox_jersey <chr>, espn_position <chr>, fox_position <chr>,
 #> #   yahoo_position <chr>, match_method <chr>, matched_sources <chr>

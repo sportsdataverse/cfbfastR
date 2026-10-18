@@ -90,7 +90,7 @@ Other CFBD Stats:
 # \donttest{
    try(cfbd_stats_game_havoc(year = 2023, team = "Georgia"))
 #> ── Game havoc stats from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-12 13:05:07 UTC
+#> ℹ Data updated: 2026-10-18 11:35:49 UTC
 #> # A tibble: 14 × 22
 #>      game_id season season_type  week team    conference opponent      
 #>        <int>  <int> <chr>       <int> <chr>   <chr>      <chr>         
@@ -98,16 +98,16 @@ Other CFBD Stats:
 #>  2 401520191   2023 regular         2 Georgia SEC        Ball State    
 #>  3 401520225   2023 regular         3 Georgia SEC        South Carolina
 #>  4 401520252   2023 regular         4 Georgia SEC        UAB           
-#>  5 401520280   2023 regular         5 Georgia SEC        Auburn        
-#>  6 401520300   2023 regular         6 Georgia SEC        Kentucky      
-#>  7 401520327   2023 regular         7 Georgia SEC        Vanderbilt    
-#>  8 401520352   2023 regular         9 Georgia SEC        Florida       
-#>  9 401520364   2023 regular        10 Georgia SEC        Missouri      
-#> 10 401520382   2023 regular        11 Georgia SEC        Ole Miss      
-#> 11 401520419   2023 regular        12 Georgia SEC        Tennessee     
-#> 12 401520430   2023 regular        13 Georgia SEC        Georgia Tech  
-#> 13 401539483   2023 regular        14 Georgia SEC        Alabama       
-#> 14 401551773   2023 postseason      1 Georgia SEC        Florida State 
+#>  5 401520300   2023 regular         6 Georgia SEC        Kentucky      
+#>  6 401520327   2023 regular         7 Georgia SEC        Vanderbilt    
+#>  7 401520352   2023 regular         9 Georgia SEC        Florida       
+#>  8 401520364   2023 regular        10 Georgia SEC        Missouri      
+#>  9 401520382   2023 regular        11 Georgia SEC        Ole Miss      
+#> 10 401520419   2023 regular        12 Georgia SEC        Tennessee     
+#> 11 401520430   2023 regular        13 Georgia SEC        Georgia Tech  
+#> 12 401539483   2023 regular        14 Georgia SEC        Alabama       
+#> 13 401551773   2023 postseason      1 Georgia SEC        Florida State 
+#> 14 401520280   2023 regular         5 Georgia SEC        Auburn        
 #> # ℹ 15 more variables: opponent_conference <chr>, off_total_plays <int>,
 #> #   off_total_havoc_events <int>, off_front_seven_havoc_events <int>,
 #> #   off_db_havoc_events <int>, off_havoc_rate <dbl>,
@@ -118,20 +118,20 @@ Other CFBD Stats:
 
    try(cfbd_stats_game_havoc(2022, week = 1))
 #> ── Game havoc stats from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-12 13:05:08 UTC
+#> ℹ Data updated: 2026-10-18 11:35:49 UTC
 #> # A tibble: 273 × 22
 #>      game_id season season_type  week team       conference opponent  
 #>        <int>  <int> <chr>       <int> <chr>      <chr>      <chr>     
-#>  1 401403853   2022 regular         1 Hawai'i    MWC        Vanderbilt
-#>  2 401403853   2022 regular         1 Vanderbilt SEC        Hawai'i   
-#>  3 401403854   2022 regular         1 Utah State MWC        Alabama   
-#>  4 401403854   2022 regular         1 Alabama    SEC        Utah State
-#>  5 401403855   2022 regular         1 Arkansas   SEC        Cincinnati
-#>  6 401403855   2022 regular         1 Cincinnati AAC        Arkansas  
-#>  7 401403856   2022 regular         1 Auburn     SEC        Mercer    
-#>  8 401403856   2022 regular         1 Mercer     SOCON      Auburn    
-#>  9 401403857   2022 regular         1 Florida    SEC        Utah      
-#> 10 401403857   2022 regular         1 Utah       PAC        Florida   
+#>  1 401403854   2022 regular         1 Utah State MWC        Alabama   
+#>  2 401403854   2022 regular         1 Alabama    SEC        Utah State
+#>  3 401403855   2022 regular         1 Arkansas   SEC        Cincinnati
+#>  4 401403855   2022 regular         1 Cincinnati AAC        Arkansas  
+#>  5 401403857   2022 regular         1 Florida    SEC        Utah      
+#>  6 401403857   2022 regular         1 Utah       PAC        Florida   
+#>  7 401403858   2022 regular         1 Georgia    SEC        Oregon    
+#>  8 401403858   2022 regular         1 Oregon     PAC        Georgia   
+#>  9 401403860   2022 regular         1 Ole Miss   SEC        Troy      
+#> 10 401403860   2022 regular         1 Troy       SBC        Ole Miss  
 #> # ℹ 263 more rows
 #> # ℹ 15 more variables: opponent_conference <chr>, off_total_plays <int>,
 #> #   off_total_havoc_events <dbl>, off_front_seven_havoc_events <dbl>,

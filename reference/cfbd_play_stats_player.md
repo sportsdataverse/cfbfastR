@@ -153,8 +153,8 @@ Other CFBD PBP:
 # \donttest{
   try(cfbd_play_stats_player(game_id = 401628414))
 #> ── Play-level player data from CollegeFootballData.com ── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-12 13:01:22 UTC
-#> # A tibble: 132 × 70
+#> ℹ Data updated: 2026-10-18 11:34:46 UTC
+#> # A tibble: 138 × 70
 #>      game_id season  week team     conference opponent team_score opponent_score
 #>        <int>  <int> <int> <chr>    <chr>      <chr>         <int>          <int>
 #>  1 401628414   2024    11 Ole Miss SEC        Georgia           0              0
@@ -167,7 +167,7 @@ Other CFBD PBP:
 #>  8 401628414   2024    11 Georgia  SEC        Ole Miss          0              0
 #>  9 401628414   2024    11 Georgia  SEC        Ole Miss          0              0
 #> 10 401628414   2024    11 Georgia  SEC        Ole Miss          7              0
-#> # ℹ 122 more rows
+#> # ℹ 128 more rows
 #> # ℹ 62 more variables: drive_id <chr>, play_id <chr>, period <int>,
 #> #   clock_minutes <int>, clock_seconds <int>, yards_to_goal <int>, down <int>,
 #> #   distance <int>, reception_player_id <chr>, reception_player <chr>,
@@ -176,8 +176,8 @@ Other CFBD PBP:
 #> #   rush_yds <int>, interception_player_id <chr>, interception_player <chr>, …
   try(cfbd_play_stats_player(year = 2025, week = 1))
 #> ── Play-level player data from CollegeFootballData.com ── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-12 13:01:34 UTC
-#> # A tibble: 1,294 × 70
+#> ℹ Data updated: 2026-10-18 11:34:54 UTC
+#> # A tibble: 1,162 × 70
 #>      game_id season  week team    conference opponent  team_score opponent_score
 #>        <int>  <int> <int> <chr>   <chr>      <chr>          <int>          <int>
 #>  1 401752665   2025     1 Alabama SEC        Florida …          0              0
@@ -190,7 +190,7 @@ Other CFBD PBP:
 #>  8 401752665   2025     1 Alabama SEC        Florida …          0              0
 #>  9 401752665   2025     1 Alabama SEC        Florida …          0              0
 #> 10 401752665   2025     1 Alabama SEC        Florida …          0              0
-#> # ℹ 1,284 more rows
+#> # ℹ 1,152 more rows
 #> # ℹ 62 more variables: drive_id <chr>, play_id <chr>, period <int>,
 #> #   clock_minutes <int>, clock_seconds <int>, yards_to_goal <int>, down <int>,
 #> #   distance <int>, reception_player_id <chr>, reception_player <chr>,

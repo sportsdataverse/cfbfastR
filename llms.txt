@@ -181,6 +181,9 @@ Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%
 [![GitHub
 stars](https://img.shields.io/github/stars/sportsdataverse/cfbfastR.svg?color=eee&logo=github&style=for-the-badge&label=Star%20cfbfastR&maxAge=2592000)](https://github.com/sportsdataverse/cfbfastR)
 
+[![Star history of
+sportsdataverse/cfbfastR](https://raw.githubusercontent.com/sportsdataverse/cfbfastR/star-history/star-history.png)](https://github.com/sportsdataverse/cfbfastR/stargazers)
+
 ## **Our Authors**
 
 - [Saiem Gilani](https://x.com/saiemgilani)

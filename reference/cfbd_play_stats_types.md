@@ -34,8 +34,8 @@ Other CFBD PBP:
 # \donttest{
   try(cfbd_play_stats_types())
 #> ── Play stats type data from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-12 13:01:35 UTC
-#> # A tibble: 26 × 2
+#> ℹ Data updated: 2026-10-18 11:34:55 UTC
+#> # A tibble: 31 × 2
 #>    play_stat_type_id name            
 #>                <int> <chr>           
 #>  1                 1 Incompletion    
@@ -48,6 +48,6 @@ Other CFBD PBP:
 #>  8                 8 Fumble          
 #>  9                 9 Fumble Forced   
 #> 10                10 Fumble Recovered
-#> # ℹ 16 more rows
+#> # ℹ 21 more rows
 # }
 ```

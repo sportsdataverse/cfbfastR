@@ -44,20 +44,20 @@ A `cfbfastR`-tagged tibble with one row per (game, stat):
 # \donttest{
   try(fox_cfb_team_gamelog(team_id = "11"))
 #> ── Team game log from Fox Sports (Bifrost) ────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-12 13:08:45 UTC
+#> ℹ Data updated: 2026-10-18 11:40:39 UTC
 #> # A tibble: 340 × 8
 #>    team_id season_type    category game_id game_date opponent stat     value
 #>    <chr>   <chr>          <chr>    <chr>   <chr>     <chr>    <chr>    <chr>
-#>  1 11      REGULAR SEASON passing  43479   10/3      @CLEM    comp     18   
-#>  2 11      REGULAR SEASON passing  43479   10/3      @CLEM    att      27   
-#>  3 11      REGULAR SEASON passing  43479   10/3      @CLEM    pct      66.7 
-#>  4 11      REGULAR SEASON passing  43479   10/3      @CLEM    yds      227  
-#>  5 11      REGULAR SEASON passing  43479   10/3      @CLEM    pyds_att 15.5 
-#>  6 11      REGULAR SEASON passing  43479   10/3      @CLEM    td       1    
-#>  7 11      REGULAR SEASON passing  43479   10/3      @CLEM    int      0    
-#>  8 11      REGULAR SEASON passing  43479   10/3      @CLEM    sck      2    
-#>  9 11      REGULAR SEASON passing  43479   10/3      @CLEM    yds_2    7    
-#> 10 11      REGULAR SEASON passing  43479   10/3      @CLEM    qbr      149.5
+#>  1 11      REGULAR SEASON passing  43679   10/17     FSU      comp     23   
+#>  2 11      REGULAR SEASON passing  43679   10/17     FSU      att      34   
+#>  3 11      REGULAR SEASON passing  43679   10/17     FSU      pct      67.6 
+#>  4 11      REGULAR SEASON passing  43679   10/17     FSU      yds      326  
+#>  5 11      REGULAR SEASON passing  43679   10/17     FSU      pyds_att 17.1 
+#>  6 11      REGULAR SEASON passing  43679   10/17     FSU      td       3    
+#>  7 11      REGULAR SEASON passing  43679   10/17     FSU      int      1    
+#>  8 11      REGULAR SEASON passing  43679   10/17     FSU      sck      1    
+#>  9 11      REGULAR SEASON passing  43679   10/17     FSU      yds_2    3    
+#> 10 11      REGULAR SEASON passing  43679   10/17     FSU      qbr      171.4
 #> # ℹ 330 more rows
 # }
 ```

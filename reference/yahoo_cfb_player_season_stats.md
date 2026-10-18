@@ -68,9 +68,9 @@ Other Yahoo CFB Functions:
 # \donttest{
   try(yahoo_cfb_player_season_stats(season = 2024))
 #> ── Player season stats from Yahoo Sports (shangrila) ──── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-12 13:10:31 UTC
+#> ℹ Data updated: 2026-10-18 11:43:08 UTC
 #> # A tibble: 200 × 89
-#>    player_id      display_name     team  team_abbreviation field_goal_percentage
+#>    player_id      display_name     team  team_abbreviation completion_percentage
 #>    <chr>          <chr>            <chr> <chr>             <chr>                
 #>  1 ncaaf.p.64742  Trey Sanders     TCU   TCU               NA                   
 #>  2 ncaaf.p.176026 Alexander Diggs  Kenn… KENN              NA                   
@@ -83,11 +83,11 @@ Other Yahoo CFB Functions:
 #>  9 ncaaf.p.276361 Spencer Curtis   Hawa… HAW               NA                   
 #> 10 ncaaf.p.276368 Logan Lutui      BYU   BYU               NA                   
 #> # ℹ 190 more rows
-#> # ℹ 84 more variables: field_goals_0_to_19 <chr>, field_goals_made_40_49 <chr>,
-#> #   games_offense <chr>, rushing_touchdowns <chr>, receiving_touchdowns <chr>,
-#> #   field_goal_attempts_0_19 <chr>, field_goals_made <chr>,
-#> #   field_goals_made_50_plus <chr>, rushing_attempts_per_game <chr>,
-#> #   punt_returns <chr>, games_receiving <chr>, passes_defended <chr>,
-#> #   field_goal_attempts_30_39 <chr>, games_rushing <chr>, …
+#> # ℹ 84 more variables: punt_yards <chr>, qb_rating <chr>, games_rushing <chr>,
+#> #   interception_return_touchdowns <chr>, games_passing <chr>,
+#> #   passing_attempts <chr>, receptions <chr>, longest_pass <chr>,
+#> #   solo_tackles <chr>, extra_point_percentage <chr>,
+#> #   interceptions_forced <chr>, punt_yards_per_punt <chr>,
+#> #   receiving_yards_per_reception <chr>, field_goals_made <chr>, …
 # }
 ```

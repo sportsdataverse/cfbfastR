@@ -64,7 +64,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_recruits(2002))
 #> ── college football recruiting rankings from the SportsDataverse data repo ─────
-#> ℹ Data updated: 2026-10-12 13:08:54 UTC
+#> ℹ Data updated: 2026-10-18 11:40:51 UTC
 #> # A tibble: 2,058 × 9
 #>    season team_id team_id_247 team   recruit_id player_name stars grade position
 #>     <int> <chr>   <chr>       <chr>  <chr>      <chr>       <int> <dbl> <chr>   
