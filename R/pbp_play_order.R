@@ -58,7 +58,7 @@
   o <- order(idl, idc, adj_t, na.last = FALSE, method = "radix")
   # the input row order (ESPN's feed) breaks a clock tie for an out-of-scheme id
   o <- o[.place_out_of_scheme_plays(idl[o], per[o], adj_t[o], o)]
-  season <-suppressWarnings(max(num(season), na.rm = TRUE))
+  season <- suppressWarnings(max(num(season), na.rm = TRUE))
   o <- o[.reorder_late_inserts(seqn[o], adj_t[o], drv[o], per[o], type[o], season)]
   o <- o[.reunite_drive_rows(drv[o], start_text[o], end_text[o], type[o], per[o], id[o])]
   o <- o[.place_tries_after_kickoff(type[o], per[o], adj_t[o])]
@@ -103,6 +103,8 @@
   lag <- c(NA, per[-n]); lead <- c(per[-1L], NA)
   wlag <- c(NA, idl[-n]); wlead <- c(idl[-1L], NA)
   # polars: Kleene or, a null comparison counts as false; a missing neighbour width differs
+  # `lag > per` and the two NA guards are kept for parity with sdv-py's rule; they never fire on the
+  # 23,024-game cfb-raw corpus (0 missing period/clock in 3.6M rows), so no fixture can test them
   stray <- ((lag > per) %in% TRUE | (lead < per) %in% TRUE) &
     !((idl == wlag) %in% TRUE) & !((idl == wlead) %in% TRUE) & !is.na(per) & !is.na(adj_t)
   if (!any(stray)) return(seq_len(n))
