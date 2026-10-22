@@ -5,6 +5,9 @@
 #' been labelled "Unknown": sort by play id (then game clock), and repair the order
 #' ESPN's ids get wrong:
 #'
+#' * **out-of-scheme ids**: a play filed under a 10-digit `<game_id>0` id among
+#'   18-digit ones goes right after the last play before it by period, clock and,
+#'   on a clock tie, input (feed) position (`_place_out_of_scheme_plays`);
 #' * **late inserts** (2014+): a play ESPN added after the fact with a fresh,
 #'   later id but the `sequenceNumber` and clock of its true position moves back
 #'   after the play with the greatest smaller sequence in its own drive
@@ -53,6 +56,8 @@
 
   # polars sorts nulls first; R's order() puts NA last unless told otherwise
   o <- order(idl, idc, adj_t, na.last = FALSE, method = "radix")
+  # the input row order (ESPN's feed) breaks a clock tie for an out-of-scheme id
+  o <- o[.place_out_of_scheme_plays(idl[o], per[o], adj_t[o], o)]
   season <- suppressWarnings(max(num(season), na.rm = TRUE))
   o <- o[.reorder_late_inserts(seqn[o], adj_t[o], drv[o], per[o], type[o], season)]
   o <- o[.reunite_drive_rows(drv[o], start_text[o], end_text[o], type[o], per[o], id[o])]
@@ -78,6 +83,40 @@
 .try_types <- c("Extra Point Good", "Extra Point Missed", "Two-Point Conversion Good",
                 "Two-Point Conversion Missed", "Two Point Pass", "Two Point Rush",
                 "Blocked PAT", "Defensive 2pt Conversion")
+
+#' sdv-py `_place_out_of_scheme_plays` on vectors in id order; returns a permutation.
+#'
+#' A play filed under an id outside the feed's numbering (401425418's 10-digit
+#' `4014254180` among 18-digit ids) sorts to the game's start. A row moves only when
+#' its id's width differs from both neighbours' and its period breaks the order there
+#' (a 2025+ feed whose ids change width as they count already runs in period order).
+#' It goes right after the LAST row that comes before it -- an earlier period, more
+#' time left, or the same clock and an earlier `feed` position -- not after a count of
+#' them: the id-sorted rest is not always in clock order (sportsdataverse-py #908).
+#' @param idl Id widths; `per`, `adj_t` period and seconds remaining; `feed` input row
+#'   positions.
+#' @keywords internal
+#' @noRd
+.place_out_of_scheme_plays <- function(idl, per, adj_t, feed) {
+  n <- length(idl)
+  if (n < 3L) return(seq_len(n))
+  lag <- c(NA, per[-n]); lead <- c(per[-1L], NA)
+  wlag <- c(NA, idl[-n]); wlead <- c(idl[-1L], NA)
+  # polars: Kleene or, a null comparison counts as false; a missing neighbour width differs
+  # `lag > per` and the two NA guards are kept for parity with sdv-py's rule; they never fire on the
+  # 23,024-game cfb-raw corpus (0 missing period/clock in 3.6M rows), so no fixture can test them
+  stray <- ((lag > per) %in% TRUE | (lead < per) %in% TRUE) &
+    !((idl == wlag) %in% TRUE) & !((idl == wlead) %in% TRUE) & !is.na(per) & !is.na(adj_t)
+  if (!any(stray)) return(seq_len(n))
+  rest <- which(!stray)
+  for (s in which(stray)) {
+    p <- per[rest]; t <- adj_t[rest]
+    before <- (p < per[s]) | ((p == per[s]) & ((t > adj_t[s]) | ((t == adj_t[s]) & (feed[rest] < feed[s]))))
+    at <- max(c(0L, which(before %in% TRUE)))
+    rest <- append(rest, s, after = at)
+  }
+  rest
+}
 
 #' sdv-py `_reorder_late_inserts` on vectors already in id order; returns a permutation.
 #' @keywords internal

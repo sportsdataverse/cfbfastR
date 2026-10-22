@@ -34,8 +34,13 @@ the id sort changes no game in the 20,719-game raw corpus, so no fixture game ex
 also retypes a few untyped try rows before that final sort (401525903's "two-point conversion
 rushing attempt failed" becomes Two-Point Conversion Missed, the only such row 2004-26); the game is
 left out here: its order depends on that relabel, which `.espn_retype_plays()` ports
-(`retype_oracle.csv.gz`). Re-capture: `python data-raw/parity_play_order_oracle.py` (env
-`SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file.
+(`retype_oracle.csv.gz`). Re-captured 2026-10-19 from sportsdataverse-py `5a36d43fb5`
+(`devel-cfb`, after #908) on cfbfastR-cfb-raw `19865a79e3`, adding the 17 games where
+`_place_out_of_scheme_plays` fires: a play filed under a 10-digit `<game_id>0` id among 18-digit
+ids, every such game in the 23,024-game 2004-26 raw corpus (`test-pbp_play_order_out_of_scheme.R`).
+The first 45 games' rows are byte-identical to the 2026-09-30 capture. Re-capture:
+`python data-raw/parity_play_order_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not
+hand-edit the file.
 
 `retype_oracle.csv.gz` — captured 2026-10-01 from sportsdataverse-py `88acd48d2` (#642, #643): every
 play of 22 games as it leaves `__helper_cfb_pbp_features()` (same offline pipeline, in that stage's

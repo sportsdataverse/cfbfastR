@@ -77,6 +77,26 @@ GAMES = [
     401864500,
     # nothing to repair
     242900265,
+    # a play id outside the feed's numbering (a 10-digit <game_id>0 among 18-digit ids):
+    # every 2004-26 game where sdv-py's _place_out_of_scheme_plays fires (C-M18, R837-1;
+    # 400548110 is the clock tie the feed breaks, 401420836 the id order that is not clock order)
+    400547832,
+    400548110,
+    400763412,
+    400869342,
+    401128715,
+    401234599,
+    401282633,
+    401403861,
+    401403866,
+    401403981,
+    401415210,
+    401420836,
+    401425418,
+    401426533,
+    401426536,
+    401426538,
+    401525858,
 ]
 COLS = [
     "game_id",

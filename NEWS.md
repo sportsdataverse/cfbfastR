@@ -182,6 +182,12 @@ and every `exp_qbr` come back `NA` without an error once the shared
   against sdv-py's order on 270 ESPN games, clock order put 685 plays after the
   wrong neighbour, against 151 for id order. `engine = "legacy"` on either
   function is unchanged.
+* `espn_cfb_pbp()` (v2) places a play ESPN filed under an id outside the feed's
+  numbering (a 10-digit `<game_id>0` among 18-digit ids) where sdv-py does: right
+  after the last play before it by period, clock and, on a clock tie, feed position
+  (sportsdataverse-py#908). The id sort used to make it the game's first play, so it
+  and its neighbours read the wrong previous play. It happens in 17 of the 23,024
+  2004-2026 raw games, and the engine's order now equals sdv-py's in all 17.
 * `espn_cfb_pbp()` (v2) now models plays under the types sdv-py gives them:
   - kicks ESPN scored as a field goal or extra point but left untyped (the 2004
     feed) take that type;
