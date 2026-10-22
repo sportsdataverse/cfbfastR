@@ -71,7 +71,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_team_group_seasons(2024))
 #> ── college football team conference membership by season from the SportsDatavers
-#> ℹ Data updated: 2026-10-18 11:41:00 UTC
+#> ℹ Data updated: 2026-10-22 17:19:45 UTC
 #> # A tibble: 677 × 11
 #>    league season team_id team_id_source team_name   subdivision_id conference_id
 #>    <chr>   <int> <chr>   <chr>          <chr>       <chr>          <chr>        

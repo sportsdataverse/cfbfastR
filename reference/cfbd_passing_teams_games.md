@@ -82,8 +82,8 @@ Other CFBD Passing:
 # \donttest{
   try(cfbd_passing_teams_games(year = 2025, week = 5))
 #> ── Team game passing data from CollegeFootballData.com ── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-18 11:31:51 UTC
-#> # A tibble: 104 × 375
+#> ℹ Data updated: 2026-10-22 17:12:52 UTC
+#> # A tibble: 104 × 385
 #>      game_id season  week season_type team  conference opponent offense_attempts
 #>        <int>  <int> <int> <chr>       <chr> <chr>      <chr>               <int>
 #>  1 401752717   2025     5 regular     Arka… SEC        Notre D…               32
@@ -97,7 +97,7 @@ Other CFBD Passing:
 #>  9 401752721   2025     5 regular     Mass… MAC        Missouri               36
 #> 10 401752721   2025     5 regular     Miss… SEC        Massach…               32
 #> # ℹ 94 more rows
-#> # ℹ 367 more variables: offense_completions <int>, offense_incompletions <int>,
+#> # ℹ 377 more variables: offense_completions <int>, offense_incompletions <int>,
 #> #   offense_interceptions <int>, offense_completion_rate <dbl>,
 #> #   offense_air_yards_attempts_available <int>, offense_total_air_yards <int>,
 #> #   offense_average_depth_of_target <int>,

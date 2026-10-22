@@ -204,8 +204,8 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_player_statistics(game_id = 401628339,
                                       athlete_id = 4429105))
 #> ── Game player statistics data from ESPN ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-18 11:37:56 UTC
-#> # A tibble: 141 × 34
+#> ℹ Data updated: 2026-10-22 17:17:32 UTC
+#> # A tibble: 143 × 34
 #>    game_id   athlete_id team_id team_name team_abbreviation team_location
 #>    <chr>     <chr>      <chr>   <chr>     <chr>             <chr>        
 #>  1 401628339 4429105    61      Bulldogs  UGA               Georgia      
@@ -218,7 +218,7 @@ Other ESPN CFB Functions:
 #>  8 401628339 4429105    61      Bulldogs  UGA               Georgia      
 #>  9 401628339 4429105    61      Bulldogs  UGA               Georgia      
 #> 10 401628339 4429105    61      Bulldogs  UGA               Georgia      
-#> # ℹ 131 more rows
+#> # ℹ 133 more rows
 #> # ℹ 28 more variables: team_display_name <chr>, team_short_display_name <chr>,
 #> #   team_nickname <chr>, team_color <chr>, team_alternate_color <chr>,
 #> #   team_logo_href <chr>, team_logo_dark_href <chr>,
@@ -229,8 +229,8 @@ Other ESPN CFB Functions:
                                       athlete_id = 4429105,
                                       position_detail = FALSE))
 #> ── Game player statistics data from ESPN ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-18 11:37:56 UTC
-#> # A tibble: 141 × 29
+#> ℹ Data updated: 2026-10-22 17:17:32 UTC
+#> # A tibble: 143 × 29
 #>    game_id   athlete_id team_id team_name team_abbreviation team_location
 #>    <chr>     <chr>      <chr>   <chr>     <chr>             <chr>        
 #>  1 401628339 4429105    61      Bulldogs  UGA               Georgia      
@@ -243,7 +243,7 @@ Other ESPN CFB Functions:
 #>  8 401628339 4429105    61      Bulldogs  UGA               Georgia      
 #>  9 401628339 4429105    61      Bulldogs  UGA               Georgia      
 #> 10 401628339 4429105    61      Bulldogs  UGA               Georgia      
-#> # ℹ 131 more rows
+#> # ℹ 133 more rows
 #> # ℹ 23 more variables: team_display_name <chr>, team_short_display_name <chr>,
 #> #   team_nickname <chr>, team_color <chr>, team_alternate_color <chr>,
 #> #   team_logo_href <chr>, team_logo_dark_href <chr>,
@@ -254,8 +254,8 @@ Other ESPN CFB Functions:
                                       athlete_id = 4429105,
                                       team_detail = FALSE))
 #> ── Game player statistics data from ESPN ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-18 11:37:56 UTC
-#> # A tibble: 141 × 24
+#> ℹ Data updated: 2026-10-22 17:17:32 UTC
+#> # A tibble: 143 × 24
 #>    game_id   athlete_id team_id athlete_display_name jersey starter did_not_play
 #>    <chr>     <chr>      <chr>   <chr>                <chr>  <lgl>   <lgl>       
 #>  1 401628339 4429105    61      A. Smith             11     FALSE   FALSE       
@@ -268,7 +268,7 @@ Other ESPN CFB Functions:
 #>  8 401628339 4429105    61      A. Smith             11     FALSE   FALSE       
 #>  9 401628339 4429105    61      A. Smith             11     FALSE   FALSE       
 #> 10 401628339 4429105    61      A. Smith             11     FALSE   FALSE       
-#> # ℹ 131 more rows
+#> # ℹ 133 more rows
 #> # ℹ 17 more variables: position_id <chr>, category_name <chr>,
 #> #   category_display_name <chr>, category_short_display_name <chr>,
 #> #   category_summary <chr>, stat_name <chr>, stat_display_name <chr>,

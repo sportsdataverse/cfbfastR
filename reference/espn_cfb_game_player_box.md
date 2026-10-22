@@ -195,8 +195,8 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_player_box(game_id = 401628339))
 #> ── Game player box score data from ESPN ───────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-18 11:37:40 UTC
-#> # A tibble: 6,083 × 33
+#> ℹ Data updated: 2026-10-22 17:17:21 UTC
+#> # A tibble: 6,101 × 33
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
 #>  1 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
@@ -209,7 +209,7 @@ Other ESPN CFB Functions:
 #>  8 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #>  9 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #> 10 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> # ℹ 6,073 more rows
+#> # ℹ 6,091 more rows
 #> # ℹ 27 more variables: team_short_display_name <chr>, team_nickname <chr>,
 #> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
 #> #   team_logo_dark_href <chr>, home_away <chr>, athlete_id <chr>,
@@ -219,8 +219,8 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_player_box(game_id = 401628339,
                                position_detail = FALSE))
 #> ── Game player box score data from ESPN ───────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-18 11:37:48 UTC
-#> # A tibble: 6,083 × 28
+#> ℹ Data updated: 2026-10-22 17:17:27 UTC
+#> # A tibble: 6,101 × 28
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
 #>  1 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
@@ -233,7 +233,7 @@ Other ESPN CFB Functions:
 #>  8 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #>  9 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #> 10 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> # ℹ 6,073 more rows
+#> # ℹ 6,091 more rows
 #> # ℹ 22 more variables: team_short_display_name <chr>, team_nickname <chr>,
 #> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
 #> #   team_logo_dark_href <chr>, home_away <chr>, athlete_id <chr>,
@@ -243,8 +243,8 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_player_box(game_id = 401628339,
                                team_detail = FALSE))
 #> ── Game player box score data from ESPN ───────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-18 11:37:55 UTC
-#> # A tibble: 6,083 × 23
+#> ℹ Data updated: 2026-10-22 17:17:31 UTC
+#> # A tibble: 6,101 × 23
 #>    game_id   team_id home_away athlete_id athlete_name position_id category_name
 #>    <chr>     <chr>   <chr>     <chr>      <chr>        <chr>       <chr>        
 #>  1 401628339 61      home      4429105    A. Smith     1           general      
@@ -257,7 +257,7 @@ Other ESPN CFB Functions:
 #>  8 401628339 61      home      4429105    A. Smith     1           passing      
 #>  9 401628339 61      home      4429105    A. Smith     1           passing      
 #> 10 401628339 61      home      4429105    A. Smith     1           passing      
-#> # ℹ 6,073 more rows
+#> # ℹ 6,091 more rows
 #> # ℹ 16 more variables: category_display <chr>, category_short_display <chr>,
 #> #   category_summary <chr>, stat_name <chr>, abbreviation <chr>,
 #> #   display_name <chr>, short_display_name <chr>, description <chr>,

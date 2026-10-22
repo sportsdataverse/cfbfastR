@@ -40,27 +40,8 @@ Other loaders:
 ``` r
 # \donttest{
   try(load_cfb_teams())
+#> 2026-10-22 17:19:47.944053:Invalid arguments or no team data available! The CFBD API returned HTTP 502 (Bad Gateway)
 #> ── Team information from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-18 11:41:04 UTC
-#> # A tibble: 138 × 43
-#>    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
-#>      <int> <chr>    <chr>  <chr>        <chr>     <chr>     <chr>     <chr>     
-#>  1    2005 Air For… Falco… AF           AF        Air Force NA        Mountain …
-#>  2    2006 Akron    Zips   AKR          AKR       Akron     NA        Mid-Ameri…
-#>  3     333 Alabama  Crims… ALA          ALA       Alabama   NA        SEC       
-#>  4    2026 App Sta… Mount… APP          Appalach… APP       App State Sun Belt  
-#>  5      12 Arizona  Wildc… ARIZ         ARIZ      Arizona   NA        Big 12    
-#>  6       9 Arizona… Sun D… ASU          ASU       Arizona … NA        Big 12    
-#>  7       8 Arkansas Razor… ARK          ARK       Arkansas  NA        SEC       
-#>  8    2032 Arkansa… Red W… ARST         ARST      Arkansas… NA        Sun Belt  
-#>  9     349 Army     Black… ARMY         ARMY      Army      NA        American …
-#> 10       2 Auburn   Tigers AUB          AUB       Auburn    NA        SEC       
-#> # ℹ 128 more rows
-#> # ℹ 35 more variables: division <chr>, classification <chr>, color <chr>,
-#> #   alt_color <chr>, logo <chr>, logo_2 <chr>, logos_3 <chr>, logos_4 <chr>,
-#> #   logos_5 <chr>, logos_6 <chr>, logos_7 <chr>, logos_8 <chr>, logos_9 <chr>,
-#> #   logos_10 <chr>, logos_11 <chr>, logos_12 <chr>, logos_13 <chr>,
-#> #   logos_14 <chr>, logos_15 <chr>, logos_16 <chr>, twitter <chr>,
-#> #   venue_id <int>, venue_name <chr>, city <chr>, state <chr>, zip <chr>, …
+#> # A tibble: 0 × 0
 # }
 ```

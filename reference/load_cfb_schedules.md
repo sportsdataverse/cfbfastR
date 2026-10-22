@@ -40,27 +40,9 @@ Other loaders:
 ``` r
 # \donttest{
   try(load_cfb_schedules(2024))
+#> 2026-10-22 17:19:44.323481: Invalid arguments or no game info data available! The CFBD API returned HTTP 502 (Bad Gateway)
 #> ── Games and schedules from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-18 11:40:59 UTC
-#> # A tibble: 920 × 32
-#>      game_id season  week season_type start_date        start_time_tbd completed
-#>        <int>  <int> <int> <chr>       <chr>             <lgl>          <lgl>    
-#>  1 401635525   2024     1 regular     2024-08-24T16:00… FALSE          TRUE     
-#>  2 401643697   2024     1 regular     2024-08-24T20:00… FALSE          TRUE     
-#>  3 401643696   2024     1 regular     2024-08-25T00:00… FALSE          TRUE     
-#>  4 401643858   2024     1 regular     2024-08-25T03:59… FALSE          TRUE     
-#>  5 401628458   2024     1 regular     2024-08-29T22:00… FALSE          TRUE     
-#>  6 401628581   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
-#>  7 401634299   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
-#>  8 401636387   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
-#>  9 401628582   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
-#> 10 401644730   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
-#> # ℹ 910 more rows
-#> # ℹ 25 more variables: neutral_site <lgl>, conference_game <lgl>,
-#> #   attendance <int>, venue_id <int>, venue <chr>, home_id <int>,
-#> #   home_team <chr>, home_division <chr>, home_conference <chr>,
-#> #   home_points <int>, home_post_win_prob <dbl>, home_pregame_elo <int>,
-#> #   home_postgame_elo <int>, away_id <int>, away_team <chr>,
-#> #   away_division <chr>, away_conference <chr>, away_points <int>, …
+#> ℹ Data updated: 2026-10-22 17:19:44 UTC
+#> # A tibble: 0 × 0
 # }
 ```

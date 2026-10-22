@@ -79,8 +79,8 @@ Other CFBD Passing:
 # \donttest{
   try(cfbd_passing_players_season(year = 2025, team = "Texas"))
 #> ── Player season passing data from CollegeFootballData.com ─────────────────────
-#> ℹ Data updated: 2026-10-18 11:31:46 UTC
-#> # A tibble: 7 × 189
+#> ℹ Data updated: 2026-10-22 17:12:45 UTC
+#> # A tibble: 7 × 194
 #>   season player_id player    team  conference attempts completions incompletions
 #>    <int> <chr>     <chr>     <chr> <chr>         <int>       <int>         <int>
 #> 1   2025 4870906   Arch Man… Texas SEC             399         242           149
@@ -90,12 +90,12 @@ Other CFBD Passing:
 #> 5   2025 4877717   Matthew … Texas SEC               7           5             2
 #> 6   2025 5079556   Parker L… Texas SEC               2           2             0
 #> 7   2025 5218633   Ryan Win… Texas SEC               2           0             2
-#> # ℹ 181 more variables: interceptions <int>, completion_rate <dbl>,
+#> # ℹ 186 more variables: interceptions <int>, completion_rate <dbl>,
 #> #   air_yards_attempts_available <int>, total_air_yards <int>,
 #> #   average_depth_of_target <dbl>, total_yards_attempts_available <int>,
 #> #   total_yards <int>, yards_after_catch_attempts_available <int>,
 #> #   total_yards_after_catch <int>, average_yards_after_catch <dbl>,
-#> #   success_rate <dbl>, ppa <dbl>, total_ppa <dbl>, explosiveness <dbl>,
-#> #   ppa_attempts_available <int>, success_attempts_available <int>, …
+#> #   cpoe_attempts_available <int>, cpoe_completions <int>,
+#> #   expected_completions <lgl>, expected_completion_rate <lgl>, cpoe <lgl>, …
 # }
 ```

@@ -116,8 +116,8 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_player_box(2004))
 #> ── ESPN college football player box scores from the SportsDataverse data repo ──
-#> ℹ Data updated: 2026-10-18 11:41:37 UTC
-#> # A tibble: 23,981 × 46
+#> ℹ Data updated: 2026-10-22 17:20:15 UTC
+#> # A tibble: 23,981 × 41
 #>    completions/passingAttem…¹ passingYards yardsPerPassAttempt passingTouchdowns
 #>    <chr>                      <chr>        <chr>               <chr>            
 #>  1 19/29                      272          9.4                 3                
@@ -132,7 +132,7 @@ Saiem Gilani
 #> 10 NA                         NA           NA                  NA               
 #> # ℹ 23,971 more rows
 #> # ℹ abbreviated name: ¹​`completions/passingAttempts`
-#> # ℹ 42 more variables: interceptions <chr>, adjQBR <chr>, category <chr>,
+#> # ℹ 37 more variables: interceptions <chr>, adjQBR <chr>, category <chr>,
 #> #   athlete_id <int>, athlete_name <chr>, jersey <lgl>, team_id <int>,
 #> #   rushingAttempts <chr>, rushingYards <chr>, yardsPerRushAttempt <chr>,
 #> #   rushingTouchdowns <chr>, longRushing <chr>, receptions <chr>,

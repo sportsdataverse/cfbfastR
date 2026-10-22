@@ -86,7 +86,7 @@ returns a zero-row frame carrying this schema.
     create_qbr(pbp)
   })
 #> ── QBR data ───────────────────────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-18 11:36:32 UTC
+#> ℹ Data updated: 2026-10-22 17:16:42 UTC
 #> # A tibble: 3 × 15
 #>   game_id pos_team athlete_name plays qbr_epa sack_epa pass_epa rush_epa pen_epa
 #>   <chr>   <chr>    <chr>        <int>   <dbl>    <dbl>    <dbl>    <dbl>   <dbl>

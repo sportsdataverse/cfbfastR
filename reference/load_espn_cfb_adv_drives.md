@@ -67,7 +67,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_drives(2004))
 #> ── college football advanced drives from the SportsDataverse data repo ─────────
-#> ℹ Data updated: 2026-10-18 11:41:09 UTC
+#> ℹ Data updated: 2026-10-22 17:19:51 UTC
 #> # A tibble: 926 × 12
 #>    pos_team_id pos_team            drive_total_availabl…¹ drive_total_gained_y…²
 #>          <int> <chr>                                <dbl>                  <int>

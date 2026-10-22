@@ -86,8 +86,8 @@ Other CFBD Passing:
 # \donttest{
   try(cfbd_passing_players_games(year = 2025, week = 5))
 #> ── Player game passing data from CollegeFootballData.com ───────────────────────
-#> ℹ Data updated: 2026-10-18 11:31:45 UTC
-#> # A tibble: 183 × 193
+#> ℹ Data updated: 2026-10-22 17:12:42 UTC
+#> # A tibble: 183 × 198
 #>      game_id season  week season_type player_id player team  conference opponent
 #>        <int>  <int> <int> <chr>       <chr>     <chr>  <chr> <chr>      <chr>   
 #>  1 401752717   2025     5 regular     4431325   Tayle… Arka… SEC        Notre D…
@@ -101,7 +101,7 @@ Other CFBD Passing:
 #>  9 401752719   2025     5 regular     4911529   Trini… Ole … SEC        LSU     
 #> 10 401752720   2025     5 regular     4565315   Blake… Miss… SEC        Tenness…
 #> # ℹ 173 more rows
-#> # ℹ 184 more variables: attempts <int>, completions <int>, incompletions <int>,
+#> # ℹ 189 more variables: attempts <int>, completions <int>, incompletions <int>,
 #> #   interceptions <int>, completion_rate <dbl>,
 #> #   air_yards_attempts_available <int>, total_air_yards <int>,
 #> #   average_depth_of_target <int>, total_yards_attempts_available <int>,

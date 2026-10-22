@@ -60,20 +60,20 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_rosters_crosswalk())
 #> ── college football roster id crosswalk from the SportsDataverse data repo ─────
-#> ℹ Data updated: 2026-10-18 11:40:57 UTC
+#> ℹ Data updated: 2026-10-22 17:19:42 UTC
 #> # A tibble: 45,533 × 14
-#>    espn_team_id fox_team_id person_key          espn_athlete_id fox_athlete_id
-#>           <int> <chr>       <chr>                         <int> <chr>         
-#>  1         2834 575         christen barnwell           5297312 243759        
-#>  2         2834 575         elton caldwell              5297316 243764        
-#>  3         2834 575         kye callicoatte             5297317 243771        
-#>  4         2834 575         diego coleman               5297308 243781        
-#>  5         2834 575         landen drake                5297285 243761        
-#>  6         2834 575         omarion dumas               5297319 243784        
-#>  7         2834 575         malik francis               5297320 243749        
-#>  8         2834 575         gunner hammond              5297284 243755        
-#>  9         2834 575         kendrick jefferson          5297280 243753        
-#> 10         2834 575         marcus jefferson jr         5297302 243776        
+#>    espn_team_id fox_team_id person_key       espn_athlete_id fox_athlete_id
+#>           <int> <chr>       <chr>                      <int> <chr>         
+#>  1         2117 72          jaden allen              4876695 191173        
+#>  2         2117 72          zander barth             5316895 250038        
+#>  3         2117 72          marcus beamon            5295480 233756        
+#>  4         2117 72          vaughn blue              5122147 210405        
+#>  5         2117 72          jacob booth              5120452 210574        
+#>  6         2117 72          jayden clerveaux         5157391 213011        
+#>  7         2117 72          nic disanto              5153454 218497        
+#>  8         2117 72          da shon febres           5327593 250048        
+#>  9         2117 72          angel flores             5084769 198457        
+#> 10         2117 72          shawn foster ii          5221139 231524        
 #> # ℹ 45,523 more rows
 #> # ℹ 9 more variables: yahoo_athlete_id <chr>, name <chr>, espn_jersey <chr>,
 #> #   fox_jersey <chr>, espn_position <chr>, fox_position <chr>,

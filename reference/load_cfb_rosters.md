@@ -41,8 +41,8 @@ Other loaders:
 # \donttest{
   try(load_cfb_rosters(2024))
 #> ── Team roster data from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-18 11:40:56 UTC
-#> # A tibble: 22,843 × 18
+#> ℹ Data updated: 2026-10-22 17:19:41 UTC
+#> # A tibble: 22,794 × 18
 #>    athlete_id first_name last_name team      weight height jersey  year position
 #>    <chr>      <chr>      <chr>     <chr>      <int>  <int>  <int> <int> <chr>   
 #>  1 102597     Will       Rogers    Washingt…    216     74      7     4 QB      
@@ -51,11 +51,11 @@ Other loaders:
 #>  4 160900     Will       Johnson   Michigan      NA     NA     NA    NA NA      
 #>  5 184812     Calvin     Moore     Cal Poly     180     70      4     2 CB      
 #>  6 233186     Josh       Jenkins   Holy Cro…    190     73      9     3 QB      
-#>  7 245322     Marcus     Patterson Western …    264     75      6     4 DL      
+#>  7 245322     Marcus     Patterson Western …    264     75      6     1 DL      
 #>  8 383510     John       Williams  Cincinna…    320     77     75     4 OL      
 #>  9 385738     Jacob      Johnson   Southern…    235     74     48     3 LB      
 #> 10 484303     Patrick    Ryan      Georgeto…    204     74     89     2 P       
-#> # ℹ 22,833 more rows
+#> # ℹ 22,784 more rows
 #> # ℹ 9 more variables: home_city <chr>, home_state <chr>, home_country <chr>,
 #> #   home_latitude <dbl>, home_longitude <dbl>, home_county_fips <chr>,
 #> #   recruit_ids <list>, headshot_url <chr>, season <int>

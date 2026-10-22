@@ -80,7 +80,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_turnover(2004))
 #> ── college football advanced turnover from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-10-18 11:41:18 UTC
+#> ℹ Data updated: 2026-10-22 17:19:59 UTC
 #> # A tibble: 926 × 25
 #>    pos_team_id pos_team           turnovers st_turnovers_lost   Int fumbles_lost
 #>          <int> <chr>                  <int>             <int> <int>        <int>

@@ -71,7 +71,7 @@ Saiem Gilani
 # \donttest{
   try(load_ncaa_mfb_rosters(2013))
 #> ── NCAA men's football rosters (stats.ncaa.org) from the SportsDataverse data re
-#> ℹ Data updated: 2026-10-18 11:41:57 UTC
+#> ℹ Data updated: 2026-10-22 17:20:31 UTC
 #> # A tibble: 25,041 × 16
 #>    team_id team_name  player_id player_name  jersey statcrew_jersey player_class
 #>    <chr>   <chr>      <chr>     <chr>        <chr>  <chr>           <chr>       

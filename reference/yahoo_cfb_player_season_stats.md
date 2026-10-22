@@ -68,7 +68,7 @@ Other Yahoo CFB Functions:
 # \donttest{
   try(yahoo_cfb_player_season_stats(season = 2024))
 #> ── Player season stats from Yahoo Sports (shangrila) ──── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-18 11:43:08 UTC
+#> ℹ Data updated: 2026-10-22 17:21:30 UTC
 #> # A tibble: 200 × 89
 #>    player_id      display_name     team  team_abbreviation completion_percentage
 #>    <chr>          <chr>            <chr> <chr>             <chr>                
@@ -83,11 +83,11 @@ Other Yahoo CFB Functions:
 #>  9 ncaaf.p.276361 Spencer Curtis   Hawa… HAW               NA                   
 #> 10 ncaaf.p.276368 Logan Lutui      BYU   BYU               NA                   
 #> # ℹ 190 more rows
-#> # ℹ 84 more variables: punt_yards <chr>, qb_rating <chr>, games_rushing <chr>,
-#> #   interception_return_touchdowns <chr>, games_passing <chr>,
-#> #   passing_attempts <chr>, receptions <chr>, longest_pass <chr>,
-#> #   solo_tackles <chr>, extra_point_percentage <chr>,
-#> #   interceptions_forced <chr>, punt_yards_per_punt <chr>,
-#> #   receiving_yards_per_reception <chr>, field_goals_made <chr>, …
+#> # ℹ 84 more variables: passing_interceptions <chr>, longest_pass <chr>,
+#> #   rushing_touchdowns <chr>, rushing_attempts <chr>, passes_defended <chr>,
+#> #   receiving_yards_per_game <chr>, extra_point_attempts <chr>,
+#> #   qb_rating <chr>, passing_attempts <chr>, games_passing <chr>,
+#> #   games_offense <chr>, interceptions_forced <chr>,
+#> #   field_goal_attempts_30_39 <chr>, passing_yards <chr>, …
 # }
 ```

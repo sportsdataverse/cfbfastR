@@ -62,7 +62,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_wepa_players_kicking(year = 2019, team = "TCU"))
 #> ── Points Added Above Replacement (PAAR) ratings for kicking data from CollegeFo
-#> ℹ Data updated: 2026-10-18 11:31:38 UTC
+#> ℹ Data updated: 2026-10-22 17:12:31 UTC
 #> # A tibble: 2 × 7
 #>    year athlete_id athlete_name  team  conference  paar attempts
 #>   <int> <chr>      <chr>         <chr> <chr>      <dbl>    <int>

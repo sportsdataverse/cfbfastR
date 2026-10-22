@@ -165,8 +165,8 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_player_career_stats(athlete_id = 102597, year = 2024))
 #> ── Player season statistics from ESPN ─────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-18 11:38:26 UTC
-#> # A tibble: 163 × 19
+#> ℹ Data updated: 2026-10-22 17:17:54 UTC
+#> # A tibble: 165 × 19
 #>    athlete_id season season_type category category_display stat_name            
 #>    <chr>       <int>       <int> <chr>    <chr>            <chr>                
 #>  1 102597       2024           2 general  General          fumbles              
@@ -179,7 +179,7 @@ Other ESPN CFB Functions:
 #>  8 102597       2024           2 general  General          fumblesRecoveredYards
 #>  9 102597       2024           2 general  General          fumblesTouchdowns    
 #> 10 102597       2024           2 general  General          gamesPlayed          
-#> # ℹ 153 more rows
+#> # ℹ 155 more rows
 #> # ℹ 13 more variables: display_name <chr>, abbreviation <chr>,
 #> #   description <chr>, value <dbl>, display_value <chr>, per_game_value <dbl>,
 #> #   per_game_display_value <chr>, athlete_display_name <chr>,
@@ -188,8 +188,8 @@ Other ESPN CFB Functions:
   try(espn_cfb_player_career_stats(athlete_id = 102597, year = 2024,
                                  athlete_detail = FALSE))
 #> ── Player season statistics from ESPN ─────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-18 11:38:26 UTC
-#> # A tibble: 163 × 13
+#> ℹ Data updated: 2026-10-22 17:17:54 UTC
+#> # A tibble: 165 × 13
 #>    athlete_id season season_type category category_display stat_name            
 #>    <chr>       <int>       <int> <chr>    <chr>            <chr>                
 #>  1 102597       2024           2 general  General          fumbles              
@@ -202,7 +202,7 @@ Other ESPN CFB Functions:
 #>  8 102597       2024           2 general  General          fumblesRecoveredYards
 #>  9 102597       2024           2 general  General          fumblesTouchdowns    
 #> 10 102597       2024           2 general  General          gamesPlayed          
-#> # ℹ 153 more rows
+#> # ℹ 155 more rows
 #> # ℹ 7 more variables: display_name <chr>, abbreviation <chr>,
 #> #   description <chr>, value <dbl>, display_value <chr>, per_game_value <dbl>,
 #> #   per_game_display_value <chr>

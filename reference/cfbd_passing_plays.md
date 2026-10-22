@@ -149,8 +149,8 @@ Other CFBD Passing:
 # \donttest{
   try(cfbd_passing_plays(year = 2025, week = 1, team = "Texas"))
 #> ── Passing plays data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-18 11:31:49 UTC
-#> # A tibble: 128 × 39
+#> ℹ Data updated: 2026-10-22 17:12:47 UTC
+#> # A tibble: 128 × 41
 #>      game_id play_id        drive_id season  week season_type offense_id offense
 #>        <int> <chr>          <chr>     <int> <int> <chr>            <int> <chr>  
 #>  1 401752677 4017526771019… 4017526…   2025     1 regular            251 Texas  
@@ -164,7 +164,7 @@ Other CFBD Passing:
 #>  9 401752677 4017526771019… 4017526…   2025     1 regular            194 Ohio S…
 #> 10 401752677 4017526771019… 4017526…   2025     1 regular            194 Ohio S…
 #> # ℹ 118 more rows
-#> # ℹ 31 more variables: offense_conference <chr>, defense_id <int>,
+#> # ℹ 33 more variables: offense_conference <chr>, defense_id <int>,
 #> #   defense <chr>, defense_conference <chr>, period <int>, down <int>,
 #> #   distance <int>, play_text <chr>, passer_id <chr>, passer <chr>,
 #> #   target_id <chr>, target <chr>, outcome <chr>, air_yards <int>,
