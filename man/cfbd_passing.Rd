@@ -46,7 +46,7 @@
 \section{The passing production block}{
 
 
-Every passing endpoint below shares one 23-column production block. It is
+Every passing endpoint below shares one 28-column production block. It is
 documented once here rather than repeated in each returns table, because the
 team endpoints carry it sixteen times over (see \emph{Location splits}).\tabular{lll}{
    col_name \tab type \tab description \cr
@@ -63,6 +63,11 @@ team endpoints carry it sixteen times over (see \emph{Location splits}).\tabular
    yards_after_catch_attempts_available \tab integer \tab Attempts for which yards after catch were parsed. \cr
    total_yards_after_catch \tab integer \tab Sum of yards after catch over those attempts. \cr
    average_yards_after_catch \tab double \tab Mean yards after catch per completion. \cr
+   cpoe_attempts_available \tab integer \tab Attempts carrying a CFBD completion probability (the denominator for the CPOE columns). \cr
+   cpoe_completions \tab integer \tab Completions among the \code{cpoe_attempts_available} attempts. \cr
+   expected_completions \tab double \tab Sum of completion probability over the \code{cpoe_attempts_available} attempts. \cr
+   expected_completion_rate \tab double \tab \code{expected_completions} divided by \code{cpoe_attempts_available} (proportion 0-1). \cr
+   cpoe \tab double \tab Completion percentage over expected, in percentage points: 100 x (\code{cpoe_completions} - \code{expected_completions}) / \code{cpoe_attempts_available}. \cr
    success_rate \tab double \tab Successful attempts divided by \code{success_attempts_available} (proportion 0-1). \cr
    ppa \tab double \tab Predicted points added per attempt. \cr
    total_ppa \tab double \tab Sum of predicted points added. \cr
@@ -76,6 +81,11 @@ team endpoints carry it sixteen times over (see \emph{Location splits}).\tabular
 }
 
 
+The five CPOE columns appear only at the top level: the \verb{locations_*} buckets
+below do not carry them. A frame with no scored attempt (e.g. 2025 week 5,
+where \code{cpoe_attempts_available} is 0 throughout) gets \code{NA} CPOE values, which
+R types \code{logical}.
+
 The \verb{*_available} counts are denominators, not statistics. CFBD parses these
 fields out of play text, so an attempt can be counted while its air yards,
 YAC or location stay unknown. Dividing by \code{attempts} instead of the matching
@@ -86,8 +96,8 @@ YAC or location stay unknown. Dividing by \code{attempts} instead of the matchin
 
 
 Each of seven pass locations carries 23 columns, prefixed \verb{locations_<bucket>_}
-(e.g. \code{locations_short_left_attempts}): the production block without its two
-\verb{location_*} counts, plus \code{yards_per_attempt} and \code{air_yards_per_attempt}.
+(e.g. \code{locations_short_left_attempts}): the production block without its five
+CPOE columns and two \verb{location_*} counts, plus \code{yards_per_attempt} and \code{air_yards_per_attempt}.
 The buckets are:
 \itemize{
 \item \code{short_left}, \code{short_middle}, \code{short_right}
@@ -124,9 +134,9 @@ Each bucket's columns:\tabular{lll}{
 
 
 All seven buckets are always present, including empty ones. So a player frame
-is 5 identity columns + 23 production + 7 x 23 location = \strong{189 columns}, and a
+is 5 identity columns + 28 production + 7 x 23 location = \strong{194 columns}, and a
 team frame doubles the production and location blocks across \code{offense_} and
-\code{defense_} for \strong{371}.
+\code{defense_} for \strong{381}.
 }
 
 \section{Season coverage}{

@@ -30,7 +30,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \item{classification}{(\emph{String} optional): Division classification - fbs, fcs, ii, ii/iii, iii}
 }
 \value{
-\code{\link[=cfbd_passing_players_season]{cfbd_passing_players_season()}} - A data frame with 189 variables:\tabular{lll}{
+\code{\link[=cfbd_passing_players_season]{cfbd_passing_players_season()}} - A data frame with 194 variables:\tabular{lll}{
    col_name \tab type \tab description \cr
    season \tab integer \tab Four-digit season year (e.g. 2025). \cr
    player_id \tab character \tab CFBD athlete identifier (use with \code{cfbd_player_info()}). \cr
@@ -40,7 +40,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 
 
-plus the 23-column passing production block and its seven \verb{locations_*}
+plus the 28-column passing production block and its seven \verb{locations_*}
 repeats -- both described under \strong{The passing production block} and
 \strong{Location splits} in \link{cfbd_passing}.
 }

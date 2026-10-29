@@ -142,9 +142,10 @@ season-stats endpoints above do not: passing production split across seven pass
 locations, rushing across four run directions, and play-level frames with air
 yards, yards after catch and carrier attribution.
 
-These frames are **wide by construction** — one 23-column passing production
-block repeats for every location, and the team endpoints repeat the whole thing
-for offense and defense, so `cfbd_passing_teams_season()` is 371 columns. Select
+These frames are **wide by construction** — a 28-column passing production
+block, a 23-column form of it for every location, and the team endpoints repeat
+the whole thing for offense and defense, so `cfbd_passing_teams_season()` is 381
+columns. Select
 what you need rather than printing them whole.
 
 ```{r}

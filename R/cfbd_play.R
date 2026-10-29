@@ -645,7 +645,7 @@ cfbd_play_stats_player <- function(year = NULL,
 
 #' @title
 #' **Get college football mapping for play stats types**
-#' @return [cfbd_play_stats_types()] - A data frame with 25 rows and 2 variables:
+#' @return [cfbd_play_stats_types()] - A data frame with 31 rows and 2 variables:
 #'
 #'    |col_name          |types     |description                                                                          |
 #'    |:-----------------|:---------|:------------------------------------------------------------------------------------|

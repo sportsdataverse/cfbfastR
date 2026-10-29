@@ -46,7 +46,7 @@ Minimum value accepted: 2025}
 \item{classification}{(\emph{String} optional): Division classification - fbs, fcs, ii, ii/iii, iii}
 }
 \value{
-\code{\link[=cfbd_passing_plays]{cfbd_passing_plays()}} - A data frame with 39 variables:\tabular{lll}{
+\code{\link[=cfbd_passing_plays]{cfbd_passing_plays()}} - A data frame with 41 variables:\tabular{lll}{
    col_name \tab type \tab description \cr
    game_id \tab integer \tab Unique game identifier - \code{game_id}. \cr
    play_id \tab character \tab Unique play identifier - \code{play_id}. \cr
@@ -87,13 +87,17 @@ Minimum value accepted: 2025}
    ppa \tab double \tab Predicted points added on the play. \cr
    success \tab logical \tab TRUE when the play met the success threshold for its down and distance. \cr
    location_analysis_eligible \tab logical \tab TRUE when the play is eligible to be counted in a location split. \cr
+   completion_probability \tab double \tab CFBD modeled probability that the pass is completed (\code{NA} when CFBD has not scored the play). \cr
+   cpoe \tab double \tab Completion over expected, in percentage points: 100 x (\code{completed} - \code{completion_probability}), \code{completed} being 1 for a completion and 0 otherwise. \cr
 }
 
 
 Check a column before building on it. As of this writing CFBD has \strong{not}
 populated play-level \code{air_yards}, \code{yards_after_catch}, \code{pass_depth},
 \code{pass_direction} or \code{pass_location} at all -- every value is \code{NA}, so R types
-those columns \code{logical} -- while \code{target} is populated (1,976 of 2,003 week-5
+those columns \code{logical}. \code{completion_probability} and \code{cpoe} are populated
+for most of 2025 and 2026 but not every week (all \code{NA} in 2025 week 5) --
+while \code{target} is populated (1,976 of 2,003 week-5
 2025 completions) and the SEASON aggregates in
 \code{\link[=cfbd_passing_players_season]{cfbd_passing_players_season()}} do carry air yards. Filter on
 \code{location_analysis_eligible} or \code{parse_status} rather than assuming a column

@@ -69,6 +69,20 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   `cfbd_pbp_data(offense =)` and, on `cfbd_pbp_data_v2()`, `offense`, `defense`,
   `offense_conference`, `defense_conference`, `conference` and `division`.
 
+## Fixed: CFBD passing CPOE columns, play stat types and gateway retries
+
+- CFBD added completion-over-expected to its passing endpoints. The production
+  block in `?cfbd_passing` now documents `cpoe_attempts_available`,
+  `cpoe_completions`, `expected_completions`, `expected_completion_rate` and
+  `cpoe` (28 columns; the `locations_*` buckets do not carry them), so the player
+  frames are 194/198 columns and the team frames 381/385.
+  `cfbd_passing_plays()` gains `completion_probability` and `cpoe` (41 columns).
+  A week CFBD has not scored, such as 2025 week 5, returns them all `NA`.
+- `cfbd_play_stats_types()` now documents 31 rows: CFBD added the punt stat
+  types (ids 27-31).
+- CFBD requests retry HTTP 502 and 504 as well as 429 and 503. A single 502
+  from CFBD's gateway used to fail the call outright.
+
 ## Fixed: ESPN play-by-play carries the pre-game line
 
 `espn_cfb_pbp(epa_wpa = TRUE)` on the default `v2` engine (and
@@ -297,10 +311,11 @@ deep x left/middle/right, plus `unknown`), rushing production split across four
 run directions, and play-level frames with air yards, yards after catch, target
 ids, run direction and carrier attribution.
 
-The frames are wide by construction rather than by accident. One 23-column
-passing production block repeats per location, and the team endpoints repeat the
-whole thing for `offense_` and `defense_`, so `cfbd_passing_teams_season()` is
-3 + 2 x (23 + 7 x 23) = **371 columns**. Rather than a 371-row returns table,
+The frames are wide by construction rather than by accident. A 28-column
+passing production block sits beside a 23-column form of it per location, and
+the team endpoints repeat the whole thing for `offense_` and `defense_`, so
+`cfbd_passing_teams_season()` is 3 + 2 x (28 + 7 x 23) = **381 columns**. Rather
+than a 381-row returns table,
 `?cfbd_passing` documents the production block and the bucket naming scheme once
 and every column follows from it; `?cfbd_rushing` does the same for the
 24/26-column rushing block and its four directions.

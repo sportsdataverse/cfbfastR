@@ -33,7 +33,7 @@
 #'
 #' @section The passing production block:
 #'
-#' Every passing endpoint below shares one 23-column production block. It is
+#' Every passing endpoint below shares one 28-column production block. It is
 #' documented once here rather than repeated in each returns table, because the
 #' team endpoints carry it sixteen times over (see *Location splits*).
 #'
@@ -52,6 +52,11 @@
 #'  |yards_after_catch_attempts_available |integer   |Attempts for which yards after catch were parsed.                                |
 #'  |total_yards_after_catch              |integer   |Sum of yards after catch over those attempts.                                    |
 #'  |average_yards_after_catch            |double    |Mean yards after catch per completion.                                           |
+#'  |cpoe_attempts_available              |integer   |Attempts carrying a CFBD completion probability (the denominator for the CPOE columns). |
+#'  |cpoe_completions                     |integer   |Completions among the `cpoe_attempts_available` attempts.                        |
+#'  |expected_completions                 |double    |Sum of completion probability over the `cpoe_attempts_available` attempts.      |
+#'  |expected_completion_rate             |double    |`expected_completions` divided by `cpoe_attempts_available` (proportion 0-1).    |
+#'  |cpoe                                 |double    |Completion percentage over expected, in percentage points: 100 x (`cpoe_completions` - `expected_completions`) / `cpoe_attempts_available`. |
 #'  |success_rate                         |double    |Successful attempts divided by `success_attempts_available` (proportion 0-1).    |
 #'  |ppa                                  |double    |Predicted points added per attempt.                                              |
 #'  |total_ppa                            |double    |Sum of predicted points added.                                                   |
@@ -63,6 +68,11 @@
 #'  |location_eligible_attempts           |integer   |Attempts eligible for a location split.                                          |
 #'  |location_available_attempts          |integer   |Attempts for which a location was actually parsed.                               |
 #'
+#' The five CPOE columns appear only at the top level: the `locations_*` buckets
+#' below do not carry them. A frame with no scored attempt (e.g. 2025 week 5,
+#' where `cpoe_attempts_available` is 0 throughout) gets `NA` CPOE values, which
+#' R types `logical`.
+#'
 #' The `*_available` counts are denominators, not statistics. CFBD parses these
 #' fields out of play text, so an attempt can be counted while its air yards,
 #' YAC or location stay unknown. Dividing by `attempts` instead of the matching
@@ -71,8 +81,8 @@
 #' @section Location splits:
 #'
 #' Each of seven pass locations carries 23 columns, prefixed `locations_<bucket>_`
-#' (e.g. `locations_short_left_attempts`): the production block without its two
-#' `location_*` counts, plus `yards_per_attempt` and `air_yards_per_attempt`.
+#' (e.g. `locations_short_left_attempts`): the production block without its five
+#' CPOE columns and two `location_*` counts, plus `yards_per_attempt` and `air_yards_per_attempt`.
 #' The buckets are:
 #'
 #' * `short_left`, `short_middle`, `short_right`
@@ -108,9 +118,9 @@
 #'  |air_yards_per_attempt                |double    |Air yards per attempt: `total_air_yards` divided by `air_yards_attempts_available`, to one decimal. The same value as `average_depth_of_target`; NA when no attempt has air yards. |
 #'
 #' All seven buckets are always present, including empty ones. So a player frame
-#' is 5 identity columns + 23 production + 7 x 23 location = **189 columns**, and a
+#' is 5 identity columns + 28 production + 7 x 23 location = **194 columns**, and a
 #' team frame doubles the production and location blocks across `offense_` and
-#' `defense_` for **371**.
+#' `defense_` for **381**.
 #'
 #' @section Season coverage:
 #'
@@ -132,7 +142,7 @@ NULL
 #' @param passer_id (*String* optional): CFBD athlete id of the passer to filter on.
 #' @param classification (*String* optional): Division classification - fbs, fcs, ii, ii/iii, iii
 #'
-#' @return [cfbd_passing_players_season()] - A data frame with 189 variables:
+#' @return [cfbd_passing_players_season()] - A data frame with 194 variables:
 #'
 #'  |col_name        |type      |description                                                     |
 #'  |:---------------|:---------|:---------------------------------------------------------------|
@@ -142,7 +152,7 @@ NULL
 #'  |team            |character |Team name.                                                      |
 #'  |conference      |character |Team conference name.                                           |
 #'
-#' plus the 23-column passing production block and its seven `locations_*`
+#' plus the 28-column passing production block and its seven `locations_*`
 #' repeats -- both described under **The passing production block** and
 #' **Location splits** in [cfbd_passing].
 #'
@@ -234,7 +244,7 @@ cfbd_passing_players_season <- function(year = NULL,
 #' @param passer_id (*String* optional): CFBD athlete id of the passer to filter on.
 #' @param classification (*String* optional): Division classification - fbs, fcs, ii, ii/iii, iii
 #'
-#' @return [cfbd_passing_players_games()] - A data frame with 193 variables:
+#' @return [cfbd_passing_players_games()] - A data frame with 198 variables:
 #'
 #'  |col_name        |type      |description                                                     |
 #'  |:---------------|:---------|:---------------------------------------------------------------|
@@ -248,7 +258,7 @@ cfbd_passing_players_season <- function(year = NULL,
 #'  |conference      |character |Team conference name.                                           |
 #'  |opponent        |character |Opposing team name.                                             |
 #'
-#' plus the 23-column passing production block and its seven `locations_*`
+#' plus the 28-column passing production block and its seven `locations_*`
 #' repeats -- see [cfbd_passing].
 #'
 #' @keywords Passing Players Games
@@ -342,7 +352,7 @@ cfbd_passing_players_games <- function(year = NULL,
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' @param classification (*String* optional): Division classification - fbs, fcs, ii, ii/iii, iii
 #'
-#' @return [cfbd_passing_teams_season()] - A data frame with 371 variables:
+#' @return [cfbd_passing_teams_season()] - A data frame with 381 variables:
 #'
 #'  |col_name        |type      |description                                                     |
 #'  |:---------------|:---------|:---------------------------------------------------------------|
@@ -350,9 +360,9 @@ cfbd_passing_players_games <- function(year = NULL,
 #'  |team            |character |Team name.                                                      |
 #'  |conference      |character |Team conference name.                                           |
 #'
-#' plus TWO copies of the 23-column production block, each with its seven
+#' plus TWO copies of the 28-column production block, each with its seven
 #' 23-column `locations_*` repeats: `offense_*` (the team's own passing) and
-#' `defense_*` (passing allowed). That is 3 + 2 x (23 + 7 x 23) = 371.
+#' `defense_*` (passing allowed). That is 3 + 2 x (28 + 7 x 23) = 381.
 #' See [cfbd_passing]. So `offense_ppa` is PPA per attempt thrown and
 #' `defense_ppa` is PPA per attempt allowed -- a *lower* `defense_ppa` is better.
 #'
@@ -438,7 +448,7 @@ cfbd_passing_teams_season <- function(year = NULL,
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' @param classification (*String* optional): Division classification - fbs, fcs, ii, ii/iii, iii
 #'
-#' @return [cfbd_passing_teams_games()] - A data frame with 375 variables:
+#' @return [cfbd_passing_teams_games()] - A data frame with 385 variables:
 #'
 #'  |col_name        |type      |description                                                     |
 #'  |:---------------|:---------|:---------------------------------------------------------------|
@@ -549,7 +559,7 @@ cfbd_passing_teams_games <- function(year = NULL,
 #' @param outcome (*String* optional): Pass outcome - completion, incompletion, interception
 #' @param classification (*String* optional): Division classification - fbs, fcs, ii, ii/iii, iii
 #'
-#' @return [cfbd_passing_plays()] - A data frame with 39 variables:
+#' @return [cfbd_passing_plays()] - A data frame with 41 variables:
 #'
 #'  |col_name                   |type      |description                                                                              |
 #'  |:--------------------------|:---------|:----------------------------------------------------------------------------------------|
@@ -592,11 +602,15 @@ cfbd_passing_teams_games <- function(year = NULL,
 #'  |ppa                        |double    |Predicted points added on the play.                                                      |
 #'  |success                    |logical   |TRUE when the play met the success threshold for its down and distance.                  |
 #'  |location_analysis_eligible |logical   |TRUE when the play is eligible to be counted in a location split.                        |
+#'  |completion_probability     |double    |CFBD modeled probability that the pass is completed (`NA` when CFBD has not scored the play). |
+#'  |cpoe                       |double    |Completion over expected, in percentage points: 100 x (`completed` - `completion_probability`), `completed` being 1 for a completion and 0 otherwise. |
 #'
 #' Check a column before building on it. As of this writing CFBD has **not**
 #' populated play-level `air_yards`, `yards_after_catch`, `pass_depth`,
 #' `pass_direction` or `pass_location` at all -- every value is `NA`, so R types
-#' those columns `logical` -- while `target` is populated (1,976 of 2,003 week-5
+#' those columns `logical`. `completion_probability` and `cpoe` are populated
+#' for most of 2025 and 2026 but not every week (all `NA` in 2025 week 5) --
+#' while `target` is populated (1,976 of 2,003 week-5
 #' 2025 completions) and the SEASON aggregates in
 #' [cfbd_passing_players_season()] do carry air yards. Filter on
 #' `location_analysis_eligible` or `parse_status` rather than assuming a column

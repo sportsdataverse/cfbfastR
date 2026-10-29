@@ -304,10 +304,16 @@ build_req <- function(full_url, proxy = NULL) {
   #
   # Note this is the production path only -- tests already slow themselves via
   # the `get_req()` wrapper in tests/testthat/setup-cfbd-throttle.R.
+  #
+  # httr2's default `is_transient` covers 429 and 503 only. CFBD's gateway also
+  # answers 502/504 while the backend restarts; without a retry the first one
+  # surfaced as "The CFBD API returned HTTP 502 (Bad Gateway)" (the 2026-10-23
+  # weekly R-CMD-check, test-goal_to_go_distance.R).
   req |>
     httr2::req_retry(
       max_tries   = 6,
       max_seconds = 120,
+      is_transient = function(resp) httr2::resp_status(resp) %in% c(429L, 502L, 503L, 504L),
       backoff     = function(i) stats::runif(1, 0.5, 1.5) * (2 ^ i)
     ) |>
     httr2::req_error(is_error = function(resp) FALSE)

@@ -19,6 +19,17 @@ test_that("build_req() carries a retry budget that survives sustained CFBD throt
   expect_true(is.finite(req$policies$retry_backoff(1)))
 })
 
+test_that("build_req() retries CFBD gateway errors, not client errors", {
+  req <- cfbfastR:::build_req("https://api.collegefootballdata.com/games")
+  transient <- function(code) {
+    req$policies$retry_is_transient(httr2::response(status_code = code))
+  }
+  # httr2's default stops at 429/503; a 502 from CFBD's gateway failed the
+  # 2026-10-23 weekly check on its first occurrence.
+  for (code in c(429L, 502L, 503L, 504L)) expect_true(transient(code), label = code)
+  for (code in c(400L, 401L, 404L, 500L)) expect_false(transient(code), label = code)
+})
+
 test_that("build_req() leaves HTTP status handling to check_status()", {
   req <- cfbfastR:::build_req("https://api.collegefootballdata.com/games")
 
