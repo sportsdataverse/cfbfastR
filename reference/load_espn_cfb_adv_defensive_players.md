@@ -70,21 +70,21 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_defensive_players(2004))
 #> ── college football advanced defensive players from the SportsDataverse data rep
-#> ℹ Data updated: 2026-10-22 17:19:50 UTC
-#> # A tibble: 1,593 × 10
+#> ℹ Data updated: 2026-10-30 00:16:40 UTC
+#> # A tibble: 1,744 × 10
 #>    def_pos_team_id def_pos_team    player_name interceptions interceptions_yards
 #>              <int> <chr>           <chr>               <int>               <int>
 #>  1              30 USC Trojans     Lofa Tatupu             1                  32
 #>  2              30 USC Trojans     Ronald Nunn             0                   0
 #>  3            2050 Ball State Car… David Gater             1                  29
 #>  4            2050 Ball State Car… Donta Smith             0                   0
-#>  5              77 Northwestern W… Dominique …             1                   0
-#>  6            2628 TCU Horned Fro… Marvin God…             1                  32
-#>  7               9 Arizona State … Emmanuel F…             2                  75
-#>  8               9 Arizona State … Josh Barre…             0                   0
-#>  9               9 Arizona State … Mike Davis…             1                   8
-#> 10               9 Arizona State … Quency Dar…             1                   5
-#> # ℹ 1,583 more rows
+#>  5              77 Northwestern W… David Thom…             0                   0
+#>  6              77 Northwestern W… Dominique …             1                   0
+#>  7            2628 TCU Horned Fro… Marvin God…             1                  32
+#>  8               9 Arizona State … Emmanuel F…             2                  75
+#>  9               9 Arizona State … Josh Barre…             0                   0
+#> 10               9 Arizona State … Mike Davis…             1                   8
+#> # ℹ 1,734 more rows
 #> # ℹ 5 more variables: fumble_recoveries <int>, fumble_recoveries_yards <int>,
 #> #   game_id <int>, season <int>, week <int>
 # }

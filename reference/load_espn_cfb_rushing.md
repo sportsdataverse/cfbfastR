@@ -84,20 +84,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_rushing(2004))
 #> ── college football rushing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-10-22 17:20:18 UTC
+#> ℹ Data updated: 2026-10-30 00:17:06 UTC
 #> # A tibble: 1,122 × 78
 #>    team_id pos_team      division conference season player_id rusher_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 59      Georgia Tech  fbs      ACC          2004    100579 Mark Logan        
-#>  2 204     Oregon State  fbs      Pac-10       2004    145041 Yvenson Bernard   
-#>  3 2116    UCF           fbs      Mid-Ameri…   2004    157896 Kyle Israel       
-#>  4 2084    Buffalo       fbs      Mid-Ameri…   2004    127676 Dave Dawson       
-#>  5 264     Washington    fbs      Pac-10       2004    145204 Sonny Shackelford 
-#>  6 193     Miami (OH)    fbs      Mid-Ameri…   2004    147316 Brandon Murphy    
-#>  7 5       UAB           fbs      Conferenc…   2004    115044 Darrell Hackney   
-#>  8 96      Kentucky      fbs      SEC          2004    134064 Glenn Holt Jr.    
-#>  9 130     Michigan      fbs      Big Ten      2004    116385 Braylon Edwards   
-#> 10 2711    Western Mich… fbs      Mid-Ameri…   2004    115467 Trovon Riley      
+#>  1 259     Virginia Tech fbs      ACC          2004    116190 Bryan Randall     
+#>  2 97      Louisville    fbs      Conferenc…   2004    112516 Stefan LeFors     
+#>  3 2199    Eastern Mich… fbs      Mid-Ameri…   2004    136199 Anthony Sherrell  
+#>  4 142     Missouri      fbs      Big 12       2004    145459 Beau Viehmann     
+#>  5 2509    Purdue        fbs      Big Ten      2004    101132 Jon Goldsberry    
+#>  6 183     Syracuse      fbs      Big East     2004    113926 Xzavier Gaines    
+#>  7 2579    South Caroli… fbs      SEC          2004    146843 Noah Whiteside    
+#>  8 344     Mississippi … fbs      SEC          2004    102581 Darnell Jones     
+#>  9 36      Colorado Sta… fbs      Mountain …   2004    150673 George Hill       
+#> 10 2459    Northern Ill… fbs      Mid-Ameri…   2004    114880 Dan Sheldon       
 #> # ℹ 1,112 more rows
 #> # ℹ 71 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, rushing_td <dbl>, fumbles <dbl>,

@@ -224,7 +224,7 @@ writes the season data into a database.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">load_espn_cfb_percentiles</span><span class="op">(</span><span class="fl">2004</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── college football team percentile profiles from the SportsDataverse data repo </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-22 17:20:11 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-30 00:17:00 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 99 × 27</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    pctile   GEI EPAplay pass_success rush_success early_down_success</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -232,12 +232,12 @@ writes the season data into a database.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>   0.02 1.00   -<span style="color: #BB0000;">0.478</span>        0.180        0.181              0.222</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>   0.03 1.10   -<span style="color: #BB0000;">0.448</span>        0.209        0.2                0.240</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>   0.04 1.17   -<span style="color: #BB0000;">0.397</span>        0.226        0.212              0.25 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>   0.05 1.25   -<span style="color: #BB0000;">0.373</span>        0.234        0.222              0.263</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>   0.06 1.28   -<span style="color: #BB0000;">0.352</span>        0.245        0.233              0.271</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>   0.07 1.35   -<span style="color: #BB0000;">0.338</span>        0.25         0.241              0.277</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>   0.05 1.22   -<span style="color: #BB0000;">0.373</span>        0.234        0.222              0.263</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>   0.06 1.27   -<span style="color: #BB0000;">0.352</span>        0.245        0.233              0.271</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>   0.07 1.34   -<span style="color: #BB0000;">0.338</span>        0.25         0.241              0.277</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>   0.08 1.40   -<span style="color: #BB0000;">0.332</span>        0.263        0.25               0.280</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>   0.09 1.47   -<span style="color: #BB0000;">0.314</span>        0.267        0.257              0.290</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>   0.1  1.48   -<span style="color: #BB0000;">0.296</span>        0.273        0.265              0.297</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>   0.09 1.47   -<span style="color: #BB0000;">0.314</span>        0.267        0.257              0.289</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>   0.1  1.48   -<span style="color: #BB0000;">0.296</span>        0.273        0.265              0.296</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 89 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 21 more variables: early_down_EPA &lt;dbl&gt;, late_down_success &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   success &lt;dbl&gt;, yardsplay &lt;dbl&gt;, dropbacks &lt;dbl&gt;, rushes &lt;dbl&gt;,</span></span>

@@ -49,7 +49,7 @@ cfbd_passing_players_season(
 
 ## Value
 
-`cfbd_passing_players_season()` - A data frame with 189 variables:
+`cfbd_passing_players_season()` - A data frame with 194 variables:
 
 |  |  |  |
 |----|----|----|
@@ -60,7 +60,7 @@ cfbd_passing_players_season(
 | team | character | Team name. |
 | conference | character | Team conference name. |
 
-plus the 23-column passing production block and its seven `locations_*`
+plus the 28-column passing production block and its seven `locations_*`
 repeats – both described under **The passing production block** and
 **Location splits** in
 [cfbd_passing](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing.md).
@@ -79,7 +79,7 @@ Other CFBD Passing:
 # \donttest{
   try(cfbd_passing_players_season(year = 2025, team = "Texas"))
 #> ── Player season passing data from CollegeFootballData.com ─────────────────────
-#> ℹ Data updated: 2026-10-22 17:12:45 UTC
+#> ℹ Data updated: 2026-10-30 00:09:40 UTC
 #> # A tibble: 7 × 194
 #>   season player_id player    team  conference attempts completions incompletions
 #>    <int> <chr>     <chr>     <chr> <chr>         <int>       <int>         <int>
@@ -96,6 +96,6 @@ Other CFBD Passing:
 #> #   total_yards <int>, yards_after_catch_attempts_available <int>,
 #> #   total_yards_after_catch <int>, average_yards_after_catch <dbl>,
 #> #   cpoe_attempts_available <int>, cpoe_completions <int>,
-#> #   expected_completions <lgl>, expected_completion_rate <lgl>, cpoe <lgl>, …
+#> #   expected_completions <dbl>, expected_completion_rate <dbl>, cpoe <dbl>, …
 # }
 ```

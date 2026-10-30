@@ -109,8 +109,14 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_seasons())
+#> Waiting 5s for retry backoff ■■■■■■                          
+#> Waiting 5s for retry backoff ■■■■■■■■■                       
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■                  
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
 #> ── Seasons index from ESPN ────────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-22 17:18:20 UTC
+#> ℹ Data updated: 2026-10-30 00:15:08 UTC
 #> # A tibble: 155 × 5
 #>    season display_name start_date        end_date          season_ref           
 #>     <int> <chr>        <chr>             <chr>             <chr>                

@@ -32,13 +32,12 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
 
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
-
+    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
     ## Reading package lists...
@@ -60,9 +59,9 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).
     ## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.14).
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
-    ## 0 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+    ## 0 upgraded, 0 newly installed, 0 to remove and 19 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [8.5s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [6.1s]
 
 ``` r
 
@@ -226,11 +225,11 @@ across seven pass locations, rushing across four run directions, and
 play-level frames with air yards, yards after catch and carrier
 attribution.
 
-These frames are **wide by construction** — one 23-column passing
-production block repeats for every location, and the team endpoints
-repeat the whole thing for offense and defense, so
+These frames are **wide by construction** — a 28-column passing
+production block, a 23-column form of it for every location, and the
+team endpoints repeat the whole thing for offense and defense, so
 [`cfbd_passing_teams_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_teams_season.md)
-is 371 columns. Select what you need rather than printing them whole.
+is 381 columns. Select what you need rather than printing them whole.
 
 ``` r
 
@@ -244,7 +243,7 @@ tex_pass |>
 
     ## ── Player season passing data from CollegeFootballData.com ─────────────────────
 
-    ## ℹ Data updated: 2026-10-22 17:24:11 UTC
+    ## ℹ Data updated: 2026-10-30 00:19:54 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts completion_rate average_depth_of_target   ppa
@@ -311,7 +310,7 @@ tex_pass |>
 
     ## ── Player season passing data from CollegeFootballData.com ─────────────────────
 
-    ## ℹ Data updated: 2026-10-22 17:24:11 UTC
+    ## ℹ Data updated: 2026-10-30 00:19:54 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts air_yards_parsed adot_correct adot_naive
@@ -332,7 +331,7 @@ cfbd_passing_plays(year = 2025, week = 5, outcome = "completion") |>
 
     ## ── Passing plays data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-10-22 17:24:15 UTC
+    ## ℹ Data updated: 2026-10-30 00:19:55 UTC
 
     ## # A tibble: 10 × 7
     ##    offense    defense    passer       target         total_yards   ppa success
@@ -370,7 +369,7 @@ cfbd_stats_categories()
 
     ## ── Stat categories for CollegeFootballData.com ────────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-10-22 17:24:15 UTC
+    ## ℹ Data updated: 2026-10-30 00:19:56 UTC
 
     ## # A tibble: 38 × 1
     ##    category          

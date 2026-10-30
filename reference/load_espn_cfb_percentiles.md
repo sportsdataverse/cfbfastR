@@ -82,7 +82,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_percentiles(2004))
 #> ── college football team percentile profiles from the SportsDataverse data repo 
-#> ℹ Data updated: 2026-10-22 17:20:11 UTC
+#> ℹ Data updated: 2026-10-30 00:17:00 UTC
 #> # A tibble: 99 × 27
 #>    pctile   GEI EPAplay pass_success rush_success early_down_success
 #>     <dbl> <dbl>   <dbl>        <dbl>        <dbl>              <dbl>
@@ -90,12 +90,12 @@ Saiem Gilani
 #>  2   0.02 1.00   -0.478        0.180        0.181              0.222
 #>  3   0.03 1.10   -0.448        0.209        0.2                0.240
 #>  4   0.04 1.17   -0.397        0.226        0.212              0.25 
-#>  5   0.05 1.25   -0.373        0.234        0.222              0.263
-#>  6   0.06 1.28   -0.352        0.245        0.233              0.271
-#>  7   0.07 1.35   -0.338        0.25         0.241              0.277
+#>  5   0.05 1.22   -0.373        0.234        0.222              0.263
+#>  6   0.06 1.27   -0.352        0.245        0.233              0.271
+#>  7   0.07 1.34   -0.338        0.25         0.241              0.277
 #>  8   0.08 1.40   -0.332        0.263        0.25               0.280
-#>  9   0.09 1.47   -0.314        0.267        0.257              0.290
-#> 10   0.1  1.48   -0.296        0.273        0.265              0.297
+#>  9   0.09 1.47   -0.314        0.267        0.257              0.289
+#> 10   0.1  1.48   -0.296        0.273        0.265              0.296
 #> # ℹ 89 more rows
 #> # ℹ 21 more variables: early_down_EPA <dbl>, late_down_success <dbl>,
 #> #   success <dbl>, yardsplay <dbl>, dropbacks <dbl>, rushes <dbl>,

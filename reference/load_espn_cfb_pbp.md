@@ -538,8 +538,8 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_pbp(2004))
 #> ── ESPN college football play-by-play from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-10-22 17:20:10 UTC
-#> # A tibble: 87,214 × 498
+#> ℹ Data updated: 2026-10-30 00:16:59 UTC
+#> # A tibble: 87,214 × 499
 #>    season   game_id game_play_number pos_team_id pos_team        def_pos_team_id
 #>     <int>     <int>            <int>       <int> <chr>                     <int>
 #>  1   2004 242410259                1         259 Virginia Tech …              30
@@ -553,7 +553,7 @@ Saiem Gilani
 #>  9   2004 242410259                9         259 Virginia Tech …              30
 #> 10   2004 242410259               10          30 USC Trojans                 259
 #> # ℹ 87,204 more rows
-#> # ℹ 492 more variables: def_pos_team <chr>, pos_team_score <int>,
+#> # ℹ 493 more variables: def_pos_team <chr>, pos_team_score <int>,
 #> #   def_pos_team_score <int>, half <int>, period <int>, down <int>,
 #> #   distance <int>, EPA <dbl>, wpa <dbl>, wp_before <dbl>, wp_after <dbl>,
 #> #   def_wp_before <dbl>, def_wp_after <dbl>, penalty_detail <chr>,

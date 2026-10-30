@@ -44,20 +44,20 @@ A `cfbfastR`-tagged tibble with one row per (game, stat):
 # \donttest{
   try(fox_cfb_team_gamelog(team_id = "11"))
 #> ── Team game log from Fox Sports (Bifrost) ────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-22 17:19:27 UTC
+#> ℹ Data updated: 2026-10-30 00:16:20 UTC
 #> # A tibble: 340 × 8
 #>    team_id season_type    category game_id game_date opponent stat     value
 #>    <chr>   <chr>          <chr>    <chr>   <chr>     <chr>    <chr>    <chr>
-#>  1 11      REGULAR SEASON passing  43679   10/17     FSU      comp     23   
-#>  2 11      REGULAR SEASON passing  43679   10/17     FSU      att      34   
-#>  3 11      REGULAR SEASON passing  43679   10/17     FSU      pct      67.6 
-#>  4 11      REGULAR SEASON passing  43679   10/17     FSU      yds      326  
-#>  5 11      REGULAR SEASON passing  43679   10/17     FSU      pyds_att 17.1 
-#>  6 11      REGULAR SEASON passing  43679   10/17     FSU      td       3    
-#>  7 11      REGULAR SEASON passing  43679   10/17     FSU      int      1    
-#>  8 11      REGULAR SEASON passing  43679   10/17     FSU      sck      1    
-#>  9 11      REGULAR SEASON passing  43679   10/17     FSU      yds_2    3    
-#> 10 11      REGULAR SEASON passing  43679   10/17     FSU      qbr      171.4
+#>  1 11      REGULAR SEASON passing  43786   10/24     PITT     comp     31   
+#>  2 11      REGULAR SEASON passing  43786   10/24     PITT     att      37   
+#>  3 11      REGULAR SEASON passing  43786   10/24     PITT     pct      83.8 
+#>  4 11      REGULAR SEASON passing  43786   10/24     PITT     yds      387  
+#>  5 11      REGULAR SEASON passing  43786   10/24     PITT     pyds_att 13.7 
+#>  6 11      REGULAR SEASON passing  43786   10/24     PITT     td       4    
+#>  7 11      REGULAR SEASON passing  43786   10/24     PITT     int      0    
+#>  8 11      REGULAR SEASON passing  43786   10/24     PITT     sck      3    
+#>  9 11      REGULAR SEASON passing  43786   10/24     PITT     yds_2    28   
+#> 10 11      REGULAR SEASON passing  43786   10/24     PITT     qbr      207.3
 #> # ℹ 330 more rows
 # }
 ```

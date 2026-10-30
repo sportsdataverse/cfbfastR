@@ -70,13 +70,13 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_specialists(2004))
 #> ── college football advanced specialists from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-10-22 17:19:56 UTC
-#> # A tibble: 5,878 × 14
+#> ℹ Data updated: 2026-10-30 00:16:46 UTC
+#> # A tibble: 5,613 × 14
 #>    pos_team_id pos_team          player_name field_goals field_goals_yards punts
 #>          <int> <chr>             <chr>             <int>             <int> <int>
 #>  1          30 USC Trojans       Reggie Bush           0                 0     0
 #>  2          30 USC Trojans       Ryan Kille…           2                75     0
-#>  3          30 USC Trojans       Tom Malone…           0                 0     4
+#>  3          30 USC Trojans       Tom Malone            0                 0     4
 #>  4          30 USC Trojans       Tom Malone…           0                 0     1
 #>  5          30 USC Trojans       Trojans.              0                 0     0
 #>  6         259 Virginia Tech Ho… Brandon Pa…           2                77     0
@@ -84,7 +84,7 @@ Saiem Gilani
 #>  8         259 Virginia Tech Ho… Hokies.               0                 0     0
 #>  9         259 Virginia Tech Ho… Josh Hyman            0                 0     0
 #> 10         259 Virginia Tech Ho… Richard Jo…           0                 0     0
-#> # ℹ 5,868 more rows
+#> # ℹ 5,603 more rows
 #> # ℹ 8 more variables: punts_yards <int>, kick_returns <int>,
 #> #   kick_returns_yards <int>, punt_returns <int>, punt_returns_yards <int>,
 #> #   game_id <int>, season <int>, week <int>

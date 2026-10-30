@@ -47,26 +47,26 @@ Other Yahoo CFB Functions:
 # \donttest{
   try(yahoo_cfb_team_season_stats(season = 2024))
 #> ── Team season stats from Yahoo Sports (shangrila) ────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-22 17:22:17 UTC
+#> ℹ Data updated: 2026-10-30 00:18:30 UTC
 #> # A tibble: 134 × 101
-#>    team         team_abbreviation rushing_attempts points_per_game first_downs
-#>    <chr>        <chr>             <chr>            <chr>           <chr>      
-#>  1 Clemson      CLEM              473              34.7            337        
-#>  2 Duke         DUKE              381              26.3            229        
-#>  3 Florida St.  FSU               378              15.4            182        
-#>  4 Georgia Tech GT                491              28.9            282        
-#>  5 Maryland     UMD               370              23.7            259        
-#>  6 N. Carolina  UNC               496              30.9            272        
-#>  7 NC State     NCST              421              28.5            263        
-#>  8 Virginia     UVA               432              22.7            234        
-#>  9 Wake Forest  WAKE              444              25.7            262        
-#> 10 Boston Coll. BC                529              28.2            251        
+#>    team   team_abbreviation points_per_game games_passing fourth_down_conversi…¹
+#>    <chr>  <chr>             <chr>           <chr>         <chr>                 
+#>  1 Clems… CLEM              34.7            14            57.1                  
+#>  2 Duke   DUKE              26.3            13            38.9                  
+#>  3 Flori… FSU               15.4            12            62.5                  
+#>  4 Georg… GT                28.9            13            55.2                  
+#>  5 Maryl… UMD               23.7            12            45.2                  
+#>  6 N. Ca… UNC               30.9            13            48.1                  
+#>  7 NC St… NCST              28.5            13            55.0                  
+#>  8 Virgi… UVA               22.7            12            51.7                  
+#>  9 Wake … WAKE              25.7            12            64.0                  
+#> 10 Bosto… BC                28.2            13            45.9                  
 #> # ℹ 124 more rows
-#> # ℹ 96 more variables: rushing_yards_rank <chr>, passing_first_downs <chr>,
-#> #   passing_yards_per_game_rank <chr>, longest_pass <chr>,
-#> #   passing_first_downs_allowed <chr>,
-#> #   passing_yards_allowed_per_game_rank <chr>,
-#> #   fourth_down_conversion_percentage <chr>, points_rank <chr>,
-#> #   rushing_first_downs_allowed <chr>, passing_attempts_per_game <chr>, …
+#> # ℹ abbreviated name: ¹​fourth_down_conversion_percentage
+#> # ℹ 96 more variables: passing_completions <chr>, first_downs_per_game <chr>,
+#> #   passing_touchdowns_allowed <chr>, receiving_first_downs <chr>,
+#> #   longest_pass <chr>, passing_yards_per_game_rank <chr>,
+#> #   interceptions_forced <chr>, passing_first_downs_allowed <chr>,
+#> #   offensive_penalties <chr>, fourth_down_conversions <chr>, …
 # }
 ```

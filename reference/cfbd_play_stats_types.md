@@ -10,7 +10,7 @@ cfbd_play_stats_types()
 
 ## Value
 
-`cfbd_play_stats_types()` - A data frame with 25 rows and 2 variables:
+`cfbd_play_stats_types()` - A data frame with 31 rows and 2 variables:
 
 |  |  |  |
 |----|----|----|
@@ -34,7 +34,7 @@ Other CFBD PBP:
 # \donttest{
   try(cfbd_play_stats_types())
 #> ── Play stats type data from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-22 17:15:27 UTC
+#> ℹ Data updated: 2026-10-30 00:11:36 UTC
 #> # A tibble: 31 × 2
 #>    play_stat_type_id name            
 #>                <int> <chr>           

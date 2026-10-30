@@ -68,8 +68,8 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_teams_crosswalk(2014))
 #> ── college football team id crosswalk from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-10-22 17:19:48 UTC
-#> # A tibble: 828 × 11
+#> ℹ Data updated: 2026-10-30 00:16:39 UTC
+#> # A tibble: 830 × 11
 #>    norm_key        espn_team_id espn_team espn_abbreviation fox_team_id fox_team
 #>    <chr>                  <int> <chr>     <chr>             <chr>       <chr>   
 #>  1 abilene christ…         2000 Abilene … ACU               276         ABILENE…
@@ -82,7 +82,7 @@ Saiem Gilani
 #>  8 alabama state …         2011 Alabama … ALST              228         ALABAMA…
 #>  9 albany state g…         2013 Albany S… ABSU              332         ALBANY …
 #> 10 albion britons          2790 Albion B… ALBI              NA          NA      
-#> # ℹ 818 more rows
+#> # ℹ 820 more rows
 #> # ℹ 5 more variables: fox_abbreviation <chr>, yahoo_team_id <chr>,
 #> #   yahoo_team <chr>, yahoo_abbreviation <chr>, matched_sources <chr>
 # }

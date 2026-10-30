@@ -139,8 +139,8 @@ Other CFBD PBP:
 # \donttest{
   try(cfbd_live_plays(game_id=401520182))
 #> ── Live play-by-play data from CollegeFootballData.com ── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-22 17:12:24 UTC
-#> # A tibble: 164 × 98
+#> ℹ Data updated: 2026-10-30 00:09:20 UTC
+#> # A tibble: 164 × 96
 #>      game_id home_team_id home_team    away_team_id away_team play_id home_score
 #>        <int>        <int> <chr>               <int> <chr>     <chr>        <int>
 #>  1 401520182           52 Florida Sta…           99 LSU       401520…          0
@@ -154,7 +154,7 @@ Other CFBD PBP:
 #>  9 401520182           52 Florida Sta…           99 LSU       401520…          0
 #> 10 401520182           52 Florida Sta…           99 LSU       401520…          0
 #> # ℹ 154 more rows
-#> # ℹ 91 more variables: away_score <int>, period <int>, clock <chr>,
+#> # ℹ 89 more variables: away_score <int>, period <int>, clock <chr>,
 #> #   wall_clock <chr>, offense_team_id <int>, offense_team <chr>, down <int>,
 #> #   distance <int>, yards_to_goal <int>, yards_gained <int>,
 #> #   play_type_id <int>, play_type <chr>, ppa <dbl>, garbage_time <lgl>,

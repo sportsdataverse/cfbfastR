@@ -43,7 +43,7 @@ cfbd_passing_teams_season(
 
 ## Value
 
-`cfbd_passing_teams_season()` - A data frame with 371 variables:
+`cfbd_passing_teams_season()` - A data frame with 381 variables:
 
 |            |           |                                     |
 |------------|-----------|-------------------------------------|
@@ -52,9 +52,9 @@ cfbd_passing_teams_season(
 | team       | character | Team name.                          |
 | conference | character | Team conference name.               |
 
-plus TWO copies of the 23-column production block, each with its seven
+plus TWO copies of the 28-column production block, each with its seven
 23-column `locations_*` repeats: `offense_*` (the team's own passing)
-and `defense_*` (passing allowed). That is 3 + 2 x (23 + 7 x 23) = 371.
+and `defense_*` (passing allowed). That is 3 + 2 x (28 + 7 x 23) = 381.
 See
 [cfbd_passing](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing.md).
 So `offense_ppa` is PPA per attempt thrown and `defense_ppa` is PPA per
@@ -74,17 +74,17 @@ Other CFBD Passing:
 # \donttest{
   try(cfbd_passing_teams_season(year = 2025, team = "Texas"))
 #> ── Team season passing data from CollegeFootballData.com ───────────────────────
-#> ℹ Data updated: 2026-10-22 17:12:54 UTC
+#> ℹ Data updated: 2026-10-30 00:09:43 UTC
 #> # A tibble: 1 × 381
-#>   season team  conference offense_attempts offense_completions
-#>    <int> <chr> <chr>                 <int>               <int>
-#> 1   2025 Texas SEC                     415                 254
-#> # ℹ 376 more variables: offense_incompletions <int>,
-#> #   offense_interceptions <int>, offense_completion_rate <dbl>,
-#> #   offense_air_yards_attempts_available <int>, offense_total_air_yards <int>,
-#> #   offense_average_depth_of_target <dbl>,
-#> #   offense_total_yards_attempts_available <int>, offense_total_yards <int>,
-#> #   offense_yards_after_catch_attempts_available <int>,
-#> #   offense_total_yards_after_catch <int>, …
+#>   season team  conference offense_ppa offense_cpoe offense_attempts
+#>    <int> <chr> <chr>            <dbl>        <dbl>            <int>
+#> 1   2025 Texas SEC              0.319        -0.44              415
+#> # ℹ 375 more variables: offense_total_ppa <dbl>, offense_total_yards <int>,
+#> #   offense_completions <int>, offense_success_rate <dbl>,
+#> #   offense_explosiveness <dbl>, offense_incompletions <int>,
+#> #   offense_interceptions <int>, offense_total_air_yards <int>,
+#> #   offense_completion_rate <dbl>, offense_cpoe_completions <int>,
+#> #   offense_successful_attempts <int>, offense_expected_completions <dbl>,
+#> #   offense_average_depth_of_target <dbl>, …
 # }
 ```

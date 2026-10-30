@@ -60,21 +60,21 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_rosters_crosswalk())
 #> ── college football roster id crosswalk from the SportsDataverse data repo ─────
-#> ℹ Data updated: 2026-10-22 17:19:42 UTC
-#> # A tibble: 45,533 × 14
+#> ℹ Data updated: 2026-10-30 00:16:33 UTC
+#> # A tibble: 45,534 × 14
 #>    espn_team_id fox_team_id person_key       espn_athlete_id fox_athlete_id
 #>           <int> <chr>       <chr>                      <int> <chr>         
-#>  1         2117 72          jaden allen              4876695 191173        
-#>  2         2117 72          zander barth             5316895 250038        
-#>  3         2117 72          marcus beamon            5295480 233756        
-#>  4         2117 72          vaughn blue              5122147 210405        
-#>  5         2117 72          jacob booth              5120452 210574        
-#>  6         2117 72          jayden clerveaux         5157391 213011        
-#>  7         2117 72          nic disanto              5153454 218497        
-#>  8         2117 72          da shon febres           5327593 250048        
-#>  9         2117 72          angel flores             5084769 198457        
-#> 10         2117 72          shawn foster ii          5221139 231524        
-#> # ℹ 45,523 more rows
+#>  1         2403 286         anthony aiono            2555921 NA            
+#>  2         2403 286         deontay campbell         5278395 NA            
+#>  3         2403 286         scott clipp              2555922 NA            
+#>  4         2403 286         dusty bratzler           2555923 NA            
+#>  5         2403 286         michael thompson              NA 157828        
+#>  6         2148 340         vladimir adamcy          5440279 259716        
+#>  7         2148 340         khafre ashenafi          5440236 NA            
+#>  8         2148 340         marley ashley            5428399 259773        
+#>  9         2148 340         donovan barber           5440233 NA            
+#> 10         2148 340         riley bell               5440284 NA            
+#> # ℹ 45,524 more rows
 #> # ℹ 9 more variables: yahoo_athlete_id <chr>, name <chr>, espn_jersey <chr>,
 #> #   fox_jersey <chr>, espn_position <chr>, fox_position <chr>,
 #> #   yahoo_position <chr>, match_method <chr>, matched_sources <chr>

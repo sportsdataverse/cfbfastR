@@ -74,17 +74,17 @@ Other CFBD Rushing:
 # \donttest{
   try(cfbd_rushing_teams_season(year = 2025, team = "Texas"))
 #> ── Team season rushing data from CollegeFootballData.com ───────────────────────
-#> ℹ Data updated: 2026-10-22 17:15:58 UTC
+#> ℹ Data updated: 2026-10-30 00:11:57 UTC
 #> # A tibble: 1 × 175
-#>   season team  conference offense_attempts offense_rushing_yards_available
-#>    <int> <chr> <chr>                 <int>                           <int>
-#> 1   2025 Texas SEC                     411                             407
-#> # ℹ 170 more variables: offense_total_rushing_yards <int>,
-#> #   offense_yards_per_carry <dbl>, offense_individual_attempts <int>,
-#> #   offense_unattributed_attempts <int>, offense_sacks <int>,
-#> #   offense_kneels <int>, offense_team_rushes <int>,
-#> #   offense_multi_carrier_attempts <int>,
-#> #   offense_direction_eligible_attempts <int>,
-#> #   offense_direction_available_attempts <int>, offense_success_rate <dbl>, …
+#>   season team  conference offense_ppa offense_sacks offense_kneels
+#>    <int> <chr> <chr>            <dbl>         <int>          <int>
+#> 1   2025 Texas SEC              0.109            22              8
+#> # ℹ 169 more variables: offense_attempts <int>, offense_total_ppa <dbl>,
+#> #   offense_line_yards <int>, offense_stuff_rate <dbl>,
+#> #   offense_team_rushes <int>, offense_success_rate <dbl>,
+#> #   offense_power_success <dbl>, offense_explosiveness <dbl>,
+#> #   offense_yards_per_carry <dbl>, offense_line_yards_total <int>,
+#> #   offense_open_field_yards <int>, offense_second_level_yards <dbl>,
+#> #   offense_rushing_touchdowns <int>, offense_total_rushing_yards <int>, …
 # }
 ```

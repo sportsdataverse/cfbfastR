@@ -41,7 +41,7 @@
 
 ## The passing production block
 
-Every passing endpoint below shares one 23-column production block. It
+Every passing endpoint below shares one 28-column production block. It
 is documented once here rather than repeated in each returns table,
 because the team endpoints carry it sixteen times over (see *Location
 splits*).
@@ -62,6 +62,11 @@ splits*).
 | yards_after_catch_attempts_available | integer | Attempts for which yards after catch were parsed. |
 | total_yards_after_catch | integer | Sum of yards after catch over those attempts. |
 | average_yards_after_catch | double | Mean yards after catch per completion. |
+| cpoe_attempts_available | integer | Attempts carrying a CFBD completion probability (the denominator for the CPOE columns). |
+| cpoe_completions | integer | Completions among the `cpoe_attempts_available` attempts. |
+| expected_completions | double | Sum of completion probability over the `cpoe_attempts_available` attempts. |
+| expected_completion_rate | double | `expected_completions` divided by `cpoe_attempts_available` (proportion 0-1). |
+| cpoe | double | Completion percentage over expected, in percentage points: 100 x (`cpoe_completions` - `expected_completions`) / `cpoe_attempts_available`. |
 | success_rate | double | Successful attempts divided by `success_attempts_available` (proportion 0-1). |
 | ppa | double | Predicted points added per attempt. |
 | total_ppa | double | Sum of predicted points added. |
@@ -73,6 +78,11 @@ splits*).
 | location_eligible_attempts | integer | Attempts eligible for a location split. |
 | location_available_attempts | integer | Attempts for which a location was actually parsed. |
 
+The five CPOE columns appear only at the top level: the `locations_*`
+buckets below do not carry them. A frame with no scored attempt (e.g.
+2025 week 5, where `cpoe_attempts_available` is 0 throughout) gets `NA`
+CPOE values, which R types `logical`.
+
 The `*_available` counts are denominators, not statistics. CFBD parses
 these fields out of play text, so an attempt can be counted while its
 air yards, YAC or location stay unknown. Dividing by `attempts` instead
@@ -82,8 +92,9 @@ of the matching `*_available` column understates every mean.
 
 Each of seven pass locations carries 23 columns, prefixed
 `locations_<bucket>_` (e.g. `locations_short_left_attempts`): the
-production block without its two `location_*` counts, plus
-`yards_per_attempt` and `air_yards_per_attempt`. The buckets are:
+production block without its five CPOE columns and two `location_*`
+counts, plus `yards_per_attempt` and `air_yards_per_attempt`. The
+buckets are:
 
 - `short_left`, `short_middle`, `short_right`
 
@@ -121,9 +132,9 @@ Each bucket's columns:
 | air_yards_per_attempt | double | Air yards per attempt: `total_air_yards` divided by `air_yards_attempts_available`, to one decimal. The same value as `average_depth_of_target`; NA when no attempt has air yards. |
 
 All seven buckets are always present, including empty ones. So a player
-frame is 5 identity columns + 23 production + 7 x 23 location = **189
+frame is 5 identity columns + 28 production + 7 x 23 location = **194
 columns**, and a team frame doubles the production and location blocks
-across `offense_` and `defense_` for **371**.
+across `offense_` and `defense_` for **381**.
 
 ## Season coverage
 

@@ -77,18 +77,18 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_defensive(2004))
 #> ── college football advanced defensive from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-10-22 17:19:49 UTC
+#> ℹ Data updated: 2026-10-30 00:16:40 UTC
 #> # A tibble: 926 × 22
 #>    def_pos_team_id def_pos_team          scrimmage_plays   TFL TFL_pass TFL_rush
 #>              <int> <chr>                           <int> <int>    <int>    <int>
-#>  1              30 USC Trojans                        64     9        5        4
-#>  2             259 Virginia Tech Hokies               59     6        3        3
-#>  3             245 Texas A&M Aggies                   77     5        0        5
-#>  4             254 Utah Utes                          73     7        1        6
-#>  5             103 Boston College Eagles              67     8        6        2
-#>  6            2050 Ball State Cardinals               73     6        1        4
-#>  7              77 Northwestern Wildcats              77     7        0        7
-#>  8            2628 TCU Horned Frogs                   96     6        0        6
+#>  1             259 Virginia Tech Hokies               59     6        3        3
+#>  2              30 USC Trojans                        64     9        5        4
+#>  3             254 Utah Utes                          73     7        1        6
+#>  4             245 Texas A&M Aggies                   77     5        0        5
+#>  5            2050 Ball State Cardinals               73     6        1        4
+#>  6             103 Boston College Eagles              67     8        6        2
+#>  7            2628 TCU Horned Frogs                   96     6        0        6
+#>  8              77 Northwestern Wildcats              77     7        0        7
 #>  9               9 Arizona State Sun De…              76     9        3        6
 #> 10            2638 UTEP Miners                        90    10        3        7
 #> # ℹ 916 more rows

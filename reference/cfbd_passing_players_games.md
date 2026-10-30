@@ -53,7 +53,7 @@ cfbd_passing_players_games(
 
 ## Value
 
-`cfbd_passing_players_games()` - A data frame with 193 variables:
+`cfbd_passing_players_games()` - A data frame with 198 variables:
 
 |             |           |                                         |
 |-------------|-----------|-----------------------------------------|
@@ -68,7 +68,7 @@ cfbd_passing_players_games(
 | conference  | character | Team conference name.                   |
 | opponent    | character | Opposing team name.                     |
 
-plus the 23-column passing production block and its seven `locations_*`
+plus the 28-column passing production block and its seven `locations_*`
 repeats – see
 [cfbd_passing](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing.md).
 
@@ -86,7 +86,7 @@ Other CFBD Passing:
 # \donttest{
   try(cfbd_passing_players_games(year = 2025, week = 5))
 #> ── Player game passing data from CollegeFootballData.com ───────────────────────
-#> ℹ Data updated: 2026-10-22 17:12:42 UTC
+#> ℹ Data updated: 2026-10-30 00:09:31 UTC
 #> # A tibble: 183 × 198
 #>      game_id season  week season_type player_id player team  conference opponent
 #>        <int>  <int> <int> <chr>       <chr>     <chr>  <chr> <chr>      <chr>   

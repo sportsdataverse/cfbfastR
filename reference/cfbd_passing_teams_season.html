@@ -209,9 +209,9 @@ Minimum value accepted: 2025</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>cfbd_passing_teams_season()</code> - A data frame with 371 variables:</p><table class="table table"><tr><td>col_name</td><td>type</td><td>description</td></tr><tr><td>season</td><td>integer</td><td>Four-digit season year (e.g. 2025).</td></tr><tr><td>team</td><td>character</td><td>Team name.</td></tr><tr><td>conference</td><td>character</td><td>Team conference name.</td></tr></table><p>plus TWO copies of the 23-column production block, each with its seven
+    <p><code>cfbd_passing_teams_season()</code> - A data frame with 381 variables:</p><table class="table table"><tr><td>col_name</td><td>type</td><td>description</td></tr><tr><td>season</td><td>integer</td><td>Four-digit season year (e.g. 2025).</td></tr><tr><td>team</td><td>character</td><td>Team name.</td></tr><tr><td>conference</td><td>character</td><td>Team conference name.</td></tr></table><p>plus TWO copies of the 28-column production block, each with its seven
 23-column <code>locations_*</code> repeats: <code>offense_*</code> (the team's own passing) and
-<code>defense_*</code> (passing allowed). That is 3 + 2 x (23 + 7 x 23) = 371.
+<code>defense_*</code> (passing allowed). That is 3 + 2 x (28 + 7 x 23) = 381.
 See <a href="cfbd_passing.html">cfbd_passing</a>. So <code>offense_ppa</code> is PPA per attempt thrown and
 <code>defense_ppa</code> is PPA per attempt allowed – a <em>lower</em> <code>defense_ppa</code> is better.</p>
     </div>
@@ -229,18 +229,18 @@ See <a href="cfbd_passing.html">cfbd_passing</a>. So <code>offense_ppa</code> is
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_passing_teams_season</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2025</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team season passing data from CollegeFootballData.com ───────────────────────</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-22 17:12:54 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-30 00:09:43 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 381</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   season team  conference offense_attempts offense_completions</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   <span style="text-decoration: underline;">2</span>025 Texas SEC                     415                 254</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 376 more variables: offense_incompletions &lt;int&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   offense_interceptions &lt;int&gt;, offense_completion_rate &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   offense_air_yards_attempts_available &lt;int&gt;, offense_total_air_yards &lt;int&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   offense_average_depth_of_target &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   offense_total_yards_attempts_available &lt;int&gt;, offense_total_yards &lt;int&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   offense_yards_after_catch_attempts_available &lt;int&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   offense_total_yards_after_catch &lt;int&gt;, …</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   season team  conference offense_ppa offense_cpoe offense_attempts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   <span style="text-decoration: underline;">2</span>025 Texas SEC              0.319        -<span style="color: #BB0000;">0.44</span>              415</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 375 more variables: offense_total_ppa &lt;dbl&gt;, offense_total_yards &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   offense_completions &lt;int&gt;, offense_success_rate &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   offense_explosiveness &lt;dbl&gt;, offense_incompletions &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   offense_interceptions &lt;int&gt;, offense_total_air_yards &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   offense_completion_rate &lt;dbl&gt;, offense_cpoe_completions &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   offense_successful_attempts &lt;int&gt;, offense_expected_completions &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   offense_average_depth_of_target &lt;dbl&gt;, …</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

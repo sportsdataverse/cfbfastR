@@ -137,23 +137,23 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_team(2004))
 #> ── college football advanced team from the SportsDataverse data repo ───────────
-#> ℹ Data updated: 2026-10-22 17:19:57 UTC
-#> # A tibble: 926 × 81
+#> ℹ Data updated: 2026-10-30 00:16:47 UTC
+#> # A tibble: 926 × 82
 #>    pos_team_id pos_team       rushing_highlight_ya…¹ total_pen_yards EPA_penalty
 #>          <int> <chr>                           <dbl>           <int>       <dbl>
-#>  1          30 USC Trojans                      4.32              -5       -0.58
-#>  2         259 Virginia Tech…                   6.17               5        2.04
-#>  3         245 Texas A&M Agg…                   7.63             -50       -6.25
-#>  4         254 Utah Utes                        5.25             -45       -4.36
-#>  5         103 Boston Colleg…                   4.91             -26       -1.35
-#>  6        2050 Ball State Ca…                   3.32              -8       -0.87
-#>  7          77 Northwestern …                   5.4               45        6.51
-#>  8        2628 TCU Horned Fr…                   4.21             -13       -1.81
-#>  9           9 Arizona State…                   3.21              -6        0.6 
-#> 10        2638 UTEP Miners                      4.27              10        1.46
+#>  1         259 Virginia Tech…                   5.2                5        2.04
+#>  2          30 USC Trojans                      3.36              -5       -0.58
+#>  3         254 Utah Utes                        4.45             -45       -4.36
+#>  4         245 Texas A&M Agg…                   6.7              -50       -6.25
+#>  5        2050 Ball State Ca…                   2.59              -8       -0.87
+#>  6         103 Boston Colleg…                   4.2              -26       -1.35
+#>  7        2628 TCU Horned Fr…                   3.35             -13       -1.81
+#>  8          77 Northwestern …                   4.5               45        6.51
+#>  9           9 Arizona State…                   2.37              -6        0.6 
+#> 10        2638 UTEP Miners                      3.23              10        1.46
 #> # ℹ 916 more rows
 #> # ℹ abbreviated name: ¹​rushing_highlight_yards_per_opp
-#> # ℹ 76 more variables: penalty_first_downs_created <int>,
+#> # ℹ 77 more variables: penalty_first_downs_created <int>,
 #> #   penalty_first_downs_created_rate <dbl>, penalties <int>,
 #> #   penalty_yards <int>, special_teams_plays <int>, EPA_sp <dbl>,
 #> #   EPA_special_teams <dbl>, field_goals <int>, EPA_fg <dbl>, punt_plays <int>,

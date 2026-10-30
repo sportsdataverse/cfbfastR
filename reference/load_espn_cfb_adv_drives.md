@@ -67,8 +67,8 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_drives(2004))
 #> ── college football advanced drives from the SportsDataverse data repo ─────────
-#> ℹ Data updated: 2026-10-22 17:19:51 UTC
-#> # A tibble: 926 × 12
+#> ℹ Data updated: 2026-10-30 00:16:41 UTC
+#> # A tibble: 926 × 13
 #>    pos_team_id pos_team            drive_total_availabl…¹ drive_total_gained_y…²
 #>          <int> <chr>                                <dbl>                  <int>
 #>  1         259 Virginia Tech Hoki…                    904                    295
@@ -83,8 +83,8 @@ Saiem Gilani
 #> 10        2638 UTEP Miners                           1363                    350
 #> # ℹ 916 more rows
 #> # ℹ abbreviated names: ¹​drive_total_available_yards, ²​drive_total_gained_yards
-#> # ℹ 8 more variables: avg_field_position <dbl>, plays_per_drive <dbl>,
+#> # ℹ 9 more variables: avg_field_position <dbl>, plays_per_drive <dbl>,
 #> #   yards_per_drive <dbl>, drives <int>, drive_total_gained_yards_rate <dbl>,
-#> #   game_id <int>, season <int>, week <int>
+#> #   avg_start_ep <dbl>, game_id <int>, season <int>, week <int>
 # }
 ```

@@ -138,7 +138,7 @@ Other CFBD Stats:
 # \donttest{
    try(cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7))
 #> ── Advanced player season stats from CollegeFootballData.com ───────────────────
-#> ℹ Data updated: 2026-10-22 17:16:20 UTC
+#> ℹ Data updated: 2026-10-30 00:12:15 UTC
 #> # A tibble: 544 × 60
 #>     year team          conference athlete_id player position passing_completions
 #>    <dbl> <chr>         <chr>      <chr>      <chr>  <chr>                  <dbl>
@@ -162,12 +162,12 @@ Other CFBD Stats:
 
    try(cfbd_stats_season_player(2019, team = "LSU", category = "passing"))
 #> ── Advanced player season stats from CollegeFootballData.com ───────────────────
-#> ℹ Data updated: 2026-10-22 17:16:21 UTC
+#> ℹ Data updated: 2026-10-30 00:12:15 UTC
 #> # A tibble: 2 × 60
 #>    year team  conference athlete_id player        position passing_completions
 #>   <dbl> <chr> <chr>      <chr>      <chr>         <chr>                  <dbl>
-#> 1  2019 LSU   SEC        3915511    Joe Burrow    QB                       402
-#> 2  2019 LSU   SEC        4242210    Myles Brennan QB                        24
+#> 1  2019 LSU   SEC        4242210    Myles Brennan QB                        24
+#> 2  2019 LSU   SEC        3915511    Joe Burrow    QB                       402
 #> # ℹ 53 more variables: passing_att <dbl>, passing_pct <dbl>, passing_yds <dbl>,
 #> #   passing_td <dbl>, passing_int <dbl>, passing_ypa <dbl>, rushing_car <dbl>,
 #> #   rushing_yds <dbl>, rushing_td <dbl>, rushing_ypc <dbl>, rushing_long <dbl>,
@@ -178,7 +178,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_season_player(2013, team = "Florida State", category = "passing"))
 #> ── Advanced player season stats from CollegeFootballData.com ───────────────────
-#> ℹ Data updated: 2026-10-22 17:16:21 UTC
+#> ℹ Data updated: 2026-10-30 00:12:16 UTC
 #> # A tibble: 3 × 60
 #>    year team          conference athlete_id player  position passing_completions
 #>   <dbl> <chr>         <chr>      <chr>      <chr>   <chr>                  <dbl>

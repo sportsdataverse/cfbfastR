@@ -87,20 +87,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_receiving(2004))
 #> ── college football receiving EPA splits from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-10-22 17:20:17 UTC
+#> ℹ Data updated: 2026-10-30 00:17:05 UTC
 #> # A tibble: 1,418 × 77
 #>    team_id pos_team    division conference season player_id receiver_player_name
 #>    <chr>   <chr>       <chr>    <chr>       <int>     <int> <chr>               
-#>  1 197     Oklahoma S… fbs      Big 12       2004    135622 Julius Crosslin     
-#>  2 356     Illinois    fbs      Big Ten      2004    133661 Zach Gray           
-#>  3 2572    Southern M… fbs      Conferenc…   2004    116114 Patrick Corbett     
-#>  4 2641    Texas Tech  fbs      Big 12       2004    135873 Jarrett Hicks       
-#>  5 221     Pittsburgh  fbs      Big East     2004    134927 Steve Buches        
-#>  6 252     BYU         fbs      Mountain …   2004     36262 Chris Hale          
-#>  7 235     Memphis     fbs      Conferenc…   2004    133397 John Doucette       
-#>  8 2393    Middle Ten… fbs      Sun Belt     2004    133319 Eugene Gross        
-#>  9 264     Washington  fbs      Pac-10       2004    120846 Shelton Sampson     
-#> 10 23      San Jose S… fbs      Western A…   2004    148346 Casey Miranda       
+#>  1 87      Notre Dame  fbs      FBS Indep…   2004    150329 Brady Quinn         
+#>  2 239     Baylor      fbs      Big 12       2004    155317 Marcus Venus        
+#>  3 344     Mississipp… fbs      SEC          2004    134640 Bryson Davis        
+#>  4 12      Arizona     fbs      Pac-10       2004    136720 Biren Ealy          
+#>  5 38      Colorado    fbs      Big 12       2004    104669 Bobby Purify        
+#>  6 38      Colorado    fbs      Big 12       2004    145310 Dusty Sprague       
+#>  7 2579    South Caro… fbs      SEC          2004    146820 D'von Hill          
+#>  8 2390    Miami       fbs      ACC          2004    120155 Roscoe Parrish      
+#>  9 166     New Mexico… fbs      Sun Belt     2004    160111 Clint Jones         
+#> 10 120     Maryland    fbs      ACC          2004    116018 Rich Parson         
 #> # ℹ 1,408 more rows
 #> # ℹ 70 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, comp <int>, targets <int>,

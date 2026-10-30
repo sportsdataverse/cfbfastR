@@ -101,20 +101,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_passing(2004))
 #> ── college football passing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-10-22 17:20:05 UTC
+#> ℹ Data updated: 2026-10-30 00:16:55 UTC
 #> # A tibble: 373 × 98
 #>    team_id pos_team      division conference season player_id passer_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 259     Virginia Tech fbs      ACC          2004    116153 Richard Johnson   
-#>  2 145     Ole Miss      fbs      SEC          2004    146810 Robert Lane       
-#>  3 24      Stanford      fbs      Pac-10       2004    137101 Trent Edwards     
-#>  4 158     Nebraska      fbs      Big 12       2004    137050 Ross Pilkington   
-#>  5 333     Alabama       fbs      SEC          2004    123212 Spencer Pennington
-#>  6 87      Notre Dame    fbs      FBS Indep…   2004    161727 Justin Hoskins    
-#>  7 2579    South Caroli… fbs      SEC          2004    146835 Syvelle Newton    
-#>  8 2132    Cincinnati    fbs      Conferenc…   2004    109626 Collin Carey      
-#>  9 142     Missouri      fbs      Big 12       2004    120186 Thomson Omboga    
-#> 10 130     Michigan      fbs      Big Ten      2004    116362 Spencer Brinton   
+#>  1 2509    Purdue        fbs      Big Ten      2004    119358 Kyle Orton        
+#>  2 239     Baylor        fbs      Big 12       2004    134743 Shawn Bell        
+#>  3 195     Ohio          fbs      Mid-Ameri…   2004    162712 Brooks Rossman    
+#>  4 62      Hawai'i       fbs      Western A…   2004    122359 Kainoa Akina      
+#>  5 2305    Kansas        fbs      Big 12       2004    117131 Clark Green       
+#>  6 356     Illinois      fbs      Big Ten      2004    133743 Chris Pazan       
+#>  7 2199    Eastern Mich… fbs      Mid-Ameri…   2004    116236 Matt Bohnet       
+#>  8 38      Colorado      fbs      Big 12       2004    113990 John Torp         
+#>  9 2572    Southern Miss fbs      Conferenc…   2004    147930 Jeremy Young      
+#> 10 58      South Florida fbs      Conferenc…   2004    110628 Ronnie Banks      
 #> # ℹ 363 more rows
 #> # ℹ 91 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <dbl>, success <dbl>, comp <dbl>, att <dbl>,

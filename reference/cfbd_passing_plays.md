@@ -80,7 +80,7 @@ cfbd_passing_plays(
 
 ## Value
 
-`cfbd_passing_plays()` - A data frame with 39 variables:
+`cfbd_passing_plays()` - A data frame with 41 variables:
 
 |  |  |  |
 |----|----|----|
@@ -124,13 +124,16 @@ cfbd_passing_plays(
 | ppa | double | Predicted points added on the play. |
 | success | logical | TRUE when the play met the success threshold for its down and distance. |
 | location_analysis_eligible | logical | TRUE when the play is eligible to be counted in a location split. |
+| completion_probability | double | CFBD modeled probability that the pass is completed (`NA` when CFBD has not scored the play). |
+| cpoe | double | Completion over expected, in percentage points: 100 x (`completed` - `completion_probability`), `completed` being 1 for a completion and 0 otherwise. |
 
 Check a column before building on it. As of this writing CFBD has
 **not** populated play-level `air_yards`, `yards_after_catch`,
 `pass_depth`, `pass_direction` or `pass_location` at all – every value
-is `NA`, so R types those columns `logical` – while `target` is
-populated (1,976 of 2,003 week-5 2025 completions) and the SEASON
-aggregates in
+is `NA`, so R types those columns `logical`. `completion_probability`
+and `cpoe` are populated for most of 2025 and 2026 but not every week
+(all `NA` in 2025 week 5) – while `target` is populated (1,976 of 2,003
+week-5 2025 completions) and the SEASON aggregates in
 [`cfbd_passing_players_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_players_season.md)
 do carry air yards. Filter on `location_analysis_eligible` or
 `parse_status` rather than assuming a column holds values.
@@ -149,7 +152,7 @@ Other CFBD Passing:
 # \donttest{
   try(cfbd_passing_plays(year = 2025, week = 1, team = "Texas"))
 #> ── Passing plays data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-22 17:12:47 UTC
+#> ℹ Data updated: 2026-10-30 00:09:40 UTC
 #> # A tibble: 128 × 41
 #>      game_id play_id        drive_id season  week season_type offense_id offense
 #>        <int> <chr>          <chr>     <int> <int> <chr>            <int> <chr>  

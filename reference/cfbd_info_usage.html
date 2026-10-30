@@ -211,30 +211,30 @@ variables, so a caller can override the shared setting for one endpoint.</p></dd
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_info_usage</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Get API key usage information from CollegeFootballData.com ──────────────────</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-22 17:12:24 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-30 00:09:17 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 20 × 11</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    api   endpoint             kind  requests occurred_at window_start window_end</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> cfb   /plays/stats         top_…     <span style="text-decoration: underline;">3</span>612 2026-10-20… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> cfb   /games               top_…      589 2026-10-22… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> cfb   /drives              top_…      485 2026-10-22… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> cfb   /lines               top_…      473 2026-10-22… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> cfb   /plays               top_…      465 2026-10-22… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> cfb   /roster              top_…      242 2026-10-20… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> cfb   /recruiting/players  top_…      226 2026-10-20… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> cfb   /teams               top_…      180 2026-10-22… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> cfb   /teams/matchup       top_…      171 2026-10-20… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> cfb   /recruiting/teams    top_…      166 2026-10-20… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> cfb   /info/usage          rece…       <span style="color: #BB0000;">NA</span> 2026-10-22… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> cfb   /games/weather       rece…       <span style="color: #BB0000;">NA</span> 2026-10-22… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> cfb   /games/teams         rece…       <span style="color: #BB0000;">NA</span> 2026-10-22… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> cfb   /games/teams         rece…       <span style="color: #BB0000;">NA</span> 2026-10-22… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> cfb   /games/schedule      rece…       <span style="color: #BB0000;">NA</span> 2026-10-22… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> cfb   /records             rece…       <span style="color: #BB0000;">NA</span> 2026-10-22… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> cfb   /records             rece…       <span style="color: #BB0000;">NA</span> 2026-10-22… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> cfb   /games/:gameId/prev… rece…       <span style="color: #BB0000;">NA</span> 2026-10-22… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span> cfb   /games/:gameId/prev… rece…       <span style="color: #BB0000;">NA</span> 2026-10-22… 2026-10-15T… 2026-10-2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> cfb   /games/players       rece…       <span style="color: #BB0000;">NA</span> 2026-10-22… 2026-10-15T… 2026-10-2…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> cfb   /plays/stats         top_…     <span style="text-decoration: underline;">2</span>982 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> cfb   /games               top_…      187 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> cfb   /plays               top_…      125 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> cfb   /lines               top_…      123 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> cfb   /drives              top_…      114 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> cfb   /teams               top_…       55 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> cfb   /roster              top_…       46 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> cfb   /coaches             top_…       44 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> cfb   /teams/matchup       top_…       37 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> cfb   /rankings            top_…       30 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> cfb   /info/usage          rece…       <span style="color: #BB0000;">NA</span> 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> cfb   /rankings            rece…       <span style="color: #BB0000;">NA</span> 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> cfb   /rankings            rece…       <span style="color: #BB0000;">NA</span> 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> cfb   /rankings            rece…       <span style="color: #BB0000;">NA</span> 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> cfb   /games/weather       rece…       <span style="color: #BB0000;">NA</span> 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> cfb   /games/teams         rece…       <span style="color: #BB0000;">NA</span> 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> cfb   /games/teams         rece…       <span style="color: #BB0000;">NA</span> 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> cfb   /plays               rece…       <span style="color: #BB0000;">NA</span> 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span> cfb   /games/schedule      rece…       <span style="color: #BB0000;">NA</span> 2026-10-30… 2026-10-23T… 2026-10-3…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> cfb   /playoffs/cfp/parti… rece…       <span style="color: #BB0000;">NA</span> 2026-10-30… 2026-10-23T… 2026-10-3…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: total_requests &lt;int&gt;, total_cfb_requests &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   total_cbb_requests &lt;int&gt;, unique_endpoints &lt;int&gt;</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>

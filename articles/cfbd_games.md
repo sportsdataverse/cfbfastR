@@ -37,6 +37,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
+
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
 
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
@@ -60,9 +61,9 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).
     ## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.14).
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
-    ## 0 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+    ## 0 upgraded, 0 newly installed, 0 to remove and 19 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [8.2s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [6.3s]
 
 ``` r
 
@@ -133,24 +134,24 @@ cfbfastR::cfbd_game_team_stats(2019, team = "LSU")
 
     ## ── Team stats data from CollegeFootballData.com ───────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-10-22 17:23:34 UTC
+    ## ℹ Data updated: 2026-10-30 00:19:28 UTC
 
     ## # A tibble: 13 × 78
     ##      game_id school conference home_away opponent     opponent_conference points
     ##        <int> <chr>  <chr>      <chr>     <chr>        <chr>                <int>
     ##  1 401110778 LSU    SEC        away      Texas        Big 12                  45
-    ##  2 401110828 LSU    SEC        away      Mississippi… SEC                     36
-    ##  3 401110842 LSU    SEC        away      Alabama      SEC                     46
-    ##  4 401110819 LSU    SEC        home      Florida      SEC                     42
+    ##  2 401110842 LSU    SEC        away      Alabama      SEC                     46
+    ##  3 401110850 LSU    SEC        away      Ole Miss     SEC                     58
+    ##  4 401110725 LSU    SEC        home      Georgia Sou… Sun Belt                55
     ##  5 401110859 LSU    SEC        home      Arkansas     SEC                     56
-    ##  6 401110869 LSU    SEC        home      Texas A&M    SEC                     50
-    ##  7 401110790 LSU    SEC        home      Northwester… Southland               65
-    ##  8 401110805 LSU    SEC        away      Vanderbilt   SEC                     66
-    ##  9 401110813 LSU    SEC        home      Utah State   Mountain West           42
-    ## 10 401110850 LSU    SEC        away      Ole Miss     SEC                     58
-    ## 11 401110725 LSU    SEC        home      Georgia Sou… Sun Belt                55
-    ## 12 401132981 LSU    SEC        home      Georgia      SEC                     37
-    ## 13 401110833 LSU    SEC        home      Auburn       SEC                     23
+    ##  6 401110828 LSU    SEC        away      Mississippi… SEC                     36
+    ##  7 401110819 LSU    SEC        home      Florida      SEC                     42
+    ##  8 401110869 LSU    SEC        home      Texas A&M    SEC                     50
+    ##  9 401110790 LSU    SEC        home      Northwester… Southland               65
+    ## 10 401110805 LSU    SEC        away      Vanderbilt   SEC                     66
+    ## 11 401110813 LSU    SEC        home      Utah State   Mountain West           42
+    ## 12 401110833 LSU    SEC        home      Auburn       SEC                     23
+    ## 13 401132981 LSU    SEC        home      Georgia      SEC                     37
     ## # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
     ## #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
     ## #   passes_intercepted <chr>, interception_yards <chr>, interception_tds <chr>,
@@ -165,24 +166,24 @@ cfbfastR::cfbd_game_team_stats(2013, team = "Florida State")
 ```
 
     ## ── Team stats data from CollegeFootballData.com ───────── cfbfastR 3.0.0.9000 ──
-    ## ℹ Data updated: 2026-10-22 17:23:34 UTC
+    ## ℹ Data updated: 2026-10-30 00:19:28 UTC
 
     ## # A tibble: 13 × 78
     ##      game_id school     conference home_away opponent opponent_conference points
     ##        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
     ##  1 332640052 Florida S… ACC        home      Bethune… MEAC                    54
     ##  2 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
-    ##  3 332570052 Florida S… ACC        home      Nevada   Mountain West           62
-    ##  4 332710103 Florida S… ACC        away      Boston … ACC                     48
-    ##  5 332780052 Florida S… ACC        home      Maryland ACC                     63
-    ##  6 332990052 Florida S… ACC        home      NC State ACC                     49
-    ##  7 333060052 Florida S… ACC        home      Miami    ACC                     41
-    ##  8 333200052 Florida S… ACC        home      Syracuse ACC                     59
-    ##  9 333340057 Florida S… ACC        away      Florida  SEC                     37
-    ## 10 333410052 Florida S… ACC        home      Duke     ACC                     45
-    ## 11 333130154 Florida S… ACC        away      Wake Fo… ACC                     59
-    ## 12 332920228 Florida S… ACC        away      Clemson  ACC                     51
-    ## 13 333270052 Florida S… ACC        home      Idaho    FBS Independents        80
+    ##  3 332710103 Florida S… ACC        away      Boston … ACC                     48
+    ##  4 332780052 Florida S… ACC        home      Maryland ACC                     63
+    ##  5 333200052 Florida S… ACC        home      Syracuse ACC                     59
+    ##  6 333410052 Florida S… ACC        home      Duke     ACC                     45
+    ##  7 333130154 Florida S… ACC        away      Wake Fo… ACC                     59
+    ##  8 332920228 Florida S… ACC        away      Clemson  ACC                     51
+    ##  9 333270052 Florida S… ACC        home      Idaho    FBS Independents        80
+    ## 10 332990052 Florida S… ACC        home      NC State ACC                     49
+    ## 11 332570052 Florida S… ACC        home      Nevada   Mountain West           62
+    ## 12 333060052 Florida S… ACC        home      Miami    ACC                     41
+    ## 13 333340057 Florida S… ACC        away      Florida  SEC                     37
     ## # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
     ## #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
     ## #   passes_intercepted <chr>, interception_yards <chr>, interception_tds <chr>,

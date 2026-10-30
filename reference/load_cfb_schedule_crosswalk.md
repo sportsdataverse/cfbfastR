@@ -67,21 +67,21 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_schedule_crosswalk(2014))
 #> ── college football schedule id crosswalk from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-10-22 17:19:43 UTC
-#> # A tibble: 1,629 × 11
+#> ℹ Data updated: 2026-10-30 00:16:34 UTC
+#> # A tibble: 1,633 × 11
 #>    matchup_key       espn_game_id fox_game_id yahoo_game_id yahoo_global_game_id
 #>    <chr>                    <int> <chr>       <chr>         <chr>               
-#>  1 arizona wildcats…    400548018 NA          NA            NA                  
-#>  2 boston college e…    400547729 NA          ncaaf.g.2014… ncaaf.g.1404427     
-#>  3 nevada wolf pack…    400548184 NA          ncaaf.g.2014… ncaaf.g.1399633     
-#>  4 florida state se…    400547763 NA          ncaaf.g.2014… ncaaf.g.1404521     
-#>  5 alabama crimson …    400548013 NA          ncaaf.g.2014… ncaaf.g.1404270     
-#>  6 michigan state s…    400547953 NA          ncaaf.g.2014… ncaaf.g.1399554     
-#>  7 oklahoma sooners…    400547657 NA          ncaaf.g.2014… ncaaf.g.1404988     
-#>  8 auburn tigers|sa…    400548186 NA          ncaaf.g.2014… ncaaf.g.1404293     
-#>  9 ohio state bucke…    400547826 NA          ncaaf.g.2014… ncaaf.g.1404764     
-#> 10 lamar cardinals|…    400548397 NA          ncaaf.g.2014… ncaaf.g.1404385     
-#> # ℹ 1,619 more rows
+#>  1 abilene christia…    400548403 NA          ncaaf.g.2014… ncaaf.g.1414806     
+#>  2 south carolina g…    400548402 NA          ncaaf.g.2014… ncaaf.g.1404372     
+#>  3 boise state bron…    400548169 NA          ncaaf.g.2014… ncaaf.g.1404343     
+#>  4 arizona state su…    400548255 NA          ncaaf.g.2014… ncaaf.g.1399532     
+#>  5 louisiana monroe…    400547829 NA          ncaaf.g.2014… ncaaf.g.1404770     
+#>  6 eastern illinois…    400547960 NA          ncaaf.g.2014… ncaaf.g.1405237     
+#>  7 akron zips|howar…    400548090 NA          ncaaf.g.2014… ncaaf.g.1405278     
+#>  8 northern illinoi…    400548091 NA          NA            NA                  
+#>  9 central michigan…    400548092 NA          ncaaf.g.2014… ncaaf.g.1414717     
+#> 10 idaho state beng…    400548256 NA          ncaaf.g.2014… ncaaf.g.1399594     
+#> # ℹ 1,623 more rows
 #> # ℹ 6 more variables: home_team <chr>, away_team <chr>, espn_date <chr>,
 #> #   fox_date <chr>, yahoo_date <chr>, matched_sources <chr>
 # }
