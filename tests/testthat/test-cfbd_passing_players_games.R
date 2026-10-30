@@ -12,7 +12,7 @@ test_that("CFB Passing Players Games", {
   expect_s3_class(x, "data.frame")
   expect_true(all(identity_cols %in% colnames(x)))
   expect_equal(length(grep("^locations_", colnames(x))), 7L * 23L)
-  expect_equal(ncol(x), 193L)
+  expect_equal(ncol(x), 198L)
   expect_true(all(x$week == 5L))
 })
 

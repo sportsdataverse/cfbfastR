@@ -11,9 +11,9 @@ test_that("CFB Passing Teams Games", {
   }
   expect_s3_class(x, "data.frame")
   expect_true(all(identity_cols %in% colnames(x)))
-  expect_equal(length(grep("^offense_", colnames(x))), 184L)
-  expect_equal(length(grep("^defense_", colnames(x))), 184L)
-  expect_equal(ncol(x), 375L)
+  expect_equal(length(grep("^offense_", colnames(x))), 189L)
+  expect_equal(length(grep("^defense_", colnames(x))), 189L)
+  expect_equal(ncol(x), 385L)
 })
 
 test_that("CFB Passing Teams Games requires a year", {

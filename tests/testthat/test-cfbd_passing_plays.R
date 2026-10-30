@@ -9,7 +9,8 @@ cols <- c(
   "start_yardline", "start_yards_to_goal", "target_yards_to_goal",
   "is_spike", "is_throwaway", "is_intentional_grounding",
   "parse_status", "ppa", "success", "location_analysis_eligible",
-  "clock_minutes", "clock_seconds"
+  "clock_minutes", "clock_seconds",
+  "completion_probability", "cpoe"
 )
 
 test_that("CFB Passing Plays", {

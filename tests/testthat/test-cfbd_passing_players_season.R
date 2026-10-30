@@ -11,8 +11,8 @@ test_that("CFB Passing Players Season", {
   expect_s3_class(x, "data.frame")
   expect_true(all(identity_cols %in% colnames(x)))
 
-  # 5 identity + 23 production + 7 location buckets x 23. Asserting the shape
-  # rather than 189 literal names keeps the test readable and still fails if a
+  # 5 identity + 28 production + 7 location buckets x 23. Asserting the shape
+  # rather than 194 literal names keeps the test readable and still fails if a
   # bucket or a production column disappears upstream.
   loc <- grep("^locations_", colnames(x), value = TRUE)
   expect_equal(length(loc), 7L * 23L)
@@ -20,7 +20,11 @@ test_that("CFB Passing Players Season", {
     c("short_left", "short_middle", "short_right",
       "deep_left", "deep_middle", "deep_right", "unknown"),
     "_attempts") %in% colnames(x)))
-  expect_equal(ncol(x), 189L)
+  # CFBD added the five CPOE columns to the production block (not the buckets)
+  # in October 2026.
+  expect_true(all(c("cpoe_attempts_available", "cpoe_completions", "expected_completions",
+                    "expected_completion_rate", "cpoe") %in% colnames(x)))
+  expect_equal(ncol(x), 194L)
 })
 
 test_that("CFB Passing Players Season returns empty out of coverage", {

@@ -25,7 +25,7 @@ Minimum value accepted: 2025}
 \item{classification}{(\emph{String} optional): Division classification - fbs, fcs, ii, ii/iii, iii}
 }
 \value{
-\code{\link[=cfbd_passing_teams_season]{cfbd_passing_teams_season()}} - A data frame with 371 variables:\tabular{lll}{
+\code{\link[=cfbd_passing_teams_season]{cfbd_passing_teams_season()}} - A data frame with 381 variables:\tabular{lll}{
    col_name \tab type \tab description \cr
    season \tab integer \tab Four-digit season year (e.g. 2025). \cr
    team \tab character \tab Team name. \cr
@@ -33,9 +33,9 @@ Minimum value accepted: 2025}
 }
 
 
-plus TWO copies of the 23-column production block, each with its seven
+plus TWO copies of the 28-column production block, each with its seven
 23-column \verb{locations_*} repeats: \verb{offense_*} (the team's own passing) and
-\verb{defense_*} (passing allowed). That is 3 + 2 x (23 + 7 x 23) = 371.
+\verb{defense_*} (passing allowed). That is 3 + 2 x (28 + 7 x 23) = 381.
 See \link{cfbd_passing}. So \code{offense_ppa} is PPA per attempt thrown and
 \code{defense_ppa} is PPA per attempt allowed -- a \emph{lower} \code{defense_ppa} is better.
 }
