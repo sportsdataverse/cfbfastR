@@ -28,7 +28,7 @@ The goal of [**```cfbfastR```**](https://cfbfastR.sportsdataverse.org/) is to pr
 
 ## **Data status**
 
-The `load_*()` functions read release assets on [sportsdataverse-data](https://github.com/sportsdataverse/sportsdataverse-data/releases). The badges below are rebuilt nightly from each producer's latest workflow run and newest release files; idle means the sport is out of season. Full detail: [sportsdataverse.org/status](https://sportsdataverse.org/status).
+The release-backed `load_*()` functions read assets on [sportsdataverse-data](https://github.com/sportsdataverse/sportsdataverse-data/releases) (`load_cfb_schedules()`, `load_cfb_rosters()` and `load_cfb_teams()` call the CFBD API instead). The badges below are rebuilt nightly from each producer's latest workflow run and newest release files; idle means the sport is out of season. Full detail: [sportsdataverse.org/status](https://sportsdataverse.org/status).
 
 | Dataset | Data updated | Through | Pipeline | Update workflows |
 |:--|:--|:--|:--|:--|

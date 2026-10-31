@@ -28,8 +28,10 @@ benchmarking open-source expected points and win probability metrics.
 
 ## **Data status**
 
-The `load_*()` functions read release assets on
-[sportsdataverse-data](https://github.com/sportsdataverse/sportsdataverse-data/releases).
+The release-backed `load_*()` functions read assets on
+[sportsdataverse-data](https://github.com/sportsdataverse/sportsdataverse-data/releases)
+(`load_cfb_schedules()`, `load_cfb_rosters()` and `load_cfb_teams()` call
+the CFBD API instead).
 The badges below are rebuilt nightly from each producer’s latest
 workflow run and newest release files; idle means the sport is out of
 season. Full detail:
