@@ -52,7 +52,8 @@ HTTP responses and small committed fixtures.
 All functions that access internet resources (the CollegeFootballData, ESPN, Fox
 Sports and Yahoo Sports APIs, and the pre-built season datasets on GitHub release
 assets) fail gracefully with an informative message and return an empty table
-when the resource is unavailable. Examples for these functions are wrapped in
+when the resource is unavailable (`yahoo_cfb_boxscore()`, which returns the raw
+nested list, returns `NULL`). Examples for these functions are wrapped in
 `\donttest{try(...)}`; the CollegeFootballData examples stop before sending any
 request when no API key is set.
 

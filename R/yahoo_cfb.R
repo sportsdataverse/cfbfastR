@@ -340,7 +340,7 @@ yahoo_cfb_scoreboard <- function(season = most_recent_cfb_season(), week = 1, co
 #'
 #' @param game_id (character, required): Dotted game id (e.g. `"ncaaf.g.202509200023"`).
 #' @return The full parsed JSON response as a nested list; the boxscore is under
-#'   `service$boxscore`.
+#'   `service$boxscore`. `NULL` when the request fails.
 #'
 #' @keywords Boxscore Data
 #' @export

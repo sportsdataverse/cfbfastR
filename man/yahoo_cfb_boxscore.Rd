@@ -11,7 +11,7 @@ yahoo_cfb_boxscore(game_id)
 }
 \value{
 The full parsed JSON response as a nested list; the boxscore is under
-\code{service$boxscore}.
+\code{service$boxscore}. \code{NULL} when the request fails.
 }
 \description{
 Returns the raw editorial \code{boxscore/{game_id}} JSON (as a nested list). The
