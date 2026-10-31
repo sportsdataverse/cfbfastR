@@ -30,3 +30,9 @@ test_that(".cfb_model_dir() caches in tempdir() under R CMD check, the user cach
     file.path(tools::R_user_dir("cfbfastR", which = "cache"), "models")
   )
 })
+
+test_that("scoring with a model that failed to load stops with a clear message", {
+  expect_error(.ep_predict(NULL, data.frame()), "expected points model could not be loaded")
+  expect_error(.wp_predict(NULL, data.frame()), "win probability model could not be loaded")
+  expect_error(.fg_make_prob(NULL, data.frame()), "field goal model could not be loaded")
+})

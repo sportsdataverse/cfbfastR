@@ -82,6 +82,24 @@ NULL
   file.path(root, "models")
 }
 
+#' Stop with a clear message when a model could not be loaded
+#'
+#' `.cfb_model()` returns `NULL` when neither the bundle nor the legacy model
+#' could be fetched (usually no connection to GitHub); scoring would otherwise
+#' fail inside `predict()` with an unhelpful error.
+#'
+#' @keywords internal
+#' @noRd
+.require_model <- function(model, what) {
+  if (is.null(model)) {
+    cli::cli_abort(c(
+      "The {what} model could not be loaded.",
+      "i" = "cfbfastR downloads its models from GitHub on first use; check the connection and try again."
+    ), call = NULL)
+  }
+  invisible(model)
+}
+
 #' Fetch a bundle asset to the on-disk model cache and return its path
 #'
 #' `xgboost::xgb.load()` reads a local file, not a URL, so the asset is
@@ -286,6 +304,7 @@ NULL
 #' @keywords internal
 #' @noRd
 .wp_predict <- function(wp_model, newdata) {
+  .require_model(wp_model, "win probability")
   if (!inherits(wp_model, "xgb.Booster")) {
     return(as.vector(stats::predict(wp_model, newdata = newdata,
                                     type = "response")))
@@ -315,6 +334,7 @@ NULL
 #' @keywords internal
 #' @noRd
 .ep_predict <- function(ep_model, newdata) {
+  .require_model(ep_model, "expected points")
   if (!inherits(ep_model, "xgb.Booster")) {
     # Legacy nnet::multinom path, preserved verbatim.
     out <- as.data.frame(stats::predict(ep_model, newdata, type = "prob"))
@@ -576,6 +596,7 @@ NULL
 #' @keywords internal
 #' @noRd
 .fg_make_prob <- function(fg_mod, newdata, season = NULL) {
+  .require_model(fg_mod, "field goal")
   if (!inherits(fg_mod, "xgb.Booster")) {
     return(as.numeric(mgcv::predict.bam(fg_mod, newdata = newdata,
                                         type = "response")))
