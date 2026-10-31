@@ -72,7 +72,7 @@ releases](https://github.com/sportsdataverse/sportsdataverse-data/releases)
 
 | Family                | Functions                                                                                                                                                                                                                                                                         | Source / contents                                                                                                                                                                                                                                              | Coverage       |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| Classic               | `load_cfb_pbp()`, `load_cfb_schedules()`, `load_cfb_rosters()`, `load_cfb_teams()`                                                                                                                                                                                                | The original cfbfastR EPA/WPA play-by-play + companions                                                                                                                                                                                                        | pbp 2014+      |
+| Classic               | `load_cfb_pbp()`                                                                                                                                                                                                                                                                  | The original cfbfastR EPA/WPA play-by-play                                                                                                                                                                                                                     | pbp 2014+      |
 | ESPN                  | `load_espn_cfb_*()` (27)                                                                                                                                                                                                                                                          | ESPN-derived datasets: pbp, schedules, team/player box, drives, game rosters, linescores, betting, play participants, FPI power index, percentiles, passing/rushing/receiving EPA splits, team summaries, model pbp, and eleven `adv_*` advanced-stat datasets | mostly 2004+   |
 | Ratings & recruiting  | `load_cfb_ratings()`, `load_cfb_ratings_weekly()`, `load_cfb_fpi_weekly()`, `load_cfb_team_summaries_weekly()`, `load_cfb_team_talent()`, `load_cfb_recruits()`, `load_cfb_recruiting_proj()`, `load_cfb_returning_production()`, plus the `load_cfb_*_crosswalk()` id crosswalks | Season/weekly power ratings, talent composite, recruiting, ESPN↔Fox↔Yahoo id crosswalks                                                                                                                                                                             | varies (2002+) |
 | NCAA (stats.ncaa.org) | `load_ncaa_mfb_*()` (10)                                                                                                                                                                                                                                                          | pbp (native + cfbfastR-shaped), drives, linescore, officials, player/team stats, rosters, schedule, teams — includes FCS and lower divisions ESPN misses                                                                                                       | 2013+          |
@@ -88,9 +88,15 @@ releases](https://github.com/sportsdataverse/sportsdataverse-data/releases)
     reshaped onto cfbfastR pbp column conventions for cross-source
     binds.
 
-All loaders accept a vector of seasons (or `seasons = TRUE` for
-everything published) and an optional `dbConnection` + `tablename` to
-write straight into a database instead of returning a tibble.
+These release loaders accept a vector of seasons (or `seasons = TRUE`
+for everything published) and an optional `dbConnection` + `tablename`
+to write straight into a database instead of returning a tibble.
+
+`load_cfb_schedules()`, `load_cfb_rosters()` and `load_cfb_teams()` are
+not release loaders: they call the CollegeFootballData API (through
+`cfbd_game_info()`, `cfbd_team_roster()` and `cfbd_team_info()`), so
+they need a `CFBD_API_KEY` and take no `dbConnection` or `tablename`.
+`load_cfb_teams()` takes `fbs_only` instead of `seasons`.
 
 ## **CollegeFootballData API coverage**
 

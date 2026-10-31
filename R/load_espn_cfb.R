@@ -149,7 +149,7 @@ NULL
 #'    |lead_pos_team2                          |integer   |Value of pos_team 2 plays ahead, used for sequence-aware derivations. |
 #'    |lag_change_of_pos_team                  |logical   |Value of change_of_pos_team on the previous play, used for sequence-aware derivations. |
 #'    |lag_pos_score_diff                      |integer   |Value of pos_score_diff on the previous play, used for sequence-aware derivations. |
-#'    |id                                      |integer   | |
+#'    |id                                      |character |ESPN play id, kept exact as character (18 digits, beyond double precision). |
 #'    |sequenceNumber                          |integer   | |
 #'    |text                                    |character | |
 #'    |awayScore                               |integer   | |
@@ -519,7 +519,8 @@ load_espn_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
   on.exit(options(old), add = TRUE)
   dots <- rlang::dots_list(...)
 
-  loader <- rds_from_url
+  # parquet keeps the Int64 play id exact; the .rds stores it as a lossy double
+  loader <- function(url) ids_to_character(parquet_from_url(url), "id")
 
   if (!is.null(dbConnection) && !is.null(tablename)) in_db <- TRUE else in_db <- FALSE
 
@@ -530,7 +531,7 @@ load_espn_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
             all(seasons <= most_recent_cfb_season()))
 
   urls <- paste0("https://github.com/sportsdataverse/sportsdataverse-data/releases/download/",
-                 "espn_cfb_pbp/play_by_play_", seasons, ".rds")
+                 "espn_cfb_pbp/play_by_play_", seasons, ".parquet")
 
   p <- NULL
   if (is_installed("progressr")) p <- progressr::progressor(along = seasons)
@@ -1223,7 +1224,7 @@ NULL
 #'    |col_name                   |types     |description |
 #'    |---------------------------|----------|:-----------|
 #'    |game_id                    |integer   | |
-#'    |play_id                    |integer   | |
+#'    |play_id                    |character |ESPN play id, kept exact as character (18 digits, beyond double precision). |
 #'    |kicker_player_name         |character |Display name of the kicker -- the FIRST participant in that role on the play. |
 #'    |tackler_player_name        |character |Display name of a defender credited with the tackle -- the FIRST participant in that role on the play. |
 #'    |returner_player_name       |character |Display name of the player returning the kick or punt -- the FIRST participant in that role on the play. |
@@ -1306,7 +1307,8 @@ load_espn_cfb_play_participants <- function(seasons = most_recent_cfb_season(), 
   on.exit(options(old), add = TRUE)
   dots <- rlang::dots_list(...)
 
-  loader <- rds_from_url
+  # parquet keeps the Int64 play_id exact; the .rds stores it as a lossy double
+  loader <- function(url) ids_to_character(parquet_from_url(url), "play_id")
 
   if (!is.null(dbConnection) && !is.null(tablename)) in_db <- TRUE else in_db <- FALSE
 
@@ -1317,7 +1319,7 @@ load_espn_cfb_play_participants <- function(seasons = most_recent_cfb_season(), 
             all(seasons <= most_recent_cfb_season()))
 
   urls <- paste0("https://github.com/sportsdataverse/sportsdataverse-data/releases/download/",
-                 "espn_cfb_play_participants/play_participants_", seasons, ".rds")
+                 "espn_cfb_play_participants/play_participants_", seasons, ".parquet")
 
   p <- NULL
   if (is_installed("progressr")) p <- progressr::progressor(along = seasons)
@@ -1348,7 +1350,7 @@ NULL
 #'   with FPI rating, projected wins, and efficiency components. Published
 #'   to the
 #'   `espn_cfb_power_index` release tag on the sportsdataverse-data repo.
-#' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2015 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2015)
+#' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2005 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2005)
 #' @param ... Additional arguments passed to an underlying function that
 #'   writes the season data into a database.
 #' @param dbConnection A `DBIConnection` object, as returned by [DBI::dbConnect()]
@@ -1380,10 +1382,10 @@ load_espn_cfb_power_index <- function(seasons = most_recent_cfb_season(), ...,
 
   if (!is.null(dbConnection) && !is.null(tablename)) in_db <- TRUE else in_db <- FALSE
 
-  if (isTRUE(seasons)) seasons <- 2015:most_recent_cfb_season()
+  if (isTRUE(seasons)) seasons <- 2005:most_recent_cfb_season()
 
   stopifnot(is.numeric(seasons),
-            all(seasons >= 2015),
+            all(seasons >= 2005),
             all(seasons <= most_recent_cfb_season()))
 
   urls <- paste0("https://github.com/sportsdataverse/sportsdataverse-data/releases/download/",
@@ -2312,7 +2314,8 @@ load_espn_cfb_model_pbp <- function(seasons = most_recent_cfb_season(), ...,
   on.exit(options(old), add = TRUE)
   dots <- rlang::dots_list(...)
 
-  loader <- rds_from_url
+  # the release publishes .parquet for every season (.rds only for 2024)
+  loader <- function(url) ids_to_character(parquet_from_url(url), "id")
 
   if (!is.null(dbConnection) && !is.null(tablename)) in_db <- TRUE else in_db <- FALSE
 
@@ -2323,7 +2326,7 @@ load_espn_cfb_model_pbp <- function(seasons = most_recent_cfb_season(), ...,
             all(seasons <= most_recent_cfb_season()))
 
   urls <- paste0("https://github.com/sportsdataverse/sportsdataverse-data/releases/download/",
-                 "espn_cfb_model_pbp/model_pbp_", seasons, ".rds")
+                 "espn_cfb_model_pbp/model_pbp_", seasons, ".parquet")
 
   p <- NULL
   if (is_installed("progressr")) p <- progressr::progressor(along = seasons)

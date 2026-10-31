@@ -5,7 +5,7 @@
 #' @description
 #'
 #' * `cfbd_api_key_info()`: Get information about your API key, including your Patreon level and usage limits.
-#' * `register_cfbd()`: Save your API Key as a system environment variable `CFBD_API_KEY`.
+#' * [register_cfbd]: How to save your API key as the `CFBD_API_KEY` environment variable, with `Sys.setenv(CFBD_API_KEY = "...")` for one session or a line in `~/.Renviron` for every session. `register_cfbd` is a help page, not a function.
 #' * `cfbd_key()`: Retrieve the CFBD API key from the `CFBD_API_KEY` environment variable.
 #' * `has_cfbd_key()`: Check whether a CFBD API key is registered in the current session.
 #'

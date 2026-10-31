@@ -941,7 +941,7 @@ NULL
 #'   Published to
 #'   the `cfb_returning_production` release tag on the sportsdataverse-data
 #'   repo.
-#' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2005 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2005)
+#' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
 #'   writes the season data into a database.
 #' @param dbConnection A `DBIConnection` object, as returned by [DBI::dbConnect()]
@@ -972,10 +972,10 @@ load_cfb_returning_production <- function(seasons = most_recent_cfb_season(), ..
 
   if (!is.null(dbConnection) && !is.null(tablename)) in_db <- TRUE else in_db <- FALSE
 
-  if (isTRUE(seasons)) seasons <- 2005:most_recent_cfb_season()
+  if (isTRUE(seasons)) seasons <- 2004:most_recent_cfb_season()
 
   stopifnot(is.numeric(seasons),
-            all(seasons >= 2005),
+            all(seasons >= 2004),
             all(seasons <= most_recent_cfb_season()))
 
   urls <- paste0("https://github.com/sportsdataverse/sportsdataverse-data/releases/download/",
@@ -998,6 +998,10 @@ load_cfb_returning_production <- function(seasons = most_recent_cfb_season(), ..
 }
 
 
+# The cfb_crosswalk tag publishes schedule/teams files for 2004, 2010 and
+# 2013 onward only; a plain floor would admit the missing 2005-2009/2011-2012.
+cfb_crosswalk_seasons <- function() c(2004, 2010, 2013:most_recent_cfb_season())
+
 #' **Load college football schedule id crosswalk from the SportsDataverse data repo**
 #' @name load_cfb_schedule_crosswalk
 NULL
@@ -1010,7 +1014,7 @@ NULL
 #'   Sports game ids -- one row per game in each season's file. The files
 #'   carry no `season` column and no CFBD game id. Published to the
 #'   `cfb_crosswalk` release tag on the sportsdataverse-data repo.
-#' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2014 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2014)
+#' @param seasons A vector of 4-digit years associated with given college football seasons. Published seasons are 2004, 2010, and 2013 through the most recent season (no files exist for 2005-2009 or 2011-2012). Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
 #'   writes the season data into a database.
 #' @param dbConnection A `DBIConnection` object, as returned by [DBI::dbConnect()]
@@ -1046,10 +1050,10 @@ load_cfb_schedule_crosswalk <- function(seasons = most_recent_cfb_season(), ...,
 
   if (!is.null(dbConnection) && !is.null(tablename)) in_db <- TRUE else in_db <- FALSE
 
-  if (isTRUE(seasons)) seasons <- 2014:most_recent_cfb_season()
+  if (isTRUE(seasons)) seasons <- cfb_crosswalk_seasons()
 
   stopifnot(is.numeric(seasons),
-            all(seasons >= 2014),
+            all(seasons %in% cfb_crosswalk_seasons()),
             all(seasons <= most_recent_cfb_season()))
 
   urls <- paste0("https://github.com/sportsdataverse/sportsdataverse-data/releases/download/",
@@ -1085,7 +1089,7 @@ NULL
 #'   per team in each season's file, including teams below FCS. The files
 #'   carry no `season` column and no CFBD team id. Published to the
 #'   `cfb_crosswalk` release tag on the sportsdataverse-data repo.
-#' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2014 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2014)
+#' @param seasons A vector of 4-digit years associated with given college football seasons. Published seasons are 2004, 2010, and 2013 through the most recent season (no files exist for 2005-2009 or 2011-2012). Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
 #'   writes the season data into a database.
 #' @param dbConnection A `DBIConnection` object, as returned by [DBI::dbConnect()]
@@ -1121,10 +1125,10 @@ load_cfb_teams_crosswalk <- function(seasons = most_recent_cfb_season(), ...,
 
   if (!is.null(dbConnection) && !is.null(tablename)) in_db <- TRUE else in_db <- FALSE
 
-  if (isTRUE(seasons)) seasons <- 2014:most_recent_cfb_season()
+  if (isTRUE(seasons)) seasons <- cfb_crosswalk_seasons()
 
   stopifnot(is.numeric(seasons),
-            all(seasons >= 2014),
+            all(seasons %in% cfb_crosswalk_seasons()),
             all(seasons <= most_recent_cfb_season()))
 
   urls <- paste0("https://github.com/sportsdataverse/sportsdataverse-data/releases/download/",

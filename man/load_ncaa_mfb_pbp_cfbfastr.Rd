@@ -25,7 +25,7 @@ writes the season data into a database.}
 Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    col_name \tab types \tab description \cr
    game_id \tab integer \tab  \cr
-   id_play \tab integer \tab  \cr
+   id_play \tab character \tab Play id, returned as character (the release stores it as Int64) to match the other pbp loaders. \cr
    drive_id \tab integer \tab  \cr
    game_play_number \tab integer \tab  \cr
    half_play_number \tab integer \tab  \cr

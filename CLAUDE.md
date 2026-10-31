@@ -83,7 +83,7 @@ directions. `?cfbd_passing` / `?cfbd_rushing` document the block and the naming
 scheme once instead of listing every column. `*_available` columns are
 denominators for the means, not statistics.
 
-**CFBD API key:** `register_cfbd()` saves `CFBD_API_KEY`; `cfbd_key()` / `has_cfbd_key()` /
+**CFBD API key:** `?register_cfbd` (a help page, not a function) explains saving `CFBD_API_KEY`; `cfbd_key()` / `has_cfbd_key()` /
 `cfbd_api_key_info()` inspect it. Register at <https://collegefootballdata.com/key>.
 
 **Loaders:** `load_cfb_pbp(seasons)` pulls per-season `.rds` from the

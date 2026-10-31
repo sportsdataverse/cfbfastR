@@ -146,7 +146,7 @@ NULL
 #'    |col_name                     |types     |description |
 #'    |-----------------------------|----------|:-----------|
 #'    |game_id                      |integer   | |
-#'    |id_play                      |integer   | |
+#'    |id_play                      |character |Play id, returned as character (the release stores it as Int64) to match the other pbp loaders. |
 #'    |drive_id                     |integer   | |
 #'    |game_play_number             |integer   | |
 #'    |half_play_number             |integer   | |
@@ -262,7 +262,7 @@ load_ncaa_mfb_pbp_cfbfastr <- function(seasons = most_recent_cfb_season(), ...,
   on.exit(options(old), add = TRUE)
   dots <- rlang::dots_list(...)
 
-  loader <- rds_from_url
+  loader <- function(url) ids_to_character(rds_from_url(url), "id_play")
 
   if (!is.null(dbConnection) && !is.null(tablename)) in_db <- TRUE else in_db <- FALSE
 
