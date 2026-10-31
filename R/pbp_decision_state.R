@@ -91,7 +91,9 @@ NULL
   out <- st
   # The 2H-kickoff indicator only means anything while the second half is still
   # ahead; toggling it in the second half would invent a kickoff that already
-  # happened.
+  # happened. Known gap, shared with sdv-py: while the WP boosters still take
+  # 1 - is_home, a second-half flip toggles is_home but not this column, so the
+  # booster sees flag == is_home. Fix in sdv-py first, then mirror here.
   first_half <- !is.na(st$period) & st$period <= 2
   recv <- st$pos_team_receives_2H_kickoff
   out$pos_team_receives_2H_kickoff <- ifelse(

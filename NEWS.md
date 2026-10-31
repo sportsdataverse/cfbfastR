@@ -80,13 +80,18 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   / `calculate_wpa()` and the fourth-down / two-point decision surfaces.
   **`wp_before`, `wp_after`, `wpa`, `vegas_wp` and the decision-surface WP
   columns change**, most in games where the home team kicked off first (by up
-  to 0.11 naive WP on 56 real 2004-2025 games; Brier 0.1352 -> 0.1335). The
+  to 0.11 naive WP on 56 real 2004-2025 games; in-sample Brier 0.1352 -> 0.1335,
+  and 0.1096 -> 0.1052 where the home team kicked off first). Games where the
+  away team kicked off first, and spread WP overall, move slightly the other way
+  (spread Brier 0.1345 -> 0.1346). The
   `pos_team_receives_2H_kickoff` column itself is unchanged: it is a correct
   descriptive column, only the model input differs. The shim goes when the
   boosters are retrained on the true flag (#199).
 * A cross-language oracle (`tests/testthat/test-parity_epa_wp.R`) now checks
-  cfbfastR's EP, EPA, naive and spread WP scoring against sportsdataverse-py on
-  six real games, to 1e-5.
+  that cfbfastR's EP models, the EP_end - EP_start difference and naive and
+  spread WP score sportsdataverse-py's recorded game states the same way, on six
+  real games, to 1e-5. It replays the scoring step; the EPA possession and
+  scoring rules are not compared.
 
 ## Fixed: CFBD passing CPOE columns, play stat types and gateway retries
 

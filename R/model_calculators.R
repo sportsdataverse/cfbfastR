@@ -158,7 +158,8 @@ cfb_add_era_columns <- function(df, model, season = NULL) {
     # 2H-kickoff shim, until the WP boosters are retrained on the corrected
     # flag: score the flag as the boosters were
     # trained (.wp_as_trained_2h_flag(), sdv-py's cfb_pbp._as_trained_2h_flag);
-    # the returned frame keeps the caller's column.
+    # the returned frame keeps the caller's column. An NA is_home stays NA here
+    # (as in sdv-py); .wp_feature_matrix() maps it to 0, so the engine feeds 1.
     scored$pos_team_receives_2H_kickoff <- .wp_as_trained_2h_flag(
       suppressWarnings(as.numeric(prepared$is_home))
     )

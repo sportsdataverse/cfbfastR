@@ -166,7 +166,7 @@ def main():
         oracle.write_csv(fh, float_precision=10)
     sha = (
         subprocess.check_output(
-            ["git", "-C", SDV_PY, "rev-parse", "--short=10", "HEAD"]
+            ["git", "-C", SDV_PY, "describe", "--always", "--dirty", "--abbrev=10"]
         )
         .decode()
         .strip()

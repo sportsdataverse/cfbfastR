@@ -142,4 +142,4 @@ state. Outputs: sdv-py's published `EP_start`, `EP_end`, `EPA`, `wp_before_naive
 which cfbfastR has not ported; `ep_start_raw` / `ep_end_raw`, sdv-py's EP model on the start / end
 state (the published `EP_start` / `EP_end` are that value after the pipeline's possession-flip and
 scoring rules). `pos_team_won` is for calibration metrics. Re-capture: `python
-data-raw/parity_epa_wp_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file.
+data-raw/parity_epa_wp_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file. The `wp_*_raw` columns are the generator's own booster calls on sdv-py's states with sdv-py's `_as_trained_2h_flag`, not values read from sdv-py's pipeline, so the WP check confirms R scores those states the same way; it does not test the trained-on-`1 - is_home` premise itself. Decision-surface WP is not in the oracle; `test-decision-state.R` pins it to sdv-py's exact values. Both libraries toggle the flag only in first-half flipped states while `is_home` always toggles, so second-half flipped states reach the booster as `flag == is_home`; that is to be fixed in sdv-py first and mirrored here.
