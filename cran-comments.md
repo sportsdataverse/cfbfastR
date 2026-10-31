@@ -47,13 +47,14 @@ HTTP responses and small committed fixtures.
 
 ## Internet resources
 
-All functions that access internet resources (the CollegeFootballData, ESPN, Fox
+Functions that access internet resources (the CollegeFootballData, ESPN, Fox
 Sports and Yahoo Sports APIs, and the pre-built season datasets on GitHub release
-assets) fail gracefully with an informative message and return an empty table
-when the resource is unavailable (`yahoo_cfb_boxscore()`, which returns the raw
-nested list, returns `NULL`). Examples for these functions are wrapped in
-`\donttest{try(...)}`; the CollegeFootballData examples stop before sending any
-request when no API key is set.
+assets) fail with an informative message when the resource is unavailable. Most
+return an empty table; a few raise an error instead (for example
+`cfbd_pbp_data(engine = "legacy")` on a non-200 response) and
+`yahoo_cfb_boxscore()` returns `NULL`. Every example that touches the network is
+wrapped in `\donttest{try(...)}`, and the CollegeFootballData examples stop
+before sending any request when no API key is set.
 
 ## Reverse dependencies
 
