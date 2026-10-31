@@ -65,6 +65,23 @@ NULL
 #' @noRd
 .EP_PERM_FALLBACK <- c(7L, 3L, 4L, 6L, 2L, 5L, 1L)
 
+#' Directory the model bundle is cached in
+#'
+#' The package's user cache dir, except under `R CMD check` (which sets
+#' `_R_CHECK_PACKAGE_NAME_`): examples that score plays would otherwise leave
+#' the bundle in the user's file space, so a check run caches in `tempdir()`.
+#'
+#' @keywords internal
+#' @noRd
+.cfb_model_dir <- function() {
+  root <- if (nzchar(Sys.getenv("_R_CHECK_PACKAGE_NAME_"))) {
+    file.path(tempdir(), "cfbfastR")
+  } else {
+    tools::R_user_dir("cfbfastR", which = "cache")
+  }
+  file.path(root, "models")
+}
+
 #' Fetch a bundle asset to the on-disk model cache and return its path
 #'
 #' `xgboost::xgb.load()` reads a local file, not a URL, so the asset is
@@ -79,7 +96,7 @@ NULL
 #' @keywords internal
 #' @noRd
 .cfb_model_file <- function(asset) {
-  dir <- file.path(tools::R_user_dir("cfbfastR", which = "cache"), "models")
+  dir <- .cfb_model_dir()
   dir.create(dir, recursive = TRUE, showWarnings = FALSE)
   dest <- file.path(dir, asset)
 

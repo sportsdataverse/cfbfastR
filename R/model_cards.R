@@ -55,9 +55,7 @@ cfb_model_card <- function(model) {
 }
 
 .cfb_booster_stamp <- function(model) {
-  path <- file.path(
-    tools::R_user_dir("cfbfastR", which = "cache"), "models", paste0(model, ".ubj")
-  )
+  path <- file.path(.cfb_model_dir(), paste0(model, ".ubj"))
   if (!file.exists(path)) {
     return(NA_real_)
   }

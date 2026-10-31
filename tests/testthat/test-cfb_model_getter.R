@@ -20,3 +20,13 @@ test_that(".cfb_model() loads on first use, keeps a model, and retries after a f
 
   expect_error(.cfb_model("qbr_model"), "Unknown model")
 })
+
+test_that(".cfb_model_dir() caches in tempdir() under R CMD check, the user cache otherwise", {
+  withr::local_envvar(c("_R_CHECK_PACKAGE_NAME_" = "cfbfastR"))
+  expect_identical(.cfb_model_dir(), file.path(tempdir(), "cfbfastR", "models"))
+  withr::local_envvar(c("_R_CHECK_PACKAGE_NAME_" = ""))
+  expect_identical(
+    .cfb_model_dir(),
+    file.path(tools::R_user_dir("cfbfastR", which = "cache"), "models")
+  )
+})
