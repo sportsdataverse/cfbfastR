@@ -1,6 +1,6 @@
 Package: cfbfastR
 Title: Access College Football Play by Play Data
-Version: 3.0.0.9000
+Version: 3.1.0
 Authors@R: c(
     person("Saiem", "Gilani", , "saiem.gilani@gmail.com", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-7194-9067")),
@@ -21,13 +21,14 @@ Authors@R: c(
     person("cfbfastR authors", role = "cph")
   )
 Description: A utility to quickly obtain clean and tidy college football
-    data. Serves as a wrapper around the
-    <https://collegefootballdata.com/> API and provides functions to
-    access live play by play and box score data from ESPN
-    <https://www.espn.com> when available. It provides users the
-    capability to access a plethora of endpoints, and supplement that data
-    with additional information (Expected Points Added/Win Probability
-    added).
+    data. Wraps the 'CollegeFootballData' API
+    <https://collegefootballdata.com/>, the 'ESPN' college football API
+    <https://www.espn.com>, and the 'Fox Sports' and 'Yahoo Sports'
+    college football feeds; loads pre-built play-by-play, box score,
+    roster and team datasets from the 'SportsDataverse' data releases;
+    and supplements play-by-play with expected points added, win
+    probability added, field goal, fourth down, two point conversion,
+    expected pass, completion probability and quarterback rating models.
 License: MIT + file LICENSE
 URL: https://cfbfastR.sportsdataverse.org/,
     https://github.com/sportsdataverse/cfbfastR
@@ -39,18 +40,18 @@ Imports:
     data.table (>= 1.15.0),
     dplyr (>= 1.1.1),
     glue (>= 1.4.0),
-    httr2 (>= 1.0.0),
+    httr2 (>= 1.1.0),
     janitor,
     jsonlite,
     mgcv (>= 1.8-33),
     nnet,
-    purrr (>= 0.3.0),
-    Rcpp (>= 1.0.7),
-    RcppParallel (>= 5.1.4),
+    purrr (>= 1.0.0),
     rlang (>= 0.4.10),
+    stats,
     stringr (>= 1.4.0),
     tibble (>= 3.0),
-    tidyr (>= 1.2.0)
+    tidyr (>= 1.2.0),
+    utils
 Suggests:
     arrow,
     bit64,
@@ -65,7 +66,6 @@ Suggests:
     progressr (>= 0.6.0),
     rmarkdown,
     RSQLite,
-    stats,
     stringi,
     testthat (>= 3.1.9),
     usethis (>= 1.6.0),
