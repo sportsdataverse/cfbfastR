@@ -83,7 +83,9 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   `.parquet` files, which keep the ids as Int64, and return `id` / `play_id` as
   character; `load_ncaa_mfb_pbp_cfbfastr()` returns `id_play` as character.
   The pbp, play participants and model pbp loaders now need the suggested
-  `arrow` package; the NCAA one needs `bit64`. (#197)
+  `arrow` package; the NCAA one needs `bit64`. Appending to a database table
+  created by an earlier version, whose id column is numeric, fails on strict
+  backends: recreate the table. (#197)
 - Multi-season parquet loads no longer fail when a column is all-null in one
   season and populated in another (`overUnderAvailable` in the ESPN pbp):
   `parquet_from_url()` now reads all-null columns as logical. (#197)

@@ -149,7 +149,7 @@ NULL
 #'    |lead_pos_team2                          |integer   |Value of pos_team 2 plays ahead, used for sequence-aware derivations. |
 #'    |lag_change_of_pos_team                  |logical   |Value of change_of_pos_team on the previous play, used for sequence-aware derivations. |
 #'    |lag_pos_score_diff                      |integer   |Value of pos_score_diff on the previous play, used for sequence-aware derivations. |
-#'    |id                                      |character |ESPN play id, kept exact as character (18 digits, beyond double precision). |
+#'    |id                                      |character |ESPN play id, kept exact as character (up to 18 digits, beyond double precision). |
 #'    |sequenceNumber                          |integer   | |
 #'    |text                                    |character | |
 #'    |awayScore                               |integer   | |
@@ -1224,7 +1224,7 @@ NULL
 #'    |col_name                   |types     |description |
 #'    |---------------------------|----------|:-----------|
 #'    |game_id                    |integer   | |
-#'    |play_id                    |character |ESPN play id, kept exact as character (18 digits, beyond double precision). |
+#'    |play_id                    |character |ESPN play id, kept exact as character (up to 18 digits, beyond double precision). |
 #'    |kicker_player_name         |character |Display name of the kicker -- the FIRST participant in that role on the play. |
 #'    |tackler_player_name        |character |Display name of a defender credited with the tackle -- the FIRST participant in that role on the play. |
 #'    |returner_player_name       |character |Display name of the player returning the kick or punt -- the FIRST participant in that role on the play. |
@@ -2250,7 +2250,7 @@ NULL
 #'   pbp frame with the engineered features the cfbfastR EP/WP model suite
 #'   trains on. Published to the
 #'   `espn_cfb_model_pbp` release tag on the sportsdataverse-data repo.
-#' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
+#' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through 2025; the current season has no file until it is built, so the default (the current season) returns an empty table with a warning. Pass `seasons = TRUE` for every season from 2004. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
 #'   writes the season data into a database.
 #' @param dbConnection A `DBIConnection` object, as returned by [DBI::dbConnect()]

@@ -141,7 +141,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    lead_pos_team2 \tab integer \tab Value of pos_team 2 plays ahead, used for sequence-aware derivations. \cr
    lag_change_of_pos_team \tab logical \tab Value of change_of_pos_team on the previous play, used for sequence-aware derivations. \cr
    lag_pos_score_diff \tab integer \tab Value of pos_score_diff on the previous play, used for sequence-aware derivations. \cr
-   id \tab character \tab ESPN play id, kept exact as character (18 digits, beyond double precision). \cr
+   id \tab character \tab ESPN play id, kept exact as character (up to 18 digits, beyond double precision). \cr
    sequenceNumber \tab integer \tab  \cr
    text \tab character \tab  \cr
    awayScore \tab integer \tab  \cr

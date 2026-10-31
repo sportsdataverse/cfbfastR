@@ -106,7 +106,7 @@ parquet_from_url <- function(url) {
   return(load)
 }
 
-# Play ids are 18-digit Int64 values; above 2^53 a double cannot hold them
+# Play ids are Int64 values of up to 18 digits; above 2^53 a double cannot hold them
 # (2025 espn_cfb_pbp: 166,360 ids collapse to 149,864 as doubles). Convert
 # exactly to character, the dtype espn_cfb_pbp_v2() returns. Integer64 goes
 # through bit64; a plain double is left alone because casting it would only
@@ -119,6 +119,8 @@ ids_to_character <- function(df, cols) {
       x <- bit64::as.character.integer64(x)
     } else if (is.integer(x)) {
       x <- as.character(x)
+    } else if (is.double(x)) {
+      cli::cli_warn("{.field {col}} arrived as a double; ids above 2^53 may already be rounded.")
     }
     data.table::set(df, j = col, value = x)
   }
