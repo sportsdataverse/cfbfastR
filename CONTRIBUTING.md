@@ -34,7 +34,7 @@ This project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md
 3. **Create a feature branch from `main`**: `git checkout -b feat/your-feature main`. `main` is the default branch and the release branch. During the 2.3.0 cycle, larger play-by-play / EPA / WPA work was staged on `refactor/pbp-epa-wpa-modular`; if you are contributing to that area, coordinate with the maintainer before branching so you start from the same base.
 4. **Set up your CFBD API key for live tests**:
    - Sign up for a free key at [collegefootballdata.com/key](https://collegefootballdata.com/key).
-   - Export it as `CFBD_API_KEY` (or set it in `~/.Renviron`) so the `cfbd_*` wrappers and any tests that hit `api.collegefootballdata.com` can authenticate. `register_cfbd()` will read this for you; `cfbd_api_key_info()` / `has_cfbd_key()` can confirm it's wired up.
+   - Export it as `CFBD_API_KEY` (or set it in `~/.Renviron`) so the `cfbd_*` wrappers and any tests that hit `api.collegefootballdata.com` can authenticate. `cfbd_key()` reads it back (see `?register_cfbd` for setup); `cfbd_api_key_info()` / `has_cfbd_key()` can confirm it's wired up.
    - ESPN endpoints (`espn_cfb_*`, `espn_metrics_wp`, `espn_ratings_fpi`) are unauthenticated but still hit the network -- you do not need a key for them, just connectivity.
 
 ## Workflow

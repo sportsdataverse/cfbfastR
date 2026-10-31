@@ -12,7 +12,7 @@ load_cfb_returning_production(
 )
 }
 \arguments{
-\item{seasons}{A vector of 4-digit years associated with given college football seasons. Published coverage runs 2005 through the most recent season. Pass \code{seasons = TRUE} for every published season. (Min: 2005)}
+\item{seasons}{A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass \code{seasons = TRUE} for every published season. (Min: 2004)}
 
 \item{...}{Additional arguments passed to an underlying function that
 writes the season data into a database.}

@@ -12,7 +12,7 @@ load_espn_cfb_model_pbp(
 )
 }
 \arguments{
-\item{seasons}{A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass \code{seasons = TRUE} for every published season. (Min: 2004)}
+\item{seasons}{A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through 2025; the current season has no file until it is built, so the default (the current season) returns an empty table with a warning. Pass \code{seasons = TRUE} for every season from 2004. (Min: 2004)}
 
 \item{...}{Additional arguments passed to an underlying function that
 writes the season data into a database.}
