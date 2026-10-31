@@ -6750,7 +6750,7 @@ espn_cfb_pbp_v2 <- function(game_id,
           play_order                   = order(.espn_play_order(
             .data$play_id, .data$sequence_number, .data$period, .data$clock,
             .data$drive_drive_id, .data$type_text, .data$start_down_distance_text,
-            .data$end_down_distance_text, .env$game_season, .data$home_score, .data$away_score
+            .data$end_down_distance_text, !!game_season, .data$home_score, .data$away_score
           )),
           plays_start_yards_to_endzone = .data$start_yards_to_endzone,
           # ESPN's end-of-play yardline: the air-yards helper learns each game's
