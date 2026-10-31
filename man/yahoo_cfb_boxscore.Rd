@@ -2,7 +2,7 @@
 % Please edit documentation in R/yahoo_cfb.R
 \name{yahoo_cfb_boxscore}
 \alias{yahoo_cfb_boxscore}
-\title{\strong{Get Yahoo Sports college football boxscore (SCAFFOLD)}}
+\title{\strong{Get Yahoo Sports college football boxscore (raw JSON)}}
 \usage{
 yahoo_cfb_boxscore(game_id)
 }
@@ -10,13 +10,14 @@ yahoo_cfb_boxscore(game_id)
 \item{game_id}{(character, required): Dotted game id (e.g. \code{"ncaaf.g.202509200023"}).}
 }
 \value{
-The raw parsed JSON list (\code{service$boxscore}). TODO: decode to tibbles.
+The full parsed JSON response as a nested list; the boxscore is under
+\code{service$boxscore}. \code{NULL} when the request fails.
 }
 \description{
 Returns the raw editorial \code{boxscore/{game_id}} JSON (as a nested list). The
 boxscore uses a normalized decoder-dictionary schema
 (\code{player_stats[playerId][variation][stat_type]} joined against \code{stat_types} /
-\code{stat_categories}); full decoding is a follow-up.
+\code{stat_categories}), returned as-is rather than flattened to tibbles.
 }
 \examples{
 \donttest{

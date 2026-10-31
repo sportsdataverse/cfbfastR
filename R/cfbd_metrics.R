@@ -565,7 +565,7 @@ cfbd_metrics_ppa_games <- function(year,
   validate_year(year)
   validate_week(week)
   validate_season_type(season_type)
-  validate_list(excl_garbage_time, c(T,F))
+  validate_list(excl_garbage_time, c(TRUE, FALSE))
 
   # Team Name Handling ----
   team <- handle_accents(team)
@@ -693,7 +693,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
   validate_list(position, pos_groups)
   validate_id(athlete_id)
   validate_id(threshold)
-  validate_list(excl_garbage_time, c(T,F))
+  validate_list(excl_garbage_time, c(TRUE, FALSE))
 
   # Team Name Handling ----
   team <- handle_accents(team)
@@ -826,7 +826,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
   validate_list(position, pos_groups)
   validate_id(athlete_id)
   validate_id(threshold)
-  validate_list(excl_garbage_time, c(T,F))
+  validate_list(excl_garbage_time, c(TRUE, FALSE))
 
   # Team Name Handling ----
   team <- handle_accents(team)
@@ -1014,7 +1014,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
   validate_division(division)
   validate_reqs(year, team)
   validate_year(year)
-  validate_list(excl_garbage_time, c(T,F))
+  validate_list(excl_garbage_time, c(TRUE, FALSE))
 
   # Team Name Handling ----
   team <- handle_accents(team)

@@ -1,97 +1,62 @@
-## Resubmission
-
-This is a resubmission of 3.0.0. The previous upload failed the incoming
-pretest on Debian because one test read a zstd-compressed parquet fixture,
-which the pretest machine's 'arrow' build does not support. The full test
-suite now skips on CRAN (the tests validate cross-language parity against
-committed fixtures and live APIs, and run on the package's continuous
-integration on every push); on CRAN the suite completes with no test
-executed.
-
 ## Release summary
 
-### Development additions since 3.0.0
+This is a minor release (3.0.0 -> 3.1.0). It:
 
-* Adds ten `calculate_*()` model-calculator wrappers scoring the CFB models the
-  package already ships. All are documented and exported; their tests
-  `skip_on_cran()` because they require the model bundle to be downloaded, and
-  run on the package's continuous integration on every push.
-
+* Moves the expected points, win probability and decision models to XGBoost
+  boosters published in one shared release asset bundle (`cfb_model_artifacts`),
+  scored identically by this package and its Python counterpart. EPA and WPA
+  values therefore change from 3.0.0. `xgboost` is in Suggests; without it the
+  package falls back to the previous models.
+* Adds ten `calculate_*()` functions that score a data frame with those models,
+  validated against each model's published card.
 * Adds ten `cfbd_*()` wrappers for the CollegeFootballData passing and rushing
-  endpoint families, bringing coverage to all 84 endpoints in the current API
-  specification (v5.27.1). All ten are documented, exported, and covered by
-  tests that `skip_on_cran()` because they require a `CFBD_API_KEY` and a live
-  API; they run on the package's continuous integration on every push.
-
-* Adds four loaders (`load_cfb_groups()`, `load_cfb_group_seasons()`,
-  `load_cfb_group_aliases()`, `load_cfb_team_group_seasons()`) for
-  season-by-season conference and division membership from the
-  sportsdataverse-data GitHub releases. Their
-  examples are wrapped in `\donttest{try(...)}`, a download failure degrades to
-  a zero-row table with a warning, and the tests that download skip on CRAN.
-
-
-This is a major release (2.2.0 -> 3.0.0; the 2.3.0 development version was renumbered and never published) that:
-
-* Adds a large new ESPN college-football API layer — 65 new `espn_cfb_*()`
-  wrappers covering players, teams, games, play-by-play, season structure,
-  league catalogs, and recruiting — expanding the package's ESPN coverage
-  from 8 wrappers to 73.
-* Adds `espn_cfb_pbp_v2()`, a faster core-v2-sourced play-by-play function
-  that runs the full EPA/WPA model pipeline.
-* Adds `cfbd_betting_ats()` and `cfbd_stats_game_havoc()` for
-  against-the-spread records and per-game havoc statistics from the
-  CollegeFootballData API.
-* Fixes a bug in `espn_cfb_pbp()` where a malformed request URL caused
-  every call to return an error.
-* Adds optional session caching of ESPN reference catalogs (`cachem` /
-  `memoise`), controllable via the `cfbfastR.cache` option.
-* Migrates the package's internal HTTP layer from `httr` to
-  `httr2` (>= 1.0.0); no user-visible behaviour change for existing
-  wrapper calls.
-* Adds 48 full-season data loaders (`load_espn_cfb_*()`, `load_cfb_*()`
-  dataset loaders, `load_ncaa_mfb_*()`) that download pre-built season
-  datasets from the sportsdataverse-data GitHub releases; all examples are
-  wrapped in `\donttest{try(...)}` and every download failure degrades to a
-  zero-row table with a warning rather than an error.
-* Documentation migrated to roxygen2 8.1.0; adds a `cph` role to
-  `Authors@R` and refreshes the LICENSE year.
+  endpoints, plus schedule, preview and team-overview endpoints.
+* Adds loaders for season-by-season conference and division membership.
+* No longer downloads anything when the package is loaded: the models are fetched
+  the first time a function scores a play.
+* Raises the httr2 floor to 1.1.0 and the purrr floor to 1.0.0 (the versions that
+  provide functions the package imports), declares `stats` and `utils` in
+  Imports, and drops the unused Rcpp and RcppParallel imports. This fixes the
+  r-devel NOTE on the 3.0.0 check page about `stats` being imported but only
+  suggested.
 
 ## Test environments
 
-* local Windows 10, R 4.6.1 (full suite + `--run-donttest`)
+* local Windows 10, R 4.6.1, `R CMD check --as-cran` with `--run-donttest`
 * GitHub Actions: windows-latest (release), ubuntu-latest (release, oldrel-1)
-* R-hub: linux, windows, macos (R-devel)
+* win-builder: R-devel, R-release (TO RUN before submission)
+* R-hub: linux, windows, macos (R-devel) (TO RUN before submission)
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 note
 
-(The local Windows run shows one NOTE about a `''NULL''` file in the check
-directory; this is a known artifact of rcmdcheck on Windows in the local
-environment and does not appear on the CI or R-hub platforms.)
+* checking for non-standard things in the check directory: `''NULL''`. This is
+  created by the local Windows R startup, not by the package; it does not appear
+  on GitHub Actions.
+
+Under `R CMD check` the model bundle that examples download is cached in
+`tempdir()`, so the check leaves nothing in the user's file space.
+
+## Tests on CRAN
+
+Tests that need the network (the CollegeFootballData API, which also needs an API
+key; ESPN; the GitHub release assets) or the downloaded model bundle call
+`skip_on_cran()`. The remaining tests run on CRAN and are offline: they use mocked
+HTTP responses and small committed fixtures.
 
 ## Internet resources
 
-All functions that access internet resources (the CollegeFootballData and
-ESPN APIs, and the pre-built season datasets on GitHub release assets) fail
-gracefully with an informative message and return an empty table when the
-resource is unavailable. Examples for these functions are wrapped in
-`\donttest{try(...)}`.
+Functions that access internet resources (the CollegeFootballData, ESPN, Fox
+Sports and Yahoo Sports APIs, and the pre-built season datasets on GitHub release
+assets) fail with an informative message when the resource is unavailable. Most
+return an empty table; a few raise an error instead (for example
+`cfbd_pbp_data(engine = "legacy")` on a non-200 response) and
+`yahoo_cfb_boxscore()` returns `NULL`. Every example that touches the network is
+wrapped in `\donttest{try(...)}`, and the CollegeFootballData examples stop
+before sending any request when no API key is set.
 
-## revdepcheck results
+## Reverse dependencies
 
-We checked 0 reverse dependencies, comparing R CMD check results across
-CRAN and dev versions of this package.
-
-* We saw 0 new problems
-* We failed to check 0 packages
-
-## Behaviour change in this release
-
-`cfbd_pbp_data()` and `espn_cfb_pbp()` now run the v2 play-by-play engine by
-default. The previous behaviour remains available via `engine = "legacy"` per
-call, or `options(cfbfastR.pbp_engine = "legacy")` for a session, and a
-once-per-session message points at it. `tests/testthat/test-pbp_equivalence.R`
-asserts the v2 engine reproduces the legacy frames column-for-column against an
-explicit allow-list of intentional deltas (1,788 assertions with network).
+cfbseedR (Suggests cfbfastR). `R CMD check` on its CRAN release (0.2.0) against
+this version: Status OK.

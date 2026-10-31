@@ -331,15 +331,16 @@ yahoo_cfb_scoreboard <- function(season = most_recent_cfb_season(), week = 1, co
   return(.attach_query_meta_auto(out))
 }
 
-#' **Get Yahoo Sports college football boxscore (SCAFFOLD)**
+#' **Get Yahoo Sports college football boxscore (raw JSON)**
 #'
 #' Returns the raw editorial `boxscore/{game_id}` JSON (as a nested list). The
 #' boxscore uses a normalized decoder-dictionary schema
 #' (`player_stats[playerId][variation][stat_type]` joined against `stat_types` /
-#' `stat_categories`); full decoding is a follow-up.
+#' `stat_categories`), returned as-is rather than flattened to tibbles.
 #'
 #' @param game_id (character, required): Dotted game id (e.g. `"ncaaf.g.202509200023"`).
-#' @return The raw parsed JSON list (`service$boxscore`). TODO: decode to tibbles.
+#' @return The full parsed JSON response as a nested list; the boxscore is under
+#'   `service$boxscore`. `NULL` when the request fails.
 #'
 #' @keywords Boxscore Data
 #' @export
@@ -353,7 +354,6 @@ yahoo_cfb_boxscore <- function(game_id) {
   tryCatch(
     expr = {
       raw <- .yahoo_get(.YAHOO_EDITORIAL, paste0("boxscore/", game_id), query = list(v = 4))
-      # TODO(scaffold): decode service$boxscore$player_stats via stat_types into tibbles.
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: invalid game_id or no Yahoo boxscore available!"))

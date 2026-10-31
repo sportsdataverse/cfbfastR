@@ -2158,7 +2158,7 @@ espn_cfb_player_career_stats <- function(athlete_id = NULL,
 #' }
 #'
 espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total=FALSE){
-  validate_season_type(season_type, allow_both = F)
+  validate_season_type(season_type, allow_both = FALSE)
 
   s_type <- ifelse(season_type == "postseason", 3, 2)
 
