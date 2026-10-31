@@ -230,14 +230,34 @@ NULL
                newdata$pos_team == newdata$home)
 }
 
+#' The booster input for `pos_team_receives_2H_kickoff`: `1 - is_home`, as the boosters were trained
+#'
+#' 2H-kickoff shim, until the WP boosters are retrained on the corrected flag
+#' (sdv-py's `cfb_pbp._as_trained_2h_flag`). The bundled `wp_spread` / `wp_naive` were
+#' trained on a frame where the flag was `1 - is_home` on every row, both
+#' halves, so they learned it as a second home/away indicator. Feeding them the
+#' corrected published flag (true only on the opening kicker's first-half
+#' possessions) degrades naive WP; feeding the trained semantics keeps WP as it
+#' was while the published `pos_team_receives_2H_kickoff` column stays correct.
+#' Remove this, and its three callers' use of it, in the same release as the
+#' retrained boosters.
+#'
+#' @param is_home 0/1 vector, the possessing team is home.
+#' @keywords internal
+#' @noRd
+.wp_as_trained_2h_flag <- function(is_home) 1 - is_home
+
 #' Build the WP model's feature matrix
+#'
+#' `pos_team_receives_2H_kickoff` is fed as [.wp_as_trained_2h_flag()], not
+#' read from the frame (2H-kickoff shim).
 #'
 #' @param newdata One row per play, carrying the WP inputs
 #'   `.pbp_create_epa()` prepares.
 #' @keywords internal
 #' @noRd
 .wp_feature_matrix <- function(newdata) {
-  derived <- "is_home"
+  derived <- c("is_home", "pos_team_receives_2H_kickoff")
   need <- setdiff(.WP_NAIVE_FEATURES, derived)
   missing_cols <- setdiff(need, names(newdata))
   if (length(missing_cols)) {
@@ -256,6 +276,7 @@ NULL
   })
   names(cols) <- need
   cols$is_home <- .wp_is_home(newdata)
+  cols$pos_team_receives_2H_kickoff <- .wp_as_trained_2h_flag(cols$is_home)
   m <- do.call(cbind, cols[.WP_NAIVE_FEATURES])
   colnames(m) <- .WP_NAIVE_FEATURES
   m

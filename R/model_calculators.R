@@ -152,7 +152,19 @@ cfb_add_era_columns <- function(df, model, season = NULL) {
   # mtime keying exists to prevent.
   booster <- .cfb_booster_for(model)
   prepared <- cfb_add_era_columns(.cfb_normalize_pbp_columns(df, model), model, season = season)
-  prepared[[out_col]] <- .cfb_predict_from_card(prepared, model, booster)
+  scored <- prepared
+  if (model %in% c("wp_spread", "wp_naive") &&
+      all(c("is_home", "pos_team_receives_2H_kickoff") %in% names(prepared))) {
+    # 2H-kickoff shim, until the WP boosters are retrained on the corrected
+    # flag: score the flag as the boosters were
+    # trained (.wp_as_trained_2h_flag(), sdv-py's cfb_pbp._as_trained_2h_flag);
+    # the returned frame keeps the caller's column. An NA is_home stays NA here
+    # (as in sdv-py); .wp_feature_matrix() maps it to 0, so the engine feeds 1.
+    scored$pos_team_receives_2H_kickoff <- .wp_as_trained_2h_flag(
+      suppressWarnings(as.numeric(prepared$is_home))
+    )
+  }
+  prepared[[out_col]] <- .cfb_predict_from_card(scored, model, booster)
   prepared
 }
 
