@@ -47,3 +47,10 @@ cfb_pbp_db
 ^\.understand$
 ^\.understand-anything$
 ^\.ruff_cache$
+^\.git$
+^\.worktrees$
+^\.superpowers$
+^debug\.log$
+^tests/testthat/_problems$
+^tests/testthat/testthat-problems\.rds$
+^CLAUDE\.html$

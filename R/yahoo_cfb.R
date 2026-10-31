@@ -331,15 +331,15 @@ yahoo_cfb_scoreboard <- function(season = most_recent_cfb_season(), week = 1, co
   return(.attach_query_meta_auto(out))
 }
 
-#' **Get Yahoo Sports college football boxscore (SCAFFOLD)**
+#' **Get Yahoo Sports college football boxscore (raw JSON)**
 #'
 #' Returns the raw editorial `boxscore/{game_id}` JSON (as a nested list). The
 #' boxscore uses a normalized decoder-dictionary schema
 #' (`player_stats[playerId][variation][stat_type]` joined against `stat_types` /
-#' `stat_categories`); full decoding is a follow-up.
+#' `stat_categories`), returned as-is rather than flattened to tibbles.
 #'
 #' @param game_id (character, required): Dotted game id (e.g. `"ncaaf.g.202509200023"`).
-#' @return The raw parsed JSON list (`service$boxscore`). TODO: decode to tibbles.
+#' @return The raw parsed JSON list (`service$boxscore`).
 #'
 #' @keywords Boxscore Data
 #' @export

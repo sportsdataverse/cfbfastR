@@ -1,11 +1,20 @@
-# **cfbfastR 3.0.0.9000 (development version)**
+# **cfbfastR v3.1.0**
 
-The development version is numbered **3.0.0.9000** so it can be told apart from
-the CRAN **3.0.0** release, which ships the *previous* model generation. Until
-now both builds reported `3.0.0`, so `packageVersion("cfbfastR")` could not
-distinguish them — while producing different EPA/WPA for the same play. A
-four-component version means you are on the GitHub build. See the model note
-below before mixing outputs from the two.
+3.1.0 ships a new model generation: expected points, win probability and the
+decision models are now the XGBoost boosters in the shared `cfb_model_artifacts`
+bundle, the same files `sportsdataverse-py` scores with. EPA and WPA therefore
+differ from 3.0.0 for the same play. See the model notes below before mixing
+outputs from the two releases.
+
+## Changed: loading the package, and dependency floors
+
+* `library(cfbfastR)` no longer downloads anything. The expected points, field
+  goal and win probability models are fetched the first time a function scores a
+  play, so loading works offline and writes no files.
+* cfbfastR now requires httr2 >= 1.1.0 and purrr >= 1.0.0, the versions that
+  provide `httr2::url_modify()` and `purrr::list_rbind()`; with older versions
+  `library(cfbfastR)` failed. `stats` and `utils` are declared in Imports, and
+  the unused Rcpp and RcppParallel imports are gone.
 
 ## New: user-facing model calculators
 
@@ -530,7 +539,7 @@ This release adds a 65-function ESPN college-football API layer, expanding `cfbf
 
 ### New Fox Sports API wrappers (`fox_cfb_*`)
 
-A read-only Fox Sports "Bifrost" college-football layer (`api.foxsports.com/bifrost/v1/cfb/*`), complementary to the `espn_cfb_*` and `cfbd_*` families. Eight wrappers flatten Fox's layout-oriented JSON (sections → tables → rows → cells) into tidy `cfbfastR`-tagged tibbles. Reverse-engineering notes and an OpenAPI 3.1 spec live in the `sdv-internal-refs` repo. Verified live against the 2025 season.
+A read-only Fox Sports "Bifrost" college-football layer (`api.foxsports.com/bifrost/v1/cfb/*`), complementary to the `espn_cfb_*` and `cfbd_*` families. Eight wrappers flatten Fox's layout-oriented JSON (sections → tables → rows → cells) into tidy `cfbfastR`-tagged tibbles. Verified live against the 2025 season.
 
 * `fox_cfb_pbp()` — game play-by-play (quarters → drives → plays), one row per play.
 * `fox_cfb_boxscore()` — per-team player stat tables, tidy long (one row per player-stat).
