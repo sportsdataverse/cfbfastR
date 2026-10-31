@@ -27,12 +27,12 @@
 )
 
 .onLoad <- function(libname, pkgname) {
-  ep_model <- load_ep_model()
-  fg_model <- load_fg_model()
-  wp_model <- load_wp_model()
-  assign("ep_model", ep_model, envir = parent.env(environment()))
-  assign("fg_model", fg_model, envir = parent.env(environment()))
-  assign("wp_model", wp_model, envir = parent.env(environment()))
+  # The models are fetched on first use, not at load: `library(cfbfastR)` must
+  # work offline and write nothing, and most sessions never score a play.
+  ns <- parent.env(environment())
+  delayedAssign("ep_model", load_ep_model(), assign.env = ns)
+  delayedAssign("fg_model", load_fg_model(), assign.env = ns)
+  delayedAssign("wp_model", load_wp_model(), assign.env = ns)
 
   # ----------------------------------------------------------------------
   # ESPN catalog caching (mirrors the nflreadr caching mechanism).
