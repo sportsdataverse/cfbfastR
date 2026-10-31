@@ -29,11 +29,16 @@ This is a minor release (3.0.0 -> 3.1.0). It:
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+Local run: 0 errors | 0 warnings | 3 notes
 
+* CRAN incoming feasibility: the README star-history link redirected (301). The
+  link now uses the final URL.
 * checking for non-standard things in the check directory: `''NULL''`. This is
   created by the local Windows R startup, not by the package; it does not appear
   on GitHub Actions.
+* checking for new files in some other directories: files in the shared temporary
+  directory written by other processes running at the same time; none are in the
+  package's user cache directory.
 
 ## Tests on CRAN
 

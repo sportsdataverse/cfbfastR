@@ -10,7 +10,8 @@ yahoo_cfb_boxscore(game_id)
 \item{game_id}{(character, required): Dotted game id (e.g. \code{"ncaaf.g.202509200023"}).}
 }
 \value{
-The raw parsed JSON list (\code{service$boxscore}).
+The full parsed JSON response as a nested list; the boxscore is under
+\code{service$boxscore}.
 }
 \description{
 Returns the raw editorial \code{boxscore/{game_id}} JSON (as a nested list). The

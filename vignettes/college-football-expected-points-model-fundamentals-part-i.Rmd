@@ -49,7 +49,10 @@ packageVersion("cfbfastR")
 # >= 3.1.0     -> shared bundle
 ```
 
-If you are comparing EPA numbers with someone else, compare versions first.
+3.1.0 scores with the bundle only when `xgboost` is installed and the bundle can
+be downloaded; otherwise it silently falls back to the previous models. If
+you are comparing EPA numbers with someone else, compare versions first, and
+check that both of you have `xgboost` installed.
 
 Everything below describes the **current** generation.
 
