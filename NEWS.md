@@ -69,6 +69,25 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   `cfbd_pbp_data(offense =)` and, on `cfbd_pbp_data_v2()`, `offense`, `defense`,
   `offense_conference`, `defense_conference`, `conference` and `division`.
 
+## Fixed: win probability scores the 2H-kickoff flag the models were trained on
+
+* The bundled WP boosters (`wp_naive`, behind `wp_before` / `wpa`, and
+  `wp_spread`, behind `vegas_wp`) were trained with
+  `pos_team_receives_2H_kickoff` equal to `1 - is_home` on every row. cfbfastR
+  fed them the true flag, which is the inverse on every first-half play of a
+  game where the home team kicked off first. They are now fed `1 - is_home`, as
+  sportsdataverse-py does, in the play-by-play engine, `calculate_win_probability()`
+  / `calculate_wpa()` and the fourth-down / two-point decision surfaces.
+  **`wp_before`, `wp_after`, `wpa`, `vegas_wp` and the decision-surface WP
+  columns change**, most in games where the home team kicked off first (by up
+  to 0.11 naive WP on 56 real 2004-2025 games; Brier 0.1352 -> 0.1335). The
+  `pos_team_receives_2H_kickoff` column itself is unchanged: it is a correct
+  descriptive column, only the model input differs. The shim goes when the
+  boosters are retrained on the true flag.
+* A cross-language oracle (`tests/testthat/test-parity_epa_wp.R`) now checks
+  cfbfastR's EP, EPA, naive and spread WP scoring against sportsdataverse-py on
+  six real games, to 1e-5.
+
 ## Fixed: CFBD passing CPOE columns, play stat types and gateway retries
 
 - CFBD added completion-over-expected to its passing endpoints. The production

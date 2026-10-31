@@ -46,14 +46,19 @@ NULL
     if (!nm %in% names(df)) return(rep(NA_real_, nrow(df)))
     suppressWarnings(as.numeric(as.character(df[[nm]])))
   }
+  is_home <- .wp_is_home(df)
   st <- data.frame(
     period = num("period"),
-    pos_team_receives_2H_kickoff = num("pos_team_receives_2H_kickoff"),
+    # C-NF-2 shim, until a WP retrain on the corrected flag: the WP booster was
+    # trained on 1 - is_home here (.wp_as_trained_2h_flag(), sdv-py's
+    # cfb_fourth_down state builder), not on the corrected published flag; the
+    # flips below keep toggling it.
+    pos_team_receives_2H_kickoff = .wp_as_trained_2h_flag(is_home),
     pos_team_timeouts_rem_before = num("pos_team_timeouts_rem_before"),
     def_pos_team_timeouts_rem_before = num("def_pos_team_timeouts_rem_before"),
     pos_score_diff_start = num("pos_score_diff_start"),
     pos_team_spread = spread,
-    is_home = .wp_is_home(df),
+    is_home = is_home,
     down = num("down"),
     distance = num("distance"),
     yards_to_goal = num("yards_to_goal"),
