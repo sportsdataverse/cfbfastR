@@ -232,9 +232,8 @@ NULL
 
 #' The booster input for `pos_team_receives_2H_kickoff`: `1 - is_home`, as the boosters were trained
 #'
-#' Shim for C-NF-2, until the WP boosters are retrained on the corrected flag
-#' (sdv-py's `cfb_pbp._as_trained_2h_flag`). No retrain has shipped; whether to
-#' retrain is an open owner decision. The bundled `wp_spread` / `wp_naive` were
+#' 2H-kickoff shim, until the WP boosters are retrained on the corrected flag
+#' (sdv-py's `cfb_pbp._as_trained_2h_flag`). The bundled `wp_spread` / `wp_naive` were
 #' trained on a frame where the flag was `1 - is_home` on every row, both
 #' halves, so they learned it as a second home/away indicator. Feeding them the
 #' corrected published flag (true only on the opening kicker's first-half
@@ -251,7 +250,7 @@ NULL
 #' Build the WP model's feature matrix
 #'
 #' `pos_team_receives_2H_kickoff` is fed as [.wp_as_trained_2h_flag()], not
-#' read from the frame (C-NF-2 shim).
+#' read from the frame (2H-kickoff shim).
 #'
 #' @param newdata One row per play, carrying the WP inputs
 #'   `.pbp_create_epa()` prepares.

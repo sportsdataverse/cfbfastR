@@ -49,7 +49,7 @@ NULL
   is_home <- .wp_is_home(df)
   st <- data.frame(
     period = num("period"),
-    # C-NF-2 shim, until a WP retrain on the corrected flag: the WP booster was
+    # 2H-kickoff shim, until a WP retrain on the corrected flag: the WP booster was
     # trained on 1 - is_home here (.wp_as_trained_2h_flag(), sdv-py's
     # cfb_fourth_down state builder), not on the corrected published flag; the
     # flips below keep toggling it.

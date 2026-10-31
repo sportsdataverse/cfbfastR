@@ -6,7 +6,7 @@
 ### with -- .state_ep() (EP for a state, via .ep_predict()), .wp_predict() (naive
 ### `wp_before`) and .pbp_add_vegas_wp() (`vegas_wp`) -- on the same states. Both
 ### languages load the same booster bytes from the cfb_model_artifacts bundle, so a
-### disagreement is a feature-derivation divergence, the class of the C-NF-2
+### disagreement is a feature-derivation divergence, the class of the
 ### 2H-kickoff skew: the frame below carries the TRUE published flag, as cfbfastR's
 ### engine computes it, and only the shim makes R feed the boosters what they were
 ### trained on.

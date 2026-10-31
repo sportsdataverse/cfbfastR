@@ -155,8 +155,8 @@ cfb_add_era_columns <- function(df, model, season = NULL) {
   scored <- prepared
   if (model %in% c("wp_spread", "wp_naive") &&
       all(c("is_home", "pos_team_receives_2H_kickoff") %in% names(prepared))) {
-    # C-NF-2 shim, until a WP retrain on the corrected flag (none has shipped;
-    # retraining is an open owner decision): score the flag as the boosters were
+    # 2H-kickoff shim, until the WP boosters are retrained on the corrected
+    # flag: score the flag as the boosters were
     # trained (.wp_as_trained_2h_flag(), sdv-py's cfb_pbp._as_trained_2h_flag);
     # the returned frame keeps the caller's column.
     scored$pos_team_receives_2H_kickoff <- .wp_as_trained_2h_flag(
