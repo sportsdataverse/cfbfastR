@@ -33,7 +33,7 @@ License: MIT + file LICENSE
 URL: https://cfbfastR.sportsdataverse.org/,
     https://github.com/sportsdataverse/cfbfastR
 BugReports: https://github.com/sportsdataverse/cfbfastR/issues
-Depends: 
+Depends:
     R (>= 4.1.0)
 Imports:
     cli (>= 3.0.0),

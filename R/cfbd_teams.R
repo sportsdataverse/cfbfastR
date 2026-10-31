@@ -282,7 +282,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
       df <- res |>
         httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON()
-      if (purrr::is_empty(df$games)) stop(call. = F)
+      if (purrr::is_empty(df$games)) stop(call. = FALSE)
       min_season <- min(df$games$season)
       max_season <- max(df$games$season)
       df[['games']] <- NULL
