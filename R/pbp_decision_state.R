@@ -123,7 +123,7 @@ NULL
 #' @keywords internal
 #' @noRd
 .cfb_ep_model_or_null <- function() {
-  m <- try(get("ep_model", envir = asNamespace("cfbfastR")), silent = TRUE)
+  m <- try(.cfb_model("ep_model"), silent = TRUE)
   if (inherits(m, "try-error") || is.null(m)) return(NULL)
   m
 }

@@ -348,7 +348,7 @@ NULL
 #' @keywords internal
 #' @noRd
 .cfb_fg_model_or_null <- function() {
-  m <- try(get("fg_model", envir = asNamespace("cfbfastR")), silent = TRUE)
+  m <- try(.cfb_model("fg_model"), silent = TRUE)
   if (inherits(m, "try-error") || is.null(m)) return(NULL)
   m
 }

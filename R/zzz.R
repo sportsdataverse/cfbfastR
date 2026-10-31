@@ -27,13 +27,6 @@
 )
 
 .onLoad <- function(libname, pkgname) {
-  # The models are fetched on first use, not at load: `library(cfbfastR)` must
-  # work offline and write nothing, and most sessions never score a play.
-  ns <- parent.env(environment())
-  delayedAssign("ep_model", load_ep_model(), assign.env = ns)
-  delayedAssign("fg_model", load_fg_model(), assign.env = ns)
-  delayedAssign("wp_model", load_wp_model(), assign.env = ns)
-
   # ----------------------------------------------------------------------
   # ESPN catalog caching (mirrors the nflreadr caching mechanism).
   #
@@ -93,6 +86,34 @@
     }
   }
 }
+# Loaded EP / FG / WP models, filled on first use by .cfb_model().
+.cfb_models <- new.env(parent = emptyenv())
+
+#' The session's EP, FG or WP model, fetched on first use
+#'
+#' `library(cfbfastR)` must work offline and write nothing, and most sessions
+#' never score a play, so the models are not loaded in `.onLoad()`. They live in
+#' a private environment rather than as namespace bindings because
+#' `R CMD check` calls `get()` on every namespace object, which would force a
+#' download. A failed load (`NULL`) is not kept, so the next call retries.
+#'
+#' @param name `"ep_model"`, `"fg_model"` or `"wp_model"`.
+#' @keywords internal
+#' @noRd
+.cfb_model <- function(name) {
+  m <- .cfb_models[[name]]
+  if (is.null(m)) {
+    m <- switch(name,
+      ep_model = load_ep_model(),
+      fg_model = load_fg_model(),
+      wp_model = load_wp_model(),
+      cli::cli_abort("Unknown model {.val {name}}.")
+    )
+    if (!is.null(m)) assign(name, m, envir = .cfb_models)
+  }
+  m
+}
+
 #' Load the Expected Points model
 #'
 #' Fetches `ep_model.ubj` from the shared `cfb_model_artifacts` release -- the

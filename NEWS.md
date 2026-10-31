@@ -10,7 +10,8 @@ outputs from the two releases.
 
 * `library(cfbfastR)` no longer downloads anything. The expected points, field
   goal and win probability models are fetched the first time a function scores a
-  play, so loading works offline and writes no files.
+  play, so loading works offline and writes no files. If that fetch fails, the
+  next call tries again instead of keeping the failure for the session.
 * cfbfastR now requires httr2 >= 1.1.0 and purrr >= 1.0.0, the versions that
   provide `httr2::url_modify()` and `purrr::list_rbind()`; with older versions
   `library(cfbfastR)` failed. `stats` and `utils` are declared in Imports, and
