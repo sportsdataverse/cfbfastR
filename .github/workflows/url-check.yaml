@@ -3,8 +3,9 @@
 # tools' url_db) so a dead link shows up here before it shows up there.
 #
 # Failure policy: the job fails only on deterministic problems CRAN would
-# flag -- 404/410 and permanent redirects (urlchecker's `New` column, which
-# urlchecker::url_update() can fix in place). Everything else (403/429/5xx,
+# flag -- 404/410, permanent redirects (urlchecker's `New` column, which
+# urlchecker::url_update() can fix in place) and CRAN URLs not in canonical
+# form (the `CRAN` column). Everything else (403/429/5xx,
 # timeouts, TLS errors) is reported as a warning annotation and does not fail
 # the job: hosts such as ESPN and the CFBD API block or rate-limit GitHub
 # runners, and failing on those would make the job red on no package change.
@@ -40,16 +41,18 @@ jobs:
 
       - name: Check URLs
         run: |
-          res <- urlchecker::url_check(".", progress = FALSE)
+          res <- urlchecker::url_check(".", progress = FALSE, fail = FALSE)
           print(res)
           if (nrow(res) == 0) quit(status = 0)
-          hard <- res$Status %in% c("404", "410") | nzchar(res$New)
+          hard <- res$Status %in% c("404", "410") | nzchar(res$New) | nzchar(res$CRAN)
           for (i in which(!hard)) {
             cat(sprintf("::warning::%s: %s %s\n", res$URL[i], res$Status[i], res$Message[i]))
           }
           for (i in which(hard)) {
             cat(sprintf("::error::%s: %s %s%s\n", res$URL[i], res$Status[i], res$Message[i],
-                        if (nzchar(res$New[i])) paste0(" (moved to ", res$New[i], ")") else ""))
+                        if (nzchar(res$New[i])) paste0(" (moved to ", res$New[i], ")")
+                        else if (nzchar(res$CRAN[i])) paste0(" (use canonical form ", res$CRAN[i], ")")
+                        else ""))
           }
           if (any(hard)) stop(sum(hard), " broken or permanently moved URL(s); see above")
         shell: Rscript {0}
