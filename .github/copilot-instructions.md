@@ -3,22 +3,23 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [cfbfastR Copilot Instructions](#cfbfastr-copilot-instructions)
-- [Project Context](#project-context)
-- [Repository Workflow](#repository-workflow)
-- [Build & Development Commands](#build--development-commands)
-- [Function Naming](#function-naming)
-- [Code Style](#code-style)
-- [Return-Value Initialization (CRITICAL)](#return-value-initialization-critical)
-- [Messaging Layer (cli)](#messaging-layer-cli)
-- [Data Processing Pipeline](#data-processing-pipeline)
-- [Column Drift Resilience](#column-drift-resilience)
-- [Scalar Defaults + `cli::cli_abort` Validation](#scalar-defaults--clicli_abort-validation)
-- [Self-Describing Returns](#self-describing-returns)
-- [HTTP Layer](#http-layer)
-- [Testing](#testing)
-- [Documentation Maintenance](#documentation-maintenance)
-- [Conventional Commits](#conventional-commits)
-- [Common Pitfalls](#common-pitfalls)
+  - [Project Context](#project-context)
+  - [Repository Workflow](#repository-workflow)
+  - [Build & Development Commands](#build--development-commands)
+  - [Function Naming](#function-naming)
+  - [Code Style](#code-style)
+  - [Return-Value Initialization (CRITICAL)](#return-value-initialization-critical)
+  - [Messaging Layer (cli)](#messaging-layer-cli)
+  - [Data Processing Pipeline](#data-processing-pipeline)
+  - [Column Drift Resilience](#column-drift-resilience)
+  - [Scalar Defaults + `cli::cli_abort` Validation](#scalar-defaults--clicli_abort-validation)
+  - [Self-Describing Returns](#self-describing-returns)
+  - [HTTP Layer](#http-layer)
+  - [Testing](#testing)
+  - [Documentation Maintenance](#documentation-maintenance)
+  - [Conventional Commits](#conventional-commits)
+  - [Common Pitfalls](#common-pitfalls)
+  - [Cheat sheet](#cheat-sheet)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -26,7 +27,7 @@
 
 ## Project Context
 
-cfbfastR is an R package (v3.0.0 dev) that provides clean, tidy college football play-by-play, schedule, roster, ratings, and box-score data. It wraps the CollegeFootballData API (CFBD) and ESPN College Football endpoints, exporting 150+ functions across four function-family prefixes: `cfbd_*()`, `espn_cfb_*()`, `espn_metrics_*()`, and `espn_ratings_*()`. Full-season parquet/RDS releases land under `load_cfb_*()`. The package uses roxygen2 for documentation, testthat for testing, and pkgdown for the documentation site (https://cfbfastr.sportsdataverse.org/).
+cfbfastR is an R package (version in `DESCRIPTION`) that provides clean, tidy college football play-by-play, schedule, roster, ratings, and box-score data. It wraps the CollegeFootballData API (CFBD), ESPN, Fox Sports and Yahoo Sports college football endpoints, exporting 260+ functions. The main prefixes are `cfbd_*()` (92), `espn_cfb_*()` (73, plus `espn_metrics_wp()` and `espn_ratings_fpi()`), `fox_cfb_*()` (8), `yahoo_cfb_*()` (6) and the `calculate_*()` model scorers (10). Full-season parquet/RDS releases load through `load_cfb_*()`, `load_espn_cfb_*()` and `load_ncaa_mfb_*()` (56 loaders). The package uses roxygen2 for documentation, testthat for testing, and pkgdown for the documentation site (https://cfbfastr.sportsdataverse.org/).
 
 When this file conflicts with the repository's developer docs, follow `CLAUDE.md`, `CONTRIBUTING.md`, and the current test implementations under `tests/testthat/` as the source of truth.
 
@@ -36,7 +37,7 @@ When this file conflicts with the repository's developer docs, follow `CLAUDE.md
 
 - Use feature branches for changes.
 - `main` is the default branch and release branch.
-- The 3.0.0 development line lives on `main` — the modular PBP/EPA/WPA engine, the ESPN catalog refactor, the equivalence harness, and the release-dataset loaders have all landed there.
+- Development happens on `main` — the modular PBP/EPA/WPA engine, the ESPN catalog refactor, the equivalence harness, and the release-dataset loaders (all shipped in 3.0.0) live there.
 - For any change to exported functions, update tests and documentation in the same PR.
 
 ## Build & Development Commands
@@ -252,12 +253,11 @@ Adding a new query arg to a catalog wrapper's signature (e.g., `group_id`) auto-
 
 Two regeneration steps are part of the commit workflow whenever the relevant sources change. Both are mechanical -- never edit the generated regions by hand.
 
-- **Markdown TOCs.** `NEWS.md`, `CLAUDE.md`, `CONTRIBUTING.md`, `.github/copilot-instructions.md`, and `.github/pull_request_template.md` carry a doctoc-generated TOC inside marker comments. (`cran-comments.md` is intentionally excluded.) After editing any of them, run:
+- **Markdown TOCs.** `CONTRIBUTING.md`, `.github/copilot-instructions.md`, and `.github/pull_request_template.md` carry a doctoc-generated TOC inside marker comments. (`NEWS.md`, `CLAUDE.md` and `cran-comments.md` have none.) After changing a heading in any of them, run (needs Node.js):
 
   ```sh
-  Rscript tools/run_doctoc.R --maxlevel 2 \
-    NEWS.md CLAUDE.md CONTRIBUTING.md \
-    .github/copilot-instructions.md .github/pull_request_template.md
+  npx doctoc --maxlevel 2 \
+    CONTRIBUTING.md .github/copilot-instructions.md .github/pull_request_template.md
   ```
 
   Use `--maxlevel 2` (level-3 sub-entries crowd the nav).
@@ -267,7 +267,7 @@ Two regeneration steps are part of the commit workflow whenever the relevant sou
 - **DESCRIPTION.** After editing `DESCRIPTION`, run `usethis::use_tidy_description()` to normalize field order, alphabetize `Imports`/`Suggests`, and reflow long lines.
 
 - **Release notes triad -- `NEWS.md` / `cran-comments.md` / `_pkgdown.yml`.** Whenever you add a `NEWS.md` bullet, check the other two:
-  - `NEWS.md` -- all new bullets go under the most recent **unreleased** version heading (currently `# **cfbfastR 3.0.0**`). Do NOT create a new version section ahead of release.
+  - `NEWS.md` -- all new bullets go under the **top** version heading, the release in progress, inside a `## ` section. Do NOT create a new version section ahead of release.
   - `cran-comments.md` -- every user-visible / behavioral change should be reflected before submission. Internal-only changes can be omitted.
   - `_pkgdown.yml` -- new exports go in the right `reference:` section. `starts_with("cfbd_")` / `starts_with("espn_cfb_")` / `starts_with("load_cfb_")` selectors auto-pick up matching prefixes; explicitly-listed functions need a manual entry.
 
@@ -298,7 +298,7 @@ Types: `feat`, `fix`, `docs`, `test`, `refactor`, `chore`, `style`, `perf`, `ci`
 - **Local dev artifacts**: `.vscode`, `.claude`, `.positai`, `.remember`, `tools/` can surface as `R CMD check` notes. Keep `.Rbuildignore` patterns for each.
 - **Empty CFBD responses**: an out-of-coverage season returns HTTP 200 with `[]`, which parses to a zero-length list; `janitor::clean_names()` then aborts on the absent dimnames and the caller sees a parse error instead of "no rows". Guard with `if (is.data.frame(parsed) && nrow(parsed) > 0)` before cleaning -- the `cfbd_passing_*` / `cfbd_rushing_*` wrappers do, because they only cover 2025 onward so the empty path is the common case, not an edge. (`cfbd_metrics_wepa_*` still has the unguarded behavior.)
 - **Auditing CFBD endpoint coverage**: the OpenAPI document is embedded in `https://api.collegefootballdata.com/swagger/swagger-ui-init.js` as `options.swaggerDoc`; `/swagger/v1/swagger.json` serves the Swagger UI shell, not the spec. Diff against BOTH URL shapes used in `R/` -- a full `https://api.collegefootballdata.com/...` literal (nearly every wrapper) and `endpoint_path <- "..."` (only `cfbd_metrics_fg_ep()`), or the latter reports as a false gap.
-- **Wide passing/rushing frames**: these are wide by construction (a production block repeated per pass location or run direction, doubled `offense_`/`defense_` on team endpoints -- up to 375 columns). Document the block and naming scheme once in the family topic rather than emitting a 371-row returns table, and remember `*_available` columns are the denominators for the means, not statistics.
+- **Wide passing/rushing frames**: these are wide by construction (a production block repeated per pass location or run direction, doubled `offense_`/`defense_` on team endpoints -- up to 385 columns). Document the block and naming scheme once in the family topic rather than emitting a 385-row returns table, and remember `*_available` columns are the denominators for the means, not statistics.
 - **Model cards are the feature contract**: `calculate_*()` validates against `<model>.card.json` from the `cfb_model_artifacts` bundle, never a restated list, and reads era cutpoints from `era_contract`. Restating them is what caused cfbfastR-cfb-data#70. `.cfb_model_file()` fetches cards as well as boosters.
 - **`df[["season"]]`, never `df$season`**: `$` partial-matches on data frames, so a pbp frame carrying `season_type` but no `season` returns `"regular"` and the era comparison silently runs against a season *type*.
 - **EP scoring goes through `.ep_predict()`**: R's class order (`.EP_LEV`: `No_Score, FG, Opp_FG, ...`) is not sportsdataverse-py's, and the bundle ships a permutation `.ep_predict()` applies. Reimplementing the reshape leaves every column present and every value mis-assigned.
