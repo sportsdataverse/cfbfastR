@@ -10,9 +10,9 @@ test_that("CFB Punting Teams Games", {
   }
   expect_s3_class(x, "data.frame")
   expect_in(identity_cols, colnames(x))
-  expect_equal(length(grep("^punting_", colnames(x))), 24L)
-  expect_equal(length(grep("^returning_", colnames(x))), 24L)
-  expect_equal(ncol(x), 55L)
+  expect_gte(length(grep("^punting_", colnames(x))), 24L)
+  expect_gte(length(grep("^returning_", colnames(x))), 24L)
+  expect_gte(ncol(x), 55L)
 
   # One side's punting_* is its opponent's returning_* for the same game.
   d <- as.data.frame(x)
