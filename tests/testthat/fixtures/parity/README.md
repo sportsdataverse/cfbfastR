@@ -143,3 +143,20 @@ which cfbfastR has not ported; `ep_start_raw` / `ep_end_raw`, sdv-py's EP model 
 state (the published `EP_start` / `EP_end` are that value after the pipeline's possession-flip and
 scoring rules). `pos_team_won` is for calibration metrics. Re-capture: `python
 data-raw/parity_epa_wp_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file. The `wp_*_raw` columns are the generator's own booster calls on sdv-py's states with sdv-py's `_as_trained_2h_flag`, not values read from sdv-py's pipeline, so the WP check confirms R scores those states the same way; it does not test the trained-on-`1 - is_home` premise itself. Decision-surface WP is not in the oracle; `test-decision-state.R` pins it to sdv-py's exact values. Both libraries toggle the flag only in first-half flipped states while `is_home` always toggles, so second-half flipped states reach the booster as `flag == is_home`; that is to be fixed in sdv-py first and mirrored here.
+
+
+`timeouts_oracle.csv.gz` — captured 2026-11-01 from sportsdataverse-py `4b78a45a3d` (`origin/main`,
+`CFBPlayProcess.run_processing_pipeline()` run offline on the ESPN summary payloads banked in
+cfbfastR-cfb-raw `cfb/json/raw/`, `join_participants = False`). One row per play of 16 games, in
+sdv-py's final order: the inputs `.espn_timeouts()` reads (`period`, `type`, `text`, and the header's
+`*_abbr` / `*_location` / `*_name` per team), `start_is_home`, and sdv-py's `homeTimeoutCalled` /
+`awayTimeoutCalled` and start / end timeouts remaining per team (`sdvpy_*`). Games, each picked so a
+rule decides at least one Timeout row: a name part (401752665), the clock before the team (252440248),
+the 2004 mascot form with its "remaining" clock tail (243250239), ties that charge both (242620002,
+283332199, 322730166), initialisms (293110009 "SOUTHERN CAL", 283270254 "BRIGHAM YOUNG"), a full name
+match over an initialism (401012682 "OREGON ST"), the shortened-name resolver (252532649, 282430061,
+252460251), media stoppages charged to nobody (401677188), an adjacent repeat (401761657) and two
+overtime games (401754372, 302540119). sdv-py counts 401754372's overtime before its final sort, so
+five rows there disagree in the final order (`test-pbp_timeouts.R` pins them). Re-capture: `python
+data-raw/parity_timeouts_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`, and `SDV_PY_SHA` when the
+checkout is an export); do not hand-edit the file.

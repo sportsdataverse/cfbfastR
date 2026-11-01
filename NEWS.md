@@ -90,6 +90,19 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   agree with sportsdataverse-py if one appears. `punt_block_return_player_name`
   is filled on "N Yd Return of Blocked Punt" touchdowns (31-59 a season), which
   it left empty.
+- `espn_cfb_pbp_v2()` counts timeouts as sportsdataverse-py does. It charged a
+  Timeout row only when the ten characters after "Timeout " equalled the team
+  abbreviation, which ESPN's "Timeout Mississippi State, clock 01:13" never
+  does: 8 of 116 Timeout rows in 16 test games, so most teams kept 3 timeouts
+  all game. A row is now charged to the team whose abbreviation, location or
+  name it matches (or the initialism, "SOUTHERN CAL" for USC, or the shortened
+  spelling, "WESTRN MICHIGAN"), an adjacent repeat counts once, each overtime
+  period allots 1, and no count goes below 0. **`pos_team_timeouts_rem_before`,
+  `def_pos_team_timeouts_rem_before` and the columns built on them change, and
+  so do `wp_before`, `wp_after`, `wpa` and `vegas_wp`** (on 2024's 401628409, 11
+  of 175 plays, by up to 0.019). EP and EPA do not read timeouts. A new oracle
+  (`tests/testthat/test-pbp_timeouts.R`) checks the charges and counts against
+  sportsdataverse-py on all 3,021 plays of those games.
 
 ## Fixed: release loaders read model pbp, keep play ids exact and accept every published season
 

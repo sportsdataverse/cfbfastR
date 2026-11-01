@@ -170,6 +170,13 @@
       off_timeouts_rem_before = ifelse(.data$half_play_number == 1, 3, .data$off_timeouts_rem_before),
       def_timeouts_rem_before = ifelse(.data$lag_offense_play == .data$offense_play, .data$lag_def_timeouts, .data$lag_off_timeouts),
       def_timeouts_rem_before = ifelse(.data$half_play_number == 1, 3, .data$def_timeouts_rem_before),
+      # Overtime shares `half` 2 with the second half here, so the reset above
+      # never fires in it: each overtime period opens with its own 1 timeout
+      # (sdv-py), not the count the fourth quarter left.
+      new_ot_period = .data$period >= 5 & .data$period != dplyr::lag(.data$period, default = 0L),
+      off_timeouts_rem_before = ifelse(.data$new_ot_period, 1, .data$off_timeouts_rem_before),
+      def_timeouts_rem_before = ifelse(.data$new_ot_period, 1, .data$def_timeouts_rem_before),
+      new_ot_period = NULL,
       off_timeout_called = ifelse(.data$offense_timeouts != .data$off_timeouts_rem_before, 1, 0),
       def_timeout_called = ifelse(.data$defense_timeouts != .data$def_timeouts_rem_before, 1, 0),
       #--- Lags/Leads down, distance, yards_to_goal, TimeSecsRem ----

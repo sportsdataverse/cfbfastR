@@ -142,22 +142,32 @@
       if (!length(words)) next
       for (k in seq(length(words), 1L)) {
         run <- if (identical(pat[2], "prefix")) words[seq_len(k)] else utils::tail(words, k)
-        tok <- .squash_team(paste(run, collapse = " "))
-        if (nchar(tok) < 2L) next
-        # also try the U-university prefix stripped ("UMass" -> "MASS")
-        toks <- c(tok, if (startsWith(tok, "U") && nchar(tok) >= 4L) substring(tok, 2L))
-        for (t in toks) {
-          hs <- .score_team_match(t, home)
-          as_ <- .score_team_match(t, away)
-          if (hs == as_) {
-            hs  <- as.integer(t %in% home_alias)
-            as_ <- as.integer(t %in% away_alias)
-          }
-          if (hs > as_) return("home")
-          if (as_ > hs) return("away")
-        }
+        side <- .resolve_team_side(.squash_team(paste(run, collapse = " ")),
+                                   home, away, home_alias, away_alias)
+        if (!is.na(side)) return(side)
       }
     }
+  }
+  NA_character_
+}
+
+# Score one squashed team token against both sides: "home" / "away" / NA
+# (sdv-py `_resolve_team_side`). A tie falls to the weak alias tier, and an
+# unbroken tie is NA rather than a guess. Shared by the penalty-team parser and
+# the timeout charger (`.espn_timeouts()`).
+.resolve_team_side <- function(tok, home, away, home_alias, away_alias) {
+  if (nchar(tok) < 2L) return(NA_character_)
+  # also try the U-university prefix stripped ("UMass" -> "MASS")
+  toks <- c(tok, if (startsWith(tok, "U") && nchar(tok) >= 4L) substring(tok, 2L))
+  for (t in toks) {
+    hs <- .score_team_match(t, home)
+    as_ <- .score_team_match(t, away)
+    if (hs == as_) {
+      hs  <- as.integer(t %in% home_alias)
+      as_ <- as.integer(t %in% away_alias)
+    }
+    if (hs > as_) return("home")
+    if (as_ > hs) return("away")
   }
   NA_character_
 }

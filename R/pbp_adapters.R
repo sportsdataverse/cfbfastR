@@ -226,6 +226,113 @@
   distance
 }
 
+#' Which team an ESPN Timeout row charges, and the timeouts each team has left
+#'
+#' @description Port of the timeout block of sdv-py's
+#'   `__helper_cfb_pbp_features` (`_timeout_team_token`,
+#'   `_timeout_team_match_len`, `_timeout_initials_side`, `_timeout_team_side`).
+#'   The team token is the lower-cased text without "timeout" and the clock tail
+#'   ("Timeout Indiana, clock 03:30" -> "indiana", 2004's "Huskies timeout;
+#'   00:40 remaining 2nd quarter" -> "huskies"). It is charged to the team whose
+#'   abbreviation / location / name part is the LONGER literal match (a tie
+#'   charges both); a token whose initialism is exactly one team's abbreviation
+#'   ("SOUTHERN CAL", USC) outranks a partial match but not a name part that
+#'   covers the whole token ("OREGON ST" is not Ohio State's OSU); a token no
+#'   part matches ("WESTRN MICHIGAN") goes to the penalty-team resolver, which
+#'   charges a strict winner or nobody.
+#'
+#' @details The text says neither which rows were charged (media and injury
+#'   stoppages are logged the same way) nor, in older feeds, which overtime
+#'   period a row belongs to, so the count is bounded rather than trusted: an
+#'   adjacent repeat of the same text is one timeout, each half allots 3 and
+#'   each overtime period 1, and the count never goes below 0.
+#'
+#' @param period,type,text Per-play vectors, in play order.
+#' @param home_abbr,home_location,home_name,away_abbr,away_location,away_name
+#'   The header's team abbreviation, location ("Florida State") and name
+#'   ("Seminoles"); scalars or per-play vectors.
+#' @return A data frame: `home_called`, `away_called` (logical) and
+#'   `start_home`, `start_away`, `end_home`, `end_away` (timeouts remaining).
+#' @keywords internal
+#' @noRd
+.espn_timeouts <- function(period, type, text,
+                           home_abbr, home_location, home_name,
+                           away_abbr, away_location, away_name) {
+  n <- length(text)
+  first <- function(x) if (length(x)) as.character(x[[1]]) else NA_character_
+  ha <- first(home_abbr); hl <- first(home_location); hn <- first(home_name)
+  aa <- first(away_abbr); al <- first(away_location); an <- first(away_name)
+  alt <- function(loc) if (is.na(loc)) NA_character_ else sub("Stat(.+)", "St", loc)
+
+  token <- tolower(text)
+  token <- sub("(?:[,;]\\s*|\\s+)(?:clock\\b|\\d{1,2}:\\d{2}\\s+remaining\\b).*$", "", token, perl = TRUE)
+  token <- sub("\\btimeout\\b", "", token, perl = TRUE)
+  token <- trimws(token, whitespace = "[ .,;]")
+
+  match_len <- function(parts) {
+    parts <- tolower(trimws(parts[!is.na(parts)]))
+    parts <- setdiff(unique(c(parts, gsub("[()]", "", parts))), "")
+    vapply(token, function(tk) {
+      if (is.na(tk)) return(0L)
+      hit <- vapply(parts, function(p) grepl(p, tk, fixed = TRUE), logical(1))
+      max(c(0L, nchar(parts)[hit]))
+    }, integer(1), USE.NAMES = FALSE)
+  }
+  hm <- match_len(c(ha, hl, hn, alt(hl)))
+  am <- match_len(c(aa, al, an, alt(al)))
+  is_to <- !is.na(type) & type == "Timeout"
+
+  # a strict winner on the token's initialism, else NA
+  initials_side <- function(tk) {
+    words <- strsplit(gsub("[.&]", "", toupper(tk %||% "")), "[\\s\\-]+", perl = TRUE)[[1]]
+    words <- words[nzchar(words)]
+    if (length(words) < 2L) return(NA_character_)
+    ini <- paste(substr(words, 1L, 1L), collapse = "")
+    forms <- c(ini, paste0(ini, "U"), paste0("U", ini),
+               paste0(paste(substr(utils::head(words, -1L), 1L, 1L), collapse = ""), utils::tail(words, 1L)))
+    h <- .squash_team(ha) %in% forms
+    a <- .squash_team(aa) %in% forms
+    if (h == a) NA_character_ else if (h) "home" else "away"
+  }
+  nz <- function(x) if (is.na(x)) "" else x
+  hc <- c(.squash_team(ha), .squash_team(hl), .squash_team(alt(hl)), .squash_team(paste0(nz(hl), nz(hn))))
+  ac <- c(.squash_team(aa), .squash_team(al), .squash_team(alt(al)), .squash_team(paste0(nz(al), nz(an))))
+  h_alias <- .team_alias_initialisms(hl)
+  a_alias <- .team_alias_initialisms(al)
+
+  short <- rep(NA_character_, n)
+  ini <- rep(NA_character_, n)
+  for (i in which(is_to & !is.na(token))) {
+    if (hm[i] == 0L && am[i] == 0L) {
+      short[i] <- .resolve_team_side(.squash_team(token[i]), hc, ac, h_alias, a_alias)
+    }
+    if (max(hm[i], am[i]) < nchar(token[i])) ini[i] <- initials_side(token[i])
+  }
+  called <- function(side, m, o) {
+    is_to & ifelse(!is.na(ini), ini == side,
+                   (m > 0L & m >= o) | (!is.na(short) & short == side))
+  }
+  home_called <- called("home", hm, am)
+  away_called <- called("away", am, hm)
+
+  window <- ifelse(period <= 2, 1, ifelse(period <= 4, 2, period))
+  allotted <- ifelse(period <= 4, 3, 1)
+  repeated <- c(FALSE, utils::tail(text, -1L) == utils::head(text, -1L))[seq_len(n)]
+  repeated[is.na(repeated)] <- FALSE
+  used <- function(called) as.integer(called & !repeated)
+  remaining <- function(u, before) {
+    spent <- stats::ave(u, window, FUN = cumsum)
+    pmax(allotted - (if (before) spent - u else spent), 0)
+  }
+  hu <- used(home_called)
+  au <- used(away_called)
+  data.frame(
+    home_called = home_called, away_called = away_called,
+    start_home = remaining(hu, TRUE), start_away = remaining(au, TRUE),
+    end_home = remaining(hu, FALSE), end_away = remaining(au, FALSE)
+  )
+}
+
 #' Modular PBP -- adapt an ESPN core-v2 plays frame into the modeling input
 #'
 #' Extracts the rename / mutate / timeout block that's currently duplicated
@@ -349,30 +456,42 @@
       # placeholder so the chain's selects do not error.
       ppa = NA_real_
     ) |>
-    # Timeout handling -- count timeouts per half.
-    dplyr::group_by(.data$half) |>
-    dplyr::mutate(
-      timeout_team  = stringr::str_extract(
-        .data$play_text, "(?<=Timeout ).{1,10}(?=,)"
-      ),
-      home_timeouts = 3 - cumsum(dplyr::case_when(
-        .data$timeout_team == .data$home_team_abbreviation ~ 1,
-        TRUE                                               ~ 0
-      )),
-      away_timeouts = 3 - cumsum(dplyr::case_when(
-        .data$timeout_team == .data$away_team_abbreviation ~ 1,
-        TRUE                                               ~ 0
-      )),
-      offense_timeouts = dplyr::case_when(
-        .data$offense_play == .data$home ~ .data$home_timeouts,
-        TRUE                             ~ .data$away_timeouts
-      ),
-      defense_timeouts = dplyr::case_when(
-        .data$offense_play == .data$home ~ .data$away_timeouts,
-        TRUE                             ~ .data$home_timeouts
-      )
-    ) |>
-    dplyr::ungroup()
+    .espn_add_timeouts()
+}
+
+#' Timeouts remaining after each play, charged as sdv-py charges them
+#'
+#' Runs `.espn_timeouts()` in play order and maps the home / away counts onto
+#' the offense and defense. `home_timeouts` / `away_timeouts` /
+#' `offense_timeouts` / `defense_timeouts` are AFTER the play, which is what
+#' `.pbp_add_play_counts()` lags into `*_timeouts_rem_before`.
+#' @param df The adapter frame (`play_text`, `play_type`, `period`,
+#'   `offense_play`, `home`, `away`, `home_team_abbreviation`,
+#'   `away_team_abbreviation`; `home_team_mascot` / `away_team_mascot` (ESPN team name, "Seminoles") and
+#'   `play_order` when present).
+#' @return `df` with `timeout_team` (the charged team's abbreviation),
+#'   `home_timeouts`, `away_timeouts`, `offense_timeouts`, `defense_timeouts`.
+#' @keywords internal
+#' @noRd
+.espn_add_timeouts <- function(df) {
+  ord <- if ("play_order" %in% names(df)) order(df$play_order) else seq_len(nrow(df))
+  col <- function(nm) if (nm %in% names(df)) df[[nm]][ord] else NA_character_
+  to <- .espn_timeouts(
+    period = df$period[ord], type = df$play_type[ord], text = df$play_text[ord],
+    home_abbr = col("home_team_abbreviation"), home_location = col("home"),
+    home_name = col("home_team_mascot"),
+    away_abbr = col("away_team_abbreviation"), away_location = col("away"),
+    away_name = col("away_team_mascot")
+  )
+  to[ord, ] <- to
+  df$timeout_team <- ifelse(to$home_called, df$home_team_abbreviation,
+                            ifelse(to$away_called, df$away_team_abbreviation, NA_character_))
+  df$home_timeouts <- to$end_home
+  df$away_timeouts <- to$end_away
+  home_off <- !is.na(df$offense_play) & df$offense_play == df$home
+  df$offense_timeouts <- ifelse(home_off, df$home_timeouts, df$away_timeouts)
+  df$defense_timeouts <- ifelse(home_off, df$away_timeouts, df$home_timeouts)
+  df
 }
 
 #' Modular PBP -- game-meta bridge for ESPN PBP wrappers

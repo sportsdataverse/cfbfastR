@@ -6773,7 +6773,11 @@ espn_cfb_pbp_v2 <- function(game_id,
           home_team_id                 = .data$home_team_id,
           away_team_id                 = .data$away_team_id,
           home_team_abbreviation       = .data$home_team_abbreviation,
-          away_team_abbreviation       = .data$away_team_abbreviation
+          away_team_abbreviation       = .data$away_team_abbreviation,
+          # the timeout charger matches the team name ("Seminoles") too; not
+          # `home_team_name`, which team attribution reads as the location
+          home_team_mascot             = .data$home_team_name,
+          away_team_mascot             = .data$away_team_name
         ) |>
         .espn_to_epa_input(game_id = game_id)
 

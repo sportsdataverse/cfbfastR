@@ -234,6 +234,22 @@
     c(v2$play_type[ord_v][-1], NA) %in% markers
   kick_td <- v2$play_type[ord_v] %in% c("Kickoff Return Touchdown", "Kickoff Touchdown",
                                         "Kickoff Team Fumble Recovery Touchdown")
+  # v2 charges ESPN's Timeout rows as sdv-py does (the team name, not the
+  # abbreviation; one timeout per overtime period, never below 0); the legacy
+  # matcher charges about one in ten. Win probability reads the timeouts left,
+  # so on a row whose timeouts -- or the next row's -- differ, the WP columns
+  # are not compared. Everywhere else they still are, to 1e-6.
+  wp_cols <- c("wp_before", "def_wp_before", "wp_after", "def_wp_after", "wpa")
+  to_cols <- c("pos_team_timeouts_rem_before", "def_pos_team_timeouts_rem_before")
+  same_to <- rep(TRUE, length(ord_v))
+  for (k in intersect(to_cols, both_have)) {
+    a <- v2[[k]][ord_v]
+    b <- legacy[[k]][ord_l]
+    same_to <- same_to & ((is.na(a) & is.na(b)) | (!is.na(a) & !is.na(b) & a == b))
+  }
+  wp_keep <- same_to & c(same_to[-1], TRUE)
+  # the exemption must stay an exception, not swallow the comparison
+  expect_gt(mean(wp_keep), 0.5, label = paste0(sample_label, ": share of rows with WP compared"))
   for (col in cols_to_check) {
     keep <- if (col %in% c("offense_score_play", "defense_score_play")) {
       !kick_td
@@ -242,6 +258,7 @@
     } else {
       rep(TRUE, length(ord_v))
     }
+    if (col %in% wp_cols) keep <- keep & wp_keep
     expect_equal(
       v2[[col]][ord_v][keep],
       legacy[[col]][ord_l][keep],
