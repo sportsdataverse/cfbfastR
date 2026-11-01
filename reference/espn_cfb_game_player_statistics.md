@@ -203,8 +203,8 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_player_statistics(game_id = 401628339,
                                       athlete_id = 4429105))
-#> ── Game player statistics data from ESPN ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:18:26 UTC
+#> ── Game player statistics data from ESPN ───────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:12:30 UTC
 #> # A tibble: 143 × 34
 #>    game_id   athlete_id team_id team_name team_abbreviation team_location
 #>    <chr>     <chr>      <chr>   <chr>     <chr>             <chr>        
@@ -228,8 +228,8 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_player_statistics(game_id = 401628339,
                                       athlete_id = 4429105,
                                       position_detail = FALSE))
-#> ── Game player statistics data from ESPN ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:18:26 UTC
+#> ── Game player statistics data from ESPN ───────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:12:31 UTC
 #> # A tibble: 143 × 29
 #>    game_id   athlete_id team_id team_name team_abbreviation team_location
 #>    <chr>     <chr>      <chr>   <chr>     <chr>             <chr>        
@@ -253,8 +253,8 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_player_statistics(game_id = 401628339,
                                       athlete_id = 4429105,
                                       team_detail = FALSE))
-#> ── Game player statistics data from ESPN ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:18:27 UTC
+#> ── Game player statistics data from ESPN ───────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:12:31 UTC
 #> # A tibble: 143 × 24
 #>    game_id   athlete_id team_id athlete_display_name jersey starter did_not_play
 #>    <chr>     <chr>      <chr>   <chr>                <chr>  <lgl>   <lgl>       

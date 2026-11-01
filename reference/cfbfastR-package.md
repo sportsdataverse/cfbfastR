@@ -1,12 +1,13 @@
 # cfbfastR: Access College Football Play by Play Data
 
-A utility to quickly obtain clean and tidy college football data. Serves
-as a wrapper around the <https://collegefootballdata.com/> API and
-provides functions to access live play by play and box score data from
-ESPN <https://www.espn.com> when available. It provides users the
-capability to access a plethora of endpoints, and supplement that data
-with additional information (Expected Points Added/Win Probability
-added).
+A utility to quickly obtain clean and tidy college football data. Wraps
+the 'CollegeFootballData' API <https://collegefootballdata.com/>, the
+'ESPN' college football API <https://www.espn.com>, and the 'Fox Sports'
+and 'Yahoo Sports' college football feeds; loads pre-built play-by-play,
+box score, roster and team datasets from the 'SportsDataverse' data
+releases; and supplements play-by-play with expected points added, win
+probability added, field goal, fourth down, two point conversion,
+expected pass, completion probability and quarterback rating models.
 
 ## See also
 

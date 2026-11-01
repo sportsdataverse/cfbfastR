@@ -56,7 +56,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -247,10 +247,9 @@ play.</strong></p>
 </colgroup>
 <thead><tr class="header">
 <th></th>
-<th>CRAN <code>cfbfastR 3.0.0</code>
-</th>
-<th>GitHub <code>3.0.0.9000</code>
-</th>
+<th><code>cfbfastR 3.0.0</code></th>
+<th>
+<code>cfbfastR 3.1.0</code> and later</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -275,11 +274,13 @@ play.</strong></p>
 </table>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"cfbfastR"</span><span class="op">)</span></span>
-<span><span class="co"># 3.0.0        -&gt; CRAN build, previous model generation</span></span>
-<span><span class="co"># 3.0.0.9000   -&gt; GitHub build, shared bundle</span></span></code></pre></div>
-<p>The four-component version exists precisely so this is answerable. If
-you are comparing EPA numbers with someone else, compare versions
-first.</p>
+<span><span class="co"># 3.0.0        -&gt; previous model generation</span></span>
+<span><span class="co"># &gt;= 3.1.0     -&gt; shared bundle</span></span></code></pre></div>
+<p>3.1.0 scores with the bundle only when <code>xgboost</code> is
+installed and the bundle can be downloaded; otherwise it silently falls
+back to the previous models. If you are comparing EPA numbers with
+someone else, compare versions first, and check that both of you have
+<code>xgboost</code> installed.</p>
 <p>Everything below describes the <strong>current</strong>
 generation.</p>
 </div>
@@ -822,7 +823,7 @@ including the regressions that do not work, and why they fail.</p>
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <pre><code>Gilani, S., Easwaran, A., Lee, J., and Hess, E. (2026). cfbfastR: Access College
-Football Play by Play Data. R package version 3.0.0.9000.
+Football Play by Play Data. R package version 3.1.0.
 https://cfbfastr.sportsdataverse.org</code></pre>
 <p>Authors, contributors and related SportsDataverse packages are listed
 on the <a href="../index.html">package home page</a>.</p>

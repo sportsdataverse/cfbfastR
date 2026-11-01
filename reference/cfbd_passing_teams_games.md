@@ -81,8 +81,8 @@ Other CFBD Passing:
 ``` r
 # \donttest{
   try(cfbd_passing_teams_games(year = 2025, week = 5))
-#> ── Team game passing data from CollegeFootballData.com ── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:11:47 UTC
+#> ── Team game passing data from CollegeFootballData.com ─────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:06:28 UTC
 #> # A tibble: 104 × 385
 #>      game_id season  week season_type team  conference opponent offense_attempts
 #>        <int>  <int> <int> <chr>       <chr> <chr>      <chr>               <int>

@@ -56,16 +56,16 @@ Other CFBD Ratings and Rankings:
 ``` r
 # \donttest{
   try(cfbd_ratings_srs(year = 2019, team = "Texas"))
-#> ── SRS data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:16:02 UTC
+#> ── SRS data from CollegeFootballData.com ───────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:09:46 UTC
 #> # A tibble: 1 × 6
 #>    year team  conference division ranking rating
 #>   <int> <chr> <chr>      <lgl>      <int>  <dbl>
 #> 1  2019 Texas Big 12     NA             1   16.0
 
   try(cfbd_ratings_srs(year = 2018, conference = "SEC"))
-#> ── SRS data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:16:03 UTC
+#> ── SRS data from CollegeFootballData.com ───────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:09:47 UTC
 #> # A tibble: 14 × 6
 #>     year team              conference division ranking rating
 #>    <int> <chr>             <chr>      <chr>      <int>  <dbl>

@@ -59,8 +59,8 @@ Other CFBD Teams:
 ``` r
 # \donttest{
   try(cfbd_team_matchup("Texas", "Oklahoma"))
-#> ── Team matchup history from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:16:51 UTC
+#> ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:11:14 UTC
 #> # A tibble: 119 × 11
 #>    season  week season_type date         neutral_site venue home_team home_score
 #>     <int> <int> <chr>       <chr>        <lgl>        <chr> <chr>          <int>
@@ -78,8 +78,8 @@ Other CFBD Teams:
 #> # ℹ 3 more variables: away_team <chr>, away_score <int>, winner <chr>
 
   try(cfbd_team_matchup("Texas A&M", "TCU"))
-#> ── Team matchup history from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:16:52 UTC
+#> ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:11:15 UTC
 #> # A tibble: 89 × 11
 #>    season  week season_type date         neutral_site venue home_team home_score
 #>     <int> <int> <chr>       <chr>        <lgl>        <lgl> <chr>          <int>
@@ -97,8 +97,8 @@ Other CFBD Teams:
 #> # ℹ 3 more variables: away_team <chr>, away_score <int>, winner <chr>
 
   try(cfbd_team_matchup("Texas A&M", "TCU", min_year = 1975))
-#> ── Team matchup history from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:16:52 UTC
+#> ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:11:17 UTC
 #> # A tibble: 22 × 11
 #>    season  week season_type date         neutral_site venue home_team home_score
 #>     <int> <int> <chr>       <chr>        <lgl>        <lgl> <chr>          <int>
@@ -116,8 +116,8 @@ Other CFBD Teams:
 #> # ℹ 3 more variables: away_team <chr>, away_score <int>, winner <chr>
 
   try(cfbd_team_matchup("Florida State", "Florida", min_year = 1975))
-#> ── Team matchup history from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:16:52 UTC
+#> ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:11:17 UTC
 #> # A tibble: 52 × 11
 #>    season  week season_type date         neutral_site venue home_team home_score
 #>     <int> <int> <chr>       <chr>        <lgl>        <chr> <chr>          <int>

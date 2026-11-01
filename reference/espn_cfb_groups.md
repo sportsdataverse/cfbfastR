@@ -130,8 +130,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_groups(year = 2024))
-#> ── Groups and conferences from ESPN ───────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:18:41 UTC
+#> ── Groups and conferences from ESPN ────────────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:12:43 UTC
 #> # A tibble: 78 × 12
 #>    season season_type group_id name        abbreviation short_name is_conference
 #>     <int>       <int> <chr>    <chr>       <chr>        <chr>      <lgl>        

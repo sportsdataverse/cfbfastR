@@ -56,7 +56,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -406,8 +406,8 @@ that.</p>
 <div class="section level3">
 <h3 id="an-era-encoding-trap">An era-encoding trap<a class="anchor" aria-label="anchor" href="#an-era-encoding-trap"></a>
 </h3>
-<p>The rule era enters these models two different ways, with <strong>two
-different sets of cutpoints</strong>:</p>
+<p>The rule era enters these models two different ways, with <strong>one
+set of cutpoints</strong>:</p>
 <table class="table">
 <colgroup>
 <col width="25%">
@@ -427,8 +427,7 @@ different sets of cutpoints</strong>:</p>
 <code>xpass</code>, <code>two_pt</code>
 </td>
 <td>ordinal <code>era</code>, 0–3</td>
-<td>2006 / 2013 / <strong>2017</strong>
-</td>
+<td>2006 / 2013 / 2020</td>
 <td><code>.XPASS_ERA_CUTS</code></td>
 </tr>
 <tr class="even">
@@ -437,31 +436,29 @@ different sets of cutpoints</strong>:</p>
 </td>
 <td>one-hot <code>era0</code>–<code>era3</code>
 </td>
-<td>2006 / 2013 / <strong>2020</strong>
-</td>
+<td>2006 / 2013 / 2020</td>
 <td><code>.FG_ERA_CUTS</code></td>
 </tr>
 </tbody>
 </table>
-<p>Different encodings <em>and</em> different cutpoints, in the same
-bundle. A 2019 play is ordinal <code>era = 3</code> but one-hot
-<code>era2</code>. If you score these by hand, build each model’s era
-feature from its own rule — reusing one for the other is silent and
-wrong. <code>cfbfastR</code> and <code>sportsdataverse-py</code> both
-handle this internally and agree with each other.</p>
-<p><strong>A caveat on the ordinal cut.</strong> The trainer that
-produces the bundle (<code>cfbfastR-cfb-data</code>) derives
-<em>both</em> encodings from one constant,
-<code>ERA_BOUNDS = (2006, 2013, 2020)</code>. So the shipped
-<code>xpass_model</code> was trained with 2018–2020 in bucket 2, while
-both consumers score those seasons as bucket 3.</p>
-<p><code>era</code> carries only ~1% of <code>xpass</code>’s gain, so
-the effect is small but not zero — across a grid of realistic situations
-the mismatch moves <code>xpass</code> by a mean of <strong>0.9
-percentage points</strong> and at most <strong>2.9</strong>. It does not
-touch <code>prob_2pt</code> at all, since that model never splits on
-<code>era</code>. Worth knowing if you are comparing
-<code>pass_oe</code> across the 2017/2018 boundary; tracked in <a href="https://github.com/sportsdataverse/cfbfastR-cfb-data/issues/70" class="external-link">cfbfastR-cfb-data#70</a>.</p>
+<p>Same cutpoints, different shapes: a 2019 play is ordinal
+<code>era = 2</code> and one-hot <code>era2</code>. Each model card’s
+<code>era_contract</code> declares its encoding, so if you score these
+by hand, build the era feature in the shape that model’s card asks for.
+<code>cfbfastR</code> and <code>sportsdataverse-py</code> both use the
+cards’ cuts and agree with each other.</p>
+<p><strong>A caveat for older outputs.</strong> Before 3.1.0, both
+consumers cut the ordinal <code>era</code> at 2017, while the trainer
+(<code>cfbfastR-cfb-data</code>) derives both encodings from one
+constant, <code>ERA_BOUNDS = (2006, 2013, 2020)</code>. So 2018–2020
+were scored in bucket 3 by a model trained with them in bucket 2.
+<code>era</code> carries only ~1% of <code>xpass</code>’s gain, so the
+effect was small but not zero: across a grid of realistic situations it
+moved <code>xpass</code> by a mean of <strong>0.9 percentage
+points</strong> and at most <strong>2.9</strong>. It never touched
+<code>prob_2pt</code>, since that model does not split on
+<code>era</code>. Keep it in mind when comparing <code>pass_oe</code>
+from earlier releases (<a href="https://github.com/sportsdataverse/cfbfastR-cfb-data/issues/70" class="external-link">cfbfastR-cfb-data#70</a>).</p>
 </div>
 </div>
 <div class="section level2">
@@ -875,7 +872,7 @@ courtesy of <a href="https://x.com/CFB_data" class="external-link"><span class="
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <pre><code>Gilani, S., Easwaran, A., Lee, J., and Hess, E. (2026). cfbfastR: Access College
-Football Play by Play Data. R package version 3.0.0.9000.
+Football Play by Play Data. R package version 3.1.0.
 https://cfbfastr.sportsdataverse.org</code></pre>
 <p>Authors, contributors and related SportsDataverse packages are listed
 on the <a href="../index.html">package home page</a>.</p>

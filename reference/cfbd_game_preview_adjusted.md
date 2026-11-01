@@ -190,12 +190,12 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_preview_adjusted(game_id = 401114233))
 #> $game
-#> ── Adjusted game preview data from CollegeFootballData.com ─────────────────────
-#> ℹ Data updated: 2026-11-01 11:11:16 UTC
+#> ── Adjusted game preview data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:04:06 UTC
 #> # A tibble: 1 × 30
 #>     game_id season  week season_type status    status_checked_at      start_date
 #>       <int>  <int> <int> <chr>       <chr>     <chr>                  <chr>     
-#> 1 401114233   2019     1 regular     completed 2026-11-01T11:11:15.1… 2019-08-3…
+#> 1 401114233   2019     1 regular     completed 2026-11-01T12:04:05.7… 2019-08-3…
 #> # ℹ 23 more variables: start_time_tbd <lgl>, neutral_site <lgl>,
 #> #   conference_game <lgl>, home_team_id <int>, home_team_name <chr>,
 #> #   home_team_conference <chr>, home_team_conference_abbreviation <chr>,
@@ -205,23 +205,23 @@ Other CFBD Games:
 #> #   away_team_points <int>, venue_id <int>, venue_name <chr>, …
 #> 
 #> $team_metrics
-#> ── Adjusted game preview data from CollegeFootballData.com ─────────────────────
-#> ℹ Data updated: 2026-11-01 11:11:16 UTC
+#> ── Adjusted game preview data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:04:06 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $passing
-#> ── Adjusted game preview data from CollegeFootballData.com ─────────────────────
-#> ℹ Data updated: 2026-11-01 11:11:16 UTC
+#> ── Adjusted game preview data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:04:06 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $rushing
-#> ── Adjusted game preview data from CollegeFootballData.com ─────────────────────
-#> ℹ Data updated: 2026-11-01 11:11:16 UTC
+#> ── Adjusted game preview data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:04:06 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $kicking
-#> ── Adjusted game preview data from CollegeFootballData.com ─────────────────────
-#> ℹ Data updated: 2026-11-01 11:11:16 UTC
+#> ── Adjusted game preview data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:04:06 UTC
 #> # A tibble: 0 × 0
 #> 
 # }

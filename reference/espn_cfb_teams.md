@@ -116,8 +116,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_teams())
-#> ── Teams index from ESPN ──────────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:20:50 UTC
+#> ── Teams index from ESPN ───────────────────────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:14:16 UTC
 #> # A tibble: 762 × 15
 #>    team_id uid          slug  abbreviation display_name short_display_name name 
 #>    <chr>   <chr>        <chr> <chr>        <chr>        <chr>              <chr>

@@ -1,9 +1,10 @@
-# **Get Yahoo Sports college football boxscore (SCAFFOLD)**
+# **Get Yahoo Sports college football boxscore (raw JSON)**
 
 Returns the raw editorial `boxscore/{game_id}` JSON (as a nested list).
 The boxscore uses a normalized decoder-dictionary schema
 (`player_stats[playerId][variation][stat_type]` joined against
-`stat_types` / `stat_categories`); full decoding is a follow-up.
+`stat_types` / `stat_categories`), returned as-is rather than flattened
+to tibbles.
 
 ## Usage
 
@@ -19,7 +20,8 @@ yahoo_cfb_boxscore(game_id)
 
 ## Value
 
-The raw parsed JSON list (`service$boxscore`). TODO: decode to tibbles.
+The full parsed JSON response as a nested list; the boxscore is under
+`service$boxscore`. `NULL` when the request fails.
 
 ## See also
 

@@ -123,8 +123,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_powerindex(year = 2024))
-#> ── Power Index data from ESPN ─────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:19:10 UTC
+#> ── Power Index data from ESPN ──────────────────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:13:05 UTC
 #> # A tibble: 5,762 × 10
 #>    season team_id team_ref      metric_group stat_name abbreviation display_name
 #>     <int> <chr>   <chr>         <chr>        <chr>     <chr>        <chr>       

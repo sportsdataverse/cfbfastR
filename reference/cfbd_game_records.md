@@ -89,8 +89,8 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_game_records(2018, team = "Notre Dame"))
-#> ── Game records data from CollegeFootballData.com ─────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:11:17 UTC
+#> ── Game records data from CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:04:09 UTC
 #> # A tibble: 1 × 35
 #>    year team_id team       classification conference      division expected_wins
 #>   <int>   <int> <chr>      <chr>          <chr>           <chr>            <dbl>
@@ -104,8 +104,8 @@ Other CFBD Games:
 #> #   regular_season_games <int>, regular_season_wins <int>, …
 
   try(cfbd_game_records(2013, team = "Florida State"))
-#> ── Game records data from CollegeFootballData.com ─────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:11:17 UTC
+#> ── Game records data from CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:04:12 UTC
 #> # A tibble: 1 × 35
 #>    year team_id team          classification conference division expected_wins
 #>   <int>   <int> <chr>         <chr>          <chr>      <chr>            <dbl>

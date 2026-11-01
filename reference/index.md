@@ -1580,7 +1580,7 @@ wrapping Yahoo’s shangrila stats graph and editorial feed
 - [`yahoo_cfb_boxscore()`](https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_boxscore.md)
   :
 
-  **Get Yahoo Sports college football boxscore (SCAFFOLD)**
+  **Get Yahoo Sports college football boxscore (raw JSON)**
 
 - [`yahoo_cfb_player_season_stats()`](https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_player_season_stats.md)
   :

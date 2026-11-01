@@ -36,8 +36,8 @@ Returns an empty tibble when no market is posted for the game.
 ``` r
 # \donttest{
   try(fox_cfb_odds(game_id = "41616"))
-#> ── Game odds from Fox Sports (Bifrost) ────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:21:01 UTC
+#> ── Game odds from Fox Sports (Bifrost) ─────────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:14:24 UTC
 #> # A tibble: 2 × 5
 #>   game_id team                      spread to_win total 
 #>   <chr>   <chr>                     <chr>  <chr>  <chr> 

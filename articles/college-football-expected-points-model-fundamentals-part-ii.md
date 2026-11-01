@@ -316,7 +316,7 @@ here.
 ## Citation
 
     Gilani, S., Easwaran, A., Lee, J., and Hess, E. (2026). cfbfastR: Access College
-    Football Play by Play Data. R package version 3.0.0.9000.
+    Football Play by Play Data. R package version 3.1.0.
     https://cfbfastr.sportsdataverse.org
 
 Authors, contributors and related SportsDataverse packages are listed on

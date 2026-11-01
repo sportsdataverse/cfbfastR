@@ -80,8 +80,8 @@ Other CFBD Coaches Functions:
 ``` r
 # \donttest{
   try(cfbd_coaches_tenures(team = "Georgia"))
-#> ── Get coaching tenures from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:10:55 UTC
+#> ── Get coaching tenures from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:02:55 UTC
 #> # A tibble: 20 × 20
 #>       id hire_date  start_year end_year effective_start effective_end is_interim
 #>    <int> <chr>           <int>    <int> <lgl>           <lgl>         <lgl>     

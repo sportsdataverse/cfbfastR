@@ -40,8 +40,8 @@ Other loaders:
 ``` r
 # \donttest{
   try(load_cfb_rosters(2024))
-#> ── Team roster data from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:21:22 UTC
+#> ── Team roster data from CollegeFootballData.com ───────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:14:43 UTC
 #> # A tibble: 22,794 × 18
 #>    athlete_id first_name last_name team      weight height jersey  year position
 #>    <chr>      <chr>      <chr>     <chr>      <int>  <int>  <int> <int> <chr>   

@@ -94,8 +94,8 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_game_media(2019, week = 4, conference = "ACC"))
-#> ── Game media data from CollegeFootballData.com ───────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:11:12 UTC
+#> ── Game media data from CollegeFootballData.com ────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:03:59 UTC
 #> # A tibble: 10 × 13
 #>      game_id season  week season_type start_time     is_start_time_tbd home_team
 #>        <int>  <int> <int> <chr>       <chr>          <lgl>             <chr>    

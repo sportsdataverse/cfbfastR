@@ -32,12 +32,13 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
 
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
+
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
     ## Reading package lists...
@@ -241,9 +242,9 @@ tex_pass |>
   dplyr::arrange(dplyr::desc(attempts))
 ```
 
-    ## ── Player season passing data from CollegeFootballData.com ─────────────────────
+    ## ── Player season passing data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 11:27:09 UTC
+    ## ℹ Data updated: 2026-11-01 12:19:45 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts completion_rate average_depth_of_target   ppa
@@ -308,9 +309,9 @@ tex_pass |>
   )
 ```
 
-    ## ── Player season passing data from CollegeFootballData.com ─────────────────────
+    ## ── Player season passing data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 11:27:09 UTC
+    ## ℹ Data updated: 2026-11-01 12:19:45 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts air_yards_parsed adot_correct adot_naive
@@ -329,9 +330,9 @@ cfbd_passing_plays(year = 2025, week = 5, outcome = "completion") |>
   head(10)
 ```
 
-    ## ── Passing plays data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
+    ## ── Passing plays data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 11:27:11 UTC
+    ## ℹ Data updated: 2026-11-01 12:19:48 UTC
 
     ## # A tibble: 10 × 7
     ##    offense    defense    passer       target         total_yards   ppa success
@@ -367,9 +368,9 @@ a zero-row data frame rather than failing.
 cfbd_stats_categories()
 ```
 
-    ## ── Stat categories for CollegeFootballData.com ────────── cfbfastR 3.0.0.9000 ──
+    ## ── Stat categories for CollegeFootballData.com ─────────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 11:27:11 UTC
+    ## ℹ Data updated: 2026-11-01 12:19:48 UTC
 
     ## # A tibble: 38 × 1
     ##    category          

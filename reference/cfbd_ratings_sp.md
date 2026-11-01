@@ -72,8 +72,8 @@ Other CFBD Ratings and Rankings:
 ``` r
 # \donttest{
   try(cfbd_ratings_sp(year = 2018))
-#> ── SP+ data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:15:56 UTC
+#> ── SP+ data from CollegeFootballData.com ───────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:09:45 UTC
 #> # A tibble: 131 × 29
 #>     year team  conference rating ranking second_order_wins   sos offense_ranking
 #>    <int> <chr> <chr>       <dbl>   <int>             <dbl> <dbl>           <int>
@@ -96,8 +96,8 @@ Other CFBD Ratings and Rankings:
 #> #   defense_rushing <dbl>, defense_passing <dbl>, …
 
   try(cfbd_ratings_sp(team = "Texas A&M"))
-#> ── SP+ data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:15:56 UTC
+#> ── SP+ data from CollegeFootballData.com ───────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:09:45 UTC
 #> # A tibble: 114 × 29
 #>     year team  conference rating ranking second_order_wins   sos offense_ranking
 #>    <int> <chr> <chr>       <dbl>   <int>             <dbl> <dbl>           <int>
@@ -120,8 +120,8 @@ Other CFBD Ratings and Rankings:
 #> #   defense_rushing <dbl>, defense_passing <dbl>, …
 
   try(cfbd_ratings_sp(year = 2019, team = "Texas"))
-#> ── SP+ data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:15:57 UTC
+#> ── SP+ data from CollegeFootballData.com ───────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:09:45 UTC
 #> # A tibble: 2 × 29
 #>    year team   conference rating ranking second_order_wins sos   offense_ranking
 #>   <int> <chr>  <chr>       <dbl>   <int> <lgl>             <lgl>           <int>

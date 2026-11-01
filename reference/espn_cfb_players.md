@@ -165,8 +165,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_players(year = 2024, page = 1, max_pages = 1))
-#> ── Players index from ESPN ────────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:19:02 UTC
+#> ── Players index from ESPN ─────────────────────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:13:00 UTC
 #> # A tibble: 100 × 6
 #>    season athlete_id athlete_ref                          page page_count  count
 #>     <int> <chr>      <chr>                               <int>      <int>  <int>
@@ -183,8 +183,8 @@ Other ESPN CFB Functions:
 #> # ℹ 90 more rows
   try(espn_cfb_players(year = 2024, page = 1, max_pages = 1, limit = 5,
                        athlete_detail = TRUE))
-#> ── Players index from ESPN ────────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:19:03 UTC
+#> ── Players index from ESPN ─────────────────────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:13:01 UTC
 #> # A tibble: 5 × 12
 #>   season athlete_id athlete_ref      page page_count  count athlete_display_name
 #>    <int> <chr>      <chr>           <int>      <int>  <int> <chr>               

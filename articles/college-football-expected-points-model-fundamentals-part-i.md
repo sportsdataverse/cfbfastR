@@ -22,7 +22,7 @@ This matters before anything else, because **two generations of the
 model are in circulation and they give different EPA for the same
 play.**
 
-|  | CRAN `cfbfastR 3.0.0` | GitHub `3.0.0.9000` |
+|  | `cfbfastR 3.0.0` | `cfbfastR 3.1.0` and later |
 |----|----|----|
 | EP estimator | [`nnet::multinom`](https://rdrr.io/pkg/nnet/man/multinom.html) from `cfbfastR-data` | XGBoost, from the `cfb_model_artifacts` bundle |
 | Agrees with `sportsdataverse-py` | no | yes — same artifact |
@@ -31,12 +31,15 @@ play.**
 ``` r
 
 packageVersion("cfbfastR")
-# 3.0.0        -> CRAN build, previous model generation
-# 3.0.0.9000   -> GitHub build, shared bundle
+# 3.0.0        -> previous model generation
+# >= 3.1.0     -> shared bundle
 ```
 
-The four-component version exists precisely so this is answerable. If
-you are comparing EPA numbers with someone else, compare versions first.
+3.1.0 scores with the bundle only when `xgboost` is installed and the
+bundle can be downloaded; otherwise it silently falls back to the
+previous models. If you are comparing EPA numbers with someone else,
+compare versions first, and check that both of you have `xgboost`
+installed.
 
 Everything below describes the **current** generation.
 
@@ -411,7 +414,7 @@ regressions that do not work, and why they fail.
 ## Citation
 
     Gilani, S., Easwaran, A., Lee, J., and Hess, E. (2026). cfbfastR: Access College
-    Football Play by Play Data. R package version 3.0.0.9000.
+    Football Play by Play Data. R package version 3.1.0.
     https://cfbfastr.sportsdataverse.org
 
 Authors, contributors and related SportsDataverse packages are listed on

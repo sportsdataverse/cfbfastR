@@ -240,8 +240,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE))
-#> ── Play-by-play data from ESPN (core-v2) ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 11:18:53 UTC
+#> ── Play-by-play data from ESPN (core-v2) ───────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-01 12:12:52 UTC
 #> # A tibble: 156 × 538
 #>    season id_play    game_id game_play_number half_play_number drive_play_number
 #>     <int> <chr>      <chr>              <dbl>            <dbl>             <dbl>
