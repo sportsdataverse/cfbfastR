@@ -7,6 +7,13 @@ This is a minor release (3.0.0 -> 3.1.0). It:
   scored identically by this package and its Python counterpart. EPA and WPA
   values therefore change from 3.0.0. `xgboost` is in Suggests; without it the
   package falls back to the previous models.
+* Scores the win probability boosters on the second-half kickoff flag they were
+  trained on, so `wp_before`, `wp_after`, `wpa`, `vegas_wp` and the decision
+  surfaces' win probabilities also change from 3.0.0 (they now match the Python
+  counterpart on real games). The published `pos_team_receives_2H_kickoff`
+  column is unchanged.
+* Fixes the release loaders: model play-by-play is read as published, play ids
+  stay exact, and every published season is accepted.
 * Adds ten `calculate_*()` functions that score a data frame with those models,
   validated against each model's published card.
 * Adds ten `cfbd_*()` wrappers for the CollegeFootballData passing and rushing
