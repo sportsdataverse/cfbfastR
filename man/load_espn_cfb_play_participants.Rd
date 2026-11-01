@@ -25,7 +25,7 @@ writes the season data into a database.}
 Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    col_name \tab types \tab description \cr
    game_id \tab integer \tab  \cr
-   play_id \tab integer \tab  \cr
+   play_id \tab character \tab ESPN play id, kept exact as character (up to 18 digits, beyond double precision). \cr
    kicker_player_name \tab character \tab Display name of the kicker -- the FIRST participant in that role on the play. \cr
    tackler_player_name \tab character \tab Display name of a defender credited with the tackle -- the FIRST participant in that role on the play. \cr
    returner_player_name \tab character \tab Display name of the player returning the kick or punt -- the FIRST participant in that role on the play. \cr
