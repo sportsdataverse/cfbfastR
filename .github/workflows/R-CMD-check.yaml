@@ -27,7 +27,10 @@ jobs:
         config:
          # - {os: macos-latest,   r: 'release'}
           - {os: windows-latest, r: 'release'}
-         # - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
+          # r-devel fails on NOTEs: CRAN's r-devel flavours flagged 3.0.0 with a
+          # NOTE ('stats' in Suggests but imported) that the default
+          # error-on "warning" would have let through green.
+          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release', error-on: '"note"'}
           - {os: ubuntu-latest,   r: 'release'}
           - {os: ubuntu-latest,   r: 'oldrel-1'}
 
@@ -56,3 +59,4 @@ jobs:
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
+          error-on: ${{ matrix.config.error-on || '"warning"' }}
