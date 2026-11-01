@@ -12,6 +12,10 @@ This is a minor release (3.0.0 -> 3.1.0). It:
   surfaces' win probabilities also change from 3.0.0 (they now match the Python
   counterpart on real games). The published `pos_team_receives_2H_kickoff`
   column is unchanged.
+* Brings the play-by-play engine's text parsing, timeout counting and 2018+
+  fair-catch kickoff touchbacks in line with the Python counterpart, so some
+  player names and ids, timeouts remaining and kickoff columns change from
+  3.0.0, and with them EPA on fair-caught kickoffs and win probability.
 * Fixes the release loaders: model play-by-play is read as published, play ids
   stay exact, and every published season is accepted.
 * Adds ten `calculate_*()` functions that score a data frame with those models,
