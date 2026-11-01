@@ -30,6 +30,9 @@ This is a minor release (3.0.0 -> 3.1.0). It:
   within 120 seconds.
 * Adds ten `cfbd_*()` wrappers for the CollegeFootballData passing and rushing
   endpoints, plus schedule, preview and team-overview endpoints.
+* Adds five `cfbd_punting_*()` wrappers for the CollegeFootballData punting
+  endpoints, so the package now wraps all 93 endpoints in the current CFBD
+  specification.
 * Adds loaders for season-by-season conference and division membership.
 * No longer downloads anything when the package is loaded: the models are fetched
   the first time a function scores a play.

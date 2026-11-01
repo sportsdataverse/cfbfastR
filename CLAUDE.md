@@ -41,7 +41,7 @@ Five source-prefixed families; `R/` is grouped by prefix:
 
 | Prefix | Source | Auth | Notes |
 |---|---|---|---|
-| `cfbd_*` | collegefootballdata.com | **`CFBD_API_KEY` bearer token** | games/plays/drives/teams/players/stats/ratings/recruiting/draft/betting/venues/coaches/conferences/metrics/passing/rushing |
+| `cfbd_*` | collegefootballdata.com | **`CFBD_API_KEY` bearer token** | games/plays/drives/teams/players/stats/ratings/recruiting/draft/betting/venues/coaches/conferences/metrics/passing/rushing/punting |
 | `espn_cfb_*` / `espn_metrics_*` / `espn_ratings_*` | ESPN (`site.api.espn.com` + `sports.core.api.espn.com`) | none | ~75 wrappers (3.0.0 expanded ESPN from 8 → 73); core-v2 `$ref`-heavy payloads |
 | `fox_cfb_*` | `api.foxsports.com/bifrost/v1/cfb` | public web key | 8 wrappers (pbp/boxscore/odds/roster/stats/gamelog/standings/leaders); key overridable via `options(cfbfastR.fox_key=)` |
 | `yahoo_cfb_*` | Yahoo Sports | none | scoreboard/boxscore/player+team season stats |
@@ -66,8 +66,8 @@ Three traps the surface encodes, all found the hard way:
   (`.EP_LEV`) is NOT Python's, and the bundle ships a permutation `.ep_predict()`
   applies; reimplementing the reshape mis-assigns every value.
 
-**CFBD endpoint coverage:** **88 of the 93** paths in the CFBD spec (v5.33.2) are
-wrapped; the five `/punting/*` paths are not yet (api-sync issues #192/#195). To
+**CFBD endpoint coverage:** **93 of the 93** paths in the CFBD spec (v5.33.2) are
+wrapped (the five `/punting/*` paths landed for api-sync issues #192/#195). To
 re-audit, the spec is NOT at `/swagger/v1/swagger.json` (that serves the Swagger UI
 shell) — it is embedded in `https://api.collegefootballdata.com/swagger/swagger-ui-init.js`
 as `options.swaggerDoc`. When diffing coverage, match ALL THREE URL shapes: nearly
@@ -87,6 +87,13 @@ block plus a 23-column form of it for each of 7 pass locations, doubled
 directions. `?cfbd_passing` / `?cfbd_rushing` document the block and the naming
 scheme once instead of listing every column. `*_available` columns are
 denominators for the means, not statistics.
+
+**Punting family (`R/cfbd_punting.R`):** five wrappers sharing one request tail,
+`.cfbd_punting_fetch()`, with the same empty-array guard. Coverage starts in
+**2015**, not 2025. Player frames carry a 15-column `punting_*` and a 10-column
+`returning_*` block; team frames carry one 24-column block twice, `punting_*` for
+the team's own punts and `returning_*` for the punts it received. `?cfbd_punting`
+documents the blocks.
 
 **CFBD API key:** `?register_cfbd` (a help page, not a function) explains saving `CFBD_API_KEY`; `cfbd_key()` / `has_cfbd_key()` /
 `cfbd_api_key_info()` inspect it. Register at <https://collegefootballdata.com/key>.
