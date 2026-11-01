@@ -127,3 +127,19 @@ games: 401112080, 401121960 (2019) and 401416632, 401416633 (2022) resolve from 
 provider's line for the same game. `odds_pickcenter.json` holds the raw `pickcenter` arrays, so that path is
 tested offline. Re-capture: `python data-raw/parity_odds_oracle.py` (env `SDV_PY_ROOT`; needs network); do not
 hand-edit the files.
+
+`epa_wp_oracle.csv.gz` — captured 2026-10-31 from sportsdataverse-py `90471fdf11`
+(`CFBPlayProcess.run_processing_pipeline()` run offline on the ESPN summary payloads banked in
+cfbfastR-cfb-raw `cfb/json/raw/`, `join_participants = False`). One row per play of six games with
+a real pre-game line (333302459, 400547719, 401110831, 401282116, 401520401, 401752665; 2013-2025, three where the home team kicked
+off first), keyed by `game_id` + `id_play` (character). Inputs: the start state sdv-py scored the
+WP and EP boosters on, under cfbfastR's names (`pos_team_receives_2H_kickoff` is the TRUE published
+flag; `ep_down` / `ep_end_down` are the downs EP was scored on, from sdv-py's one-hots), and the end
+state. Outputs: sdv-py's published `EP_start`, `EP_end`, `EPA`, `wp_before_naive` (cfbfastR's
+`wp_before`) and `wp_before` (spread model, cfbfastR's `vegas_wp`), and `wp_naive_raw` /
+`wp_spread_raw`, the boosters' output on that start state through sdv-py's own scoring path
+(`_as_trained_2h_flag`, then the booster) without the overtime stage (`cfb_wp_overtime.adjust_wp`),
+which cfbfastR has not ported; `ep_start_raw` / `ep_end_raw`, sdv-py's EP model on the start / end
+state (the published `EP_start` / `EP_end` are that value after the pipeline's possession-flip and
+scoring rules). `pos_team_won` is for calibration metrics. Re-capture: `python
+data-raw/parity_epa_wp_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file. The `wp_*_raw` columns are the generator's own booster calls on sdv-py's states with sdv-py's `_as_trained_2h_flag`, not values read from sdv-py's pipeline, so the WP check confirms R scores those states the same way; it does not test the trained-on-`1 - is_home` premise itself. Decision-surface WP is not in the oracle; `test-decision-state.R` pins it to sdv-py's exact values. Both libraries toggle the flag only in first-half flipped states while `is_home` always toggles, so second-half flipped states reach the booster as `flag == is_home`; that is to be fixed in sdv-py first and mirrored here.

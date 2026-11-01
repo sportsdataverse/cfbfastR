@@ -7,7 +7,7 @@
 \description{
 \itemize{
 \item \code{cfbd_api_key_info()}: Get information about your API key, including your Patreon level and usage limits.
-\item \code{register_cfbd()}: Save your API Key as a system environment variable \code{CFBD_API_KEY}.
+\item \link{register_cfbd}: How to save your API key as the \code{CFBD_API_KEY} environment variable, with \code{Sys.setenv(CFBD_API_KEY = "...")} for one session or a line in \verb{~/.Renviron} for every session. \code{register_cfbd} is a help page, not a function.
 \item \code{cfbd_key()}: Retrieve the CFBD API key from the \code{CFBD_API_KEY} environment variable.
 \item \code{has_cfbd_key()}: Check whether a CFBD API key is registered in the current session.
 }

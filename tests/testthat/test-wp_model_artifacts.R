@@ -33,6 +33,8 @@ test_that(".wp_is_home treats unresolved teams as not-home rather than NA", {
 test_that(".wp_is_home prefers an existing is_home column", {
   d <- data.frame(is_home = c(TRUE, FALSE), pos_team = "A", home = "B")
   expect_equal(.wp_is_home(d), c(1, 0))
+  d$is_home <- factor(c(1, 0))
+  expect_equal(.wp_is_home(d), c(1, 0)) # labels, not codes 2 / 1
 })
 
 test_that(".wp_feature_matrix builds all twelve features in contract order", {
