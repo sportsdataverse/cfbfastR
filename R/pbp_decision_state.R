@@ -46,14 +46,19 @@ NULL
     if (!nm %in% names(df)) return(rep(NA_real_, nrow(df)))
     suppressWarnings(as.numeric(as.character(df[[nm]])))
   }
+  is_home <- .wp_is_home(df)
   st <- data.frame(
     period = num("period"),
-    pos_team_receives_2H_kickoff = num("pos_team_receives_2H_kickoff"),
+    # 2H-kickoff shim, until a WP retrain on the corrected flag: the WP booster was
+    # trained on 1 - is_home here (.wp_as_trained_2h_flag(), sdv-py's
+    # cfb_fourth_down state builder), not on the corrected published flag; the
+    # flips below keep toggling it.
+    pos_team_receives_2H_kickoff = .wp_as_trained_2h_flag(is_home),
     pos_team_timeouts_rem_before = num("pos_team_timeouts_rem_before"),
     def_pos_team_timeouts_rem_before = num("def_pos_team_timeouts_rem_before"),
     pos_score_diff_start = num("pos_score_diff_start"),
     pos_team_spread = spread,
-    is_home = .wp_is_home(df),
+    is_home = is_home,
     down = num("down"),
     distance = num("distance"),
     yards_to_goal = num("yards_to_goal"),
@@ -86,7 +91,9 @@ NULL
   out <- st
   # The 2H-kickoff indicator only means anything while the second half is still
   # ahead; toggling it in the second half would invent a kickoff that already
-  # happened.
+  # happened. Known gap, shared with sdv-py: while the WP boosters still take
+  # 1 - is_home, a second-half flip toggles is_home but not this column, so the
+  # booster sees flag == is_home. Fix in sdv-py first, then mirror here.
   first_half <- !is.na(st$period) & st$period <= 2
   recv <- st$pos_team_receives_2H_kickoff
   out$pos_team_receives_2H_kickoff <- ifelse(
