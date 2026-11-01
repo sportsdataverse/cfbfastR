@@ -621,7 +621,7 @@ validate_reqs <- function(...){
 #'
 #' "punt for 43 yards" is 43; "punt for a loss of 12 yards" is -12, a punt that
 #' ended behind the line of scrimmage (ESPN's next snap confirms it). sdv-py
-#' reads the clause the same way (#156).
+#' reads the clause the same way, in any case (#156).
 #'
 #' @param play_text Character vector of play text.
 #' @return Numeric vector, `NA` where the text gives no punt distance.
@@ -629,7 +629,7 @@ validate_reqs <- function(...){
 #' @noRd
 .punt_yards <- function(play_text) {
   yds <- as.numeric(stringr::str_extract(
-    stringi::stri_extract_first_regex(play_text, "(?<= punt for)[^,]+"), "\\d+"
+    stringi::stri_extract_first_regex(play_text, "(?i)(?<= punt for)[^,]+"), "\\d+"
   ))
   loss <- stringr::str_detect(play_text, stringr::regex("punt for a loss of \\d+", ignore_case = TRUE))
   ifelse(loss %in% TRUE, -yds, yds)

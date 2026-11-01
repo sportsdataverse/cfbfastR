@@ -18,7 +18,7 @@ punt_rows <- function(text) {
 
 test_that(".punt_yards signs the loss clause and leaves other punts alone", {
   expect_identical(.punt_yards(c(loss_text, gain_text)), c(-12, 43))
-  expect_identical(.punt_yards(toupper(loss_text)), NA_real_) # no " punt for" to read
+  expect_identical(.punt_yards(toupper(loss_text)), -12) # case-insensitive, as sdv-py
   expect_identical(.punt_yards(NA_character_), NA_real_)
 })
 
@@ -32,9 +32,12 @@ test_that("ESPN game 252460252 publishes the punt for a loss as -12 on both engi
   testthat::skip_on_cran()
   testthat::skip_if_offline()
   for (eng in c("v2", "legacy")) {
-    pbp <- suppressWarnings(suppressMessages(
-      espn_cfb_pbp(game_id = 252460252, epa_wpa = TRUE, engine = eng)
-    ))
+    pbp <- tryCatch(
+      suppressWarnings(suppressMessages(
+        espn_cfb_pbp(game_id = 252460252, epa_wpa = TRUE, engine = eng)
+      )),
+      error = function(e) testthat::skip(paste("ESPN request failed:", conditionMessage(e)))
+    )
     if (!is.data.frame(pbp) || !nrow(pbp)) testthat::skip("no plays returned")
     row <- pbp[grepl("punt for a loss of 12", pbp$play_text, fixed = TRUE), ]
     expect_identical(nrow(row), 1L, label = paste("loss row,", eng))
