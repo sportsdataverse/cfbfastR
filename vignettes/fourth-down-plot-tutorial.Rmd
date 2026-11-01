@@ -24,8 +24,9 @@ Hey everyone, my name is Michael and over the summer I worked on a daily series 
 if (!requireNamespace('pak', quietly = TRUE)){
   install.packages('pak')
 }
-pak::pak(c("tidyverse"))
+pak::pak(c("tidyverse", "sportyR"))
 library(tidyverse)
+library(sportyR)
 # cfbfastR is deliberately NOT in the pak() list above. pkgdown and
 # R CMD check render this vignette against the package being built, and
 # installing from CRAN here would overwrite that dev build with the last
@@ -82,25 +83,64 @@ down4 <- pbp |>
 ```
 
 And now we've got all the info we need to make the graph! The code below is listed for current Big 12 head coaches, but you can alter it to show whichever coaches you want.
-```{r fourth_down_plot, fig.alt="Big 12 Coaches's Fourth Down Tendencies | CFP Era"}
-down4 |>
+
+Rather than a blank panel, we'll draw each decision on a regulation college field with [`sportyR`](https://sportyR.sportsdataverse.org/)'s `geom_football("ncaa")`. sportyR centres the field on midfield and measures it in yards, so the offense's own goal line sits at `x = -50` and the opponent's at `x = 50`: a line of scrimmage `yards_to_goal` yards from the end zone is at `x = 50 - yards_to_goal`. The field's width carries no information here, so the points are jittered across it.
+```{r fourth_down_plot, fig.width = 11, fig.height = 5.5, fig.alt="Ten small college football fields, one per Big 12 head coach, each showing that coach's fourth-and-five-or-shorter plays from 2014 to 2020 as points at the line of scrimmage, coloured by whether the team went for it, kicked a field goal or punted, with the offense moving left to right."}
+big_12_coaches <- c("Matt Campbell", "Steve Sarkisian", "Lincoln Riley", "Chris Klieman", "Matt Wells",
+                    "Neal Brown", "Les Miles", "Mike Gundy", "Gary Patterson", "Dave Aranda")
+
+big_12_down4 <- down4 |>
   dplyr::filter(!is.na(play)) |>
-  dplyr::filter(coach %in% c("Matt Campbell", "Steve Sarkisian", "Lincoln Riley", "Chris Klieman", "Matt Wells",
-                     "Neal Brown", "Les Miles", "Mike Gundy", "Gary Patterson", "Dave Aranda")) |>
-  dplyr::filter(distance <= 5, distance > 0) |>
-  ggplot(aes(x = distance, y = 100 - yards_to_goal, color = play)) +
-  geom_jitter() +
-  facet_wrap(. ~ coach) +
-  theme_bw() +
-  labs(x = "Yards to Go",
-       title = "Big 12 Coaches's Fourth Down Tendencies | CFP Era",
-       subtitle = "Data from @cfbfastR",
-       caption = "Visualization by Michael Egle (@deceptivespeed_)",
+  dplyr::filter(coach %in% big_12_coaches) |>
+  dplyr::filter(distance <= 5, distance > 0)
+
+geom_football("ncaa") +
+  geom_jitter(data = big_12_down4,
+              aes(x = 50 - yards_to_goal, y = 0, color = play),
+              width = 0, height = 22, size = 1.5) +
+  facet_wrap(. ~ coach, ncol = 4) +
+  scale_color_manual(values = c("Go" = "#ffd23f", "FG Attempt" = "#3bceac", "Punt" = "#ee4266")) +
+  labs(title = "Big 12 Coaches's Fourth Down Tendencies | CFP Era",
+       subtitle = "Fourth and 5 or shorter, at the line of scrimmage. Offense moving left to right.",
+       caption = "Data from @cfbfastR | Field from sportyR | Visualization by Michael Egle (@deceptivespeed_)",
        color = "Decision") +
-  scale_y_continuous(labels = c("Own 20", "Own 40", "Opp 40",
-                               "Opp 20", "Endzone"),
-                     breaks = c(20, 40, 60, 80, 100)) +
-  theme(axis.title.y = element_blank())
+  theme(legend.position = "top")
+```
+
+## How makeable were those fourth downs?
+
+cfbfastR ships a port of [cfb4th](https://cfb4th.sportsdataverse.org/)'s fourth-down model. `calculate_fourth_down()` scores the chance the offense gains the yards it needs (`fd_conversion_prob`) from the down, distance, field position and the pre-game line. The line comes from each game's `spread` (the home team's line, negative when the home team is favoured) and `over_under`, turned around to the offense's point of view:
+```{r fourth_down_model}
+big_12_down4 <- big_12_down4 |>
+  dplyr::mutate(
+    is_home = pos_team == home,
+    posteam_spread = ifelse(is_home, -spread, spread),
+    posteam_total = ifelse(is_home, (over_under - spread) / 2, (over_under + spread) / 2)
+  ) |>
+  cfbfastR::calculate_fourth_down()
+```
+
+On the fourth downs the model rates as better than a coin flip to convert, how often did each coach keep the offense on the field?
+```{r fourth_down_go_rate}
+big_12_down4 |>
+  dplyr::filter(fd_conversion_prob > 0.5) |>
+  dplyr::group_by(coach) |>
+  dplyr::summarise(plays = dplyr::n(),
+                   go_rate = mean(play == "Go"),
+                   mean_conversion_prob = mean(fd_conversion_prob)) |>
+  dplyr::arrange(dplyr::desc(go_rate))
+```
+
+Conversion probability is only half the decision: going for it should also be weighed against what a field goal or a punt is worth. [cfb4th](https://cfb4th.sportsdataverse.org/) does that comparison in win probability, and is installed from the SportsDataverse r-universe:
+```{r cfb4th, eval = FALSE}
+install.packages("cfb4th", repos = c("https://sportsdataverse.r-universe.dev", getOption("repos")))
+
+# go / field goal / punt win probabilities and the recommended call for every
+# fourth down of a season. It joins CFBD betting lines, so it needs a
+# CFBD_API_KEY; the models download and cache on first use.
+fourth_downs <- cfb4th::load_4th_pbp(2020)
+fourth_downs |>
+  dplyr::select(pos_team, def_pos_team, distance, yards_to_goal, go_boost, go, play_type)
 ```
 
 Looks good! Small sample size but can easily be built upon. Hopefully you found this tutorial helpful and can make some more cool CFB related visualizations with ```ggplot2```
