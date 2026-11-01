@@ -118,7 +118,7 @@ add_player_cols <- function(pbp) {
   ## Receiver names
   pbp <- pbp |>
     dplyr::mutate(
-      receiver_player = ifelse(.data$pass == 1 & !stringr::str_detect(.data$play_text, "sacked"),
+      receiver_player = ifelse(.data$pass == 1 & !stringr::str_detect(.data$play_text, regex("sacked", ignore_case = TRUE)),
         stringr::str_extract(.data$play_text, "to (.+)"), NA_character_
       ),
       receiver_player = if_else(stringr::str_detect(.data$play_text, regex("Yd pass", ignore_case = TRUE)),
@@ -136,7 +136,7 @@ add_player_cols <- function(pbp) {
           "Fumble Recovery (Opponent)",
           "Fumble Recovery (Opponent) Touchdown"
         ) &
-          stringr::str_detect(.data$play_text, "sacked")), NA_character_, .data$receiver_player),
+          stringr::str_detect(.data$play_text, regex("sacked", ignore_case = TRUE))), NA_character_, .data$receiver_player),
       receiver_player = stringr::str_remove(.data$receiver_player, "to "),
       receiver_player = stringr::str_remove(.data$receiver_player, "\\,.+"),
       receiver_player = stringr::str_remove(.data$receiver_player, "for (.+)"),
@@ -346,7 +346,7 @@ add_player_cols <- function(pbp) {
   ## Fumble player name
   pbp <- pbp |>
     dplyr::mutate(
-      fumble_player = ifelse(stringr::str_detect(.data$play_text, "fumble"),
+      fumble_player = ifelse(stringr::str_detect(.data$play_text, regex("fumble", ignore_case = TRUE)),
         stringr::str_extract(.data$play_text, regex("(.{0,25} )fumble", ignore_case = TRUE)), NA_character_
       ),
       fumble_player = stringr::str_remove(.data$fumble_player, regex(" fumble(.+)", ignore_case = TRUE)),
@@ -367,7 +367,7 @@ add_player_cols <- function(pbp) {
   ## Fumble Forced player name
   pbp <- pbp |>
     dplyr::mutate(
-      fumble_forced_player = ifelse(stringr::str_detect(.data$play_text, "fumble") &
+      fumble_forced_player = ifelse(stringr::str_detect(.data$play_text, regex("fumble", ignore_case = TRUE)) &
         stringr::str_detect(.data$play_text, regex("forced by", ignore_case = TRUE)),
       stringr::str_extract(.data$play_text, regex("forced by(.{0,25})", ignore_case = TRUE)), NA_character_
       ),
@@ -384,7 +384,7 @@ add_player_cols <- function(pbp) {
   ## Fumble recovered player
   pbp <- pbp |>
     dplyr::mutate(
-      fumble_recovered_player = ifelse(stringr::str_detect(.data$play_text, "fumble") &
+      fumble_recovered_player = ifelse(stringr::str_detect(.data$play_text, regex("fumble", ignore_case = TRUE)) &
         stringr::str_detect(.data$play_text, regex("recovered by", ignore_case = TRUE)),
       stringr::str_extract(.data$play_text, regex("recovered by(.{0,30})", ignore_case = TRUE)), NA_character_
       ),

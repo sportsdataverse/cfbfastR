@@ -89,7 +89,11 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   those plays. The other literals change no play ESPN has published; they now
   agree with sportsdataverse-py if one appears. `punt_block_return_player_name`
   is filled on "N Yd Return of Blocked Punt" touchdowns (31-59 a season), which
-  it left empty.
+  it left empty, and the fumbler / forced-by / recovered-by and the
+  receiver-is-not-sacked captures read "Fumble" and "SACKED" too
+  ("Fumble recovered by CCaro Roderick Holder" now names him). A
+  "N Yd Fumble Return" touchdown still has no fumble player: the player it
+  names is the returner. (sportsdataverse-py emits "Yd" there.)
 - Captured player names lose a clause the capture ran into before the roster
   join, as sportsdataverse-py's `__attach_player_ids` does: a "N Yd" yardage
   ("Ale Kaho 0 Yd" -> "Ale Kaho"), a glued "tackled" / "fumble", a trailing

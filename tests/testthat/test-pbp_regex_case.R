@@ -80,3 +80,48 @@ test_that("the clause cut matches sdv-py's _PLAYER_NAME_CLAUSE_CUT on captured n
                          "Ale Kaho 0 Yd", "to the MiaOh 21", "WAS30", "Russell Wilson")),
                    c("Tommylee Lewis", "Kevonte Martin-Manley", "Ale Kaho", NA, NA, "Russell Wilson"))
 })
+
+test_that("fumble and receiver names read capitalised play text, as sdv-py does", {
+  testthat::skip_on_cran()
+  names_of <- function(type, text, pass = 0, sack = 0) {
+    .pbp_attach_player_ids(add_player_cols(data.frame(
+      play_type = type, play_text = text, pass = pass, rush = 0, sack = sack, fumble_vec = 1,
+      stringsAsFactors = FALSE
+    )))
+  }
+  # 400557406101965601 (2014): sdv-py 4b78a45a3d gives fumble_recovered_player_name
+  # "CCaro Roderick Holder"; the literal "fumble" gate left it empty
+  r <- names_of("Fumble Recovery (Opponent)",
+                "Fumble recovered by CCaro Roderick Holder, return for 29 yds, (Alex Catron KICK)")
+  expect_identical(r$fumble_recovered_player_name, "CCaro Roderick Holder")
+  # 400548310104854401 (2014): no fumbler named, sacker "William Parks" (sdv-py agrees)
+  r <- names_of("Fumble Recovery (Own)",
+                "Fumbled snap, Travis Wilson sacked by William Parks for a loss of 7 yards to the Ariz 35",
+                pass = 1, sack = 1)
+  expect_true(is.na(r$fumble_player_name))
+  expect_identical(r$sack_player_name, "William Parks")
+  # A fumble-return touchdown names the returner, not the fumbler, so there is
+  # no fumble player. sdv-py 4b78a45a3d emits "Yd" here (its fumbler override
+  # captures the capitalised word before "Fumble"); R keeps NA, a documented
+  # divergence. 400547649101924501 (2014).
+  r <- names_of("Fumble Return Touchdown", "Naim Cheeseboro 0 Yd Fumble Return (Przemyslaw Popek Kick)")
+  expect_true(is.na(r$fumble_player_name))
+  # 400869519104875404 (2016): sdv-py 4b78a45a3d gives fumble_forced_player_name
+  # "Torrence Brown. Recovere" and fumble_recovered "Romand Deloatch". The
+  # ". Recovere" tail is sdv-py's too (neither clause cut knows ". Recovered");
+  # pinned so the two stay together.
+  r <- names_of("Rush", paste("Jahad Thomas run for 1 yd to the Temp 41. Fumble forced by Torrence",
+                              "Brown. Recovered by Romand Deloatch at Temp 41."))
+  expect_identical(r$fumble_forced_player_name, "Torrence Brown. Recovere")
+  expect_identical(r$fumble_recovered_player_name, "Romand Deloatch")
+  # 401628334102944601 shouted (a pass play that is not typed Sack): no
+  # receiver is captured whatever the case; sdv-py gives none
+  raw <- add_player_cols(data.frame(
+    play_type = "Fumble Recovery (Own)",
+    play_text = paste("Miller Moss SACKED by Sai'vion Jones for a loss of 4 yards to the LSU 24",
+                      "Miller Moss fumbled, forced by Sai'vion Jones, recovered by USC Emmanuel",
+                      "Pregnon , return for 0 yards"),
+    pass = 1, rush = 0, sack = 1, fumble_vec = 1, stringsAsFactors = FALSE
+  ))
+  expect_true(is.na(raw$receiver_player_name))
+})
