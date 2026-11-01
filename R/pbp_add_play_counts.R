@@ -37,7 +37,13 @@
         defense_timeouts = 3
       )
   }
-  if (!"timeout_window" %in% names(play_df)) play_df$timeout_window <- play_df$period
+  # Only window-aware after-play counts (the ESPN adapter's, which allot 1 per
+  # overtime period and hand over `timeout_window`) get the overtime reset below.
+  # The CFBD path keeps its own counts, or the 3 placeholders above, unreset:
+  # resetting the before-count to 1 against an after-count of 3 would book a
+  # timeout call on the first overtime row and read 3 again on the next.
+  ot_reset <- "timeout_window" %in% names(play_df)
+  if (!ot_reset) play_df$timeout_window <- play_df$period
   play_df <-
     play_df |>
     dplyr::group_by(.data$game_id) |>
@@ -175,8 +181,8 @@
       # never fires in it: each overtime period opens with its own 1 timeout
       # (sdv-py), not the count the fourth quarter left. The ESPN adapter hands
       # over `timeout_window` (.espn_overtime_period()), because some feeds number
-      # every overtime 5; elsewhere the period is the window.
-      new_ot_period = .data$period >= 5 &
+      # every overtime 5. Gated by `ot_reset` (see the top of this function).
+      new_ot_period = .env$ot_reset & .data$period >= 5 &
         .data$timeout_window != dplyr::lag(.data$timeout_window, default = 0),
       off_timeouts_rem_before = ifelse(.data$new_ot_period, 1, .data$off_timeouts_rem_before),
       def_timeouts_rem_before = ifelse(.data$new_ot_period, 1, .data$def_timeouts_rem_before),

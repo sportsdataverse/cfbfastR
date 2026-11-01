@@ -110,3 +110,33 @@ test_that("timeouts remaining before a play match sdv-py through the engine", {
   # exemption cannot swallow more rows.
   expect_identical(n_na, 1L)
 })
+
+test_that("the overtime reset leaves CFBD-shaped placeholder counts consistent", {
+  testthat::skip_on_cran()
+  # CFBD frames carry their own after-play counts and no `timeout_window`;
+  # with the counts wholly missing they become 3 placeholders. Resetting the
+  # before-count to 1 at overtime would then book a timeout call on the first
+  # overtime row of every game. 302540119 (2010, two overtimes).
+  g <- read_oracle()[["302540119"]]
+  home <- g$start_is_home
+  df <- data.frame(
+    game_id = 1L, id_play = g$id_play, play_type = g$type, play_text = g$text,
+    period = g$period, half = ifelse(g$period <= 2, 1, ifelse(g$period <= 4, 2, g$period - 2)),
+    play_order = seq_len(nrow(g)),
+    home = g$home_location, away = g$away_location,
+    home_team_id = "1", away_team_id = "2",
+    offense_play_id = ifelse(home, "1", "2"), defense_play_id = ifelse(home, "2", "1"),
+    down = 1, distance = 10, yards_to_goal = 75, yards_gained = 0,
+    clock_minutes = 5, clock_seconds = 0, offense_score = 0, defense_score = 0,
+    offense_timeouts = NA_real_, defense_timeouts = NA_real_,
+    stringsAsFactors = FALSE
+  )
+  df$offense_play <- ifelse(home, df$home, df$away)
+  df$defense_play <- ifelse(home, df$away, df$home)
+  r <- .pbp_add_play_counts(df)
+  ot <- r$period >= 5
+  expect_true(any(ot))
+  expect_identical(sum(r$off_timeout_called[ot] == 1, na.rm = TRUE), 0L)
+  expect_identical(sum(r$def_timeout_called[ot] == 1, na.rm = TRUE), 0L)
+  expect_false("timeout_window" %in% names(r))
+})
