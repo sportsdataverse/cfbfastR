@@ -4,10 +4,15 @@
 # guards its live calls with skip_on_cran(), so without NOT_CRAN the number
 # would only cover the offline fixture tests.
 #
-# The Codecov upload is non-fatal (fail_ci_if_error: false): it depends on the
-# CODECOV_TOKEN secret and on codecov.io being up, neither of which says
-# anything about the package. A failed upload shows in the step log; the
-# coverage summary is always printed by the "Test coverage" step.
+# The live tests need CFBD_API_KEY, which GitHub withholds from fork pull
+# requests, so the job runs only on this repository's own branches.
+#
+# The Codecov upload is non-fatal (continue-on-error on the step): it depends
+# on the CODECOV_TOKEN secret and on codecov.io being up, neither of which says
+# anything about the package. fail_ci_if_error stays true so the action stops
+# rather than running a CLI that failed its signature check. A failed upload
+# shows in the step log; the coverage summary is always printed by the
+# "Test coverage" step.
 on:
   push:
     branches: [main, master]
@@ -17,25 +22,30 @@ on:
 
 name: test-coverage
 
-permissions: read-all
+permissions:
+  contents: read
 
 jobs:
   test-coverage:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 90
     env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
       NOT_CRAN: true
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
 
       - uses: r-lib/actions/setup-r-dependencies@v2
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         with:
           extra-packages: any::covr, any::xml2
           needs: coverage
@@ -52,8 +62,9 @@ jobs:
         shell: Rscript {0}
 
       - uses: codecov/codecov-action@v7
+        continue-on-error: true
         with:
-          fail_ci_if_error: false
+          fail_ci_if_error: true
           files: ./cobertura.xml
           plugins: noop
           disable_search: true
