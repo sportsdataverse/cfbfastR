@@ -215,3 +215,9 @@ id, not by row adjacency) and only when the drive starts in overtime;
 are contiguous. `test-pbp_timeouts.R` pins the five rows. Re-capture: `python
 data-raw/parity_timeouts_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`, and `SDV_PY_SHA` when the
 checkout is an export); do not hand-edit the file.
+
+Known sdv-py divergences copied on purpose (no oracle file): the 2018 fair-catch kickoff touchback
+(`.pbp_clean_pbp_dat()`, `test-pbp_kickoff_touchback.R`) is sdv-py's `kickoff_tb` rule, which its own
+comment limits to a fair catch between the goal line and the receiver's 25 but which reads no catch
+spot, so the 152 fair catches made beyond the 25 in the 2018-2025 raw corpus are placed at the 25 as
+well. Fix it in sdv-py first, then here.

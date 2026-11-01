@@ -39,7 +39,11 @@
       #-- Kicks/Punts----
       kickoff_play = ifelse(.data$play_type %in% kickoff_vec, 1, 0),
       # sdv-py: a touchback, a fair catch from 2018 (a fair catch of a kickoff
-      # is spotted at the 25), or a bare "X kickoff" with no result
+      # is spotted at the 25), or a bare "X kickoff" with no result.
+      # Known sdv-py divergence, copied on purpose: the rule covers a fair catch
+      # between the goal line and the 25 (sdv-py's own comment says so), but
+      # neither library reads the catch spot, so the 152 fair catches made
+      # beyond the 25 in 2018-2025 are placed at the 25 too. Fix in sdv-py first.
       kickoff_tb = ifelse((stringr::str_detect(.data$play_text, regex("touchback", ignore_case = TRUE)) |
         (fair_catch_tb & stringr::str_detect(.data$play_text, regex("fair catch|fair caught", ignore_case = TRUE))) |
         stringr::str_detect(.data$play_text, regex("kickoff$", ignore_case = TRUE))) &
