@@ -22,23 +22,29 @@ This document will walk you step-by-step through the process of adapting [Sharpe
 
 ## Load and Install Packages
 
-We're going to need several packages to generate the winning percentage plot: ```tidyverse``` for easy data wrangling, string manipulation, and plotting, ```glue``` to easily make the labels, ```ggimage``` to put the logos on the plot, and ```animation``` to actually build the GIF.
+We're going to need several packages to generate the winning percentage plot: ```tidyverse``` for easy data wrangling, string manipulation, and plotting, ```glue``` to easily make the labels, [```sdvplotR```](https://sdvplotR.sportsdataverse.org/) for the team logos and colors, and ```animation``` to actually build the GIF.
 
 ```{r packages, message=FALSE, warning=FALSE}
 if (!requireNamespace('pak', quietly = TRUE)){
   install.packages('pak')
 }
-pak::pak(c("tidyverse", "animation", "glue", "zoo", "ggimage"))
+pak::pak(c("tidyverse", "animation", "glue", "zoo"))
 library(tidyverse)
 library(animation)
 library(glue)
 library(zoo)
-library(ggimage)
+library(sdvplotR)
 # cfbfastR is deliberately NOT in the pak() list above. pkgdown and
 # R CMD check render this vignette against the package being built, and
 # installing from CRAN here would overwrite that dev build with the last
 # release -- so any function added since it would vanish mid-render.
 library(cfbfastR)
+```
+
+sdvplotR is not on CRAN; install it from the SportsDataverse r-universe:
+
+```{r install_sdvplotR, eval = FALSE}
+install.packages("sdvplotR", repos = c("https://sportsdataverse.r-universe.dev", getOption("repos")))
 ```
 
 ## cfbfastR
@@ -70,20 +76,20 @@ game_pbp <- cfbfastR::cfbd_pbp_data(year, team = team, week = week, epa_wpa = TR
 game <- cfbfastR::cfbd_game_info(year=year, team = team, week = week, season_type = "regular")
 ```
 
-We'll also use the ```cfbd_team_info()``` function to pull the color and logo information and add it to the game info. We'll also add in a `result` column that is the score difference between the home and the away teams that we'll use later.
+We'll also use ```sdvplotR``` to add each team's color and abbreviation to the game info. `sdv_team_colors()` and `sdv_resolve()` take the school names exactly as cfbfastR returns them, so there is no lookup table to join. The logos themselves are drawn later by `geom_sdv_logos()` straight from the team names. We'll also add in a `result` column that is the score difference between the home and the away teams that we'll use later.
 
 ```{r logos, message=FALSE, warning=FALSE}
-team_info <- cfbfastR::cfbd_team_info()
-team_logos <- team_info |>
-  select(school, color, alt_color, logo, alt_name2)
-game <- game |>
-  left_join(team_logos, by = c("away_team" = "school"),) |>
-  rename(away_logo = logo, away_color = color, away_alt_color = alt_color, away_abr = alt_name2)
+cfb_teams <- sdv_teams("cfb")
+team_abbr <- function(team) {
+  cfb_teams$abbr[match(sdv_resolve(team, league = "cfb"), cfb_teams$team_id)]
+}
 
 game <- game |>
-  left_join(team_logos, by = c("home_team" = "school")) |>
-  rename(home_logo = logo, home_color = color, home_alt_color = alt_color, home_abr = alt_name2) |>
-  mutate(result = home_points - away_points) |>
+  mutate(away_color = unname(sdv_team_colors("cfb", away_team)),
+         home_color = unname(sdv_team_colors("cfb", home_team)),
+         away_abr = team_abbr(away_team),
+         home_abr = team_abbr(home_team),
+         result = home_points - away_points) |>
   rename(home_score = home_points, away_score = away_points)
 ```
 
@@ -343,8 +349,10 @@ draw_frame <- function(n_sec)
     theme_minimal() +
     geom_vline(xintercept = c(3600, x_max), color = "#5555AA") +
     geom_segment(x = -3600, xend = -x_max, y = 0.5, yend = 0.5, size = 0.75) +
-    geom_image(x = x_score, y = 0.82, image = game$away_logo, size = 0.08, asp = 1.5) +
-    geom_image(x = x_score, y = 0.18, image = game$home_logo, size = 0.08, asp = 1.5) +
+    geom_sdv_logos(data = data.frame(x = x_score, y = c(0.82, 0.18),
+                                     team = c(game$away_team, game$home_team)),
+                   aes(x = x, y = y, team = team), league = "cfb",
+                   height = 0.12, inherit.aes = FALSE) +
     geom_line(aes(color = ..y.. < .5), size = 1) +
     scale_color_manual(values = c(game$away_color, game$home_color)) +
     scale_x_continuous(trans = "reverse",
