@@ -8,7 +8,7 @@ opengraph:
   twitter:
     site: "@cfbfastR"
     card: summary_large_image
-    creator: "@JaredDLee"
+    creator: "@cfbfastR"
 output: html_document
 ---
 ```{r setup, include=FALSE}
@@ -371,7 +371,7 @@ draw_frame <- function(n_sec)
     xlab("") +
     ylab("") +
     labs(title = glue("Win Probability Chart: {game$season} Week {game$wk} {game$away_team} @ {game$home_team}"),
-         caption = "Data from cfbfastR, Visualization by @LeeSharpeNFL, Adapted for CFB by @JaredDLee") +
+         caption = "Data from cfbfastR, Visualization by @LeeSharpeNFL, Adapted for CFB by Jared Lee (github.com/Kazink36)") +
     theme(legend.position = "none")
 
   # score display
