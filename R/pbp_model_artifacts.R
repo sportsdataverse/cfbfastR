@@ -217,7 +217,9 @@ NULL
 #' @noRd
 .wp_is_home <- function(newdata) {
   if ("is_home" %in% names(newdata)) {
-    v <- suppressWarnings(as.numeric(newdata$is_home))
+    v <- newdata$is_home
+    if (is.factor(v)) v <- as.character(v) # by label, not factor code
+    v <- suppressWarnings(as.numeric(v))
     return(ifelse(is.na(v), 0, v))
   }
   if (!all(c("pos_team", "home") %in% names(newdata))) {
