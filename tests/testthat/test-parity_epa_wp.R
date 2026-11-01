@@ -113,6 +113,9 @@ test_that("calculate_win_probability() and the decision state score the trained 
   expect_close(got$wp, o$wp_naive_raw, "calculate_win_probability() vs sdv-py (raw)")
   # the caller's flag is returned untouched; only the booster input changes
   expect_identical(got$pos_team_receives_2H_kickoff, df$pos_team_receives_2H_kickoff)
+  # a factor is_home is scored by its labels, flag included (not factor codes)
+  df$is_home <- factor(df$is_home)
+  expect_equal(calculate_win_probability(df, season = 2024)$wp, got$wp)
 
   st <- .cfb_state_from_pbp(r_start(o))
   expect_equal(st$pos_team_receives_2H_kickoff, 1 - st$is_home)
