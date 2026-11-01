@@ -1,5 +1,42 @@
 # Parity oracles
 
+`fixture_games.json` — the 60-game offline corpus most oracles here are drawn from: 5 games from each
+of 2004, 2006, 2008, 2010, 2013, 2014, 2017, 2019, 2020, 2021, 2023 and 2025, spread across each
+season including the postseason (`game_id`, `week`, `season_type`, `has_participants`). The list
+straddles 2014 on purpose: before it ESPN ships no structured `participants[]`, so the early games
+exercise the text-only parsing path. Committed 2026-08-19 with cfbfastR #129 (`28d61b99`).
+
+`sdvpy_golden.parquet`, `attribution_oracle.parquet`, `direction_oracle.parquet`,
+`participants_oracle.parquet`, `boxparity_pbp.parquet`, `boxparity_box.parquet`,
+`game_rosters.parquet`, `game_boxscores.parquet`, `play_participants.parquet` — committed 2026-08-19
+with cfbfastR #129 (`28d61b99`), generated offline from the ESPN summary payloads banked in
+cfbfastR-cfb-raw (`cfb/json/raw/`, plus its `cfb/game_rosters/` and `cfb/play_participants/`) for the
+`fixture_games.json` games, with zero API calls. **Provenance gap:** the sportsdataverse-py commit
+they were captured from and the generator script were not recorded, so unlike the oracles below they
+cannot be re-captured as-is; a re-capture needs a new `data-raw/` generator (and should record the
+sdv-py commit here). Until then, do not hand-edit them. What each holds (`fixture_game_id` keys the
+game; play `id` is the ESPN play id):
+
+- `sdvpy_golden.parquet` — 9,549 plays of the 60 games as sdv-py's `CFBPlayProcess` emitted them
+  (114 columns: penalty detection and enforcement, attribution and turnover flags, player names and
+  `*_player_id`, air yards, pass / rush direction). Read by `test-parity_penalty_enforcement.R`,
+  `test-parity_player_ids.R` and `test-pbp_regex_case.R`.
+- `attribution_oracle.parquet` — 9,545 rows (56 game ids): every column sdv-py's
+  `__add_attribution_cols` reads, and every column it writes suffixed `__out`.
+  `test-parity_attribution.R`.
+- `direction_oracle.parquet` — the same rows: the inputs and `__out` outputs of the depth / direction
+  block of `__add_player_cols`. `test-parity_air_yards.R`.
+- `participants_oracle.parquet` — the same rows: the eleven `*_player_name` columns immediately before
+  (`__before`) and after (`__after`) sdv-py's `__join_participants`. `test-parity_join_participants.R`.
+- `play_participants.parquet` — 5,384 rows (34 games): ESPN `participants[]` names per play, the
+  stage's other input. `test-parity_join_participants.R`.
+- `game_rosters.parquet` (8,829 rows, 56 games) and `game_boxscores.parquet` (2,018 rows, 57 games) —
+  the roster and box-score athlete records (`athlete_id`, display name, `team_id`) sdv-py's
+  `__attach_player_ids` resolves against. `test-parity_player_ids.R`.
+- `boxparity_pbp.parquet` (9,549 plays) and `boxparity_box.parquet` (120 team-games) — sdv-py's
+  per-play flags and yardage, and ESPN's official team box, for the pbp-to-box-score gate ported
+  from sdv-py `tools/validation/checks/boxscore_parity`. `test-pbp_boxscore_parity.R`.
+
 `airyards_oracle.parquet` — captured 2026-09-01 from sportsdataverse-py `9efee9f1`
 (`CFBPlayProcess.run_processing_pipeline()` run offline on the ESPN summary payloads banked in
 cfbfastR-cfb-raw `cfb/json/raw/`, `join_participants = False`). One row per play; every column
@@ -143,3 +180,50 @@ which cfbfastR has not ported; `ep_start_raw` / `ep_end_raw`, sdv-py's EP model 
 state (the published `EP_start` / `EP_end` are that value after the pipeline's possession-flip and
 scoring rules). `pos_team_won` is for calibration metrics. Re-capture: `python
 data-raw/parity_epa_wp_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file. The `wp_*_raw` columns are the generator's own booster calls on sdv-py's states with sdv-py's `_as_trained_2h_flag`, not values read from sdv-py's pipeline, so the WP check confirms R scores those states the same way; it does not test the trained-on-`1 - is_home` premise itself. Decision-surface WP is not in the oracle; `test-decision-state.R` pins it to sdv-py's exact values. Both libraries toggle the flag only in first-half flipped states while `is_home` always toggles, so second-half flipped states reach the booster as `flag == is_home`; that is to be fixed in sdv-py first and mirrored here.
+
+
+`timeouts_oracle.csv.gz` — captured 2026-11-01 from sportsdataverse-py `4b78a45a3d` (`origin/main`,
+`CFBPlayProcess.run_processing_pipeline()` run offline on the ESPN summary payloads banked in
+cfbfastR-cfb-raw `cfb/json/raw/`, `join_participants = False`). One row per play of 19 games, in
+sdv-py's final order: the inputs `.espn_timeouts()` reads (`period`, `type`, `text`, the header's
+`*_abbr` / `*_location` / `*_name` per team, and the play's `drive_id` / `drive_start_yard_line` /
+`drive_start_period`, which decide the overtime window), `start_is_home`, and sdv-py's
+`homeTimeoutCalled` / `awayTimeoutCalled` and start / end timeouts remaining per team (`sdvpy_*`).
+Games, each picked so a
+rule decides at least one Timeout row: a name part (401752665), the clock before the team (252440248),
+the 2004 mascot form with its "remaining" clock tail (243250239), ties that charge both (242620002,
+283332199, 322730166), initialisms (293110009 "SOUTHERN CAL", 283270254 "BRIGHAM YOUNG"), a full name
+match over an initialism (401012682 "OREGON ST"), the shortened-name resolver (252532649, 282430061,
+252460251), media stoppages charged to nobody (401677188), an adjacent repeat (401761657) and five
+overtime games: 302540119; 401112081 and 323152633, whose feeds number every overtime 5, so the window
+comes from pairing the overtime drives (sportsdataverse-py #505); 401236005, four overtimes with an
+OT4 drive row filed ahead of the OT3 drive; and 401754372, below. `.espn_overtime_period()` is a
+literal port of sdv-py's `_overtime_period()`; it matches sdv-py on every row of these games and of
+128 overtime games replayed from the raw corpus.
+
+**Known bug, shared by sdv-py and cfbfastR (401754372, 5 rows; pinned, not exempted).** sdv-py's
+`_overtime_period()` (`cfb/cfb_pbp.py`, used by the timeout block) counts a new overtime drive
+whenever `drive.id` differs from the previous row's, for any drive starting at the 25 / 75, and
+pairs those drives into periods (`5 + (count - 1) // 2`). In 401754372 (California at Virginia
+Tech, 2025, two overtimes) the first overtime is three rows filed under drives 40175437237,
+40175437236, 40175437237, so drive 37 is counted twice. The second overtime's drives 38 and 39
+become the fourth and fifth, and drive 39 opens a third overtime window that never happened.
+Virginia Tech (home) called its one second-overtime timeout at "Timeout Virginia Tech, clock 00:11",
+yet both libraries report `start.homeTeamTimeouts = 1` on the five rows after it (the three
+incompletions, "End of 2 OT." and "Timeout California"); the truth is 0, which sdv-py gives with
+`_overtime_period` replaced by `period.number`. Both Timeout rows ("Virginia Tech" and "California")
+are filed under drive 40175437219, a second-quarter drive starting at yard line 17, which the rule
+does not count. Counting each overtime drive once by id fixes this game but is worse overall: on 128
+replayed overtime games it disagreed with sdv-py in 10, and where the right answer could be told it
+was wrong more often (300062653 files Central Michigan's OT1 touchdown under regulation drive 22;
+401236005 files a row of OT4 drive 40 ahead of OT3 drive 38; 323152633 files an overtime drive at
+yard line 0). A fix needs a rule that survives all of those, in sdv-py first; `test-pbp_timeouts.R`
+pins the five rows at sdv-py's value so a change to either side shows. Re-capture: `python
+data-raw/parity_timeouts_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`, and `SDV_PY_SHA` when the
+checkout is an export); do not hand-edit the file.
+
+Known sdv-py divergences copied on purpose (no oracle file): the 2018 fair-catch kickoff touchback
+(`.pbp_clean_pbp_dat()`, `test-pbp_kickoff_touchback.R`) is sdv-py's `kickoff_tb` rule, which its own
+comment limits to a fair catch between the goal line and the receiver's 25 but which reads no catch
+spot, so the 152 fair catches made beyond the 25 in the 2018-2025 raw corpus are placed at the 25 as
+well. Fix it in sdv-py first, then here.
