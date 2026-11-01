@@ -8,7 +8,7 @@
 clean_rows <- function(play_type, play_text, change_of_poss = 0) {
   n <- length(play_type)
   .pbp_clean_pbp_dat(data.frame(
-    game_id = 1L, id_play = as.character(seq_len(n)),
+    game_id = 1L, season = 2024L, id_play = as.character(seq_len(n)),
     play_type = play_type, play_text = play_text,
     change_of_poss = change_of_poss, change_of_pos_team = change_of_poss,
     down = 1, distance = 10, yards_to_goal = 75, yards_gained = 0,

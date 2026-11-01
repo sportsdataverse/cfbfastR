@@ -103,6 +103,13 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   of 175 plays, by up to 0.019). EP and EPA do not read timeouts. A new oracle
   (`tests/testthat/test-pbp_timeouts.R`) checks the charges and counts against
   sportsdataverse-py on all 3,021 plays of those games.
+- The v2 engine's `kickoff_tb` follows the 2018 rule that a fair-caught kickoff
+  is a touchback, and treats a bare "X kickoff" row with no result as one, as
+  sportsdataverse-py does. 1,122 fair-caught kickoffs in 2018-2025 (567 in 2025)
+  now have `kickoff_tb = 1`, `yds_kickoff_return = 25` (0 before) and the next
+  state at the receiver's 25; earlier seasons are unchanged. Like
+  sportsdataverse-py, the rule does not read the catch spot, so the 152 of those
+  caught beyond the 25 are also placed at the 25.
 
 ## Fixed: release loaders read model pbp, keep play ids exact and accept every published season
 

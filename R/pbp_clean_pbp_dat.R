@@ -5,13 +5,16 @@
 #' `.pbp_play_types()`.
 #'
 #' @param play_df Single-game play data frame (post-`.pbp_add_play_counts()`).
+#' @param season Scalar season, else the frame's `season` column; it decides
+#'   whether a fair-caught kickoff is a touchback (2018 on).
 #' @return `play_df` with play-type / scoring / pass / rush / sack flags.
 #' @keywords internal
 #' @noRd
 #' @importFrom rlang .data
 #' @importFrom stringr str_detect str_remove regex
 #' @importFrom dplyr mutate if_else case_when
-.pbp_clean_pbp_dat <- function(play_df) {
+.pbp_clean_pbp_dat <- function(play_df, season = NULL) {
+  fair_catch_tb     <- .kickoff_fair_catch_touchback(.kickoff_rule_season(season, play_df))
   tt                <- .pbp_play_types()
   scores_vec        <- tt$scores
   defense_score_vec <- tt$defense_score
@@ -35,7 +38,11 @@
       fumble_vec = ifelse(stringr::str_detect(.data$play_text, regex("fumble", ignore_case = TRUE)) & !is.na(.data$play_text), 1, 0),
       #-- Kicks/Punts----
       kickoff_play = ifelse(.data$play_type %in% kickoff_vec, 1, 0),
-      kickoff_tb = ifelse(stringr::str_detect(.data$play_text, regex("touchback", ignore_case = TRUE)) &
+      # sdv-py: a touchback, a fair catch from 2018 (a fair catch of a kickoff
+      # is spotted at the 25), or a bare "X kickoff" with no result
+      kickoff_tb = ifelse((stringr::str_detect(.data$play_text, regex("touchback", ignore_case = TRUE)) |
+        (fair_catch_tb & stringr::str_detect(.data$play_text, regex("fair catch|fair caught", ignore_case = TRUE))) |
+        stringr::str_detect(.data$play_text, regex("kickoff$", ignore_case = TRUE))) &
         (.data$kickoff_play == 1) & !is.na(.data$play_text), 1, 0),
       kickoff_onside = ifelse(stringr::str_detect(.data$play_text, regex("on-side|onside|on side", ignore_case = TRUE)) &
         (.data$kickoff_play == 1) & !is.na(.data$play_text), 1, 0),
