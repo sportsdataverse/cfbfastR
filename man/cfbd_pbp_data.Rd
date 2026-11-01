@@ -290,7 +290,7 @@ refetches them, and \code{options(cfbfastR.cache = "off")} set before loading th
    fumble_recovered_player_name \tab character \tab Name of the player who recovered the fumble. \cr
    yds_fumble_return \tab double \tab Yards gained on a fumble return. \cr
    punter_player_name \tab character \tab Name of the punter. \cr
-   yds_punted \tab double \tab Yards the ball traveled on the punt. \cr
+   yds_punted \tab double \tab Yards the ball traveled on the punt; negative for a punt for a loss (ended behind the line of scrimmage). \cr
    punt_returner_player_name \tab character \tab Name of the punt returner. \cr
    yds_punt_return \tab double \tab Yards gained on the punt return. \cr
    yds_punt_gained \tab double \tab The play's \code{yards_gained} on punt plays; NA otherwise. \cr
