@@ -585,7 +585,7 @@ Two things worth knowing before using them:
 
 Five new `cfbd_*()` wrappers cover the CollegeFootballData punting endpoints
 (spec **v5.33.2**), taking coverage from 88 of 93 endpoints to **93 of 93**
-([#192](https://github.com/sportsdataverse/cfbfastR/issues/192)):
+([#192](https://github.com/sportsdataverse/cfbfastR/issues/192), [#195](https://github.com/sportsdataverse/cfbfastR/issues/195)):
 
 | function | endpoint |
 |---|---|
