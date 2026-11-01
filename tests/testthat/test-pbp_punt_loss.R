@@ -24,6 +24,7 @@ test_that(".punt_yards signs the loss clause and leaves other punts alone", {
   # a loss on the return must not sign the punt
   expect_identical(.punt_yards("Johnny Ayers Punt for no gain to the BC 20."), NA_real_)
   expect_identical(.punt_yards("A punt for 43 yards, B returned punt for a loss of 5 yards."), 43)
+  expect_identical(.punt_yards("A punt for no gain, B returned punt for a loss of 5 yards."), NA_real_)
 })
 
 test_that("both engines' clean stage store a punt for a loss as negative", {
@@ -34,6 +35,7 @@ test_that("both engines' clean stage store a punt for a loss as negative", {
 
 test_that("ESPN game 252460252 publishes the punt for a loss as -12 on both engines", {
   testthat::skip_on_cran()
+  testthat::skip_on_ci()
   testthat::skip_if_offline()
   for (eng in c("v2", "legacy")) {
     pbp <- tryCatch(
