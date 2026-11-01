@@ -12,17 +12,31 @@ compare that performance to other teams around the country.
 if (!requireNamespace('pak', quietly = TRUE)){
   install.packages('pak')
 }
-pak::pak(c("tidyverse", "zoo", "ggimage", "cfbfastR"))
+pak::pak(c("tidyverse", "zoo"))
 library(tidyverse)
 library(zoo)
-library(ggimage)
+library(sdvplotR)
+# cfbfastR is deliberately NOT in the pak() list above. pkgdown and
+# R CMD check render this vignette against the package being built, and
+# installing from CRAN here would overwrite that dev build with the last
+# release -- so any function added since it would vanish mid-render.
 library(cfbfastR)
+```
+
+The team logos and colours come from
+[sdvplotR](https://sdvplotR.sportsdataverse.org/), the SportsDataverse
+plotting package. It is not on CRAN; install it from the SportsDataverse
+r-universe:
+
+``` r
+
+install.packages("sdvplotR", repos = c("https://sportsdataverse.r-universe.dev", getOption("repos")))
 ```
 
 ### Pull the play by play data
 
 Using the
-[load_cfb_pbp()](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html)
+[load_cfb_pbp()](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.html)
 method, we will pull down a dataframe that contains ALL of the play by
 play data for ALL teams in 2026. This method only takes about 30
 seconds.
@@ -33,28 +47,22 @@ yr <- cfbfastR:::most_recent_cfb_season()-1
 pbp <- cfbfastR::load_cfb_pbp(yr)
 ```
 
-### Pull team info and team colors
+### Team colors and logos
 
-We can use the
-[`cfbd_team_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_info.md)
-function to pull information about each FBS school including their logo,
-color, and abbreviation. We’re going to take a subset of the
-cfb_team_info data and clean it up for use in our graphs later on.
+There is no team lookup table to build. sdvplotR matches the school
+names in the play-by-play (`"Oklahoma"`, `"Illinois State"`) to its
+index of every FBS and FCS program, so its scales and logo layers take
+the names as they are.
+[`sdv_team_colors()`](https://sdvplotR.sportsdataverse.org/reference/sdv_team_colors.html)
+shows what it will use:
 
 ``` r
 
-team_info <- cfbfastR::cfbd_team_info(year = yr, only_fbs = FALSE)
-
-team_colors_logos <- team_info |> 
-  select(school, abbreviation, color, logo, alt_color) |>
-  group_by(school) |>
-  slice(1) |> 
-  ungroup() |> 
-  dplyr::mutate(
-    color = ifelse(.data$color == "#null", "#808080", .data$color),
-    alt_color = ifelse(.data$alt_color == "#null", "#808080", .data$alt_color)
-  )
+sdv_team_colors("cfb", c("Oklahoma", "Texas", "Illinois State"))
 ```
+
+    ##       Oklahoma          Texas Illinois State 
+    ##      "#990000"      "#af5c37"      "#ce1126"
 
 ### Basic overview of all FBS Offenses
 
@@ -187,38 +195,11 @@ our `team_off` dataframe.
 play_count <- max(team_off$play_count)
 ```
 
-Next we are going to update our background tile dataframe to include the
-color info that we pulled earlier. FCS color data is not available, so
-we will default those to gray.
-
-``` r
-
-team_off_start_stop <- team_off_start_stop |> 
-  left_join(team_colors_logos, by = c("team" = "school")) |> 
-  mutate(color = replace_na(color,"gray")) |>
-  select(team, week_team, play_start, play_stop, midpoint, color)
-```
-
-Are we ready to graph yet? Just a few more steps! We need a named vector
-to get the right colors on those background tiles.
-
-``` r
-
-team_colors <- as.character(team_off_start_stop$color)
-names(team_colors) <- as.character(team_off_start_stop$team)
-```
-
-Now we need to pull in an alternate source of team logos that includes
-FCS schools. Then we’ll join that new table of logos with our background
-tile dataframe.
-
-``` r
-
-all_logos <- read_csv("https://raw.githubusercontent.com/natemanzo/cfb_data/master/_team_logos.csv")
-
-team_off_start_stop <- team_off_start_stop |>
-  left_join(all_logos, by = c("team" = "school"))
-```
+Each background tile is coloured with the opponent’s primary colour by
+`scale_fill_sdv(league = "cfb")`, and
+[`geom_sdv_logos()`](https://sdvplotR.sportsdataverse.org/reference/geom_sdv_logos.html)
+puts the opponent’s logo at the tile’s midpoint. Both read the opponent
+from the `team` column, FCS opponents included.
 
 Almost done! The last thing we need is your signature to go in the
 caption of the graph. You can use your twitter handle or your real name
@@ -244,10 +225,10 @@ interest compares to the rest of the country.
 graph_team_off = ggplot() +
   geom_rect(data = team_off_start_stop, aes(xmin = play_start, xmax = play_stop, fill = team, ymin = -.7, ymax = .9), color = "gray90") +
   geom_rect(data = team_off_start_stop, aes(xmin = play_start, xmax = play_stop, ymin = .8, ymax = 1), color = "gray90", fill = "white") +
-  scale_fill_manual(values = team_colors) +
+  scale_fill_sdv(league = "cfb") +
   geom_hline(yintercept = quantile(off_epa$off_epa), linetype = 2, color = "gray20", alpha = .8) +
   geom_hline(yintercept = 0, linetype = 1, color = "gray20", alpha = .2) +
-  geom_image(data=team_off_start_stop,aes(x=midpoint,y=.9,image=logo), asp = 16/9, size = .05) +
+  geom_sdv_logos(data = team_off_start_stop, aes(x = midpoint, y = .9, team = team), league = "cfb", height = .07) +
   annotate(x = -2, y = quantile(off_epa$off_epa)[1], geom = "text", size = 3, hjust = "right", vjust = 0, label = off_epa |> slice(n()) |> pull(Team)) +
   annotate(x = -2, y = quantile(off_epa$off_epa)[2], geom = "text", size = 3, hjust = "right", vjust = 0, label = "25%ile") +
   annotate(x = -2, y = quantile(off_epa$off_epa)[3], geom = "text", size = 3, hjust = "right", vjust = 0, label = "Median") +
@@ -288,7 +269,7 @@ I hope you found this useful! As always, thanks to
 [@cfbfastR](https://twitter.com/cfbfastR) team for making this possible.
 And shout out to folks like Parker Fleming
 ([@statsowar](https://twitter.com/statsowar)) and Meyappan Subbaiah
-([@msubbiah1](https://twitter.com/msubbiah1)) for their feedback,
+([@msubbaiah1](https://twitter.com/msubbaiah1)) for their feedback,
 advice, and encouragement while refining the look of this visualization.
 Tag me in any of these graphs you post on twitter and I’ll share them as
 much as possible.
@@ -303,8 +284,7 @@ much as possible.
 - [Akshay Easwaran](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/twitter/follow/akeaswaran?color=blue&label=%40akeaswaran&logo=x&style=for-the-badge)](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/github/followers/akeaswaran?color=eee&logo=Github&style=for-the-badge)](https://github.com/akeaswaran)
-- [Jared Lee](https://x.com/JaredDLee)
-  [![@JaredDLee](https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge)](https://x.com/JaredDLee)
+- [Jared Lee](https://github.com/Kazink36)
   [![@Kazink36](https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge)](https://github.com/Kazink36)
 - [Eric Hess](https://x.com/arbitanalytics)
   [![@arbitanalytics](https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge)](https://x.com/arbitanalytics)
@@ -371,7 +351,16 @@ BibTeX Citation
 - [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
 - [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
 - [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
-- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
+- [**cfbseedR**](https://cfbseedR.sportsdataverse.org/) - college
+  football season and playoff simulation (CRAN)
+- [**cfb4th**](https://cfb4th.sportsdataverse.org/) - college football
+  fourth-down decisions (r-universe)
+- [**sdvplotR**](https://sdvplotR.sportsdataverse.org/) - team logos,
+  colours and tables for every SportsDataverse league (r-universe)
+- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing
+  surfaces, including the college football field (CRAN)
+- [**cfbplotR**](https://cfbplotR.sportsdataverse.org/) - college
+  football logos and colours (r-universe)
 - [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python
   package
 - [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R

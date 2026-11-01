@@ -116,9 +116,13 @@ End-to-end recipes and reference guides.
 - [CFB Data Teams
   Examples](https://cfbfastR.sportsdataverse.org/articles/cfbd_teams.md):
 
-  Get team rosters (`cfbd_team_rosters()`), talent
+  Get team rosters
+  ([`cfbd_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_roster.md)),
+  talent
   ([`cfbd_team_talent()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_talent.md))
-  and team matchup history (`cfbd_team_matchup_history()`) and records
+  and team matchup history
+  ([`cfbd_team_matchup()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup.md))
+  and records
   ([`cfbd_team_matchup_records()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup_records.md))
   from the CFBD API
 
@@ -157,3 +161,10 @@ End-to-end recipes and reference guides.
 
   **IT’S GRAPHIN’ TIME**  
   ^*To be said in an extremely Power Rangers voice*^**
+
+- [Simulating a College Football Season with
+  cfbseedR](https://cfbfastR.sportsdataverse.org/articles/cfbseedR-season-simulation.md):
+
+  Feed a `cfbfastR` schedule to `cfbseedR` to rebuild conference
+  standings and the College Football Playoff field, then simulate the
+  rest of a season from any week.

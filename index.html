@@ -127,6 +127,7 @@
     <li><a class="dropdown-item" href="articles/map-tutorial.html">Intro to Visualizing Recruiting Geography</a></li>
     <li><a class="dropdown-item" href="articles/nth-rated-recruit.html">Visualizing Team Talent from Player Recruiting Rankings</a></li>
     <li><a class="dropdown-item" href="articles/rolling-epa-graph.html">Rolling EPA Graph</a></li>
+    <li><a class="dropdown-item" href="articles/cfbseedR-season-simulation.html">Simulating a College Football Season with cfbseedR</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="news/index.html"><span class="fa fas fa-newspaper"></span>  News</a></li>
@@ -207,14 +208,11 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header">
-<img src="logo.png" class="logo" alt=""><h1 id="section"></h1>
-</div>
-</div>
-<div class="section level1">
-<h1 id="cfbfastr-">
+<img src="logo.png" class="logo" alt=""><h1 id="cfbfastr-">
 <strong>cfbfastR</strong> 
 <a class="anchor" aria-label="anchor" href="#cfbfastr-"></a>
 </h1>
+</div>
 <!-- badges: start -->
 
 <p>The goal of <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a> is to provide the community with an R package for working with CFB data. It is an R API wrapper around <a href="https://collegefootballdata.com/" class="external-link uri">https://collegefootballdata.com/</a>. Beyond data aggregation and tidying ease, one of the multitude of services that <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a> provides is for benchmarking open-source expected points and win probability metrics.</p>
@@ -279,9 +277,9 @@
 <p>You can install the CRAN version of <a href="https://CRAN.R-project.org/package=cfbfastR" class="external-link"><strong><code>cfbfastR</code></strong></a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"cfbfastR"</span><span class="op">)</span></span></code></pre></div>
-<p>You can install the released version of <a href="https://github.com/sportsdataverse/cfbfastR/" class="external-link"><strong><code>cfbfastR</code></strong></a> from <a href="https://github.com/sportsdataverse/cfbfastR" class="external-link">GitHub</a> with:</p>
+<p>You can install the development version of <a href="https://github.com/sportsdataverse/cfbfastR/" class="external-link"><strong><code>cfbfastR</code></strong></a> from <a href="https://github.com/sportsdataverse/cfbfastR" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># You can install using the pak package using the following code:</span></span>
+<code class="sourceCode R"><span><span class="co"># You can install using the remotes package using the following code:</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'remotes'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'remotes'</span>, repos <span class="op">=</span> <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -291,12 +289,12 @@
 <h2 id="full-season-data-loaders">
 <strong>Full Season Data Loaders</strong><a class="anchor" aria-label="anchor" href="#full-season-data-loaders"></a>
 </h2>
-<p><code>cfbfastR</code> ships four loader families that pull pre-built season datasets from the <a href="https://github.com/sportsdataverse/sportsdataverse-data/releases" class="external-link">sportsdataverse-data releases</a> — no API key, no scraping, one function call per dataset:</p>
+<p><code>cfbfastR</code> ships five loader families that pull pre-built season datasets from the <a href="https://github.com/sportsdataverse/sportsdataverse-data/releases" class="external-link">sportsdataverse-data releases</a> — no API key, no scraping, one function call per dataset:</p>
 <table class="table">
 <colgroup>
-<col width="3%">
-<col width="48%">
-<col width="45%">
+<col width="5%">
+<col width="47%">
+<col width="44%">
 <col width="2%">
 </colgroup>
 <thead><tr>
@@ -333,6 +331,14 @@
 <td>pbp (native + cfbfastR-shaped), drives, linescore, officials, player/team stats, rosters, schedule, teams — includes FCS and lower divisions ESPN misses</td>
 <td>2013+</td>
 </tr>
+<tr>
+<td>Conference &amp; division membership</td>
+<td>
+<code><a href="reference/load_cfb_groups.html">load_cfb_groups()</a></code>, <code><a href="reference/load_cfb_group_seasons.html">load_cfb_group_seasons()</a></code>, <code><a href="reference/load_cfb_group_aliases.html">load_cfb_group_aliases()</a></code>, <code><a href="reference/load_cfb_team_group_seasons.html">load_cfb_team_group_seasons()</a></code>
+</td>
+<td>Subdivision, conference and division lineages, each group’s name, parent and member count by season, ESPN/CFBD id aliases, and every team’s groups per season</td>
+<td>1869+</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Which play-by-play do I want?</strong></p>
@@ -340,7 +346,7 @@
 <li>
 <code><a href="reference/load_cfb_pbp.html">load_cfb_pbp()</a></code> — the classic cfbfastR pbp with the full EPA/WPA model columns; FBS, 2014+. Existing code keeps working unchanged.</li>
 <li>
-<code><a href="reference/load_espn_cfb_pbp.html">load_espn_cfb_pbp()</a></code> — the ESPN-derived pbp (469 columns incl. EPA/WPA and participant ids) with deeper history, 2004+.</li>
+<code><a href="reference/load_espn_cfb_pbp.html">load_espn_cfb_pbp()</a></code> — the ESPN-derived pbp (about 500 columns incl. EPA/WPA and participant ids) with deeper history, 2004+.</li>
 <li>
 <code><a href="reference/load_ncaa_mfb_pbp.html">load_ncaa_mfb_pbp()</a></code> — stats.ncaa.org pbp incl. FCS and lower divisions, 2013+; <code><a href="reference/load_ncaa_mfb_pbp_cfbfastr.html">load_ncaa_mfb_pbp_cfbfastr()</a></code> is the same data reshaped onto cfbfastR pbp column conventions for cross-source binds.</li>
 </ul>
@@ -348,11 +354,35 @@
 <p><code><a href="reference/load_cfb_schedules.html">load_cfb_schedules()</a></code>, <code><a href="reference/load_cfb_rosters.html">load_cfb_rosters()</a></code> and <code><a href="reference/load_cfb_teams.html">load_cfb_teams()</a></code> are not release loaders: they call the CollegeFootballData API (through <code><a href="reference/cfbd_game_info.html">cfbd_game_info()</a></code>, <code><a href="reference/cfbd_team_roster.html">cfbd_team_roster()</a></code> and <code><a href="reference/cfbd_team_info.html">cfbd_team_info()</a></code>), so they need a <code>CFBD_API_KEY</code> and take no <code>dbConnection</code> or <code>tablename</code>. <code><a href="reference/load_cfb_teams.html">load_cfb_teams()</a></code> takes <code>fbs_only</code> instead of <code>seasons</code>.</p>
 </div>
 <div class="section level2">
+<h2 id="companion-packages">
+<strong>Companion packages</strong><a class="anchor" aria-label="anchor" href="#companion-packages"></a>
+</h2>
+<p>Other SportsDataverse packages work directly on <code>cfbfastR</code> data:</p>
+<ul>
+<li>
+<a href="https://cfbseedR.sportsdataverse.org/" class="external-link"><strong><code>cfbseedR</code></strong></a> — simulate college football seasons: conference standings with each conference’s tiebreakers and the 12-team College Football Playoff. CRAN: <code>install.packages("cfbseedR")</code>.</li>
+<li>
+<a href="https://cfb4th.sportsdataverse.org/" class="external-link"><strong><code>cfb4th</code></strong></a> — fourth-down decision tables (go, field goal or punt) on <code>cfbfastR</code> play-by-play. r-universe only.</li>
+<li>
+<a href="https://sdvplotR.sportsdataverse.org/" class="external-link"><strong><code>sdvplotR</code></strong></a> — team logos, colors, headshots and <code>gt</code> tables for every SportsDataverse league, <code>league = "cfb"</code> included. r-universe only.</li>
+<li>
+<a href="https://sportyR.sportsdataverse.org/" class="external-link"><strong><code>sportyR</code></strong></a> — regulation playing surfaces for <code>ggplot2</code>, including the college football field (<code>geom_football("ncaa")</code>). CRAN: <code>install.packages("sportyR")</code>.</li>
+<li>
+<a href="https://cfbplotR.sportsdataverse.org/" class="external-link"><strong><code>cfbplotR</code></strong></a> — college football logos and colors for <code>ggplot2</code> and <code>gt</code>. r-universe only.</li>
+</ul>
+<p>The r-universe packages install with:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cfb4th"</span>, <span class="st">"sdvplotR"</span>, <span class="st">"cfbplotR"</span><span class="op">)</span>,</span>
+<span>  repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://sportsdataverse.r-universe.dev"</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"repos"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="collegefootballdata-api-coverage">
 <strong>CollegeFootballData API coverage</strong><a class="anchor" aria-label="anchor" href="#collegefootballdata-api-coverage"></a>
 </h2>
-<p>The <code>cfbd_*()</code> wrappers cover <strong>all 84 endpoints</strong> in the current CFBD specification (v5.27.1). The most recent additions are the passing and rushing families, which carry charting detail the older <code>cfbd_stats_*()</code> and <code>cfbd_metrics_*()</code> functions do not:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<p>The <code>cfbd_*()</code> wrappers cover <strong>88 of the 93 endpoints</strong> in the current CFBD specification (v5.33.2); the five <code>/punting/*</code> endpoints are not wrapped yet. The most recent additions are the passing and rushing families, which carry charting detail the older <code>cfbd_stats_*()</code> and <code>cfbd_metrics_*()</code> functions do not:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># season passing production, split across seven pass locations</span></span>
 <span><span class="fu"><a href="reference/cfbd_passing_players_season.html">cfbd_passing_players_season</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2025</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></span>
 <span></span>
@@ -361,7 +391,7 @@
 <span></span>
 <span><span class="co"># rushing production split across four run directions, offense and defense</span></span>
 <span><span class="fu"><a href="reference/cfbd_rushing_teams_season.html">cfbd_rushing_teams_season</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2025</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></span></code></pre></div>
-<p>These endpoints begin in <strong>2025</strong>; earlier seasons return an empty data frame rather than an error. See <code><a href="reference/cfbd_passing.html">?cfbd_passing</a></code> and <code><a href="reference/cfbd_rushing.html">?cfbd_rushing</a></code> — the frames are wide (up to 375 columns) because one production block repeats per location or direction, so the family topics document the block and the naming scheme once instead of listing every column.</p>
+<p>These endpoints begin in <strong>2025</strong>; earlier seasons return an empty data frame rather than an error. See <code><a href="reference/cfbd_passing.html">?cfbd_passing</a></code> and <code><a href="reference/cfbd_rushing.html">?cfbd_rushing</a></code> — the frames are wide (up to 385 columns) because one production block repeats per location or direction, so the family topics document the block and the naming scheme once instead of listing every column.</p>
 </div>
 <div class="section level2">
 <h2 id="breaking-changes">
@@ -377,13 +407,13 @@
 <li><p>To get an API key, follow the directions here: <a href="https://collegefootballdata.com/key" class="external-link">College Football Data Key Registration.</a></p></li>
 <li><p>Using the key: You can save the key for consistent usage by adding <code>CFBD_API_KEY=YOUR-API-KEY-HERE</code> to your .Renviron file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>). Run <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>, a new script will pop open named <code>.Renviron</code>, <strong>THEN</strong> paste the following in the new script that pops up (with<strong>out</strong> quotations)</p></li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CFBD_API_KEY</span> <span class="op">=</span> <span class="va">YOUR</span><span class="op">-</span><span class="va">API</span><span class="op">-</span><span class="va">KEY</span><span class="op">-</span><span class="va">HERE</span></span></code></pre></div>
 <p>Save the script and restart your RStudio session, by clicking <code>Session</code> (in between <code>Plots</code> and <code>Build</code>) and click <code>Restart R</code> (there also exists the shortcut <code>Ctrl + Shift + F10</code> to restart your session). If set correctly, from then on you should be able to use any of the <code>cfbd_</code> functions without any other changes.</p>
 <ul>
 <li>For less consistent usage: At the beginning of every session or within an R environment, save your API key as the environment variable <code>CFBD_API_KEY</code> (with quotations) using a command like the following.</li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>CFBD_API_KEY <span class="op">=</span> <span class="st">"YOUR-API-KEY-HERE"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
@@ -392,14 +422,14 @@
 <strong>Proxy support</strong><a class="anchor" aria-label="anchor" href="#proxy-support"></a>
 </h2>
 <p>If you run <code>cfbfastR</code> from behind a corporate proxy, set it once per session and every <code>cfbd_*()</code> / <code>espn_cfb_*()</code> call routes through it:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>cfbfastR.proxy <span class="op">=</span> <span class="st">"http://proxy.host.example:8080"</span><span class="op">)</span></span>
 <span><span class="co"># or, for an authenticated proxy:</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>cfbfastR.proxy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  url <span class="op">=</span> <span class="st">"http://proxy.host.example"</span>, port <span class="op">=</span> <span class="fl">8080</span>,</span>
 <span>  username <span class="op">=</span> <span class="st">"me"</span>, password <span class="op">=</span> <span class="st">"pw"</span>, auth <span class="op">=</span> <span class="st">"basic"</span></span>
 <span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>The resolution order is: explicit <code>proxy =</code> argument -&gt; <code>getOption("cfbfastR.proxy")</code> -&gt; <code>http_proxy</code> / <code>https_proxy</code> env vars. See the <a href="https://cfbfastR.sportsdataverse.org/articles/intro.html">intro vignette</a> and <code>CLAUDE.md</code> for full detail.</p>
+<p>The resolution order is: explicit <code>proxy =</code> argument -&gt; <code>getOption("cfbfastR.proxy")</code> -&gt; <code>http_proxy</code> / <code>https_proxy</code> env vars. See the <a href="https://cfbfastR.sportsdataverse.org/articles/intro.html">intro vignette</a> for full detail.</p>
 </div>
 <div class="section level2">
 <h2 id="follow-cfbfastr-and-the-sportsdataverse-on-twitter-and-star-this-repo">Follow <a href="https://x.com/cfbfastR" class="external-link">cfbfastR</a> and the <a href="https://x.com/SportsDataverse" class="external-link">SportsDataverse</a> on Twitter and star this repo<a class="anchor" aria-label="anchor" href="#follow-cfbfastr-and-the-sportsdataverse-on-twitter-and-star-this-repo"></a>
@@ -468,16 +498,16 @@
 </h2>
 <p>To cite the <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a> R package in publications, use:</p>
 <p>BibTeX Citation</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">gilani_et_al_2021_cfbfastr</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  <span class="dt">doi</span> = {10.32614/CRAN.package.cfbfastR},</span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>  <span class="dt">journal</span> = {CRAN: Contributed Packages},</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>  <span class="dt">publisher</span> = {The R Foundation},</span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>  <span class="dt">year</span> = {2026}</span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">gilani_et_al_2021_cfbfastr</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>  <span class="dt">doi</span> = {10.32614/CRAN.package.cfbfastR},</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  <span class="dt">journal</span> = {CRAN: Contributed Packages},</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  <span class="dt">publisher</span> = {The R Foundation},</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>  <span class="dt">year</span> = {2026}</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
 
@@ -523,7 +553,7 @@
 <li>
 <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a> <br><small class="roles"> Author </small>   </li>
 <li>
-<a href="https://twitter.com/JaredDLee" class="external-link">Jared Lee</a> <br><small class="roles"> Author </small>   </li>
+<a href="https://github.com/Kazink36" class="external-link">Jared Lee</a> <br><small class="roles"> Author </small>   </li>
 <li>
 <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a> <br><small class="roles"> Author </small>   </li>
 <li><a href="authors.html">More about authors...</a></li>
@@ -549,7 +579,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://twitter.com/JaredDLee" class="external-link">Jared Lee</a>, <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
+  <p>Developed by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://github.com/Kazink36" class="external-link">Jared Lee</a>, <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

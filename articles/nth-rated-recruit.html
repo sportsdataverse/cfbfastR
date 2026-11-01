@@ -125,6 +125,7 @@
     <li><a class="dropdown-item" href="../articles/map-tutorial.html">Intro to Visualizing Recruiting Geography</a></li>
     <li><a class="dropdown-item" href="../articles/nth-rated-recruit.html">Visualizing Team Talent from Player Recruiting Rankings</a></li>
     <li><a class="dropdown-item" href="../articles/rolling-epa-graph.html">Rolling EPA Graph</a></li>
+    <li><a class="dropdown-item" href="../articles/cfbseedR-season-simulation.html">Simulating a College Football Season with cfbseedR</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html"><span class="fa fas fa-newspaper"></span>  News</a></li>
@@ -237,7 +238,8 @@ development environment is already setup.</p>
 package will provide us with our source of data. The <code>dplyr</code>
 package gives us handy data manipulation tools and the ever useful pipe
 (<code>|&gt;</code>) syntax. Finally, <code>ggplot2</code> will allow us
-to make a simple, functional graph of our results.</p>
+to make a simple, functional graph of our results, and <a href="https://sdvplotR.sportsdataverse.org/" class="external-link"><code>sdvplotR</code></a>
+supplies each school’s colors and logo.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pak'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pak'</span><span class="op">)</span></span>
@@ -245,11 +247,16 @@ to make a simple, functional graph of our results.</p>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sdvplotR.sportsdataverse.org/" class="external-link">sdvplotR</a></span><span class="op">)</span></span>
 <span><span class="co"># cfbfastR is deliberately NOT in the pak() list above. pkgdown and</span></span>
 <span><span class="co"># R CMD check render this vignette against the package being built, and</span></span>
 <span><span class="co"># installing from CRAN here would overwrite that dev build with the last</span></span>
 <span><span class="co"># release -- so any function added since it would vanish mid-render.</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a></span><span class="op">)</span></span></code></pre></div>
+<p>sdvplotR is not on CRAN; install it from the SportsDataverse
+r-universe:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"sdvplotR"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://sportsdataverse.r-universe.dev"</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"repos"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>To create the plot I’m going to use two functions from
 <code>cfbfastR</code>. The first is the <code>cfbd_team_info</code>
 function. I’m going to pass <code>"B1G"</code> to the function for the
@@ -264,7 +271,7 @@ simplicity, I am only using High School recruits as shown by the
 <code>recruit_type</code> argument. You can also get Prep School
 recruits (<code>recruit_type = "PrepSchool"</code>) or junior college
 recruits (<code>recruit_type = "JUCO"</code>).</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">conference</span> <span class="op">==</span> <span class="st">"Big Ten"</span><span class="op">)</span></span>
 <span><span class="va">schools</span> <span class="op">&lt;-</span> <span class="va">teams</span><span class="op">$</span><span class="va">school</span></span>
@@ -286,8 +293,8 @@ recruits (<code>recruit_type = "JUCO"</code>).</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## 22.819 sec elapsed</span></span></code></pre>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<pre><code><span><span class="co">## 32.011 sec elapsed</span></span></code></pre>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">all.recruits</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Rows: 1,679</span></span>
 <span><span class="co">## Columns: 19</span></span>
@@ -320,7 +327,7 @@ me just the highest rated 85 recruits in order by their rating. I use
 this info to assign a ranking for each school’s 1-nth recruit. Finally,
 I use the teams data frame again so each recruits school information can
 be used on our graph.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">recruits.limited</span> <span class="op">&lt;-</span> <span class="va">all.recruits</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">rating</span>, <span class="va">committed_to</span><span class="op">)</span></span>
 <span><span class="va">recruits.sorted</span> <span class="op">&lt;-</span> <span class="va">recruits.limited</span> <span class="op">|&gt;</span> </span>
@@ -335,25 +342,31 @@ be used on our graph.</p>
 <p>If you follow the Big Ten you know a lot of schools have a shade of
 red as their primary color. This can make some plots hard to read.
 Because of this I’m filtering down my data to look at just recruits who
-committed to a Big Ten West division school. For <code>ggplot2</code> to
-use a manually defined color set, I must get a vector of colors that I
-want, each team’s primary color, and assign each value a name
-corresponding to the school I’m interested in.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">big.ten.west</span> <span class="op">&lt;-</span> <span class="va">recruits.final</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">division</span> <span class="op">==</span> <span class="st">"West"</span><span class="op">)</span></span>
-<span><span class="va">big.ten.west.teams</span> <span class="op">&lt;-</span> <span class="va">teams</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">division</span> <span class="op">==</span> <span class="st">"West"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">big.ten.west.colors</span> <span class="op">&lt;-</span> <span class="va">big.ten.west.teams</span><span class="op">$</span><span class="va">color</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">big.ten.west.colors</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">big.ten.west.teams</span><span class="op">$</span><span class="va">school</span></span></code></pre></div>
+committed to one of the seven schools of the old Big Ten West division.
+The conference dropped its divisions after the 2023 season, so the
+schools are named here rather than read from the team info.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">big.ten.west.teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Illinois"</span>, <span class="st">"Iowa"</span>, <span class="st">"Minnesota"</span>, <span class="st">"Nebraska"</span>,</span>
+<span>                        <span class="st">"Northwestern"</span>, <span class="st">"Purdue"</span>, <span class="st">"Wisconsin"</span><span class="op">)</span></span>
+<span><span class="va">big.ten.west</span> <span class="op">&lt;-</span> <span class="va">recruits.final</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">committed_to</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">big.ten.west.teams</span><span class="op">)</span></span></code></pre></div>
 <p>Now that we have our data collected and cleaned we finally get to the
 fun part - plotting. We plot each player’s rating based on the ranking
-of commit they are to a school. We also tell ggplot to use the manual
-color values we defined earlier. I added some extra horizontal lines to
-approximate the ratings of 3, 4, and 5 star recruits.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">big.ten.west</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">num</span>, y<span class="op">=</span><span class="va">rating</span>, color <span class="op">=</span> <span class="va">committed_to</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+of commit they are to a school. <code><a href="https://sdvplotR.sportsdataverse.org/reference/scale_sdv.html" class="external-link">scale_color_sdv()</a></code> colors
+each line with its school’s primary color, matched from the school
+names, and <code><a href="https://sdvplotR.sportsdataverse.org/reference/geom_sdv_logos.html" class="external-link">geom_sdv_logos()</a></code> marks the end of each line with
+the school’s logo in place of a legend. I added some extra horizontal
+lines to approximate the ratings of 3, 4, and 5 star recruits.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">big.ten.west.ends</span> <span class="op">&lt;-</span> <span class="va">big.ten.west</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">committed_to</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_max</a></span><span class="op">(</span><span class="va">num</span>, n <span class="op">=</span> <span class="fl">1</span>, with_ties <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">big.ten.west</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">num</span>, y<span class="op">=</span><span class="va">rating</span>, color <span class="op">=</span> <span class="va">committed_to</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">big.ten.west.colors</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://sdvplotR.sportsdataverse.org/reference/scale_sdv.html" class="external-link">scale_color_sdv</a></span><span class="op">(</span>league <span class="op">=</span> <span class="st">"cfb"</span>, guide <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://sdvplotR.sportsdataverse.org/reference/geom_sdv_logos.html" class="external-link">geom_sdv_logos</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">big.ten.west.ends</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">num</span> <span class="op">+</span> <span class="fl">3</span>, y <span class="op">=</span> <span class="va">rating</span>, team <span class="op">=</span> <span class="va">committed_to</span><span class="op">)</span>,</span>
+<span>                 league <span class="op">=</span> <span class="st">"cfb"</span>, height <span class="op">=</span> <span class="fl">0.06</span>, inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.9834</span>, <span class="fl">.8901</span>, <span class="fl">.7964</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="external-link">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, label <span class="op">=</span> <span class="st">"~ 5 Star"</span>, y <span class="op">=</span> <span class="fl">.99</span>, x <span class="op">=</span> <span class="fl">80</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="external-link">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, label <span class="op">=</span> <span class="st">"~ 4 Star"</span>, y <span class="op">=</span> <span class="fl">.90</span>, x <span class="op">=</span> <span class="fl">80</span><span class="op">)</span> <span class="op">+</span></span>
@@ -361,9 +374,9 @@ approximate the ratings of 3, 4, and 5 star recruits.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Player Rating"</span>,</span>
 <span>       x <span class="op">=</span> <span class="st">"Player Rank"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"nth-Ranked High School Recruit"</span>,</span>
-<span>       subtitle <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Top 85 High School Signees {yr-3}-{yr} by Big Ten West Programs"</span><span class="op">)</span>,</span>
+<span>       subtitle <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Top 85 High School Signees {yr-3}-{yr} by former Big Ten West Programs"</span><span class="op">)</span>,</span>
 <span>       caption <span class="op">=</span> <span class="st">"Graph by @arbitanalytics, Data from @cfbfastR"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="nth-rated-recruit_files/figure-html/recruit_plot-1.png" class="r-plt" alt="nth-Ranked High School Recruit" width="700"></p>
+<p><img src="nth-rated-recruit_files/figure-html/recruit_plot-1.png" class="r-plt" alt="Line chart of the ratings of the top 85 high school signees of each former Big Ten West school over the last four classes, ordered from each school's best signee to its 85th, with each line in the school's color and ending at the school's logo, and dashed lines marking approximate 5, 4 and 3 star ratings." width="700"></p>
 <p>From this graph we can see how well teams have recruited the last
 four years. A large gap between two of the lines shows that one team has
 recruited much more talent at that relative position of recruiting. In
@@ -389,8 +402,7 @@ good feel for the talent level at a program in a quick glance.</p>
 <a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
 </li>
 <li>
-<a href="https://x.com/JaredDLee" class="external-link">Jared Lee</a>
-<a href="https://x.com/JaredDLee" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge" alt="@JaredDLee"></a>
+<a href="https://github.com/Kazink36" class="external-link">Jared Lee</a>
 <a href="https://github.com/Kazink36" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Kazink36"></a>
 </li>
 <li>
@@ -468,12 +480,12 @@ good feel for the talent level at a program in a quick glance.</p>
 <p>To cite the <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a>
 R package in publications, use:</p>
 <p>BibTeX Citation</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="related-sportsdataverse-packages">
@@ -499,8 +511,21 @@ women’s basketball</li>
 <a href="https://oddsapiR.sportsdataverse.org/" class="external-link"><strong>oddsapiR</strong></a>
 - betting odds</li>
 <li>
+<a href="https://cfbseedR.sportsdataverse.org/" class="external-link"><strong>cfbseedR</strong></a>
+- college football season and playoff simulation (CRAN)</li>
+<li>
+<a href="https://cfb4th.sportsdataverse.org/" class="external-link"><strong>cfb4th</strong></a> -
+college football fourth-down decisions (r-universe)</li>
+<li>
+<a href="https://sdvplotR.sportsdataverse.org/" class="external-link"><strong>sdvplotR</strong></a>
+- team logos, colours and tables for every SportsDataverse league
+(r-universe)</li>
+<li>
 <a href="https://sportyR.sportsdataverse.org/" class="external-link"><strong>sportyR</strong></a>
-- playing surfaces</li>
+- playing surfaces, including the college football field (CRAN)</li>
+<li>
+<a href="https://cfbplotR.sportsdataverse.org/" class="external-link"><strong>cfbplotR</strong></a>
+- college football logos and colours (r-universe)</li>
 <li>
 <a href="https://py.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-py</strong></a>
 - the Python package</li>
@@ -517,7 +542,7 @@ women’s basketball</li>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://twitter.com/JaredDLee" class="external-link">Jared Lee</a>, <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
+  <p>Developed by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://github.com/Kazink36" class="external-link">Jared Lee</a>, <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

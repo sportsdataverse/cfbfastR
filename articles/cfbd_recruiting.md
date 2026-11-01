@@ -63,7 +63,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
     ## 0 upgraded, 0 newly installed, 0 to remove and 19 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [14.4s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [9.3s]
 
 ``` r
 
@@ -105,7 +105,7 @@ cfbd_recruiting_player(2018, team = "Texas")
 
     ## ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:19:15 UTC
+    ## ℹ Data updated: 2026-11-01 16:40:44 UTC
 
     ## # A tibble: 28 × 19
     ##    id     athlete_id recruit_type  year ranking name         school committed_to
@@ -132,8 +132,7 @@ cfbd_recruiting_player(2016, recruit_type = "JUCO")
 ```
 
     ## ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 3.1.0 ──
-
-    ## ℹ Data updated: 2026-11-01 12:19:16 UTC
+    ## ℹ Data updated: 2026-11-01 16:40:44 UTC
 
     ## # A tibble: 553 × 19
     ##    id     athlete_id recruit_type  year ranking name         school committed_to
@@ -161,7 +160,7 @@ cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state
 
     ## ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:19:17 UTC
+    ## ℹ Data updated: 2026-11-01 16:40:45 UTC
 
     ## # A tibble: 29 × 19
     ##    id     athlete_id recruit_type  year ranking name         school committed_to
@@ -191,7 +190,7 @@ cfbd_recruiting_position(2018, team = "Texas")
 
     ## ── Recruiting position group info from CollegeFootballData.com ─────────────────
 
-    ## ℹ Data updated: 2026-11-01 12:19:18 UTC
+    ## ℹ Data updated: 2026-11-01 16:40:47 UTC
 
     ## # A tibble: 16 × 7
     ##    team  conference position_group avg_rating total_rating commits avg_stars    
@@ -220,7 +219,7 @@ cfbd_recruiting_position(2016, 2020, team = "Virginia")
 
     ## ── Recruiting position group info from CollegeFootballData.com ─────────────────
 
-    ## ℹ Data updated: 2026-11-01 12:19:19 UTC
+    ## ℹ Data updated: 2026-11-01 16:40:48 UTC
 
     ## # A tibble: 16 × 7
     ##    team     conference position_group avg_rating total_rating commits avg_stars 
@@ -249,7 +248,7 @@ cfbd_recruiting_position(2015, 2020, conference = "SEC")
 
     ## ── Recruiting position group info from CollegeFootballData.com ─────────────────
 
-    ## ℹ Data updated: 2026-11-01 12:19:22 UTC
+    ## ℹ Data updated: 2026-11-01 16:40:49 UTC
 
     ## # A tibble: 224 × 7
     ##    team     conference position_group avg_rating total_rating commits avg_stars 
@@ -275,7 +274,7 @@ cfbd_recruiting_team(2018, team = "Texas")
 
     ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:19:22 UTC
+    ## ℹ Data updated: 2026-11-01 16:40:49 UTC
 
     ## # A tibble: 1 × 4
     ##    year team   rank points
@@ -289,7 +288,7 @@ cfbd_recruiting_team(2016, team = "Virginia")
 
     ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:19:23 UTC
+    ## ℹ Data updated: 2026-11-01 16:40:50 UTC
 
     ## # A tibble: 1 × 4
     ##    year team      rank points
@@ -302,7 +301,8 @@ cfbd_recruiting_team(2016, team = "Texas A&M")
 ```
 
     ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 3.1.0 ──
-    ## ℹ Data updated: 2026-11-01 12:19:23 UTC
+
+    ## ℹ Data updated: 2026-11-01 16:40:52 UTC
 
     ## # A tibble: 1 × 4
     ##    year team       rank points
@@ -315,7 +315,7 @@ cfbd_recruiting_team(2011)
 ```
 
     ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 3.1.0 ──
-    ## ℹ Data updated: 2026-11-01 12:19:23 UTC
+    ## ℹ Data updated: 2026-11-01 16:40:52 UTC
 
     ## # A tibble: 137 × 4
     ##     year team           rank points
@@ -340,8 +340,7 @@ cfbd_recruiting_team(2011)
 - [Akshay Easwaran](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/twitter/follow/akeaswaran?color=blue&label=%40akeaswaran&logo=x&style=for-the-badge)](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/github/followers/akeaswaran?color=eee&logo=Github&style=for-the-badge)](https://github.com/akeaswaran)
-- [Jared Lee](https://x.com/JaredDLee)
-  [![@JaredDLee](https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge)](https://x.com/JaredDLee)
+- [Jared Lee](https://github.com/Kazink36)
   [![@Kazink36](https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge)](https://github.com/Kazink36)
 - [Eric Hess](https://x.com/arbitanalytics)
   [![@arbitanalytics](https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge)](https://x.com/arbitanalytics)
@@ -408,7 +407,16 @@ BibTeX Citation
 - [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
 - [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
 - [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
-- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
+- [**cfbseedR**](https://cfbseedR.sportsdataverse.org/) - college
+  football season and playoff simulation (CRAN)
+- [**cfb4th**](https://cfb4th.sportsdataverse.org/) - college football
+  fourth-down decisions (r-universe)
+- [**sdvplotR**](https://sdvplotR.sportsdataverse.org/) - team logos,
+  colours and tables for every SportsDataverse league (r-universe)
+- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing
+  surfaces, including the college football field (CRAN)
+- [**cfbplotR**](https://cfbplotR.sportsdataverse.org/) - college
+  football logos and colours (r-universe)
 - [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python
   package
 - [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R

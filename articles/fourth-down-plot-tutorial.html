@@ -125,6 +125,7 @@
     <li><a class="dropdown-item" href="../articles/map-tutorial.html">Intro to Visualizing Recruiting Geography</a></li>
     <li><a class="dropdown-item" href="../articles/nth-rated-recruit.html">Visualizing Team Talent from Player Recruiting Rankings</a></li>
     <li><a class="dropdown-item" href="../articles/rolling-epa-graph.html">Rolling EPA Graph</a></li>
+    <li><a class="dropdown-item" href="../articles/cfbseedR-season-simulation.html">Simulating a College Football Season with cfbseedR</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html"><span class="fa fas fa-newspaper"></span>  News</a></li>
@@ -241,8 +242,9 @@ package.</p>
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pak'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pak'</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"sportyR"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sportyR.sportsdataverse.org/" class="external-link">sportyR</a></span><span class="op">)</span></span>
 <span><span class="co"># cfbfastR is deliberately NOT in the pak() list above. pkgdown and</span></span>
 <span><span class="co"># R CMD check render this vignette against the package being built, and</span></span>
 <span><span class="co"># installing from CRAN here would overwrite that dev build with the last</span></span>
@@ -259,7 +261,7 @@ between 45-90 seconds to run.</p>
 <span>  <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">seasons</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## 31.44 sec elapsed</span></span></code></pre>
+<pre><code><span><span class="co">## 34.844 sec elapsed</span></span></code></pre>
 <p>Next, we’ll need to get the coaching information, so we’ll use the
 <code>cfbd_coaches</code> function:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -300,26 +302,90 @@ it.</p>
 <p>And now we’ve got all the info we need to make the graph! The code
 below is listed for current Big 12 head coaches, but you can alter it to
 show whichever coaches you want.</p>
+<p>Rather than a blank panel, we’ll draw each decision on a regulation
+college field with <a href="https://sportyR.sportsdataverse.org/" class="external-link"><code>sportyR</code></a>’s
+<code>geom_football("ncaa")</code>. sportyR centres the field on
+midfield and measures it in yards, so the offense’s own goal line sits
+at <code>x = -50</code> and the opponent’s at <code>x = 50</code>: a
+line of scrimmage <code>yards_to_goal</code> yards from the end zone is
+at <code>x = 50 - yards_to_goal</code>. The field’s width carries no
+information here, so the points are jittered across it.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">down4</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="va">big_12_coaches</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Matt Campbell"</span>, <span class="st">"Steve Sarkisian"</span>, <span class="st">"Lincoln Riley"</span>, <span class="st">"Chris Klieman"</span>, <span class="st">"Matt Wells"</span>,</span>
+<span>                    <span class="st">"Neal Brown"</span>, <span class="st">"Les Miles"</span>, <span class="st">"Mike Gundy"</span>, <span class="st">"Gary Patterson"</span>, <span class="st">"Dave Aranda"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">big_12_down4</span> <span class="op">&lt;-</span> <span class="va">down4</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">play</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">coach</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Matt Campbell"</span>, <span class="st">"Steve Sarkisian"</span>, <span class="st">"Lincoln Riley"</span>, <span class="st">"Chris Klieman"</span>, <span class="st">"Matt Wells"</span>,</span>
-<span>                     <span class="st">"Neal Brown"</span>, <span class="st">"Les Miles"</span>, <span class="st">"Mike Gundy"</span>, <span class="st">"Gary Patterson"</span>, <span class="st">"Dave Aranda"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">distance</span> <span class="op">&lt;=</span> <span class="fl">5</span>, <span class="va">distance</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">distance</span>, y <span class="op">=</span> <span class="fl">100</span> <span class="op">-</span> <span class="va">yards_to_goal</span>, color <span class="op">=</span> <span class="va">play</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">coach</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Yards to Go"</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"Big 12 Coaches's Fourth Down Tendencies | CFP Era"</span>,</span>
-<span>       subtitle <span class="op">=</span> <span class="st">"Data from @cfbfastR"</span>,</span>
-<span>       caption <span class="op">=</span> <span class="st">"Visualization by Michael Egle (@deceptivespeed_)"</span>,</span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">coach</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">big_12_coaches</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">distance</span> <span class="op">&lt;=</span> <span class="fl">5</span>, <span class="va">distance</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://sportyR.sportsdataverse.org/reference/geom_football.html" class="external-link">geom_football</a></span><span class="op">(</span><span class="st">"ncaa"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">big_12_down4</span>,</span>
+<span>              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">50</span> <span class="op">-</span> <span class="va">yards_to_goal</span>, y <span class="op">=</span> <span class="fl">0</span>, color <span class="op">=</span> <span class="va">play</span><span class="op">)</span>,</span>
+<span>              width <span class="op">=</span> <span class="fl">0</span>, height <span class="op">=</span> <span class="fl">22</span>, size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">coach</span>, ncol <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Go"</span> <span class="op">=</span> <span class="st">"#ffd23f"</span>, <span class="st">"FG Attempt"</span> <span class="op">=</span> <span class="st">"#3bceac"</span>, <span class="st">"Punt"</span> <span class="op">=</span> <span class="st">"#ee4266"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Big 12 Coaches's Fourth Down Tendencies | CFP Era"</span>,</span>
+<span>       subtitle <span class="op">=</span> <span class="st">"Fourth and 5 or shorter, at the line of scrimmage. Offense moving left to right."</span>,</span>
+<span>       caption <span class="op">=</span> <span class="st">"Data from @cfbfastR | Field from sportyR | Visualization by Michael Egle (@deceptivespeed_)"</span>,</span>
 <span>       color <span class="op">=</span> <span class="st">"Decision"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Own 20"</span>, <span class="st">"Own 40"</span>, <span class="st">"Opp 40"</span>,</span>
-<span>                               <span class="st">"Opp 20"</span>, <span class="st">"Endzone"</span><span class="op">)</span>,</span>
-<span>                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">40</span>, <span class="fl">60</span>, <span class="fl">80</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fourth-down-plot-tutorial_files/figure-html/fourth_down_plot-1.png" class="r-plt" alt="Big 12 Coaches's Fourth Down Tendencies | CFP Era" width="700"></p>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="fourth-down-plot-tutorial_files/figure-html/fourth_down_plot-1.png" class="r-plt" alt="Ten small college football fields, one per Big 12 head coach, each showing that coach's fourth-and-five-or-shorter plays from 2014 to 2020 as points at the line of scrimmage, coloured by whether the team went for it, kicked a field goal or punted, with the offense moving left to right." width="1056"></p>
+</div>
+<div class="section level3">
+<h3 id="how-makeable-were-those-fourth-downs">How makeable were those fourth downs?<a class="anchor" aria-label="anchor" href="#how-makeable-were-those-fourth-downs"></a>
+</h3>
+<p>cfbfastR ships a port of <a href="https://cfb4th.sportsdataverse.org/" class="external-link">cfb4th</a>’s fourth-down
+model. <code><a href="../reference/calculate_cfb_models.html">calculate_fourth_down()</a></code> scores the chance the
+offense gains the yards it needs (<code>fd_conversion_prob</code>) from
+the down, distance, field position and the pre-game line. The line comes
+from each game’s <code>spread</code> (the home team’s line, negative
+when the home team is favoured) and <code>over_under</code>, turned
+around to the offense’s point of view:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">big_12_down4</span> <span class="op">&lt;-</span> <span class="va">big_12_down4</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    is_home <span class="op">=</span> <span class="va">pos_team</span> <span class="op">==</span> <span class="va">home</span>,</span>
+<span>    posteam_spread <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">is_home</span>, <span class="op">-</span><span class="va">spread</span>, <span class="va">spread</span><span class="op">)</span>,</span>
+<span>    posteam_total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">is_home</span>, <span class="op">(</span><span class="va">over_under</span> <span class="op">-</span> <span class="va">spread</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span>, <span class="op">(</span><span class="va">over_under</span> <span class="op">+</span> <span class="va">spread</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/calculate_cfb_models.html">calculate_fourth_down</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>On the fourth downs the model rates as better than a coin flip to
+convert, how often did each coach keep the offense on the field?</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">big_12_down4</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">fd_conversion_prob</span> <span class="op">&gt;</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">coach</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>plays <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                   go_rate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">play</span> <span class="op">==</span> <span class="st">"Go"</span><span class="op">)</span>,</span>
+<span>                   mean_conversion_prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">fd_conversion_prob</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">go_rate</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 10 × 4</span></span></span>
+<span><span class="co">##    coach           plays go_rate mean_conversion_prob</span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> Dave Aranda        16   0.5                  0.655</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> Steve Sarkisian    37   0.486                0.659</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> Lincoln Riley     114   0.421                0.624</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> Chris Klieman      40   0.4                  0.637</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> Matt Campbell     215   0.4                  0.628</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> Neal Brown        175   0.394                0.625</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> Les Miles          96   0.375                0.633</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> Matt Wells        239   0.351                0.626</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> Gary Patterson    222   0.320                0.647</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span> Mike Gundy        230   0.317                0.640</span></span></code></pre>
+<p>Conversion probability is only half the decision: going for it should
+also be weighed against what a field goal or a punt is worth. <a href="https://cfb4th.sportsdataverse.org/" class="external-link">cfb4th</a> does that
+comparison in win probability, and is installed from the SportsDataverse
+r-universe:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"cfb4th"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://sportsdataverse.r-universe.dev"</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"repos"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># go / field goal / punt win probabilities and the recommended call for every</span></span>
+<span><span class="co"># fourth down of a season. It joins CFBD betting lines, so it needs a</span></span>
+<span><span class="co"># CFBD_API_KEY; the models download and cache on first use.</span></span>
+<span><span class="va">fourth_downs</span> <span class="op">&lt;-</span> <span class="fu">cfb4th</span><span class="fu">::</span><span class="fu"><a href="https://cfb4th.sportsdataverse.org/reference/load_4th_pbp.html" class="external-link">load_4th_pbp</a></span><span class="op">(</span><span class="fl">2020</span><span class="op">)</span></span>
+<span><span class="va">fourth_downs</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">pos_team</span>, <span class="va">def_pos_team</span>, <span class="va">distance</span>, <span class="va">yards_to_goal</span>, <span class="va">go_boost</span>, <span class="va">go</span>, <span class="va">play_type</span><span class="op">)</span></span></code></pre></div>
 <p>Looks good! Small sample size but can easily be built upon. Hopefully
 you found this tutorial helpful and can make some more cool CFB related
 visualizations with <code>ggplot2</code></p>
@@ -340,8 +406,7 @@ visualizations with <code>ggplot2</code></p>
 <a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
 </li>
 <li>
-<a href="https://x.com/JaredDLee" class="external-link">Jared Lee</a>
-<a href="https://x.com/JaredDLee" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge" alt="@JaredDLee"></a>
+<a href="https://github.com/Kazink36" class="external-link">Jared Lee</a>
 <a href="https://github.com/Kazink36" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Kazink36"></a>
 </li>
 <li>
@@ -419,12 +484,12 @@ visualizations with <code>ggplot2</code></p>
 <p>To cite the <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a>
 R package in publications, use:</p>
 <p>BibTeX Citation</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="related-sportsdataverse-packages">
@@ -450,8 +515,21 @@ women’s basketball</li>
 <a href="https://oddsapiR.sportsdataverse.org/" class="external-link"><strong>oddsapiR</strong></a>
 - betting odds</li>
 <li>
+<a href="https://cfbseedR.sportsdataverse.org/" class="external-link"><strong>cfbseedR</strong></a>
+- college football season and playoff simulation (CRAN)</li>
+<li>
+<a href="https://cfb4th.sportsdataverse.org/" class="external-link"><strong>cfb4th</strong></a> -
+college football fourth-down decisions (r-universe)</li>
+<li>
+<a href="https://sdvplotR.sportsdataverse.org/" class="external-link"><strong>sdvplotR</strong></a>
+- team logos, colours and tables for every SportsDataverse league
+(r-universe)</li>
+<li>
 <a href="https://sportyR.sportsdataverse.org/" class="external-link"><strong>sportyR</strong></a>
-- playing surfaces</li>
+- playing surfaces, including the college football field (CRAN)</li>
+<li>
+<a href="https://cfbplotR.sportsdataverse.org/" class="external-link"><strong>cfbplotR</strong></a>
+- college football logos and colours (r-universe)</li>
 <li>
 <a href="https://py.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-py</strong></a>
 - the Python package</li>
@@ -468,7 +546,7 @@ women’s basketball</li>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://twitter.com/JaredDLee" class="external-link">Jared Lee</a>, <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
+  <p>Developed by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://github.com/Kazink36" class="external-link">Jared Lee</a>, <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

@@ -152,7 +152,7 @@ Other CFBD Passing:
 # \donttest{
   try(cfbd_passing_plays(year = 2025, week = 1, team = "Texas"))
 #> ── Passing plays data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-01 12:06:21 UTC
+#> ℹ Data updated: 2026-11-01 16:26:50 UTC
 #> # A tibble: 128 × 41
 #>      game_id play_id        drive_id season  week season_type offense_id offense
 #>        <int> <chr>          <chr>     <int> <int> <chr>            <int> <chr>  

@@ -1,6 +1,5 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://cfbfastR.sportsdataverse.org/404.html</loc></url>
-<url><loc>https://cfbfastR.sportsdataverse.org/CLAUDE.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/CODE_OF_CONDUCT.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/CONTRIBUTING.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/LICENSE-text.html</loc></url>
@@ -13,6 +12,7 @@
 <url><loc>https://cfbfastR.sportsdataverse.org/articles/cfbd_stats.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/articles/cfbd_teams.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/articles/cfbfastR-espn-cookbook.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/cfbseedR-season-simulation.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-i.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-ii.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-iii.html</loc></url>
@@ -26,7 +26,6 @@
 <url><loc>https://cfbfastR.sportsdataverse.org/articles/nth-rated-recruit.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/articles/rolling-epa-graph.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/authors.html</loc></url>
-<url><loc>https://cfbfastR.sportsdataverse.org/copilot-instructions.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/index.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/news/index.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.html</loc></url>

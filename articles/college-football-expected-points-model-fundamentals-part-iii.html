@@ -125,6 +125,7 @@
     <li><a class="dropdown-item" href="../articles/map-tutorial.html">Intro to Visualizing Recruiting Geography</a></li>
     <li><a class="dropdown-item" href="../articles/nth-rated-recruit.html">Visualizing Team Talent from Player Recruiting Rankings</a></li>
     <li><a class="dropdown-item" href="../articles/rolling-epa-graph.html">Rolling EPA Graph</a></li>
+    <li><a class="dropdown-item" href="../articles/cfbseedR-season-simulation.html">Simulating a College Football Season with cfbseedR</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html"><span class="fa fas fa-newspaper"></span>  News</a></li>
@@ -239,7 +240,7 @@ this research is reproducible.</p>
 </h3>
 <p>We will be acquiring data from <a href="collegefootballdata.com">CollegeFootballData.com</a>, courtesy of
 @<a href="https://twitter.com/CFB_data" class="external-link">CFB_data</a>, using
-<code>cfbfastR</code>, created by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://twitter.com/JaredDLee" class="external-link">Jared Lee</a> and <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
+<code>cfbfastR</code>, created by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://github.com/Kazink36" class="external-link">Jared Lee</a> and <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="an-abridged-history-of-expected-points-models-in-football">An Abridged History of Expected Points Models in Football<a class="anchor" aria-label="anchor" href="#an-abridged-history-of-expected-points-models-in-football"></a>
@@ -248,7 +249,7 @@ this research is reproducible.</p>
 <h3 id="field-position-models">Field Position models<a class="anchor" aria-label="anchor" href="#field-position-models"></a>
 </h3>
 <p>One of the earliest discussions and attempts at building an expected
-points model in football was made by <a href="https://vault.si.com/vault/1972/10/16/handy-pair-of-brainy-bengals" class="external-link">Virgil
+points model in football was made by <a href="https://web.archive.org/web/20231103201122/https://vault.si.com/vault/1972/10/16/handy-pair-of-brainy-bengals" class="external-link">Virgil
 Carter of the Cincinatti Bengals</a> in his graduate research paper, “<a href="https://pubsonline.informs.org/doi/pdf/10.1287/opre.19.2.541" class="external-link">Operations
 Research on Football</a>”. Carter found some time to write the research
 paper while pursuing his MBA at Northwestern in the off-season from his
@@ -324,9 +325,9 @@ a factor that needed to be accounted for.</p>
 <p>His other consideration was that he limited the data to plays where
 the score differential was within 10 points to limit the effect of
 garbage time.</p>
-<p>Trey Causey did a quality write-up on a very similar style <a href="http://thespread.us/expected-points.html" class="external-link">model</a> and has done
-some interesting <a href="http://thespread.us/clustering.html" class="external-link">nearest-neighbors</a> player
-similarity modeling that is worth reading and, at the time, was
+<p>Trey Causey did a quality write-up on a very similar style <a href="https://web.archive.org/web/20210928093023/http://thespread.us/expected-points.html" class="external-link">model</a>
+and has done some interesting <a href="https://web.archive.org/web/20250506021348/http://thespread.us/clustering.html" class="external-link">nearest-neighbors</a>
+player similarity modeling that is worth reading and, at the time, was
 reproducible.</p>
 <p>So all of these models are curve fitting attempts that lead us to the
 topic of regression.</p>
@@ -349,7 +350,7 @@ this article and sent me the paper. Among other things, the paper
 demonstrates that on 1st and 10 at any point on the field, the expected
 points is positive.</p>
 <p>In 2017, Ron Yurko, Sam Ventura, and Max Horowitz from Carnegie
-Mellon University’s Statistics department started presenting “<a href="https://www.stat.cmu.edu/~ryurko/files/greatlakes_2017.pdf" class="external-link">NFL
+Mellon University’s Statistics department started presenting “<a href="https://web.archive.org/web/20220425034704/https://www.stat.cmu.edu/~ryurko/files/greatlakes_2017.pdf" class="external-link">NFL
 Player Evaluation Using Expected Points Added with nflscrapR</a>” at
 conferences and ultimately published the <a href="https://www.degruyter.com/view/journals/jqas/15/3/article-p163.xml?tab_body=pdf-74962" class="external-link">nflWAR</a>
 paper in the Journal of Quantitative Analysis in Sports.</p>
@@ -453,7 +454,7 @@ on the <a href="../index.html">package home page</a>.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://twitter.com/JaredDLee" class="external-link">Jared Lee</a>, <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
+  <p>Developed by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://github.com/Kazink36" class="external-link">Jared Lee</a>, <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

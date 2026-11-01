@@ -125,6 +125,7 @@
     <li><a class="dropdown-item" href="../articles/map-tutorial.html">Intro to Visualizing Recruiting Geography</a></li>
     <li><a class="dropdown-item" href="../articles/nth-rated-recruit.html">Visualizing Team Talent from Player Recruiting Rankings</a></li>
     <li><a class="dropdown-item" href="../articles/rolling-epa-graph.html">Rolling EPA Graph</a></li>
+    <li><a class="dropdown-item" href="../articles/cfbseedR-season-simulation.html">Simulating a College Football Season with cfbseedR</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html"><span class="fa fas fa-newspaper"></span>  News</a></li>
@@ -390,9 +391,9 @@ should be fairly familiar with some slight changes.</p>
 </h5>
 </div>
 <div class="section level5">
-<h5 id="cfbfastrload_cfb_pbp-7-seasons-1-1-5-minutes">
-<strong><code>cfbfastR::load_cfb_pbp()</code></strong> (7+ seasons,
-~1-1.5 minutes 🔥)<a class="anchor" aria-label="anchor" href="#cfbfastrload_cfb_pbp-7-seasons-1-1-5-minutes"></a>
+<h5 id="cfbfastrload_cfb_pbp-2014-present-1-1-5-minutes">
+<strong><code>cfbfastR::load_cfb_pbp()</code></strong>
+(2014-present, ~1-1.5 minutes 🔥)<a class="anchor" aria-label="anchor" href="#cfbfastrload_cfb_pbp-2014-present-1-1-5-minutes"></a>
 </h5>
 </div>
 <div class="section level4">
@@ -410,15 +411,15 @@ between 45-90 seconds to run.</p>
 <span>  <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">seasons</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## 66.567 sec elapsed</span></span></code></pre>
-<p>In the selected seasons, there are 13994 games for which the data
+<pre><code><span><span class="co">## 75.701 sec elapsed</span></span></code></pre>
+<p>In the selected seasons, there are 14015 games for which the data
 repository has play by play data. In the present term, the data
 repository supplies over a million rows of play by play data with 362
 columns of data. The most relevant play columns are kept to the left of
 the data frame for clarity, let’s take a look at the first 40 or so.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pbp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Rows: 2,496,796</span></span>
+<pre><code><span><span class="co">## Rows: 2,500,615</span></span>
 <span><span class="co">## Columns: 40</span></span>
 <span><span class="co">## $ year               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2014<span style="color: #949494;">, </span>2014<span style="color: #949494;">, </span>2014<span style="color: #949494;">, </span>2014<span style="color: #949494;">, </span>2014<span style="color: #949494;">, </span>2014<span style="color: #949494;">, </span>2014<span style="color: #949494;">, </span>2014<span style="color: #949494;">, </span>201…</span></span>
 <span><span class="co">## $ week               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>…</span></span>
@@ -494,8 +495,7 @@ metrics for in-game valuation of plays.</p>
 <a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
 </li>
 <li>
-<a href="https://x.com/JaredDLee" class="external-link">Jared Lee</a>
-<a href="https://x.com/JaredDLee" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge" alt="@JaredDLee"></a>
+<a href="https://github.com/Kazink36" class="external-link">Jared Lee</a>
 <a href="https://github.com/Kazink36" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Kazink36"></a>
 </li>
 <li>
@@ -604,8 +604,21 @@ women’s basketball</li>
 <a href="https://oddsapiR.sportsdataverse.org/" class="external-link"><strong>oddsapiR</strong></a>
 - betting odds</li>
 <li>
+<a href="https://cfbseedR.sportsdataverse.org/" class="external-link"><strong>cfbseedR</strong></a>
+- college football season and playoff simulation (CRAN)</li>
+<li>
+<a href="https://cfb4th.sportsdataverse.org/" class="external-link"><strong>cfb4th</strong></a> -
+college football fourth-down decisions (r-universe)</li>
+<li>
+<a href="https://sdvplotR.sportsdataverse.org/" class="external-link"><strong>sdvplotR</strong></a>
+- team logos, colours and tables for every SportsDataverse league
+(r-universe)</li>
+<li>
 <a href="https://sportyR.sportsdataverse.org/" class="external-link"><strong>sportyR</strong></a>
-- playing surfaces</li>
+- playing surfaces, including the college football field (CRAN)</li>
+<li>
+<a href="https://cfbplotR.sportsdataverse.org/" class="external-link"><strong>cfbplotR</strong></a>
+- college football logos and colours (r-universe)</li>
 <li>
 <a href="https://py.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-py</strong></a>
 - the Python package</li>
@@ -622,7 +635,7 @@ women’s basketball</li>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://twitter.com/JaredDLee" class="external-link">Jared Lee</a>, <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
+  <p>Developed by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://github.com/Kazink36" class="external-link">Jared Lee</a>, <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

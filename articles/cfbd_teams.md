@@ -32,10 +32,9 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
-
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
+    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
 
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
@@ -62,7 +61,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
     ## 0 upgraded, 0 newly installed, 0 to remove and 19 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [9.6s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [9.3s]
 
 ``` r
 
@@ -101,7 +100,7 @@ cfbd_team_info(conference = "SEC")
 
     ## ── Team information from CollegeFootballData.com ───────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:20:09 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:40 UTC
 
     ## # A tibble: 16 × 43
     ##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -136,8 +135,7 @@ cfbd_team_info(conference = "Ind")
 ```
 
     ## ── Team information from CollegeFootballData.com ───────────── cfbfastR 3.1.0 ──
-
-    ## ℹ Data updated: 2026-11-01 12:20:19 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:40 UTC
 
     ## # A tibble: 2 × 43
     ##   team_id school    mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -159,7 +157,7 @@ cfbd_team_info(year = 2019)
 
     ## ── Team information from CollegeFootballData.com ───────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:20:22 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:42 UTC
 
     ## # A tibble: 130 × 43
     ##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -191,7 +189,7 @@ cfbd_team_matchup_records("Texas", "Oklahoma")
 
     ## ── Team matchup record from CollegeFootballData.com ────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:20:24 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:42 UTC
 
     ## # A tibble: 1 × 7
     ##   start_year end_year team1 team1_wins team2    team2_wins  ties
@@ -205,7 +203,7 @@ cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
 
     ## ── Team matchup record from CollegeFootballData.com ────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:20:27 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:43 UTC
 
     ## # A tibble: 1 × 7
     ##   start_year end_year team1     team1_wins team2 team2_wins  ties
@@ -221,7 +219,7 @@ cfbd_team_matchup("Texas", "Oklahoma")
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:20:29 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:44 UTC
 
     ## # A tibble: 119 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -246,7 +244,7 @@ cfbd_team_matchup("Texas A&M", "TCU")
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:20:30 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:45 UTC
 
     ## # A tibble: 89 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -270,8 +268,7 @@ cfbd_team_matchup("Texas A&M", "TCU", min_year = 1975)
 ```
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
-
-    ## ℹ Data updated: 2026-11-01 12:20:36 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:45 UTC
 
     ## # A tibble: 22 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -296,7 +293,7 @@ cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:20:38 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:47 UTC
 
     ## # A tibble: 52 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -323,7 +320,7 @@ cfbd_team_roster(year = 2013, team = "Florida State")
 
     ## ── Team roster data from CollegeFootballData.com ───────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:20:41 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:47 UTC
 
     ## # A tibble: 134 × 18
     ##    athlete_id first_name last_name   team    weight height jersey  year position
@@ -352,7 +349,7 @@ cfbd_team_talent()
 
     ## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
 
-    ## ℹ Data updated: 2026-11-01 12:20:42 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:47 UTC
 
     ## # A tibble: 138 × 3
     ##     year school     talent
@@ -376,7 +373,7 @@ cfbd_team_talent(year = 2018)
 
     ## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
 
-    ## ℹ Data updated: 2026-11-01 12:20:43 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:48 UTC
 
     ## # A tibble: 236 × 3
     ##     year school        talent
@@ -401,8 +398,7 @@ cfbd_team_talent(year = 2018)
 - [Akshay Easwaran](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/twitter/follow/akeaswaran?color=blue&label=%40akeaswaran&logo=x&style=for-the-badge)](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/github/followers/akeaswaran?color=eee&logo=Github&style=for-the-badge)](https://github.com/akeaswaran)
-- [Jared Lee](https://x.com/JaredDLee)
-  [![@JaredDLee](https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge)](https://x.com/JaredDLee)
+- [Jared Lee](https://github.com/Kazink36)
   [![@Kazink36](https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge)](https://github.com/Kazink36)
 - [Eric Hess](https://x.com/arbitanalytics)
   [![@arbitanalytics](https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge)](https://x.com/arbitanalytics)
@@ -469,7 +465,16 @@ BibTeX Citation
 - [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
 - [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
 - [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
-- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
+- [**cfbseedR**](https://cfbseedR.sportsdataverse.org/) - college
+  football season and playoff simulation (CRAN)
+- [**cfb4th**](https://cfb4th.sportsdataverse.org/) - college football
+  fourth-down decisions (r-universe)
+- [**sdvplotR**](https://sdvplotR.sportsdataverse.org/) - team logos,
+  colours and tables for every SportsDataverse league (r-universe)
+- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing
+  surfaces, including the college football field (CRAN)
+- [**cfbplotR**](https://cfbplotR.sportsdataverse.org/) - college
+  football logos and colours (r-universe)
 - [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python
   package
 - [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R

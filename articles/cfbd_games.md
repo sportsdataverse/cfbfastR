@@ -63,7 +63,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
     ## 0 upgraded, 0 newly installed, 0 to remove and 19 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [9.2s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [9.4s]
 
 ``` r
 
@@ -134,7 +134,7 @@ cfbfastR::cfbd_game_team_stats(2019, team = "LSU")
 
     ## ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:18:51 UTC
+    ## ℹ Data updated: 2026-11-01 16:40:25 UTC
 
     ## # A tibble: 13 × 78
     ##      game_id school conference home_away opponent     opponent_conference points
@@ -142,14 +142,14 @@ cfbfastR::cfbd_game_team_stats(2019, team = "LSU")
     ##  1 401110778 LSU    SEC        away      Texas        Big 12                  45
     ##  2 401110842 LSU    SEC        away      Alabama      SEC                     46
     ##  3 401110850 LSU    SEC        away      Ole Miss     SEC                     58
-    ##  4 401110790 LSU    SEC        home      Northwester… Southland               65
-    ##  5 401110813 LSU    SEC        home      Utah State   Mountain West           42
-    ##  6 401110819 LSU    SEC        home      Florida      SEC                     42
-    ##  7 401110828 LSU    SEC        away      Mississippi… SEC                     36
-    ##  8 401110859 LSU    SEC        home      Arkansas     SEC                     56
-    ##  9 401110869 LSU    SEC        home      Texas A&M    SEC                     50
-    ## 10 401110805 LSU    SEC        away      Vanderbilt   SEC                     66
-    ## 11 401110725 LSU    SEC        home      Georgia Sou… Sun Belt                55
+    ##  4 401110869 LSU    SEC        home      Texas A&M    SEC                     50
+    ##  5 401110790 LSU    SEC        home      Northwester… Southland               65
+    ##  6 401110805 LSU    SEC        away      Vanderbilt   SEC                     66
+    ##  7 401110813 LSU    SEC        home      Utah State   Mountain West           42
+    ##  8 401110819 LSU    SEC        home      Florida      SEC                     42
+    ##  9 401110828 LSU    SEC        away      Mississippi… SEC                     36
+    ## 10 401110725 LSU    SEC        home      Georgia Sou… Sun Belt                55
+    ## 11 401110859 LSU    SEC        home      Arkansas     SEC                     56
     ## 12 401110833 LSU    SEC        home      Auburn       SEC                     23
     ## 13 401132981 LSU    SEC        home      Georgia      SEC                     37
     ## # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
@@ -167,24 +167,24 @@ cfbfastR::cfbd_game_team_stats(2013, team = "Florida State")
 
     ## ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:18:52 UTC
+    ## ℹ Data updated: 2026-11-01 16:40:26 UTC
 
     ## # A tibble: 13 × 78
     ##      game_id school     conference home_away opponent opponent_conference points
     ##        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
     ##  1 332640052 Florida S… ACC        home      Bethune… MEAC                    54
-    ##  2 332570052 Florida S… ACC        home      Nevada   Mountain West           62
-    ##  3 332990052 Florida S… ACC        home      NC State ACC                     49
-    ##  4 333060052 Florida S… ACC        home      Miami    ACC                     41
-    ##  5 333200052 Florida S… ACC        home      Syracuse ACC                     59
-    ##  6 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
-    ##  7 332710103 Florida S… ACC        away      Boston … ACC                     48
-    ##  8 333270052 Florida S… ACC        home      Idaho    FBS Independents        80
-    ##  9 332780052 Florida S… ACC        home      Maryland ACC                     63
+    ##  2 333410052 Florida S… ACC        home      Duke     ACC                     45
+    ##  3 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
+    ##  4 332570052 Florida S… ACC        home      Nevada   Mountain West           62
+    ##  5 332710103 Florida S… ACC        away      Boston … ACC                     48
+    ##  6 332780052 Florida S… ACC        home      Maryland ACC                     63
+    ##  7 332990052 Florida S… ACC        home      NC State ACC                     49
+    ##  8 333060052 Florida S… ACC        home      Miami    ACC                     41
+    ##  9 333200052 Florida S… ACC        home      Syracuse ACC                     59
     ## 10 333340057 Florida S… ACC        away      Florida  SEC                     37
-    ## 11 333410052 Florida S… ACC        home      Duke     ACC                     45
-    ## 12 333130154 Florida S… ACC        away      Wake Fo… ACC                     59
-    ## 13 332920228 Florida S… ACC        away      Clemson  ACC                     51
+    ## 11 333270052 Florida S… ACC        home      Idaho    FBS Independents        80
+    ## 12 332920228 Florida S… ACC        away      Clemson  ACC                     51
+    ## 13 333130154 Florida S… ACC        away      Wake Fo… ACC                     59
     ## # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
     ## #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
     ## #   passes_intercepted <chr>, interception_yards <chr>, interception_tds <chr>,
@@ -219,8 +219,7 @@ cfbfastR::cfbd_game_records(2013, team = "Florida State")
 - [Akshay Easwaran](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/twitter/follow/akeaswaran?color=blue&label=%40akeaswaran&logo=x&style=for-the-badge)](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/github/followers/akeaswaran?color=eee&logo=Github&style=for-the-badge)](https://github.com/akeaswaran)
-- [Jared Lee](https://x.com/JaredDLee)
-  [![@JaredDLee](https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge)](https://x.com/JaredDLee)
+- [Jared Lee](https://github.com/Kazink36)
   [![@Kazink36](https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge)](https://github.com/Kazink36)
 - [Eric Hess](https://x.com/arbitanalytics)
   [![@arbitanalytics](https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge)](https://x.com/arbitanalytics)
@@ -287,7 +286,16 @@ BibTeX Citation
 - [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
 - [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
 - [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
-- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
+- [**cfbseedR**](https://cfbseedR.sportsdataverse.org/) - college
+  football season and playoff simulation (CRAN)
+- [**cfb4th**](https://cfb4th.sportsdataverse.org/) - college football
+  fourth-down decisions (r-universe)
+- [**sdvplotR**](https://sdvplotR.sportsdataverse.org/) - team logos,
+  colours and tables for every SportsDataverse league (r-universe)
+- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing
+  surfaces, including the college football field (CRAN)
+- [**cfbplotR**](https://cfbplotR.sportsdataverse.org/) - college
+  football logos and colours (r-universe)
 - [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python
   package
 - [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R

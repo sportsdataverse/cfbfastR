@@ -32,8 +32,9 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
     ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
+
+    ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
 
@@ -62,7 +63,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
     ## 0 upgraded, 0 newly installed, 0 to remove and 19 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [9.8s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [9.4s]
 
 ``` r
 
@@ -84,12 +85,22 @@ library(dplyr)
 
 library(tidyr)
 library(gt)
+library(sdvplotR)
 # cfbfastR is deliberately NOT in the pak() list above. pkgdown and
 # R CMD check render this vignette against the package being built, and
 # installing from CRAN here would overwrite that dev build with the last
 # release -- so any function added since it would vanish mid-render.
 library(cfbfastR)
 # pak::pak("sportsdataverse/cfbfastR")
+```
+
+The team logos and the table theme come from
+[sdvplotR](https://sdvplotR.sportsdataverse.org/), which is not on CRAN;
+install it from the SportsDataverse r-universe:
+
+``` r
+
+install.packages("sdvplotR", repos = c("https://sportsdataverse.r-universe.dev", getOption("repos")))
 ```
 
 ### Settling **2019 LSU** and **2013 Florida State** offense debates
@@ -102,10 +113,7 @@ team_season_stats <- dplyr::bind_rows(
    cfbd_stats_season_team(year=2019, team = "LSU"),
    cfbd_stats_season_team(year=2013, team = "Florida State")
 )
-logos <- read.csv("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/logos.csv")
-logos<- logos |> dplyr::select(-"conference")
-df_team_season <- team_season_stats |>
-   dplyr::left_join(logos, by=c("team"="school"))
+df_team_season <- team_season_stats
 ```
 
 ``` r
@@ -122,8 +130,6 @@ df_team_season_adv <- dplyr::bind_rows(
    cfbd_stats_season_advanced(2019, team = "LSU"),
    cfbd_stats_season_advanced(2013, team = "Florida State")
 )
-df_team_season_adv <- df_team_season_adv |>
-   dplyr::left_join(logos, by=c("team"="school"))
 ```
 
 #### **Get Game Advanced Stats**
@@ -134,21 +140,17 @@ df_team_game_adv <- dplyr::bind_rows(
    cfbd_stats_game_advanced(2019, team = "LSU"),
    cfbd_stats_game_advanced(2013, team = "Florida State")
 )
-df_team_game_adv <- df_team_game_adv |>
-   dplyr::left_join(logos, by=c("team"="school"))
 ```
 
 #### **Get Season Statistics by Player**
 
 ``` r
 
-source("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/gt_theme_code_SG.R")
 passing_df <- dplyr::bind_rows(
    cfbd_stats_season_player(2019, team = "LSU", category = "passing"),
    cfbd_stats_season_player(2013, team = "Florida State", category = "passing")) |>
-   dplyr::left_join(logos, by=c("team"="school")) |>
    dplyr::group_by(team) |>
-   dplyr::mutate(logo = sprintf('<img src="%s" height="30" alt="%s logo">', logo, team)) |>
+   dplyr::mutate(logo = team) |>
    dplyr::select(logo,
                  player,
                  passing_completions,
@@ -195,11 +197,12 @@ passing_df |> gt() |>
       domain = c(-60,60)
     )
   ) |>
-  # Render the team logos from pre-built <img> HTML that carries alt text
-  # (gt::web_image() cannot set alt; important for screen-reader accessibility).
-  fmt_markdown(columns = "logo") |>
+  # sdvplotR turns the school names into logos, and gives each image the
+  # team's full name as alt text for screen readers.
+  gt_sdv_logos(columns = "logo", league = "cfb") |>
   tab_source_note(source_note = md("**Table:** @SaiemGilani | **Data:** @CFB_Data with @cfbfastR v2.0.0")) |>
-  gt_theme_538(table.width = px(550))
+  gt_theme_sdv() |>
+  tab_options(table.width = px(550))
 ```
 
     ## Warning: Since gt v0.9.0, the `colors` argument has been deprecated.
@@ -210,12 +213,12 @@ passing_df |> gt() |>
 |----|----|----|----|----|----|----|----|
 |  | Player | C | Att | Yds | TDs | INTs | YPA |
 | LSU |  |  |  |  |  |  |  |
-| ![LSU logo](http://a.espncdn.com/i/teamlogos/ncaa/500/99.png) | Joe Burrow | 402 | 527 | 5671 | 60 | 6 | 10.8 |
-| ![LSU logo](http://a.espncdn.com/i/teamlogos/ncaa/500/99.png) | Myles Brennan | 24 | 40 | 353 | 1 | 1 | 8.8 |
+| ![LSU Tigers](https://sdv.nyc3.cdn.digitaloceanspaces.com/assets/public/sha256/d0/d02e29a9f8824740d848b4a83c574b1c1942ba1cdee61b3ee08611634cc86b46.png) | Joe Burrow | 402 | 527 | 5671 | 60 | 6 | 10.8 |
+| ![LSU Tigers](https://sdv.nyc3.cdn.digitaloceanspaces.com/assets/public/sha256/d0/d02e29a9f8824740d848b4a83c574b1c1942ba1cdee61b3ee08611634cc86b46.png) | Myles Brennan | 24 | 40 | 353 | 1 | 1 | 8.8 |
 | Florida State |  |  |  |  |  |  |  |
-| ![Florida State logo](http://a.espncdn.com/i/teamlogos/ncaa/500/52.png) | Jameis Winston | 257 | 384 | 4057 | 40 | 10 | 10.6 |
-| ![Florida State logo](http://a.espncdn.com/i/teamlogos/ncaa/500/52.png) | Jake Coker | 18 | 36 | 250 | 0 | 1 | 6.9 |
-| ![Florida State logo](http://a.espncdn.com/i/teamlogos/ncaa/500/52.png) | Sean Maguire | 13 | 21 | 116 | 2 | 2 | 5.5 |
+| ![Florida State Seminoles](https://sdv.nyc3.cdn.digitaloceanspaces.com/assets/public/sha256/2b/2b8ccabe8c063ef5f2fbd4c21b489179d94782ca4ea6c14dd3e5d1728afa61a3.png) | Jameis Winston | 257 | 384 | 4057 | 40 | 10 | 10.6 |
+| ![Florida State Seminoles](https://sdv.nyc3.cdn.digitaloceanspaces.com/assets/public/sha256/2b/2b8ccabe8c063ef5f2fbd4c21b489179d94782ca4ea6c14dd3e5d1728afa61a3.png) | Jake Coker | 18 | 36 | 250 | 0 | 1 | 6.9 |
+| ![Florida State Seminoles](https://sdv.nyc3.cdn.digitaloceanspaces.com/assets/public/sha256/2b/2b8ccabe8c063ef5f2fbd4c21b489179d94782ca4ea6c14dd3e5d1728afa61a3.png) | Sean Maguire | 13 | 21 | 116 | 2 | 2 | 5.5 |
 | **Table:** @SaiemGilani \| **Data:** @CFB_Data with @cfbfastR v2.0.0 |  |  |  |  |  |  |  |
 
 #### **Passing and rushing splits (2025 onward)**
@@ -244,7 +247,7 @@ tex_pass |>
 
     ## ── Player season passing data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:19:45 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:24 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts completion_rate average_depth_of_target   ppa
@@ -311,7 +314,7 @@ tex_pass |>
 
     ## ── Player season passing data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:19:45 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:24 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts air_yards_parsed adot_correct adot_naive
@@ -332,7 +335,7 @@ cfbd_passing_plays(year = 2025, week = 5, outcome = "completion") |>
 
     ## ── Passing plays data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:19:48 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:25 UTC
 
     ## # A tibble: 10 × 7
     ##    offense    defense    passer       target         total_yards   ppa success
@@ -370,7 +373,7 @@ cfbd_stats_categories()
 
     ## ── Stat categories for CollegeFootballData.com ─────────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:19:48 UTC
+    ## ℹ Data updated: 2026-11-01 16:41:25 UTC
 
     ## # A tibble: 38 × 1
     ##    category          
@@ -395,8 +398,7 @@ cfbd_stats_categories()
 - [Akshay Easwaran](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/twitter/follow/akeaswaran?color=blue&label=%40akeaswaran&logo=x&style=for-the-badge)](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/github/followers/akeaswaran?color=eee&logo=Github&style=for-the-badge)](https://github.com/akeaswaran)
-- [Jared Lee](https://x.com/JaredDLee)
-  [![@JaredDLee](https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge)](https://x.com/JaredDLee)
+- [Jared Lee](https://github.com/Kazink36)
   [![@Kazink36](https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge)](https://github.com/Kazink36)
 - [Eric Hess](https://x.com/arbitanalytics)
   [![@arbitanalytics](https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge)](https://x.com/arbitanalytics)
@@ -463,7 +465,16 @@ BibTeX Citation
 - [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
 - [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
 - [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
-- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
+- [**cfbseedR**](https://cfbseedR.sportsdataverse.org/) - college
+  football season and playoff simulation (CRAN)
+- [**cfb4th**](https://cfb4th.sportsdataverse.org/) - college football
+  fourth-down decisions (r-universe)
+- [**sdvplotR**](https://sdvplotR.sportsdataverse.org/) - team logos,
+  colours and tables for every SportsDataverse league (r-universe)
+- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing
+  surfaces, including the college football field (CRAN)
+- [**cfbplotR**](https://cfbplotR.sportsdataverse.org/) - college
+  football logos and colours (r-universe)
 - [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python
   package
 - [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R

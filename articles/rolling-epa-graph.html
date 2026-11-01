@@ -125,6 +125,7 @@
     <li><a class="dropdown-item" href="../articles/map-tutorial.html">Intro to Visualizing Recruiting Geography</a></li>
     <li><a class="dropdown-item" href="../articles/nth-rated-recruit.html">Visualizing Team Talent from Player Recruiting Rankings</a></li>
     <li><a class="dropdown-item" href="../articles/rolling-epa-graph.html">Rolling EPA Graph</a></li>
+    <li><a class="dropdown-item" href="../articles/cfbseedR-season-simulation.html">Simulating a College Football Season with cfbseedR</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html"><span class="fa fas fa-newspaper"></span>  News</a></li>
@@ -235,42 +236,44 @@ time and compare that performance to other teams around the country.</p>
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pak'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pak'</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"zoo"</span>, <span class="st">"ggimage"</span>, <span class="st">"cfbfastR"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"zoo"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://zeileis.codeberg.page/zoo/" class="external-link">zoo</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/YuLab-SMU/ggimage" class="external-link">ggimage</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sdvplotR.sportsdataverse.org/" class="external-link">sdvplotR</a></span><span class="op">)</span></span>
+<span><span class="co"># cfbfastR is deliberately NOT in the pak() list above. pkgdown and</span></span>
+<span><span class="co"># R CMD check render this vignette against the package being built, and</span></span>
+<span><span class="co"># installing from CRAN here would overwrite that dev build with the last</span></span>
+<span><span class="co"># release -- so any function added since it would vanish mid-render.</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a></span><span class="op">)</span></span></code></pre></div>
+<p>The team logos and colours come from <a href="https://sdvplotR.sportsdataverse.org/" class="external-link">sdvplotR</a>, the
+SportsDataverse plotting package. It is not on CRAN; install it from the
+SportsDataverse r-universe:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"sdvplotR"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://sportsdataverse.r-universe.dev"</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"repos"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="pull-the-play-by-play-data">Pull the play by play data<a class="anchor" aria-label="anchor" href="#pull-the-play-by-play-data"></a>
 </h3>
-<p>Using the <a href="https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html" class="external-link">load_cfb_pbp()</a>
+<p>Using the <a href="https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.html">load_cfb_pbp()</a>
 method, we will pull down a dataframe that contains ALL of the play by
 play data for ALL teams in 2026. This method only takes about 30
 seconds.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">yr</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">:::</span><span class="fu">most_recent_cfb_season</span><span class="op">(</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span></span>
 <span><span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">yr</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="pull-team-info-and-team-colors">Pull team info and team colors<a class="anchor" aria-label="anchor" href="#pull-team-info-and-team-colors"></a>
+<h3 id="team-colors-and-logos">Team colors and logos<a class="anchor" aria-label="anchor" href="#team-colors-and-logos"></a>
 </h3>
-<p>We can use the <code><a href="../reference/cfbd_team_info.html">cfbd_team_info()</a></code> function to pull
-information about each FBS school including their logo, color, and
-abbreviation. We’re going to take a subset of the cfb_team_info data and
-clean it up for use in our graphs later on.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">team_info</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>year <span class="op">=</span> <span class="va">yr</span>, only_fbs <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">team_colors_logos</span> <span class="op">&lt;-</span> <span class="va">team_info</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">school</span>, <span class="va">abbreviation</span>, <span class="va">color</span>, <span class="va">logo</span>, <span class="va">alt_color</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">school</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
-<span>    color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">color</span> <span class="op">==</span> <span class="st">"#null"</span>, <span class="st">"#808080"</span>, <span class="va">.data</span><span class="op">$</span><span class="va">color</span><span class="op">)</span>,</span>
-<span>    alt_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">alt_color</span> <span class="op">==</span> <span class="st">"#null"</span>, <span class="st">"#808080"</span>, <span class="va">.data</span><span class="op">$</span><span class="va">alt_color</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code></pre></div>
+<p>There is no team lookup table to build. sdvplotR matches the school
+names in the play-by-play (<code>"Oklahoma"</code>,
+<code>"Illinois State"</code>) to its index of every FBS and FCS
+program, so its scales and logo layers take the names as they are.
+<code><a href="https://sdvplotR.sportsdataverse.org/reference/sdv_team_colors.html" class="external-link">sdv_team_colors()</a></code> shows what it will use:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://sdvplotR.sportsdataverse.org/reference/sdv_team_colors.html" class="external-link">sdv_team_colors</a></span><span class="op">(</span><span class="st">"cfb"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Oklahoma"</span>, <span class="st">"Texas"</span>, <span class="st">"Illinois State"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##       Oklahoma          Texas Illinois State </span></span>
+<span><span class="co">##      "#990000"      "#af5c37"      "#ce1126"</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="basic-overview-of-all-fbs-offenses">Basic overview of all FBS Offenses<a class="anchor" aria-label="anchor" href="#basic-overview-of-all-fbs-offenses"></a>
@@ -278,7 +281,7 @@ clean it up for use in our graphs later on.</p>
 <p>Let’s create a basic overview of offensive EPA per play. We’ll start
 by creating a dataframe listing all 130 FBS teams from best to worst
 based on their average EPA per play across all games played.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">off_epa</span> <span class="op">&lt;-</span> <span class="va">pbp</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">rush</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">pass</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">offense_play</span>, <span class="va">offense_conference</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -294,7 +297,7 @@ what our new dataframe looks like. The teams at the top should not be
 surprising. Remember, EPA is not adjusted for the strength of opponent.
 It is purely a measure of how teams perform on the field (like yards,
 but better).</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">off_epa</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 6 × 5</span></span></span>
 <span><span class="co">##   Team          offense_conference off_epa  Rank TeamRank        </span></span>
@@ -307,7 +310,7 @@ but better).</p>
 <span><span class="co">## <span style="color: #BCBCBC;">6</span> USC           Big Ten              0.215     6 USC #6</span></span></code></pre>
 <p>Ok, now let’s start to visualize the data beyond the top few schools.
 Let’s graph all the teams that have a positive EPA on the year.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">off_epa</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">off_epa</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html" class="external-link">reorder</a></span><span class="op">(</span><span class="va">TeamRank</span>, <span class="va">off_epa</span><span class="op">)</span>, y<span class="op">=</span><span class="va">off_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -329,7 +332,7 @@ window by editing the cell block below. I like to use 100 plays when
 looking at a full season to smooth out as much of the variability as
 possible, but for a mid-season view 50 plays or even 25 plays might be
 more appropriate. Play around!</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team</span> <span class="op">&lt;-</span> <span class="st">"Oklahoma"</span></span>
 <span><span class="va">ma_plays</span> <span class="op">&lt;-</span> <span class="fl">100</span></span></code></pre></div>
 <p>Now that we have defined our team of interest, we can prepare the
@@ -337,7 +340,7 @@ data for this specific team. We’re going to create a dataframe called
 <code>team_off</code> that is subsetted from our full season play by
 play data. This new dataframe will be specific to our team of interest
 and it will add fields for the moving average and the play count.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team_off</span> <span class="op">&lt;-</span> <span class="va">pbp</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">offense_play</span> <span class="op">==</span> <span class="op">{</span><span class="op">{</span><span class="va">team</span><span class="op">}</span><span class="op">}</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">rush</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">pass</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -348,7 +351,7 @@ and it will add fields for the moving average and the play count.</p>
 <span>         week_team <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"WK"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">week</span> <span class="op">&gt;</span> <span class="fl">9</span>, <span class="va">week</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fl">0</span>,<span class="va">week</span><span class="op">)</span><span class="op">)</span>, <span class="st">" "</span>, <span class="va">defense_play</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>We’re going to graph different background tiles for each opponent so
 we need to define where one opponent stops and another one begins.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team_off_play_start</span> <span class="op">&lt;-</span> <span class="va">team_off</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">week_team</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -364,39 +367,23 @@ we need to define where one opponent stops and another one begins.</p>
 <p>We’re going to add the opponent’s logo in the middle of each
 background tile, so we need to define the midpoint of each background
 tile as well.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team_off_start_stop</span> <span class="op">&lt;-</span> <span class="va">team_off_play_start</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">team_off_play_stop</span>, by <span class="op">=</span> <span class="st">"week_team"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>midpoint <span class="op">=</span> <span class="op">(</span><span class="va">play_start</span> <span class="op">+</span> <span class="va">play_stop</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p>We need to make a simple vector that says how many total plays are in
 our <code>team_off</code> dataframe.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">play_count</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">team_off</span><span class="op">$</span><span class="va">play_count</span><span class="op">)</span></span></code></pre></div>
-<p>Next we are going to update our background tile dataframe to include
-the color info that we pulled earlier. FCS color data is not available,
-so we will default those to gray.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">team_off_start_stop</span> <span class="op">&lt;-</span> <span class="va">team_off_start_stop</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">team_colors_logos</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"team"</span> <span class="op">=</span> <span class="st">"school"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/replace_na.html" class="external-link">replace_na</a></span><span class="op">(</span><span class="va">color</span>,<span class="st">"gray"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">team</span>, <span class="va">week_team</span>, <span class="va">play_start</span>, <span class="va">play_stop</span>, <span class="va">midpoint</span>, <span class="va">color</span><span class="op">)</span></span></code></pre></div>
-<p>Are we ready to graph yet? Just a few more steps! We need a named
-vector to get the right colors on those background tiles.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">team_colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">team_off_start_stop</span><span class="op">$</span><span class="va">color</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">team_colors</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">team_off_start_stop</span><span class="op">$</span><span class="va">team</span><span class="op">)</span></span></code></pre></div>
-<p>Now we need to pull in an alternate source of team logos that
-includes FCS schools. Then we’ll join that new table of logos with our
-background tile dataframe.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">all_logos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/natemanzo/cfb_data/master/_team_logos.csv"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">team_off_start_stop</span> <span class="op">&lt;-</span> <span class="va">team_off_start_stop</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">all_logos</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"team"</span> <span class="op">=</span> <span class="st">"school"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">play_count</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">team_off</span><span class="op">$</span><span class="va">play_count</span><span class="op">)</span></span></code></pre></div>
+<p>Each background tile is coloured with the opponent’s primary colour
+by <code>scale_fill_sdv(league = "cfb")</code>, and
+<code><a href="https://sdvplotR.sportsdataverse.org/reference/geom_sdv_logos.html" class="external-link">geom_sdv_logos()</a></code> puts the opponent’s logo at the tile’s
+midpoint. Both read the opponent from the <code>team</code> column, FCS
+opponents included.</p>
 <p>Almost done! The last thing we need is your signature to go in the
 caption of the graph. You can use your twitter handle or your real name
 here.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">signature</span> <span class="op">&lt;-</span> <span class="st">"@cfbNate"</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -409,14 +396,14 @@ indicating the EPA/play of the 25th percentile, median, 75th percentile,
 and top and bottom teams in the country are drawn on the graph to show
 context for how the team of interest compares to the rest of the
 country.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">graph_team_off</span> <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_rect</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">team_off_start_stop</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="va">play_start</span>, xmax <span class="op">=</span> <span class="va">play_stop</span>, fill <span class="op">=</span> <span class="va">team</span>, ymin <span class="op">=</span> <span class="op">-</span><span class="fl">.7</span>, ymax <span class="op">=</span> <span class="fl">.9</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"gray90"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_rect</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">team_off_start_stop</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="va">play_start</span>, xmax <span class="op">=</span> <span class="va">play_stop</span>, ymin <span class="op">=</span> <span class="fl">.8</span>, ymax <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"gray90"</span>, fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">team_colors</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://sdvplotR.sportsdataverse.org/reference/scale_sdv.html" class="external-link">scale_fill_sdv</a></span><span class="op">(</span>league <span class="op">=</span> <span class="st">"cfb"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">off_epa</span><span class="op">$</span><span class="va">off_epa</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="fl">2</span>, color <span class="op">=</span> <span class="st">"gray20"</span>, alpha <span class="op">=</span> <span class="fl">.8</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="fl">1</span>, color <span class="op">=</span> <span class="st">"gray20"</span>, alpha <span class="op">=</span> <span class="fl">.2</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggimage/man/geom_image.html" class="external-link">geom_image</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">team_off_start_stop</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">midpoint</span>,y<span class="op">=</span><span class="fl">.9</span>,image<span class="op">=</span><span class="va">logo</span><span class="op">)</span>, asp <span class="op">=</span> <span class="fl">16</span><span class="op">/</span><span class="fl">9</span>, size <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://sdvplotR.sportsdataverse.org/reference/geom_sdv_logos.html" class="external-link">geom_sdv_logos</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">team_off_start_stop</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">midpoint</span>, y <span class="op">=</span> <span class="fl">.9</span>, team <span class="op">=</span> <span class="va">team</span><span class="op">)</span>, league <span class="op">=</span> <span class="st">"cfb"</span>, height <span class="op">=</span> <span class="fl">.07</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="external-link">annotate</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">off_epa</span><span class="op">$</span><span class="va">off_epa</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, geom <span class="op">=</span> <span class="st">"text"</span>, size <span class="op">=</span> <span class="fl">3</span>, hjust <span class="op">=</span> <span class="st">"right"</span>, vjust <span class="op">=</span> <span class="fl">0</span>, label <span class="op">=</span> <span class="va">off_epa</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">Team</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="external-link">annotate</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">off_epa</span><span class="op">$</span><span class="va">off_epa</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, geom <span class="op">=</span> <span class="st">"text"</span>, size <span class="op">=</span> <span class="fl">3</span>, hjust <span class="op">=</span> <span class="st">"right"</span>, vjust <span class="op">=</span> <span class="fl">0</span>, label <span class="op">=</span> <span class="st">"25%ile"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="external-link">annotate</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">off_epa</span><span class="op">$</span><span class="va">off_epa</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, geom <span class="op">=</span> <span class="st">"text"</span>, size <span class="op">=</span> <span class="fl">3</span>, hjust <span class="op">=</span> <span class="st">"right"</span>, vjust <span class="op">=</span> <span class="fl">0</span>, label <span class="op">=</span> <span class="st">"Median"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -440,12 +427,12 @@ higher resolution and less pixelization than the graphic generated
 above.</p>
 <p>Reminder: You can always use <code><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd()</a></code> to find out what
 your current working directory is if you’re not sure.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggsave</a></span><span class="op">(</span><span class="va">graph_team_off</span>, filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"off_epa_rolling_"</span>,<span class="va">team</span>,<span class="st">".png"</span><span class="op">)</span>, </span>
 <span>       dpi <span class="op">=</span> <span class="fl">300</span>, type <span class="op">=</span> <span class="st">"cairo"</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">7</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span></span></code></pre></div>
 <p>I hope you found this useful! As always, thanks to <a href="https://twitter.com/CFB_Data" class="external-link">@CFB_Data</a> and the <a href="https://twitter.com/cfbfastR" class="external-link">@cfbfastR</a> team for making this
 possible. And shout out to folks like Parker Fleming (<a href="https://twitter.com/statsowar" class="external-link">@statsowar</a>) and Meyappan
-Subbaiah (<a href="https://twitter.com/msubbiah1" class="external-link">@msubbiah1</a>) for
+Subbaiah (<a href="https://twitter.com/msubbaiah1" class="external-link">@msubbaiah1</a>) for
 their feedback, advice, and encouragement while refining the look of
 this visualization. Tag me in any of these graphs you post on twitter
 and I’ll share them as much as possible.</p>
@@ -467,8 +454,7 @@ and I’ll share them as much as possible.</p>
 <a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
 </li>
 <li>
-<a href="https://x.com/JaredDLee" class="external-link">Jared Lee</a>
-<a href="https://x.com/JaredDLee" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge" alt="@JaredDLee"></a>
+<a href="https://github.com/Kazink36" class="external-link">Jared Lee</a>
 <a href="https://github.com/Kazink36" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Kazink36"></a>
 </li>
 <li>
@@ -546,12 +532,12 @@ and I’ll share them as much as possible.</p>
 <p>To cite the <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a>
 R package in publications, use:</p>
 <p>BibTeX Citation</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
-<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
-<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
-<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
-<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="related-sportsdataverse-packages">
@@ -577,8 +563,21 @@ women’s basketball</li>
 <a href="https://oddsapiR.sportsdataverse.org/" class="external-link"><strong>oddsapiR</strong></a>
 - betting odds</li>
 <li>
+<a href="https://cfbseedR.sportsdataverse.org/" class="external-link"><strong>cfbseedR</strong></a>
+- college football season and playoff simulation (CRAN)</li>
+<li>
+<a href="https://cfb4th.sportsdataverse.org/" class="external-link"><strong>cfb4th</strong></a> -
+college football fourth-down decisions (r-universe)</li>
+<li>
+<a href="https://sdvplotR.sportsdataverse.org/" class="external-link"><strong>sdvplotR</strong></a>
+- team logos, colours and tables for every SportsDataverse league
+(r-universe)</li>
+<li>
 <a href="https://sportyR.sportsdataverse.org/" class="external-link"><strong>sportyR</strong></a>
-- playing surfaces</li>
+- playing surfaces, including the college football field (CRAN)</li>
+<li>
+<a href="https://cfbplotR.sportsdataverse.org/" class="external-link"><strong>cfbplotR</strong></a>
+- college football logos and colours (r-universe)</li>
 <li>
 <a href="https://py.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-py</strong></a>
 - the Python package</li>
@@ -595,7 +594,7 @@ women’s basketball</li>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://twitter.com/JaredDLee" class="external-link">Jared Lee</a>, <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
+  <p>Developed by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://github.com/Kazink36" class="external-link">Jared Lee</a>, <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

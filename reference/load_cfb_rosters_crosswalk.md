@@ -60,21 +60,21 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_rosters_crosswalk())
 #> ── college football roster id crosswalk from the SportsDataverse data repo ─────
-#> ℹ Data updated: 2026-11-01 12:14:43 UTC
-#> # A tibble: 45,540 × 14
-#>    espn_team_id fox_team_id person_key       espn_athlete_id fox_athlete_id
-#>           <int> <chr>       <chr>                      <int> <chr>         
-#>  1          153 6           cristian alvarez         5291781 256819        
-#>  2          153 6           aidan banfield           5079308 221059        
-#>  3          153 6           trey blue                5172032 233535        
-#>  4          153 6           eidan buchanan           5156381 238426        
-#>  5          153 6           travis burgess           5199937 249557        
-#>  6          153 6           rowan byrne              5141401 233555        
-#>  7          153 6           keeyun chapman           5212608 256814        
-#>  8          153 6           will conroy              5209394 249542        
-#>  9          153 6           crew davis               5265173 249551        
-#> 10          153 6           dujuan davis             5161953 256815        
-#> # ℹ 45,530 more rows
+#> ℹ Data updated: 2026-11-01 16:36:20 UTC
+#> # A tibble: 45,543 × 14
+#>    espn_team_id fox_team_id person_key         espn_athlete_id fox_athlete_id
+#>           <int> <chr>       <chr>                        <int> <chr>         
+#>  1         2676 246         corie addo                 5087283 231455        
+#>  2         2676 246         curtis allen               5232350 NA            
+#>  3         2676 246         roberto alverez jr         5232342 231419        
+#>  4         2676 246         mykey anderson             4586377 231404        
+#>  5         2676 246         devonte boyd               5232400 200091        
+#>  6         2676 246         isaiah butcher             5232399 231454        
+#>  7         2676 246         jada byers                 5232345 200127        
+#>  8         2676 246         trai von callis            5232404 231423        
+#>  9         2676 246         kalen carver               4885317 200092        
+#> 10         2676 246         juelz cooper               5232408 231461        
+#> # ℹ 45,533 more rows
 #> # ℹ 9 more variables: yahoo_athlete_id <chr>, name <chr>, espn_jersey <chr>,
 #> #   fox_jersey <chr>, espn_position <chr>, fox_position <chr>,
 #> #   yahoo_position <chr>, match_method <chr>, matched_sources <chr>

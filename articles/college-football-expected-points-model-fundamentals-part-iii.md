@@ -23,7 +23,7 @@ We will be acquiring data from
 courtesy of @[CFB_data](https://twitter.com/CFB_data), using `cfbfastR`,
 created by [Saiem Gilani](https://twitter.com/saiemgilani), [Akshay
 Easwaran](https://twitter.com/akeaswaran), [Jared
-Lee](https://twitter.com/JaredDLee) and [Eric
+Lee](https://github.com/Kazink36) and [Eric
 Hess](https://twitter.com/arbitanalytics).
 
 ## An Abridged History of Expected Points Models in Football
@@ -32,7 +32,7 @@ Hess](https://twitter.com/arbitanalytics).
 
 One of the earliest discussions and attempts at building an expected
 points model in football was made by [Virgil Carter of the Cincinatti
-Bengals](https://vault.si.com/vault/1972/10/16/handy-pair-of-brainy-bengals)
+Bengals](https://web.archive.org/web/20231103201122/https://vault.si.com/vault/1972/10/16/handy-pair-of-brainy-bengals)
 in his graduate research paper, “[Operations Research on
 Football](https://pubsonline.informs.org/doi/pdf/10.1287/opre.19.2.541)”.
 Carter found some time to write the research paper while pursuing his
@@ -127,8 +127,9 @@ score differential was within 10 points to limit the effect of garbage
 time.
 
 Trey Causey did a quality write-up on a very similar style
-[model](http://thespread.us/expected-points.md) and has done some
-interesting [nearest-neighbors](http://thespread.us/clustering.md)
+[model](https://web.archive.org/web/20210928093023/http://thespread.us/expected-points.html)
+and has done some interesting
+[nearest-neighbors](https://web.archive.org/web/20250506021348/http://thespread.us/clustering.html)
 player similarity modeling that is worth reading and, at the time, was
 reproducible.
 
@@ -157,7 +158,7 @@ points is positive.
 In 2017, Ron Yurko, Sam Ventura, and Max Horowitz from Carnegie Mellon
 University’s Statistics department started presenting “[NFL Player
 Evaluation Using Expected Points Added with
-nflscrapR](https://www.stat.cmu.edu/~ryurko/files/greatlakes_2017.pdf)”
+nflscrapR](https://web.archive.org/web/20220425034704/https://www.stat.cmu.edu/~ryurko/files/greatlakes_2017.pdf)”
 at conferences and ultimately published the
 [nflWAR](https://www.degruyter.com/view/journals/jqas/15/3/article-p163.xml?tab_body=pdf-74962)
 paper in the Journal of Quantitative Analysis in Sports.

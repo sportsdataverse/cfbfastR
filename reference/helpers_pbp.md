@@ -56,7 +56,7 @@ penalty_detection(raw_df)
 - dat:
 
   (*Data.Frame* required) Clean Play-by-Play DataFrame pulled from
-  `cfbd_pbp_dat()`
+  [`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md)
 
 - season:
 

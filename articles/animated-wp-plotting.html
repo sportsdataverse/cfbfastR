@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true">
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:creator" content="@JaredDLee">
+<meta name="twitter:creator" content="@cfbfastR">
 <meta name="twitter:site" content="@cfbfastR">
 <!-- Privacy-friendly analytics by Plausible --><script async src="https://plausible.io/js/pa-ZFDwSnsNQXnprFDxKtvpE.js"></script><script>
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
@@ -125,6 +125,7 @@
     <li><a class="dropdown-item" href="../articles/map-tutorial.html">Intro to Visualizing Recruiting Geography</a></li>
     <li><a class="dropdown-item" href="../articles/nth-rated-recruit.html">Visualizing Team Talent from Player Recruiting Rankings</a></li>
     <li><a class="dropdown-item" href="../articles/rolling-epa-graph.html">Rolling EPA Graph</a></li>
+    <li><a class="dropdown-item" href="../articles/cfbseedR-season-simulation.html">Simulating a College Football Season with cfbseedR</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html"><span class="fa fas fa-newspaper"></span>  News</a></li>
@@ -230,30 +231,35 @@ NFL</a>? This document will walk you step-by-step through the process of
 adapting <a href="https://github.com/leesharpe/nfldata/blob/master/code/wpchart.R" class="external-link">Sharpe’s
 code</a> to college football using data from <a href="collegefootballdata.com">CollegeFootballData.com</a> collected
 using the <code>cfbfastR</code> package for R.</p>
-<p>-<a href="https://twitter.com/JaredDLee" class="external-link">Jared Lee</a></p>
+<p>-<a href="https://github.com/Kazink36" class="external-link">Jared Lee</a></p>
 <div class="section level3">
 <h3 id="load-and-install-packages">Load and Install Packages<a class="anchor" aria-label="anchor" href="#load-and-install-packages"></a>
 </h3>
 <p>We’re going to need several packages to generate the winning
 percentage plot: <code>tidyverse</code> for easy data wrangling, string
 manipulation, and plotting, <code>glue</code> to easily make the labels,
-<code>ggimage</code> to put the logos on the plot, and
-<code>animation</code> to actually build the GIF.</p>
+<a href="https://sdvplotR.sportsdataverse.org/" class="external-link"><code>sdvplotR</code></a>
+for the team logos and colors, and <code>animation</code> to actually
+build the GIF.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pak'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pak'</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"animation"</span>, <span class="st">"glue"</span>, <span class="st">"zoo"</span>, <span class="st">"ggimage"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"animation"</span>, <span class="st">"glue"</span>, <span class="st">"zoo"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/animation/" class="external-link">animation</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://glue.tidyverse.org/" class="external-link">glue</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://zeileis.codeberg.page/zoo/" class="external-link">zoo</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/YuLab-SMU/ggimage" class="external-link">ggimage</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sdvplotR.sportsdataverse.org/" class="external-link">sdvplotR</a></span><span class="op">)</span></span>
 <span><span class="co"># cfbfastR is deliberately NOT in the pak() list above. pkgdown and</span></span>
 <span><span class="co"># R CMD check render this vignette against the package being built, and</span></span>
 <span><span class="co"># installing from CRAN here would overwrite that dev build with the last</span></span>
 <span><span class="co"># release -- so any function added since it would vanish mid-render.</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a></span><span class="op">)</span></span></code></pre></div>
+<p>sdvplotR is not on CRAN; install it from the SportsDataverse
+r-universe:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"sdvplotR"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://sportsdataverse.r-universe.dev"</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"repos"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="cfbfastr">cfbfastR<a class="anchor" aria-label="anchor" href="#cfbfastr"></a>
@@ -264,7 +270,7 @@ info. <code><a href="../reference/cfbd_pbp_data.html">cfbd_pbp_data()</a></code>
 make sure that epa_wpa is TRUE to get the win probabilities for the
 plot. <code><a href="../reference/cfbd_game_info.html">cfbd_game_info()</a></code> will pull the game info such as the
 home and away team and the result.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team</span> <span class="op">&lt;-</span> <span class="st">"Utah"</span></span>
 <span><span class="va">week</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="va">year</span> <span class="op">&lt;-</span> <span class="fl">2019</span></span>
@@ -287,22 +293,25 @@ home and away team and the result.</p>
 <span>  <span class="fu">interp_TimeSecsRem</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">game</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_info.html">cfbd_game_info</a></span><span class="op">(</span>year<span class="op">=</span><span class="va">year</span>, team <span class="op">=</span> <span class="va">team</span>, week <span class="op">=</span> <span class="va">week</span>, season_type <span class="op">=</span> <span class="st">"regular"</span><span class="op">)</span></span></code></pre></div>
-<p>We’ll also use the <code><a href="../reference/cfbd_team_info.html">cfbd_team_info()</a></code> function to pull the
-color and logo information and add it to the game info. We’ll also add
-in a <code>result</code> column that is the score difference between the
-home and the away teams that we’ll use later.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">team_info</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">team_logos</span> <span class="op">&lt;-</span> <span class="va">team_info</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">school</span>, <span class="va">color</span>, <span class="va">alt_color</span>, <span class="va">logo</span>, <span class="va">alt_name2</span><span class="op">)</span></span>
-<span><span class="va">game</span> <span class="op">&lt;-</span> <span class="va">game</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">team_logos</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"away_team"</span> <span class="op">=</span> <span class="st">"school"</span><span class="op">)</span>,<span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>away_logo <span class="op">=</span> <span class="va">logo</span>, away_color <span class="op">=</span> <span class="va">color</span>, away_alt_color <span class="op">=</span> <span class="va">alt_color</span>, away_abr <span class="op">=</span> <span class="va">alt_name2</span><span class="op">)</span></span>
+<p>We’ll also use <code>sdvplotR</code> to add each team’s color and
+abbreviation to the game info. <code><a href="https://sdvplotR.sportsdataverse.org/reference/sdv_team_colors.html" class="external-link">sdv_team_colors()</a></code> and
+<code><a href="https://sdvplotR.sportsdataverse.org/reference/sdv_resolve.html" class="external-link">sdv_resolve()</a></code> take the school names exactly as cfbfastR
+returns them, so there is no lookup table to join. The logos themselves
+are drawn later by <code><a href="https://sdvplotR.sportsdataverse.org/reference/geom_sdv_logos.html" class="external-link">geom_sdv_logos()</a></code> straight from the team
+names. We’ll also add in a <code>result</code> column that is the score
+difference between the home and the away teams that we’ll use later.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cfb_teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sdvplotR.sportsdataverse.org/reference/sdv_teams.html" class="external-link">sdv_teams</a></span><span class="op">(</span><span class="st">"cfb"</span><span class="op">)</span></span>
+<span><span class="va">team_abbr</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">team</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">cfb_teams</span><span class="op">$</span><span class="va">abbr</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="fu"><a href="https://sdvplotR.sportsdataverse.org/reference/sdv_resolve.html" class="external-link">sdv_resolve</a></span><span class="op">(</span><span class="va">team</span>, league <span class="op">=</span> <span class="st">"cfb"</span><span class="op">)</span>, <span class="va">cfb_teams</span><span class="op">$</span><span class="va">team_id</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="op">}</span></span>
 <span></span>
 <span><span class="va">game</span> <span class="op">&lt;-</span> <span class="va">game</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">team_logos</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"home_team"</span> <span class="op">=</span> <span class="st">"school"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>home_logo <span class="op">=</span> <span class="va">logo</span>, home_color <span class="op">=</span> <span class="va">color</span>, home_alt_color <span class="op">=</span> <span class="va">alt_color</span>, home_abr <span class="op">=</span> <span class="va">alt_name2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>result <span class="op">=</span> <span class="va">home_points</span> <span class="op">-</span> <span class="va">away_points</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>away_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span><span class="fu"><a href="https://sdvplotR.sportsdataverse.org/reference/sdv_team_colors.html" class="external-link">sdv_team_colors</a></span><span class="op">(</span><span class="st">"cfb"</span>, <span class="va">away_team</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>         home_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span><span class="fu"><a href="https://sdvplotR.sportsdataverse.org/reference/sdv_team_colors.html" class="external-link">sdv_team_colors</a></span><span class="op">(</span><span class="st">"cfb"</span>, <span class="va">home_team</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>         away_abr <span class="op">=</span> <span class="fu">team_abbr</span><span class="op">(</span><span class="va">away_team</span><span class="op">)</span>,</span>
+<span>         home_abr <span class="op">=</span> <span class="fu">team_abbr</span><span class="op">(</span><span class="va">home_team</span><span class="op">)</span>,</span>
+<span>         result <span class="op">=</span> <span class="va">home_points</span> <span class="op">-</span> <span class="va">away_points</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>home_score <span class="op">=</span> <span class="va">home_points</span>, away_score <span class="op">=</span> <span class="va">away_points</span><span class="op">)</span></span></code></pre></div>
 <p>To build the labels, we’re going to use a custom function to pull the
 player names out of the play text. <a href="https://twitter.com/SaiemGilani" class="external-link">Saiem Gilani</a> wrote the bulk
@@ -319,7 +328,7 @@ renaming <code>TimeSecsRem</code> but correcting for the half.
 <code>result</code> grabs from the game information and is the
 difference in the home and away score. We create the <code>time</code>
 column to use as the clock on the right side of the animation.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">game_pbp</span> <span class="op">&lt;-</span> <span class="va">game_pbp</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>qtr <span class="op">=</span> <span class="va">period</span>, wp <span class="op">=</span> <span class="va">wp_before</span>, posteam <span class="op">=</span> <span class="va">pos_team</span>, defteam <span class="op">=</span> <span class="va">def_pos_team</span>,</span>
 <span>         away_team <span class="op">=</span> <span class="va">away</span>, home_team <span class="op">=</span> <span class="va">home</span>, play_id <span class="op">=</span> <span class="va">game_play_number</span>,</span>
@@ -338,13 +347,13 @@ minor adjustments to the plot, the overtime logic, and the labels. First
 we filter out plays that don’t have a win percentage and fix the win
 probability so that it is always the probability of the away team
 winning.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">base_wp_data</span> <span class="op">&lt;-</span> <span class="va">game_pbp</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">wp</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>s <span class="op">=</span> <span class="va">game_seconds_remaining</span>,</span>
 <span>         wp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">posteam</span> <span class="op">==</span> <span class="va">away_team</span>, <span class="va">wp</span>, <span class="fl">1</span> <span class="op">-</span> <span class="va">wp</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Then we fix the plays without a wpa.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># fix if play other than last is NA</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">r</span> <span class="kw">in</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">base_wp_data</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">base_wp_data</span><span class="op">$</span><span class="va">wp</span><span class="op">[</span><span class="va">r</span><span class="op">]</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">base_wp_data</span><span class="op">$</span><span class="va">wpa</span><span class="op">[</span><span class="va">r</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
@@ -364,7 +373,7 @@ winning.</p>
 a change in the winning percentage of more than 10 percentage points.
 We’ll also simplify our data frame by only selecting the relevant
 columns for our plots.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">abs_wpa</span> <span class="op">&lt;-</span> <span class="fl">0.07</span></span>
 <span></span>
 <span><span class="va">wp_data</span> <span class="op">&lt;-</span> <span class="va">base_wp_data</span> <span class="op">|&gt;</span></span>
@@ -417,7 +426,7 @@ columns for our plots.</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">play_id</span>, <span class="va">qtr</span>, <span class="va">time</span>, <span class="va">s</span>, <span class="va">wp</span>, <span class="va">wpa</span>, <span class="va">posteam</span>, <span class="va">away_score</span>, <span class="va">home_score</span>, <span class="va">text</span><span class="op">)</span></span></code></pre></div>
 <p>This is where the real magic happens. Sharpe’s code will iterate over
 the labels and try to determine valid locations for each one.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># points for plotting</span></span>
 <span><span class="va">x_max</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
 <span><span class="va">x_lab_min</span> <span class="op">&lt;-</span> <span class="fl">3600</span> <span class="op">-</span> <span class="fl">250</span></span>
@@ -519,7 +528,7 @@ the labels and try to determine valid locations for each one.</p>
 <p>Finally, we create two new rows to our data frame for the start and
 end of the game, filter out any other weirdness, and arrange our data
 frame by the order of the plays.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># add on WP boundaries</span></span>
 <span><span class="va">first_row</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>play_id <span class="op">=</span> <span class="fl">0</span>, qtr <span class="op">=</span> <span class="fl">1</span>, time <span class="op">=</span> <span class="st">"15:00"</span>, s <span class="op">=</span> <span class="fl">3600</span>,</span>
 <span>                        wp <span class="op">=</span> <span class="fl">0.5</span>, wpa <span class="op">=</span> <span class="cn">NA</span>, text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span>,</span>
@@ -545,7 +554,7 @@ frame by the order of the plays.</p>
 will draw our win probability plot for any given number of seconds
 remaining in the game. This is where you can make any changes to the
 plot that you would like.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">draw_frame</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n_sec</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
 <span></span>
@@ -565,8 +574,10 @@ plot that you would like.</p>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3600</span>, <span class="va">x_max</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#5555AA"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html" class="external-link">geom_segment</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="fl">3600</span>, xend <span class="op">=</span> <span class="op">-</span><span class="va">x_max</span>, y <span class="op">=</span> <span class="fl">0.5</span>, yend <span class="op">=</span> <span class="fl">0.5</span>, size <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/ggimage/man/geom_image.html" class="external-link">geom_image</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_score</span>, y <span class="op">=</span> <span class="fl">0.82</span>, image <span class="op">=</span> <span class="va">game</span><span class="op">$</span><span class="va">away_logo</span>, size <span class="op">=</span> <span class="fl">0.08</span>, asp <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/ggimage/man/geom_image.html" class="external-link">geom_image</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_score</span>, y <span class="op">=</span> <span class="fl">0.18</span>, image <span class="op">=</span> <span class="va">game</span><span class="op">$</span><span class="va">home_logo</span>, size <span class="op">=</span> <span class="fl">0.08</span>, asp <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://sdvplotR.sportsdataverse.org/reference/geom_sdv_logos.html" class="external-link">geom_sdv_logos</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_score</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.82</span>, <span class="fl">0.18</span><span class="op">)</span>,</span>
+<span>                                     team <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">game</span><span class="op">$</span><span class="va">away_team</span>, <span class="va">game</span><span class="op">$</span><span class="va">home_team</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, team <span class="op">=</span> <span class="va">team</span><span class="op">)</span>, league <span class="op">=</span> <span class="st">"cfb"</span>,</span>
+<span>                   height <span class="op">=</span> <span class="fl">0.12</span>, inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">..y..</span> <span class="op">&lt;</span> <span class="fl">.5</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">game</span><span class="op">$</span><span class="va">away_color</span>, <span class="va">game</span><span class="op">$</span><span class="va">home_color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>trans <span class="op">=</span> <span class="st">"reverse"</span>,</span>
@@ -584,8 +595,8 @@ plot that you would like.</p>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Win Probability Chart: {game$season} Week {game$wk} {game$away_team} @ {game$home_team}"</span><span class="op">)</span>,</span>
-<span>         caption <span class="op">=</span> <span class="st">"Data from cfbfastR, Visualization by @LeeSharpeNFL, Adapted for CFB by @JaredDLee"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Win Probability Chart: {game$season} Week {game$week} {game$away_team} @ {game$home_team}"</span><span class="op">)</span>,</span>
+<span>         caption <span class="op">=</span> <span class="st">"Data from cfbfastR, Visualization by @LeeSharpeNFL, Adapted for CFB by Jared Lee (github.com/Kazink36)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="co"># score display</span></span>
@@ -628,12 +639,12 @@ plot that you would like.</p>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Let’s test our function to make sure the plot looks like how we want
 it by running our function with 6 minutes left in the game.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">draw_frame</span><span class="op">(</span><span class="fl">360</span><span class="op">)</span></span></code></pre></div>
 <p><img src="animated-wp-plotting_files/figure-html/draw_test-1.png" class="r-plt" alt="Win Probability Chart" width="700"></p>
 <p>Looks great, so next we create the <code>draw_game()</code> function
 which will draw every frame for our GIF.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">draw_game</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">wp_data</span><span class="op">$</span><span class="va">s</span>, <span class="kw">function</span><span class="op">(</span><span class="va">n_sec</span><span class="op">)</span></span>
@@ -650,17 +661,14 @@ which will draw every frame for our GIF.</p>
 </h3>
 <p>Finally, we run our <code>draw_game()</code> function inside of
 <code><a href="https://rdrr.io/pkg/animation/man/saveGIF.html" class="external-link">saveGIF()</a></code>.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>  <span class="co"># saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp.gif")</span></span></code></pre></div>
-<div class="float">
-<img src="https://github.com/sportsdataverse/cfbfastR/blob/main/man/figures/animated_wp.gif?raw=true" alt="Result"><div class="figcaption">Result</div>
-</div>
 <p>This process takes awhile, about 3 minutes on my computer. We can
 also re-size our GIF using the <code>ani.width</code>,
 <code>ani.height</code> and <code>ani.res</code> parameters. I like to
 make my plots wider and at higher resolution, but be careful, this will
 drastically increase the rendering time and the file size.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># saveGIF(draw_game(), interval = 0.1, movie.name = 'animated_wp_wide.gif',</span></span>
 <span><span class="co">#         ani.width = 800, ani.height = 500, ani.res = 110)</span></span></code></pre></div>
 <div class="float">
@@ -683,8 +691,7 @@ drastically increase the rendering time and the file size.</p>
 <a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
 </li>
 <li>
-<a href="https://x.com/JaredDLee" class="external-link">Jared Lee</a>
-<a href="https://x.com/JaredDLee" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge" alt="@JaredDLee"></a>
+<a href="https://github.com/Kazink36" class="external-link">Jared Lee</a>
 <a href="https://github.com/Kazink36" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Kazink36"></a>
 </li>
 <li>
@@ -762,12 +769,12 @@ drastically increase the rendering time and the file size.</p>
 <p>To cite the <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a>
 R package in publications, use:</p>
 <p>BibTeX Citation</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
-<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
-<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="related-sportsdataverse-packages">
@@ -793,8 +800,21 @@ women’s basketball</li>
 <a href="https://oddsapiR.sportsdataverse.org/" class="external-link"><strong>oddsapiR</strong></a>
 - betting odds</li>
 <li>
+<a href="https://cfbseedR.sportsdataverse.org/" class="external-link"><strong>cfbseedR</strong></a>
+- college football season and playoff simulation (CRAN)</li>
+<li>
+<a href="https://cfb4th.sportsdataverse.org/" class="external-link"><strong>cfb4th</strong></a> -
+college football fourth-down decisions (r-universe)</li>
+<li>
+<a href="https://sdvplotR.sportsdataverse.org/" class="external-link"><strong>sdvplotR</strong></a>
+- team logos, colours and tables for every SportsDataverse league
+(r-universe)</li>
+<li>
 <a href="https://sportyR.sportsdataverse.org/" class="external-link"><strong>sportyR</strong></a>
-- playing surfaces</li>
+- playing surfaces, including the college football field (CRAN)</li>
+<li>
+<a href="https://cfbplotR.sportsdataverse.org/" class="external-link"><strong>cfbplotR</strong></a>
+- college football logos and colours (r-universe)</li>
 <li>
 <a href="https://py.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-py</strong></a>
 - the Python package</li>
@@ -811,7 +831,7 @@ women’s basketball</li>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://twitter.com/JaredDLee" class="external-link">Jared Lee</a>, <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
+  <p>Developed by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://github.com/Kazink36" class="external-link">Jared Lee</a>, <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

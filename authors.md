@@ -7,7 +7,7 @@
 
 - **[Akshay Easwaran](https://twitter.com/akeaswaran)**. Author.
 
-- **[Jared Lee](https://twitter.com/JaredDLee)**. Author.
+- **[Jared Lee](https://github.com/Kazink36)**. Author.
 
 - **[Eric Hess](https://twitter.com/arbitanalytics)**. Author.
 

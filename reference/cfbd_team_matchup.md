@@ -60,7 +60,7 @@ Other CFBD Teams:
 # \donttest{
   try(cfbd_team_matchup("Texas", "Oklahoma"))
 #> ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-01 12:11:14 UTC
+#> ℹ Data updated: 2026-11-01 16:32:22 UTC
 #> # A tibble: 119 × 11
 #>    season  week season_type date         neutral_site venue home_team home_score
 #>     <int> <int> <chr>       <chr>        <lgl>        <chr> <chr>          <int>
@@ -79,7 +79,7 @@ Other CFBD Teams:
 
   try(cfbd_team_matchup("Texas A&M", "TCU"))
 #> ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-01 12:11:15 UTC
+#> ℹ Data updated: 2026-11-01 16:32:22 UTC
 #> # A tibble: 89 × 11
 #>    season  week season_type date         neutral_site venue home_team home_score
 #>     <int> <int> <chr>       <chr>        <lgl>        <lgl> <chr>          <int>
@@ -98,7 +98,7 @@ Other CFBD Teams:
 
   try(cfbd_team_matchup("Texas A&M", "TCU", min_year = 1975))
 #> ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-01 12:11:17 UTC
+#> ℹ Data updated: 2026-11-01 16:32:23 UTC
 #> # A tibble: 22 × 11
 #>    season  week season_type date         neutral_site venue home_team home_score
 #>     <int> <int> <chr>       <chr>        <lgl>        <lgl> <chr>          <int>
@@ -117,7 +117,7 @@ Other CFBD Teams:
 
   try(cfbd_team_matchup("Florida State", "Florida", min_year = 1975))
 #> ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-01 12:11:17 UTC
+#> ℹ Data updated: 2026-11-01 16:32:23 UTC
 #> # A tibble: 52 × 11
 #>    season  week season_type date         neutral_site venue home_team home_score
 #>     <int> <int> <chr>       <chr>        <lgl>        <chr> <chr>          <int>

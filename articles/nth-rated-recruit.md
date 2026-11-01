@@ -14,7 +14,8 @@ We start by loading the packages we need. The `cfbfastR` package will
 provide us with our source of data. The `dplyr` package gives us handy
 data manipulation tools and the ever useful pipe (`|>`) syntax. Finally,
 `ggplot2` will allow us to make a simple, functional graph of our
-results.
+results, and [`sdvplotR`](https://sdvplotR.sportsdataverse.org/)
+supplies each school’s colors and logo.
 
 ``` r
 
@@ -24,11 +25,19 @@ if (!requireNamespace('pak', quietly = TRUE)){
 pak::pak(c("dplyr", "ggplot2"))
 library(dplyr)
 library(ggplot2)
+library(sdvplotR)
 # cfbfastR is deliberately NOT in the pak() list above. pkgdown and
 # R CMD check render this vignette against the package being built, and
 # installing from CRAN here would overwrite that dev build with the last
 # release -- so any function added since it would vanish mid-render.
 library(cfbfastR)
+```
+
+sdvplotR is not on CRAN; install it from the SportsDataverse r-universe:
+
+``` r
+
+install.packages("sdvplotR", repos = c("https://sportsdataverse.r-universe.dev", getOption("repos")))
 ```
 
 To create the plot I’m going to use two functions from `cfbfastR`. The
@@ -70,7 +79,7 @@ all.recruits <- purrr::map2_dfr(
 tictoc::toc()
 ```
 
-    ## 22.819 sec elapsed
+    ## 32.011 sec elapsed
 
 ``` r
 
@@ -128,31 +137,40 @@ recruits.final <- recruits.sorted |>
 If you follow the Big Ten you know a lot of schools have a shade of red
 as their primary color. This can make some plots hard to read. Because
 of this I’m filtering down my data to look at just recruits who
-committed to a Big Ten West division school. For `ggplot2` to use a
-manually defined color set, I must get a vector of colors that I want,
-each team’s primary color, and assign each value a name corresponding to
-the school I’m interested in.
+committed to one of the seven schools of the old Big Ten West division.
+The conference dropped its divisions after the 2023 season, so the
+schools are named here rather than read from the team info.
 
 ``` r
 
-big.ten.west <- recruits.final |> filter(division == "West")
-big.ten.west.teams <- teams |> filter(division == "West")
-
-big.ten.west.colors <- big.ten.west.teams$color
-names(big.ten.west.colors) <- big.ten.west.teams$school
+big.ten.west.teams <- c("Illinois", "Iowa", "Minnesota", "Nebraska",
+                        "Northwestern", "Purdue", "Wisconsin")
+big.ten.west <- recruits.final |> filter(committed_to %in% big.ten.west.teams)
 ```
 
 Now that we have our data collected and cleaned we finally get to the
 fun part - plotting. We plot each player’s rating based on the ranking
-of commit they are to a school. We also tell ggplot to use the manual
-color values we defined earlier. I added some extra horizontal lines to
-approximate the ratings of 3, 4, and 5 star recruits.
+of commit they are to a school.
+[`scale_color_sdv()`](https://sdvplotR.sportsdataverse.org/reference/scale_sdv.html)
+colors each line with its school’s primary color, matched from the
+school names, and
+[`geom_sdv_logos()`](https://sdvplotR.sportsdataverse.org/reference/geom_sdv_logos.html)
+marks the end of each line with the school’s logo in place of a legend.
+I added some extra horizontal lines to approximate the ratings of 3, 4,
+and 5 star recruits.
 
 ``` r
 
+big.ten.west.ends <- big.ten.west |>
+  group_by(committed_to) |>
+  slice_max(num, n = 1, with_ties = FALSE) |>
+  ungroup()
+
 ggplot(big.ten.west, aes(x=num, y=rating, color = committed_to)) + 
   geom_line(size = 1.2) +
-  scale_color_manual(values = big.ten.west.colors) +
+  scale_color_sdv(league = "cfb", guide = "none") +
+  geom_sdv_logos(data = big.ten.west.ends, aes(x = num + 3, y = rating, team = committed_to),
+                 league = "cfb", height = 0.06, inherit.aes = FALSE) +
   geom_hline(yintercept = c(.9834, .8901, .7964), linetype = "dashed") +
   annotate("text", label = "~ 5 Star", y = .99, x = 80) +
   annotate("text", label = "~ 4 Star", y = .90, x = 80) +
@@ -160,12 +178,16 @@ ggplot(big.ten.west, aes(x=num, y=rating, color = committed_to)) +
   labs(y = "Player Rating",
        x = "Player Rank",
        title = "nth-Ranked High School Recruit",
-       subtitle = glue::glue("Top 85 High School Signees {yr-3}-{yr} by Big Ten West Programs"),
+       subtitle = glue::glue("Top 85 High School Signees {yr-3}-{yr} by former Big Ten West Programs"),
        caption = "Graph by @arbitanalytics, Data from @cfbfastR")
 ```
 
-![nth-Ranked High School
-Recruit](nth-rated-recruit_files/figure-html/recruit_plot-1.png)
+![Line chart of the ratings of the top 85 high school signees of each
+former Big Ten West school over the last four classes, ordered from each
+school's best signee to its 85th, with each line in the school's color
+and ending at the school's logo, and dashed lines marking approximate 5,
+4 and 3 star
+ratings.](nth-rated-recruit_files/figure-html/recruit_plot-1.png)
 
 From this graph we can see how well teams have recruited the last four
 years. A large gap between two of the lines shows that one team has
@@ -185,8 +207,7 @@ good feel for the talent level at a program in a quick glance.
 - [Akshay Easwaran](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/twitter/follow/akeaswaran?color=blue&label=%40akeaswaran&logo=x&style=for-the-badge)](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/github/followers/akeaswaran?color=eee&logo=Github&style=for-the-badge)](https://github.com/akeaswaran)
-- [Jared Lee](https://x.com/JaredDLee)
-  [![@JaredDLee](https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge)](https://x.com/JaredDLee)
+- [Jared Lee](https://github.com/Kazink36)
   [![@Kazink36](https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge)](https://github.com/Kazink36)
 - [Eric Hess](https://x.com/arbitanalytics)
   [![@arbitanalytics](https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge)](https://x.com/arbitanalytics)
@@ -253,7 +274,16 @@ BibTeX Citation
 - [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
 - [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
 - [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
-- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
+- [**cfbseedR**](https://cfbseedR.sportsdataverse.org/) - college
+  football season and playoff simulation (CRAN)
+- [**cfb4th**](https://cfb4th.sportsdataverse.org/) - college football
+  fourth-down decisions (r-universe)
+- [**sdvplotR**](https://sdvplotR.sportsdataverse.org/) - team logos,
+  colours and tables for every SportsDataverse league (r-universe)
+- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing
+  surfaces, including the college football field (CRAN)
+- [**cfbplotR**](https://cfbplotR.sportsdataverse.org/) - college
+  football logos and colours (r-universe)
 - [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python
   package
 - [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R

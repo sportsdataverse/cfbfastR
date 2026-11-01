@@ -16,8 +16,9 @@ and download the package.
 if (!requireNamespace('pak', quietly = TRUE)){
   install.packages('pak')
 }
-pak::pak(c("tidyverse"))
+pak::pak(c("tidyverse", "sportyR"))
 library(tidyverse)
+library(sportyR)
 # cfbfastR is deliberately NOT in the pak() list above. pkgdown and
 # R CMD check render this vignette against the package being built, and
 # installing from CRAN here would overwrite that dev build with the last
@@ -40,7 +41,7 @@ progressr::with_progress({
 tictoc::toc()
 ```
 
-    ## 31.44 sec elapsed
+    ## 34.844 sec elapsed
 
 Next, we’ll need to get the coaching information, so we’ll use the
 `cfbd_coaches` function:
@@ -99,30 +100,109 @@ And now we’ve got all the info we need to make the graph! The code below
 is listed for current Big 12 head coaches, but you can alter it to show
 whichever coaches you want.
 
+Rather than a blank panel, we’ll draw each decision on a regulation
+college field with [`sportyR`](https://sportyR.sportsdataverse.org/)’s
+`geom_football("ncaa")`. sportyR centres the field on midfield and
+measures it in yards, so the offense’s own goal line sits at `x = -50`
+and the opponent’s at `x = 50`: a line of scrimmage `yards_to_goal`
+yards from the end zone is at `x = 50 - yards_to_goal`. The field’s
+width carries no information here, so the points are jittered across it.
+
 ``` r
 
-down4 |>
+big_12_coaches <- c("Matt Campbell", "Steve Sarkisian", "Lincoln Riley", "Chris Klieman", "Matt Wells",
+                    "Neal Brown", "Les Miles", "Mike Gundy", "Gary Patterson", "Dave Aranda")
+
+big_12_down4 <- down4 |>
   dplyr::filter(!is.na(play)) |>
-  dplyr::filter(coach %in% c("Matt Campbell", "Steve Sarkisian", "Lincoln Riley", "Chris Klieman", "Matt Wells",
-                     "Neal Brown", "Les Miles", "Mike Gundy", "Gary Patterson", "Dave Aranda")) |>
-  dplyr::filter(distance <= 5, distance > 0) |>
-  ggplot(aes(x = distance, y = 100 - yards_to_goal, color = play)) +
-  geom_jitter() +
-  facet_wrap(. ~ coach) +
-  theme_bw() +
-  labs(x = "Yards to Go",
-       title = "Big 12 Coaches's Fourth Down Tendencies | CFP Era",
-       subtitle = "Data from @cfbfastR",
-       caption = "Visualization by Michael Egle (@deceptivespeed_)",
+  dplyr::filter(coach %in% big_12_coaches) |>
+  dplyr::filter(distance <= 5, distance > 0)
+
+geom_football("ncaa") +
+  geom_jitter(data = big_12_down4,
+              aes(x = 50 - yards_to_goal, y = 0, color = play),
+              width = 0, height = 22, size = 1.5) +
+  facet_wrap(. ~ coach, ncol = 4) +
+  scale_color_manual(values = c("Go" = "#ffd23f", "FG Attempt" = "#3bceac", "Punt" = "#ee4266")) +
+  labs(title = "Big 12 Coaches's Fourth Down Tendencies | CFP Era",
+       subtitle = "Fourth and 5 or shorter, at the line of scrimmage. Offense moving left to right.",
+       caption = "Data from @cfbfastR | Field from sportyR | Visualization by Michael Egle (@deceptivespeed_)",
        color = "Decision") +
-  scale_y_continuous(labels = c("Own 20", "Own 40", "Opp 40",
-                               "Opp 20", "Endzone"),
-                     breaks = c(20, 40, 60, 80, 100)) +
-  theme(axis.title.y = element_blank())
+  theme(legend.position = "top")
 ```
 
-![Big 12 Coaches's Fourth Down Tendencies \| CFP
-Era](fourth-down-plot-tutorial_files/figure-html/fourth_down_plot-1.png)
+![Ten small college football fields, one per Big 12 head coach, each
+showing that coach's fourth-and-five-or-shorter plays from 2014 to 2020
+as points at the line of scrimmage, coloured by whether the team went
+for it, kicked a field goal or punted, with the offense moving left to
+right.](fourth-down-plot-tutorial_files/figure-html/fourth_down_plot-1.png)
+
+### How makeable were those fourth downs?
+
+cfbfastR ships a port of [cfb4th](https://cfb4th.sportsdataverse.org/)’s
+fourth-down model.
+[`calculate_fourth_down()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+scores the chance the offense gains the yards it needs
+(`fd_conversion_prob`) from the down, distance, field position and the
+pre-game line. The line comes from each game’s `spread` (the home team’s
+line, negative when the home team is favoured) and `over_under`, turned
+around to the offense’s point of view:
+
+``` r
+
+big_12_down4 <- big_12_down4 |>
+  dplyr::mutate(
+    is_home = pos_team == home,
+    posteam_spread = ifelse(is_home, -spread, spread),
+    posteam_total = ifelse(is_home, (over_under - spread) / 2, (over_under + spread) / 2)
+  ) |>
+  cfbfastR::calculate_fourth_down()
+```
+
+On the fourth downs the model rates as better than a coin flip to
+convert, how often did each coach keep the offense on the field?
+
+``` r
+
+big_12_down4 |>
+  dplyr::filter(fd_conversion_prob > 0.5) |>
+  dplyr::group_by(coach) |>
+  dplyr::summarise(plays = dplyr::n(),
+                   go_rate = mean(play == "Go"),
+                   mean_conversion_prob = mean(fd_conversion_prob)) |>
+  dplyr::arrange(dplyr::desc(go_rate))
+```
+
+    ## # A tibble: 10 × 4
+    ##    coach           plays go_rate mean_conversion_prob
+    ##    <chr>           <int>   <dbl>                <dbl>
+    ##  1 Dave Aranda        16   0.5                  0.655
+    ##  2 Steve Sarkisian    37   0.486                0.659
+    ##  3 Lincoln Riley     114   0.421                0.624
+    ##  4 Chris Klieman      40   0.4                  0.637
+    ##  5 Matt Campbell     215   0.4                  0.628
+    ##  6 Neal Brown        175   0.394                0.625
+    ##  7 Les Miles          96   0.375                0.633
+    ##  8 Matt Wells        239   0.351                0.626
+    ##  9 Gary Patterson    222   0.320                0.647
+    ## 10 Mike Gundy        230   0.317                0.640
+
+Conversion probability is only half the decision: going for it should
+also be weighed against what a field goal or a punt is worth.
+[cfb4th](https://cfb4th.sportsdataverse.org/) does that comparison in
+win probability, and is installed from the SportsDataverse r-universe:
+
+``` r
+
+install.packages("cfb4th", repos = c("https://sportsdataverse.r-universe.dev", getOption("repos")))
+
+# go / field goal / punt win probabilities and the recommended call for every
+# fourth down of a season. It joins CFBD betting lines, so it needs a
+# CFBD_API_KEY; the models download and cache on first use.
+fourth_downs <- cfb4th::load_4th_pbp(2020)
+fourth_downs |>
+  dplyr::select(pos_team, def_pos_team, distance, yards_to_goal, go_boost, go, play_type)
+```
 
 Looks good! Small sample size but can easily be built upon. Hopefully
 you found this tutorial helpful and can make some more cool CFB related
@@ -136,8 +216,7 @@ visualizations with `ggplot2`
 - [Akshay Easwaran](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/twitter/follow/akeaswaran?color=blue&label=%40akeaswaran&logo=x&style=for-the-badge)](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/github/followers/akeaswaran?color=eee&logo=Github&style=for-the-badge)](https://github.com/akeaswaran)
-- [Jared Lee](https://x.com/JaredDLee)
-  [![@JaredDLee](https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge)](https://x.com/JaredDLee)
+- [Jared Lee](https://github.com/Kazink36)
   [![@Kazink36](https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge)](https://github.com/Kazink36)
 - [Eric Hess](https://x.com/arbitanalytics)
   [![@arbitanalytics](https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge)](https://x.com/arbitanalytics)
@@ -204,7 +283,16 @@ BibTeX Citation
 - [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
 - [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
 - [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
-- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
+- [**cfbseedR**](https://cfbseedR.sportsdataverse.org/) - college
+  football season and playoff simulation (CRAN)
+- [**cfb4th**](https://cfb4th.sportsdataverse.org/) - college football
+  fourth-down decisions (r-universe)
+- [**sdvplotR**](https://sdvplotR.sportsdataverse.org/) - team logos,
+  colours and tables for every SportsDataverse league (r-universe)
+- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing
+  surfaces, including the college football field (CRAN)
+- [**cfbplotR**](https://cfbplotR.sportsdataverse.org/) - college
+  football logos and colours (r-universe)
 - [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python
   package
 - [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R

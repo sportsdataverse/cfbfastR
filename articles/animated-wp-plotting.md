@@ -12,31 +12,39 @@ to college football using data from
 [CollegeFootballData.com](https://cfbfastR.sportsdataverse.org/articles/collegefootballdata.com)
 collected using the `cfbfastR` package for R.
 
-\-[Jared Lee](https://twitter.com/JaredDLee)
+\-[Jared Lee](https://github.com/Kazink36)
 
 ### Load and Install Packages
 
 We’re going to need several packages to generate the winning percentage
 plot: `tidyverse` for easy data wrangling, string manipulation, and
-plotting, `glue` to easily make the labels, `ggimage` to put the logos
-on the plot, and `animation` to actually build the GIF.
+plotting, `glue` to easily make the labels,
+[`sdvplotR`](https://sdvplotR.sportsdataverse.org/) for the team logos
+and colors, and `animation` to actually build the GIF.
 
 ``` r
 
 if (!requireNamespace('pak', quietly = TRUE)){
   install.packages('pak')
 }
-pak::pak(c("tidyverse", "animation", "glue", "zoo", "ggimage"))
+pak::pak(c("tidyverse", "animation", "glue", "zoo"))
 library(tidyverse)
 library(animation)
 library(glue)
 library(zoo)
-library(ggimage)
+library(sdvplotR)
 # cfbfastR is deliberately NOT in the pak() list above. pkgdown and
 # R CMD check render this vignette against the package being built, and
 # installing from CRAN here would overwrite that dev build with the last
 # release -- so any function added since it would vanish mid-render.
 library(cfbfastR)
+```
+
+sdvplotR is not on CRAN; install it from the SportsDataverse r-universe:
+
+``` r
+
+install.packages("sdvplotR", repos = c("https://sportsdataverse.r-universe.dev", getOption("repos")))
 ```
 
 ### cfbfastR
@@ -75,25 +83,31 @@ game_pbp <- cfbfastR::cfbd_pbp_data(year, team = team, week = week, epa_wpa = TR
 game <- cfbfastR::cfbd_game_info(year=year, team = team, week = week, season_type = "regular")
 ```
 
-We’ll also use the
-[`cfbd_team_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_info.md)
-function to pull the color and logo information and add it to the game
-info. We’ll also add in a `result` column that is the score difference
-between the home and the away teams that we’ll use later.
+We’ll also use `sdvplotR` to add each team’s color and abbreviation to
+the game info.
+[`sdv_team_colors()`](https://sdvplotR.sportsdataverse.org/reference/sdv_team_colors.html)
+and
+[`sdv_resolve()`](https://sdvplotR.sportsdataverse.org/reference/sdv_resolve.html)
+take the school names exactly as cfbfastR returns them, so there is no
+lookup table to join. The logos themselves are drawn later by
+[`geom_sdv_logos()`](https://sdvplotR.sportsdataverse.org/reference/geom_sdv_logos.html)
+straight from the team names. We’ll also add in a `result` column that
+is the score difference between the home and the away teams that we’ll
+use later.
 
 ``` r
 
-team_info <- cfbfastR::cfbd_team_info()
-team_logos <- team_info |>
-  select(school, color, alt_color, logo, alt_name2)
-game <- game |>
-  left_join(team_logos, by = c("away_team" = "school"),) |>
-  rename(away_logo = logo, away_color = color, away_alt_color = alt_color, away_abr = alt_name2)
+cfb_teams <- sdv_teams("cfb")
+team_abbr <- function(team) {
+  cfb_teams$abbr[match(sdv_resolve(team, league = "cfb"), cfb_teams$team_id)]
+}
 
 game <- game |>
-  left_join(team_logos, by = c("home_team" = "school")) |>
-  rename(home_logo = logo, home_color = color, home_alt_color = alt_color, home_abr = alt_name2) |>
-  mutate(result = home_points - away_points) |>
+  mutate(away_color = unname(sdv_team_colors("cfb", away_team)),
+         home_color = unname(sdv_team_colors("cfb", home_team)),
+         away_abr = team_abbr(away_team),
+         home_abr = team_abbr(home_team),
+         result = home_points - away_points) |>
   rename(home_score = home_points, away_score = away_points)
 ```
 
@@ -384,8 +398,10 @@ draw_frame <- function(n_sec)
     theme_minimal() +
     geom_vline(xintercept = c(3600, x_max), color = "#5555AA") +
     geom_segment(x = -3600, xend = -x_max, y = 0.5, yend = 0.5, size = 0.75) +
-    geom_image(x = x_score, y = 0.82, image = game$away_logo, size = 0.08, asp = 1.5) +
-    geom_image(x = x_score, y = 0.18, image = game$home_logo, size = 0.08, asp = 1.5) +
+    geom_sdv_logos(data = data.frame(x = x_score, y = c(0.82, 0.18),
+                                     team = c(game$away_team, game$home_team)),
+                   aes(x = x, y = y, team = team), league = "cfb",
+                   height = 0.12, inherit.aes = FALSE) +
     geom_line(aes(color = ..y.. < .5), size = 1) +
     scale_color_manual(values = c(game$away_color, game$home_color)) +
     scale_x_continuous(trans = "reverse",
@@ -403,8 +419,8 @@ draw_frame <- function(n_sec)
     coord_cartesian(clip = "off") +
     xlab("") +
     ylab("") +
-    labs(title = glue("Win Probability Chart: {game$season} Week {game$wk} {game$away_team} @ {game$home_team}"),
-         caption = "Data from cfbfastR, Visualization by @LeeSharpeNFL, Adapted for CFB by @JaredDLee") +
+    labs(title = glue("Win Probability Chart: {game$season} Week {game$week} {game$away_team} @ {game$home_team}"),
+         caption = "Data from cfbfastR, Visualization by @LeeSharpeNFL, Adapted for CFB by Jared Lee (github.com/Kazink36)") +
     theme(legend.position = "none")
 
   # score display
@@ -485,10 +501,6 @@ Finally, we run our `draw_game()` function inside of
   # saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp.gif")
 ```
 
-![Result](https://github.com/sportsdataverse/cfbfastR/blob/main/man/figures/animated_wp.gif?raw=true)
-
-Result
-
 This process takes awhile, about 3 minutes on my computer. We can also
 re-size our GIF using the `ani.width`, `ani.height` and `ani.res`
 parameters. I like to make my plots wider and at higher resolution, but
@@ -513,8 +525,7 @@ Result
 - [Akshay Easwaran](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/twitter/follow/akeaswaran?color=blue&label=%40akeaswaran&logo=x&style=for-the-badge)](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/github/followers/akeaswaran?color=eee&logo=Github&style=for-the-badge)](https://github.com/akeaswaran)
-- [Jared Lee](https://x.com/JaredDLee)
-  [![@JaredDLee](https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge)](https://x.com/JaredDLee)
+- [Jared Lee](https://github.com/Kazink36)
   [![@Kazink36](https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge)](https://github.com/Kazink36)
 - [Eric Hess](https://x.com/arbitanalytics)
   [![@arbitanalytics](https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge)](https://x.com/arbitanalytics)
@@ -581,7 +592,16 @@ BibTeX Citation
 - [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
 - [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
 - [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
-- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
+- [**cfbseedR**](https://cfbseedR.sportsdataverse.org/) - college
+  football season and playoff simulation (CRAN)
+- [**cfb4th**](https://cfb4th.sportsdataverse.org/) - college football
+  fourth-down decisions (r-universe)
+- [**sdvplotR**](https://sdvplotR.sportsdataverse.org/) - team logos,
+  colours and tables for every SportsDataverse league (r-universe)
+- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing
+  surfaces, including the college football field (CRAN)
+- [**cfbplotR**](https://cfbplotR.sportsdataverse.org/) - college
+  football logos and colours (r-universe)
 - [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python
   package
 - [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R

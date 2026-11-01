@@ -20,9 +20,9 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## → Package library at /home/runner/work/_temp/Library.
 
-    ## → Will install 1 system package:
+    ## ✔ All system requirements are already installed.
 
-    ## + libnode-dev  - V8
+    ## 
 
     ## ℹ No downloads are needed
 
@@ -32,14 +32,15 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
-
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
 
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
+
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
+
+    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
 
     ## Reading package lists...
 
@@ -59,75 +60,10 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libssl-dev is already the newest version (3.0.2-0ubuntu1.30).
     ## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).
     ## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.14).
-    ## The following additional packages will be installed:
+    ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
+    ## 0 upgraded, 0 newly installed, 0 to remove and 19 not upgraded.
 
-    ## libnode72
-
-    ## The following NEW packages will be installed:
-
-    ## libnode-dev libnode72
-
-    ## 0 upgraded, 2 newly installed, 0 to remove and 19 not upgraded.
-    ## Need to get 11.4 MB of archives.
-    ## After this operation, 47.4 MB of additional disk space will be used.
-    ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
-
-    ## Get:2 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode72 amd64 12.22.9~dfsg-1ubuntu3.6 [10.8 MB]
-
-    ## Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode-dev amd64 12.22.9~dfsg-1ubuntu3.6 [609 kB]
-
-    ## Fetched 11.4 MB in 1s (19.9 MB/s)
-
-    ## Selecting previously unselected package libnode72:amd64.
-    ## (Reading database ...
-
-    ## (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%
-
-    ## (Reading database ... 60%
-
-    ## (Reading database ... 65%
-
-    ## (Reading database ... 70%
-
-    ## (Reading database ... 75%
-
-    ## (Reading database ... 80%
-
-    ## (Reading database ... 85%
-
-    ## (Reading database ... 90%
-
-    ## (Reading database ... 95%
-
-    ## (Reading database ... 100%(Reading database ... 309484 files and directories currently installed.)
-
-    ## Preparing to unpack .../libnode72_12.22.9~dfsg-1ubuntu3.6_amd64.deb ...
-
-    ## Unpacking libnode72:amd64 (12.22.9~dfsg-1ubuntu3.6) ...
-
-    ## Selecting previously unselected package libnode-dev.
-
-    ## Preparing to unpack .../libnode-dev_12.22.9~dfsg-1ubuntu3.6_amd64.deb ...
-
-    ## Unpacking libnode-dev (12.22.9~dfsg-1ubuntu3.6) ...
-
-    ## Setting up libnode72:amd64 (12.22.9~dfsg-1ubuntu3.6) ...
-
-    ## Setting up libnode-dev (12.22.9~dfsg-1ubuntu3.6) ...
-
-    ## Processing triggers for libc-bin (2.35-0ubuntu3.15) ...
-
-    ## Running kernel seems to be up-to-date.
-    ## 
-    ## No services need to be restarted.
-    ## 
-    ## No containers need to be restarted.
-    ## 
-    ## No user sessions are running outdated binaries.
-    ## 
-    ## No VM guests are running outdated hypervisor (qemu) binaries on this host.
-
-    ## ✔ 3 pkgs + 56 deps: kept 59 [12.9s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [9.3s]
 
 ``` r
 
@@ -166,7 +102,7 @@ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 
     ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:18:34 UTC
+    ## ℹ Data updated: 2026-11-01 16:40:10 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -190,7 +126,7 @@ cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC
 
     ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 12:18:37 UTC
+    ## ℹ Data updated: 2026-11-01 16:40:11 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -214,8 +150,7 @@ cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC
 - [Akshay Easwaran](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/twitter/follow/akeaswaran?color=blue&label=%40akeaswaran&logo=x&style=for-the-badge)](https://x.com/akeaswaran)
   [![@akeaswaran](https://img.shields.io/github/followers/akeaswaran?color=eee&logo=Github&style=for-the-badge)](https://github.com/akeaswaran)
-- [Jared Lee](https://x.com/JaredDLee)
-  [![@JaredDLee](https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge)](https://x.com/JaredDLee)
+- [Jared Lee](https://github.com/Kazink36)
   [![@Kazink36](https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge)](https://github.com/Kazink36)
 - [Eric Hess](https://x.com/arbitanalytics)
   [![@arbitanalytics](https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge)](https://x.com/arbitanalytics)
@@ -282,7 +217,16 @@ BibTeX Citation
 - [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
 - [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
 - [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
-- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
+- [**cfbseedR**](https://cfbseedR.sportsdataverse.org/) - college
+  football season and playoff simulation (CRAN)
+- [**cfb4th**](https://cfb4th.sportsdataverse.org/) - college football
+  fourth-down decisions (r-universe)
+- [**sdvplotR**](https://sdvplotR.sportsdataverse.org/) - team logos,
+  colours and tables for every SportsDataverse league (r-universe)
+- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing
+  surfaces, including the college football field (CRAN)
+- [**cfbplotR**](https://cfbplotR.sportsdataverse.org/) - college
+  football logos and colours (r-universe)
 - [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python
   package
 - [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R
