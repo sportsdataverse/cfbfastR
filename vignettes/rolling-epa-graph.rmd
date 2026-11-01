@@ -38,7 +38,7 @@ install.packages("sdvplotR", repos = c("https://sportsdataverse.r-universe.dev",
 
 ## Pull the play by play data
 
-Using the [load_cfb_pbp()](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html) method, we will pull down a dataframe that contains ALL of the play by play data for ALL teams in `r cfbfastR:::most_recent_cfb_season()`. This method only takes about 30 seconds.
+Using the [load_cfb_pbp()](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.html) method, we will pull down a dataframe that contains ALL of the play by play data for ALL teams in `r cfbfastR:::most_recent_cfb_season()`. This method only takes about 30 seconds.
 
 ```{r load_cfb_pbp_most_recent, message=FALSE, warning=FALSE}
 yr <- cfbfastR:::most_recent_cfb_season()-1
@@ -195,7 +195,7 @@ ggsave(graph_team_off, filename = paste0("off_epa_rolling_",team,".png"),
        dpi = 300, type = "cairo", width = 10, height = 7, units = "in")
 ```
 
-I hope you found this useful!  As always, thanks to [\@CFB_Data](https://twitter.com/CFB_Data) and the [\@cfbfastR](https://twitter.com/cfbfastR) team for making this possible.  And shout out to folks like Parker Fleming ([\@statsowar](https://twitter.com/statsowar)) and Meyappan Subbaiah ([\@msubbiah1](https://twitter.com/msubbiah1)) for their feedback, advice, and encouragement while refining the look of this visualization.  Tag me in any of these graphs you post on twitter and I'll share them as much as possible.  
+I hope you found this useful!  As always, thanks to [\@CFB_Data](https://twitter.com/CFB_Data) and the [\@cfbfastR](https://twitter.com/cfbfastR) team for making this possible.  And shout out to folks like Parker Fleming ([\@statsowar](https://twitter.com/statsowar)) and Meyappan Subbaiah ([\@msubbaiah1](https://twitter.com/msubbaiah1)) for their feedback, advice, and encouragement while refining the look of this visualization.  Tag me in any of these graphs you post on twitter and I'll share them as much as possible.  
 
 -[Nate Manzo](https://twitter.com/cfbNate)
 
@@ -206,8 +206,7 @@ I hope you found this useful!  As always, thanks to [\@CFB_Data](https://twitter
 -   [Akshay Easwaran](https://x.com/akeaswaran)
 <a href='https://x.com/akeaswaran' target='blank'><img src='https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge' alt='@akeaswaran'/></a>
 <a href='https://github.com/akeaswaran' target='blank'><img src='https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@akeaswaran'/></a>
--   [Jared Lee](https://x.com/JaredDLee)
-<a href='https://x.com/JaredDLee' target='blank'><img src='https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge' alt='@JaredDLee'/></a>
+-   [Jared Lee](https://github.com/Kazink36)
 <a href='https://github.com/Kazink36' target='blank'><img src='https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@Kazink36'/></a>
 -   [Eric Hess](https://x.com/arbitanalytics)
 <a href='https://x.com/arbitanalytics' target='blank'><img src='https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=x&amp;style=for-the-badge' alt='@arbitanalytics'/></a>

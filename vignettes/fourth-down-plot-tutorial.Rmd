@@ -152,8 +152,7 @@ Looks good! Small sample size but can easily be built upon. Hopefully you found 
 -   [Akshay Easwaran](https://x.com/akeaswaran)
 <a href='https://x.com/akeaswaran' target='blank'><img src='https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge' alt='@akeaswaran'/></a>
 <a href='https://github.com/akeaswaran' target='blank'><img src='https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@akeaswaran'/></a>
--   [Jared Lee](https://x.com/JaredDLee)
-<a href='https://x.com/JaredDLee' target='blank'><img src='https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge' alt='@JaredDLee'/></a>
+-   [Jared Lee](https://github.com/Kazink36)
 <a href='https://github.com/Kazink36' target='blank'><img src='https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@Kazink36'/></a>
 -   [Eric Hess](https://x.com/arbitanalytics)
 <a href='https://x.com/arbitanalytics' target='blank'><img src='https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=x&amp;style=for-the-badge' alt='@arbitanalytics'/></a>

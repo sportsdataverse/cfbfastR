@@ -18,7 +18,7 @@ old <- options(rmarkdown.html_vignette.check_title = FALSE)
 Have you ever wanted to make an [animated win probability chart](https://kazink36.github.io/images/animated_wp_ex_wide.gif) for college football like [Lee Sharpe](https://twitter.com/LeeSharpeNFL) makes for [the NFL](https://twitter.com/LeeSharpeNFL/status/1300526539344289792)?
 This document will walk you step-by-step through the process of adapting [Sharpe's code](https://github.com/leesharpe/nfldata/blob/master/code/wpchart.R) to college football using data from [CollegeFootballData.com](collegefootballdata.com) collected using the ```cfbfastR``` package for R.
 
--[Jared Lee](https://twitter.com/JaredDLee)
+-[Jared Lee](https://github.com/Kazink36)
 
 ## Load and Install Packages
 
@@ -444,8 +444,6 @@ Finally, we run our ```draw_game()``` function inside of ```saveGIF()```.
   # saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp.gif")
 ```
 
-![Result](https://github.com/sportsdataverse/cfbfastR/blob/main/man/figures/animated_wp.gif?raw=true)
-
 This process takes awhile, about 3 minutes on my computer. We can also re-size our GIF using the `ani.width`, `ani.height` and `ani.res` parameters. I like to make my plots wider and at higher resolution, but be careful, this will drastically increase the rendering time and the file size.
 
 ```{r saveGIF_wide, message=FALSE, warning=FALSE}
@@ -462,8 +460,7 @@ This process takes awhile, about 3 minutes on my computer. We can also re-size o
 -   [Akshay Easwaran](https://x.com/akeaswaran)
 <a href='https://x.com/akeaswaran' target='blank'><img src='https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge' alt='@akeaswaran'/></a>
 <a href='https://github.com/akeaswaran' target='blank'><img src='https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@akeaswaran'/></a>
--   [Jared Lee](https://x.com/JaredDLee)
-<a href='https://x.com/JaredDLee' target='blank'><img src='https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge' alt='@JaredDLee'/></a>
+-   [Jared Lee](https://github.com/Kazink36)
 <a href='https://github.com/Kazink36' target='blank'><img src='https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@Kazink36'/></a>
 -   [Eric Hess](https://x.com/arbitanalytics)
 <a href='https://x.com/arbitanalytics' target='blank'><img src='https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=x&amp;style=for-the-badge' alt='@arbitanalytics'/></a>
