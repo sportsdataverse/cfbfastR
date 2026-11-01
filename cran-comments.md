@@ -32,7 +32,7 @@ This is a minor release (3.0.0 -> 3.1.0). It:
 * local Windows 10, R 4.6.1, `R CMD check --as-cran` with `--run-donttest`
 * GitHub Actions: windows-latest (release), ubuntu-latest (release, oldrel-1)
 * win-builder: R-devel, R-release (TO RUN before submission)
-* R-hub: linux, windows, macos (R-devel) (TO RUN before submission)
+* R-hub: linux, windows, macOS (R-devel) (TO RUN before submission)
 
 ## R CMD check results
 
