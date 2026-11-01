@@ -12,7 +12,7 @@ load_cfb_schedule_crosswalk(
 )
 }
 \arguments{
-\item{seasons}{A vector of 4-digit years associated with given college football seasons. Published coverage runs 2014 through the most recent season. Pass \code{seasons = TRUE} for every published season. (Min: 2014)}
+\item{seasons}{A vector of 4-digit years associated with given college football seasons. Published seasons are 2004, 2010, and 2013 through the most recent season (no files exist for 2005-2009 or 2011-2012). Pass \code{seasons = TRUE} for every published season. (Min: 2004)}
 
 \item{...}{Additional arguments passed to an underlying function that
 writes the season data into a database.}

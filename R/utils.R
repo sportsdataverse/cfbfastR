@@ -98,7 +98,33 @@ parquet_from_url <- function(url) {
     return(data.table::data.table())
   }
   data.table::setDT(load)
+  # An all-null parquet column arrives as `vctrs_unspecified`; rbindlist()
+  # refuses to stack it onto a season where the same column is logical.
+  for (col in names(load)[vapply(load, inherits, logical(1), "vctrs_unspecified")]) {
+    data.table::set(load, j = col, value = as.logical(unclass(load[[col]])))
+  }
   return(load)
+}
+
+# Play ids are Int64 values of up to 18 digits; above 2^53 a double cannot hold them
+# (2025 espn_cfb_pbp: 166,360 ids collapse to 149,864 as doubles). Convert
+# exactly to character, the dtype espn_cfb_pbp_v2() returns. Integer64 goes
+# through bit64; a plain double is left alone because casting it would only
+# bake in the rounding.
+ids_to_character <- function(df, cols) {
+  for (col in intersect(cols, names(df))) {
+    x <- df[[col]]
+    if (inherits(x, "integer64")) {
+      rlang::check_installed("bit64")
+      x <- bit64::as.character.integer64(x)
+    } else if (is.integer(x)) {
+      x <- as.character(x)
+    } else if (is.double(x)) {
+      cli::cli_warn("{.field {col}} arrived as a double; ids above 2^53 may already be rounded.")
+    }
+    data.table::set(df, j = col, value = x)
+  }
+  df
 }
 # read rds that has been pre-fetched
 read_raw_rds <- function(raw) {
