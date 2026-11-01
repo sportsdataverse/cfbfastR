@@ -1,6 +1,4 @@
 
-# 
-
 # **cfbfastR** <a href='https://cfbfastR.sportsdataverse.org/'><img src='https://raw.githubusercontent.com/sportsdataverse/cfbfastR/main/logo.png' align="right" width="20%" min-width="100px"/></a>
 
 <!-- badges: start -->
@@ -53,12 +51,12 @@ You can install the CRAN version of
 install.packages("cfbfastR")
 ```
 
-You can install the released version of
+You can install the development version of
 [**`cfbfastR`**](https://github.com/sportsdataverse/cfbfastR/) from
 [GitHub](https://github.com/sportsdataverse/cfbfastR) with:
 
 ``` r
-# You can install using the pak package using the following code:
+# You can install using the remotes package using the following code:
 if (!requireNamespace('remotes', quietly = TRUE)){
   install.packages('remotes', repos = "https://cloud.r-project.org")
 }
@@ -67,7 +65,7 @@ remotes::install_github("sportsdataverse/cfbfastR")
 
 ## **Full Season Data Loaders**
 
-`cfbfastR` ships four loader families that pull pre-built season
+`cfbfastR` ships five loader families that pull pre-built season
 datasets from the [sportsdataverse-data
 releases](https://github.com/sportsdataverse/sportsdataverse-data/releases)
 — no API key, no scraping, one function call per dataset:
@@ -78,12 +76,13 @@ releases](https://github.com/sportsdataverse/sportsdataverse-data/releases)
 | ESPN                  | `load_espn_cfb_*()` (27)                                                                                                                                                                                                                                                          | ESPN-derived datasets: pbp, schedules, team/player box, drives, game rosters, linescores, betting, play participants, FPI power index, percentiles, passing/rushing/receiving EPA splits, team summaries, model pbp, and eleven `adv_*` advanced-stat datasets | mostly 2004+   |
 | Ratings & recruiting  | `load_cfb_ratings()`, `load_cfb_ratings_weekly()`, `load_cfb_fpi_weekly()`, `load_cfb_team_summaries_weekly()`, `load_cfb_team_talent()`, `load_cfb_recruits()`, `load_cfb_recruiting_proj()`, `load_cfb_returning_production()`, plus the `load_cfb_*_crosswalk()` id crosswalks | Season/weekly power ratings, talent composite, recruiting, ESPN↔Fox↔Yahoo id crosswalks                                                                                                                                                                             | varies (2002+) |
 | NCAA (stats.ncaa.org) | `load_ncaa_mfb_*()` (10)                                                                                                                                                                                                                                                          | pbp (native + cfbfastR-shaped), drives, linescore, officials, player/team stats, rosters, schedule, teams — includes FCS and lower divisions ESPN misses                                                                                                       | 2013+          |
+| Conference & division membership | `load_cfb_groups()`, `load_cfb_group_seasons()`, `load_cfb_group_aliases()`, `load_cfb_team_group_seasons()` | Subdivision, conference and division lineages, each group’s name, parent and member count by season, ESPN/CFBD id aliases, and every team’s groups per season | 1869+ |
 
 **Which play-by-play do I want?**
 
   - `load_cfb_pbp()` — the classic cfbfastR pbp with the full EPA/WPA
     model columns; FBS, 2014+. Existing code keeps working unchanged.
-  - `load_espn_cfb_pbp()` — the ESPN-derived pbp (469 columns
+  - `load_espn_cfb_pbp()` — the ESPN-derived pbp (about 500 columns
     incl. EPA/WPA and participant ids) with deeper history, 2004+.
   - `load_ncaa_mfb_pbp()` — stats.ncaa.org pbp incl. FCS and lower
     divisions, 2013+; `load_ncaa_mfb_pbp_cfbfastr()` is the same data
@@ -102,9 +101,10 @@ they need a `CFBD_API_KEY` and take no `dbConnection` or `tablename`.
 
 ## **CollegeFootballData API coverage**
 
-The `cfbd_*()` wrappers cover **all 84 endpoints** in the current CFBD
-specification (v5.27.1). The most recent additions are the passing and
-rushing families, which carry charting detail the older `cfbd_stats_*()`
+The `cfbd_*()` wrappers cover **88 of the 93 endpoints** in the current
+CFBD specification (v5.33.2); the five `/punting/*` endpoints are not
+wrapped yet. The most recent additions are the passing and rushing
+families, which carry charting detail the older `cfbd_stats_*()`
 and `cfbd_metrics_*()` functions do not:
 
 ``` r
@@ -120,7 +120,7 @@ cfbd_rushing_teams_season(year = 2025, team = "Texas")
 
 These endpoints begin in **2025**; earlier seasons return an empty data
 frame rather than an error. See `?cfbd_passing` and `?cfbd_rushing` —
-the frames are wide (up to 375 columns) because one production block
+the frames are wide (up to 385 columns) because one production block
 repeats per location or direction, so the family topics document the
 block and the naming scheme once instead of listing every column.
 
@@ -186,8 +186,8 @@ options(cfbfastR.proxy = list(
 The resolution order is: explicit `proxy =` argument -\>
 `getOption("cfbfastR.proxy")` -\> `http_proxy` / `https_proxy` env vars.
 See the [intro
-vignette](https://cfbfastR.sportsdataverse.org/articles/intro.html) and
-`CLAUDE.md` for full detail.
+vignette](https://cfbfastR.sportsdataverse.org/articles/intro.html) for
+full detail.
 
 ## Follow [cfbfastR](https://x.com/cfbfastR) and the [SportsDataverse](https://x.com/SportsDataverse) on Twitter and star this repo
 
