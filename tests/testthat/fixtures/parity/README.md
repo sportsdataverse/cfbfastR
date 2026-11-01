@@ -1,5 +1,42 @@
 # Parity oracles
 
+`fixture_games.json` — the 60-game offline corpus most oracles here are drawn from: 5 games from each
+of 2004, 2006, 2008, 2010, 2013, 2014, 2017, 2019, 2020, 2021, 2023 and 2025, spread across each
+season including the postseason (`game_id`, `week`, `season_type`, `has_participants`). The list
+straddles 2014 on purpose: before it ESPN ships no structured `participants[]`, so the early games
+exercise the text-only parsing path. Committed 2026-08-19 with cfbfastR #129 (`28d61b99`).
+
+`sdvpy_golden.parquet`, `attribution_oracle.parquet`, `direction_oracle.parquet`,
+`participants_oracle.parquet`, `boxparity_pbp.parquet`, `boxparity_box.parquet`,
+`game_rosters.parquet`, `game_boxscores.parquet`, `play_participants.parquet` — committed 2026-08-19
+with cfbfastR #129 (`28d61b99`), generated offline from the ESPN summary payloads banked in
+cfbfastR-cfb-raw (`cfb/json/raw/`, plus its `cfb/game_rosters/` and `cfb/play_participants/`) for the
+`fixture_games.json` games, with zero API calls. **Provenance gap:** the sportsdataverse-py commit
+they were captured from and the generator script were not recorded, so unlike the oracles below they
+cannot be re-captured as-is; a re-capture needs a new `data-raw/` generator (and should record the
+sdv-py commit here). Until then, do not hand-edit them. What each holds (`fixture_game_id` keys the
+game; play `id` is the ESPN play id):
+
+- `sdvpy_golden.parquet` — 9,549 plays of the 60 games as sdv-py's `CFBPlayProcess` emitted them
+  (114 columns: penalty detection and enforcement, attribution and turnover flags, player names and
+  `*_player_id`, air yards, pass / rush direction). Read by `test-parity_penalty_enforcement.R`,
+  `test-parity_player_ids.R` and `test-pbp_regex_case.R`.
+- `attribution_oracle.parquet` — 9,545 rows (56 game ids): every column sdv-py's
+  `__add_attribution_cols` reads, and every column it writes suffixed `__out`.
+  `test-parity_attribution.R`.
+- `direction_oracle.parquet` — the same rows: the inputs and `__out` outputs of the depth / direction
+  block of `__add_player_cols`. `test-parity_air_yards.R`.
+- `participants_oracle.parquet` — the same rows: the eleven `*_player_name` columns immediately before
+  (`__before`) and after (`__after`) sdv-py's `__join_participants`. `test-parity_join_participants.R`.
+- `play_participants.parquet` — 5,384 rows (34 games): ESPN `participants[]` names per play, the
+  stage's other input. `test-parity_join_participants.R`.
+- `game_rosters.parquet` (8,829 rows, 56 games) and `game_boxscores.parquet` (2,018 rows, 57 games) —
+  the roster and box-score athlete records (`athlete_id`, display name, `team_id`) sdv-py's
+  `__attach_player_ids` resolves against. `test-parity_player_ids.R`.
+- `boxparity_pbp.parquet` (9,549 plays) and `boxparity_box.parquet` (120 team-games) — sdv-py's
+  per-play flags and yardage, and ESPN's official team box, for the pbp-to-box-score gate ported
+  from sdv-py `tools/validation/checks/boxscore_parity`. `test-pbp_boxscore_parity.R`.
+
 `airyards_oracle.parquet` — captured 2026-09-01 from sportsdataverse-py `9efee9f1`
 (`CFBPlayProcess.run_processing_pipeline()` run offline on the ESPN summary payloads banked in
 cfbfastR-cfb-raw `cfb/json/raw/`, `join_participants = False`). One row per play; every column
