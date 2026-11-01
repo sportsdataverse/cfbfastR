@@ -68,7 +68,7 @@ Other CFBD Conference Functions:
 # \donttest{
   try(cfbd_conferences())
 #> ── Conference data from CollegeFootballData.com ────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-01 16:26:20 UTC
+#> ℹ Data updated: 2026-11-01 18:58:36 UTC
 #> # A tibble: 256 × 6
 #>    conference_id name         long_name abbreviation classification member_count
 #>            <int> <chr>        <chr>     <chr>        <chr>                 <int>

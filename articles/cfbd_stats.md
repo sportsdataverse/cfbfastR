@@ -33,7 +33,6 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
     ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
-
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
@@ -63,7 +62,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
     ## 0 upgraded, 0 newly installed, 0 to remove and 19 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [9.4s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [10.5s]
 
 ``` r
 
@@ -247,7 +246,7 @@ tex_pass |>
 
     ## ── Player season passing data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 16:41:24 UTC
+    ## ℹ Data updated: 2026-11-01 19:14:08 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts completion_rate average_depth_of_target   ppa
@@ -314,7 +313,7 @@ tex_pass |>
 
     ## ── Player season passing data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 16:41:24 UTC
+    ## ℹ Data updated: 2026-11-01 19:14:08 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts air_yards_parsed adot_correct adot_naive
@@ -335,7 +334,7 @@ cfbd_passing_plays(year = 2025, week = 5, outcome = "completion") |>
 
     ## ── Passing plays data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 16:41:25 UTC
+    ## ℹ Data updated: 2026-11-01 19:14:10 UTC
 
     ## # A tibble: 10 × 7
     ##    offense    defense    passer       target         total_yards   ppa success
@@ -373,7 +372,7 @@ cfbd_stats_categories()
 
     ## ── Stat categories for CollegeFootballData.com ─────────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 16:41:25 UTC
+    ## ℹ Data updated: 2026-11-01 19:14:10 UTC
 
     ## # A tibble: 38 × 1
     ##    category          

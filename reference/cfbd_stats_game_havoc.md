@@ -90,7 +90,7 @@ Other CFBD Stats:
 # \donttest{
    try(cfbd_stats_game_havoc(year = 2023, team = "Georgia"))
 #> ── Game havoc stats from CollegeFootballData.com ───────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-01 16:31:13 UTC
+#> ℹ Data updated: 2026-11-01 19:03:51 UTC
 #> # A tibble: 14 × 22
 #>      game_id season season_type  week team    conference opponent      
 #>        <int>  <int> <chr>       <int> <chr>   <chr>      <chr>         
@@ -118,7 +118,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_game_havoc(2022, week = 1))
 #> ── Game havoc stats from CollegeFootballData.com ───────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-01 16:31:14 UTC
+#> ℹ Data updated: 2026-11-01 19:03:52 UTC
 #> # A tibble: 273 × 22
 #>      game_id season season_type  week team       conference opponent  
 #>        <int>  <int> <chr>       <int> <chr>      <chr>      <chr>     

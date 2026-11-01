@@ -84,7 +84,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_rushing(2004))
 #> ── college football rushing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-11-01 16:36:57 UTC
+#> ℹ Data updated: 2026-11-01 19:09:12 UTC
 #> # A tibble: 1,122 × 78
 #>    team_id pos_team      division conference season player_id rusher_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             

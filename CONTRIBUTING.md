@@ -423,11 +423,13 @@ equivalent.
 
 ## CI / GitHub Actions
 
-The repository runs five workflows out of `.github/workflows/`:
+The repository runs seven workflows out of `.github/workflows/`:
 
 | Workflow | Triggers | Purpose |
 |----|----|----|
-| `R-CMD-check.yaml` | push / PR to `main`, weekly cron, manual | Cross-platform `R CMD check` matrix |
+| `R-CMD-check.yaml` | push / PR to `main`, weekly cron, manual | Cross-platform `R CMD check` matrix; the r-devel job fails on NOTEs |
+| `test-coverage.yaml` | push / PR to `main`, manual | covr test coverage, uploaded to Codecov (upload failures don’t fail the job) |
+| `url-check.yaml` | push / PR to `main`, weekly cron, manual | `urlchecker` over docs and README; fails on 404/410, permanent redirects and non-canonical CRAN URLs |
 | `pkgdown.yaml` | push to `main`, release, manual | Build & deploy <https://cfbfastr.sportsdataverse.org/> |
 | `rhub.yaml` | manual | rhub v2 checks across CRAN-relevant platforms |
 | `api-sync.yaml` | daily cron, push to `main` touching `R/`, manual | Diff the live CFBD spec against the `cfbd_*` wrappers and track the gaps in an issue |
@@ -438,7 +440,8 @@ Secrets used:
 | Secret | Used by | Description |
 |----|----|----|
 | `GITHUB_TOKEN` | All workflows | Auto-provided by GitHub |
-| `CFBD_API_KEY` | `R-CMD-check.yaml`, `pkgdown.yaml`, `rhub.yaml` | Optional – enables live CFBD tests and examples when present in CI |
+| `CODECOV_TOKEN` | `test-coverage.yaml` | Codecov upload token |
+| `CFBD_API_KEY` | `R-CMD-check.yaml`, `test-coverage.yaml`, `pkgdown.yaml`, `rhub.yaml` | Required by `R-CMD-check.yaml` and `test-coverage.yaml`: they set `NOT_CRAN=true`, and not every live CFBD test skips without a key. Optional for `pkgdown.yaml` and `rhub.yaml` (enables CFBD examples) |
 
 ## Reporting Issues
 

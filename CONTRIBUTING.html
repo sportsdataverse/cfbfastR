@@ -430,13 +430,20 @@ ci: bump actions/checkout to v5 in pkgdown workflow</code></pre>
 </div>
 <div class="section level2">
 <h2 id="ci--github-actions">CI / GitHub Actions<a class="anchor" aria-label="anchor" href="#ci--github-actions"></a></h2>
-<p>The repository runs five workflows out of <code>.github/workflows/</code>:</p>
+<p>The repository runs seven workflows out of <code>.github/workflows/</code>:</p>
 <table class="table"><colgroup><col width="19%"><col width="33%"><col width="48%"></colgroup><thead><tr><th>Workflow</th>
 <th>Triggers</th>
 <th>Purpose</th>
 </tr></thead><tbody><tr><td><code>R-CMD-check.yaml</code></td>
 <td>push / PR to <code>main</code>, weekly cron, manual</td>
-<td>Cross-platform <code>R CMD check</code> matrix</td>
+<td>Cross-platform <code>R CMD check</code> matrix; the r-devel job fails on NOTEs</td>
+</tr><tr><td><code>test-coverage.yaml</code></td>
+<td>push / PR to <code>main</code>, manual</td>
+<td>covr test coverage, uploaded to Codecov (upload failures don’t fail the job)</td>
+</tr><tr><td><code>url-check.yaml</code></td>
+<td>push / PR to <code>main</code>, weekly cron, manual</td>
+<td>
+<code>urlchecker</code> over docs and README; fails on 404/410, permanent redirects and non-canonical CRAN URLs</td>
 </tr><tr><td><code>pkgdown.yaml</code></td>
 <td>push to <code>main</code>, release, manual</td>
 <td>Build &amp; deploy <a href="https://cfbfastr.sportsdataverse.org/" class="external-link uri">https://cfbfastr.sportsdataverse.org/</a>
@@ -457,11 +464,14 @@ ci: bump actions/checkout to v5 in pkgdown workflow</code></pre>
 </tr></thead><tbody><tr><td><code>GITHUB_TOKEN</code></td>
 <td>All workflows</td>
 <td>Auto-provided by GitHub</td>
+</tr><tr><td><code>CODECOV_TOKEN</code></td>
+<td><code>test-coverage.yaml</code></td>
+<td>Codecov upload token</td>
 </tr><tr><td><code>CFBD_API_KEY</code></td>
 <td>
-<code>R-CMD-check.yaml</code>, <code>pkgdown.yaml</code>, <code>rhub.yaml</code>
+<code>R-CMD-check.yaml</code>, <code>test-coverage.yaml</code>, <code>pkgdown.yaml</code>, <code>rhub.yaml</code>
 </td>
-<td>Optional – enables live CFBD tests and examples when present in CI</td>
+<td>Required by <code>R-CMD-check.yaml</code> and <code>test-coverage.yaml</code>: they set <code>NOT_CRAN=true</code>, and not every live CFBD test skips without a key. Optional for <code>pkgdown.yaml</code> and <code>rhub.yaml</code> (enables CFBD examples)</td>
 </tr></tbody></table></div>
 <div class="section level2">
 <h2 id="reporting-issues">Reporting Issues<a class="anchor" aria-label="anchor" href="#reporting-issues"></a></h2>
