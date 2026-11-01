@@ -93,7 +93,10 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   receiver-is-not-sacked captures read "Fumble" and "SACKED" too
   ("Fumble recovered by CCaro Roderick Holder" now names him). A
   "N Yd Fumble Return" touchdown still has no fumble player: the player it
-  names is the returner. (sportsdataverse-py emits "Yd" there.)
+  names is the returner. sportsdataverse-py's name-shaped fumbler capture (one
+  to three capitalised words before "fumble(d)" or after "fumbled by", which it
+  measures lifting fumble id joins from 56% to 79%) is not ported yet, so
+  `fumble_player_name` / `fumble_player_id` still trail it on most fumbles.
 - Captured player names lose a clause the capture ran into before the roster
   join, as sportsdataverse-py's `__attach_player_ids` does: a "N Yd" yardage
   ("Ale Kaho 0 Yd" -> "Ale Kaho"), a glued "tackled" / "fumble", a trailing

@@ -344,6 +344,13 @@ add_player_cols <- function(pbp) {
     )
 
   ## Fumble player name
+  # Only the legacy fragment capture is ported. sdv-py (cfb_pbp.py, the
+  # fumble_player block after __add_player_cols' extraction, 4b78a45a3d lines
+  # 7462-7480) tries a name-shaped capture first -- an optional #NN, one to
+  # three capitalised words before "fumble(d)", or after "fumbled by" -- and
+  # falls back to this one; its own measurement lifts fumble id joins from 56%
+  # to 79%. Unported here, so this column trails sdv-py on most fumbles, not
+  # only on "N Yd Fumble Return" rows (where sdv-py's capture reads "Yd").
   pbp <- pbp |>
     dplyr::mutate(
       fumble_player = ifelse(stringr::str_detect(.data$play_text, regex("fumble", ignore_case = TRUE)),

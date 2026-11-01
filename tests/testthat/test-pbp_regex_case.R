@@ -102,7 +102,8 @@ test_that("fumble and receiver names read capitalised play text, as sdv-py does"
   expect_identical(r$sack_player_name, "William Parks")
   # A fumble-return touchdown names the returner, not the fumbler, so there is
   # no fumble player. sdv-py 4b78a45a3d emits "Yd" here (its fumbler override
-  # captures the capitalised word before "Fumble"); R keeps NA, a documented
+  # captures the capitalised word before "Fumble"; the whole name-shaped override,
+  # cfb_pbp.py 7462-7480, is unported, see add_player_cols()); R keeps NA, a documented
   # divergence. 400547649101924501 (2014).
   r <- names_of("Fumble Return Touchdown", "Naim Cheeseboro 0 Yd Fumble Return (Przemyslaw Popek Kick)")
   expect_true(is.na(r$fumble_player_name))
