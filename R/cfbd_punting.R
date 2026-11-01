@@ -511,8 +511,8 @@ cfbd_punting_teams_games <- function(year = NULL,
 #'  |clock_seconds              |integer   |Seconds remaining on the game clock at the snap.                                         |
 #'
 #' Columns that are `NA` on every row of a response are typed `logical` by R:
-#' `blocker_id` and `blocker` are `NA` in any slate without a blocked punt
-#' (2025 week 5 has one blocked punt and no named blocker). Return yardage is
+#' CFBD does not fill `blocker_id` or `blocker`, even when the play text names
+#' the blocker, so both are usually all `NA` and typed `logical`. Return yardage is
 #' `NA`, not 0, on a punt with no return.
 #'
 #' @keywords Punting Plays

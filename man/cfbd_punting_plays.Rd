@@ -102,8 +102,8 @@ variables, so a caller can override the shared setting for one endpoint.}
 
 
 Columns that are \code{NA} on every row of a response are typed \code{logical} by R:
-\code{blocker_id} and \code{blocker} are \code{NA} in any slate without a blocked punt
-(2025 week 5 has one blocked punt and no named blocker). Return yardage is
+CFBD does not fill \code{blocker_id} or \code{blocker}, even when the play text names
+the blocker, so both are usually all \code{NA} and typed \code{logical}. Return yardage is
 \code{NA}, not 0, on a punt with no return.
 }
 \description{
