@@ -15,7 +15,14 @@ This is a minor release (3.0.0 -> 3.1.0). It:
 * Fixes the release loaders: model play-by-play is read as published, play ids
   stay exact, and every published season is accepted.
 * Adds ten `calculate_*()` functions that score a data frame with those models,
-  validated against each model's published card.
+  validated against each model's published card, and `cfb_model_card()`,
+  `cfb_card_features()`, `cfb_card_era_contract()` and `cfb_card_reset_cache()`
+  to read those cards.
+* `cfbd_team_roster()` (and `load_cfb_rosters()`) returns `year` as the
+  player's class year (`NA` where CFBD filled it with the season), with the
+  roster year in a new `season` column.
+* CFBD requests retry HTTP 502 and 504 as well as 429 and 503, up to 6 times
+  within 120 seconds.
 * Adds ten `cfbd_*()` wrappers for the CollegeFootballData passing and rushing
   endpoints, plus schedule, preview and team-overview endpoints.
 * Adds loaders for season-by-season conference and division membership.
