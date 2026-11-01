@@ -17,9 +17,10 @@ output to `cfbd_drives()` to get drive-level start/end field position."*
 
 - [ ] `cfbd_*()` — College Football Data API
 - [ ] `espn_cfb_*()` — ESPN College Football endpoints
-- [ ] `load_cfb_*()` — Full-season loaders
+- [ ] `fox_cfb_*()` / `yahoo_cfb_*()` — Fox Sports / Yahoo Sports endpoints
+- [ ] `load_cfb_*()` / `load_espn_cfb_*()` / `load_ncaa_mfb_*()` — Full-season loaders
 - [ ] `update_cfb_db()` / database tooling
-- [ ] EPA / WPA modeling helpers
+- [ ] EPA / WPA modeling helpers and `calculate_*()` model calculators
 - [ ] Documentation / vignettes
 - [ ] Other (please specify):
 

@@ -12,10 +12,22 @@ This is a minor release (3.0.0 -> 3.1.0). It:
   surfaces' win probabilities also change from 3.0.0 (they now match the Python
   counterpart on real games). The published `pos_team_receives_2H_kickoff`
   column is unchanged.
+* Brings the play-by-play engine's timeout counting and 2018+ fair-catch
+  kickoff touchbacks in line with the Python counterpart, and its text parsing
+  closer to it (fumble player names still differ), so some
+  player names and ids, timeouts remaining and kickoff columns change from
+  3.0.0, and with them EPA on fair-caught kickoffs and win probability.
 * Fixes the release loaders: model play-by-play is read as published, play ids
   stay exact, and every published season is accepted.
 * Adds ten `calculate_*()` functions that score a data frame with those models,
-  validated against each model's published card.
+  validated against each model's published card, and `cfb_model_card()`,
+  `cfb_card_features()`, `cfb_card_era_contract()` and `cfb_card_reset_cache()`
+  to read those cards.
+* `cfbd_team_roster()` (and `load_cfb_rosters()`) returns `year` as the
+  player's class year (`NA` where CFBD filled it with the season), with the
+  roster year in a new `season` column.
+* CFBD requests retry HTTP 502 and 504 as well as 429 and 503, up to 6 times
+  within 120 seconds.
 * Adds ten `cfbd_*()` wrappers for the CollegeFootballData passing and rushing
   endpoints, plus schedule, preview and team-overview endpoints.
 * Adds loaders for season-by-season conference and division membership.
