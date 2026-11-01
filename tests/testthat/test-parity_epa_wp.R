@@ -44,9 +44,9 @@ skip_if_no_models <- function() {
   testthat::skip_if_not_installed("xgboost")
   # The bundle download failed (offline, GitHub down): the loaders fell back to
   # the retired GAMs, or found nothing, and there is no booster to compare.
-  testthat::skip_if_not(inherits(get("wp_model", asNamespace("cfbfastR")), "xgb.Booster"),
+  testthat::skip_if_not(inherits(.cfb_model("wp_model"), "xgb.Booster"),
                         "WP booster unavailable (bundle not fetched)")
-  testthat::skip_if_not(inherits(get("ep_model", asNamespace("cfbfastR")), "xgb.Booster"),
+  testthat::skip_if_not(inherits(.cfb_model("ep_model"), "xgb.Booster"),
                         "EP booster unavailable (bundle not fetched)")
   testthat::skip_if(is.null(.cfb_wp_spread_model()), "spread WP booster unavailable")
 }
@@ -99,7 +99,7 @@ test_that("the oracle covers what it claims", {
 test_that("naive WP (R wp_before) matches sdv-py on real games", {
   skip_if_no_models()
   o <- read_oracle()
-  got <- .wp_predict(get("wp_model", asNamespace("cfbfastR")), r_start(o))
+  got <- .wp_predict(.cfb_model("wp_model"), r_start(o))
   expect_close(got, o$wp_naive_raw, "wp_before vs sdv-py wp_before_naive (raw)")
 })
 
