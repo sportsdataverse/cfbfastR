@@ -72,7 +72,7 @@ pkgdown::build_site()
 | stats.ncaa.org release datasets        | `load_ncaa_mfb_`   | `load_ncaa_mfb_pbp()`, `load_ncaa_mfb_schedule()`  |
 
 Loader delineation: `load_cfb_pbp()` is the classic cfbfastR EPA/WPA pbp
-(2014+); `load_espn_cfb_pbp()` is the ESPN-derived 469-column pbp (2004+);
+(2014+); `load_espn_cfb_pbp()` is the ESPN-derived ~500-column pbp (2004+);
 `load_ncaa_mfb_pbp()` is the native stats.ncaa.org parse (2013+, incl. FCS)
 and `load_ncaa_mfb_pbp_cfbfastr()` reshapes it onto cfbfastR pbp columns.
 One loader per sportsdataverse-data release tag; new loaders go in
