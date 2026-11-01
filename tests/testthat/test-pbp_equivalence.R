@@ -247,12 +247,15 @@
     b <- legacy[[k]][ord_l]
     same_to <- same_to & ((is.na(a) & is.na(b)) | (!is.na(a) & !is.na(b) & a == b))
   }
-  # "next row" is the next play of the game, not the next id: ids sort the
-  # frame here, and ESPN's ids do not always run in play order
-  gpn <- v2$game_play_number[ord_v]
-  by_play <- order(gpn)
+  # "next row" is the next row of the same game in play order, not the next id:
+  # ids sort the frame here, and ESPN's ids do not always run in play order.
+  # game_row_number, not game_play_number, which Timeout / Penalty / marker
+  # rows do not advance (401628409 has 23 ties).
+  gid <- as.character(v2$game_id[ord_v])
+  by_play <- order(gid, v2$game_row_number[ord_v])
+  same_game <- c(utils::tail(gid[by_play], -1L) == utils::head(gid[by_play], -1L), FALSE)
   next_same <- rep(TRUE, length(same_to))
-  next_same[by_play] <- c(same_to[by_play][-1], TRUE)
+  next_same[by_play] <- ifelse(same_game, c(same_to[by_play][-1], TRUE), TRUE)
   wp_keep <- same_to & next_same
   # the exemption must stay an exception, not swallow the comparison
   expect_gte(mean(wp_keep), 0.9, label = paste0(sample_label, ": share of rows with WP compared"))
