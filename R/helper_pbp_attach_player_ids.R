@@ -83,6 +83,27 @@
 .player_name_garbage <-
   "\\b(loss|gain|yards?|incomplete|penalty|fumbled|sacked|touchdown|kickoff|punt|return|hurried by|QB)\\b"
 
+# A clause the regex name capture ran into, cut unconditionally (sdv-py
+# `_PLAYER_NAME_CLAUSE_CUT`): none of these can be part of a name -- lowercase
+# connectives, ESPN's glued "tackled" / "fumble", the clock and holder tags, a
+# "N Yd" yardage ("Ale Kaho 0 Yd Return of Blocked Punt" -> "Ale Kaho").
+.player_name_clause_cut <- paste0(
+  "(?:(?i:tackled)|(?i:fumble)|(?i:,\\s*clock)|\\s+\\(H:",
+  "|\\s+(?:to|at|in the|for|by|blocked|returned|recovered|the middle)(?:\\s|$)",
+  "|,\\s*(?:forced|recovered|returned|lateral|up)(?:\\s|$)|\\.\\s+Downed(?:\\s|$)|\\s+\\d+\\s+Yd(?:\\s|$)).*$"
+)
+# A capture that starts in a clause is no name at all ("to the MiaOh 21",
+# "by Darrell Taylor"); a leading clock tag ("Clock 07:50, Kevin Kolb") is
+# dropped. sdv-py `_PLAYER_NAME_CLAUSE_LEAD`.
+.player_name_clause_lead <- paste0(
+  "^(?:(?i:clock)\\s+\\d{1,2}:\\d{2},\\s*",
+  "|(?:to|by|at|for|in|the|up|lateral|complete|incomplete|direct|from|returned|recovered|fumbled|muffed)",
+  "(?:\\s|$).*$)"
+)
+# After the cut: a digit (a spot such as "WAS30"), ESPN's "N/A", a single
+# character or the literal "null" is not a name. sdv-py `_PLAYER_NAME_NOT_A_NAME`.
+.player_name_not_a_name <- "\\d|^N/A(?:[\\s,.]|$)|^.$|^null$"
+
 # Narrative tails that bleed into a captured name where the extraction regex has
 # no stopword boundary: pass-direction phrases ("Russell Wilson deep out") and
 # missing-space concatenations in ESPN's own text ("Raynard Hornetackled by").
@@ -161,8 +182,16 @@
     v <- as.character(raw_df[[nm]])
     v <- stringr::str_replace(v, stringr::regex(.player_name_team_suffix), "")
     v <- stringr::str_squish(v)
+    # sdv-py __attach_player_ids step 1b: cut a clause the capture ran into
+    # (only a name the cut fires on is rewritten), then null a non-name
+    cut <- !is.na(v) & (stringr::str_detect(v, .player_name_clause_cut) |
+                          stringr::str_detect(v, .player_name_clause_lead))
+    v[cut] <- trimws(stringr::str_replace(stringr::str_replace(v[cut], .player_name_clause_lead, ""),
+                                          .player_name_clause_cut, ""),
+                     whitespace = "[ ,.-]")
     v[is.na(v) | v == "" |
-      stringr::str_detect(v, stringr::regex(.player_name_garbage, ignore_case = TRUE))] <- NA_character_
+      stringr::str_detect(v, stringr::regex(.player_name_garbage, ignore_case = TRUE)) |
+      stringr::str_detect(v, .player_name_not_a_name)] <- NA_character_
     raw_df[[nm]] <- v
   }
 

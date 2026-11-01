@@ -45,25 +45,38 @@ test_that("the sack literals fold case (sdv-py C-L16)", {
                "Sack")
 })
 
-test_that("the blocked-punt returner matches sdv-py on 'Return of Blocked Punt'", {
+test_that("the blocked-punt returner is sdv-py's name and athlete id", {
   testthat::skip_on_cran()
   skip_if_not_installed("arrow")
-  path <- testthat::test_path("fixtures", "parity", "sdvpy_golden.parquet")
-  skip_if_not(file.exists(path), "sdv-py golden fixture not present")
-  g <- as.data.frame(arrow::read_parquet(path))
-  g <- g[grepl("Punt", g[["type.text"]]) & !is.na(g$text), , drop = FALSE]
+  path <- testthat::test_path("fixtures", "parity", "game_rosters.parquet")
+  skip_if_not(file.exists(path), "game roster fixture not present")
+  ros <- as.data.frame(arrow::read_parquet(path))
+  ros <- ros[ros$fixture_game_id == 401110806, , drop = FALSE]
+  # 401110806 (2019), play 401110806103947001. sdv-py 4b78a45a3d emits
+  # punt_block_return_player_name "Ale Kaho" and id 4361090: the capture is
+  # "Ale Kaho 0 Yd", and __attach_player_ids cuts the "N Yd" clause before the
+  # roster join (the older golden, captured before that cut, says "Ale Kaho 0 Yd").
   r <- add_player_cols(data.frame(
-    play_type = g[["type.text"]], play_text = g$text,
+    play_type = "Blocked Punt Touchdown",
+    play_text = "Ale Kaho 0 Yd Return of Blocked Punt (Joseph Bulovas Kick)",
     pass = 0, rush = 0, sack = 0, fumble_vec = 0,
     stringsAsFactors = FALSE
   ))
-  # The golden carries one such row (2019, "Ale Kaho 0 Yd Return of Blocked
-  # Punt"). Only the rows the case fold decides are compared: the lower-case
-  # "blocked ... returned" rows parse the same before and after, and one of
-  # them (a fumbled block, "recovered by ... returned for 4 yds") already
-  # differs from sdv-py for a reason unrelated to case.
-  rows <- !(grepl("blocked", g$text) & grepl("return", g$text))
-  expect_true(any(grepl("Return of Blocked Punt", g$text[rows])))
-  expect_identical(r$punt_block_return_player_name[rows], g$punt_block_return_player_name[rows])
-  expect_identical(r$punt_block_return_player_name[grepl("Return of Blocked Punt", g$text)], "Ale Kaho 0 Yd")
+  r$return_team <- "333"
+  out <- .pbp_attach_player_ids(r, roster = data.frame(
+    athlete_id = as.character(ros$athlete_id), display_name = ros$athlete_display_name,
+    team_id = as.character(ros$team_id), stringsAsFactors = FALSE
+  ))
+  expect_identical(out$punt_block_return_player_name, "Ale Kaho")
+  expect_identical(out$punt_block_return_player_id, "4361090")
+})
+
+test_that("the clause cut matches sdv-py's _PLAYER_NAME_CLAUSE_CUT on captured names", {
+  testthat::skip_on_cran()
+  cut <- function(x) .pbp_attach_player_ids(data.frame(fumble_player_name = x,
+                                                       stringsAsFactors = FALSE))$fumble_player_name
+  # the fragments sdv-py's own comment cites, and the "N Yd" tail
+  expect_identical(cut(c("Tommylee Lewistackled b", "Kevonte Martin-Manley for",
+                         "Ale Kaho 0 Yd", "to the MiaOh 21", "WAS30", "Russell Wilson")),
+                   c("Tommylee Lewis", "Kevonte Martin-Manley", "Ale Kaho", NA, NA, "Russell Wilson"))
 })

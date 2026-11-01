@@ -55,15 +55,28 @@ resolved <- function(use_box = TRUE) {
   list(r = do.call(rbind, Filter(Negate(is.null), out)), g = g, idc = idc)
 }
 
+# The golden predates sdv-py's clause cut (`_PLAYER_NAME_CLAUSE_CUT`, ported in
+# .pbp_attach_player_ids()): it holds ids resolved from uncut names such as
+# "Trapper Pannell 3 Yd", mostly NA. A cell whose golden name the cut rewrites
+# is a question the golden cannot answer, so it is left out and counted.
+cut_rewrites <- function(name) {
+  cut <- .pbp_attach_player_ids(data.frame(fumble_player_name = as.character(name),
+                                           stringsAsFactors = FALSE))$fumble_player_name
+  differs(cut, stringr::str_squish(as.character(name)))
+}
+
 count_mismatches <- function(x) {
-  total <- 0L; mism <- 0L
+  total <- 0L; mism <- 0L; rewritten <- 0L
   for (nm in x$idc) {
     a <- as.character(x$r[[nm]])
     b <- as.character(x$g[[nm]][x$r$.row])
-    total <- total + length(a)
-    mism  <- mism + sum(differs(a, b))
+    nmc <- x$g[[sub("_id(2?)$", "_name\\1", nm)]]
+    keep <- if (is.null(nmc)) rep(TRUE, length(a)) else !cut_rewrites(nmc[x$r$.row])
+    total <- total + sum(keep)
+    mism  <- mism + sum(differs(a, b)[keep])
+    rewritten <- rewritten + sum(!keep & differs(a, b))
   }
-  c(mism = mism, total = total)
+  c(mism = mism, total = total, rewritten = rewritten)
 }
 
 differs <- function(a, b) !((is.na(a) & is.na(b)) | (!is.na(a) & !is.na(b) & a == b))
@@ -86,6 +99,11 @@ test_that("player ids resolve to sdv-py's athlete ids", {
   #       box entry is reachable
   # Tighten this whenever one of those classes is closed.
   expect_lt(m[["mism"]] / m[["total"]], 0.0002)
+  expect_identical(m[["mism"]], 26L)
+  # Measured 2026-11-01: 22 more cells differ, every one a name the clause cut
+  # rewrites (20 of them golden NA, e.g. "Trapper Pannell 3 Yd" now resolves).
+  # sdv-py 4b78a45a3d applies the same cut; re-capture the golden to compare them.
+  expect_identical(m[["rewritten"]], 22L)
 })
 
 test_that("the box score is what closes the gap, not the roster alone", {

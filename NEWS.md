@@ -90,6 +90,13 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   agree with sportsdataverse-py if one appears. `punt_block_return_player_name`
   is filled on "N Yd Return of Blocked Punt" touchdowns (31-59 a season), which
   it left empty.
+- Captured player names lose a clause the capture ran into before the roster
+  join, as sportsdataverse-py's `__attach_player_ids` does: a "N Yd" yardage
+  ("Ale Kaho 0 Yd" -> "Ale Kaho"), a glued "tackled" / "fumble", a trailing
+  connective ("... for", "... by"), and a capture that starts in a clause ("to
+  the MiaOh 21") or holds a spot ("WAS30") is dropped. More `*_player_name`
+  values are clean and more `*_player_id` values resolve (on the 60 parity games,
+  22 more ids, e.g. "Trapper Pannell 3 Yd Run" now resolves its rusher).
 - `espn_cfb_pbp_v2()` counts timeouts as sportsdataverse-py does. It charged a
   Timeout row only when the ten characters after "Timeout " equalled the team
   abbreviation, which ESPN's "Timeout Mississippi State, clock 01:13" never
