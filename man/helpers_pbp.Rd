@@ -36,7 +36,7 @@ penalty_detection(raw_df)
 \arguments{
 \item{play_df}{(\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from \code{cfbd_pbp_data()}}
 
-\item{dat}{(\emph{Data.Frame} required) Clean Play-by-Play DataFrame pulled from \code{cfbd_pbp_dat()}}
+\item{dat}{(\emph{Data.Frame} required) Clean Play-by-Play DataFrame pulled from \code{cfbd_pbp_data()}}
 
 \item{season}{(\emph{numeric} scalar, optional): Season of the game, for the
 NCAA's 2012 kickoff rules. From 2012 a kickoff touchback ends at the 25

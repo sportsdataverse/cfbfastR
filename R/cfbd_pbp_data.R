@@ -1797,7 +1797,7 @@ clean_drive_dat <- function(play_df) {
 
 #' @rdname helpers_pbp
 #'
-#' @param dat (*Data.Frame* required) Clean Play-by-Play DataFrame pulled from `cfbd_pbp_dat()`
+#' @param dat (*Data.Frame* required) Clean Play-by-Play DataFrame pulled from `cfbd_pbp_data()`
 #' @param season (*numeric* scalar, optional): Season of the game, for the
 #'   NCAA's 2012 kickoff rules. From 2012 a kickoff touchback ends at the 25
 #'   (`new_yardline` 75, `yds_kickoff_return` 25) and a kickoff out of bounds at

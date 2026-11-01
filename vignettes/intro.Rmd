@@ -113,7 +113,7 @@ If you have ever worked with the now archived [**`cfbscrapR`**](https://github.c
 
 #### **`cfbfastR::cfbd_pbp_data()`** (1 season, \~6-7 minutes `r emo::ji("confused_face")`)
 #### **`cfbscrapR::cfb_pbp_data()`** (1 season, \~8-10 minutes `r emo::ji("old_man")`)
-#### **`cfbfastR::load_cfb_pbp()`** (7+ seasons, \~1-1.5 minutes `r emo::ji("flame")`)
+#### **`cfbfastR::load_cfb_pbp()`** (2014-present, \~1-1.5 minutes `r emo::ji("flame")`)
 
 
 ### **The fastR way**
