@@ -370,7 +370,7 @@ draw_frame <- function(n_sec)
     coord_cartesian(clip = "off") +
     xlab("") +
     ylab("") +
-    labs(title = glue("Win Probability Chart: {game$season} Week {game$wk} {game$away_team} @ {game$home_team}"),
+    labs(title = glue("Win Probability Chart: {game$season} Week {game$week} {game$away_team} @ {game$home_team}"),
          caption = "Data from cfbfastR, Visualization by @LeeSharpeNFL, Adapted for CFB by Jared Lee (github.com/Kazink36)") +
     theme(legend.position = "none")
 
