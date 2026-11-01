@@ -273,7 +273,7 @@ Secrets used:
 | --------------- | ------------------- | -------------------------------------------------------- |
 | `GITHUB_TOKEN`  | All workflows       | Auto-provided by GitHub                                  |
 | `CODECOV_TOKEN` | `test-coverage.yaml` | Codecov upload token                                    |
-| `CFBD_API_KEY`  | `R-CMD-check.yaml`, `test-coverage.yaml`, `pkgdown.yaml`, `rhub.yaml` | Optional -- enables live CFBD tests and examples when present in CI |
+| `CFBD_API_KEY`  | `R-CMD-check.yaml`, `test-coverage.yaml`, `pkgdown.yaml`, `rhub.yaml` | Required by `R-CMD-check.yaml` and `test-coverage.yaml`: they set `NOT_CRAN=true`, and not every live CFBD test skips without a key. Optional for `pkgdown.yaml` and `rhub.yaml` (enables CFBD examples) |
 
 ## Reporting Issues
 
