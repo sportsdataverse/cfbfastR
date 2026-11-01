@@ -1,0 +1,43 @@
+### "punt for a loss of N" is a punt of -N yards (#156), as sdv-py reads it
+### (cfb_pbp.py, both `yds_punted` assignments). Every text is a real ESPN punt
+### row; 252460252 is Boston College @ BYU, 2005, the game sdv-py's own test uses.
+
+loss_text <- "Johnny Ayers punt for a loss of 12 yards."
+gain_text <- "Johnny Ayers punt for 43 yards, downed at the BC 20."
+
+punt_rows <- function(text) {
+  data.frame(
+    game_id = 1L, id_play = as.character(seq_along(text)),
+    play_type = "Punt", play_text = text,
+    change_of_poss = 1, change_of_pos_team = 1,
+    down = 4, distance = 10, yards_to_goal = 70, yards_gained = 0,
+    penalty_1st_conv = FALSE,
+    stringsAsFactors = FALSE
+  )
+}
+
+test_that(".punt_yards signs the loss clause and leaves other punts alone", {
+  expect_identical(.punt_yards(c(loss_text, gain_text)), c(-12, 43))
+  expect_identical(.punt_yards(toupper(loss_text)), NA_real_) # no " punt for" to read
+  expect_identical(.punt_yards(NA_character_), NA_real_)
+})
+
+test_that("both engines' clean stage store a punt for a loss as negative", {
+  rows <- punt_rows(c(loss_text, gain_text))
+  expect_identical(.pbp_clean_pbp_dat(rows, season = 2005)$yds_punted, c(-12, 43))
+  expect_identical(clean_pbp_dat(rows)$yds_punted, c(-12, 43))
+})
+
+test_that("ESPN game 252460252 publishes the punt for a loss as -12 on both engines", {
+  testthat::skip_on_cran()
+  testthat::skip_if_offline()
+  for (eng in c("v2", "legacy")) {
+    pbp <- suppressWarnings(suppressMessages(
+      espn_cfb_pbp(game_id = 252460252, epa_wpa = TRUE, engine = eng)
+    ))
+    if (!is.data.frame(pbp) || !nrow(pbp)) testthat::skip("no plays returned")
+    row <- pbp[grepl("punt for a loss of 12", pbp$play_text, fixed = TRUE), ]
+    expect_identical(nrow(row), 1L, label = paste("loss row,", eng))
+    expect_equal(as.numeric(row$yds_punted), -12, label = paste("yds_punted,", eng))
+  }
+})

@@ -244,6 +244,11 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   state at the receiver's 25; earlier seasons are unchanged. Like
   sportsdataverse-py, the rule does not read the catch spot, so the 152 of those
   caught beyond the 25 are also placed at the 25.
+- `yds_punted` reads "punt for a loss of 12 yards" as -12, not +12, on both
+  engines, as sportsdataverse-py does: the punt ended behind the line of
+  scrimmage, which ESPN's next snap confirms. 16 punts in a 2004-2026 sample
+  change sign. The punt-distance model was trained on the unsigned values, so
+  it is a retrain candidate when the punt columns are republished. (#156)
 
 ## Fixed: release loaders read model pbp, keep play ids exact and accept every published season
 
