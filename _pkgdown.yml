@@ -365,6 +365,7 @@ reference:
       - '`cfbd_passing`'
       - '`cfbd_pbp`'
       - '`cfbd_pbp_v2`'
+      - '`cfbd_punting`'
       - '`cfbd_rushing`'
       - '`cfbd_venues`'
       - '`espn_cfb_catalog`'
@@ -443,6 +444,11 @@ reference:
     contents:
       - '`cfbd_rushing`'
       - starts_with("cfbd_rushing_")
+  - subtitle: Punting Data
+    desc: Functions exported by cfbfastR sourced from the punting endpoints of the CollegeFootballData API (2015 onward)
+    contents:
+      - '`cfbd_punting`'
+      - starts_with("cfbd_punting_")
   - subtitle: Rankings and Ratings Data
     desc: Functions exported by cfbfastR sourced from the rankings and ratings endpoints of the CollegeFootballData API
     contents:
