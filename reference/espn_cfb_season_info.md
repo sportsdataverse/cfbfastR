@@ -128,7 +128,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_season_info(year = 2024))
 #> ── Season detail from ESPN ─────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-01 20:33:12 UTC
+#> ℹ Data updated: 2026-11-01 22:59:30 UTC
 #> # A tibble: 1 × 13
 #>   season display_name start_date        end_date      active_type_id active_type
 #>    <int> <chr>        <chr>             <chr>                  <int>       <int>

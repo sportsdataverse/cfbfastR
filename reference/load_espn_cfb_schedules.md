@@ -77,7 +77,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_schedules(2004))
 #> ── ESPN college football schedules from the SportsDataverse data repo ──────────
-#> ℹ Data updated: 2026-11-01 20:36:02 UTC
+#> ℹ Data updated: 2026-11-01 23:02:19 UTC
 #> # A tibble: 712 × 20
 #>      game_id season  week season_type game_date         neutral_site
 #>        <int>  <int> <int>       <int> <chr>             <lgl>       

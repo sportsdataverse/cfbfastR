@@ -60,7 +60,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_recruiting_proj(2016))
 #> ── college football recruiting projections from the SportsDataverse data repo ──
-#> ℹ Data updated: 2026-11-01 20:35:08 UTC
+#> ℹ Data updated: 2026-11-01 23:01:17 UTC
 #> # A tibble: 201 × 5
 #>    season team_id pred_wins pred_margin pred_net_epa
 #>     <int> <chr>       <dbl>       <dbl>        <dbl>

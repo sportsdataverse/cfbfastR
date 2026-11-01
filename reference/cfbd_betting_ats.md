@@ -62,7 +62,7 @@ Other CFBD Betting Functions:
 # \donttest{
    try(cfbd_betting_ats(year = 2023, team = "Michigan"))
 #> ── Against-the-spread records from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-01 20:24:50 UTC
+#> ℹ Data updated: 2026-11-01 22:52:08 UTC
 #> # A tibble: 1 × 9
 #>    year team_id team     conference games ats_wins ats_losses ats_pushes
 #>   <int>   <int> <chr>    <chr>      <int>    <int>      <int>      <int>
