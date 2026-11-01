@@ -137,7 +137,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_team(2004))
 #> ── college football advanced team from the SportsDataverse data repo ───────────
-#> ℹ Data updated: 2026-11-01 03:17:48 UTC
+#> ℹ Data updated: 2026-11-01 11:21:42 UTC
 #> # A tibble: 926 × 82
 #>    pos_team_id pos_team       rushing_highlight_ya…¹ total_pen_yards EPA_penalty
 #>          <int> <chr>                           <dbl>           <int>       <dbl>

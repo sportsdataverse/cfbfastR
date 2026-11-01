@@ -31,7 +31,7 @@ template.
 # \donttest{
   try(fox_cfb_standings(team_id = "11"))
 #> ── Standings data from Fox Sports (Bifrost) ───────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 03:17:00 UTC
+#> ℹ Data updated: 2026-11-01 11:21:02 UTC
 #> # A tibble: 17 × 12
 #>    team_id section    atlantic_coast v2      conf  w_l   home  away  pf    pa   
 #>    <chr>   <chr>      <chr>          <chr>   <chr> <chr> <chr> <chr> <chr> <chr>
@@ -42,7 +42,7 @@ template.
 #>  5 11      CONFERENCE 5              Duke    3-2   6-2   4-1   2-1   256   114  
 #>  6 11      CONFERENCE 6              Virgin… 3-2   6-2   3-1   3-1   280   164  
 #>  7 11      CONFERENCE 7              Clemson 3-2   5-3   3-2   2-1   186   173  
-#>  8 11      CONFERENCE 8              Pittsb… 2-3   5-3   4-1   1-2   253   167  
+#>  8 11      CONFERENCE 8              Pittsb… 3-3   6-3   5-1   1-2   287   178  
 #>  9 11      CONFERENCE 9              North … 2-3   4-4   1-3   2-1   206   184  
 #> 10 11      CONFERENCE 10             NC Sta… 2-3   4-4   4-1   0-3   257   207  
 #> 11 11      CONFERENCE 11             Boston… 2-3   4-4   3-1   1-3   173   212  
@@ -50,8 +50,8 @@ template.
 #> 13 11      CONFERENCE 13             Virgin… 2-4   4-5   4-1   0-3   233   208  
 #> 14 11      CONFERENCE 14             Stanfo… 2-4   4-5   4-1   0-4   183   336  
 #> 15 11      CONFERENCE 15             Califo… 2-4   3-6   2-3   1-3   197   284  
-#> 16 11      CONFERENCE 16             Georgi… 1-3   2-5   2-3   0-2   187   212  
-#> 17 11      CONFERENCE 17             Florid… 1-4   3-5   3-2   0-3   245   231  
+#> 16 11      CONFERENCE 16             Florid… 1-4   3-5   3-2   0-3   245   231  
+#> 17 11      CONFERENCE 17             Georgi… 1-4   2-6   2-3   0-3   198   246  
 #> # ℹ 2 more variables: strk <chr>, entity_id <chr>
 # }
 ```

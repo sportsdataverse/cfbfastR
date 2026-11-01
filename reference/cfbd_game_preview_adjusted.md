@@ -191,11 +191,11 @@ Other CFBD Games:
   try(cfbd_game_preview_adjusted(game_id = 401114233))
 #> $game
 #> ── Adjusted game preview data from CollegeFootballData.com ─────────────────────
-#> ℹ Data updated: 2026-11-01 03:04:51 UTC
+#> ℹ Data updated: 2026-11-01 11:11:16 UTC
 #> # A tibble: 1 × 30
 #>     game_id season  week season_type status    status_checked_at      start_date
 #>       <int>  <int> <int> <chr>       <chr>     <chr>                  <chr>     
-#> 1 401114233   2019     1 regular     completed 2026-11-01T03:04:49.9… 2019-08-3…
+#> 1 401114233   2019     1 regular     completed 2026-11-01T11:11:15.1… 2019-08-3…
 #> # ℹ 23 more variables: start_time_tbd <lgl>, neutral_site <lgl>,
 #> #   conference_game <lgl>, home_team_id <int>, home_team_name <chr>,
 #> #   home_team_conference <chr>, home_team_conference_abbreviation <chr>,
@@ -206,22 +206,22 @@ Other CFBD Games:
 #> 
 #> $team_metrics
 #> ── Adjusted game preview data from CollegeFootballData.com ─────────────────────
-#> ℹ Data updated: 2026-11-01 03:04:51 UTC
+#> ℹ Data updated: 2026-11-01 11:11:16 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $passing
 #> ── Adjusted game preview data from CollegeFootballData.com ─────────────────────
-#> ℹ Data updated: 2026-11-01 03:04:51 UTC
+#> ℹ Data updated: 2026-11-01 11:11:16 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $rushing
 #> ── Adjusted game preview data from CollegeFootballData.com ─────────────────────
-#> ℹ Data updated: 2026-11-01 03:04:51 UTC
+#> ℹ Data updated: 2026-11-01 11:11:16 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $kicking
 #> ── Adjusted game preview data from CollegeFootballData.com ─────────────────────
-#> ℹ Data updated: 2026-11-01 03:04:51 UTC
+#> ℹ Data updated: 2026-11-01 11:11:16 UTC
 #> # A tibble: 0 × 0
 #> 
 # }

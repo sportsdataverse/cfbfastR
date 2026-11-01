@@ -249,7 +249,7 @@ Other CFB Model Calculators:
 # }
 # \donttest{
   try(calculate_win_probability(cfbd_pbp_data(2024, week = 5)))
-#> Error in .cfb_predict_from_card(prepared, model, booster) : 
+#> Error in .cfb_predict_from_card(scored, model, booster) : 
 #>   wp_naive needs 8 columns not present in the data.
 #> ✖ Missing: "pos_team_receives_2H_kickoff", "TimeSecsRem", "adj_TimeSecsRem",
 #>   "ExpScoreDiff_Time_Ratio", "pos_score_diff_start", "is_home",

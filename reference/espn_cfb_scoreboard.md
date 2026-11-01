@@ -263,20 +263,20 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_scoreboard())
 #> ── Live Scoreboard Data from ESPN ─────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 03:15:23 UTC
+#> ℹ Data updated: 2026-11-01 11:19:20 UTC
 #> # A tibble: 56 × 60
 #>    matchup          matchup_short season type  slug  game_id game_uid game_date 
 #>    <chr>            <chr>          <int> <chr> <chr> <chr>   <chr>    <date>    
-#>  1 Georgia Tech Ye… GT @ PITT       2026 regu… regu… 401858… s:20~l:… 2026-10-31
-#>  2 Washington Husk… WASH @ NEB      2026 regu… regu… 401858… s:20~l:… 2026-10-31
-#>  3 Army Black Knig… ARMY @ MEM      2026 regu… regu… 401862… s:20~l:… 2026-10-31
-#>  4 Texas State Bob… TXST @ BOIS     2026 regu… regu… 401860… s:20~l:… 2026-10-31
-#>  5 Northern Illino… NIU @ UNLV      2026 regu… regu… 401864… s:20~l:… 2026-10-31
-#>  6 Oregon State Be… ORST @ FRES     2026 regu… regu… 401860… s:20~l:… 2026-10-31
-#>  7 Miami Hurricane… MIA @ UNC       2026 regu… regu… 401858… s:20~l:… 2026-10-31
-#>  8 Ohio State Buck… OSU @ USC       2026 regu… regu… 401858… s:20~l:… 2026-10-31
-#>  9 Florida Gators … FLA VS UGA      2026 regu… regu… 401856… s:20~l:… 2026-10-31
-#> 10 Minnesota Golde… MINN @ IU       2026 regu… regu… 401858… s:20~l:… 2026-10-31
+#>  1 Texas State Bob… TXST @ BOIS     2026 regu… regu… 401860… s:20~l:… 2026-10-31
+#>  2 Northern Illino… NIU @ UNLV      2026 regu… regu… 401864… s:20~l:… 2026-10-31
+#>  3 Oregon State Be… ORST @ FRES     2026 regu… regu… 401860… s:20~l:… 2026-10-31
+#>  4 Miami Hurricane… MIA @ UNC       2026 regu… regu… 401858… s:20~l:… 2026-10-31
+#>  5 Ohio State Buck… OSU @ USC       2026 regu… regu… 401858… s:20~l:… 2026-10-31
+#>  6 Florida Gators … FLA VS UGA      2026 regu… regu… 401856… s:20~l:… 2026-10-31
+#>  7 Minnesota Golde… MINN @ IU       2026 regu… regu… 401858… s:20~l:… 2026-10-31
+#>  8 Notre Dame Figh… ND VS NAVY      2026 regu… regu… 401859… s:20~l:… 2026-10-31
+#>  9 Utah Utes at Ci… UTAH @ CIN      2026 regu… regu… 401856… s:20~l:… 2026-10-31
+#> 10 Nevada Wolf Pac… NEV @ UCLA      2026 regu… regu… 401858… s:20~l:… 2026-10-31
 #> # ℹ 46 more rows
 #> # ℹ 52 more variables: attendance <int>, date_valid <lgl>,
 #> #   play_by_play_available <lgl>, home_team_name <chr>, home_team_logo <chr>,
@@ -289,7 +289,7 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_schedule(2021, week = 8))
 #> ── Schedule Data from ESPN ────────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-11-01 03:15:23 UTC
+#> ℹ Data updated: 2026-11-01 11:19:20 UTC
 #> # A tibble: 54 × 62
 #>    season_type week    matchup matchup_short season type  slug  game_id game_uid
 #>    <chr>       <chr>   <chr>   <chr>          <int> <chr> <chr> <chr>   <chr>   

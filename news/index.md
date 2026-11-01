@@ -168,6 +168,35 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   takes `fbs_only`, not `seasons`.
   ([\#197](https://github.com/sportsdataverse/cfbfastR/issues/197))
 
+### Fixed: win probability scores the 2H-kickoff flag the models were trained on
+
+- The bundled WP boosters (`wp_naive`, behind `wp_before` / `wpa`, and
+  `wp_spread`, behind `vegas_wp`) were trained with
+  `pos_team_receives_2H_kickoff` equal to `1 - is_home` on every row.
+  cfbfastR fed them the true flag, which is the inverse on every
+  first-half play of a game where the home team kicked off first. They
+  are now fed `1 - is_home`, as sportsdataverse-py does, in the
+  play-by-play engine,
+  [`calculate_win_probability()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+  /
+  [`calculate_wpa()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+  and the fourth-down / two-point decision surfaces. **`wp_before`,
+  `wp_after`, `wpa`, `vegas_wp` and the decision-surface WP columns
+  change**, most in games where the home team kicked off first (by up to
+  0.11 naive WP on 56 real 2004-2025 games; in-sample Brier 0.1352 -\>
+  0.1335, and 0.1096 -\> 0.1052 where the home team kicked off first).
+  Games where the away team kicked off first, and spread WP overall,
+  move slightly the other way (spread Brier 0.1345 -\> 0.1346). The
+  `pos_team_receives_2H_kickoff` column itself is unchanged: it is a
+  correct descriptive column, only the model input differs. The shim
+  goes when the boosters are retrained on the true flag
+  ([\#199](https://github.com/sportsdataverse/cfbfastR/issues/199)).
+- A cross-language oracle (`tests/testthat/test-parity_epa_wp.R`) now
+  checks that cfbfastR’s EP models, the EP_end - EP_start difference and
+  naive and spread WP score sportsdataverse-py’s recorded game states
+  the same way, on six real games, to 1e-5. It replays the scoring step;
+  the EPA possession and scoring rules are not compared.
+
 ### Fixed: CFBD passing CPOE columns, play stat types and gateway retries
 
 - CFBD added completion-over-expected to its passing endpoints. The

@@ -76,7 +76,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_team_box(2004))
 #> ── ESPN college football team box scores from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-11-01 03:18:14 UTC
+#> ℹ Data updated: 2026-11-01 11:22:09 UTC
 #> # A tibble: 1,424 × 21
 #>    firstDowns thirdDownEff fourthDownEff totalYards netPassingYards
 #>    <chr>      <chr>        <chr>         <chr>      <chr>          

@@ -169,7 +169,7 @@ progressr::with_progress({
 tictoc::toc()
 ```
 
-    ## 88.334 sec elapsed
+    ## 84.965 sec elapsed
 
 In the selected seasons, there are 13994 games for which the data
 repository has play by play data. In the present term, the data
