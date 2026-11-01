@@ -247,17 +247,25 @@
 #'   adjacent repeat of the same text is one timeout, each half allots 3 and
 #'   each overtime period 1, and the count never goes below 0.
 #'
+#'   The overtime window is `.espn_overtime_period()`: some feeds number every
+#'   overtime 5 (401112081), so the period alone cannot say which one a row is in.
+#'
 #' @param period,type,text Per-play vectors, in play order.
 #' @param home_abbr,home_location,home_name,away_abbr,away_location,away_name
 #'   The header's team abbreviation, location ("Florida State") and name
 #'   ("Seminoles"); scalars or per-play vectors.
-#' @return A data frame: `home_called`, `away_called` (logical) and
-#'   `start_home`, `start_away`, `end_home`, `end_away` (timeouts remaining).
+#' @param drive_id,drive_start_yard_line,drive_start_period Per-play drive
+#'   fields, for the overtime window; `NULL` falls back to the period.
+#' @return A data frame: `home_called`, `away_called` (logical),
+#'   `start_home`, `start_away`, `end_home`, `end_away` (timeouts remaining) and
+#'   `window` (1 / 2 for the halves, the overtime period after).
 #' @keywords internal
 #' @noRd
 .espn_timeouts <- function(period, type, text,
                            home_abbr, home_location, home_name,
-                           away_abbr, away_location, away_name) {
+                           away_abbr, away_location, away_name,
+                           drive_id = NULL, drive_start_yard_line = NULL,
+                           drive_start_period = NULL) {
   n <- length(text)
   first <- function(x) if (length(x)) as.character(x[[1]]) else NA_character_
   ha <- first(home_abbr); hl <- first(home_location); hn <- first(home_name)
@@ -315,7 +323,8 @@
   home_called <- called("home", hm, am)
   away_called <- called("away", am, hm)
 
-  window <- ifelse(period <= 2, 1, ifelse(period <= 4, 2, period))
+  ot <- .espn_overtime_period(period, drive_id, drive_start_yard_line, drive_start_period)
+  window <- ifelse(period <= 2, 1, ifelse(period <= 4, 2, ot))
   allotted <- ifelse(period <= 4, 3, 1)
   repeated <- c(FALSE, utils::tail(text, -1L) == utils::head(text, -1L))[seq_len(n)]
   repeated[is.na(repeated)] <- FALSE
@@ -329,8 +338,53 @@
   data.frame(
     home_called = home_called, away_called = away_called,
     start_home = remaining(hu, TRUE), start_away = remaining(au, TRUE),
-    end_home = remaining(hu, FALSE), end_away = remaining(au, FALSE)
+    end_home = remaining(hu, FALSE), end_away = remaining(au, FALSE),
+    window = window
   )
+}
+
+#' The overtime period a play belongs to
+#'
+#' @description Port of sdv-py's `_overtime_period`, for feeds that number
+#'   every overtime 5 (401112081, three overtimes; sportsdataverse-py #505).
+#'   Each overtime period holds two possessions starting at the 25, so the
+#'   overtime drives are paired; a feed that numbers its periods (or its
+#'   drives' periods) keeps the larger value.
+#'
+#' @details One deliberate difference. sdv-py counts a new overtime drive
+#'   every time the drive id CHANGES from the previous row, on any drive
+#'   starting at the 25 / 75. 401754372's first overtime is three rows filed
+#'   under drives 37, 36, 37, so sdv-py counts drive 37 twice; the second
+#'   overtime's second possession (drive 39) is then its fifth drive and opens a
+#'   third window that never happened, handing Virginia Tech back the overtime
+#'   timeout it had just called. Here a drive counts once, at its first row,
+#'   and only when the drive itself starts in overtime (that Virginia Tech
+#'   timeout is filed under drive 19, a second-quarter drive): a drive's
+#'   identity is its id, not row adjacency, and a regulation drive cannot open
+#'   an overtime possession. Where the overtime drives are contiguous
+#'   (401112081) the two rules agree.
+#'
+#' @param period Per-play period.
+#' @param drive_id,drive_start_yard_line,drive_start_period Per-play drive
+#'   fields; with `drive_id` or `drive_start_yard_line` missing the period is
+#'   returned unchanged.
+#' @return The overtime period for rows with `period >= 5`, else `period`.
+#' @keywords internal
+#' @noRd
+.espn_overtime_period <- function(period, drive_id = NULL, drive_start_yard_line = NULL,
+                                  drive_start_period = NULL) {
+  n <- length(period)
+  if (!n || is.null(drive_id) || is.null(drive_start_yard_line) ||
+      all(is.na(drive_id)) || all(is.na(drive_start_yard_line))) {
+    return(period)
+  }
+  dsp <- if (is.null(drive_start_period)) rep(NA_real_, n) else as.numeric(drive_start_period)
+  drive_id <- as.character(drive_id)
+  new_ot_drive <- !is.na(period) & period >= 5 & !is.na(drive_id) & !duplicated(drive_id) &
+    as.numeric(drive_start_yard_line) %in% c(25, 75) & (is.na(dsp) | dsp >= 5)
+  paired <- 5 + pmax(cumsum(new_ot_drive) - 1, 0) %/% 2
+  ot <- pmax(period, ifelse(is.na(dsp), -Inf, dsp), paired)
+  ifelse(!is.na(period) & period >= 5, ot, period)
 }
 
 #' Modular PBP -- adapt an ESPN core-v2 plays frame into the modeling input
@@ -467,23 +521,30 @@
 #' `.pbp_add_play_counts()` lags into `*_timeouts_rem_before`.
 #' @param df The adapter frame (`play_text`, `play_type`, `period`,
 #'   `offense_play`, `home`, `away`, `home_team_abbreviation`,
-#'   `away_team_abbreviation`; `home_team_mascot` / `away_team_mascot` (ESPN team name, "Seminoles") and
-#'   `play_order` when present).
+#'   `away_team_abbreviation`; `home_team_mascot` / `away_team_mascot` (ESPN
+#'   team name, "Seminoles"), `drive_id` / `drive_start_yard_line` /
+#'   `drive_start_period` and `play_order` when present).
 #' @return `df` with `timeout_team` (the charged team's abbreviation),
-#'   `home_timeouts`, `away_timeouts`, `offense_timeouts`, `defense_timeouts`.
+#'   `home_timeouts`, `away_timeouts`, `offense_timeouts`, `defense_timeouts`,
+#'   and `timeout_window`, which `.pbp_add_play_counts()` reads to open each
+#'   overtime period and then drops.
 #' @keywords internal
 #' @noRd
 .espn_add_timeouts <- function(df) {
   ord <- if ("play_order" %in% names(df)) order(df$play_order) else seq_len(nrow(df))
   col <- function(nm) if (nm %in% names(df)) df[[nm]][ord] else NA_character_
+  opt <- function(nm) if (nm %in% names(df)) df[[nm]][ord] else NULL
   to <- .espn_timeouts(
     period = df$period[ord], type = df$play_type[ord], text = df$play_text[ord],
     home_abbr = col("home_team_abbreviation"), home_location = col("home"),
     home_name = col("home_team_mascot"),
     away_abbr = col("away_team_abbreviation"), away_location = col("away"),
-    away_name = col("away_team_mascot")
+    away_name = col("away_team_mascot"),
+    drive_id = opt("drive_id"), drive_start_yard_line = opt("drive_start_yard_line"),
+    drive_start_period = opt("drive_start_period")
   )
   to[ord, ] <- to
+  df$timeout_window <- to$window
   df$timeout_team <- ifelse(to$home_called, df$home_team_abbreviation,
                             ifelse(to$away_called, df$away_team_abbreviation, NA_character_))
   df$home_timeouts <- to$end_home

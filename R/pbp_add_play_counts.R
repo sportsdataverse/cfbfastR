@@ -37,6 +37,7 @@
         defense_timeouts = 3
       )
   }
+  if (!"timeout_window" %in% names(play_df)) play_df$timeout_window <- play_df$period
   play_df <-
     play_df |>
     dplyr::group_by(.data$game_id) |>
@@ -172,11 +173,15 @@
       def_timeouts_rem_before = ifelse(.data$half_play_number == 1, 3, .data$def_timeouts_rem_before),
       # Overtime shares `half` 2 with the second half here, so the reset above
       # never fires in it: each overtime period opens with its own 1 timeout
-      # (sdv-py), not the count the fourth quarter left.
-      new_ot_period = .data$period >= 5 & .data$period != dplyr::lag(.data$period, default = 0L),
+      # (sdv-py), not the count the fourth quarter left. The ESPN adapter hands
+      # over `timeout_window` (.espn_overtime_period()), because some feeds number
+      # every overtime 5; elsewhere the period is the window.
+      new_ot_period = .data$period >= 5 &
+        .data$timeout_window != dplyr::lag(.data$timeout_window, default = 0),
       off_timeouts_rem_before = ifelse(.data$new_ot_period, 1, .data$off_timeouts_rem_before),
       def_timeouts_rem_before = ifelse(.data$new_ot_period, 1, .data$def_timeouts_rem_before),
       new_ot_period = NULL,
+      timeout_window = NULL,
       off_timeout_called = ifelse(.data$offense_timeouts != .data$off_timeouts_rem_before, 1, 0),
       def_timeout_called = ifelse(.data$defense_timeouts != .data$def_timeouts_rem_before, 1, 0),
       #--- Lags/Leads down, distance, yards_to_goal, TimeSecsRem ----

@@ -6765,6 +6765,8 @@ espn_cfb_pbp_v2 <- function(game_id,
           drive_id                     = .data$drive_drive_id,
           drive_start_text             = .data$drive_start_text,
           drive_start_yard_line        = .data$drive_start_yard_line,
+          # with the drive id and start yard line, decides the overtime timeout window
+          drive_start_period           = .data$drive_start_period,
           drive_end_text               = .data$drive_end_text,
           drive_end_yard_line          = .data$drive_end_yard_line,
           drive_yards                  = .data$drive_yards,

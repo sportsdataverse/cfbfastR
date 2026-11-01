@@ -108,12 +108,17 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   all game. A row is now charged to the team whose abbreviation, location or
   name it matches (or the initialism, "SOUTHERN CAL" for USC, or the shortened
   spelling, "WESTRN MICHIGAN"), an adjacent repeat counts once, each overtime
-  period allots 1, and no count goes below 0. **`pos_team_timeouts_rem_before`,
+  period allots 1 (in feeds that number every overtime 5, the period comes from
+  pairing the overtime drives, as in sportsdataverse-py), and no count goes
+  below 0. **`pos_team_timeouts_rem_before`,
   `def_pos_team_timeouts_rem_before` and the columns built on them change, and
   so do `wp_before`, `wp_after`, `wpa` and `vegas_wp`** (on 2024's 401628409, 11
   of 175 plays, by up to 0.019). EP and EPA do not read timeouts. A new oracle
   (`tests/testthat/test-pbp_timeouts.R`) checks the charges and counts against
-  sportsdataverse-py on all 3,021 plays of those games.
+  sportsdataverse-py on all 3,226 plays of 17 games. One overtime rule
+  deliberately differs: sportsdataverse-py counts an overtime drive again when
+  ESPN files its rows around another drive, and on 2025's 401754372 hands a team
+  back a timeout it had called; cfbfastR counts each overtime drive once.
 - The v2 engine's `kickoff_tb` follows the 2018 rule that a fair-caught kickoff
   is a touchback, and treats a bare "X kickoff" row with no result as one, as
   sportsdataverse-py does. 1,122 fair-caught kickoffs in 2018-2025 (567 in 2025)

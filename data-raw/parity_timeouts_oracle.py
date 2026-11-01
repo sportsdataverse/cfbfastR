@@ -4,8 +4,9 @@ Runs ``CFBPlayProcess.run_processing_pipeline()`` on banked ESPN summaries and w
 play, in sdv-py's final order: the inputs ``.espn_timeouts()`` reads (period, type, text and the
 header's abbreviation / location / name for each team) and what sdv-py made of them -- which team
 a Timeout row charges (``homeTimeoutCalled`` / ``awayTimeoutCalled``) and each team's timeouts
-remaining at the start and end of the play; ``start_is_home`` (the start team is the home team)
-lets ``test-pbp_timeouts.R`` replay the offense / defense mapping too.
+remaining at the start and end of the play. ``start_is_home`` (the start team is the home team)
+lets ``test-pbp_timeouts.R`` replay the offense / defense mapping too, and the play's drive (id,
+start yard line, start period) decides the overtime window.
 
     python data-raw/parity_timeouts_oracle.py
 
@@ -46,8 +47,9 @@ GAMES = [
     252460251,  # 2005 "UL LAFAYETTE": the shortened-name resolver
     401677188,  # 2024 "two minute" stoppages: charged to nobody
     401761657,  # 2025 an adjacent repeat of a Timeout row: one timeout
-    401754372,  # 2025 timeouts in two overtime periods: one per period
+    401754372,  # 2025 two overtimes; a Q2 drive holds an OT2 Timeout row (sdv-py pairing bug)
     302540119,  # 2010 timeouts in two overtime periods
+    401112081,  # 2019 three overtimes the feed numbers 5: the drive pairing decides the period (#505)
 ]
 COLS = {
     "id": "id_play",
@@ -55,6 +57,9 @@ COLS = {
     "type.text": "type",
     "text": "text",
     "start.is_home": "start_is_home",
+    "drive.id": "drive_id",
+    "drive.start.yardLine": "drive_start_yard_line",
+    "drive.start.period.number": "drive_start_period",
     "homeTimeoutCalled": "sdvpy_home_called",
     "awayTimeoutCalled": "sdvpy_away_called",
     "start.homeTeamTimeouts": "sdvpy_start_home",
@@ -91,6 +96,7 @@ def game_frame(gid):
     return df.select([pl.col(k).alias(v) for k, v in COLS.items()]).with_columns(
         pl.lit(str(gid)).alias("game_id"),
         pl.col("id_play").cast(pl.Utf8),
+        pl.col("drive_id").cast(pl.Utf8),
         *[pl.lit(v).alias(k) for k, v in teams.items()],
     )
 
