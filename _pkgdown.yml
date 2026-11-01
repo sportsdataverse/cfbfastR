@@ -247,6 +247,8 @@ navbar:
         href: articles/nth-rated-recruit.html
       - text: Rolling EPA Graph
         href: articles/rolling-epa-graph.html
+      - text: Simulating a College Football Season with cfbseedR
+        href: articles/cfbseedR-season-simulation.html
     news:
       icon: "fas fa-newspaper"
       text: " News"
@@ -608,3 +610,4 @@ articles:
       - map-tutorial
       - nth-rated-recruit
       - rolling-epa-graph
+      - cfbseedR-season-simulation

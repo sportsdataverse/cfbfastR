@@ -114,6 +114,10 @@ BibTeX Citation
 -   [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
 -   [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
 -   [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
--   [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
+-   [**cfbseedR**](https://cfbseedR.sportsdataverse.org/) - college football season and playoff simulation (CRAN)
+-   [**cfb4th**](https://cfb4th.sportsdataverse.org/) - college football fourth-down decisions (r-universe)
+-   [**sdvplotR**](https://sdvplotR.sportsdataverse.org/) - team logos, colours and tables for every SportsDataverse league (r-universe)
+-   [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces, including the college football field (CRAN)
+-   [**cfbplotR**](https://cfbplotR.sportsdataverse.org/) - college football logos and colours (r-universe)
 -   [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python package
 -   [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R meta-package

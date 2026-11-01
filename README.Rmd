@@ -88,6 +88,25 @@ release loaders: they call the CollegeFootballData API (through
 need a `CFBD_API_KEY` and take no `dbConnection` or `tablename`.
 `load_cfb_teams()` takes `fbs_only` instead of `seasons`.
 
+## **Companion packages**
+
+Other SportsDataverse packages work directly on `cfbfastR` data:
+
+* [**`cfbseedR`**](https://cfbseedR.sportsdataverse.org/) — simulate college football seasons: conference standings with each conference's tiebreakers and the 12-team College Football Playoff. CRAN: `install.packages("cfbseedR")`.
+* [**`cfb4th`**](https://cfb4th.sportsdataverse.org/) — fourth-down decision tables (go, field goal or punt) on `cfbfastR` play-by-play. r-universe only.
+* [**`sdvplotR`**](https://sdvplotR.sportsdataverse.org/) — team logos, colors, headshots and `gt` tables for every SportsDataverse league, `league = "cfb"` included. r-universe only.
+* [**`sportyR`**](https://sportyR.sportsdataverse.org/) — regulation playing surfaces for `ggplot2`, including the college football field (`geom_football("ncaa")`). CRAN: `install.packages("sportyR")`.
+* [**`cfbplotR`**](https://cfbplotR.sportsdataverse.org/) — college football logos and colors for `ggplot2` and `gt`. r-universe only.
+
+The r-universe packages install with:
+
+```r
+install.packages(
+  c("cfb4th", "sdvplotR", "cfbplotR"),
+  repos = c("https://sportsdataverse.r-universe.dev", getOption("repos"))
+)
+```
+
 ## **CollegeFootballData API coverage**
 
 The `cfbd_*()` wrappers cover **88 of the 93 endpoints** in the current CFBD
