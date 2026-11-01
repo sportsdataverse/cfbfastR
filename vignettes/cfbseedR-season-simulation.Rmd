@@ -1,0 +1,233 @@
+---
+title: "Simulating a College Football Season with cfbseedR"
+description: "Feed a <code>cfbfastR</code> schedule to <code>cfbseedR</code> to rebuild conference standings and the College Football Playoff field, then simulate the rest of a season from any week."
+author: "Saiem Gilani <br><a href='https://x.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+opengraph:
+  image:
+    src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
+  twitter:
+    creator: "@saiemgilani"
+    card: summary_large_image
+    site: "@cfbfastR"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# The schedule comes from the CollegeFootballData API. Without a key the
+# chunks still render (showing the code) but are not run.
+has_cfbd_key <- nzchar(Sys.getenv("CFBD_API_KEY"))
+knitr::opts_chunk$set(
+  echo = TRUE,
+  eval = has_cfbd_key,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+[cfbseedR](https://cfbseedR.sportsdataverse.org/) is the SportsDataverse's season
+simulator for college football, a college adaptation of
+[nflseedR](https://nflseedr.com). Give it a schedule and it computes conference
+standings with each conference's official tiebreakers, crowns the conference
+champions, seeds the 12-team College Football Playoff and plays the bracket. Leave
+some results blank and it simulates them, thousands of times over.
+
+cfbfastR supplies the schedule. This article rebuilds the 2025 regular season's
+standings and playoff field, then rewinds to week 10 and asks what the rest of
+the season looked like from there.
+
+## Load and install the packages
+
+cfbseedR is on CRAN.
+
+```{r packages, eval = TRUE}
+if (!requireNamespace('pak', quietly = TRUE)){
+  install.packages('pak')
+}
+pak::pak(c("dplyr", "cfbseedR", "gt", "scales"))
+library(dplyr)
+library(cfbseedR)
+# cfbfastR is deliberately NOT in the pak() list above. pkgdown and
+# R CMD check render this vignette against the package being built, and
+# installing from CRAN here would overwrite that dev build with the last
+# release -- so any function added since it would vanish mid-render.
+library(cfbfastR)
+```
+
+`load_cfb_schedules()` calls the [CollegeFootballData](https://collegefootballdata.com)
+API, so it needs a free API key. Get one at <https://collegefootballdata.com/key>
+and register it before running the rest (see `?register_cfbd`):
+
+```{r cfbd_key, eval = FALSE}
+Sys.setenv(CFBD_API_KEY = "YOUR-API-KEY-HERE")
+```
+
+## From a cfbfastR schedule to cfbseedR games
+
+`cfb_games_from_schedule()` maps a `load_cfb_schedules()` frame onto the games
+table cfbseedR works with. It turns the final score into `result` (the home
+team's margin) and marks each game `"REG"`, `"CONF_CHAMP"` (the schedule notes a
+championship game) or `"POST"` (bowls and the playoff).
+
+```{r schedule}
+season <- 2025
+sched <- load_cfb_schedules(season)
+
+games <- cfb_games_from_schedule(sched) |>
+  # cfbseedR plays the playoff bracket itself, from the seeds it computes
+  filter(game_type != "POST")
+
+count(games, game_type)
+```
+
+The teams table lists the FBS programs and their conference that season. FCS
+opponents stay out of it: cfbseedR still counts their games toward the FBS
+teams' records, but gives them no standings row, so they can't be seeded.
+
+```{r teams}
+teams <- bind_rows(
+  select(sched, team = home_team, conference = home_conference, division = home_division),
+  select(sched, team = away_team, conference = away_conference, division = away_division)
+) |>
+  filter(division == "fbs") |>
+  distinct(team, conference)
+
+count(teams, conference, sort = TRUE)
+```
+
+## Standings and the playoff field
+
+With every result filled in, `cfb_standings()` ranks each conference with its
+own tiebreaker procedure, and `cfb_playoff_seeds()` builds the field. `autobid =
+"2025"` applies that season's rule: the five highest-ranked conference champions
+are in.
+
+```{r standings}
+standings <- cfb_standings(games, teams)
+
+seeds <- cfb_playoff_seeds(standings, playoff_seeds = 12L, autobid = "2025")
+
+seeds |>
+  filter(!is.na(seed)) |>
+  arrange(seed) |>
+  select(seed, team, conference, conf_champ, wins, losses)
+```
+
+Without a `rankings` table, seeding orders teams by win percentage, then
+strength of victory, strength of schedule and point differential. The real
+field is seeded by the selection committee's ranking, so pass the committee's
+final top 25 (`team`, `rank`) as `rankings` to reproduce it.
+
+## Simulating the rest of the season from week 10
+
+Now rewind. Blank out every result between two FBS teams from week 10 on, and
+let `cfb_simulations()` play those games. Games against FCS opponents keep their
+real results, because FCS teams carry no rating.
+
+```{r rewind}
+cutoff <- 10
+fbs <- teams$team
+
+games_wk10 <- games |>
+  mutate(result = ifelse(week >= cutoff & home_team %in% fbs & away_team %in% fbs,
+                         NA, result))
+
+sum(is.na(games_wk10$result))
+```
+
+The default results generator is an Elo model carried over from nflseedR. Left
+alone it starts every team at a random rating, so seed it with CFBD's own Elo:
+each team's post-game rating from its last game before the cutoff.
+
+```{r elo}
+played <- filter(sched, season_type == "regular", week < cutoff)
+elo <- bind_rows(
+  select(played, start_date, team = home_team, elo = home_postgame_elo),
+  select(played, start_date, team = away_team, elo = away_postgame_elo)
+) |>
+  filter(team %in% fbs, !is.na(elo)) |>
+  arrange(start_date) |>
+  group_by(team) |>
+  summarise(elo = last(elo))
+
+elo <- setNames(elo$elo, elo$team)
+head(sort(elo, decreasing = TRUE), 10)
+```
+
+`cfb_simulations()` passes `elo` on to the results generator. Each simulation
+plays out weeks 10 through the conference championship games, recomputes the
+standings and the 12 seeds, and plays the bracket. Conference championship games
+are played as scheduled, between the two teams that actually made them.
+
+```{r simulate}
+set.seed(2025)
+sim <- cfb_simulations(
+  games_wk10, teams,
+  simulations = 500,
+  playoff_seeds = 12L,
+  autobid = "2025",
+  elo = elo,
+  verbosity = "NONE"
+)
+```
+
+`sim$overall` has one row per team: average wins and the share of simulations in
+which it won its conference, made the playoff, earned the top seed and won the
+national title.
+
+```{r overall}
+sim$overall |>
+  arrange(desc(playoff)) |>
+  select(team, conference, wins, conf_champ, playoff, seed1, won_natty) |>
+  head(16)
+```
+
+`summary()` turns the same numbers into a table grouped by conference:
+
+```{r summary}
+summary(sim)
+```
+
+To spread a larger run across cores, set a parallel plan first: simulations are
+split into `chunks` and dispatched with furrr.
+
+```{r parallel, eval = FALSE}
+future::plan("multisession")
+sim <- cfb_simulations(games_wk10, teams, simulations = 10000, chunks = 8,
+                       elo = elo, autobid = "2025")
+future::plan("sequential")
+```
+
+cfbseedR's own articles cover the
+[tiebreaker ladder and CFP rules](https://cfbseedR.sportsdataverse.org/articles/tiebreakers-and-cfp.html)
+and [custom results generators](https://cfbseedR.sportsdataverse.org/articles/simulating-seasons.html).
+
+## **Citation**
+
+To cite the [**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) R package in publications, use:
+
+BibTeX Citation
+
+```bibtex
+@misc{cfbfastr,
+  author = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},
+  title = {cfbfastR: Access College Football Play by Play Data},
+  url = {https://cfbfastR.sportsdataverse.org/},
+  year = {2021}
+}
+```
+
+## **Related SportsDataverse packages**
+
+-   [**cfbfastR**](https://cfbfastR.sportsdataverse.org/) - college football
+-   [**hoopR**](https://hoopR.sportsdataverse.org/) - men's basketball
+-   [**wehoop**](https://wehoop.sportsdataverse.org/) - women's basketball
+-   [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
+-   [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
+-   [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
+-   [**cfbseedR**](https://cfbseedR.sportsdataverse.org/) - college football season and playoff simulation (CRAN)
+-   [**cfb4th**](https://cfb4th.sportsdataverse.org/) - college football fourth-down decisions (r-universe)
+-   [**sdvplotR**](https://sdvplotR.sportsdataverse.org/) - team logos, colours and tables for every SportsDataverse league (r-universe)
+-   [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces, including the college football field (CRAN)
+-   [**cfbplotR**](https://cfbplotR.sportsdataverse.org/) - college football logos and colours (r-universe)
+-   [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python package
+-   [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R meta-package
