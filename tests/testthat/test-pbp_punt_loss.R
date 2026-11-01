@@ -20,6 +20,10 @@ test_that(".punt_yards signs the loss clause and leaves other punts alone", {
   expect_identical(.punt_yards(c(loss_text, gain_text)), c(-12, 43))
   expect_identical(.punt_yards(toupper(loss_text)), -12) # case-insensitive, as sdv-py
   expect_identical(.punt_yards(NA_character_), NA_real_)
+  # edge cases (constructed): the distance must follow "punt for" directly, and
+  # a loss on the return must not sign the punt
+  expect_identical(.punt_yards("Johnny Ayers Punt for no gain to the BC 20."), NA_real_)
+  expect_identical(.punt_yards("A punt for 43 yards, B returned punt for a loss of 5 yards."), 43)
 })
 
 test_that("both engines' clean stage store a punt for a loss as negative", {
@@ -36,9 +40,15 @@ test_that("ESPN game 252460252 publishes the punt for a loss as -12 on both engi
       suppressWarnings(suppressMessages(
         espn_cfb_pbp(game_id = 252460252, epa_wpa = TRUE, engine = eng)
       )),
-      error = function(e) testthat::skip(paste("ESPN request failed:", conditionMessage(e)))
+      # skip only when the request itself failed; a processing error fails
+      error = function(e) {
+        if (inherits(e, c("httr2_failure", "httr2_http", "curl_error"))) {
+          testthat::skip(paste("ESPN request failed:", conditionMessage(e)))
+        }
+        stop(e)
+      }
     )
-    if (!is.data.frame(pbp) || !nrow(pbp)) testthat::skip("no plays returned")
+    expect_true(is.data.frame(pbp) && nrow(pbp) > 0, label = paste("plays returned,", eng))
     row <- pbp[grepl("punt for a loss of 12", pbp$play_text, fixed = TRUE), ]
     expect_identical(nrow(row), 1L, label = paste("loss row,", eng))
     expect_equal(as.numeric(row$yds_punted), -12, label = paste("yds_punted,", eng))
