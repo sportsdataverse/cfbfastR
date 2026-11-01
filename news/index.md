@@ -758,6 +758,44 @@ Two things worth knowing before using them:
   `logical` — while `target` is populated (1,976 of 2,003 week-5 2025
   completions) and the *season* aggregates do carry air yards.
 
+### New: CFBD punting endpoint family
+
+Five new `cfbd_*()` wrappers cover the CollegeFootballData punting
+endpoints (spec **v5.33.2**), taking coverage from 88 of 93 endpoints to
+**93 of 93**
+([\#192](https://github.com/sportsdataverse/cfbfastR/issues/192),
+[\#195](https://github.com/sportsdataverse/cfbfastR/issues/195)):
+
+| function | endpoint |
+|----|----|
+| [`cfbd_punting_players_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_players_season.md) | `/punting/players/season` |
+| [`cfbd_punting_players_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_players_games.md) | `/punting/players/games` |
+| [`cfbd_punting_teams_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_teams_season.md) | `/punting/teams/season` |
+| [`cfbd_punting_teams_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_teams_games.md) | `/punting/teams/games` |
+| [`cfbd_punting_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_plays.md) | `/punting/plays` |
+
+The player frames carry a 15-column `punting_*` block and a 10-column
+`returning_*` punt return block (30 columns season, 34 games). The team
+frames carry one 24-column block twice: `punting_*` for the team’s own
+punts and `returning_*` for the punts it received, so in a game frame
+one side’s `punting_*` matches its opponent’s `returning_*` (51 columns
+season, 55 games).
+[`cfbd_punting_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_plays.md)
+returns one row per punt (46 columns) with gross, net and return
+yardage, where the kick and the play ended, and touchback, fair catch,
+downed, blocked, muffed and return-touchdown flags.
+[`?cfbd_punting`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting.md)
+documents the blocks once.
+
+- **They start in 2015**, earlier than the passing and rushing families.
+  Earlier seasons answer HTTP 200 with an empty array, and these
+  functions return a 0-row data frame for them rather than a parse
+  error.
+- **The `*_available` columns are denominators.** A punt can be counted
+  while its yardage is not parsed from the play text, so divide by
+  `punting_punt_yards_available`, not `punting_punts`. Return yardage is
+  `NA`, not 0, on a punt with no return.
+
 ### New: conference and division group loaders
 
 Four loaders read the new `cfb_groups` release on sportsdataverse-data,

@@ -32,7 +32,6 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
@@ -40,6 +39,8 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
 
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
+
+    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
 
     ## Reading package lists...
 
@@ -62,7 +63,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
     ## 0 upgraded, 0 newly installed, 0 to remove and 19 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [10.5s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [9.9s]
 
 ``` r
 
@@ -246,7 +247,7 @@ tex_pass |>
 
     ## ── Player season passing data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 19:14:08 UTC
+    ## ℹ Data updated: 2026-11-01 20:40:43 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts completion_rate average_depth_of_target   ppa
@@ -313,7 +314,7 @@ tex_pass |>
 
     ## ── Player season passing data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 19:14:08 UTC
+    ## ℹ Data updated: 2026-11-01 20:40:43 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts air_yards_parsed adot_correct adot_naive
@@ -334,7 +335,7 @@ cfbd_passing_plays(year = 2025, week = 5, outcome = "completion") |>
 
     ## ── Passing plays data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 19:14:10 UTC
+    ## ℹ Data updated: 2026-11-01 20:40:44 UTC
 
     ## # A tibble: 10 × 7
     ##    offense    defense    passer       target         total_yards   ppa success
@@ -363,6 +364,55 @@ Earlier seasons are not an error — these endpoints begin in 2025, and
 CFBD answers a 2024 request with an empty array, so the functions return
 a zero-row data frame rather than failing.
 
+#### **Punting (2015 onward)**
+
+The `cfbd_punting_*()` family covers both sides of a punt. Team frames
+carry one 24-column block twice: `punting_*` for the team’s own punts
+and `returning_*` for the punts it received. Player frames carry a
+punter block and a returner block, so a returner shows up with `NA`
+punting columns. Coverage starts in **2015**.
+
+Gross average flatters a punter whose kicks get returned. Net yards per
+punt charges the return back:
+
+``` r
+
+cfbd_punting_teams_season(year = 2025, conference = "SEC") |>
+  dplyr::select(team, punting_punts, punting_yards_per_punt,
+                punting_net_yards_per_punt, punting_inside20, punting_touchbacks) |>
+  dplyr::arrange(dplyr::desc(punting_net_yards_per_punt))
+```
+
+    ## ── Team season punting data from CollegeFootballData.com ───── cfbfastR 3.1.0 ──
+
+    ## ℹ Data updated: 2026-11-01 20:40:45 UTC
+
+    ## # A tibble: 16 × 6
+    ##    team              punting_punts punting_yards_per_punt punting_net_yards_pe…¹
+    ##    <chr>                     <int>                  <dbl>                  <dbl>
+    ##  1 Ole Miss                     41                   46                     43.4
+    ##  2 Georgia                      51                   45.7                   43.2
+    ##  3 Tennessee                    39                   44                     42.3
+    ##  4 Vanderbilt                   27                   47.1                   42.2
+    ##  5 Mississippi State            58                   45.6                   41.9
+    ##  6 Arkansas                     35                   44.8                   41.1
+    ##  7 Auburn                       50                   42                     40.5
+    ##  8 Florida                      48                   43.4                   40.4
+    ##  9 South Carolina               52                   44.2                   40.2
+    ## 10 LSU                          63                   45.8                   38.6
+    ## 11 Oklahoma                     63                   45.1                   38.3
+    ## 12 Missouri                     45                   41.6                   38.2
+    ## 13 Alabama                      53                   41.5                   38  
+    ## 14 Kentucky                     49                   43.4                   37.6
+    ## 15 Texas                        59                   44.6                   37.6
+    ## 16 Texas A&M                    51                   43.5                   35.2
+    ## # ℹ abbreviated name: ¹​punting_net_yards_per_punt
+    ## # ℹ 2 more variables: punting_inside20 <int>, punting_touchbacks <int>
+
+As with passing, the `*_available` columns are denominators, so divide
+by `punting_net_punt_yards_available` rather than `punting_punts` if you
+rebuild an average yourself.
+
 #### **College Football Mapping for Stats Categories**
 
 ``` r
@@ -372,7 +422,7 @@ cfbd_stats_categories()
 
     ## ── Stat categories for CollegeFootballData.com ─────────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-01 19:14:10 UTC
+    ## ℹ Data updated: 2026-11-01 20:40:45 UTC
 
     ## # A tibble: 38 × 1
     ##    category          

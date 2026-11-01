@@ -381,7 +381,7 @@
 <h2 id="collegefootballdata-api-coverage">
 <strong>CollegeFootballData API coverage</strong><a class="anchor" aria-label="anchor" href="#collegefootballdata-api-coverage"></a>
 </h2>
-<p>The <code>cfbd_*()</code> wrappers cover <strong>88 of the 93 endpoints</strong> in the current CFBD specification (v5.33.2); the five <code>/punting/*</code> endpoints are not wrapped yet. The most recent additions are the passing and rushing families, which carry charting detail the older <code>cfbd_stats_*()</code> and <code>cfbd_metrics_*()</code> functions do not:</p>
+<p>The <code>cfbd_*()</code> wrappers cover <strong>93 of the 93 endpoints</strong> in the current CFBD specification (v5.33.2). The most recent additions are the punting, passing and rushing families, which carry charting detail the older <code>cfbd_stats_*()</code> and <code>cfbd_metrics_*()</code> functions do not:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># season passing production, split across seven pass locations</span></span>
 <span><span class="fu"><a href="reference/cfbd_passing_players_season.html">cfbd_passing_players_season</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2025</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></span>
@@ -390,8 +390,11 @@
 <span><span class="fu"><a href="reference/cfbd_passing_plays.html">cfbd_passing_plays</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2025</span>, week <span class="op">=</span> <span class="fl">5</span>, outcome <span class="op">=</span> <span class="st">"interception"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># rushing production split across four run directions, offense and defense</span></span>
-<span><span class="fu"><a href="reference/cfbd_rushing_teams_season.html">cfbd_rushing_teams_season</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2025</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></span></code></pre></div>
-<p>These endpoints begin in <strong>2025</strong>; earlier seasons return an empty data frame rather than an error. See <code><a href="reference/cfbd_passing.html">?cfbd_passing</a></code> and <code><a href="reference/cfbd_rushing.html">?cfbd_rushing</a></code> — the frames are wide (up to 385 columns) because one production block repeats per location or direction, so the family topics document the block and the naming scheme once instead of listing every column.</p>
+<span><span class="fu"><a href="reference/cfbd_rushing_teams_season.html">cfbd_rushing_teams_season</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2025</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># every punt with gross, net and return yards and where the kick ended</span></span>
+<span><span class="fu"><a href="reference/cfbd_punting_plays.html">cfbd_punting_plays</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2025</span>, week <span class="op">=</span> <span class="fl">1</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></span></code></pre></div>
+<p>The passing and rushing endpoints begin in <strong>2025</strong> and the punting endpoints in <strong>2015</strong>; earlier seasons return an empty data frame rather than an error. See <code><a href="reference/cfbd_passing.html">?cfbd_passing</a></code>, <code><a href="reference/cfbd_rushing.html">?cfbd_rushing</a></code> and <code><a href="reference/cfbd_punting.html">?cfbd_punting</a></code> — the frames are wide (up to 385 columns) because one production block repeats per location or direction, so the family topics document the block and the naming scheme once instead of listing every column.</p>
 </div>
 <div class="section level2">
 <h2 id="breaking-changes">

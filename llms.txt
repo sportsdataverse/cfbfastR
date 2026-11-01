@@ -128,11 +128,10 @@ install.packages(
 
 ## **CollegeFootballData API coverage**
 
-The `cfbd_*()` wrappers cover **88 of the 93 endpoints** in the current
-CFBD specification (v5.33.2); the five `/punting/*` endpoints are not
-wrapped yet. The most recent additions are the passing and rushing
-families, which carry charting detail the older `cfbd_stats_*()` and
-`cfbd_metrics_*()` functions do not:
+The `cfbd_*()` wrappers cover **93 of the 93 endpoints** in the current
+CFBD specification (v5.33.2). The most recent additions are the punting,
+passing and rushing families, which carry charting detail the older
+`cfbd_stats_*()` and `cfbd_metrics_*()` functions do not:
 
 ``` r
 
@@ -144,13 +143,18 @@ cfbd_passing_plays(year = 2025, week = 5, outcome = "interception")
 
 # rushing production split across four run directions, offense and defense
 cfbd_rushing_teams_season(year = 2025, team = "Texas")
+
+# every punt with gross, net and return yards and where the kick ended
+cfbd_punting_plays(year = 2025, week = 1, team = "Texas")
 ```
 
-These endpoints begin in **2025**; earlier seasons return an empty data
-frame rather than an error. See
-[`?cfbd_passing`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing.md)
-and
+The passing and rushing endpoints begin in **2025** and the punting
+endpoints in **2015**; earlier seasons return an empty data frame rather
+than an error. See
+[`?cfbd_passing`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing.md),
 [`?cfbd_rushing`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing.md)
+and
+[`?cfbd_punting`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting.md)
 — the frames are wide (up to 385 columns) because one production block
 repeats per location or direction, so the family topics document the
 block and the naming scheme once instead of listing every column.
@@ -393,6 +397,11 @@ One-page summaries of the cfbd\_\* and espn_cfb\_\* function families.
   :
 
   **CFBD Play-by-Play (v2 Modular EPA/WPA Pipeline) Overview**
+
+- [`cfbd_punting`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting.md)
+  :
+
+  **CFBD Punting Endpoint Overview**
 
 - [`cfbd_rushing`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing.md)
   :
@@ -1156,6 +1165,41 @@ CollegeFootballData API (2025 onward)
 
   **Get team season rushing production for and against, split by run
   direction**
+
+### Punting Data
+
+Functions exported by cfbfastR sourced from the punting endpoints of the
+CollegeFootballData API (2015 onward)
+
+- [`cfbd_punting`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting.md)
+  :
+
+  **CFBD Punting Endpoint Overview**
+
+- [`cfbd_punting_players_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_players_games.md)
+  :
+
+  **Get player game punting and punt return production**
+
+- [`cfbd_punting_players_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_players_season.md)
+  :
+
+  **Get player season punting and punt return production**
+
+- [`cfbd_punting_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_plays.md)
+  :
+
+  **Get individual punt plays with yardage, field position and outcome**
+
+- [`cfbd_punting_teams_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_teams_games.md)
+  :
+
+  **Get team game punting production, kicking and receiving**
+
+- [`cfbd_punting_teams_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_teams_season.md)
+  :
+
+  **Get team season punting production, kicking and receiving**
 
 ### Rankings and Ratings Data
 

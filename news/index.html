@@ -375,6 +375,27 @@ Together with sportsdataverse-py <a href="https://github.com/sportsdataverse/cfb
 <strong>The <code>*_available</code> columns are denominators, not statistics.</strong> CFBD parses air yards, YAC, location and direction out of play text, so an attempt can be counted while those stay unknown. Dividing by <code>attempts</code> instead of the matching <code>*_available</code> column understates every mean. Play-level frames expose the same caveat as <code>parse_status</code>, <code>location_analysis_eligible</code> and <code>direction_analysis_eligible</code>. Check a column before building on it: as of this writing CFBD has <strong>not</strong> populated play-level <code>air_yards</code>, <code>yards_after_catch</code>, <code>pass_depth</code>/<code>pass_direction</code>/<code>pass_location</code> or <code>rush_direction</code> at all — every value is <code>NA</code>, so R types them <code>logical</code> — while <code>target</code> is populated (1,976 of 2,003 week-5 2025 completions) and the <em>season</em> aggregates do carry air yards.</li>
 </ul></div>
 <div class="section level3">
+<h3 id="new-cfbd-punting-endpoint-family-3-1-0">New: CFBD punting endpoint family<a class="anchor" aria-label="anchor" href="#new-cfbd-punting-endpoint-family-3-1-0"></a></h3>
+<p>Five new <code>cfbd_*()</code> wrappers cover the CollegeFootballData punting endpoints (spec <strong>v5.33.2</strong>), taking coverage from 88 of 93 endpoints to <strong>93 of 93</strong> (<a href="https://github.com/sportsdataverse/cfbfastR/issues/192" class="external-link">#192</a>, <a href="https://github.com/sportsdataverse/cfbfastR/issues/195" class="external-link">#195</a>):</p>
+<table class="table"><thead><tr><th>function</th>
+<th>endpoint</th>
+</tr></thead><tbody><tr><td><code><a href="../reference/cfbd_punting_players_season.html">cfbd_punting_players_season()</a></code></td>
+<td><code>/punting/players/season</code></td>
+</tr><tr><td><code><a href="../reference/cfbd_punting_players_games.html">cfbd_punting_players_games()</a></code></td>
+<td><code>/punting/players/games</code></td>
+</tr><tr><td><code><a href="../reference/cfbd_punting_teams_season.html">cfbd_punting_teams_season()</a></code></td>
+<td><code>/punting/teams/season</code></td>
+</tr><tr><td><code><a href="../reference/cfbd_punting_teams_games.html">cfbd_punting_teams_games()</a></code></td>
+<td><code>/punting/teams/games</code></td>
+</tr><tr><td><code><a href="../reference/cfbd_punting_plays.html">cfbd_punting_plays()</a></code></td>
+<td><code>/punting/plays</code></td>
+</tr></tbody></table><p>The player frames carry a 15-column <code>punting_*</code> block and a 10-column <code>returning_*</code> punt return block (30 columns season, 34 games). The team frames carry one 24-column block twice: <code>punting_*</code> for the team’s own punts and <code>returning_*</code> for the punts it received, so in a game frame one side’s <code>punting_*</code> matches its opponent’s <code>returning_*</code> (51 columns season, 55 games). <code><a href="../reference/cfbd_punting_plays.html">cfbd_punting_plays()</a></code> returns one row per punt (46 columns) with gross, net and return yardage, where the kick and the play ended, and touchback, fair catch, downed, blocked, muffed and return-touchdown flags. <code><a href="../reference/cfbd_punting.html">?cfbd_punting</a></code> documents the blocks once.</p>
+<ul><li>
+<strong>They start in 2015</strong>, earlier than the passing and rushing families. Earlier seasons answer HTTP 200 with an empty array, and these functions return a 0-row data frame for them rather than a parse error.</li>
+<li>
+<strong>The <code>*_available</code> columns are denominators.</strong> A punt can be counted while its yardage is not parsed from the play text, so divide by <code>punting_punt_yards_available</code>, not <code>punting_punts</code>. Return yardage is <code>NA</code>, not 0, on a punt with no return.</li>
+</ul></div>
+<div class="section level3">
 <h3 id="new-conference-and-division-group-loaders-3-1-0">New: conference and division group loaders<a class="anchor" aria-label="anchor" href="#new-conference-and-division-group-loaders-3-1-0"></a></h3>
 <p>Four loaders read the new <code>cfb_groups</code> release on sportsdataverse-data, which records conference membership as it was each season rather than back-applying today’s alignment:</p>
 <ul><li>

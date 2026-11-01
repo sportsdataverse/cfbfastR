@@ -52,6 +52,11 @@ One-page summaries of the cfbd\_\* and espn_cfb\_\* function families.
 
   **CFBD Play-by-Play (v2 Modular EPA/WPA Pipeline) Overview**
 
+- [`cfbd_punting`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting.md)
+  :
+
+  **CFBD Punting Endpoint Overview**
+
 - [`cfbd_rushing`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing.md)
   :
 
@@ -814,6 +819,41 @@ CollegeFootballData API (2025 onward)
 
   **Get team season rushing production for and against, split by run
   direction**
+
+### Punting Data
+
+Functions exported by cfbfastR sourced from the punting endpoints of the
+CollegeFootballData API (2015 onward)
+
+- [`cfbd_punting`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting.md)
+  :
+
+  **CFBD Punting Endpoint Overview**
+
+- [`cfbd_punting_players_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_players_games.md)
+  :
+
+  **Get player game punting and punt return production**
+
+- [`cfbd_punting_players_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_players_season.md)
+  :
+
+  **Get player season punting and punt return production**
+
+- [`cfbd_punting_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_plays.md)
+  :
+
+  **Get individual punt plays with yardage, field position and outcome**
+
+- [`cfbd_punting_teams_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_teams_games.md)
+  :
+
+  **Get team game punting production, kicking and receiving**
+
+- [`cfbd_punting_teams_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_punting_teams_season.md)
+  :
+
+  **Get team season punting production, kicking and receiving**
 
 ### Rankings and Ratings Data
 
