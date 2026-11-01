@@ -247,9 +247,15 @@
     b <- legacy[[k]][ord_l]
     same_to <- same_to & ((is.na(a) & is.na(b)) | (!is.na(a) & !is.na(b) & a == b))
   }
-  wp_keep <- same_to & c(same_to[-1], TRUE)
+  # "next row" is the next play of the game, not the next id: ids sort the
+  # frame here, and ESPN's ids do not always run in play order
+  gpn <- v2$game_play_number[ord_v]
+  by_play <- order(gpn)
+  next_same <- rep(TRUE, length(same_to))
+  next_same[by_play] <- c(same_to[by_play][-1], TRUE)
+  wp_keep <- same_to & next_same
   # the exemption must stay an exception, not swallow the comparison
-  expect_gt(mean(wp_keep), 0.5, label = paste0(sample_label, ": share of rows with WP compared"))
+  expect_gte(mean(wp_keep), 0.9, label = paste0(sample_label, ": share of rows with WP compared"))
   for (col in cols_to_check) {
     keep <- if (col %in% c("offense_score_play", "defense_score_play")) {
       !kick_td
