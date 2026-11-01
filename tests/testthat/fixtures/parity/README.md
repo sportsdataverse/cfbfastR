@@ -184,7 +184,7 @@ data-raw/parity_epa_wp_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not ha
 
 `timeouts_oracle.csv.gz` — captured 2026-11-01 from sportsdataverse-py `4b78a45a3d` (`origin/main`,
 `CFBPlayProcess.run_processing_pipeline()` run offline on the ESPN summary payloads banked in
-cfbfastR-cfb-raw `cfb/json/raw/`, `join_participants = False`). One row per play of 17 games, in
+cfbfastR-cfb-raw `cfb/json/raw/`, `join_participants = False`). One row per play of 19 games, in
 sdv-py's final order: the inputs `.espn_timeouts()` reads (`period`, `type`, `text`, the header's
 `*_abbr` / `*_location` / `*_name` per team, and the play's `drive_id` / `drive_start_yard_line` /
 `drive_start_period`, which decide the overtime window), `start_is_home`, and sdv-py's
@@ -194,25 +194,31 @@ rule decides at least one Timeout row: a name part (401752665), the clock before
 the 2004 mascot form with its "remaining" clock tail (243250239), ties that charge both (242620002,
 283332199, 322730166), initialisms (293110009 "SOUTHERN CAL", 283270254 "BRIGHAM YOUNG"), a full name
 match over an initialism (401012682 "OREGON ST"), the shortened-name resolver (252532649, 282430061,
-252460251), media stoppages charged to nobody (401677188), an adjacent repeat (401761657) and three
-overtime games (302540119; 401112081, whose feed numbers all three overtimes 5, so the window comes
-from pairing the overtime drives, sportsdataverse-py #505; and 401754372, below).
+252460251), media stoppages charged to nobody (401677188), an adjacent repeat (401761657) and five
+overtime games: 302540119; 401112081 and 323152633, whose feeds number every overtime 5, so the window
+comes from pairing the overtime drives (sportsdataverse-py #505); 401236005, four overtimes with an
+OT4 drive row filed ahead of the OT3 drive; and 401754372, below. `.espn_overtime_period()` is a
+literal port of sdv-py's `_overtime_period()`; it matches sdv-py on every row of these games and of
+128 overtime games replayed from the raw corpus.
 
-**Known sdv-py bug, R kept as a documented divergence (401754372, 5 rows).** sdv-py's
+**Known bug, shared by sdv-py and cfbfastR (401754372, 5 rows; pinned, not exempted).** sdv-py's
 `_overtime_period()` (`cfb/cfb_pbp.py`, used by the timeout block) counts a new overtime drive
 whenever `drive.id` differs from the previous row's, for any drive starting at the 25 / 75, and
 pairs those drives into periods (`5 + (count - 1) // 2`). In 401754372 (California at Virginia
 Tech, 2025, two overtimes) the first overtime is three rows filed under drives 40175437237,
 40175437236, 40175437237, so drive 37 is counted twice. The second overtime's drives 38 and 39
-become the fourth and fifth, and drive 39 (from the row after "Timeout Virginia Tech, clock 00:11",
-which ESPN files under drive 40175437219, a second-quarter drive starting at yard line 17) opens a
-third overtime window that never happened. Virginia Tech (home) called its one second-overtime
-timeout at that row, yet sdv-py reports `start.homeTeamTimeouts = 1` on the five rows after it (the
-three incompletions, "End of 2 OT." and "Timeout California"). With `_overtime_period` replaced by
-`period.number`, sdv-py gives 0 there, as R does. The fix is to count each overtime drive once (by
-id, not by row adjacency) and only when the drive starts in overtime;
-`.espn_overtime_period()` does that, and agrees with sdv-py on 401112081, where the overtime drives
-are contiguous. `test-pbp_timeouts.R` pins the five rows. Re-capture: `python
+become the fourth and fifth, and drive 39 opens a third overtime window that never happened.
+Virginia Tech (home) called its one second-overtime timeout at "Timeout Virginia Tech, clock 00:11",
+yet both libraries report `start.homeTeamTimeouts = 1` on the five rows after it (the three
+incompletions, "End of 2 OT." and "Timeout California"); the truth is 0, which sdv-py gives with
+`_overtime_period` replaced by `period.number`. Both Timeout rows ("Virginia Tech" and "California")
+are filed under drive 40175437219, a second-quarter drive starting at yard line 17, which the rule
+does not count. Counting each overtime drive once by id fixes this game but is worse overall: on 128
+replayed overtime games it disagreed with sdv-py in 10, and where the right answer could be told it
+was wrong more often (300062653 files Central Michigan's OT1 touchdown under regulation drive 22;
+401236005 files a row of OT4 drive 40 ahead of OT3 drive 38; 323152633 files an overtime drive at
+yard line 0). A fix needs a rule that survives all of those, in sdv-py first; `test-pbp_timeouts.R`
+pins the five rows at sdv-py's value so a change to either side shows. Re-capture: `python
 data-raw/parity_timeouts_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`, and `SDV_PY_SHA` when the
 checkout is an export); do not hand-edit the file.
 

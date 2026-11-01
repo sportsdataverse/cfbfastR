@@ -47,9 +47,11 @@ GAMES = [
     252460251,  # 2005 "UL LAFAYETTE": the shortened-name resolver
     401677188,  # 2024 "two minute" stoppages: charged to nobody
     401761657,  # 2025 an adjacent repeat of a Timeout row: one timeout
-    401754372,  # 2025 two overtimes; a Q2 drive holds an OT2 Timeout row (sdv-py pairing bug)
+    401754372,  # 2025 two overtimes; OT1 rows under drives 37, 36, 37 (a pairing bug sdv-py and R share)
     302540119,  # 2010 timeouts in two overtime periods
     401112081,  # 2019 three overtimes the feed numbers 5: the drive pairing decides the period (#505)
+    401236005,  # 2020 four overtimes; an OT4 drive row filed ahead of the OT3 drive
+    323152633,  # 2012 four overtimes the feed numbers 5; an overtime drive filed at yard line 0
 ]
 COLS = {
     "id": "id_play",

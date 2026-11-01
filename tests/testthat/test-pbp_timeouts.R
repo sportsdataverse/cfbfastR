@@ -2,13 +2,14 @@
 ### `start.*TeamTimeouts`, `_overtime_period`) -> .espn_timeouts() /
 ### .espn_overtime_period() / .espn_add_timeouts() / .pbp_add_play_counts().
 ###
-### `timeouts_oracle.csv.gz` is every play of 17 real games (2004-2025), each
+### `timeouts_oracle.csv.gz` is every play of 19 real games (2004-2025), each
 ### picked so one charging or counting rule decides at least one row: name
 ### parts, the 2004 mascot form, ties, initialisms, the shortened-name resolver,
-### media stoppages charged to nobody, an adjacent repeat, and three overtime
-### games -- one (401112081) whose feed numbers all three overtimes 5. The
-### engine's old matcher compared up to ten characters after "Timeout " with the
-### abbreviation and charged 8 of these games' first 116 Timeout rows.
+### media stoppages charged to nobody, an adjacent repeat, and five overtime
+### games, two of whose feeds number every overtime 5 (401112081, 323152633) so
+### the window comes from pairing the overtime drives. The engine's old matcher
+### compared up to ten characters after "Timeout " with the abbreviation and
+### charged 8 of the first 16 games' 116 Timeout rows.
 
 oracle_path <- testthat::test_path("fixtures", "parity", "timeouts_oracle.csv.gz")
 
@@ -30,47 +31,40 @@ replay <- function(g) {
                  drive_start_period = g$drive_start_period)
 }
 
-# A documented divergence, R kept: sdv-py's `_overtime_period` pairs overtime
-# drives on every drive-id CHANGE. 401754372's first overtime is three rows
-# filed under drives 37, 36, 37, so drive 37 counts twice and the second
-# overtime's second possession (drive 39, from row 191) opens a third window,
-# handing Virginia Tech (home) back the overtime timeout it called at row 190.
-# R counts each overtime drive once and leaves Virginia Tech at 0 -- correct.
-# Exactly these five rows; pinned so the exemption cannot widen.
-pairing_bug_rows <- function(g) {
-  if (g$game_id[1] != "401754372") return(rep(FALSE, nrow(g)))
-  seq_len(nrow(g)) > max(which(g$period == 6 & grepl("^Timeout Virginia Tech", g$text)))
-}
-
 test_that("Timeout rows are charged and counted as sdv-py does", {
   testthat::skip_on_cran()
   for (g in read_oracle()) {
     r <- replay(g)
     expect_identical(r$home_called, g$sdvpy_home_called, label = g$game_id[1])
     expect_identical(r$away_called, g$sdvpy_away_called, label = g$game_id[1])
-    skip <- pairing_bug_rows(g)
-    expect_equal(sum(skip), if (g$game_id[1] == "401754372") 5L else 0L)
     for (k in c("start_home", "start_away", "end_home", "end_away")) {
-      expect_equal(r[[k]][!skip], g[[paste0("sdvpy_", k)]][!skip], label = paste(g$game_id[1], k))
+      expect_equal(r[[k]], g[[paste0("sdvpy_", k)]], label = paste(g$game_id[1], k))
     }
   }
 })
 
-test_that("overtime windows: paired drives in a feed that numbers every OT 5, not sdv-py's double count", {
+test_that("overtime windows pair the overtime drives, as sdv-py's _overtime_period does", {
   testthat::skip_on_cran()
   o <- read_oracle()
-  # 401112081 (2019, 3OT, sportsdataverse-py #505): three overtime windows from
-  # drive pairs, so each team gets one timeout per overtime, as in sdv-py
+  # 401112081 (2019, 3OT, all numbered 5; sportsdataverse-py #505)
   g <- o[["401112081"]]
-  w <- replay(g)$window
-  expect_identical(sort(unique(w[g$period >= 5])), c(5, 6, 7))
-  # 401754372: two overtimes, and Virginia Tech has none left after row 190
+  expect_identical(sort(unique(replay(g)$window[g$period >= 5])), c(5, 6, 7))
+  # A bug sdv-py and R share, pinned so a change to either side shows. The rule
+  # counts an overtime drive on every drive-id change. 401754372's first
+  # overtime is three rows filed under drives 37, 36, 37, so drive 37 counts
+  # twice and the second overtime's second possession opens a third window that
+  # never happened. Virginia Tech (home) called its one second-overtime timeout
+  # at "Timeout Virginia Tech, clock 00:11", yet both report it 1 left on the
+  # five rows after (truth: 0). Counting drives once by id fixes this game but
+  # disagrees with sdv-py on 10 of 128 overtime games, wrongly more often than
+  # not, so the shared rule stays until sdv-py has a better one.
   g <- o[["401754372"]]
   r <- replay(g)
-  expect_identical(sort(unique(r$window[g$period >= 5])), c(5, 6))
-  skip <- pairing_bug_rows(g)
-  expect_true(all(r$start_home[skip] == 0))
-  expect_true(all(g$sdvpy_start_home[skip] == 1))
+  expect_identical(sort(unique(r$window[g$period >= 5])), c(5, 6, 7))
+  after <- seq_len(nrow(g)) > max(which(g$period == 6 & grepl("^Timeout Virginia Tech", g$text)))
+  expect_equal(sum(after), 5L)
+  expect_equal(r$start_home[after], rep(1, 5))
+  expect_equal(r$start_home[after], g$sdvpy_start_home[after])
   # without drive fields the period is the window
   expect_identical(.espn_overtime_period(c(1, 5, 5, 6)), c(1, 5, 5, 6))
 })
@@ -108,12 +102,11 @@ test_that("timeouts remaining before a play match sdv-py through the engine", {
     py_def <- ifelse(home, g$sdvpy_start_away, g$sdvpy_start_home)
     is_na <- is.na(r$off_timeouts_rem_before) | is.na(r$def_timeouts_rem_before)
     n_na <- n_na + sum(is_na)
-    bad <- !is_na & (r$off_timeouts_rem_before != py_off | r$def_timeouts_rem_before != py_def)
-    mism <- mism + sum(bad[!pairing_bug_rows(g)])
+    mism <- mism + sum(!is_na & (r$off_timeouts_rem_before != py_off | r$def_timeouts_rem_before != py_def))
   }
   expect_identical(mism, 0L)
-  # The one NA row (283332199's first second-half row, a Penalty before any
-  # snap of the half) is the engine's own lag boundary, not a count. Counted so
-  # the NA exemption above cannot swallow more rows.
+  # The NA rows are the engine's own lag boundary (a half's first row is a
+  # Penalty before any snap, e.g. 283332199), not a count. Counted so the NA
+  # exemption cannot swallow more rows.
   expect_identical(n_na, 1L)
 })

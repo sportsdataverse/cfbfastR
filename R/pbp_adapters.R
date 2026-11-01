@@ -351,18 +351,17 @@
 #'   overtime drives are paired; a feed that numbers its periods (or its
 #'   drives' periods) keeps the larger value.
 #'
-#' @details One deliberate difference. sdv-py counts a new overtime drive
-#'   every time the drive id CHANGES from the previous row, on any drive
-#'   starting at the 25 / 75. 401754372's first overtime is three rows filed
-#'   under drives 37, 36, 37, so sdv-py counts drive 37 twice; the second
-#'   overtime's second possession (drive 39) is then its fifth drive and opens a
-#'   third window that never happened, handing Virginia Tech back the overtime
-#'   timeout it had just called. Here a drive counts once, at its first row,
-#'   and only when the drive itself starts in overtime (that Virginia Tech
-#'   timeout is filed under drive 19, a second-quarter drive): a drive's
-#'   identity is its id, not row adjacency, and a regulation drive cannot open
-#'   an overtime possession. Where the overtime drives are contiguous
-#'   (401112081) the two rules agree.
+#' @details A literal port: a new overtime drive is counted on every drive-id
+#'   CHANGE from the previous row (in play order), for any drive starting at
+#'   the 25 / 75. It matches sdv-py on all 128 overtime games replayed from the
+#'   2004-2025 raw corpus. That rule is wrong on 401754372, and both libraries
+#'   share the error: its first overtime is three rows filed under drives 37,
+#'   36, 37, so drive 37 counts twice and the second overtime's second
+#'   possession opens a third window, handing Virginia Tech back the timeout it
+#'   had just called. Counting each drive once by id fixes that game but breaks
+#'   more (ESPN files a regulation-drive row inside overtime, a later drive's
+#'   row ahead of an earlier one, an overtime drive at yard line 0), so the
+#'   sdv-py rule stays until sdv-py has a better one.
 #'
 #' @param period Per-play period.
 #' @param drive_id,drive_start_yard_line,drive_start_period Per-play drive
@@ -380,8 +379,11 @@
   }
   dsp <- if (is.null(drive_start_period)) rep(NA_real_, n) else as.numeric(drive_start_period)
   drive_id <- as.character(drive_id)
-  new_ot_drive <- !is.na(period) & period >= 5 & !is.na(drive_id) & !duplicated(drive_id) &
-    as.numeric(drive_start_yard_line) %in% c(25, 75) & (is.na(dsp) | dsp >= 5)
+  # sdv-py: (drive.id != drive.id.shift(1)).fill_null(True)
+  changed <- c(TRUE, utils::tail(drive_id, -1L) != utils::head(drive_id, -1L))
+  changed[is.na(changed)] <- TRUE
+  new_ot_drive <- !is.na(period) & period >= 5 & changed & !is.na(drive_id) &
+    as.numeric(drive_start_yard_line) %in% c(25, 75)
   paired <- 5 + pmax(cumsum(new_ot_drive) - 1, 0) %/% 2
   ot <- pmax(period, ifelse(is.na(dsp), -Inf, dsp), paired)
   ifelse(!is.na(period) & period >= 5, ot, period)
