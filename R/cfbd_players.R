@@ -308,7 +308,7 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
   validate_year(year)
   validate_list(position, pos_groups)
   validate_id(athlete_id)
-  validate_list(excl_garbage_time, c(T,F))
+  validate_list(excl_garbage_time, c(TRUE, FALSE))
 
   # Team Name Handling ----
   team <- handle_accents(team)

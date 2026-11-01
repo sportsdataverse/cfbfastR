@@ -166,11 +166,6 @@ utils::globalVariables(c("where"))
 is_installed <- function(pkg) requireNamespace(pkg, quietly = TRUE)
 
 
-#' @importFrom Rcpp getRcppVersion
-#' @importFrom RcppParallel defaultNumThreads
-NULL
-
-
 `%c%` <- function(x,y){
   ifelse(!is.na(x),x,y)
 }

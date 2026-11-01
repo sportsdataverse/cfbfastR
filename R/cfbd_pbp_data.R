@@ -813,10 +813,10 @@ cfbd_pbp_data <- function(year,
           add_yardage(season = year) |>
           add_player_cols() |>
           prep_epa_df_after(season = year) |>
-          create_epa(ep_model = ep_model, fg_model = fg_model,
+          create_epa(ep_model = .cfb_model("ep_model"), fg_model = .cfb_model("fg_model"),
                      season = year) |>
           # create_wpa_betting() |>
-          create_wpa_naive(wp_model = wp_model, season = year)
+          create_wpa_naive(wp_model = .cfb_model("wp_model"), season = year)
         p(sprintf("x=%s", as.integer(x)))
         return(game_plays)
       }, ...)

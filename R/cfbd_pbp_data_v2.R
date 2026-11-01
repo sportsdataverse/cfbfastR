@@ -343,9 +343,9 @@ cfbd_pbp_data_v2 <- function(year,
     }
     play_df <- .run_epa_wpa_by_game(
       play_df,
-      ep_model   = ep_model,
-      fg_model   = fg_model,
-      wp_model   = wp_model,
+      ep_model   = .cfb_model("ep_model"),
+      fg_model   = .cfb_model("fg_model"),
+      wp_model   = .cfb_model("wp_model"),
       clean_text = TRUE,
       min_plays  = 20L,
       rosters    = rosters,

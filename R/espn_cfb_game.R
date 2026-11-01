@@ -6326,10 +6326,10 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
           add_yardage(season = .legacy_season) |>
           add_player_cols() |>
           prep_epa_df_after(season = .legacy_season) |>
-          create_epa(ep_model = ep_model, fg_model = fg_model,
+          create_epa(ep_model = .cfb_model("ep_model"), fg_model = .cfb_model("fg_model"),
                      season = .legacy_season) |>
           # create_wpa_betting() |>
-          create_wpa_naive(wp_model = wp_model, season = .legacy_season) |>
+          create_wpa_naive(wp_model = .cfb_model("wp_model"), season = .legacy_season) |>
           dplyr::select(-"ppa") #drop placeholder column
 
       }
@@ -6750,7 +6750,7 @@ espn_cfb_pbp_v2 <- function(game_id,
           play_order                   = order(.espn_play_order(
             .data$play_id, .data$sequence_number, .data$period, .data$clock,
             .data$drive_drive_id, .data$type_text, .data$start_down_distance_text,
-            .data$end_down_distance_text, .env$game_season, .data$home_score, .data$away_score
+            .data$end_down_distance_text, !!game_season, .data$home_score, .data$away_score
           )),
           plays_start_yards_to_endzone = .data$start_yards_to_endzone,
           # ESPN's end-of-play yardline: the air-yards helper learns each game's
@@ -6813,9 +6813,9 @@ espn_cfb_pbp_v2 <- function(game_id,
 
       epa_df <- .run_epa_wpa(
         adapter,
-        ep_model     = ep_model,
-        fg_model     = fg_model,
-        wp_model     = wp_model,
+        ep_model     = .cfb_model("ep_model"),
+        fg_model     = .cfb_model("fg_model"),
+        wp_model     = .cfb_model("wp_model"),
         roster       = roster_df,
         participants = participants_df,
         # without a season FG scoring aborts and the outer handler hands back a

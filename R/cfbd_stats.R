@@ -226,7 +226,7 @@ cfbd_stats_game_advanced <- function(year,
   validate_api_key()
   validate_year(year)
   validate_week(week)
-  validate_list(excl_garbage_time, c(T,F))
+  validate_list(excl_garbage_time, c(TRUE, FALSE))
   validate_season_type(season_type)
 
   # Team Name Handling ----
@@ -422,7 +422,7 @@ cfbd_stats_season_advanced <- function(year,
   validate_api_key()
   validate_division(division)
   validate_year(year)
-  validate_list(excl_garbage_time, c(T,F))
+  validate_list(excl_garbage_time, c(TRUE, FALSE))
   validate_week(start_week)
   validate_week(end_week)
   validate_range(end_week - start_week, 0)
