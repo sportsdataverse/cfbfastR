@@ -109,10 +109,9 @@ install.packages(
 
 ## **CollegeFootballData API coverage**
 
-The `cfbd_*()` wrappers cover **88 of the 93 endpoints** in the current CFBD
-specification (v5.33.2); the five `/punting/*` endpoints are not wrapped yet.
-The most recent additions are the passing and rushing
-families, which carry charting detail the older `cfbd_stats_*()` and
+The `cfbd_*()` wrappers cover **93 of the 93 endpoints** in the current CFBD
+specification (v5.33.2). The most recent additions are the punting, passing
+and rushing families, which carry charting detail the older `cfbd_stats_*()` and
 `cfbd_metrics_*()` functions do not:
 
 ```r
@@ -124,10 +123,14 @@ cfbd_passing_plays(year = 2025, week = 5, outcome = "interception")
 
 # rushing production split across four run directions, offense and defense
 cfbd_rushing_teams_season(year = 2025, team = "Texas")
+
+# every punt with gross, net and return yards and where the kick ended
+cfbd_punting_plays(year = 2025, week = 1, team = "Texas")
 ```
 
-These endpoints begin in **2025**; earlier seasons return an empty data frame
-rather than an error. See `?cfbd_passing` and `?cfbd_rushing` — the frames are
+The passing and rushing endpoints begin in **2025** and the punting endpoints in
+**2015**; earlier seasons return an empty data frame rather than an error. See
+`?cfbd_passing`, `?cfbd_rushing` and `?cfbd_punting` — the frames are
 wide (up to 385 columns) because one production block repeats per location or
 direction, so the family topics document the block and the naming scheme once
 instead of listing every column.

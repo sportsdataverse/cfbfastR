@@ -222,6 +222,27 @@ Earlier seasons are not an error — these endpoints begin in 2025, and CFBD
 answers a 2024 request with an empty array, so the functions return a zero-row
 data frame rather than failing.
 
+### **Punting (2015 onward)**
+
+The `cfbd_punting_*()` family covers both sides of a punt. Team frames carry one
+24-column block twice: `punting_*` for the team's own punts and `returning_*` for
+the punts it received. Player frames carry a punter block and a returner block,
+so a returner shows up with `NA` punting columns. Coverage starts in **2015**.
+
+Gross average flatters a punter whose kicks get returned. Net yards per punt
+charges the return back:
+
+```{r}
+cfbd_punting_teams_season(year = 2025, conference = "SEC") |>
+  dplyr::select(team, punting_punts, punting_yards_per_punt,
+                punting_net_yards_per_punt, punting_inside20, punting_touchbacks) |>
+  dplyr::arrange(dplyr::desc(punting_net_yards_per_punt))
+```
+
+As with passing, the `*_available` columns are denominators, so divide by
+`punting_net_punt_yards_available` rather than `punting_punts` if you rebuild an
+average yourself.
+
 ### **College Football Mapping for Stats Categories**
 
 ```{r}
