@@ -56,7 +56,7 @@ jobs:
           for (i in which(hard)) {
             cat(sprintf("::error::%s: %s %s%s\n", res$URL[i], res$Status[i], res$Message[i],
                         if (nzchar(res$New[i])) paste0(" (moved to ", res$New[i], ")")
-                        else if (nzchar(res$CRAN[i])) paste0(" (use canonical form ", res$CRAN[i], ")")
+                        else if (nzchar(res$CRAN[i])) " (CRAN URL not in canonical form; use https://CRAN.R-project.org/package=<pkg>)"
                         else ""))
           }
           if (any(hard)) stop(sum(hard), " URL issue(s); see above")
