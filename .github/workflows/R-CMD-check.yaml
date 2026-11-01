@@ -38,7 +38,7 @@ jobs:
       CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - uses: r-lib/actions/setup-pandoc@v2
 
