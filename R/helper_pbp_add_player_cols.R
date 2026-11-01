@@ -264,20 +264,23 @@ add_player_cols <- function(pbp) {
     )
 
   ## Punt Block return player name
+  # Case-folded as in sdv-py: ESPN writes the return of a blocked punt as
+  # "Ale Kaho 0 Yd Return of Blocked Punt (...)", which a literal "return" /
+  # "blocked" never matched (31-59 such touchdowns a season).
   pbp <- pbp |>
     dplyr::mutate(
       punt_block_return_player = ifelse(stringr::str_detect(.data$play_type, "Punt") &
-        stringr::str_detect(.data$play_text, "blocked") &
-        stringr::str_detect(.data$play_text, "return"),
-      stringr::str_extract(.data$play_text, "(.+) return"), NA_character_
+        stringr::str_detect(.data$play_text, regex("blocked", ignore_case = TRUE)) &
+        stringr::str_detect(.data$play_text, regex("return", ignore_case = TRUE)),
+      stringr::str_extract(.data$play_text, regex("(.+) return", ignore_case = TRUE)), NA_character_
       ),
       punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, glue::glue("(.+)blocked by {punt_block_player}")),
       punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, glue::glue("blocked by {punt_block_player}")),
-      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, "return(.+)"),
-      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, "return"),
-      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, "(.+)blocked by"),
+      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, regex("return(.+)", ignore_case = TRUE)),
+      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, regex("return", ignore_case = TRUE)),
+      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, regex("(.+)blocked by", ignore_case = TRUE)),
       punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, "for a TD(.+)|for a SAFETY(.+)"),
-      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, "blocked by"),
+      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, regex("blocked by", ignore_case = TRUE)),
       punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, ", ")
     )
 

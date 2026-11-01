@@ -79,6 +79,18 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   `cfbd_pbp_data(offense =)` and, on `cfbd_pbp_data_v2()`, `offense`, `defense`,
   `offense_conference`, `defense_conference`, `conference` and `division`.
 
+## Fixed: play-by-play engine parity with sportsdataverse-py
+
+- The v2 engine's play-text tests for "fumble", "sacked", "pass complete",
+  "pass incomplete", "pass intercepted" and "pass intercepted for a TD" ignore
+  case, as sportsdataverse-py's do. ESPN writes a fumble-return touchdown as
+  "N Yd Fumble Return", so `fumble_vec` missed 21-60 of them a season
+  (2014-2025), and with it the fumble attribution and the QBR fumble penalty on
+  those plays. The other literals change no play ESPN has published; they now
+  agree with sportsdataverse-py if one appears. `punt_block_return_player_name`
+  is filled on "N Yd Return of Blocked Punt" touchdowns (31-59 a season), which
+  it left empty.
+
 ## Fixed: release loaders read model pbp, keep play ids exact and accept every published season
 
 - `load_espn_cfb_model_pbp()` reads `.parquet`. It asked for `.rds`, which the
