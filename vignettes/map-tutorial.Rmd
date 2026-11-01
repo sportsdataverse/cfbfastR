@@ -14,7 +14,7 @@ description: "Mapping where the blue-chip talent actually comes from, joining <c
 
 The best high school football talent in America is not even across the country. Some states produce bunches of talent, such as Texas, Florida, and California, while other states are hardpressed to produce more than a handful every couple years, such as Montana, Maine, and the Dakotas. So it would be a good idea for any program to know where they are, and a really easy way to communicate that is with some slick visualizations. Today we'll be using the `cfbfastR` package to get geographic data about recruits and the `urbnmapr` package to easily show them on maps. 
 
-I'm going to assume you have R and RStudio installed throughout this tutorial, so if you don't go to [cfbfastR founder Saiem Gilani's tutorial](https://saiemgilani.github.io/cfbfastR/articles/intro.html) who goes through that process. 
+I'm going to assume you have R and RStudio installed throughout this tutorial, so if you don't go to [cfbfastR founder Saiem Gilani's tutorial](https://cfbfastR.sportsdataverse.org/articles/intro.html) who goes through that process. 
 
 Let's start off with loading all the packages we'll need:
 
@@ -241,8 +241,7 @@ Hope you found this tutorial useful! If you have any questions on how to manage 
 -   [Akshay Easwaran](https://x.com/akeaswaran)
 <a href='https://x.com/akeaswaran' target='blank'><img src='https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge' alt='@akeaswaran'/></a>
 <a href='https://github.com/akeaswaran' target='blank'><img src='https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@akeaswaran'/></a>
--   [Jared Lee](https://x.com/JaredDLee)
-<a href='https://x.com/JaredDLee' target='blank'><img src='https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge' alt='@JaredDLee'/></a>
+-   [Jared Lee](https://github.com/Kazink36)
 <a href='https://github.com/Kazink36' target='blank'><img src='https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@Kazink36'/></a>
 -   [Eric Hess](https://x.com/arbitanalytics)
 <a href='https://x.com/arbitanalytics' target='blank'><img src='https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=x&amp;style=for-the-badge' alt='@arbitanalytics'/></a>
@@ -306,6 +305,10 @@ BibTeX Citation
 -   [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
 -   [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
 -   [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
--   [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
+-   [**cfbseedR**](https://cfbseedR.sportsdataverse.org/) - college football season and playoff simulation (CRAN)
+-   [**cfb4th**](https://cfb4th.sportsdataverse.org/) - college football fourth-down decisions (r-universe)
+-   [**sdvplotR**](https://sdvplotR.sportsdataverse.org/) - team logos, colours and tables for every SportsDataverse league (r-universe)
+-   [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces, including the college football field (CRAN)
+-   [**cfbplotR**](https://cfbplotR.sportsdataverse.org/) - college football logos and colours (r-universe)
 -   [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python package
 -   [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R meta-package

@@ -118,7 +118,7 @@ add_player_cols <- function(pbp) {
   ## Receiver names
   pbp <- pbp |>
     dplyr::mutate(
-      receiver_player = ifelse(.data$pass == 1 & !stringr::str_detect(.data$play_text, "sacked"),
+      receiver_player = ifelse(.data$pass == 1 & !stringr::str_detect(.data$play_text, regex("sacked", ignore_case = TRUE)),
         stringr::str_extract(.data$play_text, "to (.+)"), NA_character_
       ),
       receiver_player = if_else(stringr::str_detect(.data$play_text, regex("Yd pass", ignore_case = TRUE)),
@@ -136,7 +136,7 @@ add_player_cols <- function(pbp) {
           "Fumble Recovery (Opponent)",
           "Fumble Recovery (Opponent) Touchdown"
         ) &
-          stringr::str_detect(.data$play_text, "sacked")), NA_character_, .data$receiver_player),
+          stringr::str_detect(.data$play_text, regex("sacked", ignore_case = TRUE))), NA_character_, .data$receiver_player),
       receiver_player = stringr::str_remove(.data$receiver_player, "to "),
       receiver_player = stringr::str_remove(.data$receiver_player, "\\,.+"),
       receiver_player = stringr::str_remove(.data$receiver_player, "for (.+)"),
@@ -264,20 +264,23 @@ add_player_cols <- function(pbp) {
     )
 
   ## Punt Block return player name
+  # Case-folded as in sdv-py: ESPN writes the return of a blocked punt as
+  # "Ale Kaho 0 Yd Return of Blocked Punt (...)", which a literal "return" /
+  # "blocked" never matched (31-59 such touchdowns a season).
   pbp <- pbp |>
     dplyr::mutate(
       punt_block_return_player = ifelse(stringr::str_detect(.data$play_type, "Punt") &
-        stringr::str_detect(.data$play_text, "blocked") &
-        stringr::str_detect(.data$play_text, "return"),
-      stringr::str_extract(.data$play_text, "(.+) return"), NA_character_
+        stringr::str_detect(.data$play_text, regex("blocked", ignore_case = TRUE)) &
+        stringr::str_detect(.data$play_text, regex("return", ignore_case = TRUE)),
+      stringr::str_extract(.data$play_text, regex("(.+) return", ignore_case = TRUE)), NA_character_
       ),
       punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, glue::glue("(.+)blocked by {punt_block_player}")),
       punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, glue::glue("blocked by {punt_block_player}")),
-      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, "return(.+)"),
-      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, "return"),
-      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, "(.+)blocked by"),
+      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, regex("return(.+)", ignore_case = TRUE)),
+      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, regex("return", ignore_case = TRUE)),
+      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, regex("(.+)blocked by", ignore_case = TRUE)),
       punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, "for a TD(.+)|for a SAFETY(.+)"),
-      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, "blocked by"),
+      punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, regex("blocked by", ignore_case = TRUE)),
       punt_block_return_player = stringr::str_remove(.data$punt_block_return_player, ", ")
     )
 
@@ -341,9 +344,16 @@ add_player_cols <- function(pbp) {
     )
 
   ## Fumble player name
+  # Only the legacy fragment capture is ported. sdv-py (cfb_pbp.py, the
+  # fumble_player block after __add_player_cols' extraction, 4b78a45a3d lines
+  # 7462-7480) tries a name-shaped capture first -- an optional #NN, one to
+  # three capitalised words before "fumble(d)", or after "fumbled by" -- and
+  # falls back to this one; its own measurement lifts fumble id joins from 56%
+  # to 79%. Unported here, so this column trails sdv-py on most fumbles, not
+  # only on "N Yd Fumble Return" rows (where sdv-py's capture reads "Yd").
   pbp <- pbp |>
     dplyr::mutate(
-      fumble_player = ifelse(stringr::str_detect(.data$play_text, "fumble"),
+      fumble_player = ifelse(stringr::str_detect(.data$play_text, regex("fumble", ignore_case = TRUE)),
         stringr::str_extract(.data$play_text, regex("(.{0,25} )fumble", ignore_case = TRUE)), NA_character_
       ),
       fumble_player = stringr::str_remove(.data$fumble_player, regex(" fumble(.+)", ignore_case = TRUE)),
@@ -364,7 +374,7 @@ add_player_cols <- function(pbp) {
   ## Fumble Forced player name
   pbp <- pbp |>
     dplyr::mutate(
-      fumble_forced_player = ifelse(stringr::str_detect(.data$play_text, "fumble") &
+      fumble_forced_player = ifelse(stringr::str_detect(.data$play_text, regex("fumble", ignore_case = TRUE)) &
         stringr::str_detect(.data$play_text, regex("forced by", ignore_case = TRUE)),
       stringr::str_extract(.data$play_text, regex("forced by(.{0,25})", ignore_case = TRUE)), NA_character_
       ),
@@ -381,7 +391,7 @@ add_player_cols <- function(pbp) {
   ## Fumble recovered player
   pbp <- pbp |>
     dplyr::mutate(
-      fumble_recovered_player = ifelse(stringr::str_detect(.data$play_text, "fumble") &
+      fumble_recovered_player = ifelse(stringr::str_detect(.data$play_text, regex("fumble", ignore_case = TRUE)) &
         stringr::str_detect(.data$play_text, regex("recovered by", ignore_case = TRUE)),
       stringr::str_extract(.data$play_text, regex("recovered by(.{0,30})", ignore_case = TRUE)), NA_character_
       ),

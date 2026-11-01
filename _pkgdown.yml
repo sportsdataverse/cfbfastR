@@ -2,8 +2,15 @@ url: https://cfbfastR.sportsdataverse.org/
 title: cfbfastR
 description: "A utility to quickly obtain clean and tidy college football play by play data"
 alt: "When you code good, you know good. When you know good, you win good. When you win good, they pay good."
-# pkgdown renders every top-level and .github/*.md file as a page; keep the
-# contributor/agent notes out of the search index so results stay on-topic.
+# pkgdown renders every top-level and .github/*.md file as a page and has no
+# option to skip one. Redirecting the agent notes to the home page overwrites
+# them with a noindex redirect stub and drops them from sitemap.xml and
+# llms.txt (pkgdown leaves redirect sources out of both); the search exclude
+# keeps them out of the site search too.
+redirects:
+  - ["CLAUDE.html", "index.html"]
+  - ["copilot-instructions.html", "index.html"]
+
 search:
   exclude:
   - CLAUDE.html
@@ -81,7 +88,7 @@ authors:
   Akshay Easwaran:
     href: https://twitter.com/akeaswaran
   Jared Lee:
-    href: https://twitter.com/JaredDLee
+    href: https://github.com/Kazink36
   Eric Hess:
     href: https://twitter.com/arbitanalytics
   Nate Manzo:
@@ -123,7 +130,7 @@ navbar:
   structure:
     left:  [home, reference, articles, news, network, data, status, games]
     right: [search, x, github, lightswitch]
-  icon: https://raw.githubusercontent.com/sportsdataverse/cfbfastR/main/man/figures/logo.ico
+  icon: https://raw.githubusercontent.com/sportsdataverse/cfbfastR/main/man/figures/cfbfastR.ico
   title: "cfbfastR"
   components:
     home:
@@ -240,6 +247,8 @@ navbar:
         href: articles/nth-rated-recruit.html
       - text: Rolling EPA Graph
         href: articles/rolling-epa-graph.html
+      - text: Simulating a College Football Season with cfbseedR
+        href: articles/cfbseedR-season-simulation.html
     news:
       icon: "fas fa-newspaper"
       text: " News"
@@ -601,3 +610,4 @@ articles:
       - map-tutorial
       - nth-rated-recruit
       - rolling-epa-graph
+      - cfbseedR-season-simulation

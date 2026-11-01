@@ -80,7 +80,7 @@
     # with its yards or its touchdown downstream.
     .penalty_enforcement() |>
     .pbp_add_play_counts() |>
-    .pbp_clean_pbp_dat() |>
+    .pbp_clean_pbp_dat(season = season) |>
     .pbp_clean_drive_dat() |>
     add_yardage(season = season) |>
     # Air yards needs the possessing/defending team ids to side the catch-point

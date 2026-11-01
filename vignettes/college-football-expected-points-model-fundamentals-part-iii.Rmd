@@ -26,11 +26,11 @@ The entire purpose of these series of articles is to show you as transparently a
 
 ## The Data
 
-We will be acquiring data from [CollegeFootballData.com](collegefootballdata.com), courtesy of \@[CFB\_data](https://twitter.com/CFB_data), using `cfbfastR`, created by [Saiem Gilani](https://twitter.com/saiemgilani), [Akshay Easwaran](https://twitter.com/akeaswaran), [Jared Lee](https://twitter.com/JaredDLee) and [Eric Hess](https://twitter.com/arbitanalytics).
+We will be acquiring data from [CollegeFootballData.com](collegefootballdata.com), courtesy of \@[CFB\_data](https://twitter.com/CFB_data), using `cfbfastR`, created by [Saiem Gilani](https://twitter.com/saiemgilani), [Akshay Easwaran](https://twitter.com/akeaswaran), [Jared Lee](https://github.com/Kazink36) and [Eric Hess](https://twitter.com/arbitanalytics).
 
 # An Abridged History of Expected Points Models in Football
 ## Field Position models
-One of the earliest discussions and attempts at building an expected points model in football was made by [Virgil Carter of the Cincinatti Bengals](https://vault.si.com/vault/1972/10/16/handy-pair-of-brainy-bengals) in his graduate research paper, “[Operations Research on Football](https://pubsonline.informs.org/doi/pdf/10.1287/opre.19.2.541)”. Carter found some time to write the research paper while pursuing his MBA at Northwestern in the off-season from his main gig of being quarterback for the Chicago Bears. 
+One of the earliest discussions and attempts at building an expected points model in football was made by [Virgil Carter of the Cincinatti Bengals](https://web.archive.org/web/20231103201122/https://vault.si.com/vault/1972/10/16/handy-pair-of-brainy-bengals) in his graduate research paper, “[Operations Research on Football](https://pubsonline.informs.org/doi/pdf/10.1287/opre.19.2.541)”. Carter found some time to write the research paper while pursuing his MBA at Northwestern in the off-season from his main gig of being quarterback for the Chicago Bears. 
 
 For the study, Carter and his wife Judy coded 8,373 plays with 53 variables — including time, down, and distance — from 56 games played during the first half of the 1969 season. From the paper:
 
@@ -74,7 +74,7 @@ You can read more about his model at the link above, but among the noted limitat
 
 His other consideration was that he limited the data to plays where the score differential was within 10 points to limit the effect of garbage time. 
 
-Trey Causey did a quality write-up on a very similar style [model](http://thespread.us/expected-points.html) and has done some interesting [nearest-neighbors](http://thespread.us/clustering.html) player similarity modeling that is worth reading and, at the time, was reproducible. 
+Trey Causey did a quality write-up on a very similar style [model](https://web.archive.org/web/20210928093023/http://thespread.us/expected-points.html) and has done some interesting [nearest-neighbors](https://web.archive.org/web/20250506021348/http://thespread.us/clustering.html) player similarity modeling that is worth reading and, at the time, was reproducible. 
 
 So all of these models are curve fitting attempts that lead us to the topic of regression. 
 
@@ -85,7 +85,7 @@ However, in subsequent years, more details regarding the technical specifics of 
 
 Additionally, Kenneth Goldner wrote a paper in 2017 about using a Markov modeling of a possession with stochastic processes which I have been unable to get my hands on. EDIT: A very kind Columbia professor saw this article and sent me the paper. Among other things, the paper demonstrates that on 1st and 10 at any point on the field, the expected points is positive.
 
-In 2017, Ron Yurko, Sam Ventura, and Max Horowitz from Carnegie Mellon University's Statistics department started presenting “[NFL Player Evaluation Using Expected Points Added with nflscrapR](https://www.stat.cmu.edu/~ryurko/files/greatlakes_2017.pdf)” at conferences and ultimately published the [nflWAR](https://www.degruyter.com/view/journals/jqas/15/3/article-p163.xml?tab_body=pdf-74962) paper in the Journal of Quantitative Analysis in Sports. 
+In 2017, Ron Yurko, Sam Ventura, and Max Horowitz from Carnegie Mellon University's Statistics department started presenting “[NFL Player Evaluation Using Expected Points Added with nflscrapR](https://web.archive.org/web/20220425034704/https://www.stat.cmu.edu/~ryurko/files/greatlakes_2017.pdf)” at conferences and ultimately published the [nflWAR](https://www.degruyter.com/view/journals/jqas/15/3/article-p163.xml?tab_body=pdf-74962) paper in the Journal of Quantitative Analysis in Sports. 
 
 (That is a seminal work in football analytics and if you were to only click one link to read more on, that is the paper you should look at.)
 

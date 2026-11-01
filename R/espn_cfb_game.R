@@ -6765,6 +6765,8 @@ espn_cfb_pbp_v2 <- function(game_id,
           drive_id                     = .data$drive_drive_id,
           drive_start_text             = .data$drive_start_text,
           drive_start_yard_line        = .data$drive_start_yard_line,
+          # with the drive id and start yard line, decides the overtime timeout window
+          drive_start_period           = .data$drive_start_period,
           drive_end_text               = .data$drive_end_text,
           drive_end_yard_line          = .data$drive_end_yard_line,
           drive_yards                  = .data$drive_yards,
@@ -6773,7 +6775,11 @@ espn_cfb_pbp_v2 <- function(game_id,
           home_team_id                 = .data$home_team_id,
           away_team_id                 = .data$away_team_id,
           home_team_abbreviation       = .data$home_team_abbreviation,
-          away_team_abbreviation       = .data$away_team_abbreviation
+          away_team_abbreviation       = .data$away_team_abbreviation,
+          # the timeout charger matches the team name ("Seminoles") too; not
+          # `home_team_name`, which team attribution reads as the location
+          home_team_mascot             = .data$home_team_name,
+          away_team_mascot             = .data$away_team_name
         ) |>
         .espn_to_epa_input(game_id = game_id)
 
