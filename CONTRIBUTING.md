@@ -54,8 +54,10 @@ participating in this project you agree to abide by its terms.
     - Export it as `CFBD_API_KEY` (or set it in `~/.Renviron`) so the
       `cfbd_*` wrappers and any tests that hit
       `api.collegefootballdata.com` can authenticate.
-      [`register_cfbd()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
-      will read this for you;
+      [`cfbd_key()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
+      reads it back (see
+      [`?register_cfbd`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
+      for setup);
       [`cfbd_api_key_info()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
       /
       [`has_cfbd_key()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
@@ -447,7 +449,7 @@ Secrets used:
 When filing a bug report, please include:
 
 1.  A minimal **reprex** (reproducible example) using
-    `reprex::reprex()`.
+    [`reprex::reprex()`](https://reprex.tidyverse.org/reference/reprex.html).
 2.  The **endpoint** and **parameters** used (year, week, team, game_id,
     etc.).
 3.  Your [`sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html)

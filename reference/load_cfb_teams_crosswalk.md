@@ -22,8 +22,9 @@ load_cfb_teams_crosswalk(
 - seasons:
 
   A vector of 4-digit years associated with given college football
-  seasons. Published coverage runs 2014 through the most recent season.
-  Pass `seasons = TRUE` for every published season. (Min: 2014)
+  seasons. Published seasons are 2004, 2010, and 2013 through the most
+  recent season (no files exist for 2005-2009 or 2011-2012). Pass
+  `seasons = TRUE` for every published season. (Min: 2004)
 
 - ...:
 
@@ -68,7 +69,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_teams_crosswalk(2014))
 #> ── college football team id crosswalk from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-10-30 00:16:39 UTC
+#> ℹ Data updated: 2026-11-01 03:17:38 UTC
 #> # A tibble: 830 × 11
 #>    norm_key        espn_team_id espn_team espn_abbreviation fox_team_id fox_team
 #>    <chr>                  <int> <chr>     <chr>             <chr>       <chr>   

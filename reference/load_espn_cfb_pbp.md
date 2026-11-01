@@ -169,7 +169,7 @@ Returns a `cfbfastR_data` tibble.
 | lead_pos_team2 | integer | Value of pos_team 2 plays ahead, used for sequence-aware derivations. |
 | lag_change_of_pos_team | logical | Value of change_of_pos_team on the previous play, used for sequence-aware derivations. |
 | lag_pos_score_diff | integer | Value of pos_score_diff on the previous play, used for sequence-aware derivations. |
-| id | integer |  |
+| id | character | ESPN play id, kept exact as character (up to 18 digits, beyond double precision). |
 | sequenceNumber | integer |  |
 | text | character |  |
 | awayScore | integer |  |
@@ -538,7 +538,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_pbp(2004))
 #> ── ESPN college football play-by-play from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-10-30 00:16:59 UTC
+#> ℹ Data updated: 2026-11-01 03:18:03 UTC
 #> # A tibble: 87,214 × 499
 #>    season   game_id game_play_number pos_team_id pos_team        def_pos_team_id
 #>     <int>     <int>            <int>       <int> <chr>                     <int>

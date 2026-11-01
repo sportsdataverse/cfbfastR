@@ -4,8 +4,11 @@
   Get information about your API key, including your Patreon level and
   usage limits.
 
-- [`register_cfbd()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md):
-  Save your API Key as a system environment variable `CFBD_API_KEY`.
+- [register_cfbd](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md):
+  How to save your API key as the `CFBD_API_KEY` environment variable,
+  with `Sys.setenv(CFBD_API_KEY = "...")` for one session or a line in
+  `~/.Renviron` for every session. `register_cfbd` is a help page, not a
+  function.
 
 - [`cfbd_key()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md):
   Retrieve the CFBD API key from the `CFBD_API_KEY` environment

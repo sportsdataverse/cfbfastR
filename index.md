@@ -11,11 +11,15 @@ benchmarking open-source expected points and win probability metrics.
 
 ## **Data status**
 
-The `load_*()` functions read release assets on
-[sportsdataverse-data](https://github.com/sportsdataverse/sportsdataverse-data/releases).
-The badges below are rebuilt nightly from each producer’s latest
-workflow run and newest release files; idle means the sport is out of
-season. Full detail:
+The release-backed `load_*()` functions read assets on
+[sportsdataverse-data](https://github.com/sportsdataverse/sportsdataverse-data/releases)
+([`load_cfb_schedules()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.md),
+[`load_cfb_rosters()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_rosters.md)
+and
+[`load_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.md)
+call the CFBD API instead). The badges below are rebuilt nightly from
+each producer’s latest workflow run and newest release files; idle means
+the sport is out of season. Full detail:
 [sportsdataverse.org/status](https://sportsdataverse.org/status).
 
 | Dataset | Data updated | Through | Pipeline | Update workflows |
@@ -57,7 +61,7 @@ releases](https://github.com/sportsdataverse/sportsdataverse-data/releases)
 
 | Family | Functions | Source / contents | Coverage |
 |----|----|----|----|
-| Classic | [`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md), [`load_cfb_schedules()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.md), [`load_cfb_rosters()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_rosters.md), [`load_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.md) | The original cfbfastR EPA/WPA play-by-play + companions | pbp 2014+ |
+| Classic | [`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md) | The original cfbfastR EPA/WPA play-by-play | pbp 2014+ |
 | ESPN | `load_espn_cfb_*()` (27) | ESPN-derived datasets: pbp, schedules, team/player box, drives, game rosters, linescores, betting, play participants, FPI power index, percentiles, passing/rushing/receiving EPA splits, team summaries, model pbp, and eleven `adv_*` advanced-stat datasets | mostly 2004+ |
 | Ratings & recruiting | [`load_cfb_ratings()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_ratings.md), [`load_cfb_ratings_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_ratings_weekly.md), [`load_cfb_fpi_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_fpi_weekly.md), [`load_cfb_team_summaries_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_summaries_weekly.md), [`load_cfb_team_talent()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_talent.md), [`load_cfb_recruits()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_recruits.md), [`load_cfb_recruiting_proj()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_recruiting_proj.md), [`load_cfb_returning_production()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_returning_production.md), plus the `load_cfb_*_crosswalk()` id crosswalks | Season/weekly power ratings, talent composite, recruiting, ESPN↔︎Fox↔︎Yahoo id crosswalks | varies (2002+) |
 | NCAA (stats.ncaa.org) | `load_ncaa_mfb_*()` (10) | pbp (native + cfbfastR-shaped), drives, linescore, officials, player/team stats, rosters, schedule, teams — includes FCS and lower divisions ESPN misses | 2013+ |
@@ -76,9 +80,22 @@ releases](https://github.com/sportsdataverse/sportsdataverse-data/releases)
   is the same data reshaped onto cfbfastR pbp column conventions for
   cross-source binds.
 
-All loaders accept a vector of seasons (or `seasons = TRUE` for
-everything published) and an optional `dbConnection` + `tablename` to
-write straight into a database instead of returning a tibble.
+These release loaders accept a vector of seasons (or `seasons = TRUE`
+for everything published) and an optional `dbConnection` + `tablename`
+to write straight into a database instead of returning a tibble.
+
+[`load_cfb_schedules()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.md),
+[`load_cfb_rosters()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_rosters.md)
+and
+[`load_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.md)
+are not release loaders: they call the CollegeFootballData API (through
+[`cfbd_game_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.md),
+[`cfbd_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_roster.md)
+and
+[`cfbd_team_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_info.md)),
+so they need a `CFBD_API_KEY` and take no `dbConnection` or `tablename`.
+[`load_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.md)
+takes `fbs_only` instead of `seasons`.
 
 ## **CollegeFootballData API coverage**
 

@@ -46,7 +46,7 @@ Returns a `cfbfastR_data` tibble.
 |----|----|----|
 | col_name | types | description |
 | game_id | integer |  |
-| play_id | integer |  |
+| play_id | character | ESPN play id, kept exact as character (up to 18 digits, beyond double precision). |
 | kicker_player_name | character | Display name of the kicker – the FIRST participant in that role on the play. |
 | tackler_player_name | character | Display name of a defender credited with the tackle – the FIRST participant in that role on the play. |
 | returner_player_name | character | Display name of the player returning the kick or punt – the FIRST participant in that role on the play. |
@@ -128,20 +128,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_play_participants(2014))
 #> ── ESPN college football play participants from the SportsDataverse data repo ──
-#> ℹ Data updated: 2026-10-30 00:17:02 UTC
+#> ℹ Data updated: 2026-11-01 03:18:07 UTC
 #> # A tibble: 148,402 × 68
-#>      game_id play_id kicker_player_name returner_player_name passer_player_name
-#>        <int>   <dbl> <chr>              <chr>                <chr>             
-#>  1 400548403 4.01e17 Wil Lutz           De'Andre Brown       NA                
-#>  2 400548403 4.01e17 NA                 NA                   Parker McKenzie   
-#>  3 400548403 4.01e17 NA                 NA                   NA                
-#>  4 400548403 4.01e17 NA                 NA                   NA                
-#>  5 400548403 4.01e17 NA                 NA                   Parker McKenzie   
-#>  6 400548403 4.01e17 NA                 NA                   Parker McKenzie   
-#>  7 400548403 4.01e17 NA                 NA                   NA                
-#>  8 400548403 4.01e17 NA                 NA                   Parker McKenzie   
-#>  9 400548403 4.01e17 NA                 NA                   Parker McKenzie   
-#> 10 400548403 4.01e17 NA                 NA                   Parker McKenzie   
+#>      game_id play_id  kicker_player_name returner_player_name passer_player_name
+#>        <int> <chr>    <chr>              <chr>                <chr>             
+#>  1 400548403 4005484… Wil Lutz           De'Andre Brown       NA                
+#>  2 400548403 4005484… NA                 NA                   Parker McKenzie   
+#>  3 400548403 4005484… NA                 NA                   NA                
+#>  4 400548403 4005484… NA                 NA                   NA                
+#>  5 400548403 4005484… NA                 NA                   Parker McKenzie   
+#>  6 400548403 4005484… NA                 NA                   Parker McKenzie   
+#>  7 400548403 4005484… NA                 NA                   NA                
+#>  8 400548403 4005484… NA                 NA                   Parker McKenzie   
+#>  9 400548403 4005484… NA                 NA                   Parker McKenzie   
+#> 10 400548403 4005484… NA                 NA                   Parker McKenzie   
 #> # ℹ 148,392 more rows
 #> # ℹ 63 more variables: receiver_player_name <chr>, rusher_player_name <chr>,
 #> #   penalized_player_name <chr>, scorer_player_name <chr>,

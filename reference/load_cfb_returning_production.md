@@ -21,8 +21,8 @@ load_cfb_returning_production(
 - seasons:
 
   A vector of 4-digit years associated with given college football
-  seasons. Published coverage runs 2005 through the most recent season.
-  Pass `seasons = TRUE` for every published season. (Min: 2005)
+  seasons. Published coverage runs 2004 through the most recent season.
+  Pass `seasons = TRUE` for every published season. (Min: 2004)
 
 - ...:
 
@@ -62,7 +62,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_returning_production(2005))
 #> ── college football returning production from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-10-30 00:16:30 UTC
+#> ℹ Data updated: 2026-11-01 03:17:15 UTC
 #> # A tibble: 161 × 9
 #>    season team_id off_returning def_returning overall_returning n_returning
 #>     <int> <chr>           <dbl>         <dbl>             <dbl>       <int>

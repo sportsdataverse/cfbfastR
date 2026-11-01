@@ -105,6 +105,69 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   `offense`, `defense`, `offense_conference`, `defense_conference`,
   `conference` and `division`.
 
+### Fixed: release loaders read model pbp, keep play ids exact and accept every published season
+
+- [`load_espn_cfb_model_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_model_pbp.md)
+  reads `.parquet`. It asked for `.rds`, which the `espn_cfb_model_pbp`
+  release publishes for 2024 only, so every other season (2004-2025 are
+  published as parquet) came back empty with a warning.
+  ([\#197](https://github.com/sportsdataverse/cfbfastR/issues/197))
+- Play ids come back as exact character strings, as
+  [`espn_cfb_pbp_v2()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp_v2.md)
+  already returns them. They are 18-digit integers, more than a double
+  holds exactly, and the release `.rds` files store them as doubles:
+  2025’s 166,360 pbp ids collapse to 149,864 distinct values, and play
+  participants’ 154,815 to 141,272, so joining the two was many-to-many
+  on about one play in ten.
+  [`load_espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_pbp.md)
+  and
+  [`load_espn_cfb_play_participants()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_play_participants.md)
+  now read the `.parquet` files, which keep the ids as Int64, and return
+  `id` / `play_id` as character;
+  [`load_ncaa_mfb_pbp_cfbfastr()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_pbp_cfbfastr.md)
+  returns `id_play` as character. The pbp, play participants and model
+  pbp loaders now need the suggested `arrow` package; the NCAA one needs
+  `bit64`. Appending to a database table created by an earlier version,
+  whose id column is numeric, fails on strict backends: recreate the
+  table.
+  ([\#197](https://github.com/sportsdataverse/cfbfastR/issues/197))
+- Multi-season parquet loads no longer fail when a column is all-null in
+  one season and populated in another (`overUnderAvailable` in the ESPN
+  pbp):
+  [`parquet_from_url()`](https://cfbfastR.sportsdataverse.org/reference/parquet_from_url.md)
+  now reads all-null columns as logical.
+  ([\#197](https://github.com/sportsdataverse/cfbfastR/issues/197))
+- Season floors now match the published files.
+  [`load_espn_cfb_power_index()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_power_index.md)
+  accepts 2005-2014 (floor 2015 before),
+  [`load_cfb_returning_production()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_returning_production.md)
+  accepts 2004, and
+  [`load_cfb_schedule_crosswalk()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedule_crosswalk.md)
+  /
+  [`load_cfb_teams_crosswalk()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams_crosswalk.md)
+  accept 2004, 2010 and 2013 (floor 2014 before) and reject the seasons
+  the release has no file for.
+  ([\#197](https://github.com/sportsdataverse/cfbfastR/issues/197))
+- [`?cfbd_api_key`](https://cfbfastR.sportsdataverse.org/reference/cfbd_api_key.md)
+  no longer lists
+  [`register_cfbd()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
+  as a function. It is a help page; the functions are
+  [`cfbd_key()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md),
+  [`has_cfbd_key()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
+  and
+  [`cfbd_api_key_info()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md).
+  ([\#197](https://github.com/sportsdataverse/cfbfastR/issues/197))
+- The README no longer says
+  [`load_cfb_schedules()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.md),
+  [`load_cfb_rosters()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_rosters.md)
+  and
+  [`load_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.md)
+  read release files. They call the CFBD API, need `CFBD_API_KEY` and
+  take no `dbConnection`;
+  [`load_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.md)
+  takes `fbs_only`, not `seasons`.
+  ([\#197](https://github.com/sportsdataverse/cfbfastR/issues/197))
+
 ### Fixed: CFBD passing CPOE columns, play stat types and gateway retries
 
 - CFBD added completion-over-expected to its passing endpoints. The

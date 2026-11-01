@@ -20,8 +20,8 @@ load_espn_cfb_power_index(
 - seasons:
 
   A vector of 4-digit years associated with given college football
-  seasons. Published coverage runs 2015 through the most recent season.
-  Pass `seasons = TRUE` for every published season. (Min: 2015)
+  seasons. Published coverage runs 2005 through the most recent season.
+  Pass `seasons = TRUE` for every published season. (Min: 2005)
 
 - ...:
 
@@ -62,7 +62,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_power_index(2015))
 #> ── ESPN college football FPI power index from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-10-30 00:17:04 UTC
+#> ℹ Data updated: 2026-11-01 03:18:10 UTC
 #> # A tibble: 1,746 × 7
 #>    season   game_id team_id teampredptdiff gameprojection matchupquality
 #>     <int>     <int>   <int>          <dbl>          <dbl>          <dbl>

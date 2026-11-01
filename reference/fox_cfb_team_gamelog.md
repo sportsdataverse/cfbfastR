@@ -44,20 +44,20 @@ A `cfbfastR`-tagged tibble with one row per (game, stat):
 # \donttest{
   try(fox_cfb_team_gamelog(team_id = "11"))
 #> ── Team game log from Fox Sports (Bifrost) ────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-10-30 00:16:20 UTC
+#> ℹ Data updated: 2026-11-01 03:17:00 UTC
 #> # A tibble: 340 × 8
 #>    team_id season_type    category game_id game_date opponent stat     value
 #>    <chr>   <chr>          <chr>    <chr>   <chr>     <chr>    <chr>    <chr>
-#>  1 11      REGULAR SEASON passing  43786   10/24     PITT     comp     31   
-#>  2 11      REGULAR SEASON passing  43786   10/24     PITT     att      37   
-#>  3 11      REGULAR SEASON passing  43786   10/24     PITT     pct      83.8 
-#>  4 11      REGULAR SEASON passing  43786   10/24     PITT     yds      387  
-#>  5 11      REGULAR SEASON passing  43786   10/24     PITT     pyds_att 13.7 
-#>  6 11      REGULAR SEASON passing  43786   10/24     PITT     td       4    
-#>  7 11      REGULAR SEASON passing  43786   10/24     PITT     int      0    
-#>  8 11      REGULAR SEASON passing  43786   10/24     PITT     sck      3    
-#>  9 11      REGULAR SEASON passing  43786   10/24     PITT     yds_2    28   
-#> 10 11      REGULAR SEASON passing  43786   10/24     PITT     qbr      207.3
+#>  1 11      REGULAR SEASON passing  43922   10/31     @UNC     comp     22   
+#>  2 11      REGULAR SEASON passing  43922   10/31     @UNC     att      29   
+#>  3 11      REGULAR SEASON passing  43922   10/31     @UNC     pct      75.9 
+#>  4 11      REGULAR SEASON passing  43922   10/31     @UNC     yds      274  
+#>  5 11      REGULAR SEASON passing  43922   10/31     @UNC     pyds_att 14.3 
+#>  6 11      REGULAR SEASON passing  43922   10/31     @UNC     td       3    
+#>  7 11      REGULAR SEASON passing  43922   10/31     @UNC     int      0    
+#>  8 11      REGULAR SEASON passing  43922   10/31     @UNC     sck      1    
+#>  9 11      REGULAR SEASON passing  43922   10/31     @UNC     yds_2    1    
+#> 10 11      REGULAR SEASON passing  43922   10/31     @UNC     qbr      189.4
 #> # ℹ 330 more rows
 # }
 ```

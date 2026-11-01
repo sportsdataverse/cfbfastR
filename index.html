@@ -222,7 +222,7 @@
 <h2 id="data-status">
 <strong>Data status</strong><a class="anchor" aria-label="anchor" href="#data-status"></a>
 </h2>
-<p>The <code>load_*()</code> functions read release assets on <a href="https://github.com/sportsdataverse/sportsdataverse-data/releases" class="external-link">sportsdataverse-data</a>. The badges below are rebuilt nightly from each producer’s latest workflow run and newest release files; idle means the sport is out of season. Full detail: <a href="https://sportsdataverse.org/status" class="external-link">sportsdataverse.org/status</a>.</p>
+<p>The release-backed <code>load_*()</code> functions read assets on <a href="https://github.com/sportsdataverse/sportsdataverse-data/releases" class="external-link">sportsdataverse-data</a> (<code><a href="reference/load_cfb_schedules.html">load_cfb_schedules()</a></code>, <code><a href="reference/load_cfb_rosters.html">load_cfb_rosters()</a></code> and <code><a href="reference/load_cfb_teams.html">load_cfb_teams()</a></code> call the CFBD API instead). The badges below are rebuilt nightly from each producer’s latest workflow run and newest release files; idle means the sport is out of season. Full detail: <a href="https://sportsdataverse.org/status" class="external-link">sportsdataverse.org/status</a>.</p>
 <table class="table">
 <colgroup>
 <col width="3%">
@@ -308,10 +308,8 @@
 <tbody>
 <tr>
 <td>Classic</td>
-<td>
-<code><a href="reference/load_cfb_pbp.html">load_cfb_pbp()</a></code>, <code><a href="reference/load_cfb_schedules.html">load_cfb_schedules()</a></code>, <code><a href="reference/load_cfb_rosters.html">load_cfb_rosters()</a></code>, <code><a href="reference/load_cfb_teams.html">load_cfb_teams()</a></code>
-</td>
-<td>The original cfbfastR EPA/WPA play-by-play + companions</td>
+<td><code><a href="reference/load_cfb_pbp.html">load_cfb_pbp()</a></code></td>
+<td>The original cfbfastR EPA/WPA play-by-play</td>
 <td>pbp 2014+</td>
 </tr>
 <tr>
@@ -346,7 +344,8 @@
 <li>
 <code><a href="reference/load_ncaa_mfb_pbp.html">load_ncaa_mfb_pbp()</a></code> — stats.ncaa.org pbp incl. FCS and lower divisions, 2013+; <code><a href="reference/load_ncaa_mfb_pbp_cfbfastr.html">load_ncaa_mfb_pbp_cfbfastr()</a></code> is the same data reshaped onto cfbfastR pbp column conventions for cross-source binds.</li>
 </ul>
-<p>All loaders accept a vector of seasons (or <code>seasons = TRUE</code> for everything published) and an optional <code>dbConnection</code> + <code>tablename</code> to write straight into a database instead of returning a tibble.</p>
+<p>These release loaders accept a vector of seasons (or <code>seasons = TRUE</code> for everything published) and an optional <code>dbConnection</code> + <code>tablename</code> to write straight into a database instead of returning a tibble.</p>
+<p><code><a href="reference/load_cfb_schedules.html">load_cfb_schedules()</a></code>, <code><a href="reference/load_cfb_rosters.html">load_cfb_rosters()</a></code> and <code><a href="reference/load_cfb_teams.html">load_cfb_teams()</a></code> are not release loaders: they call the CollegeFootballData API (through <code><a href="reference/cfbd_game_info.html">cfbd_game_info()</a></code>, <code><a href="reference/cfbd_team_roster.html">cfbd_team_roster()</a></code> and <code><a href="reference/cfbd_team_info.html">cfbd_team_info()</a></code>), so they need a <code>CFBD_API_KEY</code> and take no <code>dbConnection</code> or <code>tablename</code>. <code><a href="reference/load_cfb_teams.html">load_cfb_teams()</a></code> takes <code>fbs_only</code> instead of <code>seasons</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="collegefootballdata-api-coverage">

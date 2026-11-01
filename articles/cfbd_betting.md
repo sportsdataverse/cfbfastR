@@ -20,37 +20,11 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## → Package library at /home/runner/work/_temp/Library.
 
-    ## → Will install 7 packages.
-
-    ## → All 7 packages (0 B) are cached.
-
-    ## + bigD         0.3.1 
-    ## + bitops       1.1-0 
-    ## + gt           1.4.0 
-    ## + juicyjuice   0.1.0 
-    ## + reactable    0.4.5 
-    ## + reactR       0.6.1 
-    ## + V8           8.2.1  + ✖ libnode-dev
-
     ## → Will install 1 system package:
 
     ## + libnode-dev  - V8
 
-    ## ℹ No downloads are needed, 7 pkgs are cached
-
-    ## ✔ Got bitops 1.1-0 (x86_64-pc-linux-gnu-ubuntu-22.04) (27.82 kB)
-
-    ## ✔ Got reactR 0.6.1 (x86_64-pc-linux-gnu-ubuntu-22.04) (614.52 kB)
-
-    ## ✔ Got reactable 0.4.5 (x86_64-pc-linux-gnu-ubuntu-22.04) (1.06 MB)
-
-    ## ✔ Got bigD 0.3.1 (x86_64-pc-linux-gnu-ubuntu-22.04) (1.17 MB)
-
-    ## ✔ Got juicyjuice 0.1.0 (x86_64-pc-linux-gnu-ubuntu-22.04) (1.13 MB)
-
-    ## ✔ Got gt 1.4.0 (x86_64-pc-linux-gnu-ubuntu-22.04) (6.54 MB)
-
-    ## ✔ Got V8 8.2.1 (x86_64-pc-linux-gnu-ubuntu-22.04) (12.12 MB)
+    ## ℹ No downloads are needed
 
     ## ℹ Installing system requirements
 
@@ -58,18 +32,18 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
+    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
 
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
-    ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
-    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
+    ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
     ## Reading package lists...
 
-    ## ℹ Executing `sudo sh -c apt-get -y install libnode-dev libicu-dev libcurl4-openssl-dev libssl-dev cmake make libuv1-dev pandoc libxml2-dev`
+    ## ℹ Executing `sudo sh -c apt-get -y install libicu-dev libcurl4-openssl-dev libssl-dev cmake make libuv1-dev pandoc libnode-dev libxml2-dev`
 
     ## Reading package lists...
 
@@ -102,7 +76,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode-dev amd64 12.22.9~dfsg-1ubuntu3.6 [609 kB]
 
-    ## Fetched 11.4 MB in 0s (35.3 MB/s)
+    ## Fetched 11.4 MB in 1s (20.6 MB/s)
 
     ## Selecting previously unselected package libnode72:amd64.
     ## (Reading database ...
@@ -150,24 +124,10 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## No containers need to be restarted.
     ## 
     ## No user sessions are running outdated binaries.
-    ## 
+
     ## No VM guests are running outdated hypervisor (qemu) binaries on this host.
 
-    ## ✔ Installed bigD 0.3.1  (31ms)
-
-    ## ✔ Installed bitops 1.1-0  (42ms)
-
-    ## ✔ Installed gt 1.4.0  (92ms)
-
-    ## ✔ Installed juicyjuice 0.1.0  (104ms)
-
-    ## ✔ Installed reactable 0.4.5  (52ms)
-
-    ## ✔ Installed reactR 0.6.1  (33ms)
-
-    ## ✔ Installed V8 8.2.1  (167ms)
-
-    ## ✔ 3 pkgs + 56 deps: kept 52, added 7, dld 7 (22.66 MB) [10s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [14.2s]
 
 ``` r
 
@@ -206,7 +166,7 @@ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 
     ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-10-30 00:19:18 UTC
+    ## ℹ Data updated: 2026-11-01 03:22:17 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -229,7 +189,8 @@ cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC
 ```
 
     ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
-    ## ℹ Data updated: 2026-10-30 00:19:18 UTC
+
+    ## ℹ Data updated: 2026-11-01 03:22:18 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team

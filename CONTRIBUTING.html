@@ -199,7 +199,7 @@
 <li>
 <strong>Set up your CFBD API key for live tests</strong>:
 <ul><li>Sign up for a free key at <a href="https://collegefootballdata.com/key" class="external-link">collegefootballdata.com/key</a>.</li>
-<li>Export it as <code>CFBD_API_KEY</code> (or set it in <code>~/.Renviron</code>) so the <code>cfbd_*</code> wrappers and any tests that hit <code>api.collegefootballdata.com</code> can authenticate. <code><a href="reference/register_cfbd.html">register_cfbd()</a></code> will read this for you; <code><a href="reference/register_cfbd.html">cfbd_api_key_info()</a></code> / <code><a href="reference/register_cfbd.html">has_cfbd_key()</a></code> can confirm it’s wired up.</li>
+<li>Export it as <code>CFBD_API_KEY</code> (or set it in <code>~/.Renviron</code>) so the <code>cfbd_*</code> wrappers and any tests that hit <code>api.collegefootballdata.com</code> can authenticate. <code><a href="reference/register_cfbd.html">cfbd_key()</a></code> reads it back (see <code><a href="reference/register_cfbd.html">?register_cfbd</a></code> for setup); <code><a href="reference/register_cfbd.html">cfbd_api_key_info()</a></code> / <code><a href="reference/register_cfbd.html">has_cfbd_key()</a></code> can confirm it’s wired up.</li>
 <li>ESPN endpoints (<code>espn_cfb_*</code>, <code>espn_metrics_wp</code>, <code>espn_ratings_fpi</code>) are unauthenticated but still hit the network – you do not need a key for them, just connectivity.</li>
 </ul></li>
 </ol></div>
@@ -456,7 +456,7 @@ ci: bump actions/checkout to v5 in pkgdown workflow</code></pre>
 <div class="section level2">
 <h2 id="reporting-issues">Reporting Issues<a class="anchor" aria-label="anchor" href="#reporting-issues"></a></h2>
 <p>When filing a bug report, please include:</p>
-<ol style="list-style-type: decimal"><li>A minimal <strong>reprex</strong> (reproducible example) using <code>reprex::reprex()</code>.</li>
+<ol style="list-style-type: decimal"><li>A minimal <strong>reprex</strong> (reproducible example) using <code><a href="https://reprex.tidyverse.org/reference/reprex.html" class="external-link">reprex::reprex()</a></code>.</li>
 <li>The <strong>endpoint</strong> and <strong>parameters</strong> used (year, week, team, game_id, etc.).</li>
 <li>Your <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> output.</li>
 <li>The specific <strong>error message</strong> or unexpected output.</li>

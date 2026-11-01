@@ -21,8 +21,9 @@ load_cfb_schedule_crosswalk(
 - seasons:
 
   A vector of 4-digit years associated with given college football
-  seasons. Published coverage runs 2014 through the most recent season.
-  Pass `seasons = TRUE` for every published season. (Min: 2014)
+  seasons. Published seasons are 2004, 2010, and 2013 through the most
+  recent season (no files exist for 2005-2009 or 2011-2012). Pass
+  `seasons = TRUE` for every published season. (Min: 2004)
 
 - ...:
 
@@ -67,7 +68,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_schedule_crosswalk(2014))
 #> ── college football schedule id crosswalk from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-10-30 00:16:34 UTC
+#> ℹ Data updated: 2026-11-01 03:17:29 UTC
 #> # A tibble: 1,633 × 11
 #>    matchup_key       espn_game_id fox_game_id yahoo_game_id yahoo_global_game_id
 #>    <chr>                    <int> <chr>       <chr>         <chr>               

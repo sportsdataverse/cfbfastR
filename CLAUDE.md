@@ -102,8 +102,8 @@ column. `*_available` columns are denominators for the means, not
 statistics.
 
 **CFBD API key:**
-[`register_cfbd()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
-saves `CFBD_API_KEY`;
+[`?register_cfbd`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
+(a help page, not a function) explains saving `CFBD_API_KEY`;
 [`cfbd_key()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
 /
 [`has_cfbd_key()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)

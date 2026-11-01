@@ -195,7 +195,7 @@ trains on. Published to the
 
 
 <dl><dt id="arg-seasons">seasons<a class="anchor" aria-label="anchor" href="#arg-seasons"></a></dt>
-<dd><p>A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass <code>seasons = TRUE</code> for every published season. (Min: 2004)</p></dd>
+<dd><p>A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through 2025; the current season has no file until it is built, so the default (the current season) returns an empty table with a warning. Pass <code>seasons = TRUE</code> for every season from 2004. (Min: 2004)</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -223,12 +223,28 @@ writes the season data into a database.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">load_espn_cfb_model_pbp</span><span class="op">(</span><span class="fl">2004</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open URL 'https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_model_pbp/model_pbp_2004.rds': HTTP status was '404 Not Found'</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Failed to readRDS from</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_model_pbp/model_pbp_2004.rds&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── college football model-enriched play-by-play from the SportsDataverse data re</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-10-30 00:16:54 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 0 × 0</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-01 03:17:57 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 83,182 × 43</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      game_id id     sequenceNumber game_play_number drive.id season  week period</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 242<span style="text-decoration: underline;">410</span>259 24241… 1                             1 2424102…   <span style="text-decoration: underline;">2</span>004     1      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 242<span style="text-decoration: underline;">410</span>259 24241… 2                             2 2424102…   <span style="text-decoration: underline;">2</span>004     1      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 242<span style="text-decoration: underline;">410</span>259 24241… 3                             3 2424102…   <span style="text-decoration: underline;">2</span>004     1      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 242<span style="text-decoration: underline;">410</span>259 24241… 4                             4 2424102…   <span style="text-decoration: underline;">2</span>004     1      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 242<span style="text-decoration: underline;">410</span>259 24241… 5                             5 2424102…   <span style="text-decoration: underline;">2</span>004     1      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 242<span style="text-decoration: underline;">410</span>259 24241… 6                             6 2424102…   <span style="text-decoration: underline;">2</span>004     1      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 242<span style="text-decoration: underline;">410</span>259 24241… 7                             7 2424102…   <span style="text-decoration: underline;">2</span>004     1      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 242<span style="text-decoration: underline;">410</span>259 24241… 8                             8 2424102…   <span style="text-decoration: underline;">2</span>004     1      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 242<span style="text-decoration: underline;">410</span>259 24241… 9                             9 2424102…   <span style="text-decoration: underline;">2</span>004     1      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 242<span style="text-decoration: underline;">410</span>259 24241… 1                            10 2424102…   <span style="text-decoration: underline;">2</span>004     1      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 83,172 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 35 more variables: pos_team &lt;int&gt;, def_pos_team &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   start.pos_team.name &lt;chr&gt;, homeTeamId &lt;int&gt;, awayTeamId &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   homeTeamName &lt;chr&gt;, awayTeamName &lt;chr&gt;, type.text &lt;chr&gt;, text &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   start.down &lt;int&gt;, start.distance &lt;int&gt;, start.yardsToEndzone &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   pos_score_diff_start &lt;int&gt;, start.TimeSecsRem &lt;int&gt;, start.is_home &lt;lgl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   passing_down &lt;lgl&gt;, pass &lt;lgl&gt;, rush &lt;lgl&gt;, completion &lt;lgl&gt;, …</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

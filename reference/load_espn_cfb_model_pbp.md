@@ -21,8 +21,10 @@ load_espn_cfb_model_pbp(
 - seasons:
 
   A vector of 4-digit years associated with given college football
-  seasons. Published coverage runs 2004 through the most recent season.
-  Pass `seasons = TRUE` for every published season. (Min: 2004)
+  seasons. Published coverage runs 2004 through 2025; the current season
+  has no file until it is built, so the default (the current season)
+  returns an empty table with a warning. Pass `seasons = TRUE` for every
+  season from 2004. (Min: 2004)
 
 - ...:
 
@@ -98,11 +100,27 @@ Saiem Gilani
 ``` r
 # \donttest{
   try(load_espn_cfb_model_pbp(2004))
-#> Warning: cannot open URL 'https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_model_pbp/model_pbp_2004.rds': HTTP status was '404 Not Found'
-#> Warning: Failed to readRDS from
-#> <https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_model_pbp/model_pbp_2004.rds>
 #> ── college football model-enriched play-by-play from the SportsDataverse data re
-#> ℹ Data updated: 2026-10-30 00:16:54 UTC
-#> # A tibble: 0 × 0
+#> ℹ Data updated: 2026-11-01 03:17:57 UTC
+#> # A tibble: 83,182 × 43
+#>      game_id id     sequenceNumber game_play_number drive.id season  week period
+#>        <int> <chr>  <chr>                     <int> <chr>     <int> <int>  <int>
+#>  1 242410259 24241… 1                             1 2424102…   2004     1      1
+#>  2 242410259 24241… 2                             2 2424102…   2004     1      1
+#>  3 242410259 24241… 3                             3 2424102…   2004     1      1
+#>  4 242410259 24241… 4                             4 2424102…   2004     1      1
+#>  5 242410259 24241… 5                             5 2424102…   2004     1      1
+#>  6 242410259 24241… 6                             6 2424102…   2004     1      1
+#>  7 242410259 24241… 7                             7 2424102…   2004     1      1
+#>  8 242410259 24241… 8                             8 2424102…   2004     1      1
+#>  9 242410259 24241… 9                             9 2424102…   2004     1      1
+#> 10 242410259 24241… 1                            10 2424102…   2004     1      1
+#> # ℹ 83,172 more rows
+#> # ℹ 35 more variables: pos_team <int>, def_pos_team <int>,
+#> #   start.pos_team.name <chr>, homeTeamId <int>, awayTeamId <int>,
+#> #   homeTeamName <chr>, awayTeamName <chr>, type.text <chr>, text <chr>,
+#> #   start.down <int>, start.distance <int>, start.yardsToEndzone <int>,
+#> #   pos_score_diff_start <int>, start.TimeSecsRem <int>, start.is_home <lgl>,
+#> #   passing_down <lgl>, pass <lgl>, rush <lgl>, completion <lgl>, …
 # }
 ```
