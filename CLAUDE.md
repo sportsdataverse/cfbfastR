@@ -26,8 +26,9 @@ pkgdown::build_site()                                  # build docs site locally
 devtools::build_readme()                               # re-render README.md from README.Rmd (never hand-edit README.md)
 ```
 
-CI (`.github/workflows/`): `R-CMD-check.yaml` (windows + ubuntu release/oldrel-1, weekly
-cron, sets `CFBD_API_KEY` secret), `pkgdown.yaml` (push to main + release), `rhub.yaml`
+CI (`.github/workflows/`): `R-CMD-check.yaml` (windows + ubuntu release/oldrel-1 + ubuntu r-devel
+failing on NOTEs, weekly cron, sets `CFBD_API_KEY` secret), `test-coverage.yaml` (covr → Codecov),
+`url-check.yaml` (urlchecker, weekly), `pkgdown.yaml` (push to main + release), `rhub.yaml`
 (manual dispatch), `api-sync.yaml` (daily diff of the live CFBD spec against the
 wrappers), `star-history.yml` (README star chart). The doctoc TOCs in
 `CONTRIBUTING.md`, `.github/copilot-instructions.md` and `.github/pull_request_template.md`
