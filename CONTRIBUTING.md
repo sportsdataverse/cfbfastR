@@ -3,17 +3,17 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Contributing to cfbfastR](#contributing-to-cfbfastr)
-- [Code of Conduct](#code-of-conduct)
-- [Development Setup](#development-setup)
-- [Workflow](#workflow)
-- [Naming Conventions](#naming-conventions)
-- [Documentation Maintenance](#documentation-maintenance)
-- [Commit Messages](#commit-messages)
-- [Pull Requests](#pull-requests)
-- [Testing](#testing)
-- [CI / GitHub Actions](#ci-github-actions)
-- [Reporting Issues](#reporting-issues)
-- [License](#license)
+  - [Code of Conduct](#code-of-conduct)
+  - [Development Setup](#development-setup)
+  - [Workflow](#workflow)
+  - [Naming Conventions](#naming-conventions)
+  - [Documentation Maintenance](#documentation-maintenance)
+  - [Commit Messages](#commit-messages)
+  - [Pull Requests](#pull-requests)
+  - [Testing](#testing)
+  - [CI / GitHub Actions](#ci--github-actions)
+  - [Reporting Issues](#reporting-issues)
+  - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -31,7 +31,7 @@ This project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md
 
 1. **Fork and clone** the repository from [sportsdataverse/cfbfastR](https://github.com/sportsdataverse/cfbfastR).
 2. **Install dependencies**: open the project in RStudio and run `devtools::install_deps(dependencies = TRUE)`. cfbfastR requires **R >= 4.1.0** because the codebase uses the native pipe `|>`.
-3. **Create a feature branch from `main`**: `git checkout -b feat/your-feature main`. `main` is the default branch and the release branch. During the 2.3.0 cycle, larger play-by-play / EPA / WPA work was staged on `refactor/pbp-epa-wpa-modular`; if you are contributing to that area, coordinate with the maintainer before branching so you start from the same base.
+3. **Create a feature branch from `main`**: `git checkout -b feat/your-feature main`. `main` is the default branch and the release branch.
 4. **Set up your CFBD API key for live tests**:
    - Sign up for a free key at [collegefootballdata.com/key](https://collegefootballdata.com/key).
    - Export it as `CFBD_API_KEY` (or set it in `~/.Renviron`) so the `cfbd_*` wrappers and any tests that hit `api.collegefootballdata.com` can authenticate. `cfbd_key()` reads it back (see `?register_cfbd` for setup); `cfbd_api_key_info()` / `has_cfbd_key()` can confirm it's wired up.
@@ -57,12 +57,12 @@ This project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md
 2. **Initialize the return variable before `tryCatch`**. Every wrapper that returns a value assigned inside `tryCatch` must initialize that variable (`df <- data.frame()`, `df_list <- list()`, `plays_df <- NULL`, etc.) **before** the `tryCatch` block. Otherwise an API error leaves the variable unbound and `return(<var>)` throws `object '<var>' not found` instead of the intended `cli::cli_alert_danger()` + empty fallback.
 3. **Add roxygen docs** with `@export`, `@family`, `@return` (including column markdown tables), and a runnable example.
 4. **Create a test** in `tests/testthat/` with `skip_on_cran()` and `skip_on_ci()` guards plus a skip-if-empty check immediately after the API call.
-5. **Update `NEWS.md`** under the current `# **cfbfastR 2.3.0**` heading -- do not start a new version section ahead of release.
+5. **Update `NEWS.md`** under the top version heading (the release in progress) -- do not start a new version section ahead of release.
 6. Run `devtools::document()` to update `NAMESPACE`.
 
 ### Adding a New ESPN College Football Endpoint
 
-ESPN wrappers added in 2.3.0 live in the catalog files:
+ESPN wrappers added in 3.0.0 live in the catalog files:
 
 - `R/espn_cfb_catalog.R`
 - `R/espn_cfb_game.R`
@@ -137,17 +137,14 @@ Several regeneration steps are part of the commit workflow whenever the relevant
 
 ### Markdown TOCs (doctoc)
 
-`NEWS.md`, `CLAUDE.md`, `CONTRIBUTING.md`, `.github/copilot-instructions.md`, and `.github/pull_request_template.md` carry a doctoc-generated table of contents inside the standard marker comments. After editing any of those files, regenerate the TOC before committing:
+`CONTRIBUTING.md`, `.github/copilot-instructions.md`, and `.github/pull_request_template.md` carry a [doctoc](https://github.com/thlorenz/doctoc)-generated table of contents inside the standard marker comments. After changing a heading in any of them, regenerate the TOC before committing (needs Node.js):
 
 ```sh
-Rscript tools/run_doctoc.R --maxlevel 2 \
-  NEWS.md CLAUDE.md CONTRIBUTING.md \
-  .github/copilot-instructions.md .github/pull_request_template.md
+npx doctoc --maxlevel 2 \
+  CONTRIBUTING.md .github/copilot-instructions.md .github/pull_request_template.md
 ```
 
-`cran-comments.md` is intentionally excluded -- it is a short release-notes file submitted to CRAN and does not need a TOC.
-
-`tools/run_doctoc.R` is a no-deps R replacement for the npm `doctoc` CLI -- it produces output indistinguishable from the upstream tool, is idempotent (a no-op if no headings changed), and runs without Node.js. Use `--maxlevel 2` so the TOC only lists `# ` and `## ` headings; level-3 sub-entries crowd the nav.
+doctoc only rewrites the block between the markers and is a no-op when no heading changed. Use `--maxlevel 2` so the TOC only lists `# ` and `## ` headings; level-3 sub-entries crowd the nav. `NEWS.md` (pkgdown renders its own changelog navigation), `CLAUDE.md` and `cran-comments.md` carry no TOC.
 
 ### README.md (rmarkdown)
 
@@ -173,7 +170,7 @@ This re-orders fields, alphabetizes `Imports`/`Suggests`, and reflows long lines
 
 Three files describe the same release at different audiences. Whenever you add a `NEWS.md` bullet, **think through all three before committing**:
 
-- **`NEWS.md`** -- authoritative changelog for downstream users; rendered into the pkgdown changelog. **All new bullets go under the most recent unreleased version heading** (currently `# **cfbfastR 2.3.0**`). Do not create a new version section ahead of release. Add to or extend an existing subsection (`### Bug fixes`, `### Deprecations`, `### Test infrastructure`, etc.) instead of starting a new one when the change is incremental. Once `2.3.0` ships to CRAN, the development version gets its own heading and the rule rolls forward.
+- **`NEWS.md`** -- authoritative changelog for downstream users; rendered into the pkgdown changelog. **All new bullets go under the top version heading**, the release in progress. Do not create a new version section ahead of release. Within it, sections are `## ` headings (`## New: ...`, `## Fixed: ...`); extend an existing one instead of starting a new one when the change is incremental, and never nest a `### ` section under an unrelated entry. Once that version ships to CRAN, the next one gets its own top heading and the rule rolls forward.
 
 - **`cran-comments.md`** -- what gets submitted to CRAN. Every behavioral or user-visible change you add to `NEWS.md` should also be reflected in `cran-comments.md` before submission. The two files are not duplicates: `NEWS.md` is the long-form changelog, `cran-comments.md` is the short-form release summary. If a `NEWS.md` bullet is purely internal (refactor, test infrastructure, dev tooling) it can be omitted from `cran-comments.md`.
 
@@ -203,7 +200,7 @@ Split unrelated work into separate commits for reviewability.
 
 ## Pull Requests
 
-- Target the `main` branch (or `refactor/pbp-epa-wpa-modular` if your work was scoped to that staging branch and the maintainer asked you to base on it).
+- Target the `main` branch.
 - Fill out the PR template at `.github/pull_request_template.md` -- it is auto-applied when you open the PR.
 - Include a clear description of what changed and why.
 - Ensure `devtools::check()` passes with no errors or warnings.
@@ -250,27 +247,30 @@ For dynamic columns, `expect_true(all(core_cols %in% colnames(x)))` is equivalen
 
 ### Running live vs offline tests
 
-- **Offline** (default in CI and `R CMD check`): `devtools::test()` will skip every test guarded by `skip_on_cran()` / `skip_on_ci()` -- the suite stays green even without network or an API key.
+- **On CRAN**: tests guarded by `skip_on_cran()` skip; the offline unit tests (mocked HTTP, `csv.gz` fixtures) still run.
+- **In CI**: r-lib/actions sets `NOT_CRAN=true` and `R-CMD-check.yaml` passes `CFBD_API_KEY` from secrets, so `skip_on_cran()` tests run live. Only the `skip_on_ci()` tests (parity and equivalence) skip; run those locally.
 - **Live CFBD**: set `Sys.setenv(CFBD_API_KEY = "...")` (or put it in `~/.Renviron`) and run `devtools::test()` locally. The `cfbd_*` tests will hit `api.collegefootballdata.com`.
 - **Live ESPN**: no API key needed -- just connectivity. The `espn_cfb_*` tests hit `site.api.espn.com` / `sports.core.api.espn.com` directly.
 - **PBP equivalence harness**: `tests/testthat/test-pbp_equivalence.R` asserts `cfbd_pbp_data_v2()` and `espn_cfb_pbp_v2()` reproduce the legacy outputs column-for-column, with an explicit allow-list of intentional representation deltas (character `id_play`, logical `scoring_play`, total `clock_seconds`, v2 short-name passer/rusher/receiver). Run it when you touch anything in `R/pbp_*.R`, `R/cfbd_pbp_data*.R`, `R/espn_cfb_game.R`, or the `.run_epa_wpa()` engine.
 
 ## CI / GitHub Actions
 
-The repository runs three workflows out of `.github/workflows/`:
+The repository runs five workflows out of `.github/workflows/`:
 
 | Workflow            | Triggers                          | Purpose                                          |
 | ------------------- | --------------------------------- | ------------------------------------------------ |
-| `R-CMD-check.yaml`  | push / PR to `main`               | Cross-platform `R CMD check` matrix              |
-| `pkgdown.yaml`      | push to `main`, release           | Build & deploy <https://cfbfastr.sportsdataverse.org/> |
-| `rhub.yaml`         | manual / scheduled                | rhub v2 checks across CRAN-relevant platforms    |
+| `R-CMD-check.yaml`  | push / PR to `main`, weekly cron, manual | Cross-platform `R CMD check` matrix       |
+| `pkgdown.yaml`      | push to `main`, release, manual   | Build & deploy <https://cfbfastr.sportsdataverse.org/> |
+| `rhub.yaml`         | manual                            | rhub v2 checks across CRAN-relevant platforms    |
+| `api-sync.yaml`     | daily cron, push to `main` touching `R/`, manual | Diff the live CFBD spec against the `cfbd_*` wrappers and track the gaps in an issue |
+| `star-history.yml`  | daily cron, new star, manual      | Refresh the README star-history chart            |
 
 Secrets used:
 
 | Secret          | Used by             | Description                                              |
 | --------------- | ------------------- | -------------------------------------------------------- |
 | `GITHUB_TOKEN`  | All workflows       | Auto-provided by GitHub                                  |
-| `CFBD_API_KEY`  | `R-CMD-check.yaml`  | Optional -- enables live CFBD tests when present in CI   |
+| `CFBD_API_KEY`  | `R-CMD-check.yaml`, `pkgdown.yaml`, `rhub.yaml` | Optional -- enables live CFBD tests and examples when present in CI |
 
 ## Reporting Issues
 

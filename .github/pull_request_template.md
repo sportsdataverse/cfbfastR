@@ -3,16 +3,16 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Pull Request](#pull-request)
-- [Summary](#summary)
-- [Type of Change](#type-of-change)
-- [Related Issues](#related-issues)
-- [Background & Context](#background-context)
-- [Changes Made](#changes-made)
-- [Submission Checklist](#submission-checklist)
-- [Testing](#testing)
-- [Screenshots / Output](#screenshots-output)
-- [Reviewer Checklist](#reviewer-checklist)
-- [Additional Notes](#additional-notes)
+  - [Summary](#summary)
+  - [Type of Change](#type-of-change)
+  - [Related Issues](#related-issues)
+  - [Background & Context](#background--context)
+  - [Changes Made](#changes-made)
+  - [Submission Checklist](#submission-checklist)
+  - [Testing](#testing)
+  - [Screenshots / Output](#screenshots--output)
+  - [Reviewer Checklist](#reviewer-checklist)
+  - [Additional Notes](#additional-notes)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -43,7 +43,7 @@ Help future contributors understand the full picture:
 - What was the previous state/behavior? Any upstream API drift (CFBD or ESPN)?
 - Link to any relevant threads or discussions (issues, Discord, slack).
 - Are there any known limitations or technical debt introduced?
-- If this touches the 2.3.0 modular EPA/WPA pipeline (cfbd_pbp_data_v2 /
+- If this touches the modular EPA/WPA pipeline (cfbd_pbp_data_v2 /
   espn_cfb_pbp_v2 / .run_epa_wpa() / .pbp_play_types() / .pbp_output_order),
   note how the equivalence harness behaves with your change.
 -->
@@ -75,14 +75,14 @@ Example format:
 - [ ] New / changed functions have roxygen with `@export`, `@family`, `@return`, and a runnable example (`\donttest{}` for live-network calls)
 - [ ] Tests added / updated in `tests/testthat/` with `skip_on_cran()` + `skip_on_ci()` and a skip-if-empty guard right after the API call
 - [ ] Column assertions use the **subset direction**: `expect_in(sort(expected), sort(colnames(x)))`
-- [ ] If touching the 2.3.0 PBP pipeline: `test-pbp_equivalence.R` still passes (or the allow-list is updated with justification)
+- [ ] If touching the PBP pipeline (`R/pbp_*.R`): `test-pbp_equivalence.R` still passes (or the allow-list is updated with justification)
 - [ ] `devtools::check()` passes with no errors or warnings
-- [ ] `NEWS.md` updated under the current `# **cfbfastR 2.3.0**` heading (if user-facing)
+- [ ] `NEWS.md` updated under the top version heading, the release in progress (if user-facing)
 - [ ] `cran-comments.md` updated (if behavioural / user-visible)
 - [ ] `_pkgdown.yml` updated for new exports that need an explicit reference entry (the `starts_with("cfbd_")` / `starts_with("espn_cfb_")` selectors pick up most prefix-matching additions automatically)
 - [ ] `README.Rmd` re-rendered with `devtools::build_readme()` if README content changed
 - [ ] `DESCRIPTION` normalized with `usethis::use_tidy_description()` if it was edited
-- [ ] doctoc TOC re-run if any of `NEWS.md` / `CLAUDE.md` / `CONTRIBUTING.md` / `.github/copilot-instructions.md` / `.github/pull_request_template.md` changed
+- [ ] doctoc TOC re-run (`npx doctoc --maxlevel 2 ...`) if a heading changed in `CONTRIBUTING.md` / `.github/copilot-instructions.md` / `.github/pull_request_template.md`
 - [ ] Commit messages use conventional commit format (`type: description`); no AI co-authors
 
 ## Testing

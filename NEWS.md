@@ -6,6 +6,116 @@ bundle, the same files `sportsdataverse-py` scores with. EPA and WPA therefore
 differ from 3.0.0 for the same play. See the model notes below before mixing
 outputs from the two releases.
 
+## Expected Points model now comes from the shared `cfb_model_artifacts` bundle
+
+The EP model is now the XGBoost artifact published in
+[`cfb_model_artifacts`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_model_artifacts)
+— **the same artifact `sportsdataverse-py` scores with**, so both libraries
+agree on EPA for a given play and a retrain updates both from one publish
+([#138](https://github.com/sportsdataverse/cfbfastR/issues/138)).
+
+* **Fixes [#5](https://github.com/sportsdataverse/cfbfastR/issues/5)** — `epa_wpa = TRUE`
+  no longer aborts with `predict.nnet(): missing values in 'x'` on mid-era CFBD
+  data (seasons ~2006–2013), in either engine.
+* EP scoring is consolidated behind one internal helper, so the seven
+  next-score probability columns keep their historical names and order and no
+  downstream code changed. **The bundle's class order differs from the retired
+  model's** with no fixed point between them; the permutation is read from the
+  bundle's `MANIFEST.json` and asserted in tests, because getting it wrong
+  yields EP that is wrong yet plausible-looking.
+* Model artifacts are cached under the package cache dir and refreshed on the
+  `cfbfastR.cache_duration` TTL (default 24h), so a republished model is picked
+  up without a package update. An expired cached copy is still used if the
+  release is unreachable.
+* `xgboost` (Suggests) is now required to score EP and its floor moved to
+  `>= 1.7` for `.ubj` support. Without it — or offline with no cached copy —
+  the retired `nnet` model is loaded as a fallback and still works.
+* The **Win Probability** model moved to the bundle's `wp_naive.ubj` on the
+  same terms. Eleven of its twelve features already existed on the frame; only
+  `is_home` is derived.
+* The **Field Goal** model moved to the bundle's era-aware `fg_model.ubj`
+  (`yards_to_goal` + one-hot `era0..era3`). `season` is now threaded through
+  `.run_epa_wpa()` and the exported `create_epa()` / `epa_fg_probs()` gain a
+  `season` argument (defaulting to `NULL`). Scoring the era-aware model
+  without a season is an error rather than a silent all-zero one-hot.
+* **New: completion probability.** `cp` and `cpoe` columns are added on pass
+  plays, `cpoe` on the percentage-point scale `100 * (completion - cp)`,
+  matching `sportsdataverse-py`. The model loads lazily on first use and the
+  stage degrades to `NA` columns rather than failing.
+* **New: spread-aware win probability.** A `vegas_wp` column is added
+  alongside the unchanged naive `wp_before` — the same split nflfastR draws
+  between `wp` and `vegas_wp`. It is `NA` wherever the game has no pre-game
+  line (the ESPN path, and CFBD before 2013). Sign convention verified over 83
+  games: CFBD's `spread` is negative when the home team is favoured, and the
+  model reads positive `spread_time` as the team in possession being favoured.
+  `vegas_wpa` and `vegas_wp_after` are derived alongside it, using the same
+  turnover and half/period-end overlays as the naive `wpa`.
+* **Fix: `xpass` / `two_pt` scored 2018-2020 in the wrong rule era.** The
+  ordinal `era` column was cut at 2006/2013/**2017**, but the producer
+  (`cfbfastR-cfb-data`) derives BOTH era encodings from one
+  `ERA_BOUNDS = (2006, 2013, 2020)` and has never carried a 2017 cut -- so those
+  three seasons were scored as era 3 against models that trained them as era 2.
+  `era` takes 251 splits and ~1.1% of gain in `xpass_model`: across 630
+  realistic situations the mismatch moved `xpass` by a mean of 0.9pp and at most
+  2.9pp, inherited by `pass_oe` as a step at the 2017/2018 boundary. `prob_2pt`
+  was unaffected -- that model never splits on `era`. The 2017 figure traces to a
+  stale docstring on sdv-py's `cfb_two_point.py::_era`, whose code already read
+  the 2020 bounds. `.XPASS_ERA_CUTS` now equals `.FG_ERA_CUTS`; the two remain
+  separate constants because the ENCODINGS differ (one ordinal column vs four
+  one-hot dummies). See
+  [cfbfastR-cfb-data#70](https://github.com/sportsdataverse/cfbfastR-cfb-data/issues/70).
+* **New: expected pass rate.** `xpass` and `pass_oe` columns are added on
+  scrimmage plays (nflfastR's `xpass` / `pass_oe`), `pass_oe` on the
+  percentage-point scale `100 * (pass - xpass)`. Note this model uses an
+  *ordinal* rule-era feature, a different **encoding** from the FG model's
+  one-hot `era0..era3` -- but the same cutpoints: both cut at 2006/2013/2020.
+  (An earlier build of this release cut `xpass` at 2017; see the fix above.)
+* Existing EPA/WPA values **will change**: this is a different model
+  generation. Rebuild rather than mixing old and new outputs in one dataset.
+
+## Decision surfaces and QBR from the same bundle
+
+The three remaining `cfb_model_artifacts` artifacts are now used: the
+two-point, fourth-down and QBR models
+([#140](https://github.com/sportsdataverse/cfbfastR/issues/140)). Unlike the
+model columns above, these are analytic surfaces — they build the game state
+that WOULD follow a choice, score it, and compare. They are ports of
+[`cfb4th`](https://github.com/sportsdataverse/cfb4th) and degrade to `NA`
+columns rather than failing when a model, the punt table, `arrow`, or a
+pre-game line is missing.
+
+* **New: the two-point decision.** On offensive touchdowns, `two_pt_wp` /
+  `xp_wp` / `two_pt_wp_diff` / `two_pt_recommendation` compare going for two
+  against kicking, using the conversion probability `prob_2pt` and the
+  opponent's ensuing-drive win probability for each outcome. Verified
+  bit-identical to `sportsdataverse-py` to eight decimals. Read
+  `two_pt_wp_diff` rather than the bare recommendation: cfb4th's rule has no
+  margin, and the bundled model is optimistic about college conversion rates.
+* **New: the fourth-down decision.** On fourth downs, `go_wp` / `punt_wp` /
+  `fg_wp` and the comparison columns `go_boost`, `go_wp_diff`, `fg_wp_diff`,
+  `punt_wp_diff` and `fourth_down_recommendation`. The go branch expands the
+  fourth-down model's 76-class yards-gained distribution to one state per
+  possible outcome; the punt branch joins the empirical end-yardline
+  distribution (`NA` inside the 31, where cfb4th's table is empty); the
+  field-goal branch carries cfb4th's policy clamps (zero beyond 42
+  yards-to-goal, 0.9x from 35 out). `first_down_prob`, `wp_succeed`,
+  `wp_fail`, `make_fg_wp`, `miss_fg_wp` and `fourth_down_fg_make_prob` are
+  exposed alongside. Note the last of those is namespaced: `fg_make_prob`
+  already means the make probability of the field goal that was actually
+  attempted.
+* **New: `create_qbr()`.** Per-quarterback, per-game leverage-weighted EPA
+  components scored through the bundled QBR model. It emits its own table
+  rather than columns on the play-by-play frame, so it is an entry point you
+  call on a modeled frame, not a pipeline stage.
+* These three surfaces have **no cross-language oracle** for the fourth-down
+  branches — `sportsdataverse-py`'s `get_go_wp()` raises on pandas 3 — so they
+  were ported from the `cfb4th` R source and gated behaviourally against known
+  college conversion and field-goal rates. Three sign conventions were found
+  inverted in the Python port while doing so; each produced a confident wrong
+  recommendation rather than an error, and each is pinned by test here.
+* Every decision column is `NA` on the ESPN engine, which carries no pre-game
+  spread.
+
 ## Changed: loading the package, and dependency floors
 
 * `library(cfbfastR)` no longer downloads anything. The expected points, field
@@ -48,6 +158,11 @@ package — the duplication that caused cfbfastR-cfb-data#70, where both cfbfast
 sportsdataverse-py kept a private copy of the era boundary, both drifted to a 2017
 cut the trainer never used, and 2018-2020 scored an era off the models trained with
 them.
+
+`cfb_model_card()`, `cfb_card_features()`, `cfb_card_era_contract()` and
+`cfb_card_reset_cache()` read those cards directly: the parsed card, the
+features in trained order, the era encoding, and a reset of the in-session card
+cache. (#152)
 
 A missing column names every absent column and the model that wanted it, rather
 than failing inside xgboost. Play-by-play column names are normalized
@@ -200,6 +315,10 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   types (ids 27-31).
 - CFBD requests retry HTTP 502 and 504 as well as 429 and 503. A single 502
   from CFBD's gateway used to fail the call outright.
+- CFBD requests retry up to 6 times within 120 seconds (was 3 tries and about
+  1-9 s of backoff). Sustained 429 throttling used to exhaust the budget and
+  surface as "no data available", so a throttled call looked like an empty
+  result. (#148)
 
 ## Fixed: ESPN play-by-play carries the pre-game line
 
@@ -241,6 +360,13 @@ and every `exp_qbr` come back `NA` without an error once the shared
 * `add_yardage()` output changes for kickoffs out of bounds: `yds_kickoff_return`
   was 40 in every season and is now 35 by default (the 2012 rule). Pass
   `season`, or carry a `season` column, to get 40 for games through 2011.
+
+## Fixed: CFBD team rosters
+
+* `cfbd_team_roster()` (and so `load_cfb_rosters()`) returns `year` as the
+  athlete's class year. CFBD fills that field with the season instead for every
+  roster before 2014 and most from 2014-2019; those values are now `NA`. A new
+  `season` column carries the roster year. (#157)
 
 ## Fixed: CFBD game box score, team stats and play-by-play
 
@@ -476,7 +602,7 @@ today's alignment:
 The loaders read the tag's parquet files, not its csv copies, so ids stay
 character instead of being parsed as integers.
 
-### Air yards side the catch spot by the game's own text abbreviations
+## Air yards side the catch spot by the game's own text abbreviations
 
 The 2025+ ESPN vendor text spots the catch with each school's own abbreviation
 (`UHM`, `GSO`, `USC` for South Carolina, `Sac St`, `BC.`), which is frequently
@@ -490,116 +616,6 @@ back to the payload abbreviations, reads every observed token shape (`UA 10`,
 of pass plays; every spot-phrase play now resolves. Same logic as [sdv-py #418](https://github.com/sportsdataverse/sportsdataverse-py/pull/418);
 the parity oracle was re-captured from sdv-py `9efee9f1` and extended with five
 affected 2025/26 games (`tests/testthat/fixtures/parity/README.md`).
-
-### Expected Points model now comes from the shared `cfb_model_artifacts` bundle
-
-The EP model is now the XGBoost artifact published in
-[`cfb_model_artifacts`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_model_artifacts)
-— **the same artifact `sportsdataverse-py` scores with**, so both libraries
-agree on EPA for a given play and a retrain updates both from one publish
-([#138](https://github.com/sportsdataverse/cfbfastR/issues/138)).
-
-* **Fixes [#5](https://github.com/sportsdataverse/cfbfastR/issues/5)** — `epa_wpa = TRUE`
-  no longer aborts with `predict.nnet(): missing values in 'x'` on mid-era CFBD
-  data (seasons ~2006–2013), in either engine.
-* EP scoring is consolidated behind one internal helper, so the seven
-  next-score probability columns keep their historical names and order and no
-  downstream code changed. **The bundle's class order differs from the retired
-  model's** with no fixed point between them; the permutation is read from the
-  bundle's `MANIFEST.json` and asserted in tests, because getting it wrong
-  yields EP that is wrong yet plausible-looking.
-* Model artifacts are cached under the package cache dir and refreshed on the
-  `cfbfastR.cache_duration` TTL (default 24h), so a republished model is picked
-  up without a package update. An expired cached copy is still used if the
-  release is unreachable.
-* `xgboost` (Suggests) is now required to score EP and its floor moved to
-  `>= 1.7` for `.ubj` support. Without it — or offline with no cached copy —
-  the retired `nnet` model is loaded as a fallback and still works.
-* The **Win Probability** model moved to the bundle's `wp_naive.ubj` on the
-  same terms. Eleven of its twelve features already existed on the frame; only
-  `is_home` is derived.
-* The **Field Goal** model moved to the bundle's era-aware `fg_model.ubj`
-  (`yards_to_goal` + one-hot `era0..era3`). `season` is now threaded through
-  `.run_epa_wpa()` and the exported `create_epa()` / `epa_fg_probs()` gain a
-  `season` argument (defaulting to `NULL`). Scoring the era-aware model
-  without a season is an error rather than a silent all-zero one-hot.
-* **New: completion probability.** `cp` and `cpoe` columns are added on pass
-  plays, `cpoe` on the percentage-point scale `100 * (completion - cp)`,
-  matching `sportsdataverse-py`. The model loads lazily on first use and the
-  stage degrades to `NA` columns rather than failing.
-* **New: spread-aware win probability.** A `vegas_wp` column is added
-  alongside the unchanged naive `wp_before` — the same split nflfastR draws
-  between `wp` and `vegas_wp`. It is `NA` wherever the game has no pre-game
-  line (the ESPN path, and CFBD before 2013). Sign convention verified over 83
-  games: CFBD's `spread` is negative when the home team is favoured, and the
-  model reads positive `spread_time` as the team in possession being favoured.
-  `vegas_wpa` and `vegas_wp_after` are derived alongside it, using the same
-  turnover and half/period-end overlays as the naive `wpa`.
-* **Fix: `xpass` / `two_pt` scored 2018-2020 in the wrong rule era.** The
-  ordinal `era` column was cut at 2006/2013/**2017**, but the producer
-  (`cfbfastR-cfb-data`) derives BOTH era encodings from one
-  `ERA_BOUNDS = (2006, 2013, 2020)` and has never carried a 2017 cut -- so those
-  three seasons were scored as era 3 against models that trained them as era 2.
-  `era` takes 251 splits and ~1.1% of gain in `xpass_model`: across 630
-  realistic situations the mismatch moved `xpass` by a mean of 0.9pp and at most
-  2.9pp, inherited by `pass_oe` as a step at the 2017/2018 boundary. `prob_2pt`
-  was unaffected -- that model never splits on `era`. The 2017 figure traces to a
-  stale docstring on sdv-py's `cfb_two_point.py::_era`, whose code already read
-  the 2020 bounds. `.XPASS_ERA_CUTS` now equals `.FG_ERA_CUTS`; the two remain
-  separate constants because the ENCODINGS differ (one ordinal column vs four
-  one-hot dummies). See
-  [cfbfastR-cfb-data#70](https://github.com/sportsdataverse/cfbfastR-cfb-data/issues/70).
-* **New: expected pass rate.** `xpass` and `pass_oe` columns are added on
-  scrimmage plays (nflfastR's `xpass` / `pass_oe`), `pass_oe` on the
-  percentage-point scale `100 * (pass - xpass)`. Note this model uses an
-  *ordinal* rule-era feature, a different **encoding** from the FG model's
-  one-hot `era0..era3` -- but the same cutpoints: both cut at 2006/2013/2020.
-  (An earlier build of this release cut `xpass` at 2017; see the fix above.)
-* Existing EPA/WPA values **will change**: this is a different model
-  generation. Rebuild rather than mixing old and new outputs in one dataset.
-
-### Decision surfaces and QBR from the same bundle
-
-The three remaining `cfb_model_artifacts` artifacts are now used: the
-two-point, fourth-down and QBR models
-([#140](https://github.com/sportsdataverse/cfbfastR/issues/140)). Unlike the
-model columns above, these are analytic surfaces — they build the game state
-that WOULD follow a choice, score it, and compare. They are ports of
-[`cfb4th`](https://github.com/sportsdataverse/cfb4th) and degrade to `NA`
-columns rather than failing when a model, the punt table, `arrow`, or a
-pre-game line is missing.
-
-* **New: the two-point decision.** On offensive touchdowns, `two_pt_wp` /
-  `xp_wp` / `two_pt_wp_diff` / `two_pt_recommendation` compare going for two
-  against kicking, using the conversion probability `prob_2pt` and the
-  opponent's ensuing-drive win probability for each outcome. Verified
-  bit-identical to `sportsdataverse-py` to eight decimals. Read
-  `two_pt_wp_diff` rather than the bare recommendation: cfb4th's rule has no
-  margin, and the bundled model is optimistic about college conversion rates.
-* **New: the fourth-down decision.** On fourth downs, `go_wp` / `punt_wp` /
-  `fg_wp` and the comparison columns `go_boost`, `go_wp_diff`, `fg_wp_diff`,
-  `punt_wp_diff` and `fourth_down_recommendation`. The go branch expands the
-  fourth-down model's 76-class yards-gained distribution to one state per
-  possible outcome; the punt branch joins the empirical end-yardline
-  distribution (`NA` inside the 31, where cfb4th's table is empty); the
-  field-goal branch carries cfb4th's policy clamps (zero beyond 42
-  yards-to-goal, 0.9x from 35 out). `first_down_prob`, `wp_succeed`,
-  `wp_fail`, `make_fg_wp`, `miss_fg_wp` and `fourth_down_fg_make_prob` are
-  exposed alongside. Note the last of those is namespaced: `fg_make_prob`
-  already means the make probability of the field goal that was actually
-  attempted.
-* **New: `create_qbr()`.** Per-quarterback, per-game leverage-weighted EPA
-  components scored through the bundled QBR model. It emits its own table
-  rather than columns on the play-by-play frame, so it is an entry point you
-  call on a modeled frame, not a pipeline stage.
-* These three surfaces have **no cross-language oracle** for the fourth-down
-  branches — `sportsdataverse-py`'s `get_go_wp()` raises on pandas 3 — so they
-  were ported from the `cfb4th` R source and gated behaviourally against known
-  college conversion and field-goal rates. Three sign conventions were found
-  inverted in the Python port while doing so; each produced a confident wrong
-  recommendation rather than an error, and each is pinned by test here.
-* Every decision column is `NA` on the ESPN engine, which carries no pre-game
-  spread.
 
 # **cfbfastR v3.0.0**
 

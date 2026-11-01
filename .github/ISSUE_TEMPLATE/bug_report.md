@@ -17,8 +17,13 @@ unexpected `NA`s, schema drift, etc.).
 - [ ] `cfbd_*()` — College Football Data API
 - [ ] `espn_cfb_*()` — ESPN College Football endpoints
 - [ ] `espn_metrics_wp()` / `espn_ratings_fpi()`
-- [ ] `load_cfb_*()` — Full-season loaders (pbp, rosters, schedules, teams)
+- [ ] `fox_cfb_*()` — Fox Sports endpoints
+- [ ] `yahoo_cfb_*()` — Yahoo Sports endpoints
+- [ ] `load_cfb_*()` — Full-season loaders (pbp, rosters, schedules, teams, ratings, crosswalks, conference groups)
+- [ ] `load_espn_cfb_*()` — ESPN-derived release datasets
+- [ ] `load_ncaa_mfb_*()` — stats.ncaa.org release datasets
 - [ ] `update_cfb_db()` — Local PBP database builder
+- [ ] `calculate_*()` — Model calculators (EP, WP, FG, CP, xpass, two-point, fourth down, QBR)
 - [ ] EPA / WPA helpers (`create_epa`, `create_wpa_naive`, `prep_epa_df_after`, ...)
 - [ ] Other (please specify):
 
