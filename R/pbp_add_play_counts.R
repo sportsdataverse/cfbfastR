@@ -182,7 +182,7 @@
       # (sdv-py), not the count the fourth quarter left. The ESPN adapter hands
       # over `timeout_window` (.espn_overtime_period()), because some feeds number
       # every overtime 5. Gated by `ot_reset` (see the top of this function).
-      new_ot_period = .env$ot_reset & .data$period >= 5 &
+      new_ot_period = !!ot_reset & .data$period >= 5 &
         .data$timeout_window != dplyr::lag(.data$timeout_window, default = 0),
       off_timeouts_rem_before = ifelse(.data$new_ot_period, 1, .data$off_timeouts_rem_before),
       def_timeouts_rem_before = ifelse(.data$new_ot_period, 1, .data$def_timeouts_rem_before),
