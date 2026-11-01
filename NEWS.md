@@ -248,7 +248,9 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   engines, as sportsdataverse-py does: the punt ended behind the line of
   scrimmage, which ESPN's next snap confirms. 16 punts in a 2004-2026 sample
   change sign. The distance is read in any case ("Punt for 40 yards" too), as in
-  sportsdataverse-py. The punt-distance model was trained on the unsigned values, so
+  sportsdataverse-py, and only when a number follows "punt for" directly, so
+  "punt for no gain to the BC 20" has no distance rather than 20 (the
+  sportsdataverse-py yardage stage still takes the first later number there). The punt-distance model was trained on the unsigned values, so
   it is a retrain candidate when the punt columns are republished. (#156)
 
 ## Fixed: release loaders read model pbp, keep play ids exact and accept every published season

@@ -621,18 +621,18 @@ validate_reqs <- function(...){
 #'
 #' "punt for 43 yards" is 43; "punt for a loss of 12 yards" is -12, a punt that
 #' ended behind the line of scrimmage (ESPN's next snap confirms it). sdv-py
-#' reads the clause the same way, in any case (#156).
+#' reads the clause the same way, in any case (#156). The number must follow
+#' "punt for" directly, so "punt for no gain to the BC 20" has no distance
+#' rather than 20, and a return's "for a loss" never signs the punt.
 #'
 #' @param play_text Character vector of play text.
 #' @return Numeric vector, `NA` where the text gives no punt distance.
 #' @keywords internal
 #' @noRd
 .punt_yards <- function(play_text) {
-  yds <- as.numeric(stringr::str_extract(
-    stringi::stri_extract_first_regex(play_text, "(?i)(?<= punt for)[^,]+"), "\\d+"
-  ))
-  loss <- stringr::str_detect(play_text, stringr::regex("punt for a loss of \\d+", ignore_case = TRUE))
-  ifelse(loss %in% TRUE, -yds, yds)
+  m <- stringr::str_match(play_text, stringr::regex("\\bpunt for (a loss of )?(\\d+)", ignore_case = TRUE))
+  yds <- as.numeric(m[, 3])
+  ifelse(is.na(m[, 2]), yds, -yds)
 }
 
 #' The season an exported entry point applies the kickoff rules to
