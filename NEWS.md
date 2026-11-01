@@ -159,6 +159,11 @@ sportsdataverse-py kept a private copy of the era boundary, both drifted to a 20
 cut the trainer never used, and 2018-2020 scored an era off the models trained with
 them.
 
+`cfb_model_card()`, `cfb_card_features()`, `cfb_card_era_contract()` and
+`cfb_card_reset_cache()` read those cards directly: the parsed card, the
+features in trained order, the era encoding, and a reset of the in-session card
+cache. (#152)
+
 A missing column names every absent column and the model that wanted it, rather
 than failing inside xgboost. Play-by-play column names are normalized
 automatically, so a frame carrying `start.TimeSecsRem` is accepted as-is, and
@@ -259,6 +264,10 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   types (ids 27-31).
 - CFBD requests retry HTTP 502 and 504 as well as 429 and 503. A single 502
   from CFBD's gateway used to fail the call outright.
+- CFBD requests retry up to 6 times within 120 seconds (was 3 tries and about
+  1-9 s of backoff). Sustained 429 throttling used to exhaust the budget and
+  surface as "no data available", so a throttled call looked like an empty
+  result. (#148)
 
 ## Fixed: ESPN play-by-play carries the pre-game line
 
@@ -300,6 +309,13 @@ and every `exp_qbr` come back `NA` without an error once the shared
 * `add_yardage()` output changes for kickoffs out of bounds: `yds_kickoff_return`
   was 40 in every season and is now 35 by default (the 2012 rule). Pass
   `season`, or carry a `season` column, to get 40 for games through 2011.
+
+## Fixed: CFBD team rosters
+
+* `cfbd_team_roster()` (and so `load_cfb_rosters()`) returns `year` as the
+  athlete's class year. CFBD fills that field with the season instead for every
+  roster before 2014 and most from 2014-2019; those values are now `NA`. A new
+  `season` column carries the roster year. (#157)
 
 ## Fixed: CFBD game box score, team stats and play-by-play
 
