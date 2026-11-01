@@ -55,15 +55,54 @@ resolved <- function(use_box = TRUE) {
   list(r = do.call(rbind, Filter(Negate(is.null), out)), g = g, idc = idc)
 }
 
-count_mismatches <- function(x) {
-  total <- 0L; mism <- 0L
-  for (nm in x$idc) {
+# The golden predates sdv-py's clause cut (`_PLAYER_NAME_CLAUSE_CUT`, ported in
+# .pbp_attach_player_ids()), so it holds ids resolved from uncut names such as
+# "Trapper Pannell 3 Yd", mostly NA. These are the 22 cells where R now differs
+# from it because of the cut, each pinned with the id R must give (measured
+# 2026-11-01). 20 are the ids sdv-py 4b78a45a3d gives; the two receivers
+# ("Tracy Woods, broken up by ...", "Michael Campbell, broken up by D.J. Brown")
+# stay NA, where the golden's ids are wrong (482165 is Temple's Matt Brown).
+rewritten_cells <- utils::read.csv(text = "col,id,r_id
+rusher_player_id,401520276102897901,4695951
+rusher_player_id,401520276104988801,4695951
+rusher_player_id,401520401102966001,4363050
+receiver_player_id,303270193126,
+receiver_player_id,303270193167,
+punter_player_id,2429502771208,136102
+punter_player_id,2434925723206,147899
+kickoff_return_player_id,283232309014,174171
+kickoff_return_player_id,283232309057,174171
+kickoff_return_player_id,283232309087,174171
+kickoff_return_player_id,283232309100,174171
+kickoff_return_player_id,283232309107,174171
+kickoff_return_player_id,283232309129,174171
+kickoff_return_player_id,283232309157,174171
+kickoff_return_player_id,302450005028,232848
+kickoff_return_player_id,302450005040,232848
+kickoff_return_player_id,302450005080,232848
+kickoff_return_player_id,302450005097,232848
+kickoff_return_player_id,303270193093,236499
+punt_block_player_id,400933827103958201,3925347
+punt_block_player_id,400933930102867101,4035369
+punt_block_return_player_id,401110806103947001,4361090
+", colClasses = "character", na.strings = "")
+
+# Every cell where R's id differs from the golden: column, play id, R, golden.
+mismatch_cells <- function(x) {
+  do.call(rbind, lapply(x$idc, function(nm) {
     a <- as.character(x$r[[nm]])
     b <- as.character(x$g[[nm]][x$r$.row])
-    total <- total + length(a)
-    mism  <- mism + sum(differs(a, b))
-  }
-  c(mism = mism, total = total)
+    d <- differs(a, b)
+    data.frame(col = rep(nm, sum(d)), id = as.character(x$g$id[x$r$.row][d]),
+               r_id = a[d], golden_id = b[d], stringsAsFactors = FALSE)
+  }))
+}
+
+count_mismatches <- function(x) {
+  total <- sum(vapply(x$idc, function(nm) length(x$r[[nm]]), integer(1)))
+  cells <- mismatch_cells(x)
+  pinned <- paste(cells$col, cells$id) %in% paste(rewritten_cells$col, rewritten_cells$id)
+  c(mism = sum(!pinned), total = total)
 }
 
 differs <- function(a, b) !((is.na(a) & is.na(b)) | (!is.na(a) & !is.na(b) & a == b))
@@ -71,7 +110,8 @@ differs <- function(a, b) !((is.na(a) & is.na(b)) | (!is.na(a) & !is.na(b) & a =
 test_that("player ids resolve to sdv-py's athlete ids", {
   testthat::skip_on_cran()
   skip_if_no_fixture()
-  m <- count_mismatches(resolved())
+  x <- resolved()
+  m <- count_mismatches(x)
 
   # Measured 2026-08-19 with roster + box-score records: 26 of 166,482
   # (0.0156%), down from 52 of 163,656 with the roster alone -- fewer
@@ -86,6 +126,25 @@ test_that("player ids resolve to sdv-py's athlete ids", {
   #       box entry is reachable
   # Tighten this whenever one of those classes is closed.
   expect_lt(m[["mism"]] / m[["total"]], 0.0002)
+  expect_identical(m[["mism"]], 26L)
+  # the 22 cells the clause cut changes give exactly their pinned ids
+  cells <- mismatch_cells(x)
+  got <- merge(rewritten_cells, cells, by = c("col", "id"), all.x = TRUE, suffixes = c("", ".got"))
+  expect_identical(nrow(got), 22L)
+  expect_identical(got$r_id.got, got$r_id)
+
+  # A pinned wrong-person id. 303270193058 "... fumbled, recovered by MiaOh D.J.
+  # Brown at the Temp 20" resolves fumble_recovered_player_id to 482165 (Matt
+  # Brown, Temple), as the golden does; sdv-py 4b78a45a3d gives None and the
+  # player is 385205 (Miami (OH)). The golden's fumble_recovery_team, which this
+  # test feeds in, is Temple (218): R's .pbp_add_attribution_cols() matches only
+  # an ALL-CAPS "recovered by" token, as the August sdv-py did, while 4b78a45a3d
+  # reads mixed-case tokens ("MiaOh") and the recoverer's box-score team
+  # (_parse_recovery_sides / _recovery_sides_by_recoverer) and says 193. With
+  # 218, the clause-cut name "MiaOh D.J. Brown" reaches the first-initial tier
+  # (M. Brown) on Temple's roster. Not a small port; tracked as a follow-up.
+  row <- which(as.character(x$g$id[x$r$.row]) == "303270193058")
+  expect_identical(as.character(x$r$fumble_recovered_player_id[row]), "482165")
 })
 
 test_that("the box score is what closes the gap, not the roster alone", {

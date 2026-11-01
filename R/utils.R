@@ -601,6 +601,22 @@ validate_reqs <- function(...){
   if (.kickoff_2012_rules(season)) 75 else 80
 }
 
+# First season a fair catch of a kickoff is a touchback (sdv-internal-refs
+# `rules/cfb.yaml#cfb-2018-kickoff-fair-catch-touchback`). Python twin:
+# `CFB_KICKOFF_FAIR_CATCH_TOUCHBACK_FROM` in sdv-py `cfb/model_vars.py`.
+.KICKOFF_FAIR_CATCH_TOUCHBACK_FROM <- 2018
+
+#' Is a fair-caught kickoff a touchback in this season?
+#'
+#' @param season Scalar season; `NULL` or `NA` reads as the current rules.
+#' @return `TRUE` from 2018 (or when the season is unknown), `FALSE` before.
+#' @keywords internal
+#' @noRd
+.kickoff_fair_catch_touchback <- function(season) {
+  s <- if (length(season)) suppressWarnings(as.numeric(as.character(season[[1]]))) else NA_real_
+  is.na(s) || s >= .KICKOFF_FAIR_CATCH_TOUCHBACK_FROM
+}
+
 #' The season an exported entry point applies the kickoff rules to
 #'
 #' An explicit `season` wins; otherwise the frame's own `season` column (its

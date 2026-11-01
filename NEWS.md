@@ -194,6 +194,57 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   `cfbd_pbp_data(offense =)` and, on `cfbd_pbp_data_v2()`, `offense`, `defense`,
   `offense_conference`, `defense_conference`, `conference` and `division`.
 
+## Fixed: play-by-play engine parity with sportsdataverse-py
+
+- The v2 engine's play-text tests for "fumble", "sacked", "pass complete",
+  "pass incomplete", "pass intercepted" and "pass intercepted for a TD" ignore
+  case, as sportsdataverse-py's do. ESPN writes a fumble-return touchdown as
+  "N Yd Fumble Return", so `fumble_vec` missed 21-60 of them a season
+  (2014-2025), and with it the fumble attribution and the QBR fumble penalty on
+  those plays. The other literals change no play ESPN has published; they now
+  agree with sportsdataverse-py if one appears. `punt_block_return_player_name`
+  is filled on "N Yd Return of Blocked Punt" touchdowns (31-59 a season), which
+  it left empty, and the fumbler / forced-by / recovered-by and the
+  receiver-is-not-sacked captures read "Fumble" and "SACKED" too
+  ("Fumble recovered by CCaro Roderick Holder" now names him). A
+  "N Yd Fumble Return" touchdown still has no fumble player: the player it
+  names is the returner. sportsdataverse-py's name-shaped fumbler capture (one
+  to three capitalised words before "fumble(d)" or after "fumbled by", which it
+  measures lifting fumble id joins from 56% to 79%) is not ported yet, so
+  `fumble_player_name` / `fumble_player_id` still trail it on most fumbles.
+- Captured player names lose a clause the capture ran into before the roster
+  join, as sportsdataverse-py's `__attach_player_ids` does: a "N Yd" yardage
+  ("Ale Kaho 0 Yd" -> "Ale Kaho"), a glued "tackled" / "fumble", a trailing
+  connective ("... for", "... by"), and a capture that starts in a clause ("to
+  the MiaOh 21") or holds a spot ("WAS30") is dropped. More `*_player_name`
+  values are clean and more `*_player_id` values resolve (on the 60 parity games,
+  22 more ids, e.g. "Trapper Pannell 3 Yd Run" now resolves its rusher).
+- `espn_cfb_pbp_v2()` counts timeouts as sportsdataverse-py does. It charged a
+  Timeout row only when the ten characters after "Timeout " equalled the team
+  abbreviation, which ESPN's "Timeout Mississippi State, clock 01:13" never
+  does: 8 of 116 Timeout rows in 16 test games, so most teams kept 3 timeouts
+  all game. A row is now charged to the team whose abbreviation, location or
+  name it matches (or the initialism, "SOUTHERN CAL" for USC, or the shortened
+  spelling, "WESTRN MICHIGAN"), an adjacent repeat counts once, each overtime
+  period allots 1 (in feeds that number every overtime 5, the period comes from
+  pairing the overtime drives, as in sportsdataverse-py), and no count goes
+  below 0. **`pos_team_timeouts_rem_before`,
+  `def_pos_team_timeouts_rem_before` and the columns built on them change, and
+  so do `wp_before`, `wp_after`, `wpa` and `vegas_wp`** (on 2024's 401628409, 11
+  of 175 plays, by up to 0.019). EP and EPA do not read timeouts. A new oracle
+  (`tests/testthat/test-pbp_timeouts.R`) checks the charges and counts against
+  sportsdataverse-py on all 3,695 plays of 19 games. Both libraries share one
+  known overtime error: when ESPN files an overtime drive's rows around another
+  drive (2025's 401754372), the drive pairing counts it twice and hands a team
+  back a timeout it had called.
+- The v2 engine's `kickoff_tb` follows the 2018 rule that a fair-caught kickoff
+  is a touchback, and treats a bare "X kickoff" row with no result as one, as
+  sportsdataverse-py does. 1,122 fair-caught kickoffs in 2018-2025 (567 in 2025)
+  now have `kickoff_tb = 1`, `yds_kickoff_return = 25` (0 before) and the next
+  state at the receiver's 25; earlier seasons are unchanged. Like
+  sportsdataverse-py, the rule does not read the catch spot, so the 152 of those
+  caught beyond the 25 are also placed at the 25.
+
 ## Fixed: release loaders read model pbp, keep play ids exact and accept every published season
 
 - `load_espn_cfb_model_pbp()` reads `.parquet`. It asked for `.rds`, which the
