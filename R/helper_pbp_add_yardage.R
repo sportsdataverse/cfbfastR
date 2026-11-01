@@ -239,9 +239,7 @@ add_yardage <- function(play_df, season = NULL) {
       yds_punted = NA_real_,
       yds_punted = case_when(
         .data$punt == 1 & .data$punt_blocked == 1 ~ 0,
-        .data$punt == 1 ~ as.numeric(stringr::str_extract(
-          stringi::stri_extract_first_regex(.data$play_text, "(?<= punt for)[^,]+"), "\\d+"
-        )),
+        .data$punt == 1 ~ .punt_yards(.data$play_text),
         TRUE ~ .data$yds_punted
       ),
       yds_punt_return = dplyr::case_when(

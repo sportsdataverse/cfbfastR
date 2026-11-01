@@ -264,7 +264,7 @@ NULL
 #'  |fumble_recovered_player_name |character |Name of the player who recovered the fumble. |
 #'  |yds_fumble_return |double |Yards gained on a fumble return. |
 #'  |punter_player_name |character |Name of the punter. |
-#'  |yds_punted |double |Yards the ball traveled on the punt. |
+#'  |yds_punted |double |Yards the ball traveled on the punt; negative for a punt for a loss (ended behind the line of scrimmage). |
 #'  |punt_returner_player_name |character |Name of the punt returner. |
 #'  |yds_punt_return |double |Yards gained on the punt return. |
 #'  |yds_punt_gained |double |The play's `yards_gained` on punt plays; NA otherwise. |

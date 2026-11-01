@@ -520,10 +520,7 @@ clean_pbp_dat <- function(play_df) {
         !(.data$penalty_1st_conv), 1, 0),
       #-- Touchdowns----
       scoring_play = ifelse(.data$play_type %in% scores_vec, 1, 0),
-      yds_punted = ifelse(.data$punt == 1, as.numeric(stringr::str_extract(
-        stringi::stri_extract_first_regex(.data$play_text, "(?<= punt for)[^,]+"),
-        "\\d+"
-      )), NA_real_),
+      yds_punted = ifelse(.data$punt == 1, .punt_yards(.data$play_text), NA_real_),
       yds_punt_gained = ifelse(.data$punt == 1, .data$yards_gained, NA_real_),
       fg_inds = ifelse(stringr::str_detect(.data$play_type, "Field Goal"), 1, 0),
       fg_made = ifelse(.data$play_type == "Field Goal Good", TRUE, FALSE),

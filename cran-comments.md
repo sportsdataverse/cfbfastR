@@ -17,6 +17,7 @@ This is a minor release (3.0.0 -> 3.1.0). It:
   closer to it (fumble player names still differ), so some
   player names and ids, timeouts remaining and kickoff columns change from
   3.0.0, and with them EPA on fair-caught kickoffs and win probability.
+  `yds_punted` now reads a punt for a loss as negative yards on both engines.
 * Fixes the release loaders: model play-by-play is read as published, play ids
   stay exact, and every published season is accepted.
 * Adds ten `calculate_*()` functions that score a data frame with those models,
