@@ -4,7 +4,7 @@ per play with the full EPA/WPA model columns and participant ids,
 covering 2004 to present. Published to the espn_cfb_pbp release tag on
 the sportsdataverse-data repo.
 Delineation from the sibling pbp loaders: load_cfb_pbp() is the
-classic cfbfastR EPA/WPA pbp (FBS, 2014+, unchanged);
+classic cfbfastR EPA/WPA pbp (2014+; FBS games, plus FCS games from 2022);
 load_espn_cfb_pbp() is this ESPN-derived build with deeper history;
 load_ncaa_mfb_pbp() is the stats.ncaa.org parse covering FCS and
 lower divisions (2013+)."><meta property="og:description" content="Loads season-level ESPN-derived college football play-by-play – one row
@@ -12,7 +12,7 @@ per play with the full EPA/WPA model columns and participant ids,
 covering 2004 to present. Published to the espn_cfb_pbp release tag on
 the sportsdataverse-data repo.
 Delineation from the sibling pbp loaders: load_cfb_pbp() is the
-classic cfbfastR EPA/WPA pbp (FBS, 2014+, unchanged);
+classic cfbfastR EPA/WPA pbp (2014+; FBS games, plus FCS games from 2022);
 load_espn_cfb_pbp() is this ESPN-derived build with deeper history;
 load_ncaa_mfb_pbp() is the stats.ncaa.org parse covering FCS and
 lower divisions (2013+)."><meta property="og:image" content="https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/social_card_cfbfastR_final_quote.png"><meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@saiemgilani"><meta name="twitter:site" content="@cfbfastR"><!-- Privacy-friendly analytics by Plausible --><script async src="https://plausible.io/js/pa-ZFDwSnsNQXnprFDxKtvpE.js"></script><script>
@@ -190,7 +190,7 @@ per play with the full EPA/WPA model columns and participant ids,
 covering 2004 to present. Published to the <code>espn_cfb_pbp</code> release tag on
 the sportsdataverse-data repo.</p>
 <p>Delineation from the sibling pbp loaders: <code><a href="load_cfb_pbp.html">load_cfb_pbp()</a></code> is the
-classic cfbfastR EPA/WPA pbp (FBS, 2014+, unchanged);
+classic cfbfastR EPA/WPA pbp (2014+; FBS games, plus FCS games from 2022);
 <code>load_espn_cfb_pbp()</code> is this ESPN-derived build with deeper history;
 <code><a href="load_ncaa_mfb_pbp.html">load_ncaa_mfb_pbp()</a></code> is the stats.ncaa.org parse covering FCS and
 lower divisions (2013+).</p>
@@ -240,7 +240,7 @@ writes the season data into a database.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">load_espn_cfb_pbp</span><span class="op">(</span><span class="fl">2004</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── ESPN college football play-by-play from the SportsDataverse data repo ───────</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-02 06:20:17 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-02 08:12:45 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 87,214 × 499</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    season   game_id game_play_number pos_team_id pos_team        def_pos_team_id</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>

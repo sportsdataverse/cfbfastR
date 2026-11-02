@@ -7,8 +7,9 @@ the sportsdataverse-data repo.
 
 Delineation from the sibling pbp loaders:
 [`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md)
-is the classic cfbfastR EPA/WPA pbp (FBS, 2014+, unchanged);
-`load_espn_cfb_pbp()` is this ESPN-derived build with deeper history;
+is the classic cfbfastR EPA/WPA pbp (2014+; FBS games, plus FCS games
+from 2022); `load_espn_cfb_pbp()` is this ESPN-derived build with deeper
+history;
 [`load_ncaa_mfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_pbp.md)
 is the stats.ncaa.org parse covering FCS and lower divisions (2013+).
 
@@ -538,7 +539,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_pbp(2004))
 #> ── ESPN college football play-by-play from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-11-02 06:20:17 UTC
+#> ℹ Data updated: 2026-11-02 08:12:45 UTC
 #> # A tibble: 87,214 × 499
 #>    season   game_id game_play_number pos_team_id pos_team        def_pos_team_id
 #>     <int>     <int>            <int>       <int> <chr>                     <int>

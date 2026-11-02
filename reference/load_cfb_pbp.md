@@ -3,8 +3,16 @@
 helper that loads multiple seasons from the data repo either into memory
 or writes it into a db using some forwarded arguments in the dots
 
-This is the classic cfbfastR EPA/WPA play-by-play (FBS, 2014+). For the
-ESPN-derived pbp with deeper history (2004+) see
+This is the classic cfbfastR EPA/WPA play-by-play (CFBD-sourced, 2014+).
+Every season carries games with an FBS team in them. From 2022 on the
+release also carries the FCS games CFBD covers – FCS vs FCS and FCS vs
+Division II/III – 36-43% of 2022-2025 plays. Filter on
+`home_team_division` / `away_team_division` (`"fbs"`, `"fcs"`, `"ii"`,
+`"iii"`) to keep only FBS games:
+`dplyr::filter(pbp, home_team_division == "fbs" | away_team_division == "fbs")`.
+A few games per season have `NA` divisions.
+
+For the ESPN-derived pbp with deeper history (2004+) see
 [`load_espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_pbp.md);
 for stats.ncaa.org pbp covering FCS and lower divisions (2013+) see
 [`load_ncaa_mfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_pbp.md).

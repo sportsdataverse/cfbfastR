@@ -71,7 +71,7 @@ Adapted from sabinanalytic's fork of the cfbfastR repo
 # \donttest{
   try(espn_ratings_fpi(year=2019))
 #> ── FPI rating data from ESPN ───────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-02 06:19:23 UTC
+#> ℹ Data updated: 2026-11-02 08:11:41 UTC
 #> # A tibble: 130 × 20
 #>    season  year team_id team_name  team_abbreviation fpi   fpi_rk trend
 #>     <dbl> <int>   <int> <chr>      <chr>             <chr> <chr>  <chr>

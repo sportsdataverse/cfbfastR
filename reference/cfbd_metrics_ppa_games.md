@@ -102,7 +102,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_ppa_games(year = 2019, team = "TCU"))
 #> ── PPA data from CollegeFootballData.com ───────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-02 06:11:29 UTC
+#> ℹ Data updated: 2026-11-02 08:02:50 UTC
 #> # A tibble: 12 × 19
 #>      game_id season  week season_type team  conference opponent      off_overall
 #>        <int>  <int> <int> <chr>       <chr> <chr>      <chr>               <dbl>
