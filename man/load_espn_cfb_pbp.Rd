@@ -508,7 +508,7 @@ covering 2004 to present. Published to the \code{espn_cfb_pbp} release tag on
 the sportsdataverse-data repo.
 
 Delineation from the sibling pbp loaders: \code{\link[=load_cfb_pbp]{load_cfb_pbp()}} is the
-classic cfbfastR EPA/WPA pbp (FBS, 2014+, unchanged);
+classic cfbfastR EPA/WPA pbp (2014+; FBS games, plus FCS games from 2022);
 \code{load_espn_cfb_pbp()} is this ESPN-derived build with deeper history;
 \code{\link[=load_ncaa_mfb_pbp]{load_ncaa_mfb_pbp()}} is the stats.ncaa.org parse covering FCS and
 lower divisions (2013+).
