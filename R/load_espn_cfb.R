@@ -19,7 +19,7 @@ NULL
 #'   the sportsdataverse-data repo.
 #'
 #'   Delineation from the sibling pbp loaders: [load_cfb_pbp()] is the
-#'   classic cfbfastR EPA/WPA pbp (FBS, 2014+, unchanged);
+#'   classic cfbfastR EPA/WPA pbp (2014+; FBS games, plus FCS games from 2022);
 #'   `load_espn_cfb_pbp()` is this ESPN-derived build with deeper history;
 #'   [load_ncaa_mfb_pbp()] is the stats.ncaa.org parse covering FCS and
 #'   lower divisions (2013+).

@@ -80,7 +80,9 @@ releases](https://github.com/sportsdataverse/sportsdataverse-data/releases)
 **Which play-by-play do I want?**
 
   - `load_cfb_pbp()` — the classic cfbfastR pbp with the full EPA/WPA
-    model columns; FBS, 2014+. Existing code keeps working unchanged.
+    model columns; 2014+, FBS games plus FCS games from 2022 (filter on
+    `home_team_division` / `away_team_division`). Existing code keeps
+    working unchanged.
   - `load_espn_cfb_pbp()` — the ESPN-derived pbp (about 500 columns
     incl. EPA/WPA and participant ids) with deeper history, 2004+.
   - `load_ncaa_mfb_pbp()` — stats.ncaa.org pbp incl. FCS and lower
