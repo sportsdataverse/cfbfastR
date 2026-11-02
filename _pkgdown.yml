@@ -239,7 +239,7 @@ navbar:
         href: articles/cfbfastR-espn-cookbook.html
       - text: Creating Fourth Down Tendency Plots Using cfbfastR
         href: articles/fourth-down-plot-tutorial.html
-      - text: Introduction to cfbfastR
+      - text: Getting Started with cfbfastR
         href: articles/intro.html
       - text: Intro to Visualizing Recruiting Geography
         href: articles/map-tutorial.html
