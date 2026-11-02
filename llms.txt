@@ -2191,10 +2191,12 @@ End-to-end recipes and reference guides.
 
   A rundown of the Big XII returning coaches fourth down tendencies
 
-- [Introduction to
-  cfbfastR](https://cfbfastR.sportsdataverse.org/articles/intro.md):
+- [Getting Started with cfbfastR: College Football Analytics in
+  R](https://cfbfastR.sportsdataverse.org/articles/intro.md):
 
-  Getting started with using `cfbfastR` and college football analytics.
+  Learn college football analytics in R with cfbfastR: install the
+  package, load play-by-play data, compute EPA and success rate, and
+  build your first plot.
 
 - [Intro to Visualizing Recruiting
   Geography](https://cfbfastR.sportsdataverse.org/articles/map-tutorial.md):

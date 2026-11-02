@@ -92,7 +92,7 @@ Call volume and remaining quota for the configured CFBD API key."><meta property
     <li><a class="dropdown-item" href="../articles/cfbd_teams.html">CFB Data Teams Examples</a></li>
     <li><a class="dropdown-item" href="../articles/cfbfastR-espn-cookbook.html">ESPN College Football Cookbook</a></li>
     <li><a class="dropdown-item" href="../articles/fourth-down-plot-tutorial.html">Creating Fourth Down Tendency Plots Using cfbfastR</a></li>
-    <li><a class="dropdown-item" href="../articles/intro.html">Introduction to cfbfastR</a></li>
+    <li><a class="dropdown-item" href="../articles/intro.html">Getting Started with cfbfastR</a></li>
     <li><a class="dropdown-item" href="../articles/map-tutorial.html">Intro to Visualizing Recruiting Geography</a></li>
     <li><a class="dropdown-item" href="../articles/nth-rated-recruit.html">Visualizing Team Talent from Player Recruiting Rankings</a></li>
     <li><a class="dropdown-item" href="../articles/rolling-epa-graph.html">Rolling EPA Graph</a></li>
@@ -212,30 +212,30 @@ variables, so a caller can override the shared setting for one endpoint.</p></dd
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_info_usage</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Get API key usage information from CollegeFootballData.com ──────────────────</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-01 22:52:50 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-02 06:11:25 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 20 × 11</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    api   endpoint             kind  requests occurred_at window_start window_end</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> cfb   /plays/stats         top_…     <span style="text-decoration: underline;">5</span>191 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> cfb   /games               top_…     <span style="text-decoration: underline;">5</span>181 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> cfb   /drives              top_…     <span style="text-decoration: underline;">4</span>849 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> cfb   /lines               top_…     <span style="text-decoration: underline;">4</span>690 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> cfb   /plays               top_…     <span style="text-decoration: underline;">4</span>289 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> cfb   /roster              top_…     <span style="text-decoration: underline;">2</span>321 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> cfb   /recruiting/players  top_…     <span style="text-decoration: underline;">1</span>986 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> cfb   /teams               top_…     <span style="text-decoration: underline;">1</span>811 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> cfb   /teams/matchup       top_…     <span style="text-decoration: underline;">1</span>633 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> cfb   /recruiting/teams    top_…     <span style="text-decoration: underline;">1</span>402 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> cfb   /info/usage          rece…       <span style="color: #BB0000;">NA</span> 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> cfb   /games/weather       rece…       <span style="color: #BB0000;">NA</span> 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> cfb   /games/teams         rece…       <span style="color: #BB0000;">NA</span> 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> cfb   /games/teams         rece…       <span style="color: #BB0000;">NA</span> 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> cfb   /games/schedule      rece…       <span style="color: #BB0000;">NA</span> 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> cfb   /records             rece…       <span style="color: #BB0000;">NA</span> 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> cfb   /records             rece…       <span style="color: #BB0000;">NA</span> 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> cfb   /games/:gameId/prev… rece…       <span style="color: #BB0000;">NA</span> 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span> cfb   /games/:gameId/prev… rece…       <span style="color: #BB0000;">NA</span> 2026-11-01… 2026-10-25T… 2026-11-0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> cfb   /games/players       rece…       <span style="color: #BB0000;">NA</span> 2026-11-01… 2026-10-25T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> cfb   /games               top_…     <span style="text-decoration: underline;">5</span>206 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> cfb   /plays/stats         top_…     <span style="text-decoration: underline;">5</span>197 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> cfb   /drives              top_…     <span style="text-decoration: underline;">4</span>870 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> cfb   /lines               top_…     <span style="text-decoration: underline;">4</span>711 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> cfb   /plays               top_…     <span style="text-decoration: underline;">4</span>305 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> cfb   /roster              top_…     <span style="text-decoration: underline;">2</span>338 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> cfb   /recruiting/players  top_…     <span style="text-decoration: underline;">2</span>159 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> cfb   /teams               top_…     <span style="text-decoration: underline;">1</span>831 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> cfb   /teams/matchup       top_…     <span style="text-decoration: underline;">1</span>663 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> cfb   /recruiting/teams    top_…     <span style="text-decoration: underline;">1</span>422 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> cfb   /info/usage          rece…       <span style="color: #BB0000;">NA</span> 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> cfb   /passing/players/ga… rece…       <span style="color: #BB0000;">NA</span> 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> cfb   /metrics/wp/pregame  rece…       <span style="color: #BB0000;">NA</span> 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> cfb   /metrics/wp          rece…       <span style="color: #BB0000;">NA</span> 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> cfb   /wepa/team/season    rece…       <span style="color: #BB0000;">NA</span> 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> cfb   /games/weather       rece…       <span style="color: #BB0000;">NA</span> 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> cfb   /wepa/players/rushi… rece…       <span style="color: #BB0000;">NA</span> 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> cfb   /wepa/players/passi… rece…       <span style="color: #BB0000;">NA</span> 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span> cfb   /games/teams         rece…       <span style="color: #BB0000;">NA</span> 2026-11-02… 2026-10-26T… 2026-11-0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> cfb   /wepa/players/kicki… rece…       <span style="color: #BB0000;">NA</span> 2026-11-02… 2026-10-26T… 2026-11-0…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: total_requests &lt;int&gt;, total_cfb_requests &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   total_cbb_requests &lt;int&gt;, unique_endpoints &lt;int&gt;</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
@@ -250,7 +250,7 @@ variables, so a caller can override the shared setting for one endpoint.</p></dd
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.9000.</p>
 </div>
 
     </footer></div>

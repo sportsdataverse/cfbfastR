@@ -31,7 +31,7 @@ template.
 # \donttest{
   try(fox_cfb_standings(team_id = "11"))
 #> ── Standings data from Fox Sports (Bifrost) ────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-01 23:01:06 UTC
+#> ℹ Data updated: 2026-11-02 06:19:27 UTC
 #> # A tibble: 17 × 12
 #>    team_id section    atlantic_coast v2      conf  w_l   home  away  pf    pa   
 #>    <chr>   <chr>      <chr>          <chr>   <chr> <chr> <chr> <chr> <chr> <chr>
