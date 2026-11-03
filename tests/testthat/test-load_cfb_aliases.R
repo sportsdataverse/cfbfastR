@@ -14,6 +14,20 @@ test_that("alias loaders read the cfb_groups release assets (offline)", {
   ))
 })
 
+test_that("alias loaders append to a database table and return NULL (offline)", {
+  skip_if_not_installed("DBI")
+  skip_if_not_installed("RSQLite")
+  local_mocked_bindings(parquet_from_url = function(url) {
+    data.table::data.table(league = "cfb", team_id = "194")
+  })
+  con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+  on.exit(DBI::dbDisconnect(con), add = TRUE)
+
+  expect_null(load_cfb_team_aliases(dbConnection = con, tablename = "aliases"))
+  expect_null(load_cfb_player_aliases(dbConnection = con, tablename = "aliases"))
+  expect_equal(DBI::dbGetQuery(con, "SELECT COUNT(*) AS n FROM aliases")$n, 2)
+})
+
 test_that("alias loaders return the published cfb_groups tables", {
   skip_on_cran()
   skip_if_offline("github.com")
