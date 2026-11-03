@@ -9,7 +9,10 @@ csv_from_url(...)
 \arguments{
 \item{...}{passed to data.table::fread}
 }
+\value{
+A \code{data.table} of the file's contents.
+}
 \description{
 This is a thin wrapper on data.table::fread
 }
-\keyword{Internal}
+\keyword{internal}

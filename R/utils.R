@@ -1,6 +1,6 @@
 .datatable.aware <- TRUE
 
-#' @keywords Internal
+#' @keywords internal
 #' @importFrom httr2 resp_status resp_status_desc
 #'
 check_status <- function(res) {
@@ -48,7 +48,8 @@ progressively <- function(f, p = NULL){
 #' @description
 #' This is a thin wrapper on data.table::fread
 #' @param ... passed to data.table::fread
-#' @keywords Internal
+#' @return A `data.table` of the file's contents.
+#' @keywords internal
 #' @importFrom data.table fread
 csv_from_url <- function(...){
   data.table::fread(...)
@@ -273,7 +274,7 @@ rbindlist_with_attrs <- function(dflist){
 # tests/testthat/test-utils_request_policy.R). get_req() remains the only entry
 # point callers use. Deliberately kept title-free so roxygen generates no .Rd
 # for an internal helper.
-#' @keywords Internal
+#' @keywords internal
 #' @importFrom httr2 request req_headers req_timeout req_retry req_error req_perform req_proxy
 build_req <- function(full_url, proxy = NULL) {
   req <- httr2::request(full_url) |>
@@ -340,7 +341,7 @@ build_req <- function(full_url, proxy = NULL) {
     httr2::req_error(is_error = function(resp) FALSE)
 }
 
-#' @keywords Internal
+#' @keywords internal
 get_req <- function(full_url, proxy = NULL) {
   httr2::req_perform(build_req(full_url, proxy = proxy))
 }
@@ -566,8 +567,8 @@ validate_reqs <- function(...){
   }
 }
 
-# First season of the NCAA's 2012 kickoff rules (sdv-internal-refs
-# `rules/cfb.yaml#cfb-2012-kickoff-35-touchback-25`): kickoffs from the 35, a
+# First season of the NCAA's 2012 kickoff rules (internal rules
+# notes): kickoffs from the 35, a
 # touchback out to the receiving team's 25 (the 20 before) and a kickoff out of
 # bounds to the 35 (the 40 before). Python twin: `_KICKOFF_2012_RULES_FROM` in
 # sdv-py `cfb/cfb_pbp.py` (sportsdataverse-py#778).
@@ -601,8 +602,8 @@ validate_reqs <- function(...){
   if (.kickoff_2012_rules(season)) 75 else 80
 }
 
-# First season a fair catch of a kickoff is a touchback (sdv-internal-refs
-# `rules/cfb.yaml#cfb-2018-kickoff-fair-catch-touchback`). Python twin:
+# First season a fair catch of a kickoff is a touchback (internal
+# rules notes). Python twin:
 # `CFB_KICKOFF_FAIR_CATCH_TOUCHBACK_FROM` in sdv-py `cfb/model_vars.py`.
 .KICKOFF_FAIR_CATCH_TOUCHBACK_FROM <- 2018
 

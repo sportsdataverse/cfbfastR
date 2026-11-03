@@ -3,13 +3,12 @@
 # Read-only wrappers over Yahoo's shangrila stats graph
 # (graphite-secure.sports.yahoo.com/v1/query/shangrila) and editorial feed
 # (api-secure.sports.yahoo.com/v1/editorial/s). Reverse-engineering notes +
-# per-host OpenAPI specs live in the sdv-internal-refs repo (_notes/ysportsapi/
-# and yahoo/). NCAAF vertical slice. No auth: hosts only need Origin/Referer.
+# per-host OpenAPI specs are kept in internal notes. NCAAF vertical slice. No auth: hosts only need Origin/Referer.
 
 .YAHOO_SHANGRILA <- "https://graphite-secure.sports.yahoo.com/v1/query/shangrila/"
 .YAHOO_EDITORIAL <- "https://api-secure.sports.yahoo.com/v1/editorial/s/"
 
-# valid legacy categories (from the sdv-internal-refs catalog crawl, Pass A)
+# valid legacy categories (from an internal catalog crawl)
 .YAHOO_LEGACY_PLAYER_CATS <- c("Passing", "Rushing", "Receiving", "Defense",
                                "Kicking", "Punting", "Returns")
 .YAHOO_LEGACY_TEAM_CATS <- c(.YAHOO_LEGACY_PLAYER_CATS, "Kickoffs", "Offense")
