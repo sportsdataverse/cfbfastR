@@ -388,6 +388,14 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   [`load_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.md)
   takes `fbs_only`, not `seasons`.
   ([\#197](https://github.com/sportsdataverse/cfbfastR/issues/197))
+- [`tail()`](https://rdrr.io/r/utils/head.html) works on the result of
+  every loader and every function that returns a `cfbfastR_data` tibble.
+  The class vector they set, in the loaders and in
+  `make_cfbfastR_data()`, still listed `data.table`, so
+  [`tail()`](https://rdrr.io/r/utils/head.html) failed with “Can’t
+  subset columns past the end” (the bug fixed in hoopR as
+  [hoopR#88](https://github.com/sportsdataverse/hoopR/issues/88)). The
+  class is now `cfbfastR_data` / `tbl_df` / `tbl` / `data.frame`.
 
 ### Fixed: win probability scores the 2H-kickoff flag the models were trained on
 

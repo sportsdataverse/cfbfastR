@@ -60,7 +60,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_rosters_crosswalk())
 #> ── college football roster id crosswalk from the SportsDataverse data repo ─────
-#> ℹ Data updated: 2026-11-03 18:57:25 UTC
+#> ℹ Data updated: 2026-11-03 23:32:36 UTC
 #> # A tibble: 45,543 × 14
 #>    espn_team_id fox_team_id person_key         espn_athlete_id fox_athlete_id
 #>           <int> <chr>       <chr>                        <int> <chr>         
