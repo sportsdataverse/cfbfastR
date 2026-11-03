@@ -32,11 +32,10 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
     ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
+    ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
-
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
 
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
@@ -62,7 +61,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
     ## 0 upgraded, 0 newly installed, 0 to remove and 19 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [10.8s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [9.4s]
 
 ``` r
 
@@ -133,22 +132,22 @@ cfbfastR::cfbd_game_team_stats(2019, team = "LSU")
 
     ## ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-03 10:18:06 UTC
+    ## ℹ Data updated: 2026-11-03 12:19:01 UTC
 
     ## # A tibble: 13 × 78
     ##      game_id school conference home_away opponent     opponent_conference points
     ##        <int> <chr>  <chr>      <chr>     <chr>        <chr>                <int>
     ##  1 401110828 LSU    SEC        away      Mississippi… SEC                     36
-    ##  2 401110819 LSU    SEC        home      Florida      SEC                     42
-    ##  3 401110859 LSU    SEC        home      Arkansas     SEC                     56
+    ##  2 401110842 LSU    SEC        away      Alabama      SEC                     46
+    ##  3 401110850 LSU    SEC        away      Ole Miss     SEC                     58
     ##  4 401110790 LSU    SEC        home      Northwester… Southland               65
-    ##  5 401110813 LSU    SEC        home      Utah State   Mountain West           42
-    ##  6 401110805 LSU    SEC        away      Vanderbilt   SEC                     66
-    ##  7 401110778 LSU    SEC        away      Texas        Big 12                  45
-    ##  8 401110842 LSU    SEC        away      Alabama      SEC                     46
-    ##  9 401110850 LSU    SEC        away      Ole Miss     SEC                     58
-    ## 10 401110869 LSU    SEC        home      Texas A&M    SEC                     50
-    ## 11 401110725 LSU    SEC        home      Georgia Sou… Sun Belt                55
+    ##  5 401110805 LSU    SEC        away      Vanderbilt   SEC                     66
+    ##  6 401110813 LSU    SEC        home      Utah State   Mountain West           42
+    ##  7 401110819 LSU    SEC        home      Florida      SEC                     42
+    ##  8 401110859 LSU    SEC        home      Arkansas     SEC                     56
+    ##  9 401110869 LSU    SEC        home      Texas A&M    SEC                     50
+    ## 10 401110725 LSU    SEC        home      Georgia Sou… Sun Belt                55
+    ## 11 401110778 LSU    SEC        away      Texas        Big 12                  45
     ## 12 401132981 LSU    SEC        home      Georgia      SEC                     37
     ## 13 401110833 LSU    SEC        home      Auburn       SEC                     23
     ## # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
@@ -165,24 +164,24 @@ cfbfastR::cfbd_game_team_stats(2013, team = "Florida State")
 ```
 
     ## ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 3.1.0 ──
-    ## ℹ Data updated: 2026-11-03 10:18:06 UTC
+    ## ℹ Data updated: 2026-11-03 12:19:01 UTC
 
     ## # A tibble: 13 × 78
     ##      game_id school     conference home_away opponent opponent_conference points
     ##        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
     ##  1 332640052 Florida S… ACC        home      Bethune… MEAC                    54
-    ##  2 332570052 Florida S… ACC        home      Nevada   Mountain West           62
+    ##  2 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
     ##  3 332710103 Florida S… ACC        away      Boston … ACC                     48
     ##  4 332780052 Florida S… ACC        home      Maryland ACC                     63
-    ##  5 333410052 Florida S… ACC        home      Duke     ACC                     45
-    ##  6 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
-    ##  7 333130154 Florida S… ACC        away      Wake Fo… ACC                     59
-    ##  8 333270052 Florida S… ACC        home      Idaho    FBS Independents        80
-    ##  9 332990052 Florida S… ACC        home      NC State ACC                     49
-    ## 10 333060052 Florida S… ACC        home      Miami    ACC                     41
-    ## 11 333200052 Florida S… ACC        home      Syracuse ACC                     59
-    ## 12 333340057 Florida S… ACC        away      Florida  SEC                     37
-    ## 13 332920228 Florida S… ACC        away      Clemson  ACC                     51
+    ##  5 333200052 Florida S… ACC        home      Syracuse ACC                     59
+    ##  6 333410052 Florida S… ACC        home      Duke     ACC                     45
+    ##  7 333340057 Florida S… ACC        away      Florida  SEC                     37
+    ##  8 332920228 Florida S… ACC        away      Clemson  ACC                     51
+    ##  9 332570052 Florida S… ACC        home      Nevada   Mountain West           62
+    ## 10 332990052 Florida S… ACC        home      NC State ACC                     49
+    ## 11 333060052 Florida S… ACC        home      Miami    ACC                     41
+    ## 12 333130154 Florida S… ACC        away      Wake Fo… ACC                     59
+    ## 13 333270052 Florida S… ACC        home      Idaho    FBS Independents        80
     ## # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
     ## #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
     ## #   passes_intercepted <chr>, interception_yards <chr>, interception_tds <chr>,

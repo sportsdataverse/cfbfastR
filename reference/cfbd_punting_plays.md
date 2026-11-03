@@ -154,7 +154,7 @@ Other CFBD Punting:
 # \donttest{
   try(cfbd_punting_plays(year = 2025, week = 1, team = "Texas"))
 #> ── Punting plays data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-03 10:08:06 UTC
+#> ℹ Data updated: 2026-11-03 12:09:06 UTC
 #> # A tibble: 17 × 46
 #>      game_id play_id           drive_id season  week season_type punting_team_id
 #>        <int> <chr>             <chr>     <int> <int> <chr>                 <int>
