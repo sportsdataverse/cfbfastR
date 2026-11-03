@@ -27,7 +27,7 @@
 
 ## Project Context
 
-cfbfastR is an R package (version in `DESCRIPTION`) that provides clean, tidy college football play-by-play, schedule, roster, ratings, and box-score data. It wraps the CollegeFootballData API (CFBD), ESPN, Fox Sports and Yahoo Sports college football endpoints, exporting 260+ functions. The main prefixes are `cfbd_*()` (92), `espn_cfb_*()` (73, plus `espn_metrics_wp()` and `espn_ratings_fpi()`), `fox_cfb_*()` (8), `yahoo_cfb_*()` (6) and the `calculate_*()` model scorers (10). Full-season parquet/RDS releases load through `load_cfb_*()`, `load_espn_cfb_*()` and `load_ncaa_mfb_*()` (56 loaders). The package uses roxygen2 for documentation, testthat for testing, and pkgdown for the documentation site (https://cfbfastr.sportsdataverse.org/).
+cfbfastR is an R package (version in `DESCRIPTION`) that provides clean, tidy college football play-by-play, schedule, roster, ratings, and box-score data. It wraps the CollegeFootballData API (CFBD), ESPN, Fox Sports and Yahoo Sports college football endpoints, exporting 260+ functions. The main prefixes are `cfbd_*()` (92), `espn_cfb_*()` (73, plus `espn_metrics_wp()` and `espn_ratings_fpi()`), `fox_cfb_*()` (8), `yahoo_cfb_*()` (6) and the `calculate_*()` model scorers (10). Full-season parquet/RDS releases load through `load_cfb_*()`, `load_espn_cfb_*()` and `load_ncaa_mfb_*()` (58 loaders). The package uses roxygen2 for documentation, testthat for testing, and pkgdown for the documentation site (https://cfbfastr.sportsdataverse.org/).
 
 When this file conflicts with the repository's developer docs, follow `CLAUDE.md`, `CONTRIBUTING.md`, and the current test implementations under `tests/testthat/` as the source of truth.
 
