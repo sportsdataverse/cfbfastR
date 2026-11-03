@@ -54,7 +54,7 @@ load_cfb_groups <- function(..., dbConnection = NULL, tablename = NULL) {
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football conference and division lineages from the SportsDataverse data repo", Sys.time())
   }
@@ -106,7 +106,7 @@ load_cfb_group_seasons <- function(..., dbConnection = NULL, tablename = NULL) {
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football conference and division names by season from the SportsDataverse data repo", Sys.time())
   }
@@ -157,7 +157,7 @@ load_cfb_group_aliases <- function(..., dbConnection = NULL, tablename = NULL) {
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football conference and division aliases from the SportsDataverse data repo", Sys.time())
   }
@@ -236,7 +236,7 @@ load_cfb_team_group_seasons <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football team conference membership by season from the SportsDataverse data repo", Sys.time())
   }
@@ -295,7 +295,7 @@ load_cfb_team_aliases <- function(..., dbConnection = NULL, tablename = NULL) {
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football provider team id and name aliases from the SportsDataverse data repo", Sys.time())
   }
@@ -353,7 +353,7 @@ load_cfb_player_aliases <- function(..., dbConnection = NULL, tablename = NULL) 
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football provider player id aliases from the SportsDataverse data repo", Sys.time())
   }

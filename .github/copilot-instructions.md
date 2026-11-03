@@ -155,7 +155,7 @@ raw_data |>
   make_cfbfastR_data("Description of payload", Sys.time())
 ```
 
-`make_cfbfastR_data()` sets the class to `c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")` and attaches `cfbfastR_timestamp` and `cfbfastR_type` attributes. `dplyr` verbs strip class by default, so apply `make_cfbfastR_data()` **after** the final transformation.
+`make_cfbfastR_data()` sets the class to `c("cfbfastR_data", "tbl_df", "tbl", "data.frame")` and attaches `cfbfastR_timestamp` and `cfbfastR_type` attributes. `dplyr` verbs strip class by default, so apply `make_cfbfastR_data()` **after** the final transformation.
 
 ## Column Drift Resilience
 
@@ -293,7 +293,7 @@ Types: `feat`, `fix`, `docs`, `test`, `refactor`, `chore`, `style`, `perf`, `ci`
 - **`output = c(...)` default**: do **not** declare `output = c("default", "lean", "full")` and call `match.arg()`. Use a single-value default (`output = "default"`) and validate with `cli::cli_abort()`. The c-vector form silently picks the first element when the caller passes a vector.
 - **Native pipe + `magrittr` placeholder**: `|>` does **not** support the `.` placeholder. Use `_` (R 4.2+) or wrap in an explicit lambda `\(x) ...`. Mixing `.` after `|>` will silently no-op.
 - **`%||%` is rlang-imported**: do not redefine it locally; import via `@importFrom rlang %||%`.
-- **`make_cfbfastR_data()` class order**: the class vector is `c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")`. Apply `make_cfbfastR_data()` **after** the final dplyr transformation, since `dplyr` verbs strip class.
+- **`make_cfbfastR_data()` class order**: the class vector is `c("cfbfastR_data", "tbl_df", "tbl", "data.frame")`. Apply `make_cfbfastR_data()` **after** the final dplyr transformation, since `dplyr` verbs strip class.
 - **Column drift**: ESPN and CFBD add columns over time -- use subset-direction column assertions (`expect_in(expected, actual)`) and `dplyr::any_of()` for transient-column drops/renames.
 - **Local dev artifacts**: `.vscode`, `.claude`, `.positai`, `.remember`, `tools/` can surface as `R CMD check` notes. Keep `.Rbuildignore` patterns for each.
 - **Empty CFBD responses**: an out-of-coverage season returns HTTP 200 with `[]`, which parses to a zero-length list; `janitor::clean_names()` then aborts on the absent dimnames and the caller sees a parse error instead of "no rows". Guard with `if (is.data.frame(parsed) && nrow(parsed) > 0)` before cleaning -- the `cfbd_passing_*` / `cfbd_rushing_*` wrappers do, because they only cover 2025 onward so the empty path is the common case, not an edge. (`cfbd_metrics_wepa_*` still has the unguarded behavior.)

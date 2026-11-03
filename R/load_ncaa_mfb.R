@@ -116,7 +116,7 @@ load_ncaa_mfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("NCAA men's football play-by-play (stats.ncaa.org) from the SportsDataverse data repo", Sys.time())
   }
@@ -284,7 +284,7 @@ load_ncaa_mfb_pbp_cfbfastr <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("NCAA men's football play-by-play, cfbfastR-shaped from the SportsDataverse data repo", Sys.time())
   }
@@ -363,7 +363,7 @@ load_ncaa_mfb_drives <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("NCAA men's football drives (stats.ncaa.org) from the SportsDataverse data repo", Sys.time())
   }
@@ -436,7 +436,7 @@ load_ncaa_mfb_linescore <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("NCAA men's football linescores (stats.ncaa.org) from the SportsDataverse data repo", Sys.time())
   }
@@ -503,7 +503,7 @@ load_ncaa_mfb_officials <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("NCAA men's football officials (stats.ncaa.org) from the SportsDataverse data repo", Sys.time())
   }
@@ -615,7 +615,7 @@ load_ncaa_mfb_player_stats <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("NCAA men's football player stats (stats.ncaa.org) from the SportsDataverse data repo", Sys.time())
   }
@@ -693,7 +693,7 @@ load_ncaa_mfb_rosters <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("NCAA men's football rosters (stats.ncaa.org) from the SportsDataverse data repo", Sys.time())
   }
@@ -769,7 +769,7 @@ load_ncaa_mfb_schedule <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("NCAA men's football schedules (stats.ncaa.org) from the SportsDataverse data repo", Sys.time())
   }
@@ -841,7 +841,7 @@ load_ncaa_mfb_team_stats <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("NCAA men's football team stats (stats.ncaa.org) from the SportsDataverse data repo", Sys.time())
   }
@@ -911,7 +911,7 @@ load_ncaa_mfb_teams <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("NCAA men's football teams (stats.ncaa.org) from the SportsDataverse data repo", Sys.time())
   }

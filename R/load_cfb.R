@@ -29,7 +29,7 @@ load_cfb_schedules <- function(seasons = most_recent_cfb_season()){
 
   out <- purrr::map_dfr(seasons, progressively(cfbd_game_info, p = p))
 
-  class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
+  class(out) <- c("cfbfastR_data","tbl_df","tbl","data.frame")
   attr(out,"cfbfastR_type") <- "Games and schedules from CollegeFootballData.com"
   # change this later when data in repo has attributes
   if (is.null(attr(out,"cfbfastR_timestamp"))) {
@@ -74,7 +74,7 @@ load_cfb_rosters <- function(seasons = most_recent_cfb_season()){
 
   # out <- lapply(urls, progressively(rds_from_url, p))
   # out <- rbindlist_with_attrs(out)
-  class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
+  class(out) <- c("cfbfastR_data","tbl_df","tbl","data.frame")
   # change this later when data in repo has attributes
   if (is.null(attr(out,"cfbfastR_timestamp"))) {
     out <- out |>
@@ -109,7 +109,7 @@ load_cfb_teams <- function(fbs_only = TRUE){
 
   out <- cfbd_team_info(only_fbs=fbs_only)
 
-  class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
+  class(out) <- c("cfbfastR_data","tbl_df","tbl","data.frame")
   attr(out,"cfbfastR_type") <- "Team information from CollegeFootballData.com"
   out
 }
