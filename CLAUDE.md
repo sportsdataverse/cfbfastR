@@ -45,7 +45,7 @@ Five source-prefixed families; `R/` is grouped by prefix:
 | `espn_cfb_*` / `espn_metrics_*` / `espn_ratings_*` | ESPN (`site.api.espn.com` + `sports.core.api.espn.com`) | none | ~75 wrappers (3.0.0 expanded ESPN from 8 → 73); core-v2 `$ref`-heavy payloads |
 | `fox_cfb_*` | `api.foxsports.com/bifrost/v1/cfb` | public web key | 8 wrappers (pbp/boxscore/odds/roster/stats/gamelog/standings/leaders); key overridable via `options(cfbfastR.fox_key=)` |
 | `yahoo_cfb_*` | Yahoo Sports | none | scoreboard/boxscore/player+team season stats |
-| `load_cfb_*` / `load_espn_cfb_*` / `load_ncaa_mfb_*` | release artifacts | none | 56 loaders: `load_cfb_*` 19 (pbp, schedules/rosters/teams, 11 datasets, 4 groups), `load_espn_cfb_*` 27, `load_ncaa_mfb_*` 10. `load_cfb_schedules/rosters/teams()` call CFBD instead and need its key |
+| `load_cfb_*` / `load_espn_cfb_*` / `load_ncaa_mfb_*` | release artifacts | none | 58 loaders: `load_cfb_*` 21 (pbp, schedules/rosters/teams, 11 datasets, 4 groups, 2 aliases), `load_espn_cfb_*` 27, `load_ncaa_mfb_*` 10. `load_cfb_schedules/rosters/teams()` call CFBD instead and need its key |
 
 **Model calculators (`R/model_calculators.R`, `R/model_cards.R`):** ten
 `calculate_*()` functions score a frame with the shipped models. They validate
@@ -111,7 +111,8 @@ follow the wehoop `load_ncaa_wbb.R` shape (seasons vector or `TRUE`, progressr,
 datasets, mostly 2004+), `R/load_cfb_datasets.R` (11 ratings / talent /
 recruiting / crosswalk datasets), `R/load_ncaa_mfb.R` (10 stats.ncaa.org
 datasets, 2013+, incl. FCS), `R/load_cfb_groups.R` (4 conference/division
-membership loaders on the `cfb_groups` tag, 1869+). One loader per release tag; stem == asset file
+membership loaders, 1869+, and 2 provider team/player alias loaders, all on the
+`cfb_groups` tag). One loader per release tag; stem == asset file
 prefix. Parquet-only tags go through `parquet_from_url()` (`utils.R`, arrow is
 Suggests → guarded by `rlang::check_installed`). PBP delineation:
 `load_cfb_pbp` = classic cfbfastR EPA pbp (2014+); `load_espn_cfb_pbp` =

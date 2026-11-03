@@ -242,3 +242,118 @@ load_cfb_team_group_seasons <- function(seasons = most_recent_cfb_season(), ...,
   }
   return(out)
 }
+#' @name load_cfb_team_aliases
+NULL
+#' @title
+#' **Load college football provider team id and name aliases from the SportsDataverse data repo**
+#' @rdname load_cfb_team_aliases
+#' @author Saiem Gilani
+#' @description
+#'   Loads every team id and name another source uses for an ESPN college
+#'   football team, with the seasons the source shows it on that team. Use it
+#'   to map a Fox, Yahoo, CBS, CFBD, 247Sports or On3 team id or name onto the
+#'   ESPN `team_id`. A source id means something only within its source (Fox
+#'   25 is Ohio State, ESPN 25 is California), so always join on `source` as
+#'   well. Published to the `cfb_groups` release tag on the
+#'   sportsdataverse-data repo.
+#'
+#'   See [load_cfb_player_aliases()] for player ids and
+#'   [load_cfb_group_aliases()] for conference and division aliases.
+#' @inheritParams load_cfb_groups
+#' @return Returns a `cfbfastR_data` tibble with one row per team alias.
+#'
+#'    |col_name       |types     |description |
+#'    |---------------|----------|:-----------|
+#'    |league         |character |League key, always `cfb`. |
+#'    |team_id        |character |ESPN team id. |
+#'    |team_id_source |character |Id system of `team_id`: `espn`. |
+#'    |source         |character |Source that uses the alias: `fox`, `yahoo`, `cbs`, `cfbd`, `sports247` (247Sports) or `on3`. |
+#'    |source_id      |character |The source's own team id (CFBD team ids are ESPN ids). |
+#'    |id_kind        |character |`team` (the source's id for this sport's team) or `school` (one id for every sport of a school: 247Sports `institutionKey`, On3 `orgKey`). |
+#'    |name_kind      |character |`name` or `abbreviation` when the source gives its own spelling, else `NA`. An id with a name and an abbreviation is two rows. |
+#'    |value          |character |The source's own spelling of the name or abbreviation; `NA` when `name_kind` is `NA`. |
+#'    |valid_from     |integer   |First season (fall year) the source shows this id or name on the team, inclusive; `NA` for an undated curated map (CBS). |
+#'    |valid_to       |integer   |Last season (fall year) the source shows this id or name on the team, inclusive; `NA` for an undated curated map (CBS). A gap in the source splits the window into two rows. |
+#'    |match_method   |character |How the row was matched: `deterministic` (a shared key: CFBD ids are ESPN ids), `crosswalk` (carried from a published crosswalk), `curated` (a cited hand-made map); for a captured team directory, `alias`, `exact_name` (normalized name) or `dict` (curated name dictionary). |
+#'    |evidence       |character |The asset or file the row came from. |
+#'
+#' @examples
+#' \donttest{
+#'   try(load_cfb_team_aliases())
+#' }
+#' @export
+load_cfb_team_aliases <- function(..., dbConnection = NULL, tablename = NULL) {
+  old <- options(list(stringsAsFactors = FALSE, scipen = 999))
+  on.exit(options(old), add = TRUE)
+
+  if (!is.null(dbConnection) && !is.null(tablename)) in_db <- TRUE else in_db <- FALSE
+
+  url <- "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_groups/cfb_team_aliases.parquet"
+  out <- parquet_from_url(url)
+  if (in_db) {
+    DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
+    out <- NULL
+  } else {
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    out <- out |>
+      make_cfbfastR_data("college football provider team id and name aliases from the SportsDataverse data repo", Sys.time())
+  }
+  return(out)
+}
+#' @name load_cfb_player_aliases
+NULL
+#' @title
+#' **Load college football provider player id aliases from the SportsDataverse data repo**
+#' @rdname load_cfb_player_aliases
+#' @author Saiem Gilani
+#' @description
+#'   Loads every player id another source uses for an ESPN college football
+#'   athlete, with the ESPN team the athlete was on and the seasons the id
+#'   held. Use it to map an NCAA (stats.ncaa.org), CBS, Yahoo or Fox player id
+#'   onto the ESPN `athlete_id`. stats.ncaa.org roster ids are new every
+#'   season, so an NCAA player has one row per season. Unmatched provider ids
+#'   are not included. Published to the `cfb_groups` release tag on the
+#'   sportsdataverse-data repo.
+#'
+#'   See [load_cfb_team_aliases()] for team ids and names.
+#' @inheritParams load_cfb_groups
+#' @return Returns a `cfbfastR_data` tibble with one row per player alias.
+#'
+#'    |col_name          |types     |description |
+#'    |------------------|----------|:-----------|
+#'    |league            |character |League key, always `cfb`. |
+#'    |athlete_id        |character |ESPN athlete id. |
+#'    |athlete_id_source |character |Id system of `athlete_id`: `espn`. |
+#'    |source            |character |Source of the player id: `ncaa`, `cbs`, `yahoo` or `fox`. |
+#'    |source_player_id  |character |The source's own player id. |
+#'    |team_id           |character |ESPN team id of the team the athlete was on when matched. |
+#'    |source_team_id    |character |The source's own team id when it gives one (the season's stats.ncaa.org team id), else `NA`. |
+#'    |valid_from        |integer   |First season (fall year) the id is on that team, inclusive. |
+#'    |valid_to          |integer   |Last season (fall year) the id is on that team, inclusive; a gap or a change of match method splits the window into two rows. |
+#'    |match_method      |character |How the id was matched: the source leg's own method (NCAA `name_jersey`, `name`, `last_jersey`, `jaro_winkler`; CFB rosters `name`), `crosswalk` (a leg that names none), `propagated` (carried from the same id's match in another season) or `override` (a hand-verified fix). |
+#'    |match_confidence  |numeric   |The leg's own confidence where it gives one (the lowest in the window; NCAA tiers score 1, 0.95, 0.9 and 0.85), else `NA`. |
+#'    |evidence          |character |The asset or file the row came from. |
+#'
+#' @examples
+#' \donttest{
+#'   try(load_cfb_player_aliases())
+#' }
+#' @export
+load_cfb_player_aliases <- function(..., dbConnection = NULL, tablename = NULL) {
+  old <- options(list(stringsAsFactors = FALSE, scipen = 999))
+  on.exit(options(old), add = TRUE)
+
+  if (!is.null(dbConnection) && !is.null(tablename)) in_db <- TRUE else in_db <- FALSE
+
+  url <- "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_groups/cfb_player_aliases.parquet"
+  out <- parquet_from_url(url)
+  if (in_db) {
+    DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
+    out <- NULL
+  } else {
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    out <- out |>
+      make_cfbfastR_data("college football provider player id aliases from the SportsDataverse data repo", Sys.time())
+  }
+  return(out)
+}
