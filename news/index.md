@@ -828,6 +828,17 @@ back-applying today’s alignment:
   is character: the ESPN id where ESPN covers the team, otherwise the
   CFBD id.
 
+Two more read the provider alias tables in the same tag:
+
+- [`load_cfb_team_aliases()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_aliases.md):
+  the team ids and names Fox, Yahoo, CBS, CFBD, 247Sports and On3 use
+  for each ESPN team, with the seasons each holds, for mapping a
+  provider’s team id or name onto the ESPN `team_id`.
+- [`load_cfb_player_aliases()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_player_aliases.md):
+  the player ids NCAA (stats.ncaa.org), CBS, Yahoo and Fox use for each
+  ESPN athlete, with the ESPN team, the seasons, and how each was
+  matched.
+
 The loaders read the tag’s parquet files, not its csv copies, so ids
 stay character instead of being parsed as integers.
 

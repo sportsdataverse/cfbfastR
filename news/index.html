@@ -408,6 +408,11 @@ Together with sportsdataverse-py <a href="https://github.com/sportsdataverse/cfb
 <code><a href="../reference/load_cfb_group_aliases.html">load_cfb_group_aliases()</a></code>: the names and ids ESPN and CFBD use for each group, with the seasons each is valid, for mapping a source’s conference id onto <code>group_id</code>.</li>
 <li>
 <code>load_cfb_team_group_seasons(seasons)</code>: one row per team per season, with subdivision, conference and division ids, 1869 onward. <code>team_id</code> is character: the ESPN id where ESPN covers the team, otherwise the CFBD id.</li>
+</ul><p>Two more read the provider alias tables in the same tag:</p>
+<ul><li>
+<code><a href="../reference/load_cfb_team_aliases.html">load_cfb_team_aliases()</a></code>: the team ids and names Fox, Yahoo, CBS, CFBD, 247Sports and On3 use for each ESPN team, with the seasons each holds, for mapping a provider’s team id or name onto the ESPN <code>team_id</code>.</li>
+<li>
+<code><a href="../reference/load_cfb_player_aliases.html">load_cfb_player_aliases()</a></code>: the player ids NCAA (stats.ncaa.org), CBS, Yahoo and Fox use for each ESPN athlete, with the ESPN team, the seasons, and how each was matched.</li>
 </ul><p>The loaders read the tag’s parquet files, not its csv copies, so ids stay character instead of being parsed as integers.</p>
 </div>
 <div class="section level3">

@@ -86,7 +86,7 @@ Other CFBD Punting:
 # \donttest{
   try(cfbd_punting_players_season(year = 2025, team = "Texas"))
 #> ── Player season punting data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-03 12:09:05 UTC
+#> ℹ Data updated: 2026-11-03 18:51:48 UTC
 #> # A tibble: 4 × 30
 #>   season player_id player  team  conference punting_punts punting_punt_yards_a…¹
 #>    <int> <chr>     <chr>   <chr> <chr>              <int>                  <int>

@@ -486,6 +486,12 @@ Functions exported by cfbfastR which load full seasons of cfbfastR data
 
   **Load cleaned play-by-play from the data repo**
 
+- [`load_cfb_player_aliases()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_player_aliases.md)
+  :
+
+  **Load college football provider player id aliases from the
+  SportsDataverse data repo**
+
 - [`load_cfb_ratings()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_ratings.md)
   :
 
@@ -533,6 +539,12 @@ Functions exported by cfbfastR which load full seasons of cfbfastR data
 
 - [`load_cfb_schedules()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.md)
   : Load CFB Game/Schedule Data from data repo
+
+- [`load_cfb_team_aliases()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_aliases.md)
+  :
+
+  **Load college football provider team id and name aliases from the
+  SportsDataverse data repo**
 
 - [`load_cfb_team_group_seasons()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_group_seasons.md)
   :

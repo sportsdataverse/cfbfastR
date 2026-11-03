@@ -109,7 +109,7 @@ Other CFBD Betting Functions:
 # \donttest{
    try(cfbd_betting_lines(year = 2018, week = 12, team = "Florida State"))
 #> ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-03 12:02:55 UTC
+#> ℹ Data updated: 2026-11-03 18:48:16 UTC
 #> # A tibble: 4 × 23
 #>     game_id season season_type  week start_date           home_team_id home_team
 #>       <int>  <int> <chr>       <int> <chr>                       <int> <chr>    

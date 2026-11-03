@@ -119,7 +119,7 @@ data.frame(
 
 | prefix              | functions |
 |:--------------------|----------:|
-| load_cfb\_\*()      |        19 |
+| load_cfb\_\*()      |        21 |
 | load_espn_cfb\_\*() |        27 |
 | load_ncaa_mfb\_\*() |        10 |
 | cfbd\_\*()          |        97 |
