@@ -45,18 +45,17 @@ This is a minor release (3.0.0 -> 3.1.0). It:
 
 ## Test environments
 
-* local Windows 10, R 4.6.1, `R CMD check --as-cran` with `--run-donttest`
-* GitHub Actions: windows-latest (release), ubuntu-latest (release, oldrel-1)
-* win-builder: R-devel, R-release (TO RUN before submission)
-* R-hub: linux, windows, macOS (R-devel) (TO RUN before submission)
+* local Windows 10, R 4.6.0, `R CMD check --as-cran` (which also runs the
+  `\donttest` examples) with no CollegeFootballData API key set
+* GitHub Actions: windows-latest (release), ubuntu-latest (devel, release,
+  oldrel-1); the R-devel job fails on any NOTE
+* R-hub: linux, windows, macos, macos-arm64 (R-devel) and nosuggests
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 notes
 
-* checking for non-standard things in the check directory: `''NULL''`. This is
-  created by the local Windows R startup, not by the package; it does not appear
-  on GitHub Actions.
+The same on GitHub Actions, where all four jobs pass.
 
 Under `R CMD check` the model bundle that examples download is cached in
 `tempdir()`, so the check leaves nothing in the user's file space.
