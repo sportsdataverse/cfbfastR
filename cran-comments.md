@@ -57,6 +57,9 @@ This is a minor release (3.0.0 -> 3.1.0). It:
 
 The same on GitHub Actions, where all four jobs pass.
 
+R-hub (2026-11-03, R-devel r90825/r90827), `R CMD check` Status: OK on all
+five platforms: linux, windows, macos, macos-arm64 and nosuggests.
+
 Under `R CMD check` the model bundle that examples download is cached in
 `tempdir()`, so the check leaves nothing in the user's file space.
 
