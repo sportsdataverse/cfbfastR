@@ -83,7 +83,7 @@ Returns a `cfbfastR_data` tibble.
 | wp_before | double |  |
 | wp_after | double |  |
 | wpa | double |  |
-| completion_prob | double | Modelled probability the pass is completed. |
+| completion_prob | double | Modeled probability the pass is completed. |
 | cpoe | double |  |
 | model_pbp_version | character | Version of the model-scored play-by-play build. |
 | cp_model_version | character | Version of the completion-probability model that scored the play. |
@@ -101,7 +101,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_model_pbp(2004))
 #> ── college football model-enriched play-by-play from the SportsDataverse data re
-#> ℹ Data updated: 2026-11-02 08:12:39 UTC
+#> ℹ Data updated: 2026-11-03 10:14:02 UTC
 #> # A tibble: 83,182 × 43
 #>      game_id id     sequenceNumber game_play_number drive.id season  week period
 #>        <int> <chr>  <chr>                     <int> <chr>     <int> <int>  <int>

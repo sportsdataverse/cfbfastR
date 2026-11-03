@@ -66,7 +66,7 @@ espn_cfb_pbp_v2(
   participant names in full (`"Jalen Mitchell"` rather than the core-v2
   roster's `"J. Mitchell"`) and (b) add the per-player box score as a
   second identity source, which is the only one available on the large
-  share of games where ESPN 404s the roster resource. Memoised per
+  share of games where ESPN 404s the roster resource. Memoized per
   `game_id`, so the two uses cost one request between them. Set `FALSE`
   for a bulk sweep that would rather have the short names than the
   requests. Ignored when `epa_wpa = FALSE`.
@@ -135,7 +135,7 @@ so the play frame carries type-keyed `{type}_player_id` /
 drop or stringify these before serialization. One additional roster
 fetch + position-catalog fetch per game.
 
-**`epa_wpa` behaviour.** When `epa_wpa = FALSE` (default) the assembled
+**`epa_wpa` behavior.** When `epa_wpa = FALSE` (default) the assembled
 core-v2 frame is returned as-is. When `epa_wpa = TRUE` the core-v2
 columns are mapped into the exact column schema the legacy
 [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
@@ -241,7 +241,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE))
 #> ── Play-by-play data from ESPN (core-v2) ───────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-02 08:09:31 UTC
+#> ℹ Data updated: 2026-11-03 10:10:53 UTC
 #> # A tibble: 156 × 540
 #>    season id_play    game_id game_play_number half_play_number drive_play_number
 #>     <int> <chr>      <chr>              <dbl>            <dbl>             <dbl>

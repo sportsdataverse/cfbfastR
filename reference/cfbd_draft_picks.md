@@ -89,7 +89,7 @@ Other CFBD Draft:
 # \donttest{
   try(cfbd_draft_picks(year = 2020))
 #> ── NFL draft data from CollegeFootballData.com ─────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-02 08:02:29 UTC
+#> ℹ Data updated: 2026-11-03 10:03:00 UTC
 #> # A tibble: 255 × 24
 #>    college_athlete_id nfl_athlete_id college_id college_team college_conference
 #>                 <int>          <int>      <int> <chr>        <chr>             
@@ -113,7 +113,7 @@ Other CFBD Draft:
 
   try(cfbd_draft_picks(year = 2016, position = "PK"))
 #> ── NFL draft data from CollegeFootballData.com ─────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-02 08:02:29 UTC
+#> ℹ Data updated: 2026-11-03 10:03:08 UTC
 #> # A tibble: 1 × 24
 #>   college_athlete_id nfl_athlete_id college_id college_team  college_conference
 #>                <int>          <int>      <int> <chr>         <chr>             

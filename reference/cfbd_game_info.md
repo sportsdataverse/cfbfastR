@@ -158,7 +158,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_info(2018, week = 7, conference = "Ind"))
 #> ── Game information from CollegeFootballData.com ───────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-02 08:02:36 UTC
+#> ℹ Data updated: 2026-11-03 10:03:23 UTC
 #> # A tibble: 5 × 32
 #>     game_id season  week season_type start_date         start_time_tbd completed
 #>       <int>  <int> <int> <chr>       <chr>              <lgl>          <lgl>    

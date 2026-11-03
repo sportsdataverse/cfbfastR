@@ -33,7 +33,7 @@ cfbd_recruiting_transfer_portal(year)
 | transfer_date | character | Date the transfer was reported (parsed downstream to POSIXct). |
 | rating | character | Player's 247Sports transfer rating. |
 | stars | integer | Player's 247Sports star rating (2-5). |
-| eligibilty | character | Player's eligibility status at time of transfer. |
+| eligibility | character | Player's eligibility status at time of transfer. |
 
 ## See also
 
@@ -48,7 +48,7 @@ Other CFBD Recruiting:
 # \donttest{
   try(cfbd_recruiting_transfer_portal(year = 2021))
 #> ── Transfer portal data from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-02 08:06:56 UTC
+#> ℹ Data updated: 2026-11-03 10:08:23 UTC
 #> # A tibble: 1,770 × 10
 #>    season first_name last_name   position origin destination transfer_date      
 #>     <int> <chr>      <chr>       <chr>    <chr>  <chr>       <dttm>             

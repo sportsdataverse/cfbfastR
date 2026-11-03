@@ -52,7 +52,7 @@
   football, with location, capacity-related flags, and addresses.
 
 - [`espn_cfb_clear_cache()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_clear_cache.md):
-  Clear the cfbfastR ESPN catalog cache – forget the memoised team and
+  Clear the cfbfastR ESPN catalog cache – forget the memoized team and
   position lookups so the next call re-fetches them from ESPN.
 
 ## Details

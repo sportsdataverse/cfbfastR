@@ -68,10 +68,10 @@ Returns a `cfbfastR_data` tibble.
 | rush_epa | double | EPA credited to the player's rush plays. |
 | pen_epa | double | EPA attributable to penalties on the player's plays. |
 | spread | double |  |
-| era0 | integer | Rule-era indicator for the earliest modelled era. |
-| era1 | integer | Rule-era indicator for the second modelled era. |
-| era2 | integer | Rule-era indicator for the third modelled era. |
-| era3 | integer | Rule-era indicator for the most recent modelled era. |
+| era0 | integer | Rule-era indicator for the earliest modeled era. |
+| era1 | integer | Rule-era indicator for the second modeled era. |
+| era2 | integer | Rule-era indicator for the third modeled era. |
+| era3 | integer | Rule-era indicator for the most recent modeled era. |
 | exp_qbr | double | Expected QBR for the passer. |
 | game_id | integer |  |
 | season | integer |  |
@@ -87,7 +87,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_passing(2004))
 #> ── college football advanced passing from the SportsDataverse data repo ────────
-#> ℹ Data updated: 2026-11-02 08:12:22 UTC
+#> ℹ Data updated: 2026-11-03 10:13:45 UTC
 #> # A tibble: 1,520 × 37
 #>    pos_team_id pos_team passer_player_name  Comp   Att xComp   Yds Pass_TD   Int
 #>          <int> <chr>    <chr>              <int> <int> <dbl> <dbl>   <int> <int>

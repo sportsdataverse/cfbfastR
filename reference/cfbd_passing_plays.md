@@ -108,7 +108,7 @@ cfbd_passing_plays(
 | target_id | character | CFBD athlete id of the targeted receiver (`NA` when unparsed). |
 | target | character | Targeted receiver full name (`NA` when unparsed). |
 | outcome | character | Pass outcome - completion, incompletion or interception. |
-| air_yards | integer | Yards the ball travelled past the line of scrimmage. |
+| air_yards | integer | Yards the ball traveled past the line of scrimmage. |
 | pass_depth | character | Depth bucket - short or deep (`NA` when unparsed). |
 | pass_direction | character | Direction bucket - left, middle or right (`NA` when unparsed). |
 | pass_location | character | Combined depth + direction bucket, matching the `locations_*` split (`NA` when unparsed). |
@@ -152,7 +152,7 @@ Other CFBD Passing:
 # \donttest{
   try(cfbd_passing_plays(year = 2025, week = 1, team = "Texas"))
 #> ── Passing plays data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-02 08:03:04 UTC
+#> ℹ Data updated: 2026-11-03 10:04:30 UTC
 #> # A tibble: 128 × 41
 #>      game_id play_id        drive_id season  week season_type offense_id offense
 #>        <int> <chr>          <chr>     <int> <int> <chr>            <int> <chr>  

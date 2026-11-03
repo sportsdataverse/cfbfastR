@@ -126,7 +126,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_futures(year = 2024))
 #> ── Betting futures data from ESPN ──────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-02 08:08:16 UTC
+#> ℹ Data updated: 2026-11-03 10:09:39 UTC
 #> # A tibble: 916 × 12
 #>    season market_id market_name           market_type market_display provider_id
 #>     <int> <chr>     <chr>                 <chr>       <chr>          <chr>      

@@ -13,3 +13,7 @@ csv_from_url(...)
 - ...:
 
   passed to data.table::fread
+
+## Value
+
+A `data.table` of the file's contents.

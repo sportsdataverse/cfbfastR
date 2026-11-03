@@ -85,7 +85,7 @@ the request fails.
 | wind_direction | integer | Wind direction, in degrees (0-360, 0 = north). |
 | wind_speed | double | Wind speed, in miles per hour. |
 | pressure | double | Barometric pressure, in millibars. |
-| weather_condition_code | integer | Numeric weather condition code, labelled by `weather_condition` (e.g. 1 = Clear, 3 = Cloudy, 8 = Rain, 25 = Thunderstorm). |
+| weather_condition_code | integer | Numeric weather condition code, labeled by `weather_condition` (e.g. 1 = Clear, 3 = Cloudy, 8 = Rain, 25 = Thunderstorm). |
 | weather_condition | character | Weather condition label (e.g. Clear, Cloudy, Light Rain, Thunderstorm). |
 
 ## See also
@@ -109,7 +109,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_weather(year = 2025, week = 1, conference = "SEC"))
 #> ── Game weather data from CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-02 08:02:44 UTC
+#> ℹ Data updated: 2026-11-03 10:03:35 UTC
 #> # A tibble: 16 × 22
 #>      game_id season  week season_type start_time          game_indoors home_team
 #>        <int>  <int> <int> <chr>       <chr>               <lgl>        <chr>    

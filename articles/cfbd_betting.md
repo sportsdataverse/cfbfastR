@@ -61,7 +61,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
     ## 0 upgraded, 0 newly installed, 0 to remove and 19 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 58 [10.5s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [10.5s]
 
 ``` r
 
@@ -100,7 +100,7 @@ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 
     ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-02 08:16:45 UTC
+    ## ℹ Data updated: 2026-11-03 10:17:49 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -123,7 +123,8 @@ cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC
 ```
 
     ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
-    ## ℹ Data updated: 2026-11-02 08:16:45 UTC
+
+    ## ℹ Data updated: 2026-11-03 10:17:50 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team

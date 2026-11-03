@@ -58,10 +58,10 @@ one publish
   draws between `wp` and `vegas_wp`. It is `NA` wherever the game has no
   pre-game line (the ESPN path, and CFBD before 2013). Sign convention
   verified over 83 games: CFBD’s `spread` is negative when the home team
-  is favoured, and the model reads positive `spread_time` as the team in
-  possession being favoured. `vegas_wpa` and `vegas_wp_after` are
-  derived alongside it, using the same turnover and half/period-end
-  overlays as the naive `wpa`.
+  is favored, and the model reads positive `spread_time` as the team in
+  possession being favored. `vegas_wpa` and `vegas_wp_after` are derived
+  alongside it, using the same turnover and half/period-end overlays as
+  the naive `wpa`.
 - **Fix: `xpass` / `two_pt` scored 2018-2020 in the wrong rule era.**
   The ordinal `era` column was cut at 2006/2013/**2017**, but the
   producer (`cfbfastR-cfb-data`) derives BOTH era encodings from one
@@ -129,7 +129,7 @@ table, `arrow`, or a pre-game line is missing.
 - These three surfaces have **no cross-language oracle** for the
   fourth-down branches — `sportsdataverse-py`’s `get_go_wp()` raises on
   pandas 3 — so they were ported from the `cfb4th` R source and gated
-  behaviourally against known college conversion and field-goal rates.
+  behaviorally against known college conversion and field-goal rates.
   Three sign conventions were found inverted in the Python port while
   doing so; each produced a confident wrong recommendation rather than
   an error, and each is pinned by test here.
@@ -274,7 +274,7 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   (“Fumble recovered by CCaro Roderick Holder” now names him). A “N Yd
   Fumble Return” touchdown still has no fumble player: the player it
   names is the returner. sportsdataverse-py’s name-shaped fumbler
-  capture (one to three capitalised words before “fumble(d)” or after
+  capture (one to three capitalized words before “fumble(d)” or after
   “fumbled by”, which it measures lifting fumble id joins from 56% to
   79%) is not ported yet, so `fumble_player_name` / `fumble_player_id`
   still trail it on most fumbles.
@@ -288,7 +288,7 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   Pannell 3 Yd Run” now resolves its rusher).
 - [`espn_cfb_pbp_v2()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp_v2.md)
   counts timeouts as sportsdataverse-py does. It charged a Timeout row
-  only when the ten characters after “Timeout” equalled the team
+  only when the ten characters after “Timeout” equaled the team
   abbreviation, which ESPN’s “Timeout Mississippi State, clock 01:13”
   never does: 8 of 116 Timeout rows in 16 test games, so most teams kept
   3 timeouts all game. A row is now charged to the team whose
@@ -445,7 +445,7 @@ equivalents across all four rule eras — 20 output columns, agreeing to
 `espn_cfb_pbp(epa_wpa = TRUE)` on the default `v2` engine (and
 [`espn_cfb_pbp_v2()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp_v2.md))
 now attaches the pre-game `spread` (the home team’s line, negative when
-the home team is favoured, as on the CFBD path) and `over_under`. It
+the home team is favored, as on the CFBD path) and `over_under`. It
 never set them, so `vegas_wp`, `vegas_wpa`, the fourth-down decision
 columns (`go_wp`, `fg_wp`, `punt_wp`, `go_boost`, …) and the two-point
 columns were `NA` on every ESPN game. The line is ported from
@@ -582,7 +582,7 @@ declares. It used a fixed 10-column list that included `spread`, so the
   ESPN’s id order. Since 2024 the feed files some plays under later ids
   (re-keyed field goals, touchdown drives entered after the fact), so
   every previous/next-play feature – EPA’s end state, drive and play
-  counters, WPA – read the wrong neighbour. The engine now repairs the
+  counters, WPA – read the wrong neighbor. The engine now repairs the
   order the way sdv-py does: late inserts go back by sequence number, a
   row filed inside a later drive rejoins its own drive, tries filed
   after the kickoff return behind their touchdown, and overtime is
@@ -598,21 +598,21 @@ declares. It used a fixed 10-column list that included `spread`, so the
   order. Its drive and play counters used to run in clock order instead,
   and about 9% of 2024 games get a different previous play for some
   rows. Measured against sdv-py’s order on 270 ESPN games, clock order
-  put 685 plays after the wrong neighbour, against 151 for id order.
+  put 685 plays after the wrong neighbor, against 151 for id order.
   `engine = "legacy"` on either function is unchanged.
 - [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
   (v2) places a play ESPN filed under an id outside the feed’s numbering
   (a 10-digit `<game_id>0` among 18-digit ids) where sdv-py does: right
   after the last play before it by period, clock and, on a clock tie,
   feed position (sportsdataverse-py#908). The id sort used to make it
-  the game’s first play, so it and its neighbours read the wrong
-  previous play. It happens in 17 of the 23,024 2004-2026 raw games, and
-  the engine’s order now equals sdv-py’s in all 17.
+  the game’s first play, so it and its neighbors read the wrong previous
+  play. It happens in 17 of the 23,024 2004-2026 raw games, and the
+  engine’s order now equals sdv-py’s in all 17.
 - [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
   (v2) now models plays under the types sdv-py gives them:
   - kicks ESPN scored as a field goal or extra point but left untyped
     (the 2004 feed) take that type;
-  - a try the defence returned for two is a “Defensive 2pt Conversion”;
+  - a try the defense returned for two is a “Defensive 2pt Conversion”;
   - an untyped two-point try filed after its kickoff is that try
     (401525903, the last game whose play order differed from sdv-py’s);
   - 2007-13 touchdowns filed as their own extra point become the pass,
@@ -693,7 +693,7 @@ declares. It used a fixed 10-column list that included `spread`, so the
     scored is the start team’s margin change, or on a frozen scoreboard
     the play’s family. Pick-sixes on a frozen board, “21 yd fumble
     return.” (2004-07) and fumble returns closed by “(X KICK)” (2014+)
-    realised the model’s end state instead of the defence’s touchdown;
+    realized the model’s end state instead of the defense’s touchdown;
   - a kickoff return touchdown is the receiver’s 7. The taxonomy listed
     it as a defensive score too, and that -7 won: every return touchdown
     was booked EPA about -7.7. A game-ending one keeps its score;
@@ -1153,7 +1153,7 @@ layout-oriented JSON (sections → tables → rows → cells) into tidy
   now run the v2 engine by default.** Both gain penalty enforcement
   resolution, ESPN-resolved player names, the `*_player_id` columns and
   the `output` tier selector without a code change. The previous
-  behaviour is one argument away — `engine = "legacy"` per call, or
+  behavior is one argument away — `engine = "legacy"` per call, or
   `options(cfbfastR.pbp_engine = "legacy")` for a session — and a
   once-per-session message says so. `engine = "auto"` continues to mean
   “whatever this release considers current”.
@@ -1174,7 +1174,7 @@ layout-oriented JSON (sections → tables → rows → cells) into tidy
 
 - [`espn_cfb_pbp_v2()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp_v2.md)
   gains `resolve_names` (default `TRUE`). When `epa_wpa = TRUE` it
-  spends one memoised request per game on ESPN’s play-by-play sidecar,
+  spends one memoized request per game on ESPN’s play-by-play sidecar,
   which supplies (a) full athlete names — `"Jalen Mitchell"` rather than
   the core-v2 roster’s `"J. Mitchell"` — and (b) the per-player box
   score as a second identity source. The box score is the *only*
@@ -1262,7 +1262,7 @@ layout-oriented JSON (sections → tables → rows → cells) into tidy
   the opposite of the NFL’s: **NCAA charges a sack to rushing** (attempt
   and yardage both), **pass attempts exclude sacks**, and **a penalty
   belongs to the team that committed it** — a positive
-  `penalty_yards_signed` means the offence gained, so the defence was
+  `penalty_yards_signed` means the offense gained, so the defense was
   flagged. Floors are measured from the shipped 60-game corpus, never
   guessed, and are per-stat because parity is strongly era-dependent
   (interceptions reconcile at 97%, 2004-inclusive rushing yardage at
@@ -1309,7 +1309,7 @@ previously took **no arguments at all** and now accepts `year` and
 `division`.
 
 **New `validate_division()`** covering `fbs` / `fcs` / `ii` / `ii/iii` /
-`iii`. This validates locally because CFBD *ignores* an unrecognised
+`iii`. This validates locally because CFBD *ignores* an unrecognized
 filter value rather than rejecting it — so without it a typo silently
 returns every division.
 
@@ -1324,7 +1324,7 @@ the only value it accepts.
   — the `year` argument is deprecated. ESPN’s core-v2 coaches endpoint
   returns the **current** coach whatever season is requested, echoing
   the requested year back in the response, so historical calls silently
-  returned today’s coach labelled with the old season
+  returned today’s coach labeled with the old season
   ([\#125](https://github.com/sportsdataverse/cfbfastR/issues/125)).
   `year` now defaults to `most_recent_cfb_season()`; passing any other
   season warns and is coerced, rather than returning misattributed data.
@@ -1377,12 +1377,12 @@ the only value it accepts.
   currently returns zero rows, so this is the live condition, not a
   hypothetical.)
 
-- `.espn_cfb_participant_roster()` is now memoised alongside the ESPN
+- `.espn_cfb_participant_roster()` is now memoized alongside the ESPN
   catalog helpers.
   [`espn_cfb_pbp_v2()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp_v2.md)
   needs one game’s roster twice — once to name participants, once to
   resolve player ids — and a season sweep asked for it once per game;
-  both now cost a single request. The memoised-helper list is a single
+  both now cost a single request. The memoized-helper list is a single
   constant shared by `.onLoad()` and
   [`espn_cfb_clear_cache()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_clear_cache.md),
   which had been a second hand-maintained copy that could silently drift
@@ -1419,8 +1419,8 @@ the only value it accepts.
 - **httr -\> httr2 migration.** cfbfastR’s HTTP layer now uses the
   modern `httr2` package (\>= 1.0.0) instead of the legacy `httr`. End
   users running existing wrapper calls (`cfbd_*`, `espn_cfb_*`) should
-  see no behavioural change – the migration is internal. Custom code
-  that calls `get_req()` or `check_status()` directly must update from
+  see no behavioral change – the migration is internal. Custom code that
+  calls `get_req()` or `check_status()` directly must update from
   `httr::content(res, as = "text")` to `httr2::resp_body_string(res)`
   and from `httr::status_code(res)` to `httr2::resp_status(res)`.
 - **Proxy support.** `get_req()` now resolves a proxy in the order:

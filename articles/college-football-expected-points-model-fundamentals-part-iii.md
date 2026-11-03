@@ -31,7 +31,7 @@ Hess](https://twitter.com/arbitanalytics).
 ### Field Position models
 
 One of the earliest discussions and attempts at building an expected
-points model in football was made by [Virgil Carter of the Cincinatti
+points model in football was made by [Virgil Carter of the Cincinnati
 Bengals](https://web.archive.org/web/20231103201122/https://vault.si.com/vault/1972/10/16/handy-pair-of-brainy-bengals)
 in his graduate research paper, “[Operations Research on
 Football](https://pubsonline.informs.org/doi/pdf/10.1287/opre.19.2.541)”.

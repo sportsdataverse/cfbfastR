@@ -247,7 +247,7 @@ Returns a `cfbfastR_data` tibble.
 | homeTeamNameAlt | character | ESPN's home-team NameAlt for the game, stamped on every play. |
 | awayTeamNameAlt | character | ESPN's away-team NameAlt for the game, stamped on every play. |
 | gameSpread | double | Point spread used as an input to the win-probability model. |
-| homeFavorite | logical | True when the home team was favoured by the spread. |
+| homeFavorite | logical | True when the home team was favored by the spread. |
 | gameSpreadAvailable | logical | True when a spread was available for the game. |
 | overUnder | double | Over/under total used as a model input. |
 | homeTeamSpread | double | ESPN's home-team Spread for the game, stamped on every play. |
@@ -539,7 +539,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_pbp(2004))
 #> ── ESPN college football play-by-play from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-11-02 08:12:45 UTC
+#> ℹ Data updated: 2026-11-03 10:14:08 UTC
 #> # A tibble: 87,214 × 499
 #>    season   game_id game_play_number pos_team_id pos_team        def_pos_team_id
 #>     <int>     <int>            <int>       <int> <chr>                     <int>
