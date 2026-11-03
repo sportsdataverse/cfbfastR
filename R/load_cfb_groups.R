@@ -260,7 +260,8 @@ NULL
 #'   See [load_cfb_player_aliases()] for player ids and
 #'   [load_cfb_group_aliases()] for conference and division aliases.
 #' @inheritParams load_cfb_groups
-#' @return Returns a `cfbfastR_data` tibble with one row per team alias.
+#' @return Returns a `cfbfastR_data` tibble with one row per team alias, or `NULL` after
+#'   appending the rows to `tablename` when `dbConnection` and `tablename` are both given.
 #'
 #'    |col_name       |types     |description |
 #'    |---------------|----------|:-----------|
@@ -317,7 +318,8 @@ NULL
 #'
 #'   See [load_cfb_team_aliases()] for team ids and names.
 #' @inheritParams load_cfb_groups
-#' @return Returns a `cfbfastR_data` tibble with one row per player alias.
+#' @return Returns a `cfbfastR_data` tibble with one row per player alias, or `NULL` after
+#'   appending the rows to `tablename` when `dbConnection` and `tablename` are both given.
 #'
 #'    |col_name          |types     |description |
 #'    |------------------|----------|:-----------|

@@ -15,7 +15,8 @@ writes the data into a database.}
 \item{tablename}{The name of the data table within the database}
 }
 \value{
-Returns a \code{cfbfastR_data} tibble with one row per team alias.\tabular{lll}{
+Returns a \code{cfbfastR_data} tibble with one row per team alias, or \code{NULL} after
+appending the rows to \code{tablename} when \code{dbConnection} and \code{tablename} are both given.\tabular{lll}{
    col_name \tab types \tab description \cr
    league \tab character \tab League key, always \code{cfb}. \cr
    team_id \tab character \tab ESPN team id. \cr
