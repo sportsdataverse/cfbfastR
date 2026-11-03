@@ -60,7 +60,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    wp_before \tab double \tab  \cr
    wp_after \tab double \tab  \cr
    wpa \tab double \tab  \cr
-   completion_prob \tab double \tab Modelled probability the pass is completed. \cr
+   completion_prob \tab double \tab Modeled probability the pass is completed. \cr
    cpoe \tab double \tab  \cr
    model_pbp_version \tab character \tab Version of the model-scored play-by-play build. \cr
    cp_model_version \tab character \tab Version of the completion-probability model that scored the play. \cr

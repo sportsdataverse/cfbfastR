@@ -43,7 +43,7 @@
 #'   tracks for college football, with location, capacity-related flags,
 #'   and addresses.
 #' * `espn_cfb_clear_cache()`: Clear the cfbfastR ESPN catalog cache --
-#'   forget the memoised team and position lookups so the next call
+#'   forget the memoized team and position lookups so the next call
 #'   re-fetches them from ESPN.
 #'
 #' @details

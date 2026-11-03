@@ -18,7 +18,7 @@
 #'   * **Pass attempts EXCLUDE sacks.**
 #'   * **A penalty belongs to the team that COMMITTED it**, not the team with the
 #'     ball. A positive `penalty_yards_signed` means the offense gained, so the
-#'     defence was the side flagged.
+#'     defense was the side flagged.
 #'
 #' @param pbp (*data.frame* required): play-by-play carrying `game_id`,
 #'   `pos_team_id`/`pos_team`, `def_pos_team_id`/`def_pos_team`, the `rush`,

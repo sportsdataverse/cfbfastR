@@ -57,7 +57,7 @@ yet (it backfills weather mid-week in season), and also if the request fails.\ta
    wind_direction \tab integer \tab Wind direction, in degrees (0-360, 0 = north). \cr
    wind_speed \tab double \tab Wind speed, in miles per hour. \cr
    pressure \tab double \tab Barometric pressure, in millibars. \cr
-   weather_condition_code \tab integer \tab Numeric weather condition code, labelled by \code{weather_condition} (e.g. 1 = Clear, 3 = Cloudy, 8 = Rain, 25 = Thunderstorm). \cr
+   weather_condition_code \tab integer \tab Numeric weather condition code, labeled by \code{weather_condition} (e.g. 1 = Clear, 3 = Cloudy, 8 = Rain, 25 = Thunderstorm). \cr
    weather_condition \tab character \tab Weather condition label (e.g. Clear, Cloudy, Light Rain, Thunderstorm). \cr
 }
 }

@@ -310,7 +310,7 @@ cfbd_game_info <- function(year,
 #'  |wind_direction |integer |Wind direction, in degrees (0-360, 0 = north). |
 #'  |wind_speed |double |Wind speed, in miles per hour. |
 #'  |pressure |double |Barometric pressure, in millibars. |
-#'  |weather_condition_code |integer |Numeric weather condition code, labelled by `weather_condition` (e.g. 1 = Clear, 3 = Cloudy, 8 = Rain, 25 = Thunderstorm). |
+#'  |weather_condition_code |integer |Numeric weather condition code, labeled by `weather_condition` (e.g. 1 = Clear, 3 = Cloudy, 8 = Rain, 25 = Thunderstorm). |
 #'  |weather_condition |character |Weather condition label (e.g. Clear, Cloudy, Light Rain, Thunderstorm). |
 #'
 #' @keywords Game Weather
@@ -380,7 +380,7 @@ cfbd_game_weather <- function(year = NULL,
 
       if (length(raw) == 0L || (is.data.frame(raw) && nrow(raw) == 0L)) {
         cli::cli_alert_info(c(
-          "CFBD returned no weather rows for the requested filters.",
+          "CFBD returned no weather rows for the requested filters. ",
           "i" = "CFBD backfills weather mid-week during the season; ",
           "i" = "try again later, or pass a prior `year` to confirm the call shape."
         ))

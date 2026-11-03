@@ -97,7 +97,7 @@ one-row frame (e.g. \code{offense_open_field_yards} in the 2025 Texas sample):\t
    success_rate \tab double \tab Proportion of plays that were successful. \cr
    passing_downs_ppa \tab double \tab Average PPA per play on passing downs. \cr
    passing_downs_rate \tab double \tab Proportion of plays that came on passing downs. \cr
-   passing_downs_total_ppa \tab double \tab Labelled by CFBD as total PPA on passing downs; defense only (\code{defense_passing_downs_total_ppa}). In every sampled season (2023-2025) it equals \code{passing_plays_total_ppa}, so it looks like an upstream copy. \cr
+   passing_downs_total_ppa \tab double \tab Labeled by CFBD as total PPA on passing downs; defense only (\code{defense_passing_downs_total_ppa}). In every sampled season (2023-2025) it equals \code{passing_plays_total_ppa}, so it looks like an upstream copy. \cr
    passing_downs_success_rate \tab double \tab Success rate on passing downs. \cr
    passing_downs_explosiveness \tab double \tab Explosiveness (average PPA on successful plays) on passing downs. \cr
    passing_plays_ppa \tab double \tab Average PPA per pass play. \cr

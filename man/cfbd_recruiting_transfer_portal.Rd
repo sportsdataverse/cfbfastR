@@ -22,7 +22,7 @@ Minimum value accepted: 2021}
    transfer_date \tab character \tab Date the transfer was reported (parsed downstream to POSIXct). \cr
    rating \tab character \tab Player's 247Sports transfer rating. \cr
    stars \tab integer \tab Player's 247Sports star rating (2-5). \cr
-   eligibilty \tab character \tab Player's eligibility status at time of transfer. \cr
+   eligibility \tab character \tab Player's eligibility status at time of transfer. \cr
 }
 }
 \description{

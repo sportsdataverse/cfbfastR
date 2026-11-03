@@ -7,7 +7,7 @@
 #' * a row ESPN scored as a field goal / extra point (`scoringType`) takes that
 #'   type -- the 2004 feed files its kicks with no type;
 #' * a row with no type is "Unknown";
-#' * a try the defence returned for two is a "Defensive 2pt Conversion" (2004-13
+#' * a try the defense returned for two is a "Defensive 2pt Conversion" (2004-13
 #'   files it as the kick it started as, or with no type);
 #' * an untyped regulation row describing the two-point try its touchdown row
 #'   already folds, at that touchdown's clock, is that try (401525903);
@@ -182,7 +182,7 @@
 #'
 #' The 2004 feed writes `start.yardsToEndzone` 0 on every play; its `start.yardLine`
 #' is the home-relative field position. sdv-py's features (cfb_pbp.py, `start.yard`)
-#' turn that into yards to the end zone for the offence and use it where the feed's
+#' turn that into yards to the end zone for the offense and use it where the feed's
 #' is 0. (The end spot is not rebuilt: the engine builds the after-state from the
 #' next play and the gain, and sdv-py's end-state backfills are a separate chain.)
 #' @keywords internal
@@ -200,9 +200,9 @@
 #'
 #' Port of sportsdataverse-py's `_type_espn_scored_rows()` (cfb_pbp.py), the last
 #' pass of its play-type fixes. A row ESPN marks `scoringPlay` whose type is still
-#' not a score realised the play's model end state instead of the points. Who
-#' scored is the start team's margin change on the row: +6 to +8 the offence, -6
-#' to -8 the defence, +3 a field goal. Where ESPN's scoreboard does not move (2006-11
+#' not a score realized the play's model end state instead of the points. Who
+#' scored is the start team's margin change on the row: +6 to +8 the offense, -6
+#' to -8 the defense, +3 a field goal. Where ESPN's scoreboard does not move (2006-11
 #' feeds freeze it across a pick-six), the play family says, when the text or ESPN's
 #' `scoringType` says touchdown. A row whose margin credits the other side than its
 #' family, and a frozen-board fumble on a rush or pass, are left as they are.

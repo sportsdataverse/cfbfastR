@@ -586,7 +586,7 @@ cfbd_passing_teams_games <- function(year = NULL,
 #'  |target_id                  |character |CFBD athlete id of the targeted receiver (`NA` when unparsed).                            |
 #'  |target                     |character |Targeted receiver full name (`NA` when unparsed).                                        |
 #'  |outcome                    |character |Pass outcome - completion, incompletion or interception.                                 |
-#'  |air_yards                  |integer   |Yards the ball travelled past the line of scrimmage.                                     |
+#'  |air_yards                  |integer   |Yards the ball traveled past the line of scrimmage.                                     |
 #'  |pass_depth                 |character |Depth bucket - short or deep (`NA` when unparsed).                                        |
 #'  |pass_direction             |character |Direction bucket - left, middle or right (`NA` when unparsed).                            |
 #'  |pass_location              |character |Combined depth + direction bucket, matching the `locations_*` split (`NA` when unparsed). |

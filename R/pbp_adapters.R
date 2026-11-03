@@ -78,7 +78,7 @@
 
 #' CFBD team catalog (`team_id`, `school`, `abbreviation`) for a season
 #'
-#' Memoised per `year` (see `.espn_memoised_helpers` in `zzz.R`), so repeated
+#' Memoized per `year` (see `.espn_memoised_helpers` in `zzz.R`), so repeated
 #' pbp calls in a season reuse one `/teams` request. Aborts on an empty
 #' response instead of returning it: memoise does not cache errors, and an
 #' empty catalog must not stick for the cache's lifetime.
@@ -95,7 +95,7 @@
 
 #' CFBD season-wide roster (`athlete_id`, `first_name`, `last_name`, `team`)
 #'
-#' One `/roster` request per season, memoised per `year` (see
+#' One `/roster` request per season, memoized per `year` (see
 #' `.espn_memoised_helpers` in `zzz.R`). Aborts on an empty response so a
 #' failed request is retried next time rather than cached.
 #' @keywords internal
@@ -111,7 +111,7 @@
 #' CFBD season roster in the engine's roster contract
 #'
 #' Built from the season-wide `/roster` (about 30,000 rows, roughly 20 s),
-#' which `.cfbd_roster_year()` fetches once per season and memoises. CFBD
+#' which `.cfbd_roster_year()` fetches once per season and memoizes. CFBD
 #' athlete ids are ESPN athlete ids, so the ids resolved here agree with the
 #' ESPN path's.
 #' @return `athlete_id`, `display_name`, `team_id` (character), or NULL.

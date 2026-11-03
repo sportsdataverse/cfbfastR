@@ -83,7 +83,7 @@ NULL
 
 #' Kneel-out clamps (cfb4th `end_game_fn`)
 #'
-#' When the team holding the ball leads and the defence can no longer stop the
+#' When the team holding the ball leads and the defense can no longer stop the
 #' clock, the game is decided: pin the win probability rather than letting the
 #' model regress it toward a comeback that cannot happen.
 #'
@@ -237,7 +237,7 @@ NULL
 #' the ball ends up, keyed on the punting team's `yards_to_goal`, and averages
 #' the resulting win probabilities weighted by `pct`. The table covers
 #' `yards_to_goal` 31-99 only -- inside the 31 punting is dominated and cfb4th's
-#' left join simply produces `NA`, which is the behaviour reproduced here.
+#' left join simply produces `NA`, which is the behavior reproduced here.
 #'
 #' `arrow` is a Suggests, not an Imports, so an installation without it must
 #' leave `punt_wp` `NA` rather than abort the play-by-play pipeline.
@@ -540,7 +540,7 @@ NULL
 #'
 #' **Not a cross-validated port.** sdv-py's `get_go_wp()` raises unconditionally
 #' on pandas 3, so there is no Python oracle for these three branches; they were
-#' ported from cfb4th's R source directly and validated behaviourally against
+#' ported from cfb4th's R source directly and validated behaviorally against
 #' known college conversion and field-goal rates. Two sign conventions were
 #' found inverted in sdv-py along the way and are pinned by test here.
 #'

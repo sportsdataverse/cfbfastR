@@ -31,7 +31,7 @@
 #'       carries `team_id`, which team-aware id matching needs.}
 #'   }
 #'
-#'   Memoised by `game_id` (see `.espn_memoised_helpers` in `zzz.R`), so the two
+#'   Memoized by `game_id` (see `.espn_memoised_helpers` in `zzz.R`), so the two
 #'   uses inside one `espn_cfb_pbp_v2()` call cost one request between them.
 #'
 #' @param game_id (*Integer* required): ESPN game identifier.

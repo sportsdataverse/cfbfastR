@@ -8,19 +8,19 @@ espn_cfb_clear_cache()
 }
 \value{
 Invisibly returns \code{NULL}. Called for its side effect of
-forgetting the memoised catalog lookups.
+forgetting the memoized catalog lookups.
 }
 \description{
 The ESPN college football game wrappers enrich their output with team
 and position detail drawn from two static catalogs --
 \code{\link[=espn_cfb_teams]{espn_cfb_teams()}} (~750 teams) and \code{\link[=espn_cfb_positions]{espn_cfb_positions()}} (~74
 positions). Because those catalogs do not change often, the internal
-lookups built from them are memoised with \code{cachem} + \code{memoise}, so a
+lookups built from them are memoized with \code{cachem} + \code{memoise}, so a
 loop over many games does not re-hit ESPN for the catalogs on every
 call.
 
-\code{espn_cfb_clear_cache()} forgets those memoised lookups, and also the
-per-season CFBD team catalog and roster that \code{\link[=cfbd_pbp_data]{cfbd_pbp_data()}} memoises to
+\code{espn_cfb_clear_cache()} forgets those memoized lookups, and also the
+per-season CFBD team catalog and roster that \code{\link[=cfbd_pbp_data]{cfbd_pbp_data()}} memoizes to
 attach team and player ids. The next call that needs one fetches it again.
 Use it when you want to force a refresh -- for example after a
 long-running session, or when debugging.
@@ -33,7 +33,7 @@ Caching is configured at package load via two \code{options()}:
 \item \code{cfbfastR.cache} -- cache backend. One of \code{"memory"} (default;
 in-memory \code{cachem::cache_mem()}, cleared when the session ends),
 \code{"filesystem"} (persistent on-disk \code{cachem::cache_disk()} under
-\code{\link[tools:R_user_dir]{tools::R_user_dir()}}), or \code{"off"} (no memoisation -- every lookup
+\code{\link[tools:R_user_dir]{tools::R_user_dir()}}), or \code{"off"} (no memoization -- every lookup
 hits the API).
 \item \code{cfbfastR.cache_duration} -- cache time-to-live in seconds.
 Defaults to \code{86400} (24 hours).
@@ -41,7 +41,7 @@ Defaults to \code{86400} (24 hours).
 
 Set these with \code{\link[=options]{options()}} \emph{before} the package is loaded, e.g.
 \code{options(cfbfastR.cache = "filesystem")}. When \code{cfbfastR.cache} is
-\code{"off"}, the catalog helpers are never memoised and
+\code{"off"}, the catalog helpers are never memoized and
 \code{espn_cfb_clear_cache()} is a no-op (it still returns invisibly without
 error).
 }

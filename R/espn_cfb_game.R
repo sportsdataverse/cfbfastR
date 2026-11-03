@@ -196,7 +196,7 @@ NULL
 #' its output with one catalog fetch.
 #'
 #' This is a plain fetch-and-return helper. Caching is layered on top in
-#' `.onLoad()` (R/zzz.R), which memoises this function with `cachem` +
+#' `.onLoad()` (R/zzz.R), which memoizes this function with `cachem` +
 #' `memoise` (24h TTL) so the catalog is fetched once and reused for the
 #' lifetime of the cache. Call [espn_cfb_clear_cache()] to force a refresh.
 #'
@@ -288,7 +288,7 @@ NULL
 #' `.espn_cfb_attach_position_detail()`.
 #'
 #' This is a plain fetch-and-return helper. Caching is layered on top in
-#' `.onLoad()` (R/zzz.R), which memoises this function with `cachem` +
+#' `.onLoad()` (R/zzz.R), which memoizes this function with `cachem` +
 #' `memoise` (24h TTL) so the catalog is fetched once and reused for the
 #' lifetime of the cache. Call [espn_cfb_clear_cache()] to force a refresh.
 #'
@@ -342,12 +342,12 @@ NULL
 #' and position detail drawn from two static catalogs --
 #' [espn_cfb_teams()] (~750 teams) and [espn_cfb_positions()] (~74
 #' positions). Because those catalogs do not change often, the internal
-#' lookups built from them are memoised with `cachem` + `memoise`, so a
+#' lookups built from them are memoized with `cachem` + `memoise`, so a
 #' loop over many games does not re-hit ESPN for the catalogs on every
 #' call.
 #'
-#' `espn_cfb_clear_cache()` forgets those memoised lookups, and also the
-#' per-season CFBD team catalog and roster that [cfbd_pbp_data()] memoises to
+#' `espn_cfb_clear_cache()` forgets those memoized lookups, and also the
+#' per-season CFBD team catalog and roster that [cfbd_pbp_data()] memoizes to
 #' attach team and player ids. The next call that needs one fetches it again.
 #' Use it when you want to force a refresh -- for example after a
 #' long-running session, or when debugging.
@@ -358,7 +358,7 @@ NULL
 #' * `cfbfastR.cache` -- cache backend. One of `"memory"` (default;
 #'   in-memory `cachem::cache_mem()`, cleared when the session ends),
 #'   `"filesystem"` (persistent on-disk `cachem::cache_disk()` under
-#'   [tools::R_user_dir()]), or `"off"` (no memoisation -- every lookup
+#'   [tools::R_user_dir()]), or `"off"` (no memoization -- every lookup
 #'   hits the API).
 #' * `cfbfastR.cache_duration` -- cache time-to-live in seconds.
 #'   Defaults to `86400` (24 hours).
@@ -366,12 +366,12 @@ NULL
 #'
 #' Set these with [options()] *before* the package is loaded, e.g.
 #' `options(cfbfastR.cache = "filesystem")`. When `cfbfastR.cache` is
-#' `"off"`, the catalog helpers are never memoised and
+#' `"off"`, the catalog helpers are never memoized and
 #' `espn_cfb_clear_cache()` is a no-op (it still returns invisibly without
 #' error).
 #'
 #' @return Invisibly returns `NULL`. Called for its side effect of
-#'   forgetting the memoised catalog lookups.
+#'   forgetting the memoized catalog lookups.
 #' @family ESPN CFB Functions
 #' @export
 #' @examples
@@ -558,7 +558,7 @@ espn_cfb_clear_cache <- function() {
 #'   `athlete_id` / `display_name` / `team_id`; `.espn_cfb_participant_roster()`
 #'   holds the same three fields as an athlete-id-keyed list. This is the
 #'   adapter between them, and it deliberately reuses that helper rather than
-#'   calling [espn_cfb_game_team_roster()] again -- the helper is memoised, so
+#'   calling [espn_cfb_game_team_roster()] again -- the helper is memoized, so
 #'   going through it turns what would be a second roster request per game into
 #'   a cache hit.
 #'
@@ -6494,7 +6494,7 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
 #' parquet/CSV writers must drop or stringify these before serialization.
 #' One additional roster fetch + position-catalog fetch per game.
 #'
-#' **`epa_wpa` behaviour.** When `epa_wpa = FALSE` (default) the assembled
+#' **`epa_wpa` behavior.** When `epa_wpa = FALSE` (default) the assembled
 #' core-v2 frame is returned as-is. When `epa_wpa = TRUE` the core-v2
 #' columns are mapped into the exact column schema the legacy
 #' [espn_cfb_pbp()] hands to its EPA/WPA pipeline, and the **same** modeling
@@ -6542,7 +6542,7 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
 #' sidecar to (a) render participant names in full (`"Jalen Mitchell"` rather
 #' than the core-v2 roster's `"J. Mitchell"`) and (b) add the per-player box
 #' score as a second identity source, which is the only one available on the
-#' large share of games where ESPN 404s the roster resource. Memoised per
+#' large share of games where ESPN 404s the roster resource. Memoized per
 #' `game_id`, so the two uses cost one request between them. Set `FALSE` for a
 #' bulk sweep that would rather have the short names than the requests. Ignored
 #' when `epa_wpa = FALSE`.

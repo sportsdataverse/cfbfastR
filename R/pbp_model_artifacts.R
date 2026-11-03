@@ -679,13 +679,13 @@ NULL
 #'
 #' **Sign convention, verified empirically over 83 games of 2021 week 1 with
 #' zero exceptions** (`formatted_spread` names the favourite, so it is ground
-#' truth): CFBD's `spread` is negative when the HOME team is favoured and
-#' positive when the AWAY team is favoured.
+#' truth): CFBD's `spread` is negative when the HOME team is favored and
+#' positive when the AWAY team is favored.
 #'
 #' The booster reads the opposite orientation: scoring the model directly shows
 #' win probability rising monotonically with `spread_time`
 #' (-28 -> 0.04, 0 -> 0.49, +28 -> 0.96), i.e. **positive means the team in
-#' possession is favoured**. So the home team's spread is negated and the away
+#' possession is favored**. So the home team's spread is negated and the away
 #' team's is kept.
 #'
 #' Getting this backwards is not a crash -- it produces confident, exactly
@@ -896,7 +896,7 @@ NULL
 #' the posteam is home, `(overUnder - homeTeamSpread) / 2` when away.
 #'
 #' `homeTeamSpread` is the negation of CFBD's `spread` -- CFBD is negative when
-#' the home team is favoured (verified over 83 games, see
+#' the home team is favored (verified over 83 games, see
 #' [.wp_pos_team_spread()]) while `homeTeamSpread` is positive then. Skipping
 #' that conversion silently swaps the two teams' implied totals.
 #'

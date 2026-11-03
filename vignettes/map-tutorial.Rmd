@@ -12,7 +12,7 @@ output: html_document
 description: "Mapping where the blue-chip talent actually comes from, joining <code>cfbd_recruiting_player()</code> to state geometry to see which parts of the country each program recruits."
 ---
 
-The best high school football talent in America is not even across the country. Some states produce bunches of talent, such as Texas, Florida, and California, while other states are hardpressed to produce more than a handful every couple years, such as Montana, Maine, and the Dakotas. So it would be a good idea for any program to know where they are, and a really easy way to communicate that is with some slick visualizations. Today we'll be using the `cfbfastR` package to get geographic data about recruits and the `urbnmapr` package to easily show them on maps. 
+The best high school football talent in America is not even across the country. Some states produce bunches of talent, such as Texas, Florida, and California, while other states are hard-pressed to produce more than a handful every couple years, such as Montana, Maine, and the Dakotas. So it would be a good idea for any program to know where they are, and a really easy way to communicate that is with some slick visualizations. Today we'll be using the `cfbfastR` package to get geographic data about recruits and the `urbnmapr` package to easily show them on maps. 
 
 I'm going to assume you have R and RStudio installed throughout this tutorial, so if you don't go to [cfbfastR founder Saiem Gilani's tutorial](https://cfbfastR.sportsdataverse.org/articles/intro.html) who goes through that process. 
 
@@ -79,7 +79,7 @@ A few quick programming notes:
 2. The `|>` characters are called a pipe and can be read as "and then." As an example, we would read the above chunk as "We load in the Class of 2021 data and then we filter to only the 5 stars and then we create the new `longitude` and `latitude` variables.
 3. The function `as.double` takes something and transforms it into a double (a number with a decimal points). For example, `"8.0"` and `8` both become `8.0` using `as.double()`
 4. At the end I `select` the columns which have the information we care about. This gets rid of extraneous data. This isn't super important for this dataset in particular, but is a practice I find useful when working with larger datasets so I don't take up too much memory.
-5. The `distinct` function at the end gets rid of duplicate rows. We do this because recruiting data from `cfbd_recruiting_player` can at times be messy, especially when players have ratings which change later in the processs. 
+5. The `distinct` function at the end gets rid of duplicate rows. We do this because recruiting data from `cfbd_recruiting_player` can at times be messy, especially when players have ratings which change later in the process. 
 
 So now let's make a map of it. The most sensible thing to do seems to just put points on a map, one for each 5 star. This will tell us where every 5 star is, and if we're lucky maybe we'll get whiffs of larger trends. The easiest way to do this is to use the built in `states` dataframe that comes with `urbnmapr` and throw it in a plot. Because of how `urbnmapr` places Alaska and Hawai'i we can't nicely place points in these states, so we'll have to ignore these. 
 

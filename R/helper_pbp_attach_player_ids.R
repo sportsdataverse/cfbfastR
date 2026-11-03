@@ -9,7 +9,7 @@
 #'   whenever two players shared a name. This closes that gap.
 #'
 #'   Matching is **team-aware**: each role maps to the team that fielded it (a
-#'   sack belongs to the defence, a punt return to the receiving team), so
+#'   sack belongs to the defense, a punt return to the receiving team), so
 #'   identical names on opposing rosters cannot collide. Four tiers are tried in
 #'   order -- exact name within team, globally-unique name, first-initial +
 #'   surname within team, surname within team -- and the fuzzy tiers are

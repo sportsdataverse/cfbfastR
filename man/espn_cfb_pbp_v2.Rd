@@ -43,7 +43,7 @@ computation scratchpad. For dashboards / game logs.
 sidecar to (a) render participant names in full (\code{"Jalen Mitchell"} rather
 than the core-v2 roster's \code{"J. Mitchell"}) and (b) add the per-player box
 score as a second identity source, which is the only one available on the
-large share of games where ESPN 404s the roster resource. Memoised per
+large share of games where ESPN 404s the roster resource. Memoized per
 \code{game_id}, so the two uses cost one request between them. Set \code{FALSE} for a
 bulk sweep that would rather have the short names than the requests. Ignored
 when \code{epa_wpa = FALSE}.}
@@ -114,7 +114,7 @@ and \verb{\{type\}_team_*} columns. Wide mode also emits the
 parquet/CSV writers must drop or stringify these before serialization.
 One additional roster fetch + position-catalog fetch per game.
 
-\strong{\code{epa_wpa} behaviour.} When \code{epa_wpa = FALSE} (default) the assembled
+\strong{\code{epa_wpa} behavior.} When \code{epa_wpa = FALSE} (default) the assembled
 core-v2 frame is returned as-is. When \code{epa_wpa = TRUE} the core-v2
 columns are mapped into the exact column schema the legacy
 \code{\link[=espn_cfb_pbp]{espn_cfb_pbp()}} hands to its EPA/WPA pipeline, and the \strong{same} modeling

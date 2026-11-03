@@ -218,7 +218,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    homeTeamNameAlt \tab character \tab ESPN's home-team NameAlt for the game, stamped on every play. \cr
    awayTeamNameAlt \tab character \tab ESPN's away-team NameAlt for the game, stamped on every play. \cr
    gameSpread \tab double \tab Point spread used as an input to the win-probability model. \cr
-   homeFavorite \tab logical \tab True when the home team was favoured by the spread. \cr
+   homeFavorite \tab logical \tab True when the home team was favored by the spread. \cr
    gameSpreadAvailable \tab logical \tab True when a spread was available for the game. \cr
    overUnder \tab double \tab Over/under total used as a model input. \cr
    homeTeamSpread \tab double \tab ESPN's home-team Spread for the game, stamped on every play. \cr

@@ -367,7 +367,7 @@ cfbd_recruiting_team <- function(year = NULL,
 #'    |transfer_date |character |Date the transfer was reported (parsed downstream to POSIXct).       |
 #'    |rating        |character |Player's 247Sports transfer rating.                                  |
 #'    |stars         |integer   |Player's 247Sports star rating (2-5).                                |
-#'    |eligibilty    |character |Player's eligibility status at time of transfer.                     |
+#'    |eligibility    |character |Player's eligibility status at time of transfer.                     |
 #'
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON

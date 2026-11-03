@@ -30,7 +30,7 @@ We will be acquiring data from [CollegeFootballData.com](collegefootballdata.com
 
 # An Abridged History of Expected Points Models in Football
 ## Field Position models
-One of the earliest discussions and attempts at building an expected points model in football was made by [Virgil Carter of the Cincinatti Bengals](https://web.archive.org/web/20231103201122/https://vault.si.com/vault/1972/10/16/handy-pair-of-brainy-bengals) in his graduate research paper, “[Operations Research on Football](https://pubsonline.informs.org/doi/pdf/10.1287/opre.19.2.541)”. Carter found some time to write the research paper while pursuing his MBA at Northwestern in the off-season from his main gig of being quarterback for the Chicago Bears. 
+One of the earliest discussions and attempts at building an expected points model in football was made by [Virgil Carter of the Cincinnati Bengals](https://web.archive.org/web/20231103201122/https://vault.si.com/vault/1972/10/16/handy-pair-of-brainy-bengals) in his graduate research paper, “[Operations Research on Football](https://pubsonline.informs.org/doi/pdf/10.1287/opre.19.2.541)”. Carter found some time to write the research paper while pursuing his MBA at Northwestern in the off-season from his main gig of being quarterback for the Chicago Bears. 
 
 For the study, Carter and his wife Judy coded 8,373 plays with 53 variables — including time, down, and distance — from 56 games played during the first half of the 1969 season. From the paper:
 

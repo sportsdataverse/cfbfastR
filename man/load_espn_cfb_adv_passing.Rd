@@ -48,10 +48,10 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    rush_epa \tab double \tab EPA credited to the player's rush plays. \cr
    pen_epa \tab double \tab EPA attributable to penalties on the player's plays. \cr
    spread \tab double \tab  \cr
-   era0 \tab integer \tab Rule-era indicator for the earliest modelled era. \cr
-   era1 \tab integer \tab Rule-era indicator for the second modelled era. \cr
-   era2 \tab integer \tab Rule-era indicator for the third modelled era. \cr
-   era3 \tab integer \tab Rule-era indicator for the most recent modelled era. \cr
+   era0 \tab integer \tab Rule-era indicator for the earliest modeled era. \cr
+   era1 \tab integer \tab Rule-era indicator for the second modeled era. \cr
+   era2 \tab integer \tab Rule-era indicator for the third modeled era. \cr
+   era3 \tab integer \tab Rule-era indicator for the most recent modeled era. \cr
    exp_qbr \tab double \tab Expected QBR for the passer. \cr
    game_id \tab integer \tab  \cr
    season \tab integer \tab  \cr

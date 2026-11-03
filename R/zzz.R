@@ -1,6 +1,6 @@
 #' Internal helpers wrapped by the ESPN cache
 #'
-#' Single source of truth for `.onLoad()` (which memoises them) and
+#' Single source of truth for `.onLoad()` (which memoizes them) and
 #' [espn_cfb_clear_cache()] (which forgets them). Kept as one constant because
 #' the two lists silently diverging means a helper that caches but never clears.
 #'

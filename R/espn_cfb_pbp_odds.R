@@ -7,7 +7,7 @@
 #' 2024+, so those games, and any whose `pickcenter` is short, read the core-v2
 #' odds collection, preferring ESPN BET.
 #'
-#' `spread` is the HOME team's line, negative when the home team is favoured --
+#' `spread` is the HOME team's line, negative when the home team is favored --
 #' the CFBD convention `.wp_pos_team_spread()` reads. Deliberate divergences
 #' from sdv-py: a game with no line gets `NA`, not the `(2.5, 55.5)` defaults,
 #' matching the CFBD path; a `pickcenter` whose providers carry no spread falls

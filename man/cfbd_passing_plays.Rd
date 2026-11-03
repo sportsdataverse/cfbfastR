@@ -71,7 +71,7 @@ Minimum value accepted: 2025}
    target_id \tab character \tab CFBD athlete id of the targeted receiver (\code{NA} when unparsed). \cr
    target \tab character \tab Targeted receiver full name (\code{NA} when unparsed). \cr
    outcome \tab character \tab Pass outcome - completion, incompletion or interception. \cr
-   air_yards \tab integer \tab Yards the ball travelled past the line of scrimmage. \cr
+   air_yards \tab integer \tab Yards the ball traveled past the line of scrimmage. \cr
    pass_depth \tab character \tab Depth bucket - short or deep (\code{NA} when unparsed). \cr
    pass_direction \tab character \tab Direction bucket - left, middle or right (\code{NA} when unparsed). \cr
    pass_location \tab character \tab Combined depth + direction bucket, matching the \verb{locations_*} split (\code{NA} when unparsed). \cr

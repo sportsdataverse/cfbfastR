@@ -226,7 +226,7 @@ NULL
 #'    |homeTeamNameAlt                         |character |ESPN's home-team NameAlt for the game, stamped on every play. |
 #'    |awayTeamNameAlt                         |character |ESPN's away-team NameAlt for the game, stamped on every play. |
 #'    |gameSpread                              |double    |Point spread used as an input to the win-probability model. |
-#'    |homeFavorite                            |logical   |True when the home team was favoured by the spread. |
+#'    |homeFavorite                            |logical   |True when the home team was favored by the spread. |
 #'    |gameSpreadAvailable                     |logical   |True when a spread was available for the game. |
 #'    |overUnder                               |double    |Over/under total used as a model input. |
 #'    |homeTeamSpread                          |double    |ESPN's home-team Spread for the game, stamped on every play. |
@@ -2295,7 +2295,7 @@ NULL
 #'    |wp_before            |double    | |
 #'    |wp_after             |double    | |
 #'    |wpa                  |double    | |
-#'    |completion_prob      |double    |Modelled probability the pass is completed. |
+#'    |completion_prob      |double    |Modeled probability the pass is completed. |
 #'    |cpoe                 |double    | |
 #'    |model_pbp_version    |character |Version of the model-scored play-by-play build. |
 #'    |cp_model_version     |character |Version of the completion-probability model that scored the play. |
@@ -2626,10 +2626,10 @@ NULL
 #'    |rush_epa           |double    |EPA credited to the player's rush plays. |
 #'    |pen_epa            |double    |EPA attributable to penalties on the player's plays. |
 #'    |spread             |double    | |
-#'    |era0               |integer   |Rule-era indicator for the earliest modelled era. |
-#'    |era1               |integer   |Rule-era indicator for the second modelled era. |
-#'    |era2               |integer   |Rule-era indicator for the third modelled era. |
-#'    |era3               |integer   |Rule-era indicator for the most recent modelled era. |
+#'    |era0               |integer   |Rule-era indicator for the earliest modeled era. |
+#'    |era1               |integer   |Rule-era indicator for the second modeled era. |
+#'    |era2               |integer   |Rule-era indicator for the third modeled era. |
+#'    |era3               |integer   |Rule-era indicator for the most recent modeled era. |
 #'    |exp_qbr            |double    |Expected QBR for the passer. |
 #'    |game_id            |integer   | |
 #'    |season             |integer   | |

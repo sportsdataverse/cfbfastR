@@ -2,7 +2,7 @@
 #'
 #' Port of sportsdataverse-py's `_sort_plays_ot_aware()` (cfb_pbp.py) as its final
 #' call sees the plays -- in `__add_downs_data()`, after a play with no type has
-#' been labelled "Unknown": sort by play id (then game clock), and repair the order
+#' been labeled "Unknown": sort by play id (then game clock), and repair the order
 #' ESPN's ids get wrong:
 #'
 #' * **out-of-scheme ids**: a play filed under a 10-digit `<game_id>0` id among
@@ -21,7 +21,7 @@
 #'   the score backwards least.
 #'
 #' The engine sorts by the resulting `play_order` instead of `id_play`, so every
-#' lead/lag reads the same neighbour sdv-py's does. On a 12-game 2024-2026 sample
+#' lead/lag reads the same neighbor sdv-py's does. On a 12-game 2024-2026 sample
 #' plain id order differed from sdv-py's in 21 adjacent pairs (late inserts 12,
 #' reunite 5).
 #'
@@ -88,7 +88,7 @@
 #'
 #' A play filed under an id outside the feed's numbering (401425418's 10-digit
 #' `4014254180` among 18-digit ids) sorts to the game's start. A row moves only when
-#' its id's width differs from both neighbours' and its period breaks the order there
+#' its id's width differs from both neighbors' and its period breaks the order there
 #' (a 2025+ feed whose ids change width as they count already runs in period order).
 #' It goes right after the LAST row that comes before it -- an earlier period, more
 #' time left, or the same clock and an earlier `feed` position -- not after a count of

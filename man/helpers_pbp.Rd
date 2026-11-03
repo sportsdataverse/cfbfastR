@@ -187,7 +187,7 @@ The original \code{drive_df} with the following columns appended to it:
 
 The original \code{play_df} with the following columns appended to it:
 \itemize{
-\item \code{cleaned_text}: \code{play_text} with miscellanous items removed: pass depth/location, clock timestamps, No Huddle/Shotgun status, etc.: .
+\item \code{cleaned_text}: \code{play_text} with miscellaneous items removed: pass depth/location, clock timestamps, No Huddle/Shotgun status, etc.: .
 }
 
 The original \code{pbp} with the following columns appended to it:

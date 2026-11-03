@@ -208,7 +208,7 @@
 #'
 #'   The depth/direction patterns are deliberately **case-sensitive**, matching
 #'   sdv-py: ESPN writes these tokens lowercase mid-sentence, and folding case
-#'   would let a capitalised team or player name ("Deep", "Wright") match. The
+#'   would let a capitalized team or player name ("Deep", "Wright") match. The
 #'   hurry pattern is case-insensitive because it is a whole phrase, not a word
 #'   that collides with a name.
 #'

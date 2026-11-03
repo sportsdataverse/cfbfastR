@@ -811,7 +811,7 @@ cfbd_teams_fbs <- function(year = NULL, proxy = NULL) {
 #'  |success_rate |double |Proportion of plays that were successful. |
 #'  |passing_downs_ppa |double |Average PPA per play on passing downs. |
 #'  |passing_downs_rate |double |Proportion of plays that came on passing downs. |
-#'  |passing_downs_total_ppa |double |Labelled by CFBD as total PPA on passing downs; defense only (`defense_passing_downs_total_ppa`). In every sampled season (2023-2025) it equals `passing_plays_total_ppa`, so it looks like an upstream copy. |
+#'  |passing_downs_total_ppa |double |Labeled by CFBD as total PPA on passing downs; defense only (`defense_passing_downs_total_ppa`). In every sampled season (2023-2025) it equals `passing_plays_total_ppa`, so it looks like an upstream copy. |
 #'  |passing_downs_success_rate |double |Success rate on passing downs. |
 #'  |passing_downs_explosiveness |double |Explosiveness (average PPA on successful plays) on passing downs. |
 #'  |passing_plays_ppa |double |Average PPA per pass play. |

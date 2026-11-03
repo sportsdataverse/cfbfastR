@@ -2376,7 +2376,7 @@ clean_drive_info <- function(drive_df) {
 #'
 #' @return The original `play_df` with the following columns appended to it:
 #'
-#' * `cleaned_text`: `play_text` with miscellanous items removed: pass depth/location, clock timestamps, No Huddle/Shotgun status, etc.: .
+#' * `cleaned_text`: `play_text` with miscellaneous items removed: pass depth/location, clock timestamps, No Huddle/Shotgun status, etc.: .
 #'
 #' @keywords internal
 #' @importFrom rlang .data
