@@ -235,7 +235,7 @@ make_cfbfastR_data <- function(df,type,timestamp){
   out <- df |>
     tidyr::as_tibble()
 
-  class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
+  class(out) <- c("cfbfastR_data","tbl_df","tbl","data.frame")
   attr(out,"cfbfastR_timestamp") <- timestamp
   attr(out,"cfbfastR_type") <- type
   return(out)

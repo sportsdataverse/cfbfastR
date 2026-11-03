@@ -109,7 +109,7 @@ raw |>
   make_cfbfastR_data("Source description", Sys.time())
 ```
 
-`make_cfbfastR_data()` sets the class to `c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")` and attaches the source description + timestamp.
+`make_cfbfastR_data()` sets the class to `c("cfbfastR_data", "tbl_df", "tbl", "data.frame")` and attaches the source description + timestamp.
 
 ### Roxygen Documentation
 

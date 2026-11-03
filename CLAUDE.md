@@ -146,7 +146,7 @@ metadata the bare payload omits is resolved by `.espn_pbp_game_meta()`.
   `cli_abort/cli_warn` for raised conditions. Pass `{conditionMessage(e)}`, never raw `{e}`
   (glue coerces the condition).
 - **Pipeline tail:** `... |> janitor::clean_names() |> make_cfbfastR_data("<desc>", Sys.time())`
-  sets class `c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")` + timestamp/type
+  sets class `c("cfbfastR_data","tbl_df","tbl","data.frame")` + timestamp/type
   attrs. Apply it **after** the final dplyr verb (dplyr strips the class).
 - **Column-drift resilience:** drop with `dplyr::select(-dplyr::any_of("col"))`, rename with
   `rename(any_of(c(new = "old")))` — both APIs add/rename columns over time.

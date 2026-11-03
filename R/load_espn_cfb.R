@@ -542,7 +542,7 @@ load_espn_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("ESPN college football play-by-play from the SportsDataverse data repo", Sys.time())
   }
@@ -626,7 +626,7 @@ load_espn_cfb_schedules <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("ESPN college football schedules from the SportsDataverse data repo", Sys.time())
   }
@@ -709,7 +709,7 @@ load_espn_cfb_team_box <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("ESPN college football team box scores from the SportsDataverse data repo", Sys.time())
   }
@@ -832,7 +832,7 @@ load_espn_cfb_player_box <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("ESPN college football player box scores from the SportsDataverse data repo", Sys.time())
   }
@@ -914,7 +914,7 @@ load_espn_cfb_drives <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("ESPN college football drives from the SportsDataverse data repo", Sys.time())
   }
@@ -1054,7 +1054,7 @@ load_espn_cfb_game_rosters <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("ESPN college football game rosters from the SportsDataverse data repo", Sys.time())
   }
@@ -1121,7 +1121,7 @@ load_espn_cfb_linescores <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("ESPN college football linescores from the SportsDataverse data repo", Sys.time())
   }
@@ -1193,7 +1193,7 @@ load_espn_cfb_betting <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("ESPN college football betting lines from the SportsDataverse data repo", Sys.time())
   }
@@ -1330,7 +1330,7 @@ load_espn_cfb_play_participants <- function(seasons = most_recent_cfb_season(), 
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("ESPN college football play participants from the SportsDataverse data repo", Sys.time())
   }
@@ -1400,7 +1400,7 @@ load_espn_cfb_power_index <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("ESPN college football FPI power index from the SportsDataverse data repo", Sys.time())
   }
@@ -1490,7 +1490,7 @@ load_espn_cfb_percentiles <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football team percentile profiles from the SportsDataverse data repo", Sys.time())
   }
@@ -1598,7 +1598,7 @@ load_espn_cfb_passing <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football passing EPA splits from the SportsDataverse data repo", Sys.time())
   }
@@ -1689,7 +1689,7 @@ load_espn_cfb_rushing <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football rushing EPA splits from the SportsDataverse data repo", Sys.time())
   }
@@ -1783,7 +1783,7 @@ load_espn_cfb_receiving <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football receiving EPA splits from the SportsDataverse data repo", Sys.time())
   }
@@ -2230,7 +2230,7 @@ load_espn_cfb_team_summaries <- function(seasons = most_recent_cfb_season(), ...
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football team season summaries from the SportsDataverse data repo", Sys.time())
   }
@@ -2337,7 +2337,7 @@ load_espn_cfb_model_pbp <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football model-enriched play-by-play from the SportsDataverse data repo", Sys.time())
   }
@@ -2421,7 +2421,7 @@ load_espn_cfb_adv_defensive <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football advanced defensive from the SportsDataverse data repo", Sys.time())
   }
@@ -2499,7 +2499,7 @@ load_espn_cfb_adv_defensive_players <- function(seasons = most_recent_cfb_season
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football advanced defensive players from the SportsDataverse data repo", Sys.time())
   }
@@ -2574,7 +2574,7 @@ load_espn_cfb_adv_drives <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football advanced drives from the SportsDataverse data repo", Sys.time())
   }
@@ -2668,7 +2668,7 @@ load_espn_cfb_adv_passing <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football advanced passing from the SportsDataverse data repo", Sys.time())
   }
@@ -2748,7 +2748,7 @@ load_espn_cfb_adv_receiving <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football advanced receiving from the SportsDataverse data repo", Sys.time())
   }
@@ -2827,7 +2827,7 @@ load_espn_cfb_adv_rushing <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football advanced rushing from the SportsDataverse data repo", Sys.time())
   }
@@ -2965,7 +2965,7 @@ load_espn_cfb_adv_situational <- function(seasons = most_recent_cfb_season(), ..
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football advanced situational from the SportsDataverse data repo", Sys.time())
   }
@@ -3043,7 +3043,7 @@ load_espn_cfb_adv_specialists <- function(seasons = most_recent_cfb_season(), ..
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football advanced specialists from the SportsDataverse data repo", Sys.time())
   }
@@ -3187,7 +3187,7 @@ load_espn_cfb_adv_team <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football advanced team from the SportsDataverse data repo", Sys.time())
   }
@@ -3341,7 +3341,7 @@ load_espn_cfb_adv_team_gamelog <- function(seasons = most_recent_cfb_season(), .
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football advanced team gamelog from the SportsDataverse data repo", Sys.time())
   }
@@ -3428,7 +3428,7 @@ load_espn_cfb_adv_turnover <- function(seasons = most_recent_cfb_season(), ...,
     DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE, ...)
     out <- NULL
   } else {
-    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")
+    class(out) <- c("cfbfastR_data", "tbl_df", "tbl", "data.frame")
     out <- out |>
       make_cfbfastR_data("college football advanced turnover from the SportsDataverse data repo", Sys.time())
   }
