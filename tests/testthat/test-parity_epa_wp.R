@@ -25,10 +25,11 @@
 ### 2H skew moves WP by up to ~0.1).
 ###
 ### Allow-list -- what is deliberately NOT compared, and why:
-###   * sdv-py's published wp_before_naive / wp_before: they include sdv-py's
-###     overtime stage (cfb_wp_overtime.adjust_wp), which cfbfastR has not ported;
-###     the oracle's *_raw columns are the boosters' output through sdv-py's own
-###     scoring path without that stage.
+###   * sdv-py's published wp_before_naive / wp_before row for row: they include
+###     sdv-py's overtime stage (cfb_wp_overtime.adjust_wp) and its pipeline rules.
+###     The *_raw columns are the boosters' output without that stage, compared
+###     with it switched off; the stage itself is compared against
+###     wp_overtime_oracle.csv.gz in test-parity_wp_overtime.R.
 ###   * published EP_start / EP_end / EPA on rows where sdv-py's pipeline rewrote
 ###     them (possession flips negate EP_end, scores pin it to the try's value,
 ###     ...): those are pipeline rules, not model scoring, and cfbfastR's engine
@@ -99,8 +100,19 @@ test_that("the oracle covers what it claims", {
 test_that("naive WP (R wp_before) matches sdv-py on real games", {
   skip_if_no_models()
   o <- read_oracle()
-  got <- .wp_predict(.cfb_model("wp_model"), r_start(o))
+  got <- .wp_predict(.cfb_model("wp_model"), r_start(o), adjust = FALSE)
   expect_close(got, o$wp_naive_raw, "wp_before vs sdv-py wp_before_naive (raw)")
+})
+
+test_that("with the overtime stage, WP is sdv-py's published value wherever its pipeline left it", {
+  skip_if_no_models()
+  skip_if(is.null(.cfb_wp_ot_model()), "wp_ot_reach unavailable")
+  o <- read_oracle()
+  # The other rows (kickoffs, end-of-period and try rows) are rewritten by sdv-py pipeline
+  # rules, not by the scoring stage; test-parity_wp_overtime.R compares every row there.
+  hit <- function(got, want) mean(abs(got - want) < tol)
+  expect_gt(hit(.wp_predict(.cfb_model("wp_model"), r_start(o)), o$wp_before_naive), 0.9)
+  expect_gt(hit(.pbp_add_vegas_wp(r_start(o))$vegas_wp, o$wp_before), 0.9)
 })
 
 test_that("calculate_win_probability() and the decision state score the trained flag too", {
@@ -125,6 +137,7 @@ test_that("spread WP (R vegas_wp) matches sdv-py on real games", {
   skip_if_no_models()
   o <- read_oracle()
   testthat::expect_true(all(as.logical(o$game_spread_available)))
+  local_mocked_bindings(.cfb_adjust_wp = function(wp, ...) wp)
   got <- .pbp_add_vegas_wp(r_start(o))$vegas_wp
   expect_close(got, o$wp_spread_raw, "vegas_wp vs sdv-py wp_before (raw)")
 })

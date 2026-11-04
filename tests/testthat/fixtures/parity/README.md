@@ -182,6 +182,24 @@ scoring rules). `pos_team_won` is for calibration metrics. Re-capture: `python
 data-raw/parity_epa_wp_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file. The `wp_*_raw` columns are the generator's own booster calls on sdv-py's states with sdv-py's `_as_trained_2h_flag`, not values read from sdv-py's pipeline, so the WP check confirms R scores those states the same way; it does not test the trained-on-`1 - is_home` premise itself. Decision-surface WP is not in the oracle; `test-decision-state.R` pins it to sdv-py's exact values. Both libraries toggle the flag only in first-half flipped states while `is_home` always toggles, so second-half flipped states reach the booster as `flag == is_home`; that is to be fixed in sdv-py first and mirrored here.
 
 
+`wp_overtime_oracle.csv.gz` — captured 2026-11-04 from sportsdataverse-py `6a6222227f` (its
+`cfb_pbp.py` and `cfb_wp_overtime.py` are byte-identical to `origin/main` `44dc5a3d00`;
+`CFBPlayProcess.run_processing_pipeline()` run offline on the ESPN summary payloads banked in
+cfbfastR-cfb-raw `cfb/json/raw/`, `join_participants = False`). One row per play of two 2025 games
+with a pre-game line that reached overtime: 401760426 (two overtimes; from 2021 a touchdown in the
+second must be followed by a two-point try) and 401761665 (one). Keyed by `game_id` + `id_play`
+(character), in sdv-py's final order (`play_order`). Inputs: the WP start state (as
+`epa_wp_oracle.csv.gz`, plus `play_type` = `type.text`), sdv-py's per-row `ot_second` (`_ot_second`:
+is the possessing team second in its overtime period) and `ot_forced` (`_ot_forced`), and the CP
+inputs (`pass`, `rush`, `completion`, `passing_down`, `air_yards`, `pass_direction`, `qb_hurry`).
+Outputs: `wp_naive_raw` / `wp_spread_raw` (the boosters on the start state, as in
+`epa_wp_oracle.csv.gz`), `wp_naive_adj` / `wp_spread_adj` (those through
+`cfb_wp_overtime.adjust_wp` with `second` and `forced`, exactly as sdv-py's `_wp_predict`), sdv-py's
+published `cp`, `cp_model` and `cp_game_state`, and its published `wp_before_naive` / `wp_before`
+(which its shootout and end-state stages rewrite on top). `test-parity_wp_overtime.R`. Re-capture:
+`python data-raw/parity_wp_overtime_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit
+the file.
+
 `timeouts_oracle.csv.gz` — captured 2026-11-01 from sportsdataverse-py `4b78a45a3d` (`origin/main`,
 `CFBPlayProcess.run_processing_pipeline()` run offline on the ESPN summary payloads banked in
 cfbfastR-cfb-raw `cfb/json/raw/`, `join_participants = False`). One row per play of 19 games, in

@@ -1,3 +1,32 @@
+#' Points scored on the play, signed for the possessing team
+#'
+#' Each team's points are what its running-best score gained on the row, and
+#' `pos_score_pts` is the possessing team's minus the other's: a touchdown is
+#' `6`, a defensive touchdown or safety negative. This was the move of the
+#' running margin, which read -70 when the feed's score fell to 0 for a few
+#' rows and came back (cfbfastR-data#15); a score that only drops never counts.
+#' Matches sportsdataverse-py#1089 (`_points_on_row`).
+#'
+#' One game, in play order (called inside the per-game `mutate()`).
+#'
+#' @param home_score,away_score Each team's score after the play.
+#' @param pos_is_home Is the possessing team the home team? `NA` counts as away,
+#'   as in sdv-py.
+#' @keywords internal
+#' @noRd
+.pos_score_pts <- function(home_score, away_score, pos_is_home) {
+  gain <- function(s) {
+    s <- suppressWarnings(as.numeric(s))
+    s[is.na(s)] <- -Inf
+    best <- cummax(s)
+    best[best == -Inf] <- 0
+    best - c(0, best[-length(best)])
+  }
+  h <- gain(home_score)
+  a <- gain(away_score)
+  ifelse(pos_is_home %in% TRUE, h - a, a - h)
+}
+
 #' Modular PBP -- adds play counts, pos_team, score diffs, lag/lead frames
 #'
 #' Refactor of `add_play_counts()` for the modular `.run_epa_wpa()` engine.
@@ -131,9 +160,10 @@
       pos_score_diff = .data$pos_team_score - .data$def_pos_team_score,
       lag_pos_score_diff = dplyr::lag(.data$pos_score_diff, 1),
       lag_pos_score_diff = ifelse(.data$game_play_number == 1, 0, .data$lag_pos_score_diff),
-      pos_score_pts = ifelse(.data$lag_pos_team == .data$pos_team,
-                             (.data$pos_score_diff - .data$lag_pos_score_diff),
-                             (.data$pos_score_diff + .data$lag_pos_score_diff)
+      pos_score_pts = .pos_score_pts(
+        ifelse(.data$offense_play == .data$home, .data$offense_score, .data$defense_score),
+        ifelse(.data$offense_play == .data$home, .data$defense_score, .data$offense_score),
+        .data$pos_team == .data$home
       ),
       pos_score_diff_start = ifelse(.data$lag_pos_team == .data$pos_team,
                                     .data$lag_pos_score_diff,

@@ -1309,9 +1309,10 @@ add_play_counts <- function(play_df) {
       pos_score_diff = .data$pos_team_score - .data$def_pos_team_score,
       lag_pos_score_diff = dplyr::lag(.data$pos_score_diff, 1),
       lag_pos_score_diff = ifelse(.data$game_play_number == 1, 0, .data$lag_pos_score_diff),
-      pos_score_pts = ifelse(.data$lag_pos_team == .data$pos_team,
-                             (.data$pos_score_diff - .data$lag_pos_score_diff),
-                             (.data$pos_score_diff + .data$lag_pos_score_diff)
+      pos_score_pts = .pos_score_pts(
+        ifelse(.data$offense_play == .data$home, .data$offense_score, .data$defense_score),
+        ifelse(.data$offense_play == .data$home, .data$defense_score, .data$offense_score),
+        .data$pos_team == .data$home
       ),
       pos_score_diff_start = ifelse(.data$lag_pos_team == .data$pos_team,
                                     .data$lag_pos_score_diff,

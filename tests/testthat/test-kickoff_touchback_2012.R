@@ -63,7 +63,7 @@ test_that("create_epa scores a kickoff as a touchback at the 2011 and 2012 spots
 test_that("create_wpa_naive scores the kickoff wp_before at the 2011 and 2012 spots", {
   # A stand-in WP model that reads back the yards_to_goal it was handed.
   local_mocked_bindings(
-    .wp_predict = function(model, df) df$yards_to_goal / 100,
+    .wp_predict = function(model, df, ...) df$yards_to_goal / 100,
     .pbp_wpa_calcs_naive = function(df) df,
     wpa_calcs_naive = function(df) df
   )
