@@ -114,6 +114,77 @@
   m
 }
 
+#' Load a booster from the bundle, or say why it could not be
+#'
+#' @param asset File name in the `cfb_model_artifacts` release.
+#' @return The `xgb.Booster`, or a string naming why it is unavailable:
+#'   `"no_xgboost"`, `"download_failed"` or `"load_failed"`.
+#' @keywords internal
+#' @noRd
+.cfb_bundle_booster <- function(asset) {
+  if (!requireNamespace("xgboost", quietly = TRUE)) return("no_xgboost")
+  f <- .cfb_model_file(asset)
+  if (is.null(f)) return("download_failed")
+  booster <- try(xgboost::xgb.load(f), silent = TRUE)
+  if (inherits(booster, "try-error") || is.null(booster)) return("load_failed")
+  booster
+}
+
+# The models whose legacy-fallback warning this session has already raised.
+.cfb_fallback_warned <- new.env(parent = emptyenv())
+
+#' Warn, once per session and model, that a retired model is in use
+#'
+#' The retired `nnet`/GAM models are a different model generation from the
+#' bundle `sportsdataverse-py` scores with, so EPA/WPA from them disagree on
+#' every play. That must not be silent: the warning names the model in use,
+#' why the bundle was not used and the fix. Classed `cfbfastR_legacy_model` so a
+#' caller can catch or muffle it.
+#'
+#' @param what `"EP"`, `"FG"` or `"WP"`.
+#' @param asset The bundle asset that could not be used.
+#' @param legacy The retired model now in use.
+#' @param reason What [.cfb_bundle_booster()] returned.
+#' @keywords internal
+#' @noRd
+.cfb_warn_legacy_model <- function(what, asset, legacy, reason) {
+  if (isTRUE(.cfb_fallback_warned[[what]])) return(invisible(NULL))
+  assign(what, TRUE, envir = .cfb_fallback_warned)
+  why <- switch(reason,
+    no_xgboost = c(
+      "x" = "The {.pkg xgboost} package is not installed.",
+      "i" = "Install it with {.code install.packages(\"xgboost\")} and restart R."
+    ),
+    download_failed = c(
+      "x" = "{.file {asset}} could not be downloaded from the {.val cfb_model_artifacts} release, and no copy is cached.",
+      "i" = "Check the network connection to {.url https://github.com} and try again."
+    ),
+    c(
+      "x" = "{.pkg xgboost} could not read {.file {asset}}.",
+      "i" = "Update {.pkg xgboost} with {.code install.packages(\"xgboost\")}."
+    )
+  )
+  cli::cli_warn(c(
+    "!" = "cfbfastR is scoring {what} with the retired {legacy}, not the {.file {asset}} booster.",
+    "i" = "Its values differ from the current model and from sportsdataverse-py on every play.",
+    why,
+    "i" = "This warning is shown once per session."
+  ), class = "cfbfastR_legacy_model")
+}
+
+#' The bundle booster, else the retired model with a warning
+#' @keywords internal
+#' @noRd
+.cfb_booster_or_legacy <- function(asset, what, legacy, load_legacy) {
+  b <- .cfb_bundle_booster(asset)
+  if (!is.character(b)) return(b)
+  m <- load_legacy()
+  # Nothing loaded at all: .require_model() aborts with its own message, and a
+  # warning about a fallback that did not happen would only mislead.
+  if (!is.null(m)) .cfb_warn_legacy_model(what, asset, legacy, b)
+  m
+}
+
 #' Load the Expected Points model
 #'
 #' Fetches `ep_model.ubj` from the shared `cfb_model_artifacts` release -- the
@@ -121,21 +192,16 @@
 #' EPA and a retrain updates both in one publish.
 #'
 #' Falls back to the retired `nnet::multinom` on `cfbfastR-data` when the
-#' bundle or `xgboost` is unavailable, so an offline session still returns a
-#' usable model. [`.ep_predict()`] accepts either generation. Note the legacy
-#' model aborts on mid-era CFBD data (issue #5); the bundled model does not.
+#' bundle or `xgboost` is unavailable, with a once-per-session
+#' `cfbfastR_legacy_model` warning. [`.ep_predict()`] accepts either
+#' generation. Note the legacy model aborts on mid-era CFBD data (issue #5);
+#' the bundled model does not.
 #'
 #' @keywords internal
 #' @noRd
 load_ep_model <- function() {
-  if (requireNamespace("xgboost", quietly = TRUE)) {
-    f <- .cfb_model_file("ep_model.ubj")
-    if (!is.null(f)) {
-      booster <- try(xgboost::xgb.load(f), silent = TRUE)
-      if (!inherits(booster, "try-error") && !is.null(booster)) return(booster)
-    }
-  }
-  .load_legacy_ep_model()
+  .cfb_booster_or_legacy("ep_model.ubj", "EP", "nnet expected points model",
+                         .load_legacy_ep_model)
 }
 
 #' Retired nnet EP model, kept as the offline/no-xgboost fallback
@@ -156,19 +222,14 @@ load_ep_model <- function() {
 #'
 #' Prefers the era-aware `fg_model.ubj` from the shared `cfb_model_artifacts`
 #' release; falls back to the retired single-feature `mgcv::bam` when the
-#' bundle or `xgboost` is unavailable. [`.fg_make_prob()`] scores either.
+#' bundle or `xgboost` is unavailable, with a once-per-session
+#' `cfbfastR_legacy_model` warning. [`.fg_make_prob()`] scores either.
 #'
 #' @keywords internal
 #' @noRd
 load_fg_model <- function() {
-  if (requireNamespace("xgboost", quietly = TRUE)) {
-    f <- .cfb_model_file("fg_model.ubj")
-    if (!is.null(f)) {
-      booster <- try(xgboost::xgb.load(f), silent = TRUE)
-      if (!inherits(booster, "try-error") && !is.null(booster)) return(booster)
-    }
-  }
-  .load_legacy_fg_model()
+  .cfb_booster_or_legacy("fg_model.ubj", "FG", "mgcv field goal model",
+                         .load_legacy_fg_model)
 }
 
 #' Retired single-feature GAM FG model, kept as the offline fallback
@@ -189,19 +250,14 @@ load_fg_model <- function() {
 #' Prefers `wp_naive.ubj` from the shared `cfb_model_artifacts` release, the
 #' same artifact `sportsdataverse-py` scores with. Falls back to the retired
 #' `mgcv::bam` GAM on `cfbfastR-data` when the bundle or `xgboost` is
-#' unavailable; [`.wp_predict()`] accepts either generation.
+#' unavailable, with a once-per-session `cfbfastR_legacy_model` warning;
+#' [`.wp_predict()`] accepts either generation.
 #'
 #' @keywords internal
 #' @noRd
 load_wp_model <- function() {
-  if (requireNamespace("xgboost", quietly = TRUE)) {
-    f <- .cfb_model_file("wp_naive.ubj")
-    if (!is.null(f)) {
-      booster <- try(xgboost::xgb.load(f), silent = TRUE)
-      if (!inherits(booster, "try-error") && !is.null(booster)) return(booster)
-    }
-  }
-  .load_legacy_wp_model()
+  .cfb_booster_or_legacy("wp_naive.ubj", "WP", "mgcv win probability model",
+                         .load_legacy_wp_model)
 }
 
 #' Retired mgcv GAM WP model, kept as the offline/no-xgboost fallback

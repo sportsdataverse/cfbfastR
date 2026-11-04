@@ -69,10 +69,7 @@ load_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
 # load games file
 load_games <- function(){
   .url <- "https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/data/games_in_data_repo.csv"
-  con <- url(.url)
-  dat <- utils::read.csv(con)
-  # close(con)
-  return(dat)
+  .release_csv_from_url(.url)
 }
 
 #' @title

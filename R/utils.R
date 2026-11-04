@@ -55,6 +55,16 @@ csv_from_url <- function(...){
   data.table::fread(...)
 }
 
+# Read a sportsdataverse release / data-repo csv through `.read_release_asset()`
+# (150 s timeout floor, two retries, a warning naming the url), raising the last
+# error when every try fails.
+.release_csv_from_url <- function(url, ...) {
+  # `file =` so fread() never takes a url with spaces for a shell command.
+  load <- .read_release_asset(url, function(u) csv_from_url(file = u, ...))
+  if (inherits(load, "try-error")) stop(attr(load, "condition"))
+  load
+}
+
 
 #' Load .rds file from a remote connection
 #'

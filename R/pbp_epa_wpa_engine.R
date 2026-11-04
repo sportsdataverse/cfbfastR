@@ -112,7 +112,7 @@
     # splits per game and orders the plays -- can difference it into vegas_wpa
     # without a second grouping pass. A lead() across a game boundary would
     # otherwise difference two different games.
-    .pbp_add_vegas_wp() |>
+    .pbp_add_vegas_wp(season = season) |>
     .pbp_create_wpa_naive(wp_model = wp_model, season = season) |>
     # Additive and self-contained: CP/CPOE lazily loads its own bundled model
     # and emits all-NA columns rather than raising when it or its inputs are

@@ -321,12 +321,21 @@ NULL
 
 #' Score the Win Probability model, whichever generation is loaded
 #'
+#' A booster's output goes through [.cfb_adjust_wp()] (the overtime stage,
+#' sdv-py `adjust_wp`), as sdv-py scores its published `wp_before_naive`.
+#'
 #' @param wp_model The bundle's `xgb.Booster`, or the retired `mgcv::bam` GAM.
 #' @param newdata One row per play.
+#' @param season Season, for the overtime two-point rule; a `season` column on
+#'   `newdata` wins.
+#' @param second Optional per-row "second possession of the overtime period"
+#'   ([.ot_second_possession()]).
+#' @param adjust `FALSE` returns the regulation booster's raw output.
 #' @return Numeric vector of offense win probabilities, `nrow(newdata)` long.
 #' @keywords internal
 #' @noRd
-.wp_predict <- function(wp_model, newdata) {
+.wp_predict <- function(wp_model, newdata, season = NULL, second = NULL,
+                        adjust = TRUE) {
   .require_model(wp_model, "win probability")
   if (!inherits(wp_model, "xgb.Booster")) {
     return(as.vector(stats::predict(wp_model, newdata = newdata,
@@ -340,7 +349,20 @@ NULL
       "WP model returned {length(p)} value{?s} for {nrow(x)} play{?s}."
     )
   }
-  p
+  if (!adjust) return(p)
+  .cfb_adjust_wp(p, x, second = second,
+                 forced = .wp_ot_forced(newdata, season))
+}
+
+#' Per-play forced-two-point flag, or `NULL` when the season is unknown
+#'
+#' `[[` not `$`: `$` partial-matches `season_type`.
+#' @keywords internal
+#' @noRd
+.wp_ot_forced <- function(df, season = NULL) {
+  s <- df[["season"]] %||% season
+  if (is.null(s) || !"period" %in% names(df)) return(NULL)
+  .ot_forced_two_point(rep_len(s, nrow(df)), df$period)
 }
 
 #' Score the EP model, whichever generation is loaded
@@ -412,21 +434,38 @@ NULL
 #'
 #' @keywords internal
 #' @noRd
-.cfb_cp_model <- function() {
-  if (!is.null(.cfb_model_env$cp_model)) return(.cfb_model_env$cp_model)
-  # A failed fetch is remembered too. Without it .cfb_model_file() retries the
-  # download on EVERY game of a season sweep and pays the timeout each time.
-  if (isTRUE(.cfb_model_env$unavailable[["cp_model"]])) return(NULL)
-  fail <- function() {
-    .cfb_model_env$unavailable[["cp_model"]] <- TRUE
-    NULL
+.cfb_cp_model <- function() .cfb_lazy_booster("cp_model", "cfb_cp_model.ubj")
+
+#' Lazily load the bundled air-yards completion-probability model
+#'
+#' The 11-feature booster sdv-py scores wherever ESPN's text gave a catch or
+#' target spot (`air_yards` known): [.CP_FEATURES] plus [.CP_AIR_YARDS_EXTRA].
+#' @keywords internal
+#' @noRd
+.cfb_cp_air_yards_model <- function() {
+  .cfb_lazy_booster("cp_air_yards_model", "cfb_cp_model_air_yards.ubj")
+}
+
+#' @keywords internal
+#' @noRd
+.CP_AIR_YARDS_EXTRA <- c("air_yards", "pass_is_middle", "qb_hurry")
+
+#' A bundle booster loaded on first use and kept for the session
+#'
+#' Returns `NULL` when unavailable. A failed fetch is remembered too: without
+#' it .cfb_model_file() retries the download on EVERY game of a season sweep and
+#' pays the timeout each time.
+#' @keywords internal
+#' @noRd
+.cfb_lazy_booster <- function(key, asset) {
+  if (!is.null(.cfb_model_env[[key]])) return(.cfb_model_env[[key]])
+  if (isTRUE(.cfb_model_env$unavailable[[key]])) return(NULL)
+  b <- .cfb_bundle_booster(asset)
+  if (is.character(b)) {
+    .cfb_model_env$unavailable[[key]] <- TRUE
+    return(NULL)
   }
-  if (!requireNamespace("xgboost", quietly = TRUE)) return(fail())
-  f <- .cfb_model_file("cfb_cp_model.ubj")
-  if (is.null(f)) return(fail())
-  b <- try(xgboost::xgb.load(f), silent = TRUE)
-  if (inherits(b, "try-error") || is.null(b)) return(fail())
-  .cfb_model_env$cp_model <- b
+  assign(key, b, envir = .cfb_model_env)
   b
 }
 
@@ -479,6 +518,13 @@ NULL
 #' `100 * (completion - cp)` on those same plays, matching sdv-py's
 #' percentage-point scale. Both are `NA` elsewhere.
 #'
+#' Two boosters back `cp`, as in sdv-py `__process_cpoe`, and `cp_model` says
+#' which scored the play: `"air_yards"` (11 features, where `air_yards` is
+#' known -- ESPN only gives the spot from 2025) or `"game_state"` (the
+#' 8-feature model, everywhere else). The two are not on one scale, so
+#' `cp_game_state` carries the game-state prediction on every pass play: use
+#' `cp` for one play, `cp_game_state` for anything summed or averaged.
+#'
 #' Never raises: a missing model, missing `xgboost`, or a frame lacking the
 #' required inputs yields all-`NA` columns, so the surface is safe to run
 #' unconditionally in the pipeline.
@@ -501,22 +547,54 @@ NULL
   # ("replacement has 1 row, data has 0").
   df$cp <- rep(NA_real_, nrow(df))
   df$cpoe <- rep(NA_real_, nrow(df))
+  df$cp_game_state <- rep(NA_real_, nrow(df))
+  df$cp_model <- rep(NA_character_, nrow(df))
   need <- c("down", "distance", "yards_to_goal", "pos_score_diff_start",
             "TimeSecsRem", "period", "pass", "completion")
   if (!nrow(df) || !all(need %in% names(df))) return(df)
   model <- .cfb_cp_model()
   if (is.null(model)) return(df)
 
+  x <- NULL
   p <- try({
     x <- .cp_feature_matrix(df)
     as.numeric(stats::predict(model, x))
   }, silent = TRUE)
   if (inherits(p, "try-error") || length(p) != nrow(df)) return(df)
 
+  # Air-yards arm, as sdv-py: scored over the whole frame and selected per row,
+  # so it is never extrapolated onto a throw of unknown length.
+  cp <- p
+  arm <- rep("game_state", nrow(df))
+  air_model <- if (all(c("air_yards", "pass_direction", "qb_hurry") %in% names(df))) {
+    .cfb_cp_air_yards_model()
+  }
+  if (!is.null(air_model)) {
+    air <- suppressWarnings(as.numeric(df$air_yards))
+    pa <- try({
+      xa <- cbind(
+        x,
+        air_yards = air,
+        # an unknown direction stays NA: "not middle" is a different claim
+        pass_is_middle = ifelse(is.na(df$pass_direction), NA_real_,
+                                as.numeric(df$pass_direction == "middle")),
+        qb_hurry = suppressWarnings(as.numeric(df$qb_hurry))
+      )
+      as.numeric(stats::predict(air_model, xa[, c(.CP_FEATURES, .CP_AIR_YARDS_EXTRA)]))
+    }, silent = TRUE)
+    if (!inherits(pa, "try-error") && length(pa) == nrow(df)) {
+      has_air <- !is.na(air)
+      cp <- ifelse(has_air, pa, p)
+      arm[has_air] <- "air_yards"
+    }
+  }
+
   is_pass <- suppressWarnings(as.numeric(as.character(df$pass))) %in% 1
   comp <- suppressWarnings(as.numeric(as.character(df$completion)))
-  df$cp <- ifelse(is_pass, p, NA_real_)
+  df$cp <- ifelse(is_pass, cp, NA_real_)
   df$cpoe <- ifelse(is_pass & !is.na(comp), 100 * (comp - df$cp), NA_real_)
+  df$cp_game_state <- ifelse(is_pass, p, NA_real_)
+  df$cp_model <- ifelse(is_pass, arm, NA_character_)
   df
 }
 
@@ -729,7 +807,7 @@ NULL
 #'
 #' @keywords internal
 #' @noRd
-.pbp_add_vegas_wp <- function(df) {
+.pbp_add_vegas_wp <- function(df, season = NULL) {
   df$vegas_wp <- rep(NA_real_, nrow(df))
   if (!nrow(df)) return(df)
   spread_time <- .wp_spread_time(df)
@@ -740,7 +818,11 @@ NULL
   p <- try({
     base <- .wp_feature_matrix(df)
     x <- cbind(base, spread_time = spread_time)[, .WP_SPREAD_FEATURES, drop = FALSE]
-    as.numeric(stats::predict(model, x))
+    # The overtime stage, with the spread-aware tie value (sdv-py adjust_wp).
+    .cfb_adjust_wp(as.numeric(stats::predict(model, x)), x,
+                   spread_time = spread_time,
+                   second = .ot_second_possession(df),
+                   forced = .wp_ot_forced(df, season))
   }, silent = TRUE)
   if (inherits(p, "try-error") || length(p) != nrow(df)) return(df)
 

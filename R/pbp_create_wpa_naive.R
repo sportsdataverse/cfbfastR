@@ -22,7 +22,8 @@
     dplyr::arrange(.data$game_id, .data$play_order)
   # .wp_predict() handles either model generation and derives `is_home`, the
   # one bundle feature the frame does not already carry.
-  df$wp_before <- .wp_predict(wp_model, df)
+  df$wp_before <- .wp_predict(wp_model, df, season = season,
+                              second = .ot_second_possession(df))
   # Kickoff plays
   # Calculate EP before at kickoff as what happens if it was a touchback
   # 25 yard line in 2012 and onwards, the 20 through 2011
