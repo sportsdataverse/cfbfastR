@@ -120,7 +120,8 @@ create_wpa_naive <- function(df, wp_model, season = NULL) {
 
   df <- df |>
     dplyr::arrange(.data$game_id, .data$new_id)
-  Off_Win_Prob <- .wp_predict(wp_model, df)
+  Off_Win_Prob <- .wp_predict(wp_model, df, season = season,
+                              second = .ot_second_possession(df))
   df$wp_before <- Off_Win_Prob
   # Kickoff plays
   # Calculate EP before at kickoff as what happens if it was a touchback

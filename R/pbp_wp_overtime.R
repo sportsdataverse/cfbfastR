@@ -237,7 +237,11 @@ NULL
     # spread_time = pos_team_spread * exp(-4 * elapsed_share); undo the decay
     .ot_tie_value(m, as.numeric(spread_time) * exp(4 * pmax((3600 - adj) / 3600, 0)))
   }
-  q <- as.numeric(stats::predict(m$q_model, x[, m$features, drop = FALSE]))
+  # A republished card naming a feature the WP frame lacks must not abort
+  # scoring: WP then stays the regulation booster's.
+  q <- try(as.numeric(stats::predict(m$q_model, x[, m$features, drop = FALSE])),
+           silent = TRUE)
+  if (inherits(q, "try-error") || length(q) != length(wp)) return(wp)
   out <- (1 - q) * wp + q * tie
   ot <- !is.na(col("period")) & col("period") >= 5
   if (any(ot)) {

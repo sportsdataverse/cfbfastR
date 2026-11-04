@@ -115,3 +115,10 @@ test_that("cp, cp_model and cp_game_state match sdv-py, air-yards arm included",
   expect_close_ot(got$cp_game_state[pass], o$cp_game_state[pass], "cp_game_state")
   expect_true(all(is.na(got$cp[!pass])))
 })
+
+test_that("a card naming a feature the WP frame lacks leaves WP at the booster's value", {
+  m <- list(features = "not_a_feature", q_model = NULL)
+  local_mocked_bindings(.cfb_wp_ot_model = function() m)
+  x <- cbind(period = 1, adj_TimeSecsRem = 1000)
+  expect_identical(.cfb_adjust_wp(0.4, x), 0.4)
+})
