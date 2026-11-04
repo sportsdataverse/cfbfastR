@@ -60,7 +60,7 @@ Other CFBD Ratings Functions:
 # \donttest{
   try(cfbd_ratings_core(year = 2024))
 #> ── Get core team ratings from CollegeFootballData.com ──────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-03 23:26:23 UTC
+#> ℹ Data updated: 2026-11-04 03:39:36 UTC
 #> # A tibble: 134 × 11
 #>     year through_season_type through_week team        conference overall offense
 #>    <int> <chr>                      <int> <chr>       <chr>        <dbl>   <dbl>

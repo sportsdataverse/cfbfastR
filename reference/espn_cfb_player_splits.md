@@ -147,7 +147,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_player_splits(athlete_id = 102597, year = 2024))
 #> ── Player statistical splits from ESPN ─────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-03 23:29:43 UTC
+#> ℹ Data updated: 2026-11-04 03:42:55 UTC
 #> # A tibble: 60 × 27
 #>    athlete_id season category category_display split_name split_abbr completions
 #>    <chr>       <int> <chr>    <chr>            <chr>      <chr>      <chr>      
@@ -171,7 +171,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_player_splits(athlete_id = 102597, year = 2024,
                              athlete_detail = FALSE))
 #> ── Player statistical splits from ESPN ─────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-03 23:29:44 UTC
+#> ℹ Data updated: 2026-11-04 03:42:55 UTC
 #> # A tibble: 60 × 21
 #>    athlete_id season category category_display split_name split_abbr completions
 #>    <chr>       <int> <chr>    <chr>            <chr>      <chr>      <chr>      

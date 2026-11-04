@@ -87,7 +87,7 @@ Other CFBD Punting:
 # \donttest{
   try(cfbd_punting_teams_games(year = 2025, week = 5))
 #> ── Team game punting data from CollegeFootballData.com ─────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-03 23:26:20 UTC
+#> ℹ Data updated: 2026-11-04 03:39:33 UTC
 #> # A tibble: 104 × 55
 #>      game_id season  week season_type team     conference opponent punting_punts
 #>        <int>  <int> <int> <chr>       <chr>    <chr>      <chr>            <int>

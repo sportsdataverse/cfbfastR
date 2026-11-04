@@ -241,7 +241,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE))
 #> ── Play-by-play data from ESPN (core-v2) ───────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-03 23:29:37 UTC
+#> ℹ Data updated: 2026-11-04 03:42:48 UTC
 #> # A tibble: 156 × 540
 #>    season id_play    game_id game_play_number half_play_number drive_play_number
 #>     <int> <chr>      <chr>              <dbl>            <dbl>             <dbl>

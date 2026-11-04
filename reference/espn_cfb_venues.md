@@ -120,7 +120,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_venues(max_results = 50))
 #> ── Venues index from ESPN ──────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-03 23:32:01 UTC
+#> ℹ Data updated: 2026-11-04 03:44:59 UTC
 #> # A tibble: 50 × 9
 #>    venue_id full_name        city  state zip_code country grass indoor venue_ref
 #>    <chr>    <chr>            <chr> <chr> <chr>    <chr>   <lgl> <lgl>  <chr>    
