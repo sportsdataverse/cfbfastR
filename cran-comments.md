@@ -120,4 +120,4 @@ cfbseedR 0.2.0 (Suggests cfbfastR) is the only reverse dependency on CRAN.
 `R CMD check --as-cran` of its CRAN source tarball on 2026-11-05 (local
 Windows, R 4.6.0), with the cfbfastR 3.1.0 release candidate installed first in
 the library path (built just before the last change to how a failed model
-download is reported, which cfbseedR does not reach): Status: OK.
+download is reported): Status: OK.
