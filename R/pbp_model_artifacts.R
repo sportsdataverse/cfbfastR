@@ -82,6 +82,37 @@ NULL
   file.path(root, "models")
 }
 
+#' **Clear the cached CFB models**
+#'
+#' @description
+#' The expected points, win probability, field goal and other models that
+#' [calculate_cfb_models], [cfbd_pbp_data()] and [espn_cfb_pbp()] score with are
+#' downloaded from the `cfb_model_artifacts` release on first use and cached in
+#' `file.path(tools::R_user_dir("cfbfastR", "cache"), "models")`. A cached copy
+#' is re-downloaded once it is older than `getOption("cfbfastR.cache_duration")`
+#' seconds (default one day). Under `R CMD check` the cache is in [tempdir()]
+#' instead.
+#'
+#' `cfb_clear_model_cache()` deletes that directory and drops the models already
+#' loaded in this session, so the next call downloads them again. The ESPN
+#' request cache is separate; see [espn_cfb_clear_cache()].
+#'
+#' @return Invisibly, the path of the directory that was cleared.
+#' @keywords CFB Model Cache
+#' @family CFB Model Calculators
+#' @export
+#' @examples
+#' cfb_clear_model_cache()
+cfb_clear_model_cache <- function() {
+  dir <- .cfb_model_dir()
+  unlink(dir, recursive = TRUE)
+  rm(list = ls(.cfb_model_env), envir = .cfb_model_env)
+  .cfb_model_env$unavailable <- list()
+  rm(list = ls(.cfb_models), envir = .cfb_models)
+  cfb_card_reset_cache()
+  invisible(dir)
+}
+
 #' Stop with a clear message when a model could not be loaded
 #'
 #' `.cfb_model()` returns `NULL` when neither the bundle nor the legacy model
@@ -124,9 +155,11 @@ NULL
   if (fresh) return(dest)
 
   tmp <- paste0(dest, ".part")
+  # Offline, download.file() warns ("cannot open URL") before it errors; the
+  # caller reports the failure itself, so the raw warning would only be noise.
   ok <- try(
-    utils::download.file(paste0(.CFB_MODEL_BASE, asset), tmp,
-                         mode = "wb", quiet = TRUE),
+    suppressWarnings(utils::download.file(paste0(.CFB_MODEL_BASE, asset), tmp,
+                                          mode = "wb", quiet = TRUE)),
     silent = TRUE
   )
   if (!inherits(ok, "try-error") && file.exists(tmp) && file.size(tmp) > 0) {
@@ -155,8 +188,8 @@ NULL
 .cfb_model_manifest <- function() {
   if (!is.null(.cfb_model_env$manifest)) return(.cfb_model_env$manifest)
   man <- try(
-    jsonlite::fromJSON(paste0(.CFB_MODEL_BASE, "MANIFEST.json"),
-                       simplifyVector = FALSE),
+    suppressWarnings(jsonlite::fromJSON(paste0(.CFB_MODEL_BASE, "MANIFEST.json"),
+                                        simplifyVector = FALSE)),
     silent = TRUE
   )
   if (inherits(man, "try-error")) return(NULL)

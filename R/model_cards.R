@@ -36,6 +36,8 @@
 #' \donttest{
 #'   try(cfb_card_features("ep_model"))
 #' }
+#' # Offline: forget the cards read this session.
+#' cfb_card_reset_cache()
 cfb_model_card <- function(model) {
   # Keyed on the BOOSTER's mtime, not just the model name. `.cfb_model_file()`
   # re-downloads once an asset is older than `cfbfastR.cache_duration` (24h), so
@@ -69,7 +71,10 @@ cfb_model_card <- function(model) {
 .read_card_json <- function(model) {
   path <- .cfb_model_file(paste0(model, ".card.json"))
   if (is.null(path) || !file.exists(path)) {
-    cli::cli_abort("No published card for {.val {model}}.")
+    cli::cli_abort(c(
+      "No published card for {.val {model}}.",
+      "i" = "cfbfastR downloads model cards from GitHub on first use; check the connection and try again."
+    ), call = NULL)
   }
   jsonlite::fromJSON(path, simplifyVector = TRUE)
 }

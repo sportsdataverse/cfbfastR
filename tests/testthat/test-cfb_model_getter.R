@@ -31,6 +31,18 @@ test_that(".cfb_model_dir() caches in tempdir() under R CMD check, the user cach
   )
 })
 
+test_that("cfb_clear_model_cache() deletes the cache dir and forgets loaded models", {
+  dir <- withr::local_tempdir()
+  local_mocked_bindings(.cfb_model_dir = function() dir)
+  writeLines("x", file.path(dir, "ep_model.ubj"))
+  assign("toy_booster", 1, envir = .cfb_model_env)
+  .cfb_model_env$unavailable$wp_naive <- TRUE
+  expect_identical(cfb_clear_model_cache(), dir)
+  expect_false(dir.exists(dir))
+  expect_null(.cfb_model_env$toy_booster)
+  expect_identical(.cfb_model_env$unavailable, list())
+})
+
 test_that("scoring with a model that failed to load stops with a clear message", {
   expect_error(.ep_predict(NULL, data.frame()), "expected points model could not be loaded")
   expect_error(.wp_predict(NULL, data.frame()), "win probability model could not be loaded")
