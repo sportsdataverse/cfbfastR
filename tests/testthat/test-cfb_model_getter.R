@@ -65,6 +65,26 @@ test_that("a download with a non-zero status is not cached, and the error says w
   expect_match(conditionMessage(err), "check the connection", fixed = TRUE)
 })
 
+test_that("a download that warns with status 0 keeps the cached copy", {
+  withr::defer(.cfb_model_env$fetch_error <- list())
+  dir <- withr::local_tempdir()
+  cached <- file.path(dir, "xpass_model.ubj")
+  writeLines("cached", cached)
+  Sys.setFileTime(cached, Sys.time() - 10 * 86400) # expired, so a refresh is tried
+  local_mocked_bindings(.cfb_model_dir = function() dir)
+  local_mocked_bindings(
+    download.file = function(url, destfile, ...) {
+      writeLines("partial", destfile)
+      warning("downloaded length 8 != reported length 100")
+      0L
+    },
+    .package = "utils"
+  )
+  expect_identical(.cfb_model_file("xpass_model.ubj"), cached)
+  expect_identical(readLines(cached), "cached")
+  expect_false(file.exists(paste0(cached, ".part")))
+})
+
 test_that("scoring with a model that failed to load stops with a clear message", {
   expect_error(.ep_predict(NULL, data.frame()), "expected points model could not be loaded")
   expect_error(.wp_predict(NULL, data.frame()), "win probability model could not be loaded")

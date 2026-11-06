@@ -181,6 +181,10 @@ cfb_clear_model_cache <- function() {
     conditionMessage(ok)
   } else if (!identical(ok, 0L)) {
     paste0("download.file() returned status ", format(ok), ".")
+  } else if (length(warns)) {
+    # a clean download doesn't warn; a warning with status 0 can be a
+    # truncated transfer, so it is not trusted over the cached copy
+    "download.file() warned."
   } else if (!file.exists(tmp) || file.size(tmp) == 0) {
     "The download was empty."
   }
