@@ -415,12 +415,8 @@ Runs penalty detection on the play text and play types. Requires the following c
 }
 }
 \examples{
-\donttest{
-  # add_play_counts() runs on each game of the legacy pipeline that
-  # cfbd_pbp_data(epa_wpa = TRUE, engine = "legacy") drives. To score a
-  # frame of your own, see ?calculate_cfb_models.
-  try(cfbd_pbp_data(year = 2024, week = 1, team = "Texas", epa_wpa = TRUE,
-                    engine = "legacy"))
-}
+# add_play_counts() is one step of the legacy play-by-play pipeline; the
+# example in ?cfbd_pbp_data runs it (engine = "legacy", epa_wpa = TRUE).
+# To score a frame of your own, see ?calculate_cfb_models.
 }
 \keyword{internal}
