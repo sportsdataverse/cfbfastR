@@ -47,12 +47,14 @@ This is a minor release (3.0.0 -> 3.1.0). It:
 
 ## Test environments
 
-* local Windows 10 (x86_64-w64-mingw32), R 4.6.0 ucrt, 2026-11-05:
-  `R CMD check --as-cran --run-donttest --timings`, once with no
-  CollegeFootballData API key set (`R_ENVIRON_USER` pointing at an empty file)
-  and once with a key
-* local Windows 10, R 4.6.0: `R CMD check --run-donttest --no-tests` with the
-  network blocked (dead proxy)
+* local Windows 10 (x86_64-w64-mingw32), R 4.6.0 ucrt, 2026-11-06:
+  `R CMD check --as-cran --run-donttest --timings` with no CollegeFootballData
+  API key set (`R_ENVIRON_USER` pointing at an empty file)
+* local Windows 10, R 4.6.0, 2026-11-06: `R CMD check --run-donttest
+  --no-tests` with the network blocked (dead proxy)
+* local Windows 10, R 4.6.0, 2026-11-05: `R CMD check --as-cran
+  --run-donttest` with a key, on the release candidate just before the last
+  change to how a failed model download is reported
 * GitHub Actions: windows-latest (release), ubuntu-latest (devel, release,
   oldrel-1); the R-devel job fails on any NOTE
 * win-builder (devel and release): to be run before submission
@@ -62,27 +64,31 @@ This is a minor release (3.0.0 -> 3.1.0). It:
 0 errors | 0 warnings | 1 note
 
 ```
-* checking examples ... [179s] NOTE
+* checking examples ... [192s] NOTE
 Examples with CPU (user + system) or elapsed time > 5s
-                         user system elapsed
-espn_cfb_pbp             4.39   1.12   16.61
-espn_cfb_game_player_box 3.47   0.07    9.19
-calculate_cfb_models     0.40   0.26   13.97
+                            user system elapsed
+espn_cfb_pbp                4.87   1.22   16.95
+yahoo_cfb_team_season_stats 3.54   1.41    5.03
+espn_cfb_game_player_box    3.02   0.05    8.94
+espn_cfb_game_drive_plays   0.90   0.07    5.46
+calculate_cfb_models        0.36   0.28   12.60
+espn_cfb_groups             0.28   0.00    5.55
 ```
 
 This NOTE comes only from passing `--run-donttest` explicitly, which runs the
 `\donttest` code inside the timed examples step. The examples outside
 `\donttest` are all offline.
 `calculate_cfb_models` and `espn_cfb_pbp` spend most of their elapsed time
-downloading the models on first use (0.7 and 5.5 s of CPU); run again with the
-models cached, `espn_cfb_pbp` takes about 4 s. All 250 examples took 156 s
-elapsed in total with no API key, where the CollegeFootballData examples stop
-before sending a request.
+downloading the models on first use (0.6 and 6.1 s of CPU); run again with the
+models cached, `espn_cfb_pbp` takes about 4 s. The others are single network
+requests whose elapsed time is mostly waiting. All 250 examples took 168 s
+elapsed (45 s CPU) in total with no API key, where the CollegeFootballData
+examples stop before sending a request.
 
-With a key the check also gives 1 NOTE, the same examples-timing NOTE, whose
-list then includes CollegeFootballData examples that do send requests. With the
-network blocked, Status: OK; every network example fails inside `try()` with an
-informative message.
+With the network blocked, Status: OK; every network example fails inside
+`try()` with an informative message. With a key, the check also gave 1 NOTE,
+the same examples-timing NOTE, whose list then includes CollegeFootballData
+examples that do send requests.
 
 Under `R CMD check` the model bundle that examples download is cached in
 `tempdir()`, so the check leaves nothing in the user's file space.
@@ -112,5 +118,6 @@ request when no API key is set.
 
 cfbseedR 0.2.0 (Suggests cfbfastR) is the only reverse dependency on CRAN.
 `R CMD check --as-cran` of its CRAN source tarball on 2026-11-05 (local
-Windows, R 4.6.0), with this cfbfastR 3.1.0 tarball installed first in the
-library path: Status: OK.
+Windows, R 4.6.0), with the cfbfastR 3.1.0 release candidate installed first in
+the library path (built just before the last change to how a failed model
+download is reported, which cfbseedR does not reach): Status: OK.
