@@ -135,12 +135,10 @@ cfb_add_era_columns <- function(df, model, season = NULL) {
 #' @keywords internal
 #' @noRd
 .cfb_booster_for <- function(model) {
-  path <- .cfb_model_file(paste0(model, ".ubj"))
+  asset <- paste0(model, ".ubj")
+  path <- .cfb_model_file(asset)
   if (is.null(path) || !file.exists(path)) {
-    cli::cli_abort(c(
-      "Could not obtain the {.val {model}} model.",
-      "i" = "cfbfastR downloads its models from GitHub on first use; check the connection and try again."
-    ), call = NULL)
+    .cfb_fetch_abort(model, asset, "Could not obtain the {.val {model}} model.")
   }
   xgboost::xgb.load(path)
 }

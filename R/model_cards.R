@@ -69,12 +69,11 @@ cfb_model_card <- function(model) {
 .cfb_card_cache <- new.env(parent = emptyenv())
 
 .read_card_json <- function(model) {
-  path <- .cfb_model_file(paste0(model, ".card.json"))
+  asset <- paste0(model, ".card.json")
+  path <- .cfb_model_file(asset)
   if (is.null(path) || !file.exists(path)) {
-    cli::cli_abort(c(
-      "No published card for {.val {model}}.",
-      "i" = "cfbfastR downloads model cards from GitHub on first use; check the connection and try again."
-    ), call = NULL)
+    .cfb_fetch_abort(model, asset, "No published card for {.val {model}}.",
+                     what = "model cards")
   }
   jsonlite::fromJSON(path, simplifyVector = TRUE)
 }

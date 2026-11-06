@@ -33,6 +33,7 @@ NULL
 #' @noRd
 .cfb_model_env <- new.env(parent = emptyenv())
 .cfb_model_env$unavailable <- list()
+.cfb_model_env$fetch_error <- list()
 
 #' EP next-score class order, point values and feature contract
 #'
@@ -108,6 +109,7 @@ cfb_clear_model_cache <- function() {
   unlink(dir, recursive = TRUE)
   rm(list = ls(.cfb_model_env), envir = .cfb_model_env)
   .cfb_model_env$unavailable <- list()
+  .cfb_model_env$fetch_error <- list()
   rm(list = ls(.cfb_models), envir = .cfb_models)
   cfb_card_reset_cache()
   invisible(dir)
@@ -155,14 +157,33 @@ cfb_clear_model_cache <- function() {
   if (fresh) return(dest)
 
   tmp <- paste0(dest, ".part")
-  # Offline, download.file() warns ("cannot open URL") before it errors; the
-  # caller reports the failure itself, so the raw warning would only be noise.
-  ok <- try(
-    suppressWarnings(utils::download.file(paste0(.CFB_MODEL_BASE, asset), tmp,
-                                          mode = "wb", quiet = TRUE)),
-    silent = TRUE
+  # download.file() warns ("cannot open URL ... 404") before it errors, and on
+  # some methods returns a non-zero status instead of erroring. The warnings
+  # are collected rather than printed: the caller's error shows them, under
+  # .cfb_fetch_abort()'s "x" bullet, so a 404 or an unwritable cache dir is
+  # not reported as a network problem.
+  warns <- character()
+  ok <- tryCatch(
+    withCallingHandlers(
+      utils::download.file(paste0(.CFB_MODEL_BASE, asset), tmp,
+                           mode = "wb", quiet = TRUE),
+      warning = function(w) {
+        warns <<- c(warns, conditionMessage(w))
+        invokeRestart("muffleWarning")
+      }
+    ),
+    error = function(e) e
   )
-  if (!inherits(ok, "try-error") && file.exists(tmp) && file.size(tmp) > 0) {
+  why <- if (inherits(ok, "error")) {
+    conditionMessage(ok)
+  } else if (!identical(ok, 0L)) {
+    paste0("download.file() returned status ", format(ok), ".")
+  } else if (!file.exists(tmp) || file.size(tmp) == 0) {
+    "The download was empty."
+  }
+  .cfb_model_env$fetch_error[[asset]] <-
+    if (is.null(why)) NULL else paste(unique(c(warns, why)), collapse = " ")
+  if (is.null(why)) {
     # Only replace the cached copy once the download is complete, so an
     # interrupted fetch can't leave a truncated model in place. file.rename()
     # returns FALSE rather than erroring when the destination is locked (a
@@ -176,6 +197,23 @@ cfb_clear_model_cache <- function() {
   unlink(tmp)
   # Stale beats absent: an expired cached copy still scores.
   if (file.exists(dest)) dest else NULL
+}
+
+#' Abort because a bundle asset could not be fetched, saying why
+#'
+#' `head` is a cli template evaluated with `model` in scope. The reason
+#' [.cfb_model_file()] recorded for `asset`, if any, is shown as an `"x"`
+#' bullet so the user sees a 404 or a file error, not only the network hint.
+#' @keywords internal
+#' @noRd
+.cfb_fetch_abort <- function(model, asset, head, what = "models") {
+  why <- .cfb_model_env$fetch_error[[asset]]
+  msg <- c(head, "i" = paste0(
+    "cfbfastR downloads its ", what,
+    " from GitHub on first use; check the connection and try again."
+  ))
+  if (length(why)) msg <- c(msg[1], "x" = "{why}", msg[-1])
+  cli::cli_abort(msg, call = NULL)
 }
 
 #' Download and cache the bundle manifest

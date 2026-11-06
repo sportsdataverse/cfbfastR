@@ -41,6 +41,28 @@ test_that("cfb_clear_model_cache() deletes the cache dir and forgets loaded mode
   expect_false(dir.exists(dir))
   expect_null(.cfb_model_env$toy_booster)
   expect_identical(.cfb_model_env$unavailable, list())
+  # Already gone: clearing again is a no-op, not an error.
+  expect_no_error(cfb_clear_model_cache())
+})
+
+test_that("a download with a non-zero status is not cached, and the error says why", {
+  dir <- withr::local_tempdir()
+  local_mocked_bindings(.cfb_model_dir = function() dir)
+  local_mocked_bindings(
+    download.file = function(url, destfile, ...) {
+      writeLines("partial", destfile)
+      warning("downloaded length 8 != reported length 100")
+      1L
+    },
+    .package = "utils"
+  )
+  expect_null(.cfb_model_file("xpass_model.ubj"))
+  expect_false(file.exists(file.path(dir, "xpass_model.ubj")))
+  expect_false(file.exists(file.path(dir, "xpass_model.ubj.part")))
+  err <- expect_error(.cfb_booster_for("xpass_model"), "reported length 100")
+  expect_match(conditionMessage(err), "returned status 1", fixed = TRUE)
+  expect_match(conditionMessage(err), "check the connection", fixed = TRUE)
+  .cfb_model_env$fetch_error <- list()
 })
 
 test_that("scoring with a model that failed to load stops with a clear message", {
