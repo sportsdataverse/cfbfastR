@@ -61,6 +61,12 @@ NULL
 #' ```r
 #' Sys.setenv(CFBD_API_KEY = "YOUR-API-KEY-HERE")
 #' ```
+#' @examples
+#' # Offline: is a key registered in this session?
+#' has_cfbd_key()
+#' \donttest{
+#'   if (has_cfbd_key()) try(cfbd_api_key_info())
+#' }
 #' @name register_cfbd
 NULL
 #' @rdname register_cfbd

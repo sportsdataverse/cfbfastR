@@ -27,7 +27,7 @@ one row per team (all stat groups in one call).
 }
 \examples{
 \donttest{
-  try(yahoo_cfb_team_season_stats(season = 2024))
+  try(yahoo_cfb_team_season_stats(season = 2024, count = 10))
 }
 }
 \seealso{

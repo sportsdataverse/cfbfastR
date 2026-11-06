@@ -118,7 +118,7 @@
 #' @family Yahoo CFB Functions
 #' @examples
 #' \donttest{
-#'   try(yahoo_cfb_player_season_stats(season = 2024))
+#'   try(yahoo_cfb_player_season_stats(season = 2024, count = 10))
 #' }
 yahoo_cfb_player_season_stats <- function(season = most_recent_cfb_season(),
                                           league_structure = "ncaaf.struct.div.1",
@@ -161,7 +161,7 @@ yahoo_cfb_player_season_stats <- function(season = most_recent_cfb_season(),
 #' @family Yahoo CFB Functions
 #' @examples
 #' \donttest{
-#'   try(yahoo_cfb_team_season_stats(season = 2024))
+#'   try(yahoo_cfb_team_season_stats(season = 2024, count = 10))
 #' }
 yahoo_cfb_team_season_stats <- function(season = most_recent_cfb_season(),
                                         league_structure = "ncaaf.struct.div.1",
@@ -208,7 +208,7 @@ yahoo_cfb_team_season_stats <- function(season = most_recent_cfb_season(),
 #' @examples
 #' \donttest{
 #'   try(yahoo_cfb_player_season_stats_legacy(season = 2024, category = "Rushing",
-#'                                            sort_stat = "RUSHING_YARDS"))
+#'                                            sort_stat = "RUSHING_YARDS", count = 10))
 #' }
 yahoo_cfb_player_season_stats_legacy <- function(season = most_recent_cfb_season(), category = "Passing",
                                                  sort_stat = "PASSING_YARDS",
@@ -259,7 +259,7 @@ yahoo_cfb_player_season_stats_legacy <- function(season = most_recent_cfb_season
 #' @examples
 #' \donttest{
 #'   try(yahoo_cfb_team_season_stats_legacy(season = 2024, category = "Rushing",
-#'                                          sort_stat = "RUSHING_YARDS"))
+#'                                          sort_stat = "RUSHING_YARDS", count = 10))
 #' }
 yahoo_cfb_team_season_stats_legacy <- function(season = most_recent_cfb_season(), category = "Passing",
                                                sort_stat = "PASSING_YARDS",

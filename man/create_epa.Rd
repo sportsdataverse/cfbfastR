@@ -48,4 +48,14 @@ Code Description
 \item{6. \code{wpa_prep}:}{Prep variables for WPA.}
 }
 }
+\examples{
+\donttest{
+  # create_epa() runs on each game of the legacy pipeline that
+  # cfbd_pbp_data(epa_wpa = TRUE, engine = "legacy") drives. To score a
+  # frame of your own, see ?calculate_cfb_models.
+  try(cfbd_pbp_data(year = 2024, week = 1, team = "Texas", epa_wpa = TRUE,
+                    engine = "legacy"))
+}
+
+}
 \keyword{internal}

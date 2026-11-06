@@ -57,10 +57,10 @@ one row per coach. The \code{coach_id} column is the value
 birthplace, career-record / coach-season counts).
 }
 \examples{
-\donttest{
-  try(espn_cfb_coaches(year = 2024))
-  try(espn_cfb_coaches(year = 2024, team_detail = FALSE))
-}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# One request per coach (about 270 for a season), so this takes a while.
+try(espn_cfb_coaches(year = 2024, team_detail = FALSE))
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other ESPN CFB Functions:

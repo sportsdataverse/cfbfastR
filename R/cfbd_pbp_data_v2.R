@@ -102,7 +102,7 @@ NULL
 #' @examples
 #' \donttest{
 #'   x <- try(cfbd_pbp_data_v2(
-#'     year = 2024, week = 1, season_type = "regular",
+#'     year = 2024, week = 1, team = "Texas", season_type = "regular",
 #'     epa_wpa = TRUE, output = "default"
 #'   ))
 #' }

@@ -35,7 +35,7 @@ Flattens a legacy \verb{seasonTeamStatsFootball\{Category\}} query into a wide t
 \examples{
 \donttest{
   try(yahoo_cfb_team_season_stats_legacy(season = 2024, category = "Rushing",
-                                         sort_stat = "RUSHING_YARDS"))
+                                         sort_stat = "RUSHING_YARDS", count = 10))
 }
 }
 \seealso{

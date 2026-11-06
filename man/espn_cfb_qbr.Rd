@@ -98,7 +98,6 @@ calls, join \code{athlete_id} to another athlete source (e.g.
 \examples{
 \donttest{
   try(espn_cfb_qbr(year = 2024))
-  try(espn_cfb_qbr(year = 2024, athlete_detail = TRUE))
 }
 }
 \seealso{

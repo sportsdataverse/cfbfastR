@@ -85,8 +85,8 @@ A catalog failure degrades to \code{NA} rather than erroring the wrapper. Set
 }
 \examples{
 \donttest{
-  try(espn_cfb_standings(year = 2024))
-  try(espn_cfb_standings(year = 2024, team_detail = FALSE))
+  # One conference (group 8, the SEC) keeps the request small.
+  try(espn_cfb_standings(year = 2024, group_id = 8, team_detail = FALSE))
 }
 }
 \seealso{

@@ -51,4 +51,14 @@ This is only for D1 football
 \details{
 Requires the following columns to be present in the input data frame.
 }
+\examples{
+\donttest{
+  # create_wpa_naive() runs on each game of the legacy pipeline that
+  # cfbd_pbp_data(epa_wpa = TRUE, engine = "legacy") drives. To score a
+  # frame of your own, see ?calculate_cfb_models.
+  try(cfbd_pbp_data(year = 2024, week = 1, team = "Texas", epa_wpa = TRUE,
+                    engine = "legacy"))
+}
+
+}
 \keyword{internal}

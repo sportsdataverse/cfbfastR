@@ -108,13 +108,11 @@ When \code{position_detail = TRUE} (the default) the ESPN position catalog
 skip the extra fetch and the join.
 }
 \examples{
-\donttest{
-  try(espn_cfb_team_roster(team_id = 61, year = 2024))
-  try(espn_cfb_team_roster(team_id = 61, year = 2024,
-                           position_detail = FALSE))
-  try(espn_cfb_team_roster(team_id = 61, year = 2024,
-                           team_detail = FALSE))
-}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# One request per player (about 180 for a team), so this takes a while.
+try(espn_cfb_team_roster(team_id = 61, year = 2024,
+                         position_detail = FALSE, team_detail = FALSE))
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other ESPN CFB Functions:

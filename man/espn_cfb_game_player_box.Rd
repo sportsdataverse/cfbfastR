@@ -107,11 +107,8 @@ erroring the wrapper. With \code{position_detail = FALSE} the five columns
 }
 \examples{
 \donttest{
-  try(espn_cfb_game_player_box(game_id = 401628339))
   try(espn_cfb_game_player_box(game_id = 401628339,
-                               position_detail = FALSE))
-  try(espn_cfb_game_player_box(game_id = 401628339,
-                               team_detail = FALSE))
+                               position_detail = FALSE, team_detail = FALSE))
 }
 }
 \seealso{

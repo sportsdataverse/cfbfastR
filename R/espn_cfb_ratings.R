@@ -409,7 +409,6 @@ espn_cfb_powerindex <- function(year = NULL) {
 #' @examples
 #' \donttest{
 #'   try(espn_cfb_qbr(year = 2024))
-#'   try(espn_cfb_qbr(year = 2024, athlete_detail = TRUE))
 #' }
 espn_cfb_qbr <- function(year = NULL,
                          group = 80,
