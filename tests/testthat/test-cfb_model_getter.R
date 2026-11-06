@@ -46,6 +46,7 @@ test_that("cfb_clear_model_cache() deletes the cache dir and forgets loaded mode
 })
 
 test_that("a download with a non-zero status is not cached, and the error says why", {
+  withr::defer(.cfb_model_env$fetch_error <- list())
   dir <- withr::local_tempdir()
   local_mocked_bindings(.cfb_model_dir = function() dir)
   local_mocked_bindings(
@@ -62,7 +63,6 @@ test_that("a download with a non-zero status is not cached, and the error says w
   err <- expect_error(.cfb_booster_for("xpass_model"), "reported length 100")
   expect_match(conditionMessage(err), "returned status 1", fixed = TRUE)
   expect_match(conditionMessage(err), "check the connection", fixed = TRUE)
-  .cfb_model_env$fetch_error <- list()
 })
 
 test_that("scoring with a model that failed to load stops with a clear message", {

@@ -106,12 +106,15 @@ NULL
 #' cfb_clear_model_cache()
 cfb_clear_model_cache <- function() {
   dir <- .cfb_model_dir()
-  unlink(dir, recursive = TRUE)
+  failed <- unlink(dir, recursive = TRUE) != 0L || dir.exists(dir)
   rm(list = ls(.cfb_model_env), envir = .cfb_model_env)
   .cfb_model_env$unavailable <- list()
   .cfb_model_env$fetch_error <- list()
   rm(list = ls(.cfb_models), envir = .cfb_models)
   cfb_card_reset_cache()
+  if (failed) {
+    cli::cli_abort("Could not delete the model cache at {.path {dir}}.", call = NULL)
+  }
   invisible(dir)
 }
 
