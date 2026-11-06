@@ -59,10 +59,13 @@ them.
 \donttest{
   try(cfb_card_features("ep_model"))
 }
+# Offline: forget the cards read this session.
+cfb_card_reset_cache()
 }
 \seealso{
 Other CFB Model Calculators:
-\code{\link{calculate_cfb_models}}
+\code{\link{calculate_cfb_models}},
+\code{\link[=cfb_clear_model_cache]{cfb_clear_model_cache()}}
 }
 \concept{CFB Model Calculators}
 \keyword{CFB}

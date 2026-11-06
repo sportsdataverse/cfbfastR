@@ -50,3 +50,10 @@ using a command like the following.
 
 Get information about your API key, including your Patreon level and usage limits.
 }
+\examples{
+# Offline: is a key registered in this session?
+has_cfbd_key()
+\donttest{
+  if (has_cfbd_key()) try(cfbd_api_key_info())
+}
+}

@@ -48,4 +48,10 @@ Code Description
 \item{6. \code{wpa_prep}:}{Prep variables for WPA.}
 }
 }
+\examples{
+# create_epa() is one step of the legacy play-by-play pipeline; the
+# example in ?cfbd_pbp_data runs it (engine = "legacy", epa_wpa = TRUE).
+# To score a frame of your own, see ?calculate_cfb_models.
+
+}
 \keyword{internal}

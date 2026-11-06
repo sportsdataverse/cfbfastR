@@ -38,6 +38,10 @@
 #' @importFrom mgcv bam
 #' @importFrom purrr map_dfr
 #' @export
+#' @examples
+#' # create_wpa_naive() is one step of the legacy play-by-play pipeline; the
+#' # example in ?cfbd_pbp_data runs it (engine = "legacy", epa_wpa = TRUE).
+#' # To score a frame of your own, see ?calculate_cfb_models.
 #'
 
 create_wpa_naive <- function(df, wp_model, season = NULL) {

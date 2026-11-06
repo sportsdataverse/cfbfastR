@@ -231,12 +231,8 @@ are skipped.
 \examples{
 \donttest{
   try(espn_cfb_game_pbp(game_id = 401628339))
-  try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide"))
   try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide",
                         participants_list = TRUE))
-  try(espn_cfb_game_pbp(game_id = 401628339, team_participants = "wide",
-                        team_participants_list = TRUE))
-  try(espn_cfb_game_pbp(game_id = 401628339, team_detail = FALSE))
 }
 }
 \seealso{

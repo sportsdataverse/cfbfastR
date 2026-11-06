@@ -33,6 +33,7 @@ NULL
 #' @noRd
 .cfb_model_env <- new.env(parent = emptyenv())
 .cfb_model_env$unavailable <- list()
+.cfb_model_env$fetch_error <- list()
 
 #' EP next-score class order, point values and feature contract
 #'
@@ -82,6 +83,41 @@ NULL
   file.path(root, "models")
 }
 
+#' **Clear the cached CFB models**
+#'
+#' @description
+#' The expected points, win probability, field goal and other models that
+#' [calculate_cfb_models], [cfbd_pbp_data()] and [espn_cfb_pbp()] score with are
+#' downloaded from the `cfb_model_artifacts` release on first use and cached in
+#' `file.path(tools::R_user_dir("cfbfastR", "cache"), "models")`. A cached copy
+#' is re-downloaded once it is older than `getOption("cfbfastR.cache_duration")`
+#' seconds (default one day). Under `R CMD check` the cache is in [tempdir()]
+#' instead.
+#'
+#' `cfb_clear_model_cache()` deletes that directory and drops the models already
+#' loaded in this session, so the next call downloads them again. The ESPN
+#' request cache is separate; see [espn_cfb_clear_cache()].
+#'
+#' @return Invisibly, the path of the directory that was cleared.
+#' @keywords CFB Model Cache
+#' @family CFB Model Calculators
+#' @export
+#' @examples
+#' cfb_clear_model_cache()
+cfb_clear_model_cache <- function() {
+  dir <- .cfb_model_dir()
+  failed <- unlink(dir, recursive = TRUE) != 0L || dir.exists(dir)
+  rm(list = ls(.cfb_model_env), envir = .cfb_model_env)
+  .cfb_model_env$unavailable <- list()
+  .cfb_model_env$fetch_error <- list()
+  rm(list = ls(.cfb_models), envir = .cfb_models)
+  cfb_card_reset_cache()
+  if (failed) {
+    cli::cli_abort("Could not delete the model cache at {.path {dir}}.", call = NULL)
+  }
+  invisible(dir)
+}
+
 #' Stop with a clear message when a model could not be loaded
 #'
 #' `.cfb_model()` returns `NULL` when neither the bundle nor the legacy model
@@ -124,12 +160,37 @@ NULL
   if (fresh) return(dest)
 
   tmp <- paste0(dest, ".part")
-  ok <- try(
-    utils::download.file(paste0(.CFB_MODEL_BASE, asset), tmp,
-                         mode = "wb", quiet = TRUE),
-    silent = TRUE
+  # download.file() warns ("cannot open URL ... 404") before it errors, and on
+  # some methods returns a non-zero status instead of erroring. The warnings
+  # are collected rather than printed: the caller's error shows them, under
+  # .cfb_fetch_abort()'s "x" bullet, so a 404 or an unwritable cache dir is
+  # not reported as a network problem.
+  warns <- character()
+  ok <- tryCatch(
+    withCallingHandlers(
+      utils::download.file(paste0(.CFB_MODEL_BASE, asset), tmp,
+                           mode = "wb", quiet = TRUE),
+      warning = function(w) {
+        warns <<- c(warns, conditionMessage(w))
+        invokeRestart("muffleWarning")
+      }
+    ),
+    error = function(e) e
   )
-  if (!inherits(ok, "try-error") && file.exists(tmp) && file.size(tmp) > 0) {
+  why <- if (inherits(ok, "error")) {
+    conditionMessage(ok)
+  } else if (!identical(ok, 0L)) {
+    paste0("download.file() returned status ", format(ok), ".")
+  } else if (length(warns)) {
+    # a clean download doesn't warn; a warning with status 0 can be a
+    # truncated transfer, so it is not trusted over the cached copy
+    "download.file() warned."
+  } else if (!file.exists(tmp) || file.size(tmp) == 0) {
+    "The download was empty."
+  }
+  .cfb_model_env$fetch_error[[asset]] <-
+    if (is.null(why)) NULL else paste(unique(c(warns, why)), collapse = " ")
+  if (is.null(why)) {
     # Only replace the cached copy once the download is complete, so an
     # interrupted fetch can't leave a truncated model in place. file.rename()
     # returns FALSE rather than erroring when the destination is locked (a
@@ -145,6 +206,23 @@ NULL
   if (file.exists(dest)) dest else NULL
 }
 
+#' Abort because a bundle asset could not be fetched, saying why
+#'
+#' `head` is a cli template evaluated with `model` in scope. The reason
+#' [.cfb_model_file()] recorded for `asset`, if any, is shown as an `"x"`
+#' bullet so the user sees a 404 or a file error, not only the network hint.
+#' @keywords internal
+#' @noRd
+.cfb_fetch_abort <- function(model, asset, head, what = "models") {
+  why <- .cfb_model_env$fetch_error[[asset]]
+  msg <- c(head, "i" = paste0(
+    "cfbfastR downloads its ", what,
+    " from GitHub on first use; check the connection and try again."
+  ))
+  if (length(why)) msg <- c(msg[1], "x" = "{why}", msg[-1])
+  cli::cli_abort(msg, call = NULL)
+}
+
 #' Download and cache the bundle manifest
 #'
 #' @return The parsed manifest, or `NULL` when it cannot be fetched (offline,
@@ -155,8 +233,8 @@ NULL
 .cfb_model_manifest <- function() {
   if (!is.null(.cfb_model_env$manifest)) return(.cfb_model_env$manifest)
   man <- try(
-    jsonlite::fromJSON(paste0(.CFB_MODEL_BASE, "MANIFEST.json"),
-                       simplifyVector = FALSE),
+    suppressWarnings(jsonlite::fromJSON(paste0(.CFB_MODEL_BASE, "MANIFEST.json"),
+                                        simplifyVector = FALSE)),
     silent = TRUE
   )
   if (inherits(man, "try-error")) return(NULL)

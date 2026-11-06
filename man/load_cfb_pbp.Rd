@@ -44,6 +44,12 @@ For the ESPN-derived pbp with deeper history (2004+) see \code{\link[=load_espn_
 for stats.ncaa.org pbp covering FCS and lower divisions (2013+) see
 \code{\link[=load_ncaa_mfb_pbp]{load_ncaa_mfb_pbp()}}.
 }
+\examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# One season is about 160,000 plays and 400 MB in memory.
+try(load_cfb_pbp(2024))
+\dontshow{\}) # examplesIf}
+}
 \seealso{
 Issues with this data should be filed here: \url{https://github.com/sportsdataverse/cfbfastR-data}
 

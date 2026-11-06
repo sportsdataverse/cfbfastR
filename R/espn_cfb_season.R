@@ -758,10 +758,10 @@ espn_cfb_season_weeks <- function(year = NULL,
 #' @keywords ESPN CFB Seasons
 #' @family ESPN CFB Functions
 #' @export
-#' @examples
-#' \donttest{
-#'   try(espn_cfb_seasons())
-#' }
+#' @examplesIf interactive()
+#' # One request per season back to the early 1900s (about 150), so this takes
+#' # a while.
+#' try(espn_cfb_seasons())
 espn_cfb_seasons <- function() {
 
   headers <- c(
@@ -922,8 +922,8 @@ espn_cfb_seasons <- function() {
 #' @export
 #' @examples
 #' \donttest{
-#'   try(espn_cfb_standings(year = 2024))
-#'   try(espn_cfb_standings(year = 2024, team_detail = FALSE))
+#'   # One conference (group 8, the SEC) keeps the request small.
+#'   try(espn_cfb_standings(year = 2024, group_id = 8, team_detail = FALSE))
 #' }
 espn_cfb_standings <- function(year = NULL,
                                group_id = 90,

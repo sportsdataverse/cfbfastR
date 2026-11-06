@@ -27,6 +27,9 @@
 #' @source CFB Play-by-Play Data releases can be found here: <https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfbfastR_cfb_pbp>
 #' @family loaders
 #' @export
+#' @examplesIf interactive()
+#' # One season is about 160,000 plays and 400 MB in memory.
+#' try(load_cfb_pbp(2024))
 load_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
                          dbConnection = NULL, tablename = NULL) {
 
@@ -115,6 +118,9 @@ load_games <- function(){
 #' @return Invisibly returns `NULL`. The function is called for its side effects.
 #' @family loaders
 #' @export
+#' @examplesIf interactive()
+#' # Builds every season from 2014 on, several GB, in a SQLite file.
+#' try(update_cfb_db(dbdir = tempdir()))
 update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = "."),
                           dbname = "cfb_pbp_db",
                           tblname = "cfbfastR_pbp",

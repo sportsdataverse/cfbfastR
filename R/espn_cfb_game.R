@@ -2877,12 +2877,8 @@ espn_cfb_game_odds <- function(game_id = NULL, line_history = FALSE) {
 #' @examples
 #' \donttest{
 #'   try(espn_cfb_game_pbp(game_id = 401628339))
-#'   try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide"))
 #'   try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide",
 #'                         participants_list = TRUE))
-#'   try(espn_cfb_game_pbp(game_id = 401628339, team_participants = "wide",
-#'                         team_participants_list = TRUE))
-#'   try(espn_cfb_game_pbp(game_id = 401628339, team_detail = FALSE))
 #' }
 espn_cfb_game_pbp <- function(game_id = NULL,
                               participants = c("none", "wide", "long"),
@@ -3752,11 +3748,8 @@ espn_cfb_game_player_statistics <- function(game_id = NULL,
 #' @export
 #' @examples
 #' \donttest{
-#'   try(espn_cfb_game_player_box(game_id = 401628339))
 #'   try(espn_cfb_game_player_box(game_id = 401628339,
-#'                                position_detail = FALSE))
-#'   try(espn_cfb_game_player_box(game_id = 401628339,
-#'                                team_detail = FALSE))
+#'                                position_detail = FALSE, team_detail = FALSE))
 #' }
 espn_cfb_game_player_box <- function(game_id = NULL,
                                      position_detail = TRUE,

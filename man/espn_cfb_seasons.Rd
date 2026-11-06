@@ -30,9 +30,11 @@ coverage runs back to the early 1900s, so the table is long -- filter on
 full per-season detail (season types, rankings, awards, futures refs).
 }
 \examples{
-\donttest{
-  try(espn_cfb_seasons())
-}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# One request per season back to the early 1900s (about 150), so this takes
+# a while.
+try(espn_cfb_seasons())
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other ESPN CFB Functions:

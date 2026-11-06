@@ -1848,14 +1848,10 @@ espn_cfb_team_record <- function(team_id = NULL,
 #' @keywords ESPN CFB Team Roster
 #' @family ESPN CFB Functions
 #' @export
-#' @examples
-#' \donttest{
-#'   try(espn_cfb_team_roster(team_id = 61, year = 2024))
-#'   try(espn_cfb_team_roster(team_id = 61, year = 2024,
-#'                            position_detail = FALSE))
-#'   try(espn_cfb_team_roster(team_id = 61, year = 2024,
-#'                            team_detail = FALSE))
-#' }
+#' @examplesIf interactive()
+#' # One request per player (about 180 for a team), so this takes a while.
+#' try(espn_cfb_team_roster(team_id = 61, year = 2024,
+#'                          position_detail = FALSE, team_detail = FALSE))
 espn_cfb_team_roster <- function(team_id = NULL,
                                  year = NULL,
                                  position_detail = TRUE,

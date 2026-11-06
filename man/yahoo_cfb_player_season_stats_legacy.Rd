@@ -36,7 +36,7 @@ call) into a wide player tibble.
 \examples{
 \donttest{
   try(yahoo_cfb_player_season_stats_legacy(season = 2024, category = "Rushing",
-                                           sort_stat = "RUSHING_YARDS"))
+                                           sort_stat = "RUSHING_YARDS", count = 10))
 }
 }
 \seealso{

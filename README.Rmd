@@ -178,6 +178,10 @@ options(cfbfastR.proxy = list(
 
 The resolution order is: explicit `proxy =` argument -> `getOption("cfbfastR.proxy")` -> `http_proxy` / `https_proxy` env vars. See the [intro vignette](https://cfbfastR.sportsdataverse.org/articles/intro.html) for full detail.
 
+## **Model cache**
+
+The EPA, win probability and other models behind `calculate_*()`, `cfbd_pbp_data(epa_wpa = TRUE)` and `espn_cfb_pbp(epa_wpa = TRUE)` are downloaded from GitHub the first time they are needed. They are cached in `file.path(tools::R_user_dir("cfbfastR", "cache"), "models")` and refreshed once a day (change it in seconds, e.g. `options(cfbfastR.cache_duration = 7 * 86400)` for a week). `cfb_clear_model_cache()` deletes the cache.
+
 
 
 ## Follow [cfbfastR](https://x.com/cfbfastR) and the [SportsDataverse](https://x.com/SportsDataverse) on Twitter and star this repo

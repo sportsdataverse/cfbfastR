@@ -32,6 +32,10 @@
 #' @importFrom stringr str_detect
 #' @import tidyr
 #' @export
+#' @examples
+#' # create_epa() is one step of the legacy play-by-play pipeline; the
+#' # example in ?cfbd_pbp_data runs it (engine = "legacy", epa_wpa = TRUE).
+#' # To score a frame of your own, see ?calculate_cfb_models.
 #'
 
 create_epa <- function(play_df,

@@ -567,6 +567,15 @@ Extract college football (D-I) play by play Data - for plays
  cfbd_pbp_data(year = 2025, week = 1, season_type = 'regular', epa_wpa = TRUE)
 }\if{html}{\out{</div>}}
 }
+\examples{
+\donttest{
+  # The legacy engine runs add_play_counts(), create_epa() and
+  # create_wpa_naive() on each game. The default engine is shown in
+  # ?cfbd_pbp_data_v2.
+  try(cfbd_pbp_data(year = 2024, week = 1, team = "Texas", epa_wpa = TRUE,
+                    engine = "legacy"))
+}
+}
 \seealso{
 Other CFBD PBP:
 \code{\link[=cfbd_live_plays]{cfbd_live_plays()}},

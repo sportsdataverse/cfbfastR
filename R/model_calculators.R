@@ -135,9 +135,10 @@ cfb_add_era_columns <- function(df, model, season = NULL) {
 #' @keywords internal
 #' @noRd
 .cfb_booster_for <- function(model) {
-  path <- .cfb_model_file(paste0(model, ".ubj"))
+  asset <- paste0(model, ".ubj")
+  path <- .cfb_model_file(asset)
   if (is.null(path) || !file.exists(path)) {
-    cli::cli_abort("Could not obtain the {.val {model}} booster.")
+    .cfb_fetch_abort(model, asset, "Could not obtain the {.val {model}} model.")
   }
   xgboost::xgb.load(path)
 }
@@ -195,6 +196,9 @@ cfb_add_era_columns <- function(df, model, season = NULL) {
 #'
 #' These wrap [create_epa()] and [create_wpa_naive()], which remain available for
 #' callers that already hold booster objects.
+#'
+#' The models are downloaded from GitHub on first use and cached on disk; see
+#' [cfb_clear_model_cache()] for where the cache lives and how to clear it.
 #'
 #' @param df (*data.frame* required): Rows to score. Requires the columns the
 #'   model's published card declares; see the per-function entries.
@@ -452,7 +456,13 @@ calculate_expected_points <- function(df, season = NULL) {
 #' @export
 #' @examples
 #' \donttest{
-#'   try(calculate_win_probability(cfbd_pbp_data(2024, week = 5)))
+#'   # Start of the second half, tied, home team receiving.
+#'   try(calculate_win_probability(data.frame(season = 2024, period = 3,
+#'     down = 1, distance = 10, yards_to_goal = 75, TimeSecsRem = 1800,
+#'     adj_TimeSecsRem = 1800, pos_score_diff_start = 0,
+#'     ExpScoreDiff_Time_Ratio = 0, pos_team_receives_2H_kickoff = 1,
+#'     is_home = 1, pos_team_timeouts_rem_before = 3,
+#'     def_pos_team_timeouts_rem_before = 3)))
 #' }
 calculate_win_probability <- function(df, season = NULL) {
   model <- if ("spread_time" %in% names(df) || "start.spread_time" %in% names(df)) {
@@ -477,9 +487,8 @@ calculate_win_probability <- function(df, season = NULL) {
 #'
 #' @export
 #' @examples
-#' \donttest{
-#'   try(calculate_epa(data.frame(ep = 2, ep_end = 5)))
-#' }
+#' # Offline: with `ep` present, EPA is the difference.
+#' calculate_epa(data.frame(ep = 2, ep_end = 5))
 calculate_epa <- function(df, season = NULL) {
   if (!"ep_end" %in% names(df)) {
     cli::cli_abort(c(
@@ -505,9 +514,8 @@ calculate_epa <- function(df, season = NULL) {
 #'
 #' @export
 #' @examples
-#' \donttest{
-#'   try(calculate_wpa(data.frame(wp = 0.4, wp_end = 0.6)))
-#' }
+#' # Offline: with `wp` present, WPA is the difference.
+#' calculate_wpa(data.frame(wp = 0.4, wp_end = 0.6))
 calculate_wpa <- function(df, season = NULL) {
   if (!"wp_end" %in% names(df)) {
     cli::cli_abort(c(

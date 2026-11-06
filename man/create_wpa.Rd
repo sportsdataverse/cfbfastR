@@ -51,4 +51,10 @@ This is only for D1 football
 \details{
 Requires the following columns to be present in the input data frame.
 }
+\examples{
+# create_wpa_naive() is one step of the legacy play-by-play pipeline; the
+# example in ?cfbd_pbp_data runs it (engine = "legacy", epa_wpa = TRUE).
+# To score a frame of your own, see ?calculate_cfb_models.
+
+}
 \keyword{internal}

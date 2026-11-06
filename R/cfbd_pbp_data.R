@@ -565,7 +565,14 @@ NULL
 #' @param division (*String* optional): Division/classification filter -- `fbs`, `fcs`, `ii`, `ii/iii`, `iii`.
 #' @param offense (*String* optional): Offensive team filter.
 #' @export
-
+#' @examples
+#' \donttest{
+#'   # The legacy engine runs add_play_counts(), create_epa() and
+#'   # create_wpa_naive() on each game. The default engine is shown in
+#'   # ?cfbd_pbp_data_v2.
+#'   try(cfbd_pbp_data(year = 2024, week = 1, team = "Texas", epa_wpa = TRUE,
+#'                     engine = "legacy"))
+#' }
 cfbd_pbp_data <- function(year,
                           season_type = "regular",
                           week = 1,
@@ -1114,6 +1121,10 @@ NULL
 #' @importFrom dplyr group_by mutate ungroup lead lag arrange n case_when
 #' @importFrom tidyr fill
 #' @export
+#' @examples
+#' # add_play_counts() is one step of the legacy play-by-play pipeline; the
+#' # example in ?cfbd_pbp_data runs it (engine = "legacy", epa_wpa = TRUE).
+#' # To score a frame of your own, see ?calculate_cfb_models.
 
 add_play_counts <- function(play_df) {
   ## --Play type vectors------

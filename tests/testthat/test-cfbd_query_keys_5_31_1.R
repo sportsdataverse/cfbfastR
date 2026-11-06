@@ -33,7 +33,8 @@ test_that("CFBD - game player and team stats send id alone, not gameId", {
   expect_false(grepl("year=", seen$url, fixed = TRUE))
   cfbd_game_player_stats(year = 2024, week = 1, game_id = 401628374)
   expect_false(grepl("year=|week=|seasonType=", seen$url))
-  cfbd_game_team_stats(game_id = 401628374)
+  # The mock answers `[]`, which cfbd_game_team_stats() reports as a bye week.
+  expect_warning(cfbd_game_team_stats(game_id = 401628374), "bye week")
   expect_match(seen$url, "id=401628374", fixed = TRUE)
   expect_false(grepl("gameId=|year=", seen$url))
   expect_error(cfbd_game_player_stats(), "game_id")

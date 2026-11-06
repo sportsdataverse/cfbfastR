@@ -891,11 +891,9 @@ espn_cfb_coach_record <- function(coach_id = NULL,
 #' @keywords ESPN CFB Coaches
 #' @family ESPN CFB Functions
 #' @export
-#' @examples
-#' \donttest{
-#'   try(espn_cfb_coaches(year = 2024))
-#'   try(espn_cfb_coaches(year = 2024, team_detail = FALSE))
-#' }
+#' @examplesIf interactive()
+#' # One request per coach (about 270 for a season), so this takes a while.
+#' try(espn_cfb_coaches(year = 2024, team_detail = FALSE))
 espn_cfb_coaches <- function(year = NULL,
                              team_detail = TRUE) {
 

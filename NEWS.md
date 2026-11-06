@@ -6,6 +6,36 @@ bundle, the same files `sportsdataverse-py` scores with. EPA and WPA therefore
 differ from 3.0.0 for the same play. See the model notes below before mixing
 outputs from the two releases.
 
+## New: clearing the model cache
+
+* `cfb_clear_model_cache()` deletes the downloaded models, which are cached in
+  `file.path(tools::R_user_dir("cfbfastR", "cache"), "models")`, and drops the
+  ones already loaded in the session. `?cfb_clear_model_cache`,
+  `?calculate_cfb_models` and the README now say where the cache is and how
+  often it refreshes.
+* A model download that fails no longer leaks R's own "cannot open URL"
+  warnings, and one that reports a non-zero status is no longer cached. A
+  `calculate_*()` call that cannot fetch its model or card says why (the
+  download's own message) and that the models come from GitHub.
+
+## Changed: examples
+
+* The examples for the Yahoo season stats, `espn_cfb_standings()`,
+  `espn_cfb_game_player_box()`, `espn_cfb_game_pbp()`, `espn_cfb_qbr()` and
+  `cfbd_pbp_data_v2()` ask for one team, conference or page of results instead
+  of a whole league, so they run in seconds. `espn_cfb_seasons()`,
+  `espn_cfb_coaches()` and `espn_cfb_team_roster()` make one request per row,
+  so their examples, like those of `load_cfb_pbp()` and `update_cfb_db()`, run
+  only in an interactive session.
+* The `calculate_win_probability()` example scores a hand-built row; it used to
+  pass a CFBD play-by-play frame that lacks the model's inputs and errored.
+* `cfbd_pbp_data()`, `load_cfb_pbp()`, `update_cfb_db()`, `has_cfbd_key()`,
+  `create_epa()`, `create_wpa_naive()` and `add_play_counts()` have examples
+  (the last three point to the legacy-engine example in `?cfbd_pbp_data`).
+  `has_cfbd_key()`, `calculate_epa()`, `calculate_wpa()`,
+  `cfb_card_reset_cache()` and `cfb_clear_model_cache()` run theirs offline,
+  outside `\donttest`.
+
 ## Expected Points model now comes from the shared `cfb_model_artifacts` bundle
 
 The EP model is now the XGBoost artifact published in

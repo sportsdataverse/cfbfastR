@@ -213,7 +213,7 @@ load_ep_model <- function() {
   .url <- url("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/models/ep_model.Rdata")
   on.exit(close(.url))
   try(
-    load(.url),
+    suppressWarnings(load(.url)),
     silent = TRUE
   )
   return(ep_model)
@@ -240,7 +240,7 @@ load_fg_model <- function() {
   .url <- url("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/models/fg_model.Rdata")
   on.exit(close(.url))
   try(
-    load(.url),
+    suppressWarnings(load(.url)),
     silent = TRUE
   )
   return(fg_model)
@@ -268,7 +268,7 @@ load_wp_model <- function() {
   .url <- url("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/models/wp_model.Rdata")
   on.exit(close(.url))
   try(
-    load(.url),
+    suppressWarnings(load(.url)),
     silent = TRUE
   )
   return(wp_model)

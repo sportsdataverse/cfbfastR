@@ -42,23 +42,53 @@ This is a minor release (3.0.0 -> 3.1.0). It:
   Imports, and drops the unused Rcpp and RcppParallel imports. This fixes the
   r-devel NOTE on the 3.0.0 check page about `stats` being imported but only
   suggested.
+* Adds `cfb_clear_model_cache()` and documents where the downloaded models are
+  cached.
 
 ## Test environments
 
-* local Windows 10, R 4.6.0, `R CMD check --as-cran` (which also runs the
-  `\donttest` examples) with no CollegeFootballData API key set
+* local Windows 10 (x86_64-w64-mingw32), R 4.6.0 ucrt, 2026-11-06:
+  `R CMD check --as-cran --run-donttest --timings` with no CollegeFootballData
+  API key set (`R_ENVIRON_USER` pointing at an empty file)
+* local Windows 10, R 4.6.0, 2026-11-06: `R CMD check --run-donttest
+  --no-tests` with the network blocked (dead proxy)
+* local Windows 10, R 4.6.0, 2026-11-05: `R CMD check --as-cran
+  --run-donttest` with a key, on the release candidate just before the last
+  change to how a failed model download is reported
 * GitHub Actions: windows-latest (release), ubuntu-latest (devel, release,
   oldrel-1); the R-devel job fails on any NOTE
-* R-hub: linux, windows, macos, macos-arm64 (R-devel) and nosuggests
+* win-builder (devel and release): to be run before submission
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 note
 
-The same on GitHub Actions, where all four jobs pass.
+```
+* checking examples ... [192s] NOTE
+Examples with CPU (user + system) or elapsed time > 5s
+                            user system elapsed
+espn_cfb_pbp                4.87   1.22   16.95
+yahoo_cfb_team_season_stats 3.54   1.41    5.03
+espn_cfb_game_player_box    3.02   0.05    8.94
+espn_cfb_game_drive_plays   0.90   0.07    5.46
+calculate_cfb_models        0.36   0.28   12.60
+espn_cfb_groups             0.28   0.00    5.55
+```
 
-R-hub (2026-11-03, R-devel r90825/r90827), `R CMD check` Status: OK on all
-five platforms: linux, windows, macos, macos-arm64 and nosuggests.
+This NOTE comes only from passing `--run-donttest` explicitly, which runs the
+`\donttest` code inside the timed examples step. The examples outside
+`\donttest` are all offline.
+`calculate_cfb_models` and `espn_cfb_pbp` spend most of their elapsed time
+downloading the models on first use (0.6 and 6.1 s of CPU); run again with the
+models cached, `espn_cfb_pbp` takes about 4 s. The others are single network
+requests whose elapsed time is mostly waiting. All 250 examples took 168 s
+elapsed (45 s CPU) in total with no API key, where the CollegeFootballData
+examples stop before sending a request.
+
+With the network blocked, Status: OK; every network example fails inside
+`try()` with an informative message. With a key, the check also gave 1 NOTE,
+the same examples-timing NOTE, whose list then includes CollegeFootballData
+examples that do send requests.
 
 Under `R CMD check` the model bundle that examples download is cached in
 `tempdir()`, so the check leaves nothing in the user's file space.
@@ -78,10 +108,16 @@ assets) fail with an informative message when the resource is unavailable. Most
 return an empty table; a few raise an error instead (for example
 `cfbd_pbp_data(engine = "legacy")` on a non-200 response) and
 `yahoo_cfb_boxscore()` returns `NULL`. Every example that touches the network is
-wrapped in `\donttest{try(...)}`, and the CollegeFootballData examples stop
-before sending any request when no API key is set.
+wrapped in `try()`, and in `\donttest{}` or, for the five that download whole
+seasons or make one request per row (`load_cfb_pbp()`, `update_cfb_db()`,
+`espn_cfb_seasons()`, `espn_cfb_coaches()`, `espn_cfb_team_roster()`), behind
+`interactive()`. The CollegeFootballData examples stop before sending any
+request when no API key is set.
 
 ## Reverse dependencies
 
-cfbseedR (Suggests cfbfastR). `R CMD check` on its CRAN release (0.2.0) against
-this version: Status OK.
+cfbseedR 0.2.0 (Suggests cfbfastR) is the only reverse dependency on CRAN.
+`R CMD check --as-cran` of its CRAN source tarball on 2026-11-05 (local
+Windows, R 4.6.0), with the cfbfastR 3.1.0 release candidate installed first in
+the library path (built just before the last change to how a failed model
+download is reported): Status: OK.

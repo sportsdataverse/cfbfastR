@@ -40,7 +40,7 @@ available 2013-present.
 }
 \examples{
 \donttest{
-  try(yahoo_cfb_player_season_stats(season = 2024))
+  try(yahoo_cfb_player_season_stats(season = 2024, count = 10))
 }
 }
 \seealso{

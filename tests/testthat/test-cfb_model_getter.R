@@ -31,6 +31,60 @@ test_that(".cfb_model_dir() caches in tempdir() under R CMD check, the user cach
   )
 })
 
+test_that("cfb_clear_model_cache() deletes the cache dir and forgets loaded models", {
+  dir <- withr::local_tempdir()
+  local_mocked_bindings(.cfb_model_dir = function() dir)
+  writeLines("x", file.path(dir, "ep_model.ubj"))
+  assign("toy_booster", 1, envir = .cfb_model_env)
+  .cfb_model_env$unavailable$wp_naive <- TRUE
+  expect_identical(cfb_clear_model_cache(), dir)
+  expect_false(dir.exists(dir))
+  expect_null(.cfb_model_env$toy_booster)
+  expect_identical(.cfb_model_env$unavailable, list())
+  # Already gone: clearing again is a no-op, not an error.
+  expect_no_error(cfb_clear_model_cache())
+})
+
+test_that("a download with a non-zero status is not cached, and the error says why", {
+  withr::defer(.cfb_model_env$fetch_error <- list())
+  dir <- withr::local_tempdir()
+  local_mocked_bindings(.cfb_model_dir = function() dir)
+  local_mocked_bindings(
+    download.file = function(url, destfile, ...) {
+      writeLines("partial", destfile)
+      warning("downloaded length 8 != reported length 100")
+      1L
+    },
+    .package = "utils"
+  )
+  expect_null(.cfb_model_file("xpass_model.ubj"))
+  expect_false(file.exists(file.path(dir, "xpass_model.ubj")))
+  expect_false(file.exists(file.path(dir, "xpass_model.ubj.part")))
+  err <- expect_error(.cfb_booster_for("xpass_model"), "reported length 100")
+  expect_match(conditionMessage(err), "returned status 1", fixed = TRUE)
+  expect_match(conditionMessage(err), "check the connection", fixed = TRUE)
+})
+
+test_that("a download that warns with status 0 keeps the cached copy", {
+  withr::defer(.cfb_model_env$fetch_error <- list())
+  dir <- withr::local_tempdir()
+  cached <- file.path(dir, "xpass_model.ubj")
+  writeLines("cached", cached)
+  Sys.setFileTime(cached, Sys.time() - 10 * 86400) # expired, so a refresh is tried
+  local_mocked_bindings(.cfb_model_dir = function() dir)
+  local_mocked_bindings(
+    download.file = function(url, destfile, ...) {
+      writeLines("partial", destfile)
+      warning("downloaded length 8 != reported length 100")
+      0L
+    },
+    .package = "utils"
+  )
+  expect_identical(.cfb_model_file("xpass_model.ubj"), cached)
+  expect_identical(readLines(cached), "cached")
+  expect_false(file.exists(paste0(cached, ".part")))
+})
+
 test_that("scoring with a model that failed to load stops with a clear message", {
   expect_error(.ep_predict(NULL, data.frame()), "expected points model could not be loaded")
   expect_error(.wp_predict(NULL, data.frame()), "win probability model could not be loaded")
