@@ -13,9 +13,10 @@ outputs from the two releases.
   ones already loaded in the session. `?cfb_clear_model_cache`,
   `?calculate_cfb_models` and the README now say where the cache is and how
   often it refreshes.
-* With no connection, the model download no longer leaks R's own
-  "cannot open URL" warnings, and a `calculate_*()` call that cannot fetch its
-  model says the models come from GitHub and to check the connection.
+* A model download that fails no longer leaks R's own "cannot open URL"
+  warnings, and one that reports a non-zero status is no longer cached. A
+  `calculate_*()` call that cannot fetch its model or card says why (the
+  download's own message) and that the models come from GitHub.
 
 ## Changed: examples
 
@@ -29,7 +30,8 @@ outputs from the two releases.
 * The `calculate_win_probability()` example scores a hand-built row; it used to
   pass a CFBD play-by-play frame that lacks the model's inputs and errored.
 * `cfbd_pbp_data()`, `load_cfb_pbp()`, `update_cfb_db()`, `has_cfbd_key()`,
-  `create_epa()`, `create_wpa_naive()` and `add_play_counts()` have examples.
+  `create_epa()`, `create_wpa_naive()` and `add_play_counts()` have examples
+  (the last three point to the legacy-engine example in `?cfbd_pbp_data`).
   `has_cfbd_key()`, `calculate_epa()`, `calculate_wpa()`,
   `cfb_card_reset_cache()` and `cfb_clear_model_cache()` run theirs offline,
   outside `\donttest`.
