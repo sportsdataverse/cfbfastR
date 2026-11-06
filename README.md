@@ -228,7 +228,8 @@ The EPA, win probability and other models behind `calculate_*()`,
 `cfbd_pbp_data(epa_wpa = TRUE)` and `espn_cfb_pbp(epa_wpa = TRUE)` are
 downloaded from GitHub the first time they are needed. They are cached
 in `file.path(tools::R_user_dir("cfbfastR", "cache"), "models")` and
-refreshed once a day (`options(cfbfastR.cache_duration =)`, in seconds).
+refreshed once a day (change it in seconds,
+e.g. `options(cfbfastR.cache_duration = 7 * 86400)` for a week).
 `cfb_clear_model_cache()` deletes the cache.
 
 ## Follow [cfbfastR](https://x.com/cfbfastR) and the [SportsDataverse](https://x.com/SportsDataverse) on Twitter and star this repo
