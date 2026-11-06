@@ -435,6 +435,12 @@
 <p>The resolution order is: explicit <code>proxy =</code> argument -&gt; <code>getOption("cfbfastR.proxy")</code> -&gt; <code>http_proxy</code> / <code>https_proxy</code> env vars. See the <a href="https://cfbfastR.sportsdataverse.org/articles/intro.html">intro vignette</a> for full detail.</p>
 </div>
 <div class="section level2">
+<h2 id="model-cache">
+<strong>Model cache</strong><a class="anchor" aria-label="anchor" href="#model-cache"></a>
+</h2>
+<p>The EPA, win probability and other models behind <code>calculate_*()</code>, <code>cfbd_pbp_data(epa_wpa = TRUE)</code> and <code>espn_cfb_pbp(epa_wpa = TRUE)</code> are downloaded from GitHub the first time they are needed. They are cached in <code>file.path(tools::R_user_dir("cfbfastR", "cache"), "models")</code> and refreshed once a day (change it in seconds, e.g. <code>options(cfbfastR.cache_duration = 7 * 86400)</code> for a week). <code><a href="reference/cfb_clear_model_cache.html">cfb_clear_model_cache()</a></code> deletes the cache.</p>
+</div>
+<div class="section level2">
 <h2 id="follow-cfbfastr-and-the-sportsdataverse-on-twitter-and-star-this-repo">Follow <a href="https://x.com/cfbfastR" class="external-link">cfbfastR</a> and the <a href="https://x.com/SportsDataverse" class="external-link">SportsDataverse</a> on Twitter and star this repo<a class="anchor" aria-label="anchor" href="#follow-cfbfastr-and-the-sportsdataverse-on-twitter-and-star-this-repo"></a>
 </h2>
 <p><a href="https://x.com/cfbfastR" class="external-link"><img src="https://img.shields.io/twitter/follow/cfbfastR?style=for-the-badge&amp;logo=x&amp;label=%40cfbfastR&amp;color=eee&amp;link=https%3A%2F%2Fx.com%2FcfbfastR" alt="X (formerly Twitter) Follow"></a> <a href="https://x.com/SportsDataverse" class="external-link"><img src="https://img.shields.io/twitter/follow/SportsDataverse?color=blue&amp;label=%40SportsDataverse&amp;logo=x&amp;style=for-the-badge" alt="Twitter Follow"></a></p>

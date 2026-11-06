@@ -8,6 +8,62 @@ the decision models are now the XGBoost boosters in the shared
 with. EPA and WPA therefore differ from 3.0.0 for the same play. See the
 model notes below before mixing outputs from the two releases.
 
+### New: clearing the model cache
+
+- [`cfb_clear_model_cache()`](https://cfbfastR.sportsdataverse.org/reference/cfb_clear_model_cache.md)
+  deletes the downloaded models, which are cached in
+  `file.path(tools::R_user_dir("cfbfastR", "cache"), "models")`, and
+  drops the ones already loaded in the session.
+  [`?cfb_clear_model_cache`](https://cfbfastR.sportsdataverse.org/reference/cfb_clear_model_cache.md),
+  [`?calculate_cfb_models`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+  and the README now say where the cache is and how often it refreshes.
+- A model download that fails no longer leaks R’s own “cannot open URL”
+  warnings, and one that reports a non-zero status is no longer cached.
+  A `calculate_*()` call that cannot fetch its model or card says why
+  (the download’s own message) and that the models come from GitHub.
+
+### Changed: examples
+
+- The examples for the Yahoo season stats,
+  [`espn_cfb_standings()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_standings.md),
+  [`espn_cfb_game_player_box()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_player_box.md),
+  [`espn_cfb_game_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md),
+  [`espn_cfb_qbr()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_qbr.md)
+  and
+  [`cfbd_pbp_data_v2()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.md)
+  ask for one team, conference or page of results instead of a whole
+  league, so they run in seconds.
+  [`espn_cfb_seasons()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_seasons.md),
+  [`espn_cfb_coaches()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_coaches.md)
+  and
+  [`espn_cfb_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_roster.md)
+  make one request per row, so their examples, like those of
+  [`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md)
+  and
+  [`update_cfb_db()`](https://cfbfastR.sportsdataverse.org/reference/update_cfb_db.md),
+  run only in an interactive session.
+- The
+  [`calculate_win_probability()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+  example scores a hand-built row; it used to pass a CFBD play-by-play
+  frame that lacks the model’s inputs and errored.
+- [`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md),
+  [`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md),
+  [`update_cfb_db()`](https://cfbfastR.sportsdataverse.org/reference/update_cfb_db.md),
+  [`has_cfbd_key()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md),
+  [`create_epa()`](https://cfbfastR.sportsdataverse.org/reference/create_epa.md),
+  [`create_wpa_naive()`](https://cfbfastR.sportsdataverse.org/reference/create_wpa.md)
+  and
+  [`add_play_counts()`](https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.md)
+  have examples (the last three point to the legacy-engine example in
+  [`?cfbd_pbp_data`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md)).
+  [`has_cfbd_key()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md),
+  [`calculate_epa()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md),
+  [`calculate_wpa()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md),
+  [`cfb_card_reset_cache()`](https://cfbfastR.sportsdataverse.org/reference/cfb_model_card.md)
+  and
+  [`cfb_clear_model_cache()`](https://cfbfastR.sportsdataverse.org/reference/cfb_clear_model_cache.md)
+  run theirs offline, outside `\donttest`.
+
 ### Expected Points model now comes from the shared `cfb_model_artifacts` bundle
 
 The EP model is now the XGBoost artifact published in
@@ -878,6 +934,62 @@ logic as
 parity oracle was re-captured from sdv-py `9efee9f1` and extended with
 five affected 2025/26 games
 (`tests/testthat/fixtures/parity/README.md`).
+
+### Fixed: no silent fallback to the retired EP/FG/WP models
+
+When `xgboost` is not installed, or a `cfb_model_artifacts` booster
+cannot be downloaded or read, cfbfastR still falls back to the retired
+`nnet`/GAM model, but now says so: a `cfbfastR_legacy_model` warning,
+once per session and model, names the model in use, why the booster was
+not used, and the fix (install `xgboost`, or check the connection).
+Those values differ from the current models and from sportsdataverse-py
+on every play
+([\#210](https://github.com/sportsdataverse/cfbfastR/issues/210)).
+`xgboost` stays in Suggests.
+
+### Fixed: overtime win probability and air-yards CP match sportsdataverse-py
+
+- `wp_before` and `vegas_wp` go through the overtime stage sdv-py scores
+  its WP with (`cfb_wp_overtime.adjust_wp`), from `wp_ot_reach.ubj` and
+  its card in `cfb_model_artifacts`. The regulation boosters were
+  trained without overtime games: in regulation the value is now mixed
+  with the overtime the state may reach (a tied game late in the fourth
+  no longer overrates the team with the ball), and an overtime snap is
+  valued by the overtime rules (possession order, the forced two-point
+  try from the second overtime since 2021) rather than as the last snap
+  of a tied regulation game. sdv-py’s two-point shootout and
+  end-of-possession stages are not ported, and the fourth-down and
+  two-point decision surfaces still score regulation WP
+  ([\#211](https://github.com/sportsdataverse/cfbfastR/issues/211)).
+- `cp` uses the air-yards CP booster (`cfb_cp_model_air_yards.ubj`)
+  wherever `air_yards` is known, as sdv-py does. Two new columns:
+  `cp_model` says which booster scored the play (`"air_yards"` or
+  `"game_state"`), and `cp_game_state` carries the game-state prediction
+  on every pass play – aggregate that one, since the two boosters are
+  not on one scale.
+- Both are checked against a new sdv-py oracle of two 2025 overtime
+  games (`wp_overtime_oracle.csv.gz`, `test-parity_wp_overtime.R`).
+
+### Fixed: the games index csv read retries
+
+[`update_cfb_db()`](https://cfbfastR.sportsdataverse.org/reference/update_cfb_db.md)
+read the cfbfastR-data games index with `utils::read.csv(url())`, which
+failed on the first slow response. It now goes through
+`.release_csv_from_url()`, the release-read helper the loaders use (150
+s timeout floor, two retries, a warning naming the url, the last error
+raised when every try fails), as hoopR and wehoop do.
+
+### Fixed: `pos_score_pts` is the points scored on the play
+
+`pos_score_pts` was the move of the possessing team’s running margin, so
+a feed whose score fell to 0 for a few rows and came back read values
+like -70
+([cfbfastR-data#15](https://github.com/sportsdataverse/cfbfastR-data/issues/15)).
+It is now each team’s gain in its running-best score on the play, the
+possessing team’s minus the other’s (a touchdown is 6, a defensive
+touchdown or safety negative), the definition sportsdataverse-py adopts
+in
+[sportsdataverse-py#1089](https://github.com/sportsdataverse/sportsdataverse-py/issues/1089).
 
 ## **cfbfastR v3.0.0**
 

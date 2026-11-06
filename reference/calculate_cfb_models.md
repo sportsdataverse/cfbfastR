@@ -37,6 +37,11 @@ and
 [`create_wpa_naive()`](https://cfbfastR.sportsdataverse.org/reference/create_wpa.md),
 which remain available for callers that already hold booster objects.
 
+The models are downloaded from GitHub on first use and cached on disk;
+see
+[`cfb_clear_model_cache()`](https://cfbfastR.sportsdataverse.org/reference/cfb_clear_model_cache.md)
+for where the cache lives and how to clear it.
+
 ## Usage
 
 ``` r
@@ -187,6 +192,7 @@ requires `ep_end`.
 ## See also
 
 Other CFB Model Calculators:
+[`cfb_clear_model_cache()`](https://cfbfastR.sportsdataverse.org/reference/cfb_clear_model_cache.md),
 [`cfb_model_card()`](https://cfbfastR.sportsdataverse.org/reference/cfb_model_card.md)
 
 ## Examples
@@ -248,25 +254,28 @@ Other CFB Model Calculators:
 #> 1 0.3181985 0.003416252 0.3964695 0.6635342
 # }
 # \donttest{
-  try(calculate_win_probability(cfbd_pbp_data(2024, week = 5)))
-#> Error in .cfb_predict_from_card(scored, model, booster) : 
-#>   wp_naive needs 8 columns not present in the data.
-#> ✖ Missing: "pos_team_receives_2H_kickoff", "TimeSecsRem", "adj_TimeSecsRem",
-#>   "ExpScoreDiff_Time_Ratio", "pos_score_diff_start", "is_home",
-#>   "pos_team_timeouts_rem_before", and "def_pos_team_timeouts_rem_before"
-#> ℹ Its card declares: "pos_team_receives_2H_kickoff", "TimeSecsRem",
-#>   "adj_TimeSecsRem", "ExpScoreDiff_Time_Ratio", "pos_score_diff_start", "down",
-#>   "distance", "yards_to_goal", "is_home", "pos_team_timeouts_rem_before",
-#>   "def_pos_team_timeouts_rem_before", and "period"
+  # Start of the second half, tied, home team receiving.
+  try(calculate_win_probability(data.frame(season = 2024, period = 3,
+    down = 1, distance = 10, yards_to_goal = 75, TimeSecsRem = 1800,
+    adj_TimeSecsRem = 1800, pos_score_diff_start = 0,
+    ExpScoreDiff_Time_Ratio = 0, pos_team_receives_2H_kickoff = 1,
+    is_home = 1, pos_team_timeouts_rem_before = 3,
+    def_pos_team_timeouts_rem_before = 3)))
+#>   season period down distance yards_to_goal TimeSecsRem adj_TimeSecsRem
+#> 1   2024      3    1       10            75        1800            1800
+#>   pos_score_diff_start ExpScoreDiff_Time_Ratio pos_team_receives_2H_kickoff
+#> 1                    0                       0                            1
+#>   is_home pos_team_timeouts_rem_before def_pos_team_timeouts_rem_before
+#> 1       1                            3                                3
+#>         wp
+#> 1 0.568352
 # }
-# \donttest{
-  try(calculate_epa(data.frame(ep = 2, ep_end = 5)))
+# Offline: with `ep` present, EPA is the difference.
+calculate_epa(data.frame(ep = 2, ep_end = 5))
 #>   ep ep_end epa
 #> 1  2      5   3
-# }
-# \donttest{
-  try(calculate_wpa(data.frame(wp = 0.4, wp_end = 0.6)))
+# Offline: with `wp` present, WPA is the difference.
+calculate_wpa(data.frame(wp = 0.4, wp_end = 0.6))
 #>    wp wp_end wpa
 #> 1 0.4    0.6 0.2
-# }
 ```

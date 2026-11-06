@@ -86,13 +86,13 @@ returns a zero-row frame carrying this schema.
     create_qbr(pbp)
   })
 #> ── QBR data ────────────────────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-04 03:40:48 UTC
+#> ℹ Data updated: 2026-11-06 08:24:02 UTC
 #> # A tibble: 3 × 15
 #>   game_id pos_team athlete_name plays qbr_epa sack_epa pass_epa rush_epa pen_epa
 #>   <chr>   <chr>    <chr>        <int>   <dbl>    <dbl>    <dbl>    <dbl>   <dbl>
-#> 1 401287… Oklahoma Caleb Willi…    29   0.611       NA    0.321     2.79   NA   
-#> 2 401287… Oklahoma Spencer Rat…    20  -0.556       NA   -0.381    -1.34   NA   
-#> 3 401287… Texas    Casey Thomp…    39   0.153       NA    0.258    -1.28   -1.08
+#> 1 401287… Oklahoma Caleb Willi…    29   0.664       NA    0.410     2.45   NA   
+#> 2 401287… Oklahoma Spencer Rat…    20  -0.477       NA   -0.289    -1.34   NA   
+#> 3 401287… Texas    Casey Thomp…    39   0.204       NA    0.305    -1.28   -1.08
 #> # ℹ 6 more variables: spread <dbl>, era0 <dbl>, era1 <dbl>, era2 <dbl>,
 #> #   era3 <dbl>, exp_qbr <dbl>
 # }

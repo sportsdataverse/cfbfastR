@@ -242,7 +242,8 @@ era feature. <code>NULL</code> is correct for <code>ep_model</code>, <code>wp_na
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other CFB Model Calculators:
-<code><a href="calculate_cfb_models.html">calculate_cfb_models</a></code></p></div>
+<code><a href="calculate_cfb_models.html">calculate_cfb_models</a></code>,
+<code><a href="cfb_clear_model_cache.html">cfb_clear_model_cache()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -253,6 +254,8 @@ era feature. <code>NULL</code> is correct for <code>ep_model</code>, <code>wp_na
 <span class="r-out co"><span class="r-pr">#&gt;</span> [4] "down_1"               "down_2"               "down_3"              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [7] "down_4"               "pos_score_diff_start"</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="co"># Offline: forget the cards read this session.</span></span></span>
+<span class="r-in"><span><span class="fu">cfb_card_reset_cache</span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

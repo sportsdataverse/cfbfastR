@@ -241,8 +241,8 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE))
 #> ── Play-by-play data from ESPN (core-v2) ───────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-04 03:42:48 UTC
-#> # A tibble: 156 × 540
+#> ℹ Data updated: 2026-11-06 08:25:13 UTC
+#> # A tibble: 156 × 542
 #>    season id_play    game_id game_play_number half_play_number drive_play_number
 #>     <int> <chr>      <chr>              <dbl>            <dbl>             <dbl>
 #>  1   2024 401628339… 401628…                1                1                 1
@@ -256,7 +256,7 @@ Other ESPN CFB Functions:
 #>  9   2024 401628339… 401628…                8                8                 2
 #> 10   2024 401628339… 401628…                9                9                 3
 #> # ℹ 146 more rows
-#> # ℹ 534 more variables: pos_team <chr>, def_pos_team <chr>,
+#> # ℹ 536 more variables: pos_team <chr>, def_pos_team <chr>,
 #> #   pos_team_score <int>, def_pos_team_score <int>, half <fct>, period <int>,
 #> #   clock_minutes <dbl>, clock_seconds <dbl>, play_type <chr>, play_text <chr>,
 #> #   down <dbl>, distance <dbl>, yards_to_goal <dbl>, yards_gained <dbl>,

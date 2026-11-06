@@ -62,7 +62,8 @@ and `cfb_cp_model`.
 ## See also
 
 Other CFB Model Calculators:
-[`calculate_cfb_models`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+[`calculate_cfb_models`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md),
+[`cfb_clear_model_cache()`](https://cfbfastR.sportsdataverse.org/reference/cfb_clear_model_cache.md)
 
 ## Examples
 
@@ -73,4 +74,6 @@ Other CFB Model Calculators:
 #> [4] "down_1"               "down_2"               "down_3"              
 #> [7] "down_4"               "pos_score_diff_start"
 # }
+# Offline: forget the cards read this session.
+cfb_card_reset_cache()
 ```

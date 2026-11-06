@@ -231,10 +231,10 @@ call) into a wide player tibble.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">yahoo_cfb_player_season_stats_legacy</span><span class="op">(</span>season <span class="op">=</span> <span class="fl">2024</span>, category <span class="op">=</span> <span class="st">"Rushing"</span>,</span></span>
-<span class="r-in"><span>                                           sort_stat <span class="op">=</span> <span class="st">"RUSHING_YARDS"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                                           sort_stat <span class="op">=</span> <span class="st">"RUSHING_YARDS"</span>, count <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Legacy player season stats from Yahoo Sports (shangrila) ── <span style="font-style: italic;">cfbfastR 3.1.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-04 03:47:58 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 200 × 13</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-06 08:27:40 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 13</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    player_id display_name team  team_abbreviation games_rushing rushing_attempts</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ncaaf.p.… Ashton Jean… Bois… BSU               14            374             </span>
@@ -247,7 +247,6 @@ call) into a wide player tibble.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ncaaf.p.… Tahj Brooks  Texa… TTU               11            286             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ncaaf.p.… Dylan Samps… Tenn… TENN              13            258             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ncaaf.p.… Makhi Hughes Hous… HOU               14            265             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 190 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7 more variables: rushing_yards &lt;chr&gt;, rushing_yards_per_game &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   rushing_yards_per_attempt &lt;chr&gt;, rushing_touchdowns &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   longest_rush &lt;chr&gt;, season &lt;dbl&gt;, category &lt;chr&gt;</span></span>

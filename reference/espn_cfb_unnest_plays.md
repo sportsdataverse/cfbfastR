@@ -128,7 +128,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_unnest_plays(espn_cfb_game_drives(401628339,
                                                  plays = "list")))
 #> ── Game drive plays (unnested) data from ESPN ──────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-04 03:44:56 UTC
+#> ℹ Data updated: 2026-11-06 08:25:53 UTC
 #> # A tibble: 156 × 106
 #>    drive_game_id drive_drive_id drive_sequence_number drive_description     
 #>    <chr>         <chr>          <chr>                 <chr>                 

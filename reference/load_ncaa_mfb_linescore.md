@@ -66,7 +66,7 @@ Saiem Gilani
 # \donttest{
   try(load_ncaa_mfb_linescore(2013))
 #> ── NCAA men's football linescores (stats.ncaa.org) from the SportsDataverse data
-#> ℹ Data updated: 2026-11-04 03:46:25 UTC
+#> ℹ Data updated: 2026-11-06 08:27:16 UTC
 #> # A tibble: 12,496 × 11
 #>    contest_id team      home_away period points final game_date venue attendance
 #>    <chr>      <chr>     <chr>     <chr>   <int> <int> <chr>     <chr>      <int>

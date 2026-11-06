@@ -627,3 +627,44 @@ Other CFBD PBP:
 [`cfbd_play_stats_types()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_types.md),
 [`cfbd_play_types()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_types.md),
 [`cfbd_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_plays.md)
+
+## Examples
+
+``` r
+# \donttest{
+  # The legacy engine runs add_play_counts(), create_epa() and
+  # create_wpa_naive() on each game. The default engine is shown in
+  # ?cfbd_pbp_data_v2.
+  try(cfbd_pbp_data(year = 2024, week = 1, team = "Texas", epa_wpa = TRUE,
+                    engine = "legacy"))
+#> ℹ `cfbd_pbp_data()` is running the legacy play-by-play engine, which is no
+#>   longer the default.
+#> • `cfbd_pbp_data_v2()` adds penalty enforcement resolution, ESPN-resolved
+#>   player names, *_player_id columns and the `output` tier selector.
+#> • Drop `engine = "legacy"` (or `options(cfbfastR.pbp_engine = "legacy")`) to
+#>   get it back.
+#> • 08:22:31 | Start processing of 1 game...
+#> ── Play-by-Play data from CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-06 08:22:35 UTC
+#> # A tibble: 162 × 364
+#>    season    wk id_play              game_id game_play_number half_play_number
+#>     <dbl> <dbl> <chr>                  <int>            <dbl>            <dbl>
+#>  1   2024     1 401628331101849902 401628331                1                1
+#>  2   2024     1 401628331101855401 401628331                2                2
+#>  3   2024     1 401628331101858901 401628331                3                3
+#>  4   2024     1 401628331101858902 401628331                3                3
+#>  5   2024     1 401628331101865101 401628331                4                4
+#>  6   2024     1 401628331101867401 401628331                5                5
+#>  7   2024     1 401628331101867801 401628331                6                6
+#>  8   2024     1 401628331101868501 401628331                7                7
+#>  9   2024     1 401628331101869801 401628331                8                8
+#> 10   2024     1 401628331101877101 401628331                9                9
+#> # ℹ 152 more rows
+#> # ℹ 358 more variables: drive_play_number <dbl>, pos_team <chr>,
+#> #   def_pos_team <chr>, pos_team_score <int>, def_pos_team_score <int>,
+#> #   half <fct>, period <int>, clock_minutes <int>, clock_seconds <int>,
+#> #   play_type <chr>, play_text <chr>, down <dbl>, distance <dbl>,
+#> #   yards_to_goal <dbl>, yards_gained <dbl>, EPA <dbl>, ep_before <dbl>,
+#> #   ep_after <dbl>, wpa <dbl>, wp_before <dbl>, wp_after <dbl>, …
+# }
+```

@@ -58,10 +58,10 @@ Other Yahoo CFB Functions:
 ``` r
 # \donttest{
   try(yahoo_cfb_team_season_stats_legacy(season = 2024, category = "Rushing",
-                                         sort_stat = "RUSHING_YARDS"))
+                                         sort_stat = "RUSHING_YARDS", count = 10))
 #> ── Legacy team season stats from Yahoo Sports (shangrila) ──── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-04 03:48:57 UTC
-#> # A tibble: 134 × 15
+#> ℹ Data updated: 2026-11-06 08:27:46 UTC
+#> # A tibble: 10 × 15
 #>    team           team_abbreviation games_rushing rushing_attempts rushing_yards
 #>    <chr>          <chr>             <chr>         <chr>            <chr>        
 #>  1 Army           ARMY              14            764              4207         
@@ -74,7 +74,6 @@ Other Yahoo CFB Functions:
 #>  8 New Mexico     UNM               12            456              3043         
 #>  9 Liberty        LIB               12            542              3015         
 #> 10 Ohio           OHIO              14            574              2985         
-#> # ℹ 124 more rows
 #> # ℹ 10 more variables: rushing_yards_per_attempt <chr>,
 #> #   rushing_attempts_per_game <chr>, rushing_yards_per_game <chr>,
 #> #   rushing_touchdowns <chr>, rushing_first_downs <chr>, longest_rush <chr>,

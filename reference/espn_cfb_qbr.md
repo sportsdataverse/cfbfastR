@@ -183,7 +183,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_qbr(year = 2024))
 #> ── QBR data from ESPN ──────────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-04 03:43:07 UTC
+#> ℹ Data updated: 2026-11-06 08:25:31 UTC
 #> # A tibble: 129 × 26
 #>    season season_type group_id athlete_id team_id  qbpaa cwepa_passes_condensed
 #>     <int>       <int> <chr>    <chr>      <chr>    <dbl>                  <dbl>
@@ -199,29 +199,6 @@ Other ESPN CFB Functions:
 #> 10   2024           2 80       4427238    2483    86.3                     87.0
 #> # ℹ 119 more rows
 #> # ℹ 19 more variables: cwepa_rushes <dbl>, cwepa_sacked_condensed <dbl>,
-#> #   cwepa_penalties <dbl>, cwepa_total <dbl>, action_plays <dbl>,
-#> #   cw_average <dbl>, qbr <dbl>, cwepa_passes <dbl>, cwepa_interceptions <dbl>,
-#> #   cwepa_yards_after_carry <dbl>, cwepa_runs <dbl>, cwepa_scrambles <dbl>,
-#> #   cwepa_sacked <dbl>, cwepa_fumbles <dbl>, avg_opp_dqbr <dbl>,
-#> #   sched_adj_qbr <dbl>, unqualified_rank <dbl>, athlete_ref <chr>, …
-  try(espn_cfb_qbr(year = 2024, athlete_detail = TRUE))
-#> ── QBR data from ESPN ──────────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-04 03:43:13 UTC
-#> # A tibble: 129 × 32
-#>    season season_type group_id athlete_id team_id  qbpaa cwepa_passes_condensed
-#>     <int>       <int> <chr>    <chr>      <chr>    <dbl>                  <dbl>
-#>  1   2024           2 80       102597     264      7.86                    41.7
-#>  2   2024           2 80       4360480    328      4.01                    24.6
-#>  3   2024           2 80       4360689    97      39.8                     61.1
-#>  4   2024           2 80       4360890    326     69.0                     70.7
-#>  5   2024           2 80       4362159    197     22.3                     37.5
-#>  6   2024           2 80       4373895    309     48.0                     51.4
-#>  7   2024           2 80       4426430    113      0.339                   17.9
-#>  8   2024           2 80       4426444    189     24.2                     61.1
-#>  9   2024           2 80       4426499    154      9.62                    38.5
-#> 10   2024           2 80       4427238    2483    86.3                     87.0
-#> # ℹ 119 more rows
-#> # ℹ 25 more variables: cwepa_rushes <dbl>, cwepa_sacked_condensed <dbl>,
 #> #   cwepa_penalties <dbl>, cwepa_total <dbl>, action_plays <dbl>,
 #> #   cw_average <dbl>, qbr <dbl>, cwepa_passes <dbl>, cwepa_interceptions <dbl>,
 #> #   cwepa_yards_after_carry <dbl>, cwepa_runs <dbl>, cwepa_scrambles <dbl>,

@@ -757,6 +757,11 @@ frame or a hand-built row and get model output back
 
   **Read the published contract for a CFB model**
 
+- [`cfb_clear_model_cache()`](https://cfbfastR.sportsdataverse.org/reference/cfb_clear_model_cache.md)
+  :
+
+  **Clear the cached CFB models**
+
 ### Passing Data
 
 Functions exported by cfbfastR sourced from the passing endpoints of the

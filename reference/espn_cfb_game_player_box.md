@@ -193,58 +193,11 @@ Other ESPN CFB Functions:
 
 ``` r
 # \donttest{
-  try(espn_cfb_game_player_box(game_id = 401628339))
-#> ── Game player box score data from ESPN ────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-04 03:41:59 UTC
-#> # A tibble: 6,101 × 33
-#>    game_id   team_id team_name team_abbreviation team_location team_display_name
-#>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
-#>  1 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  2 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  3 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  4 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  5 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  6 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  7 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  8 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  9 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> 10 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> # ℹ 6,091 more rows
-#> # ℹ 27 more variables: team_short_display_name <chr>, team_nickname <chr>,
-#> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
-#> #   team_logo_dark_href <chr>, home_away <chr>, athlete_id <chr>,
-#> #   athlete_name <chr>, position_id <chr>, category_name <chr>,
-#> #   category_display <chr>, category_short_display <chr>,
-#> #   category_summary <chr>, stat_name <chr>, abbreviation <chr>, …
   try(espn_cfb_game_player_box(game_id = 401628339,
-                               position_detail = FALSE))
+                               position_detail = FALSE, team_detail = FALSE))
 #> ── Game player box score data from ESPN ────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-04 03:42:09 UTC
-#> # A tibble: 6,101 × 28
-#>    game_id   team_id team_name team_abbreviation team_location team_display_name
-#>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
-#>  1 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  2 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  3 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  4 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  5 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  6 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  7 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  8 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  9 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> 10 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> # ℹ 6,091 more rows
-#> # ℹ 22 more variables: team_short_display_name <chr>, team_nickname <chr>,
-#> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
-#> #   team_logo_dark_href <chr>, home_away <chr>, athlete_id <chr>,
-#> #   athlete_name <chr>, position_id <chr>, category_name <chr>,
-#> #   category_display <chr>, category_short_display <chr>,
-#> #   category_summary <chr>, stat_name <chr>, abbreviation <chr>, …
-  try(espn_cfb_game_player_box(game_id = 401628339,
-                               team_detail = FALSE))
-#> ── Game player box score data from ESPN ────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-04 03:42:18 UTC
-#> # A tibble: 6,101 × 23
+#> ℹ Data updated: 2026-11-06 08:24:43 UTC
+#> # A tibble: 6,101 × 18
 #>    game_id   team_id home_away athlete_id athlete_name position_id category_name
 #>    <chr>     <chr>   <chr>     <chr>      <chr>        <chr>       <chr>        
 #>  1 401628339 61      home      4429105    A. Smith     1           general      
@@ -258,11 +211,9 @@ Other ESPN CFB Functions:
 #>  9 401628339 61      home      4429105    A. Smith     1           passing      
 #> 10 401628339 61      home      4429105    A. Smith     1           passing      
 #> # ℹ 6,091 more rows
-#> # ℹ 16 more variables: category_display <chr>, category_short_display <chr>,
+#> # ℹ 11 more variables: category_display <chr>, category_short_display <chr>,
 #> #   category_summary <chr>, stat_name <chr>, abbreviation <chr>,
 #> #   display_name <chr>, short_display_name <chr>, description <chr>,
-#> #   value <dbl>, display_value <chr>, statistics_ref <chr>,
-#> #   position_name <chr>, position_display_name <chr>,
-#> #   position_abbreviation <chr>, position_leaf <lgl>, …
+#> #   value <dbl>, display_value <chr>, statistics_ref <chr>
 # }
 ```

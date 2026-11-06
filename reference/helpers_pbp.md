@@ -961,3 +961,11 @@ following columns be present:
 - `play_text`:
 
   A description of the play.
+
+## Examples
+
+``` r
+# add_play_counts() is one step of the legacy play-by-play pipeline; the
+# example in ?cfbd_pbp_data runs it (engine = "legacy", epa_wpa = TRUE).
+# To score a frame of your own, see ?calculate_cfb_models.
+```

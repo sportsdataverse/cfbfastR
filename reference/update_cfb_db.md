@@ -85,3 +85,12 @@ Other loaders:
 [`load_cfb_rosters()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_rosters.md),
 [`load_cfb_schedules()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.md),
 [`load_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.md)
+
+## Examples
+
+``` r
+if (FALSE) { # interactive()
+# Builds every season from 2014 on, several GB, in a SQLite file.
+try(update_cfb_db(dbdir = tempdir()))
+}
+```

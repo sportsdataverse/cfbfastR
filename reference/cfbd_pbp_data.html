@@ -310,6 +310,46 @@ redundant alternates and drive-result aliases, each defined below:</p><table cla
 <code><a href="cfbd_plays.html">cfbd_plays()</a></code></p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span>  <span class="co"># The legacy engine runs add_play_counts(), create_epa() and</span></span></span>
+<span class="r-in"><span>  <span class="co"># create_wpa_naive() on each game. The default engine is shown in</span></span></span>
+<span class="r-in"><span>  <span class="co"># ?cfbd_pbp_data_v2.</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_pbp_data</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2024</span>, week <span class="op">=</span> <span class="fl">1</span>, team <span class="op">=</span> <span class="st">"Texas"</span>, epa_wpa <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>                    engine <span class="op">=</span> <span class="st">"legacy"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> `cfbd_pbp_data()` is running the legacy play-by-play engine, which is no</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   longer the default.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> `cfbd_pbp_data_v2()` adds penalty enforcement resolution, ESPN-resolved</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   player names, <span style="color: #00BB00;">*_player_id</span> columns and the `output` tier selector.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Drop `engine = "legacy"` (or `options(cfbfastR.pbp_engine = "legacy")`) to</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   get it back.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • 08:22:31 | Start processing of 1 game...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Play-by-Play data from CollegeFootballData.com ──────────── <span style="font-style: italic;">cfbfastR 3.1.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-06 08:22:35 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 162 × 364</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    season    wk id_play              game_id game_play_number half_play_number</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>   <span style="text-decoration: underline;">2</span>024     1 401628331101849902 401<span style="text-decoration: underline;">628</span>331                1                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>   <span style="text-decoration: underline;">2</span>024     1 401628331101855401 401<span style="text-decoration: underline;">628</span>331                2                2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>   <span style="text-decoration: underline;">2</span>024     1 401628331101858901 401<span style="text-decoration: underline;">628</span>331                3                3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>   <span style="text-decoration: underline;">2</span>024     1 401628331101858902 401<span style="text-decoration: underline;">628</span>331                3                3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>   <span style="text-decoration: underline;">2</span>024     1 401628331101865101 401<span style="text-decoration: underline;">628</span>331                4                4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>   <span style="text-decoration: underline;">2</span>024     1 401628331101867401 401<span style="text-decoration: underline;">628</span>331                5                5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>   <span style="text-decoration: underline;">2</span>024     1 401628331101867801 401<span style="text-decoration: underline;">628</span>331                6                6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>   <span style="text-decoration: underline;">2</span>024     1 401628331101868501 401<span style="text-decoration: underline;">628</span>331                7                7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>   <span style="text-decoration: underline;">2</span>024     1 401628331101869801 401<span style="text-decoration: underline;">628</span>331                8                8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">2</span>024     1 401628331101877101 401<span style="text-decoration: underline;">628</span>331                9                9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 152 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 358 more variables: drive_play_number &lt;dbl&gt;, pos_team &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   def_pos_team &lt;chr&gt;, pos_team_score &lt;int&gt;, def_pos_team_score &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   half &lt;fct&gt;, period &lt;int&gt;, clock_minutes &lt;int&gt;, clock_seconds &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   play_type &lt;chr&gt;, play_text &lt;chr&gt;, down &lt;dbl&gt;, distance &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   yards_to_goal &lt;dbl&gt;, yards_gained &lt;dbl&gt;, EPA &lt;dbl&gt;, ep_before &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ep_after &lt;dbl&gt;, wpa &lt;dbl&gt;, wp_before &lt;dbl&gt;, wp_after &lt;dbl&gt;, …</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

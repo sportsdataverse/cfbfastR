@@ -53,3 +53,59 @@ within an R environment, save your API key as the environment variable
 
 Get information about your API key, including your Patreon level and
 usage limits.
+
+## Examples
+
+``` r
+# Offline: is a key registered in this session?
+has_cfbd_key()
+#> [1] TRUE
+# \donttest{
+  if (has_cfbd_key()) try(cfbd_api_key_info())
+#> 2026-11-06 08:27:32.534747: Invalid arguments or no CFBD API key info data available! Tibble columns must have compatible sizes.
+#> • Size 2: Column `products`.
+#> • Size 5: Column `features`.
+#> ℹ Only values of size one are recycled.
+#> $patron_level
+#> [1] 4
+#> 
+#> $tier_name
+#> [1] "Tier 4"
+#> 
+#> $monthly_limit
+#> [1] 125000
+#> 
+#> $remaining_calls
+#> [1] 11808
+#> 
+#> $used_calls
+#> [1] 113192
+#> 
+#> $reset_at
+#> [1] "2026-12-01T00:00:00.000Z"
+#> 
+#> $shared_pool
+#> [1] TRUE
+#> 
+#> $products
+#> [1] "cfb" "cbb"
+#> 
+#> $features
+#> $features$adjustedMetrics
+#> [1] TRUE
+#> 
+#> $features$weather
+#> [1] TRUE
+#> 
+#> $features$scoreboard
+#> [1] TRUE
+#> 
+#> $features$livePlayByPlay
+#> [1] TRUE
+#> 
+#> $features$graphQl
+#> [1] TRUE
+#> 
+#> 
+# }
+```

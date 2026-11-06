@@ -45,7 +45,7 @@ leaderboard headers plus `entity_id`.
 # \donttest{
   try(fox_cfb_league_leaders(category = "passing"))
 #> ── Statistical leaders from Fox Sports (Bifrost) ───────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-04 03:45:05 UTC
+#> ℹ Data updated: 2026-11-06 08:26:02 UTC
 #> # A tibble: 75 × 7
 #>    players v2             comp  gp    entity_id patt  att_g
 #>    <chr>   <chr>          <chr> <chr> <chr>     <chr> <chr>
@@ -55,7 +55,7 @@ leaderboard headers plus `entity_id`.
 #>  4 4       N. Fifita      200   8     197318    NA    NA   
 #>  5 5       J. Maiava      198   9     196106    NA    NA   
 #>  6 6       T. Jackson     193   8     196773    NA    NA   
-#>  7 7       M. Johnson     190   8     179185    NA    NA   
+#>  7 7       M. Johnson     189   8     179185    NA    NA   
 #>  8 8       T. Chambliss   189   8     238651    NA    NA   
 #>  9 9       D. Mensah      188   8     210786    NA    NA   
 #> 10 10      E. Grunkemeyer 187   8     223282    NA    NA   

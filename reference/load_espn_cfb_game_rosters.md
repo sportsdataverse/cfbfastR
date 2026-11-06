@@ -133,7 +133,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_game_rosters(2004))
 #> ── ESPN college football game rosters from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-11-04 03:46:00 UTC
+#> ℹ Data updated: 2026-11-06 08:26:52 UTC
 #> # A tibble: 43,010 × 72
 #>    athlete_id athlete_uid        athlete_guid  athlete_type first_name last_name
 #>         <int> <chr>              <chr>         <chr>        <chr>      <chr>    

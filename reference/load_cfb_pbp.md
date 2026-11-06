@@ -71,3 +71,12 @@ Other loaders:
 [`load_cfb_schedules()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.md),
 [`load_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.md),
 [`update_cfb_db()`](https://cfbfastR.sportsdataverse.org/reference/update_cfb_db.md)
+
+## Examples
+
+``` r
+if (FALSE) { # interactive()
+# One season is about 160,000 plays and 400 MB in memory.
+try(load_cfb_pbp(2024))
+}
+```

@@ -58,10 +58,10 @@ Other Yahoo CFB Functions:
 ``` r
 # \donttest{
   try(yahoo_cfb_player_season_stats_legacy(season = 2024, category = "Rushing",
-                                           sort_stat = "RUSHING_YARDS"))
+                                           sort_stat = "RUSHING_YARDS", count = 10))
 #> ── Legacy player season stats from Yahoo Sports (shangrila) ── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-04 03:47:58 UTC
-#> # A tibble: 200 × 13
+#> ℹ Data updated: 2026-11-06 08:27:40 UTC
+#> # A tibble: 10 × 13
 #>    player_id display_name team  team_abbreviation games_rushing rushing_attempts
 #>    <chr>     <chr>        <chr> <chr>             <chr>         <chr>           
 #>  1 ncaaf.p.… Ashton Jean… Bois… BSU               14            374             
@@ -74,7 +74,6 @@ Other Yahoo CFB Functions:
 #>  8 ncaaf.p.… Tahj Brooks  Texa… TTU               11            286             
 #>  9 ncaaf.p.… Dylan Samps… Tenn… TENN              13            258             
 #> 10 ncaaf.p.… Makhi Hughes Hous… HOU               14            265             
-#> # ℹ 190 more rows
 #> # ℹ 7 more variables: rushing_yards <chr>, rushing_yards_per_game <chr>,
 #> #   rushing_yards_per_attempt <chr>, rushing_touchdowns <chr>,
 #> #   longest_rush <chr>, season <dbl>, category <chr>
