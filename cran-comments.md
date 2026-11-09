@@ -68,46 +68,52 @@ This is a minor release (3.0.0 -> 3.1.0). It:
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 notes
+
+`--run-donttest` runs the `\donttest` code inside the timed examples step; the
+examples outside `\donttest` are all offline. Every example took under 5 s of
+CPU and under 5 s elapsed. The slowest, `espn_cfb_futures`, took 0.75 s CPU and
+4.14 s elapsed, nearly all of it network wait; the most CPU, 3.45 s, went to
+`espn_cfb_powerindex`. All 247 examples took 103 s elapsed (36 s CPU) in total
+with no API key, where the CollegeFootballData examples stop with an
+informative error before sending a request.
+
+An earlier check of this release listed three examples over 5 s. Two now
+parse faster: name cleaning in the ESPN participant and Yahoo stat parsers is
+memoised, with identical output. Whole-season downloads and examples that make
+one request per row now run only in an interactive session (listed below).
+Timed in that check (before) and in the check above (after):
 
 ```
-* checking examples ... [146s] NOTE
-Examples with CPU (user + system) or elapsed time > 5s
-                  user system elapsed
-espn_cfb_game_pbp 4.73   0.88    9.54
-load_espn_cfb_pbp 1.89   0.50    5.16
+                               before (CPU / elapsed)   after (CPU / elapsed)
+espn_cfb_game_pbp                     5.61 / 9.54          0.82 / 1.05
+load_espn_cfb_pbp                     2.39 / 5.16          interactive only
+yahoo_cfb_player_season_stats         3.43 / 4.02 (*)      0.82 / 1.78
 ```
 
-This NOTE comes only from passing `--run-donttest` explicitly, which runs the
-`\donttest` code inside the timed examples step. The examples outside
-`\donttest` are all offline. Both examples are in `\donttest{}` and call a
-public source over the network: `espn_cfb_game_pbp` makes four ESPN calls
-(two for one game's plays, one for a drive and one for a single play), and
-`load_espn_cfb_pbp` downloads one season file from a public GitHub release.
-Re-timed on their own from the installed build, with
-`system.time(example(fn, package = "cfbfastR", run.donttest = TRUE))`:
+(*) timed on its own; inside checks it went over 5 s. The participant-column
+call of `espn_cfb_game_pbp` (now interactive only) fetched ESPN's position
+catalog, one request per position. The examples of `espn_cfb_player()`,
+`espn_cfb_game_team_roster()` and `espn_cfb_game_player_statistics()` now pass
+`position_detail = FALSE`, so no example run under `R CMD check` fetches that
+catalog.
 
-```
-                  CPU (user + system)  elapsed
-espn_cfb_game_pbp               4.50     8.81
-load_espn_cfb_pbp               2.29     5.30
-```
-
-The rest of the elapsed time is network wait (CPU < 5 s in both). Run to run
-the list varies around the 5 s line: an earlier check the same day listed
-`yahoo_cfb_player_season_stats` instead of `load_espn_cfb_pbp`, which took
-3.43 s CPU and 4.02 s elapsed on its own. All 247 examples took 118 s elapsed
-(49 s CPU) in total with no API key, where the CollegeFootballData examples
-stop with an informative error before sending a request.
+Elapsed time on these examples is mostly network wait, and it varies from run
+to run. Checks run while other jobs loaded this machine listed a few
+low-CPU examples over 5 s elapsed (for example `espn_cfb_franchises`, 0.20 s
+CPU); each took under 5 s when re-timed on its own with
+`system.time(example(fn, package = "cfbfastR", run.donttest = TRUE))`.
 
 Examples that would take much longer run only in an interactive session
 (`@examplesIf interactive()`):
 
-* `load_cfb_pbp()` and `update_cfb_db()` download whole seasons of
-  play-by-play.
+* `load_cfb_pbp()`, `update_cfb_db()`, `load_espn_cfb_pbp()` and
+  `load_ncaa_mfb_pbp_cfbfastr()` download whole seasons of play-by-play.
 * `espn_cfb_seasons()`, `espn_cfb_coaches()`, `espn_cfb_team_roster()`,
-  `espn_cfb_game_player_box()` and `espn_cfb_groups()` make one request per
-  row (season, coach, player, conference or division).
+  `espn_cfb_game_player_box()`, `espn_cfb_groups()`, `espn_cfb_awards()` and
+  `espn_cfb_positions()` make one request per row (season, coach, player,
+  conference or division, award, position), as does the second
+  `espn_cfb_game_pbp()` call, which adds participant columns.
 * `espn_cfb_pbp()` and `espn_cfb_pbp_v2()` spend several seconds of CPU
   parsing a game.
 * Eight `calculate_*()` functions (`?calculate_cfb_models`) download a model
@@ -126,7 +132,7 @@ Tests that need the network (the CollegeFootballData API, which also needs an AP
 key; ESPN; the GitHub release assets) or the downloaded model bundle call
 `skip_on_cran()`. The remaining tests run on CRAN and are offline: they use mocked
 HTTP responses and small committed fixtures. In the check above, with no key:
-`[ FAIL 0 | WARN 0 | SKIP 432 | PASS 986 ]`, with 419 tests skipped on CRAN and
+`[ FAIL 0 | WARN 0 | SKIP 432 | PASS 989 ]`, with 419 tests skipped on CRAN and
 13 skipped because no CollegeFootballData key was set.
 
 ## Internet resources
