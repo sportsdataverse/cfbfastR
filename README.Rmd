@@ -2,7 +2,7 @@
 output: github_document
 ---
 
-# **cfbfastR**  <a href='https://cfbfastR.sportsdataverse.org/'><img src='https://raw.githubusercontent.com/sportsdataverse/cfbfastR/main/logo.png' align="right" width="20%" min-width="100px"/></a>
+# **cfbfastR** <a href='https://cfbfastR.sportsdataverse.org/'><img alt="cfbfastR hex logo" src='https://raw.githubusercontent.com/sportsdataverse/cfbfastR/main/logo.png' align="right" width="20%" min-width="100px"/></a>
 ```{r, include = FALSE}
 require(knitr)
 if (!requireNamespace('remotes')){
@@ -18,8 +18,18 @@ install.packages(c("magick", "grid", "dplyr", "lubridate"), repos = "https://clo
 
 [![CRAN version](https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=success&label=CRAN%20version&prefix=v&query=%24.Version&url=https%3A%2F%2Fcrandb.r-pkg.org%2FcfbfastR)](https://CRAN.R-project.org/package=cfbfastR)
 [![CRAN downloads](https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=success&label=Downloads&query=%24%5B0%5D.downloads&url=https%3A%2F%2Fcranlogs.r-pkg.org%2Fdownloads%2Ftotal%2F2021-10-26%3Alast-day%2FcfbfastR)](https://CRAN.R-project.org/package=cfbfastR)
+[![R-universe](https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=success&label=r-universe&prefix=v&query=%24.Version&url=https%3A%2F%2Fsportsdataverse.r-universe.dev%2Fapi%2Fpackages%2FcfbfastR)](https://sportsdataverse.r-universe.dev/cfbfastR)
 [![Version-Number](https://img.shields.io/github/r-package/v/sportsdataverse/cfbfastR?label=cfbfastR&logo=R&style=for-the-badge)](https://github.com/sportsdataverse/cfbfastR/)
-[![R-CMD-check](https://img.shields.io/github/actions/workflow/status/sportsdataverse/cfbfastR/R-CMD-check.yaml?branch=main&label=R-CMD-Check&logo=R&logoColor=white&style=for-the-badge)](https://github.com/sportsdataverse/cfbfastR/actions/workflows/R-CMD-check.yaml) [![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg?style=for-the-badge&logo=github)](https://github.com/sportsdataverse/cfbfastR/)  [![Contributors](https://img.shields.io/github/contributors/sportsdataverse/cfbfastR?style=for-the-badge)](https://github.com/sportsdataverse/cfbfastR/graphs/contributors) [![Twitter Follow](https://img.shields.io/twitter/follow/cfbfastR?color=blue&label=%40cfbfastR&logo=x&style=for-the-badge)](https://x.com/cfbfastR) [![Twitter Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=x&style=for-the-badge)](https://x.com/SportsDataverse)
+[![R-CMD-check](https://img.shields.io/github/actions/workflow/status/sportsdataverse/cfbfastR/R-CMD-check.yaml?branch=main&label=R-CMD-Check&logo=R&logoColor=white&style=for-the-badge)](https://github.com/sportsdataverse/cfbfastR/actions/workflows/R-CMD-check.yaml)
+[![Codecov](https://img.shields.io/codecov/c/github/sportsdataverse/cfbfastR?logo=codecov&style=for-the-badge)](https://app.codecov.io/gh/sportsdataverse/cfbfastR)
+[![pkgdown](https://img.shields.io/github/actions/workflow/status/sportsdataverse/cfbfastR/pkgdown.yaml?branch=main&label=pkgdown&logo=github&style=for-the-badge)](https://github.com/sportsdataverse/cfbfastR/actions/workflows/pkgdown.yaml)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg?style=for-the-badge&logo=github)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://github.com/sportsdataverse/cfbfastR/blob/main/LICENSE.md)
+[![Contributors](https://img.shields.io/github/contributors/sportsdataverse/cfbfastR?style=for-the-badge)](https://github.com/sportsdataverse/cfbfastR/graphs/contributors)
+[![GitHub stars](https://img.shields.io/github/stars/sportsdataverse/cfbfastR?style=for-the-badge&logo=github)](https://github.com/sportsdataverse/cfbfastR)
+[![X Follow](https://img.shields.io/twitter/follow/cfbfastR?color=blue&label=%40cfbfastR&logo=x&style=for-the-badge)](https://x.com/cfbfastR)
+[![X Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=x&style=for-the-badge)](https://x.com/SportsDataverse)
+
 <!-- badges: end -->
 
 The goal of [**```cfbfastR```**](https://cfbfastR.sportsdataverse.org/) is to provide the community with an R package for working with CFB data. It is an R API wrapper around [https://collegefootballdata.com/](https://collegefootballdata.com/). Beyond data aggregation and tidying ease, one of the multitude of services that [**```cfbfastR```**](https://cfbfastR.sportsdataverse.org/) provides is for benchmarking open-source expected points and win probability metrics.
@@ -37,22 +47,48 @@ The release-backed `load_*()` functions read assets on [sportsdataverse-data](ht
 
 ## **Installation**
 
-You can install the CRAN version of [**```cfbfastR```** ](https://CRAN.R-project.org/package=cfbfastR) with:
+You can install the CRAN version of [**`cfbfastR`**](https://CRAN.R-project.org/package=cfbfastR) with:
+
 ```r
 install.packages("cfbfastR")
 ```
 
-You can install the development version of [**```cfbfastR```**](https://github.com/sportsdataverse/cfbfastR/) from [GitHub](https://github.com/sportsdataverse/cfbfastR) with:
+You can install the latest build from [R-universe](https://sportsdataverse.r-universe.dev/cfbfastR) with:
 
 ```r
-# You can install using the remotes package using the following code:
-if (!requireNamespace('remotes', quietly = TRUE)){
-  install.packages('remotes', repos = "https://cloud.r-project.org")
-}
-remotes::install_github("sportsdataverse/cfbfastR")
+install.packages("cfbfastR", repos = c("https://sportsdataverse.r-universe.dev", getOption("repos")))
 ```
 
+You can install the development version of [**`cfbfastR`**](https://github.com/sportsdataverse/cfbfastR/) from GitHub with:
 
+```r
+if (!requireNamespace("pak", quietly = TRUE)) install.packages("pak")
+pak::pak("sportsdataverse/cfbfastR")
+# or, with remotes:
+# if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
+# remotes::install_github("sportsdataverse/cfbfastR")
+```
+
+## **Quick start**
+
+The release loaders need no API key; the `cfbd_*()` functions need a `CFBD_API_KEY` (see
+[College Football Data API Keys](#college-football-data-api-keys) below).
+
+```r
+library(cfbfastR)
+
+# play-by-play with EPA/WPA for a season, from the data releases
+pbp <- load_cfb_pbp(seasons = 2024)
+
+# today's games from the ESPN scoreboard
+espn_cfb_scoreboard()
+
+# week 1 game info from the CollegeFootballData API
+cfbd_game_info(year = 2024, week = 1)
+```
+
+Every loader family is listed under [Full Season Data Loaders](#full-season-data-loaders), and the
+[intro vignette](https://cfbfastR.sportsdataverse.org/articles/intro.html) walks through a first analysis.
 
 ## **Full Season Data Loaders**
 
@@ -90,25 +126,6 @@ release loaders: they call the CollegeFootballData API (through
 need a `CFBD_API_KEY` and take no `dbConnection` or `tablename`.
 `load_cfb_teams()` takes `fbs_only` instead of `seasons`.
 
-## **Companion packages**
-
-Other SportsDataverse packages work directly on `cfbfastR` data:
-
-* [**`cfbseedR`**](https://cfbseedR.sportsdataverse.org/) — simulate college football seasons: conference standings with each conference's tiebreakers and the 12-team College Football Playoff. CRAN: `install.packages("cfbseedR")`.
-* [**`cfb4th`**](https://cfb4th.sportsdataverse.org/) — fourth-down decision tables (go, field goal or punt) on `cfbfastR` play-by-play. r-universe only.
-* [**`sdvplotR`**](https://sdvplotR.sportsdataverse.org/) — team logos, colors, headshots and `gt` tables for every SportsDataverse league, `league = "cfb"` included. r-universe only.
-* [**`sportyR`**](https://sportyR.sportsdataverse.org/) — regulation playing surfaces for `ggplot2`, including the college football field (`geom_football("ncaa")`). CRAN: `install.packages("sportyR")`.
-* [**`cfbplotR`**](https://cfbplotR.sportsdataverse.org/) — college football logos and colors for `ggplot2` and `gt`. r-universe only.
-
-The r-universe packages install with:
-
-```r
-install.packages(
-  c("cfb4th", "sdvplotR", "cfbplotR"),
-  repos = c("https://sportsdataverse.r-universe.dev", getOption("repos"))
-)
-```
-
 ## **CollegeFootballData API coverage**
 
 The `cfbd_*()` wrappers cover **93 of the 93 endpoints** in the current CFBD
@@ -137,6 +154,53 @@ wide (up to 385 columns) because one production block repeats per location or
 direction, so the family topics document the block and the naming scheme once
 instead of listing every column.
 
+## **Proxy support**
+
+If you run `cfbfastR` from behind a corporate proxy, set it once per session and every `cfbd_*()` call routes through it (the `espn_cfb_*()` functions don't read this option):
+
+```r
+options(cfbfastR.proxy = "http://proxy.host.example:8080")
+# or, for an authenticated proxy:
+options(cfbfastR.proxy = list(
+  url = "http://proxy.host.example", port = 8080,
+  username = "me", password = "pw", auth = "basic"
+))
+```
+
+The resolution order is: explicit `proxy =` argument -> `getOption("cfbfastR.proxy")` -> `http_proxy` / `https_proxy` env vars. See the [intro vignette](https://cfbfastR.sportsdataverse.org/articles/intro.html) for full detail.
+
+## **Model cache**
+
+The EPA, win probability and other models behind `calculate_*()`, `cfbd_pbp_data(epa_wpa = TRUE)` and `espn_cfb_pbp(epa_wpa = TRUE)` are downloaded from GitHub the first time they are needed. They are cached in `file.path(tools::R_user_dir("cfbfastR", "cache"), "models")` and refreshed once a day (change it in seconds, e.g. `options(cfbfastR.cache_duration = 7 * 86400)` for a week). A model is kept in memory for the rest of the R session once it is loaded, so the daily refresh does not reach a session that already uses it: restarting R drops the loaded models but not the cache, so a new session still reads the cached copy until it expires. An expired copy only triggers a download attempt: if the download fails, the expired copy is used and stays loaded for the session. To pick up a new model at once, run `cfb_clear_model_cache()`, which deletes the cache and the loaded models; do that with a working connection, since it also removes the offline fallback.
+
+
+## **Documentation**
+
+- [Package site](https://cfbfastR.sportsdataverse.org/)
+- [Function reference](https://cfbfastR.sportsdataverse.org/reference/index.html)
+- Articles:
+  - [Getting Started with cfbfastR: College Football Analytics in R](https://cfbfastR.sportsdataverse.org/articles/intro.html)
+  - [ESPN College Football Cookbook](https://cfbfastR.sportsdataverse.org/articles/cfbfastR-espn-cookbook.html)
+  - [CFB Data Betting Lines Examples](https://cfbfastR.sportsdataverse.org/articles/cfbd_betting.html)
+  - [CFB Data Games Examples](https://cfbfastR.sportsdataverse.org/articles/cfbd_games.html)
+  - [CFB Data Plays Examples](https://cfbfastR.sportsdataverse.org/articles/cfbd_plays.html)
+  - [CFB Data Recruiting Examples](https://cfbfastR.sportsdataverse.org/articles/cfbd_recruiting.html)
+  - [CFB Data Stats Examples](https://cfbfastR.sportsdataverse.org/articles/cfbd_stats.html)
+  - [CFB Data Teams Examples](https://cfbfastR.sportsdataverse.org/articles/cfbd_teams.html)
+  - [Expected Points in College Football: How the Model Works (Part I)](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-i.html)
+  - [How the Expected Points Model Is Built (Part II)](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-ii.html)
+  - [A History of Expected Points Models in Football (Part III)](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-iii.html)
+  - [What Is EPA in College Football? Expected Points Added Explained (Part IV)](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-iv.html)
+  - [Win Probability in College Football: wp, WPA and vegas_wp (Part V)](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-v.html)
+  - [CPOE, xpass, Field Goals and Fourth Downs: The Derived Models (Part VI)](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-vi.html)
+  - [Simulating a College Football Season with cfbseedR](https://cfbfastR.sportsdataverse.org/articles/cfbseedR-season-simulation.html)
+  - [Making Animated Win Probability Charts with cfbfastR](https://cfbfastR.sportsdataverse.org/articles/animated-wp-plotting.html)
+  - [Creating Fourth Down Tendency Plots Using cfbfastR](https://cfbfastR.sportsdataverse.org/articles/fourth-down-plot-tutorial.html)
+  - [Rolling EPA Graph](https://cfbfastR.sportsdataverse.org/articles/rolling-epa-graph.html)
+  - [Intro to Visualizing Recruiting Geography](https://cfbfastR.sportsdataverse.org/articles/map-tutorial.html)
+  - [Visualizing Team Talent from Player Recruiting Rankings](https://cfbfastR.sportsdataverse.org/articles/nth-rated-recruit.html)
+- [NEWS / changelog](https://cfbfastR.sportsdataverse.org/news/index.html)
+
 ## **Breaking Changes**
 
 [**Full News on Releases**](https://cfbfastR.sportsdataverse.org/news/index.html)
@@ -162,29 +226,49 @@ Sys.setenv(CFBD_API_KEY = "YOUR-API-KEY-HERE")
 ```
 
 
+## **Companion packages**
 
-## **Proxy support**
+Other SportsDataverse packages work directly on `cfbfastR` data:
 
-If you run `cfbfastR` from behind a corporate proxy, set it once per session and every `cfbd_*()` / `espn_cfb_*()` call routes through it:
+* [**`cfbseedR`**](https://cfbseedR.sportsdataverse.org/) — simulate college football seasons: conference standings with each conference's tiebreakers and the 12-team College Football Playoff. CRAN: `install.packages("cfbseedR")`.
+* [**`cfb4th`**](https://cfb4th.sportsdataverse.org/) — fourth-down decision tables (go, field goal or punt) on `cfbfastR` play-by-play. r-universe only.
+* [**`sdvplotR`**](https://sdvplotR.sportsdataverse.org/) — team logos, colors, headshots and `gt` tables for every SportsDataverse league, `league = "cfb"` included. r-universe only.
+* [**`sportyR`**](https://sportyR.sportsdataverse.org/) — regulation playing surfaces for `ggplot2`, including the college football field (`geom_football("ncaa")`). CRAN: `install.packages("sportyR")`.
+* [**`cfbplotR`**](https://cfbplotR.sportsdataverse.org/) — college football logos and colors for `ggplot2` and `gt`. r-universe only.
+
+The r-universe packages install with:
 
 ```r
-options(cfbfastR.proxy = "http://proxy.host.example:8080")
-# or, for an authenticated proxy:
-options(cfbfastR.proxy = list(
-  url = "http://proxy.host.example", port = 8080,
-  username = "me", password = "pw", auth = "basic"
-))
+install.packages(
+  c("cfb4th", "sdvplotR", "cfbplotR"),
+  repos = c("https://sportsdataverse.r-universe.dev", getOption("repos"))
+)
 ```
 
-The resolution order is: explicit `proxy =` argument -> `getOption("cfbfastR.proxy")` -> `http_proxy` / `https_proxy` env vars. See the [intro vignette](https://cfbfastR.sportsdataverse.org/articles/intro.html) for full detail.
+## **The SportsDataverse**
 
-## **Model cache**
+[**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) is part of the [SportsDataverse](https://sportsdataverse.org/), a set of
+open-source packages for sports data.
 
-The EPA, win probability and other models behind `calculate_*()`, `cfbd_pbp_data(epa_wpa = TRUE)` and `espn_cfb_pbp(epa_wpa = TRUE)` are downloaded from GitHub the first time they are needed. They are cached in `file.path(tools::R_user_dir("cfbfastR", "cache"), "models")` and refreshed once a day (change it in seconds, e.g. `options(cfbfastR.cache_duration = 7 * 86400)` for a week). A model is kept in memory for the rest of the R session once it is loaded, so the daily refresh does not reach a session that already uses it: restarting R drops the loaded models but not the cache, so a new session still reads the cached copy until it expires. An expired copy only triggers a download attempt: if the download fails, the expired copy is used and stays loaded for the session. To pick up a new model at once, run `cfb_clear_model_cache()`, which deletes the cache and the loaded models; do that with a working connection, since it also removes the offline fallback.
+| Package | Sport / Scope |
+|---|---|
+| [**cfbfastR**](https://cfbfastR.sportsdataverse.org/) | College football |
+| [**hoopR**](https://hoopR.sportsdataverse.org/) | Men's basketball (NBA and NCAA) |
+| [**wehoop**](https://wehoop.sportsdataverse.org/) | Women's basketball (WNBA and NCAA) |
+| [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) | Hockey (NHL and PWHL) |
+| [**baseballr**](https://billpetti.github.io/baseballr/) | Baseball (MLB, MiLB, NCAA) |
+| [**softballR**](https://github.com/sportsdataverse/softballR) | College softball |
+| [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) | Sports betting odds |
+| [**recruitR**](https://recruitR.sportsdataverse.org/) | College football recruiting |
+| [**usfootballR**](https://usfootballR.sportsdataverse.org/) | US soccer |
+| [**cfbseedR**](https://cfbseedR.sportsdataverse.org/) · [**cfb4th**](https://cfb4th.sportsdataverse.org/) | CFB playoff simulation · fourth-down decisions |
+| [**cfbplotR**](https://cfbplotR.sportsdataverse.org/) · [**sdvplotR**](https://sdvplotR.sportsdataverse.org/) · [**sportyR**](https://sportyR.sportsdataverse.org/) | Logos, colors, tables · playing surfaces |
+| [**sportsdataverse-R**](https://r.sportsdataverse.org/) | Umbrella R metapackage |
+| [**sportsdataverse-py**](https://py.sportsdataverse.org/) · [**sportsdataverse.js**](https://js.sportsdataverse.org/) | Python and Node.js |
 
+See the full ecosystem at [sportsdataverse.org](https://sportsdataverse.org/).
 
-
-## Follow [cfbfastR](https://x.com/cfbfastR) and the [SportsDataverse](https://x.com/SportsDataverse) on Twitter and star this repo
+## **Follow [cfbfastR](https://x.com/cfbfastR) and the [SportsDataverse](https://x.com/SportsDataverse) on X and star this repo**
 
 [![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/cfbfastR?style=for-the-badge&logo=x&label=%40cfbfastR&color=eee&link=https%3A%2F%2Fx.com%2FcfbfastR)](https://x.com/cfbfastR)
 [![Twitter Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=x&style=for-the-badge)](https://x.com/SportsDataverse)
@@ -215,7 +299,7 @@ The EPA, win probability and other models behind `calculate_*()`, `cfbd_pbp_data
   <a href="https://x.com/arbitanalytics" target="blank"><img src="https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge" alt="@arbitanalytics" /></a>
 <a href="https://github.com/ehess" target="blank"><img src="https://img.shields.io/github/followers/ehess?color=eee&logo=Github&style=for-the-badge" alt="@ehess" /></a>
 
-# **Our Contributors (they're awesome)**
+## **Our Contributors (they're awesome)**
 
 -   [Nate Manzo](https://x.com/cfbnate)
 <a href="https://x.com/cfbnate" target="blank"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&label=%40cfbnate&logo=x&style=for-the-badge" alt="@cfbnate" /></a>
@@ -261,7 +345,7 @@ The EPA, win probability and other models behind `calculate_*()`, `cfbd_pbp_data
     <a href="https://x.com/bradisblogging" target="blank"><img src="https://img.shields.io/twitter/follow/bradisblogging?color=blue&label=%40bradisblogging&logo=X&style=for-the-badge" alt="@bradisblogging" /></a>
     <a href="https://github.com/bradisbrad" target="blank"><img src="https://img.shields.io/github/followers/bradisbrad?color=eee&logo=Github&style=for-the-badge" alt="@bradisbrad" /></a>
 
-# **Authors Emeritus - `cfbscrapR`[archived]**
+## **Authors Emeritus - `cfbscrapR`\[archived\]**
 
 -   [Meyappan Subbiah](https://x.com/msubbaiah1)
 <a href="https://x.com/msubbaiah1" target="blank"><img src="https://img.shields.io/twitter/follow/msubbaiah1?color=blue&label=%40msubbaiah1&logo=x&style=for-the-badge" alt="@msubbaiah1" /></a>
@@ -271,11 +355,12 @@ The EPA, win probability and other models behind `calculate_*()`, `cfbd_pbp_data
 <a href="https://x.com/statsowar" target="blank"><img src="https://img.shields.io/twitter/follow/statsowar?color=blue&label=%40statsowar&logo=x&style=for-the-badge" alt="@statsowar" /></a>
 <a href="https://github.com/spfleming" target="blank"><img src="https://img.shields.io/github/followers/spfleming?color=eee&logo=Github&style=for-the-badge" alt="@spfleming" /></a>
 
-# **Special Thanks**
+## **Special Thanks**
 
 -   [Nick Tice](https://github.com/NickTice)
 
 <!-- cheatsheet-section -->
+
 ## **Cheat sheet**
 
 A printable one-page reference for **`cfbfastR`** — the function families, the loaders, and what each one returns.
@@ -285,6 +370,11 @@ A printable one-page reference for **`cfbfastR`** — the function families, the
 Free to download, print and hand out; light and dark, US Letter landscape.
 Every SportsDataverse package has one — browse them all at
 **[sportsdataverse.org/cheatsheets](https://sportsdataverse.org/cheatsheets)**.
+
+## **Code of Conduct**
+
+Please note that the cfbfastR project is released with a [Contributor Code of Conduct](https://cfbfastR.sportsdataverse.org/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
 
 ## **Citations**
 
@@ -304,3 +394,7 @@ BibTeX Citation
 }
 
 ```
+
+## **License**
+
+[**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) is released under the [MIT License](https://github.com/sportsdataverse/cfbfastR/blob/main/LICENSE.md).
