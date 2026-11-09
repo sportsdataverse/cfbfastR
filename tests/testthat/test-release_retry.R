@@ -117,6 +117,15 @@ test_that("warnings from a read that succeeds are passed on", {
   }
   expect_warning(out <- .read_release_asset("https://x/a_2024.rds", read), "a note from the reader")
   expect_equal(out, 1)
+
+  # Re-raised through cli, with the reader's own class kept.
+  classed <- function(url) {
+    rlang::warn("a classed note {not glue}", class = "cfb_reader_note")
+    2
+  }
+  expect_warning(.read_release_asset("https://x/a_2024.rds", classed),
+                 "a classed note {not glue}", fixed = TRUE, class = "cfb_reader_note")
+  expect_warning(.read_release_asset("https://x/a_2024.rds", classed), class = "rlang_warning")
 })
 
 test_that("parquet_from_url returns an empty table when the download keeps failing", {

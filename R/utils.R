@@ -143,7 +143,11 @@ parquet_from_url <- function(url) {
       }
     )
     if (!inherits(out, "try-error")) {
-      for (w in warns) warning(w)
+      # Re-raised with cli, keeping the reader's own warning classes.
+      for (w in warns) {
+        cli::cli_warn("{conditionMessage(w)}",
+                      class = setdiff(class(w), c("simpleWarning", "warning", "condition")))
+      }
       return(out)
     }
     why <- unique(c(conditionMessage(attr(out, "condition")),
