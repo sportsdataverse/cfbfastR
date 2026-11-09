@@ -18,6 +18,11 @@ is re-downloaded once it is older than \code{getOption("cfbfastR.cache_duration"
 seconds (default one day). Under \verb{R CMD check} the cache is in \code{\link[=tempdir]{tempdir()}}
 instead.
 
+A model is read from the cache once per R session and then kept in memory,
+so that refresh reaches a session only for models it has not loaded yet. To
+pick up a newly published model in a running session, call
+\code{cfb_clear_model_cache()} or restart R.
+
 \code{cfb_clear_model_cache()} deletes that directory and drops the models already
 loaded in this session, so the next call downloads them again. The ESPN
 request cache is separate; see \code{\link[=espn_cfb_clear_cache]{espn_cfb_clear_cache()}}.
