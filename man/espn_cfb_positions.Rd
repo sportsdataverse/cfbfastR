@@ -34,9 +34,10 @@ specific positions; \code{parent_id} (when present) reconstructs the
 grouping.
 }
 \examples{
-\donttest{
-  try(espn_cfb_positions())
-}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# One request per position (about 75), so this takes several seconds.
+try(espn_cfb_positions())
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \link{family_espn_cfb} lists every function in this family.

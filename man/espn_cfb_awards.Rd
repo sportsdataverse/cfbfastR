@@ -60,10 +60,10 @@ names. An award with no winner recorded yet still contributes one row
 with \code{athlete_id}/\code{team_id} left \code{NA}.
 }
 \examples{
-\donttest{
-  try(espn_cfb_awards(year = 2024))
-  try(espn_cfb_awards(year = 2024, team_detail = FALSE))
-}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# One request per award (about 35), so this takes several seconds.
+try(espn_cfb_awards(year = 2024))
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \link{family_espn_cfb} lists every function in this family.

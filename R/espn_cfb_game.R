@@ -3070,14 +3070,10 @@ espn_cfb_game_play <- function(game_id = NULL, play_id = NULL,
 #' @export
 #' @examples
 #' \donttest{
-#'   try(espn_cfb_game_player_statistics(game_id = 401628339,
-#'                                       athlete_id = 4429105))
+#'   # position_detail = FALSE skips the position catalog (about 75 requests).
 #'   try(espn_cfb_game_player_statistics(game_id = 401628339,
 #'                                       athlete_id = 4429105,
 #'                                       position_detail = FALSE))
-#'   try(espn_cfb_game_player_statistics(game_id = 401628339,
-#'                                       athlete_id = 4429105,
-#'                                       team_detail = FALSE))
 #' }
 espn_cfb_game_player_statistics <- function(game_id = NULL,
                                             athlete_id = NULL,

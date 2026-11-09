@@ -372,11 +372,9 @@ espn_cfb_award <- function(award_id = NULL,
 #' @concept ESPN CFB Functions
 #' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
-#' @examples
-#' \donttest{
-#'   try(espn_cfb_awards(year = 2024))
-#'   try(espn_cfb_awards(year = 2024, team_detail = FALSE))
-#' }
+#' @examplesIf interactive()
+#' # One request per award (about 35), so this takes several seconds.
+#' try(espn_cfb_awards(year = 2024))
 espn_cfb_awards <- function(year = NULL,
                             team_detail = TRUE) {
 
@@ -1438,10 +1436,9 @@ espn_cfb_position <- function(position_id = NULL) {
 #' @concept ESPN CFB Functions
 #' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
-#' @examples
-#' \donttest{
-#'   try(espn_cfb_positions())
-#' }
+#' @examplesIf interactive()
+#' # One request per position (about 75), so this takes several seconds.
+#' try(espn_cfb_positions())
 espn_cfb_positions <- function() {
 
   headers <- c(
@@ -1679,7 +1676,7 @@ espn_cfb_venue <- function(venue_id = NULL) {
 #' @export
 #' @examples
 #' \donttest{
-#'   try(espn_cfb_venues(max_results = 50))
+#'   try(espn_cfb_venues(max_results = 5))
 #' }
 espn_cfb_venues <- function(max_results = 200) {
 

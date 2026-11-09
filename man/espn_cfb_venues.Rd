@@ -40,7 +40,7 @@ prefix of the catalog.
 }
 \examples{
 \donttest{
-  try(espn_cfb_venues(max_results = 50))
+  try(espn_cfb_venues(max_results = 5))
 }
 }
 \seealso{
