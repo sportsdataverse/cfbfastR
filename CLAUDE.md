@@ -204,6 +204,11 @@ season sweep makes one `/teams` and one `/roster` request, not one per call.
   go under the top version heading (the release in progress), inside a `## ` section — don't
   open a new version section before release.
 - Never hand-edit `NAMESPACE` or `man/` — regenerate with `devtools::document()`.
+- **ESPN CFB family uses `@concept`, not `@family`.** `@family` puts every member on every
+  member's "See also" (n^2 links; ~300 KB of help for 67 pages). A new `espn_cfb_*` wrapper
+  carries `#' @concept ESPN CFB Functions` plus `#' @seealso [family_espn_cfb] lists every
+  function in this family.`; `R/families.R` builds `?family_espn_cfb` from the tags. Small
+  families stay on `@family`.
 - **Never add AI co-author trailers (Claude/Copilot/etc.) to commits.** Conventional Commits
   (`feat:`/`fix:`/`docs:`/`test:`/`refactor:`/`chore:`/`ci:`), scope when useful (`fix(pbp): ...`).
 ```
