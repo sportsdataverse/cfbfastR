@@ -70,9 +70,9 @@ load_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
 
 
 # load games file
-load_games <- function(){
-  .url <- "https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/data/games_in_data_repo.csv"
-  .release_csv_from_url(.url)
+.cfb_games_index_url <- "https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/data/games_in_data_repo.csv"
+load_games <- function(strict = FALSE) {
+  .release_csv_from_url(.cfb_games_index_url, strict = strict)
 }
 
 #' @title
@@ -203,7 +203,21 @@ update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = ".
 # this is a helper function to build cfbfastR database from Scratch
 build_cfb_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, show_message = TRUE) {
 
-  valid_seasons <- load_games() |>
+  # The index decides which seasons are rebuilt after the purge below, so it is
+  # read strictly and before anything is dropped: a partial index would lose
+  # the missing seasons from the user's table.
+  games <- tryCatch(
+    load_games(strict = TRUE),
+    error = function(e) {
+      index_url <- .cfb_games_index_url
+      cli::cli_abort(c(
+        "{my_time()} | Could not read the games index {.url {index_url}}.",
+        "i" = "The data table {.val {tblname}} was left unchanged.",
+        "x" = "{conditionMessage(e)}"
+      ), call = NULL)
+    }
+  )
+  valid_seasons <- games |>
     dplyr::filter(.data$season >= 2014) |>
     dplyr::group_by(.data$season) |>
     dplyr::summarise() |>

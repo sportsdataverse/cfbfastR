@@ -126,25 +126,43 @@ test_that("parquet_from_url returns an empty table when the download keeps faili
   expect_equal(nrow(out), 0L)
 })
 
+# A fake download that writes `lines` as the csv.
+fake_download <- function(lines) {
+  function(url, dest, ...) {
+    expect_equal(list(...), list(method = "libcurl"))
+    writeLines(lines, dest)
+  }
+}
+
 test_that("the games csv read is retried and passes its arguments on", {
   withr::local_options(timeout = 60)
   calls <- 0L
-  local_mocked_bindings(csv_from_url = function(file, ...) {
-    calls <<- calls + 1L
-    expect_equal(getOption("timeout"), 150)
-    if (calls == 1L) stop("Timeout of 60 seconds was reached")
-    data.table::data.table(url = file, ...)
-  })
+  urls <- character()
+  local_mocked_bindings(
+    .download_url = function(url, dest, ...) {
+      urls <<- c(urls, url)
+      expect_equal(list(...), list(method = "libcurl"))
+      writeLines("x", dest)
+    },
+    csv_from_url = function(file, ...) {
+      calls <<- calls + 1L
+      expect_equal(getOption("timeout"), 150)
+      if (calls == 1L) stop("Timeout of 60 seconds was reached")
+      data.table::data.table(file = file, ...)
+    }
+  )
   expect_no_warning(out <- load_games())
   expect_equal(calls, 2L)
-  expect_match(out$url, "games_in_data_repo.csv", fixed = TRUE)
+  expect_match(urls, "games_in_data_repo.csv", fixed = TRUE)
+  # fread() reads the downloaded copy, which is deleted afterwards.
+  expect_false(file.exists(out$file))
   expect_equal(.release_csv_from_url("https://x/a.csv", sep = ",")$sep, ",")
   expect_equal(getOption("timeout"), 60)
 })
 
 test_that("a games csv that keeps failing warns with the url, then raises", {
   calls <- 0L
-  local_mocked_bindings(csv_from_url = function(file, ...) {
+  local_mocked_bindings(.download_url = function(url, dest, ...) {
     calls <<- calls + 1L
     stop("Timeout of 150 seconds was reached")
   })
@@ -155,11 +173,51 @@ test_that("a games csv that keeps failing warns with the url, then raises", {
   expect_equal(calls, 3L)
 })
 
-test_that("a release csv is read from a local file", {
-  withr::local_options(download.file.method = "auto")
+test_that("a release csv is read from a local file with libcurl, whatever the option says", {
+  # "curl" would shell out to the curl binary; the helper must not.
+  withr::local_options(download.file.method = "curl")
   src <- withr::local_tempfile(fileext = ".csv")
   data.table::fwrite(data.frame(season = 2024L, game_id = 1:2), src)
   path <- normalizePath(src, winslash = "/")
   out <- .release_csv_from_url(paste0("file://", if (!startsWith(path, "/")) "/", path))
   expect_equal(out$game_id, 1:2)
+})
+
+# fread() stops at a row with too many fields and returns the rows above it,
+# with only a warning.
+partial_csv <- c("season,game_id", "2014,1", "2015,2,3", "2016,4")
+
+test_that("a strict release csv read turns a fread() warning into an error", {
+  local_mocked_bindings(.download_url = fake_download(partial_csv))
+  expect_warning(out <- .release_csv_from_url("https://x/g.csv"), "Stopped early")
+  expect_equal(nrow(out), 1L)
+  expect_error(
+    suppressWarnings(.release_csv_from_url("https://x/g.csv", strict = TRUE)),
+    "may be partial.*Stopped early"
+  )
+})
+
+test_that("build_cfb_db(rebuild = TRUE) keeps the table when the games index read fails", {
+  skip_if_not_installed("RSQLite")
+  con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+  withr::defer(DBI::dbDisconnect(con))
+  DBI::dbWriteTable(con, "cfbfastR_pbp", data.frame(season = c(2014L, 2015L), game_id = 1:2))
+  local_mocked_bindings(
+    .download_url = fake_download(partial_csv),
+    load_cfb_pbp = function(...) stop("load_cfb_pbp() must not run")
+  )
+  expect_error(
+    suppressWarnings(build_cfb_db("cfbfastR_pbp", con, rebuild = TRUE)),
+    "games_in_data_repo.csv"
+  )
+  expect_true(DBI::dbExistsTable(con, "cfbfastR_pbp"))
+  expect_equal(DBI::dbGetQuery(con, "SELECT season, game_id FROM cfbfastR_pbp")$game_id, 1:2)
+
+  # A download that fails outright aborts the same way.
+  local_mocked_bindings(.download_url = function(url, dest, ...) stop("HTTP 503"))
+  expect_error(
+    suppressWarnings(build_cfb_db("cfbfastR_pbp", con, rebuild = TRUE)),
+    "left unchanged"
+  )
+  expect_equal(nrow(DBI::dbReadTable(con, "cfbfastR_pbp")), 2L)
 })
