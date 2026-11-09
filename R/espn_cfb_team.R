@@ -202,7 +202,8 @@ NULL
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Team
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -371,7 +372,8 @@ espn_cfb_team <- function(team_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Team ATS
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -540,7 +542,8 @@ espn_cfb_team_ats <- function(team_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Team Awards
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -746,7 +749,8 @@ espn_cfb_team_awards <- function(team_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Team Coaches
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -931,7 +935,8 @@ espn_cfb_team_coaches <- function(
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Team Events
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -1094,7 +1099,8 @@ espn_cfb_team_events <- function(team_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Team Leaders
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -1272,7 +1278,8 @@ espn_cfb_team_leaders <- function(team_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Team Power Index FPI
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -1443,7 +1450,8 @@ espn_cfb_team_powerindex <- function(team_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Team Ranks
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -1644,7 +1652,8 @@ espn_cfb_team_ranks <- function(team_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Team Record
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -1846,7 +1855,8 @@ espn_cfb_team_record <- function(team_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Team Roster
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examplesIf interactive()
 #' # One request per player (about 180 for a team), so this takes a while.
@@ -2081,7 +2091,8 @@ espn_cfb_team_roster <- function(team_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Team Schedule
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -2739,7 +2750,8 @@ espn_cfb_team_stats <- function(team_id, year, season_type='regular', total=FALS
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Teams
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{

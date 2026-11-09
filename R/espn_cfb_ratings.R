@@ -43,7 +43,8 @@
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Futures Betting
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -222,7 +223,8 @@ espn_cfb_futures <- function(year = NULL) {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Power Index FPI
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -404,7 +406,8 @@ espn_cfb_powerindex <- function(year = NULL) {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB QBR
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{

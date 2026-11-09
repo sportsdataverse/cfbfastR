@@ -114,7 +114,8 @@ NULL
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Groups Conferences
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examplesIf interactive()
 #' # One request per conference and division, so this takes a while.
@@ -266,7 +267,8 @@ espn_cfb_groups <- function(year = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Rankings
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -394,7 +396,8 @@ espn_cfb_rankings <- function(year = NULL) {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Season Info
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -513,7 +516,8 @@ espn_cfb_season_info <- function(year = NULL) {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Season Types
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -638,7 +642,8 @@ espn_cfb_season_types <- function(year = NULL) {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Season Weeks
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -755,7 +760,8 @@ espn_cfb_season_weeks <- function(year = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Seasons
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examplesIf interactive()
 #' # One request per season back to the early 1900s (about 150), so this takes
@@ -917,7 +923,8 @@ espn_cfb_seasons <- function() {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Standings
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -1126,7 +1133,8 @@ espn_cfb_standings <- function(year = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Week Rankings
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{

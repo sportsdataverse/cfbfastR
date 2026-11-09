@@ -373,6 +373,7 @@ reference:
       - '`espn_cfb_player`'
       - '`espn_cfb_season`'
       - '`espn_cfb_team`'
+      - '`family_espn_cfb`'
   - title: "cfbfastR Data"
   - subtitle: Full Season Loaders
     desc: Functions exported by cfbfastR which load full seasons of cfbfastR data

@@ -21,6 +21,12 @@ outputs from the two releases.
   `calculate_*()` call that cannot fetch its model or card says why (the
   download's own message) and that the models come from GitHub.
 
+## Changed: smaller installed help
+
+* The 67 ESPN CFB functions no longer list each other under "See also" on every
+  help page. Each page links to one index page, `?family_espn_cfb`, which lists
+  the whole family. The smaller families keep their "See also" lists.
+
 ## Changed: examples
 
 * The examples for the Yahoo season stats, `espn_cfb_standings()`,

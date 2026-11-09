@@ -372,7 +372,8 @@ NULL
 #'
 #' @return Invisibly returns `NULL`. Called for its side effect of
 #'   forgetting the memoized catalog lookups.
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -1207,7 +1208,8 @@ espn_cfb_clear_cache <- function() {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Broadcasts
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -1516,7 +1518,8 @@ espn_cfb_game_broadcasts <- function(game_id = NULL) {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Drive Plays PBP
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -1862,7 +1865,8 @@ espn_cfb_game_drive_plays <- function(game_id = NULL, drive_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Drives
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -2183,7 +2187,8 @@ espn_cfb_game_drives <- function(game_id = NULL,
 #' @importFrom dplyr as_tibble bind_rows bind_cols
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Drives Plays Unnest
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -2297,7 +2302,8 @@ espn_cfb_unnest_plays <- function(drives) {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Leaders
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -2474,7 +2480,8 @@ espn_cfb_game_leaders <- function(game_id = NULL, team_detail = TRUE) {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Odds Betting
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -2861,7 +2868,8 @@ espn_cfb_game_odds <- function(game_id = NULL, line_history = FALSE) {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Plays PBP
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -3202,7 +3210,8 @@ espn_cfb_game_pbp <- function(game_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Play
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -3435,7 +3444,8 @@ espn_cfb_game_play <- function(game_id = NULL, play_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Player Statistics Box Score
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -3733,7 +3743,8 @@ espn_cfb_game_player_statistics <- function(game_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Player Box Score
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examplesIf interactive()
 #' # One request per player in the game, so this takes a while.
@@ -4009,7 +4020,8 @@ espn_cfb_game_player_box <- function(game_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Power Index FPI
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -4191,7 +4203,8 @@ espn_cfb_game_powerindex <- function(game_id = NULL, team_detail = TRUE) {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Predictor
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -4385,7 +4398,8 @@ espn_cfb_game_predictor <- function(game_id = NULL, team_detail = TRUE) {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Probabilities Win Probability
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -4564,7 +4578,8 @@ espn_cfb_game_probabilities <- function(game_id = NULL, team_detail = TRUE) {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Situation
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -4684,7 +4699,8 @@ espn_cfb_game_situation <- function(game_id = NULL) {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Status
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -4834,7 +4850,8 @@ espn_cfb_game_status <- function(game_id = NULL) {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Team Leaders
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -5046,7 +5063,8 @@ espn_cfb_game_team_leaders <- function(game_id = NULL, team_detail = TRUE) {
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Team Linescores
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -5240,7 +5258,8 @@ espn_cfb_game_team_linescores <- function(game_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Team Records
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -5469,7 +5488,8 @@ espn_cfb_game_team_records <- function(game_id = NULL, detail = FALSE,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Team Roster
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -5700,7 +5720,8 @@ espn_cfb_game_team_roster <- function(game_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Team Statistics
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -5947,7 +5968,8 @@ espn_cfb_game_team_statistics <- function(game_id = NULL,
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords ESPN CFB Game Teams
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examples
 #' \donttest{
@@ -6558,7 +6580,8 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
 #' @keywords CFB PBP
-#' @family ESPN CFB Functions
+#' @concept ESPN CFB Functions
+#' @seealso [family_espn_cfb] lists every function in this family.
 #' @export
 #' @examplesIf interactive()
 #' # Parsing one game takes several seconds of CPU, and `epa_wpa = TRUE` also
