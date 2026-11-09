@@ -101,7 +101,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_players(year = 2024, page = 1, max_pages = 1))
 #> ── Players index from ESPN ─────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:55:19 UTC
+#> ℹ Data updated: 2026-11-09 21:12:50 UTC
 #> # A tibble: 100 × 6
 #>    season athlete_id athlete_ref                          page page_count  count
 #>     <int> <chr>      <chr>                               <int>      <int>  <int>
@@ -119,7 +119,7 @@ lists every function in this family.
   try(espn_cfb_players(year = 2024, page = 1, max_pages = 1, limit = 5,
                        athlete_detail = TRUE))
 #> ── Players index from ESPN ─────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:55:20 UTC
+#> ℹ Data updated: 2026-11-09 21:12:51 UTC
 #> # A tibble: 5 × 12
 #>   season athlete_id athlete_ref      page page_count  count athlete_display_name
 #>    <int> <chr>      <chr>           <int>      <int>  <int> <chr>               

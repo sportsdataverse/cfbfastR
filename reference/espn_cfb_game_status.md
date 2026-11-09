@@ -55,7 +55,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_game_status(game_id = 401628339))
 #> ── Game status data from ESPN ──────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:52 UTC
+#> ℹ Data updated: 2026-11-09 21:12:26 UTC
 #> # A tibble: 1 × 12
 #>   game_id   clock display_clock period status_id status_name  status_state
 #>   <chr>     <dbl> <chr>          <int> <chr>     <chr>        <chr>       

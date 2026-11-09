@@ -319,7 +319,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_game_pbp(game_id = 401628339))
 #> ── Game plays data from ESPN ───────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:32 UTC
+#> ℹ Data updated: 2026-11-09 21:12:09 UTC
 #> # A tibble: 157 × 84
 #>    game_id   play_id   sequence_number type_id type_text type_abbreviation text 
 #>    <chr>     <chr>     <chr>           <chr>   <chr>     <chr>             <chr>
@@ -346,7 +346,7 @@ lists every function in this family.
 try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide",
                       participants_list = TRUE))
 #> ── Game plays data from ESPN ───────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:36 UTC
+#> ℹ Data updated: 2026-11-09 21:12:13 UTC
 #> # A tibble: 157 × 157
 #>    game_id   play_id   sequence_number type_id type_text type_abbreviation text 
 #>    <chr>     <chr>     <chr>           <chr>   <chr>     <chr>             <chr>
@@ -371,7 +371,7 @@ try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide",
   try(espn_cfb_game_drive_plays(game_id = 401628339,
                                 drive_id = 4016283391))
 #> ── Game drive plays data from ESPN ─────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:36 UTC
+#> ℹ Data updated: 2026-11-09 21:12:13 UTC
 #> # A tibble: 6 × 85
 #>   game_id   drive_id play_id sequence_number type_id type_text type_abbreviation
 #>   <chr>     <chr>    <chr>   <chr>           <chr>   <chr>     <chr>            
@@ -393,7 +393,7 @@ try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide",
   try(espn_cfb_game_play(game_id = 401628339,
                          play_id = "401628339101927401"))
 #> ── Game play data from ESPN ────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:36 UTC
+#> ℹ Data updated: 2026-11-09 21:12:13 UTC
 #> # A tibble: 1 × 84
 #>   game_id   play_id    sequence_number type_id type_text type_abbreviation text 
 #>   <chr>     <chr>      <chr>           <chr>   <chr>     <chr>             <chr>

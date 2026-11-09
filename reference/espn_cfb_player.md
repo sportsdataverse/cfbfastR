@@ -227,7 +227,7 @@ lists every function in this family.
   try(espn_cfb_player(athlete_id = 102597, year = 2024,
                       position_detail = FALSE))
 #> ── Player detail from ESPN ─────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:55:11 UTC
+#> ℹ Data updated: 2026-11-09 21:12:42 UTC
 #> # A tibble: 1 × 43
 #>   athlete_id season uid        guid  first_name last_name full_name display_name
 #>   <chr>       <int> <chr>      <chr> <chr>      <chr>     <chr>     <chr>       

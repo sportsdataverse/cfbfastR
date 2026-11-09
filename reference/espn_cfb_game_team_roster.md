@@ -118,7 +118,7 @@ lists every function in this family.
   try(espn_cfb_game_team_roster(game_id = 401628339,
                                 position_detail = FALSE))
 #> ── Game team roster data from ESPN ─────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:56 UTC
+#> ℹ Data updated: 2026-11-09 21:12:29 UTC
 #> # A tibble: 242 × 25
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            

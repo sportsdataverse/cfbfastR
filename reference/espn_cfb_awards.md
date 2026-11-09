@@ -78,7 +78,7 @@ lists every function in this family.
 # One request per award (about 35), so this takes several seconds.
 try(espn_cfb_awards(year = 2024))
 #> ── Awards data from ESPN ───────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:07 UTC
+#> ℹ Data updated: 2026-11-09 21:11:43 UTC
 #> # A tibble: 34 × 19
 #>    season award_id name                 description athlete_id team_id team_name
 #>     <int> <chr>    <chr>                <chr>       <chr>      <chr>   <chr>    

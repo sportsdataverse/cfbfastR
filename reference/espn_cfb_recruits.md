@@ -104,7 +104,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_recruits(year = 2024, max_results = 5))
 #> ── Recruiting class data from ESPN ─────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:55:29 UTC
+#> ℹ Data updated: 2026-11-09 21:13:00 UTC
 #> # A tibble: 5 × 31
 #>   season recruit_id recruiting_class athlete_id alternate_athlete_id first_name
 #>    <dbl> <chr>                 <int> <chr>      <chr>                <chr>     

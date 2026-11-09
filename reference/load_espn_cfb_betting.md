@@ -65,7 +65,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_betting(2004))
 #> ── ESPN college football betting lines from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-11-09 19:57:16 UTC
+#> ℹ Data updated: 2026-11-09 21:14:36 UTC
 #> # A tibble: 712 × 9
 #>      game_id season  week game_spread over_under home_favorite home_team_spread
 #>        <int>  <int> <int>       <dbl>      <dbl> <lgl>                    <dbl>

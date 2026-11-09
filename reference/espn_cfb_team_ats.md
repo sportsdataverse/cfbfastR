@@ -95,7 +95,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_team_ats(team_id = 61, year = 2024))
 #> ── Team against-the-spread records from ESPN ───────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:55:44 UTC
+#> ℹ Data updated: 2026-11-09 21:13:17 UTC
 #> # A tibble: 7 × 19
 #>   season season_type team_id team_name team_abbreviation team_location
 #>    <int>       <int> <chr>   <chr>     <chr>             <chr>        
@@ -113,7 +113,7 @@ lists every function in this family.
 #> #   pushes <int>
   try(espn_cfb_team_ats(team_id = 61, year = 2024, team_detail = FALSE))
 #> ── Team against-the-spread records from ESPN ───────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:55:44 UTC
+#> ℹ Data updated: 2026-11-09 21:13:17 UTC
 #> # A tibble: 7 × 9
 #>   season season_type team_id ats_type_id ats_type_name   ats_description    wins
 #>    <int>       <int> <chr>   <chr>       <chr>           <chr>             <int>

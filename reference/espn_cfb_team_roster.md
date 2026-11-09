@@ -131,7 +131,7 @@ lists every function in this family.
 try(espn_cfb_team_roster(team_id = 61, year = 2024,
                          position_detail = FALSE, team_detail = FALSE))
 #> ── Team roster from ESPN ───────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:56:04 UTC
+#> ℹ Data updated: 2026-11-09 21:13:32 UTC
 #> # A tibble: 177 × 22
 #>    season team_id athlete_id first_name last_name full_name  display_name jersey
 #>     <int> <chr>   <chr>      <chr>      <chr>     <chr>      <chr>        <chr> 

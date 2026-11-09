@@ -92,15 +92,15 @@ Other loaders:
 # Builds every season from 2014 on, several GB, in a SQLite file.
 try(update_cfb_db(dbdir = tempdir()))
 #> ── Update cfbfastR Play-by-Play Database ───────────── cfbfastR version 3.1.0 ──
-#> ℹ 19:57:59 | Can't find the data table "cfbfastR_pbp" in your database. Will load the play by play data from scratch.
-#> • 19:57:59 | Starting download of 13 seasons between 2014 and 2026...
-#> • 20:00:29 | Checking for missing completed games...
-#> ℹ 20:00:43 | You have 14140 games and are missing 84.
-#> • 20:00:43 | Starting download of the seasons 2024, 2023, 2025, 2022, and
+#> ℹ 21:15:17 | Can't find the data table "cfbfastR_pbp" in your database. Will load the play by play data from scratch.
+#> • 21:15:17 | Starting download of 13 seasons between 2014 and 2026...
+#> • 21:17:17 | Checking for missing completed games...
+#> ℹ 21:17:32 | You have 14140 games and are missing 84.
+#> • 21:17:32 | Starting download of the seasons 2024, 2023, 2025, 2022, and
 #> 2020...
-#> ℹ 20:02:00 | You have 14140 games and are missing 84.
-#> ℹ 20:02:00 | There are still 84 missing games because the data repo isn't ready. Please try again later.
-#> ✔ 20:02:00 | Database update completed
-#> ℹ 20:02:00 | Path to your db: /tmp/RtmpfeCK0Q/cfb_pbp_db
+#> ℹ 21:18:34 | You have 14140 games and are missing 84.
+#> ℹ 21:18:34 | There are still 84 missing games because the data repo isn't ready. Please try again later.
+#> ✔ 21:18:34 | Database update completed
+#> ℹ 21:18:34 | Path to your db: /tmp/RtmpVXBvz8/cfb_pbp_db
 #> ── DONE ────────────────────────────────────────────────────────────────────────
 ```

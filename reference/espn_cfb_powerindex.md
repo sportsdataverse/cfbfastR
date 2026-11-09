@@ -59,7 +59,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_powerindex(year = 2024))
 #> ── Power Index data from ESPN ──────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:55:26 UTC
+#> ℹ Data updated: 2026-11-09 21:12:57 UTC
 #> # A tibble: 5,762 × 10
 #>    season team_id team_ref      metric_group stat_name abbreviation display_name
 #>     <int> <chr>   <chr>         <chr>        <chr>     <chr>        <chr>       

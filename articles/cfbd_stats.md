@@ -32,11 +32,13 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
+
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
+
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
     ## Reading package lists...
@@ -60,7 +62,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
     ## 0 upgraded, 0 newly installed, 0 to remove and 35 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [10.1s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [8.9s]
 
 ``` r
 
@@ -244,7 +246,7 @@ tex_pass |>
 
     ## ── Player season passing data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-09 20:04:06 UTC
+    ## ℹ Data updated: 2026-11-09 21:20:42 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts completion_rate average_depth_of_target   ppa
@@ -311,7 +313,7 @@ tex_pass |>
 
     ## ── Player season passing data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-09 20:04:06 UTC
+    ## ℹ Data updated: 2026-11-09 21:20:42 UTC
 
     ## # A tibble: 1 × 5
     ##   player       attempts air_yards_parsed adot_correct adot_naive
@@ -332,7 +334,7 @@ cfbd_passing_plays(year = 2025, week = 5, outcome = "completion") |>
 
     ## ── Passing plays data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-09 20:04:08 UTC
+    ## ℹ Data updated: 2026-11-09 21:20:44 UTC
 
     ## # A tibble: 10 × 7
     ##    offense    defense    passer       target         total_yards   ppa success
@@ -382,7 +384,7 @@ cfbd_punting_teams_season(year = 2025, conference = "SEC") |>
 
     ## ── Team season punting data from CollegeFootballData.com ───── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-09 20:04:09 UTC
+    ## ℹ Data updated: 2026-11-09 21:20:45 UTC
 
     ## # A tibble: 16 × 6
     ##    team              punting_punts punting_yards_per_punt punting_net_yards_pe…¹
@@ -419,7 +421,7 @@ cfbd_stats_categories()
 
     ## ── Stat categories for CollegeFootballData.com ─────────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-09 20:04:09 UTC
+    ## ℹ Data updated: 2026-11-09 21:20:45 UTC
 
     ## # A tibble: 38 × 1
     ##    category          

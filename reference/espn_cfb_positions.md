@@ -47,7 +47,7 @@ lists every function in this family.
 # One request per position (about 75), so this takes several seconds.
 try(espn_cfb_positions())
 #> ── Positions index from ESPN ───────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:55:23 UTC
+#> ℹ Data updated: 2026-11-09 21:12:55 UTC
 #> # A tibble: 74 × 7
 #>    position_id name       display_name abbreviation leaf  parent_id position_ref
 #>    <chr>       <chr>      <chr>        <chr>        <lgl> <chr>     <chr>       

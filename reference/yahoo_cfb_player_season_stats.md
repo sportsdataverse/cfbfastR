@@ -68,26 +68,26 @@ Other Yahoo CFB Functions:
 # \donttest{
   try(yahoo_cfb_player_season_stats(season = 2024, count = 10))
 #> ── Player season stats from Yahoo Sports (shangrila) ───────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 20:02:03 UTC
+#> ℹ Data updated: 2026-11-09 21:18:37 UTC
 #> # A tibble: 10 × 89
-#>    player_id      display_name     team     team_abbreviation longest_field_goal
-#>    <chr>          <chr>            <chr>    <chr>             <chr>             
-#>  1 ncaaf.p.64742  Trey Sanders     TCU      TCU               NA                
-#>  2 ncaaf.p.176026 Alexander Diggs  Kennesa… KENN              NA                
-#>  3 ncaaf.p.177536 Carson Kent      Pittsbu… PITT              NA                
-#>  4 ncaaf.p.218709 Eric Goins       Notre D… ND                0                 
-#>  5 ncaaf.p.220824 Rico Watson III  South F… S FLA             NA                
-#>  6 ncaaf.p.263248 Cam McCormick    Miami (… MIA               NA                
-#>  7 ncaaf.p.264043 Danarius Johnson Kennesa… KENN              NA                
-#>  8 ncaaf.p.270875 Keenan Pili      Tenness… TENN              NA                
-#>  9 ncaaf.p.276361 Spencer Curtis   Hawaii   HAW               NA                
-#> 10 ncaaf.p.276368 Logan Lutui      BYU      BYU               NA                
-#> # ℹ 84 more variables: field_goal_attempts_30_39 <chr>, games_passing <chr>,
-#> #   punt_yards <chr>, longest_reception <chr>, passing_completions <chr>,
-#> #   kickoff_returns <chr>, longest_punt_return <chr>,
-#> #   field_goals_30_to_39 <chr>, completion_percentage <chr>,
-#> #   field_goal_attempts_20_29 <chr>, longest_punt <chr>, receiving_yards <chr>,
-#> #   tackles_for_loss <chr>, passing_interceptions <chr>,
-#> #   extra_points_made <chr>, longest_pass <chr>, punts <chr>, …
+#>    player_id      display_name    team  team_abbreviation kickoff_return_touch…¹
+#>    <chr>          <chr>           <chr> <chr>             <chr>                 
+#>  1 ncaaf.p.64742  Trey Sanders    TCU   TCU               NA                    
+#>  2 ncaaf.p.176026 Alexander Diggs Kenn… KENN              NA                    
+#>  3 ncaaf.p.177536 Carson Kent     Pitt… PITT              NA                    
+#>  4 ncaaf.p.218709 Eric Goins      Notr… ND                NA                    
+#>  5 ncaaf.p.220824 Rico Watson III Sout… S FLA             NA                    
+#>  6 ncaaf.p.263248 Cam McCormick   Miam… MIA               NA                    
+#>  7 ncaaf.p.264043 Danarius Johns… Kenn… KENN              NA                    
+#>  8 ncaaf.p.270875 Keenan Pili     Tenn… TENN              NA                    
+#>  9 ncaaf.p.276361 Spencer Curtis  Hawa… HAW               0                     
+#> 10 ncaaf.p.276368 Logan Lutui     BYU   BYU               NA                    
+#> # ℹ abbreviated name: ¹​kickoff_return_touchdowns
+#> # ℹ 84 more variables: tackle_assists <chr>, safeties <chr>,
+#> #   passing_attempts <chr>, passing_yards_per_game <chr>,
+#> #   field_goals_50_plus <chr>, interception_return_yards <chr>,
+#> #   field_goals_made_30_39 <chr>, games_defense <chr>,
+#> #   field_goals_0_to_19 <chr>, rushing_touchdowns <chr>,
+#> #   all_purpose_yards <chr>, passing_yards <chr>, punt_returns <chr>, …
 # }
 ```

@@ -61,7 +61,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_groups())
 #> ── college football conference and division lineages from the SportsDataverse da
-#> ℹ Data updated: 2026-11-09 19:56:27 UTC
+#> ℹ Data updated: 2026-11-09 21:13:52 UTC
 #> # A tibble: 237 × 6
 #>    league group_id                     level      first_season last_season notes
 #>    <chr>  <chr>                        <chr>             <int>       <int> <chr>

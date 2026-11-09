@@ -199,7 +199,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_game_drives(game_id = 401628339))
 #> ── Game drives data from ESPN ──────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:28 UTC
+#> ℹ Data updated: 2026-11-09 21:12:06 UTC
 #> # A tibble: 20 × 52
 #>    game_id   drive_id    sequence_number description           team_id team_name
 #>    <chr>     <chr>       <chr>           <chr>                 <chr>   <chr>    
@@ -232,7 +232,7 @@ lists every function in this family.
 #> #   end_team_nickname <chr>, end_team_color <chr>, …
   try(espn_cfb_game_drives(game_id = 401628339, plays = "list"))
 #> ── Game drives data from ESPN ──────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:29 UTC
+#> ℹ Data updated: 2026-11-09 21:12:06 UTC
 #> # A tibble: 20 × 53
 #>    game_id   drive_id    sequence_number description           team_id team_name
 #>    <chr>     <chr>       <chr>           <chr>                 <chr>   <chr>    
@@ -265,7 +265,7 @@ lists every function in this family.
 #> #   end_team_nickname <chr>, end_team_color <chr>, …
   try(espn_cfb_game_drives(game_id = 401628339, plays = "expand"))
 #> ── Game drive plays (expanded) data from ESPN ──────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:29 UTC
+#> ℹ Data updated: 2026-11-09 21:12:06 UTC
 #> # A tibble: 156 × 106
 #>    drive_game_id drive_drive_id drive_sequence_number drive_description     
 #>    <chr>         <chr>          <chr>                 <chr>                 
@@ -288,7 +288,7 @@ lists every function in this family.
 #> #   drive_team_logo_dark_href <chr>, drive_end_team_id <chr>, …
   try(espn_cfb_game_drives(game_id = 401628339, team_detail = FALSE))
 #> ── Game drives data from ESPN ──────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:29 UTC
+#> ℹ Data updated: 2026-11-09 21:12:07 UTC
 #> # A tibble: 20 × 32
 #>    game_id drive_id sequence_number description team_id end_team_id start_period
 #>    <chr>   <chr>    <chr>           <chr>       <chr>   <chr>              <int>

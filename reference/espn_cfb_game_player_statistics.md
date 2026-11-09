@@ -141,7 +141,7 @@ lists every function in this family.
                                       athlete_id = 4429105,
                                       position_detail = FALSE))
 #> ── Game player statistics data from ESPN ───────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:48 UTC
+#> ℹ Data updated: 2026-11-09 21:12:22 UTC
 #> # A tibble: 143 × 29
 #>    game_id   athlete_id team_id team_name team_abbreviation team_location
 #>    <chr>     <chr>      <chr>   <chr>     <chr>             <chr>        

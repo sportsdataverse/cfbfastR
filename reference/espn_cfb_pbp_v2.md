@@ -177,7 +177,7 @@ lists every function in this family.
 # downloads the EP and WP models on first use.
 try(espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE))
 #> ── Play-by-play data from ESPN (core-v2) ───────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:55:10 UTC
+#> ℹ Data updated: 2026-11-09 21:12:42 UTC
 #> # A tibble: 156 × 542
 #>    season id_play    game_id game_play_number half_play_number drive_play_number
 #>     <int> <chr>      <chr>              <dbl>            <dbl>             <dbl>

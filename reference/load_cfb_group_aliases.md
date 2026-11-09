@@ -54,7 +54,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_group_aliases())
 #> ── college football conference and division aliases from the SportsDataverse dat
-#> ℹ Data updated: 2026-11-09 19:56:25 UTC
+#> ℹ Data updated: 2026-11-09 21:13:50 UTC
 #> # A tibble: 2,009 × 8
 #>    league group_id source source_id name_kind    value       valid_from valid_to
 #>    <chr>  <chr>    <chr>  <chr>     <chr>        <chr>            <int>    <int>

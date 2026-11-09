@@ -163,7 +163,7 @@ Saiem Gilani
 # Downloads and parses a whole season of play-by-play.
 try(load_ncaa_mfb_pbp_cfbfastr(2013))
 #> ── NCAA men's football play-by-play, cfbfastR-shaped from the SportsDataverse da
-#> ℹ Data updated: 2026-11-09 19:57:49 UTC
+#> ℹ Data updated: 2026-11-09 21:15:07 UTC
 #> # A tibble: 304,132 × 105
 #>    game_id id_play  drive_id game_play_number half_play_number drive_play_number
 #>      <int> <chr>       <int>            <int>            <int>             <int>

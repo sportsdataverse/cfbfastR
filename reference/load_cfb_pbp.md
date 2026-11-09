@@ -78,7 +78,7 @@ Other loaders:
 # One season is about 160,000 plays and 400 MB in memory.
 try(load_cfb_pbp(2024))
 #> ── PBP from data repo and CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:56:39 UTC
+#> ℹ Data updated: 2026-11-09 21:14:03 UTC
 #> # A tibble: 277,048 × 362
 #>     year  week id_play   game_id game_play_number half_play_number
 #>    <int> <int>   <dbl>     <int>            <dbl>            <dbl>

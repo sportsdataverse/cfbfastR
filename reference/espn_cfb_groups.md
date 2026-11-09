@@ -66,7 +66,7 @@ lists every function in this family.
 # One request per conference and division, so this takes a while.
 try(espn_cfb_groups(year = 2024))
 #> ── Groups and conferences from ESPN ────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:55:03 UTC
+#> ℹ Data updated: 2026-11-09 21:12:35 UTC
 #> # A tibble: 78 × 12
 #>    season season_type group_id name        abbreviation short_name is_conference
 #>     <int>       <int> <chr>    <chr>       <chr>        <chr>      <lgl>        

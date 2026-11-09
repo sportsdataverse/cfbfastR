@@ -52,7 +52,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_teams())
 #> ── Teams index from ESPN ───────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:56:08 UTC
+#> ℹ Data updated: 2026-11-09 21:13:35 UTC
 #> # A tibble: 763 × 15
 #>    team_id uid          slug  abbreviation display_name short_display_name name 
 #>    <chr>   <chr>        <chr> <chr>        <chr>        <chr>              <chr>

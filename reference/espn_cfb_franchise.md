@@ -83,7 +83,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_franchise(franchise_id = 2))
 #> ── Franchise detail from ESPN ──────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:23 UTC
+#> ℹ Data updated: 2026-11-09 21:12:01 UTC
 #> # A tibble: 1 × 26
 #>   franchise_id uid       slug  location name  nickname abbreviation display_name
 #>   <chr>        <chr>     <chr> <chr>    <chr> <chr>    <chr>        <chr>       
@@ -96,7 +96,7 @@ lists every function in this family.
 #> #   team_logo_dark_href <chr>, team_ref <chr>, franchise_ref <chr>
   try(espn_cfb_franchise(franchise_id = 2, team_detail = FALSE))
 #> ── Franchise detail from ESPN ──────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:23 UTC
+#> ℹ Data updated: 2026-11-09 21:12:01 UTC
 #> # A tibble: 1 × 16
 #>   franchise_id uid       slug  location name  nickname abbreviation display_name
 #>   <chr>        <chr>     <chr> <chr>    <chr> <chr>    <chr>        <chr>       

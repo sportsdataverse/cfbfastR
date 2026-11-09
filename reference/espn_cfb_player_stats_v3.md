@@ -61,7 +61,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_player_stats_v3(athlete_id = 4431611, year = 2023))
 #> ── Player web-v3 statistics from ESPN ──────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:55:19 UTC
+#> ℹ Data updated: 2026-11-09 21:12:49 UTC
 #> # A tibble: 190 × 18
 #>    athlete_id season category category_display team_id team_slug     stat_season
 #>    <chr>       <int> <chr>    <chr>            <chr>   <chr>               <int>

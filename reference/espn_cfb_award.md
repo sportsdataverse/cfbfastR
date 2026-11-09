@@ -87,7 +87,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_award(award_id = 1, year = 2024))
 #> ── Award detail from ESPN ──────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:06 UTC
+#> ℹ Data updated: 2026-11-09 21:11:41 UTC
 #> # A tibble: 1 × 20
 #>   season award_id name          description history athlete_id team_id team_name
 #>    <int> <chr>    <chr>         <chr>       <chr>   <chr>      <chr>   <chr>    
@@ -99,7 +99,7 @@ lists every function in this family.
 #> #   athlete_ref <chr>, team_ref <chr>
   try(espn_cfb_award(award_id = 1, year = 2024, team_detail = FALSE))
 #> ── Award detail from ESPN ──────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 19:54:06 UTC
+#> ℹ Data updated: 2026-11-09 21:11:41 UTC
 #> # A tibble: 1 × 10
 #>   season award_id name          description history athlete_id team_id award_ref
 #>    <int> <chr>    <chr>         <chr>       <chr>   <chr>      <chr>   <chr>    
