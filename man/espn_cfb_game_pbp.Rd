@@ -285,9 +285,13 @@ are skipped.
 \examples{
 \donttest{
   try(espn_cfb_game_pbp(game_id = 401628339))
-  try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide",
-                        participants_list = TRUE))
 }
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# Adds the game roster and ESPN's position catalog, one request per
+# position (about 75), so this takes several seconds.
+try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide",
+                      participants_list = TRUE))
+\dontshow{\}) # examplesIf}
 \donttest{
   try(espn_cfb_game_drive_plays(game_id = 401628339,
                                 drive_id = 4016283391))

@@ -508,10 +508,9 @@ NULL
 #'    |two_pt_recommendation                   |character | |
 #'    |two_pt_wp_diff                          |double    | |
 #'
-#' @examples
-#' \donttest{
-#'   try(load_espn_cfb_pbp(2004))
-#' }
+#' @examplesIf interactive()
+#' # Downloads a whole season of play-by-play (about 500 columns).
+#' try(load_espn_cfb_pbp(2004))
 #' @export
 load_espn_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
                               dbConnection = NULL, tablename = NULL) {

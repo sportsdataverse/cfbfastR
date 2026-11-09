@@ -514,9 +514,10 @@ classic cfbfastR EPA/WPA pbp (2014+; FBS games, plus FCS games from 2022);
 lower divisions (2013+).
 }
 \examples{
-\donttest{
-  try(load_espn_cfb_pbp(2004))
-}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# Downloads a whole season of play-by-play (about 500 columns).
+try(load_espn_cfb_pbp(2004))
+\dontshow{\}) # examplesIf}
 }
 \author{
 Saiem Gilani

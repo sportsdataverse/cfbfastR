@@ -2702,9 +2702,12 @@ espn_cfb_game_odds <- function(game_id = NULL, line_history = FALSE) {
 #' @examples
 #' \donttest{
 #'   try(espn_cfb_game_pbp(game_id = 401628339))
-#'   try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide",
-#'                         participants_list = TRUE))
 #' }
+#' @examplesIf interactive()
+#' # Adds the game roster and ESPN's position catalog, one request per
+#' # position (about 75), so this takes several seconds.
+#' try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide",
+#'                       participants_list = TRUE))
 espn_cfb_game_pbp <- function(game_id = NULL,
                               participants = c("none", "wide", "long"),
                               participants_list = FALSE,
