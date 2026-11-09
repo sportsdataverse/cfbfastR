@@ -2,10 +2,32 @@
 % Please edit documentation in R/espn_cfb_game.R
 \name{espn_cfb_game_pbp}
 \alias{espn_cfb_game_pbp}
-\title{\strong{ESPN College Football Game Plays (Core-v2 Play-by-Play)}}
+\alias{espn_cfb_game_drive_plays}
+\alias{espn_cfb_game_play}
+\title{\strong{ESPN College Football Game Plays (Core-v2 Play-by-Play, Drive Plays and Single Play)}}
 \usage{
 espn_cfb_game_pbp(
   game_id = NULL,
+  participants = c("none", "wide", "long"),
+  participants_list = FALSE,
+  team_participants = c("none", "wide"),
+  team_participants_list = FALSE,
+  team_detail = TRUE
+)
+
+espn_cfb_game_drive_plays(
+  game_id = NULL,
+  drive_id = NULL,
+  participants = c("none", "wide", "long"),
+  participants_list = FALSE,
+  team_participants = c("none", "wide"),
+  team_participants_list = FALSE,
+  team_detail = TRUE
+)
+
+espn_cfb_game_play(
+  game_id = NULL,
+  play_id = NULL,
   participants = c("none", "wide", "long"),
   participants_list = FALSE,
   team_participants = c("none", "wide"),
@@ -58,11 +80,20 @@ columns \code{X_name}, \code{X_abbreviation}, \code{X_location}, \code{X_display
 \code{X_logo_href}, \code{X_logo_dark_href} are inserted immediately
 after it. A catalog failure degrades to \code{NA} rather than erroring the
 wrapper. Set \code{FALSE} to skip the catalog fetch and the join.}
+
+\item{drive_id}{(\emph{Integer} required): ESPN drive id (from
+\code{\link[=espn_cfb_game_drives]{espn_cfb_game_drives()}}).}
+
+\item{play_id}{(\emph{Character} required): ESPN play id (from
+\code{espn_cfb_game_pbp()}). Supply as a character string -- the id is too
+large for an exact numeric.}
 }
 \value{
-A data frame with one row per play:\tabular{lll}{
+A data frame with one row per play (one row in all for
+\code{espn_cfb_game_play()}):\tabular{lll}{
    col_name \tab types \tab description \cr
    game_id \tab character \tab ESPN game identifier. \cr
+   drive_id \tab character \tab ESPN drive id; \code{espn_cfb_game_drive_plays()} only. \cr
    play_id \tab character \tab ESPN play id. \cr
    sequence_number \tab character \tab Play sequence number within the game. \cr
    type_id \tab character \tab Play-type id. \cr
@@ -124,9 +155,13 @@ The optional participant and team-participant columns are described in
 requests them.
 }
 \description{
-Get the full core-v2 play-by-play feed for a single college
-football game -- one row per play, with down/distance, clock, score, and
-yardage.
+\code{espn_cfb_game_pbp()} gets the full core-v2 play-by-play feed
+for a single college football game -- one row per play, with
+down/distance, clock, score, and yardage.
+\code{espn_cfb_game_drive_plays()} gets the same plays for a single drive, and
+\code{espn_cfb_game_play()} gets the full detail object for a single play --
+one row with the play type, text, score, clock, down/distance, and
+win-probability delta.
 }
 \details{
 Wraps the paginated ESPN core-v2 endpoint
@@ -141,9 +176,28 @@ parses the site-v2 game-summary feed and (optionally) computes EPA/WPA.
 Use this wrapper when you want the raw core-v2 play schema with stable
 \verb{$ref}-derived ids; use \code{\link[=espn_cfb_pbp]{espn_cfb_pbp()}} for the modeled play-by-play.
 
+\code{espn_cfb_game_drive_plays()} wraps
+\code{events/{game_id}/competitions/{game_id}/drives/{drive_id}/plays}. The
+competition id always equals the game id. It returns the same play schema
+as \code{espn_cfb_game_pbp()}, plus \code{drive_id}, partitioned to a single drive
+(typically 5-11 plays). Harvest the \code{drive_id} from
+\code{\link[=espn_cfb_game_drives]{espn_cfb_game_drives()}} -- its \code{drive_id} column lists every drive in the
+game.
+
+\code{espn_cfb_game_play()} wraps
+\code{events/{game_id}/competitions/{game_id}/plays/{play_id}} and returns a
+single-row data frame describing one play in full. Harvest the \code{play_id}
+from the \code{play_id} column of \code{espn_cfb_game_pbp()} or
+\code{espn_cfb_game_drive_plays()}. Use it for play drill-down when you need a
+single play's complete object rather than the whole game feed. ESPN play
+ids are 18-digit integers that exceed R's exact double-precision range --
+\strong{pass \code{play_id} as a character string} (e.g. \code{"401628339101927401"})
+so no precision is lost. A bare numeric literal will be silently rounded
+and the lookup will 404.
+
 When \code{participants = "wide"}, the base play schema is kept intact and
 six columns are appended for every participant \code{type} that appears
-anywhere in the game. The column names are \strong{dynamic} -- one set per
+anywhere in the returned plays. The column names are \strong{dynamic} -- one set per
 participant type present (e.g. \code{passer}, \code{rusher}, \code{receiver},
 \code{tackler}, \code{sacked_by}, \code{pass_defender}, \code{kicker}, \code{returner}). ESPN's
 camelCase types are snake-cased (\code{sackedBy} -> \code{sacked_by}). For each
@@ -193,7 +247,7 @@ play x participant row. The raw plays are fetched only once even when
 both options are active.
 
 When \code{team_participants = "wide"}, three columns are appended for every
-\code{teamParticipants[]} \code{type} present anywhere in the game (ESPN ships
+\code{teamParticipants[]} \code{type} present anywhere in the returned plays (ESPN ships
 \code{offense} / \code{defense}). The column names are \strong{dynamic} -- one set per
 type, snake-cased: \verb{\{type\}_team_id} (scalar character, the first
 occurrence of that type on the play), \verb{\{type\}_team_order} (scalar
@@ -234,13 +288,23 @@ are skipped.
   try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide",
                         participants_list = TRUE))
 }
+\donttest{
+  try(espn_cfb_game_drive_plays(game_id = 401628339,
+                                drive_id = 4016283391))
+}
+\donttest{
+  try(espn_cfb_game_play(game_id = 401628339,
+                         play_id = "401628339101927401"))
+}
 }
 \seealso{
 \link{family_espn_cfb} lists every function in this family.
 }
 \concept{ESPN CFB Functions}
 \keyword{CFB}
+\keyword{Drive}
 \keyword{ESPN}
 \keyword{Game}
 \keyword{PBP}
+\keyword{Play}
 \keyword{Plays}

@@ -30,6 +30,10 @@ outputs from the two releases.
   `?load_espn_cfb_team_summaries` page. The two loaders return the same 385
   columns (the weekly frame adds `through_week`), and the table is no longer
   printed twice.
+* `espn_cfb_game_drive_plays()` and `espn_cfb_game_play()` are now documented
+  on the `?espn_cfb_game_pbp` page. All three take the same arguments, plus a
+  drive or play id, and return the same play columns, which the page now lists
+  once. Their examples make one call each.
 
 ## Changed: examples
 
