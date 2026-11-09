@@ -251,10 +251,9 @@ NULL
 #'    |n_plays_in_game              |integer   | |
 #'    |espn_game_id                 |character | |
 #'
-#' @examples
-#' \donttest{
-#'   try(load_ncaa_mfb_pbp_cfbfastr(2013))
-#' }
+#' @examplesIf interactive()
+#' # Downloads and parses a whole season of play-by-play.
+#' try(load_ncaa_mfb_pbp_cfbfastr(2013))
 #' @export
 load_ncaa_mfb_pbp_cfbfastr <- function(seasons = most_recent_cfb_season(), ...,
                                        dbConnection = NULL, tablename = NULL) {

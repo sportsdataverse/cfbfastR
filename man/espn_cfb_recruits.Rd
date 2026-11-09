@@ -87,7 +87,7 @@ uncommitted at fetch time leave both columns \code{NA}.
 }
 \examples{
 \donttest{
-  try(espn_cfb_recruits(year = 2024, max_results = 25))
+  try(espn_cfb_recruits(year = 2024, max_results = 5))
 }
 }
 \seealso{

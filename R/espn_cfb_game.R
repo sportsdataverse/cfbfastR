@@ -5110,11 +5110,9 @@ espn_cfb_game_team_records <- function(game_id = NULL, detail = FALSE,
 #' @export
 #' @examples
 #' \donttest{
-#'   try(espn_cfb_game_team_roster(game_id = 401628339))
+#'   # position_detail = FALSE skips the position catalog (about 75 requests).
 #'   try(espn_cfb_game_team_roster(game_id = 401628339,
 #'                                 position_detail = FALSE))
-#'   try(espn_cfb_game_team_roster(game_id = 401628339,
-#'                                 team_detail = FALSE))
 #' }
 espn_cfb_game_team_roster <- function(game_id = NULL,
                                       position_detail = TRUE,

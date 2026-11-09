@@ -2927,7 +2927,7 @@ espn_cfb_players <- function(year = NULL,
 #' @export
 #' @examples
 #' \donttest{
-#'   try(espn_cfb_recruits(year = 2024, max_results = 25))
+#'   try(espn_cfb_recruits(year = 2024, max_results = 5))
 #' }
 espn_cfb_recruits <- function(year = NULL,
                               max_results = 100) {

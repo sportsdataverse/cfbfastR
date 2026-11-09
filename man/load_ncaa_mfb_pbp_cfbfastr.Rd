@@ -138,9 +138,10 @@ onto cfbfastR pbp column conventions for cross-source binds. Published to
 the \code{ncaa_mfb_pbp_cfbfastr} release tag on the sportsdataverse-data repo.
 }
 \examples{
-\donttest{
-  try(load_ncaa_mfb_pbp_cfbfastr(2013))
-}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# Downloads and parses a whole season of play-by-play.
+try(load_ncaa_mfb_pbp_cfbfastr(2013))
+\dontshow{\}) # examplesIf}
 }
 \author{
 Saiem Gilani
