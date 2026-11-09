@@ -264,6 +264,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "both",
 cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 
   # Validation ----
+  validate_api_key()
   validate_reqs(year, team)
   validate_year(year)
 

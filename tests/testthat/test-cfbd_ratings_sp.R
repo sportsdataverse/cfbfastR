@@ -35,3 +35,18 @@ test_that("CFB Ratings - Bill C.'s SP+", {
   expect_s3_class(y, "data.frame")
   expect_s3_class(z, "data.frame")
 })
+
+test_that("CFB Ratings - SP+ stops before sending a request when no key is set", {
+  # Offline: every other cfbd_*() checks the key first; SP+ used to send the
+  # request anyway and get HTTP 401 back.
+  sent <- FALSE
+  local_mocked_bindings(
+    has_cfbd_key = function() FALSE,
+    get_req = function(full_url, proxy = NULL) {
+      sent <<- TRUE
+      httr2::response(status_code = 401)
+    }
+  )
+  expect_error(cfbd_ratings_sp(year = 2019), "requires an API key")
+  expect_false(sent)
+})

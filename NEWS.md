@@ -395,6 +395,9 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
   1-9 s of backoff). Sustained 429 throttling used to exhaust the budget and
   surface as "no data available", so a throttled call looked like an empty
   result. (#148)
+- `cfbd_ratings_sp()` now stops with the "requires an API key" error when no
+  `CFBD_API_KEY` is set, like every other `cfbd_*()` function. It used to send
+  the request anyway and return an empty frame after an HTTP 401.
 
 ## Fixed: ESPN play-by-play carries the pre-game line
 
