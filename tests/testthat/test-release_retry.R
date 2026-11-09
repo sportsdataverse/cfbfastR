@@ -188,8 +188,20 @@ test_that("a release csv is read from a local file with libcurl, whatever the op
   src <- withr::local_tempfile(fileext = ".csv")
   data.table::fwrite(data.frame(season = 2024L, game_id = 1:2), src)
   path <- normalizePath(src, winslash = "/")
+  # The file:// read would also succeed under "curl", so check the method that
+  # reaches download.file() itself.
+  real_download <- utils::download.file
+  methods <- character()
+  local_mocked_bindings(
+    download.file = function(url, destfile, method, ...) {
+      methods <<- c(methods, method)
+      real_download(url, destfile, method = method, ...)
+    },
+    .package = "utils"
+  )
   out <- .release_csv_from_url(paste0("file://", if (!startsWith(path, "/")) "/", path))
   expect_equal(out$game_id, 1:2)
+  expect_equal(methods, "libcurl")
 })
 
 # fread() stops at a row with too many fields and returns the rows above it,
