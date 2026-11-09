@@ -13,8 +13,9 @@ outputs from the two releases.
   ones already loaded in the session. `?cfb_clear_model_cache`,
   `?calculate_cfb_models` and the README now say where the cache is and how
   often it refreshes, and that a model already loaded stays in memory for the
-  session, so picking up a new one takes `cfb_clear_model_cache()` or a
-  restart.
+  session. A restart does not clear the cache, so a new session reads the
+  cached copy until it expires; `cfb_clear_model_cache()` picks up a new model
+  at once.
 * A model download that fails no longer leaks R's own "cannot open URL"
   warnings, and one that reports a non-zero status is no longer cached. A
   `calculate_*()` call that cannot fetch its model or card says why (the

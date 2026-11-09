@@ -19,9 +19,10 @@ seconds (default one day). Under \verb{R CMD check} the cache is in \code{\link[
 instead.
 
 A model is read from the cache once per R session and then kept in memory,
-so that refresh reaches a session only for models it has not loaded yet. To
-pick up a newly published model in a running session, call
-\code{cfb_clear_model_cache()} or restart R.
+so that refresh reaches a session only for models it has not loaded yet.
+Restarting R drops the loaded models but not the cache: a new session reads
+the cached copy until it is older than \code{cfbfastR.cache_duration}. To pick up
+a newly published model at once, call \code{cfb_clear_model_cache()}.
 
 \code{cfb_clear_model_cache()} deletes that directory and drops the models already
 loaded in this session, so the next call downloads them again. The ESPN
