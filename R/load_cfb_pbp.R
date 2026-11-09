@@ -223,16 +223,40 @@ build_cfb_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, sho
     dplyr::summarise() |>
     dplyr::ungroup()
 
+  index_url <- .cfb_games_index_url
+  unchanged <- c("i" = "The data table {.val {tblname}} was left unchanged.")
+  if (nrow(valid_seasons) == 0L) {
+    cli::cli_abort(c(
+      "{my_time()} | The games index {.url {index_url}} has no seasons from 2014 onward.",
+      unchanged
+    ), call = NULL)
+  }
+
+  purge <- function() NULL
   if (all(rebuild == TRUE)) {
-    cli::cli_ul("{my_time()} | Purging the complete data table {.val {tblname}} in your connected database...")
-    DBI::dbRemoveTable(db_conn, tblname)
+    # The table is dropped and only the index's seasons come back, so a season
+    # the table holds but the index lacks would be lost.
+    held <- DBI::dbGetQuery(db_conn, glue::glue_sql("SELECT DISTINCT season FROM {`tblname`}", .con = db_conn))$season
+    lost <- sort(setdiff(held, valid_seasons$season))
+    if (length(lost) > 0) {
+      cli::cli_abort(c(
+        "{my_time()} | The games index {.url {index_url}} lacks {cli::qty(length(lost))}season{?s} {lost}, which the data table holds.",
+        unchanged
+      ), call = NULL)
+    }
     seasons <- valid_seasons |> dplyr::pull("season")
     cli::cli_ul("{my_time()} | Starting download of {length(seasons)} seasons between {min(seasons)} and {max(seasons)}...")
+    purge <- function() {
+      cli::cli_ul("{my_time()} | Purging the complete data table {.val {tblname}} in your connected database...")
+      DBI::dbRemoveTable(db_conn, tblname)
+    }
   } else if (is.numeric(rebuild) & all(rebuild %in% valid_seasons$season)) {
-    if (show_message) {cli::cli_ul("{my_time()} | Purging {cli::qty(length(rebuild))}season{?s} {rebuild} from the data table {.val {tblname}} in your connected database...")}
-    DBI::dbExecute(db_conn, glue::glue_sql("DELETE FROM {`tblname`} WHERE season IN ({vals*})", vals = rebuild, .con = db_conn))
     seasons <- valid_seasons |> dplyr::filter(.data$season %in% rebuild) |> dplyr::pull("season")
     cli::cli_ul("{my_time()} | Starting download of the {cli::qty(length(rebuild))}season{?s} {rebuild}...")
+    purge <- function() {
+      if (show_message) {cli::cli_ul("{my_time()} | Purging {cli::qty(length(rebuild))}season{?s} {rebuild} from the data table {.val {tblname}} in your connected database...")}
+      DBI::dbExecute(db_conn, glue::glue_sql("DELETE FROM {`tblname`} WHERE season IN ({vals*})", vals = rebuild, .con = db_conn))
+    }
   } else if (all(rebuild == "NEW")) {
     cli::cli_alert_info("{my_time()} | Can't find the data table {.val {tblname}} in your database. Will load the play by play data from scratch.")
     seasons <- valid_seasons |> dplyr::pull("season")
@@ -243,8 +267,19 @@ build_cfb_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, sho
   }
 
   if (!is.null(seasons)) {
-    # this function lives in R/utils.R
-    load_cfb_pbp(seasons, dbConnection = db_conn, tablename = tblname, qs = FALSE)
+    # Every season is downloaded before anything is removed: rds_from_url()
+    # turns a failed download into zero rows and a warning, and the purge
+    # would then lose that season from the table.
+    pbp <- load_cfb_pbp(seasons, qs = FALSE)
+    failed <- sort(setdiff(seasons, pbp[["season"]]))
+    if (length(failed) > 0) {
+      cli::cli_abort(c(
+        "{my_time()} | Could not download {cli::qty(length(failed))}season{?s} {failed}.",
+        unchanged
+      ), call = NULL)
+    }
+    purge()
+    DBI::dbWriteTable(db_conn, tblname, as.data.frame(pbp), append = TRUE)
   }
 }
 

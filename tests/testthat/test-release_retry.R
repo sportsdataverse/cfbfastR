@@ -242,3 +242,60 @@ test_that("build_cfb_db(rebuild = TRUE) keeps the table when the games index rea
   )
   expect_equal(nrow(DBI::dbReadTable(con, "cfbfastR_pbp")), 2L)
 })
+
+local_pbp_db <- function(env = parent.frame()) {
+  con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+  withr::defer(DBI::dbDisconnect(con), envir = env)
+  DBI::dbWriteTable(con, "cfbfastR_pbp", data.frame(season = c(2014L, 2015L), game_id = 1:2))
+  con
+}
+pbp_rows <- function(con) DBI::dbGetQuery(con, "SELECT season, game_id FROM cfbfastR_pbp ORDER BY game_id")
+
+test_that("build_cfb_db() keeps the table when the index has no seasons to rebuild", {
+  skip_if_not_installed("RSQLite")
+  con <- local_pbp_db()
+  local_mocked_bindings(
+    .download_url = fake_download("season,game_id"),
+    load_cfb_pbp = function(...) stop("load_cfb_pbp() must not run")
+  )
+  expect_error(build_cfb_db("cfbfastR_pbp", con, rebuild = TRUE), "no seasons from 2014")
+  expect_equal(pbp_rows(con)$game_id, 1:2)
+})
+
+test_that("build_cfb_db(rebuild = TRUE) keeps the table when the index lacks a season it holds", {
+  skip_if_not_installed("RSQLite")
+  con <- local_pbp_db()
+  local_mocked_bindings(
+    .download_url = fake_download(c("season,game_id", "2014,1")),
+    load_cfb_pbp = function(...) stop("load_cfb_pbp() must not run")
+  )
+  expect_error(build_cfb_db("cfbfastR_pbp", con, rebuild = TRUE), "lacks season 2015")
+  expect_equal(pbp_rows(con)$game_id, 1:2)
+})
+
+test_that("build_cfb_db() keeps the table when a season download fails", {
+  skip_if_not_installed("RSQLite")
+  con <- local_pbp_db()
+  # rds_from_url() returns zero rows for a season it could not read.
+  local_mocked_bindings(
+    .download_url = fake_download(c("season,game_id", "2014,1", "2015,2")),
+    load_cfb_pbp = function(seasons, ...) data.frame(season = 2014L, game_id = 10L)
+  )
+  expect_error(build_cfb_db("cfbfastR_pbp", con, rebuild = TRUE), "season 2015")
+  expect_equal(pbp_rows(con)$game_id, 1:2)
+  expect_error(build_cfb_db("cfbfastR_pbp", con, rebuild = c(2014, 2015)), "left unchanged")
+  expect_equal(pbp_rows(con)$game_id, 1:2)
+})
+
+test_that("build_cfb_db() replaces the rebuilt seasons once every season downloads", {
+  skip_if_not_installed("RSQLite")
+  con <- local_pbp_db()
+  local_mocked_bindings(
+    .download_url = fake_download(c("season,game_id", "2014,1", "2015,2")),
+    load_cfb_pbp = function(seasons, ...) data.frame(season = seasons, game_id = 10L + seq_along(seasons))
+  )
+  build_cfb_db("cfbfastR_pbp", con, rebuild = 2015, show_message = FALSE)
+  expect_equal(pbp_rows(con)$game_id, c(1L, 11L))
+  build_cfb_db("cfbfastR_pbp", con, rebuild = TRUE)
+  expect_equal(pbp_rows(con)$game_id, 11:12)
+})
