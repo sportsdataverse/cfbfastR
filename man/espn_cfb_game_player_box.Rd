@@ -106,10 +106,11 @@ erroring the wrapper. With \code{position_detail = FALSE} the five columns
 (and the catalog fetch) are skipped.
 }
 \examples{
-\donttest{
-  try(espn_cfb_game_player_box(game_id = 401628339,
-                               position_detail = FALSE, team_detail = FALSE))
-}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# One request per player in the game, so this takes a while.
+try(espn_cfb_game_player_box(game_id = 401628339,
+                             position_detail = FALSE, team_detail = FALSE))
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other ESPN CFB Functions:

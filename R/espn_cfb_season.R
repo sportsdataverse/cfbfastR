@@ -116,10 +116,9 @@ NULL
 #' @keywords ESPN CFB Groups Conferences
 #' @family ESPN CFB Functions
 #' @export
-#' @examples
-#' \donttest{
-#'   try(espn_cfb_groups(year = 2024))
-#' }
+#' @examplesIf interactive()
+#' # One request per conference and division, so this takes a while.
+#' try(espn_cfb_groups(year = 2024))
 espn_cfb_groups <- function(year = NULL,
                             season_type = 2) {
 

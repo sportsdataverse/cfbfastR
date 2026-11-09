@@ -235,17 +235,6 @@ are skipped.
   try(espn_cfb_game_drive_plays(game_id = 401628339,
                                 drive_id = 4016283391,
                                 participants = "long"))
-  try(espn_cfb_game_drive_plays(game_id = 401628339,
-                                drive_id = 4016283391,
-                                participants = "wide",
-                                participants_list = TRUE))
-  try(espn_cfb_game_drive_plays(game_id = 401628339,
-                                drive_id = 4016283391,
-                                team_participants = "wide",
-                                team_participants_list = TRUE))
-  try(espn_cfb_game_drive_plays(game_id = 401628339,
-                                drive_id = 4016283391,
-                                team_detail = FALSE))
 }
 }
 \seealso{
