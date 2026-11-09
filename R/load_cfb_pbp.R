@@ -212,9 +212,8 @@ build_cfb_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, sho
       index_url <- .cfb_games_index_url
       cli::cli_abort(c(
         "{my_time()} | Could not read the games index {.url {index_url}}.",
-        "i" = "The data table {.val {tblname}} was left unchanged.",
-        "x" = "{conditionMessage(e)}"
-      ), call = NULL)
+        "i" = "The data table {.val {tblname}} was left unchanged."
+      ), call = NULL, parent = e)
     }
   )
   valid_seasons <- games |>
@@ -278,8 +277,11 @@ build_cfb_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, sho
         unchanged
       ), call = NULL)
     }
-    purge()
-    DBI::dbWriteTable(db_conn, tblname, as.data.frame(pbp), append = TRUE)
+    # One transaction, so a failed write puts the purged rows back.
+    DBI::dbWithTransaction(db_conn, {
+      purge()
+      DBI::dbWriteTable(db_conn, tblname, as.data.frame(pbp), append = TRUE)
+    })
   }
 }
 

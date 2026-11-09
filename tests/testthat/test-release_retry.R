@@ -315,3 +315,28 @@ test_that("build_cfb_db() replaces the rebuilt seasons once every season downloa
   build_cfb_db("cfbfastR_pbp", con, rebuild = TRUE)
   expect_equal(pbp_rows(con)$game_id, 11:12)
 })
+
+test_that("build_cfb_db() puts the purged rows back when the write fails", {
+  skip_if_not_installed("RSQLite")
+  con <- local_pbp_db()
+  local_mocked_bindings(
+    .download_url = fake_download(c("season,game_id", "2014,1", "2015,2")),
+    load_cfb_pbp = function(seasons, ...) data.frame(season = seasons, game_id = 10L + seq_along(seasons))
+  )
+  local_mocked_bindings(
+    dbWriteTable = function(...) stop("disk full"),
+    .package = "DBI"
+  )
+  expect_error(build_cfb_db("cfbfastR_pbp", con, rebuild = TRUE), "disk full")
+  expect_equal(pbp_rows(con)$game_id, 1:2)
+  expect_error(build_cfb_db("cfbfastR_pbp", con, rebuild = 2015, show_message = FALSE), "disk full")
+  expect_equal(pbp_rows(con)$game_id, 1:2)
+})
+
+test_that("a failed games index read keeps its cause", {
+  skip_if_not_installed("RSQLite")
+  con <- local_pbp_db()
+  local_mocked_bindings(.download_url = fake_download(partial_csv))
+  err <- expect_error(suppressWarnings(build_cfb_db("cfbfastR_pbp", con, rebuild = TRUE)))
+  expect_s3_class(err$parent, "release_csv_partial")
+})
