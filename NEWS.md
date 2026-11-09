@@ -741,6 +741,9 @@ stays in Suggests.
   aggregate that one, since the two boosters are not on one scale.
 * Both are checked against a new sdv-py oracle of two 2025 overtime games
   (`wp_overtime_oracle.csv.gz`, `test-parity_wp_overtime.R`).
+* The overtime stage reads a factor `period` or `season` by its labels. It
+  used the level codes, so a caller's factor `period` hid every overtime
+  possession. The package's own frames carry numeric periods.
 
 ## Fixed: the games index csv read retries
 

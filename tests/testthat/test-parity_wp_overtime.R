@@ -80,6 +80,18 @@ test_that("the forced two-point rule and possession order match sdv-py", {
                    c(FALSE, TRUE, TRUE, FALSE, FALSE))
 })
 
+test_that("a factor season or period is read by label, not by level code", {
+  o <- read_ot_oracle()
+  # Overtime rows only, so that level codes (1, 2, ...) differ from the labels.
+  num <- r_ot_state(o)[o$period >= 5, ]
+  fct <- num
+  fct$period <- factor(fct$period)
+  expect_true(any(.ot_second_possession(num), na.rm = TRUE))
+  expect_identical(.ot_second_possession(fct), .ot_second_possession(num))
+  expect_identical(.ot_forced_two_point(factor(o$season), factor(o$period)),
+                   .ot_forced_two_point(o$season, o$period))
+})
+
 test_that("overtime-adjusted naive WP (wp_before) matches sdv-py adjust_wp", {
   skip_if_no_ot_models()
   o <- read_ot_oracle()
