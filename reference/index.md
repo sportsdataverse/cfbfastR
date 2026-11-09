@@ -104,6 +104,9 @@ One-page summaries of the cfbd\_\* and espn_cfb\_\* function families.
 
   **ESPN College Football Team Endpoint Overview**
 
+- [`family_espn_cfb`](https://cfbfastR.sportsdataverse.org/reference/family_espn_cfb.md)
+  : ESPN CFB Functions: family index
+
 ## cfbfastR Data
 
 ### Full Season Loaders
@@ -205,12 +208,6 @@ Functions exported by cfbfastR which load full seasons of cfbfastR data
   **Load college football team conference membership by season from the
   SportsDataverse data repo**
 
-- [`load_cfb_team_summaries_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_summaries_weekly.md)
-  :
-
-  **Load college football weekly team summaries from the SportsDataverse
-  data repo**
-
 - [`load_cfb_team_talent()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_talent.md)
   :
 
@@ -225,6 +222,13 @@ Functions exported by cfbfastR which load full seasons of cfbfastR data
 
   **Load college football team id crosswalk from the SportsDataverse
   data repo**
+
+- [`load_espn_cfb_team_summaries()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_team_summaries.md)
+  [`load_cfb_team_summaries_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_team_summaries.md)
+  :
+
+  **Load college football team season and weekly summaries from the
+  SportsDataverse data repo**
 
 - [`load_espn_cfb_adv_defensive()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_adv_defensive.md)
   :
@@ -380,12 +384,6 @@ Functions exported by cfbfastR which load full seasons of cfbfastR data
   :
 
   **Load ESPN college football team box scores from the SportsDataverse
-  data repo**
-
-- [`load_espn_cfb_team_summaries()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_team_summaries.md)
-  :
-
-  **Load college football team season summaries from the SportsDataverse
   data repo**
 
 - [`load_ncaa_mfb_drives()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_drives.md)
@@ -1245,11 +1243,6 @@ predictor, situation, odds)
 
   **ESPN College Football Game Broadcasts**
 
-- [`espn_cfb_game_drive_plays()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_drive_plays.md)
-  :
-
-  **ESPN College Football Game Drive Plays**
-
 - [`espn_cfb_game_drives()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_drives.md)
   :
 
@@ -1266,14 +1259,12 @@ predictor, situation, odds)
   **ESPN College Football Game Odds**
 
 - [`espn_cfb_game_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md)
+  [`espn_cfb_game_drive_plays()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md)
+  [`espn_cfb_game_play()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md)
   :
 
-  **ESPN College Football Game Plays (Core-v2 Play-by-Play)**
-
-- [`espn_cfb_game_play()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_play.md)
-  :
-
-  **ESPN College Football Game Play (Single Play Detail)**
+  **ESPN College Football Game Plays (Core-v2 Play-by-Play, Drive Plays
+  and Single Play)**
 
 - [`espn_cfb_game_player_box()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_player_box.md)
   :

@@ -228,22 +228,22 @@ sim$overall |>
     ## # A tibble: 16 × 7
     ##    team          conference         wins conf_champ playoff seed1 won_natty
     ##    <chr>         <chr>             <dbl>      <dbl>   <dbl> <dbl>     <dbl>
-    ##  1 Indiana       Big Ten           12.0       0.496   0.94  0.282     0.238
-    ##  2 Ohio State    Big Ten           11.9       0.504   0.906 0.262     0.23 
-    ##  3 James Madison Sun Belt          10.8       0.83    0.712 0.028     0.002
-    ##  4 North Texas   American Athletic 11.0       0.586   0.708 0.014     0.002
-    ##  5 Georgia       SEC               10.9       0.588   0.694 0.056     0.148
-    ##  6 Texas Tech    Big 12            10.7       0.718   0.686 0.058     0.026
-    ##  7 Ole Miss      SEC               10.6       0       0.652 0         0.068
-    ##  8 Alabama       SEC               10.8       0.412   0.642 0.052     0.082
-    ##  9 Texas A&M     SEC               10.7       0       0.6   0.092     0.02 
-    ## 10 Oregon        Big Ten           10.2       0       0.576 0         0.122
-    ## 11 Memphis       American Athletic  9.93      0       0.542 0         0.004
-    ## 12 Georgia Tech  ACC               10.2       0       0.468 0.06      0.004
-    ## 13 Miami         ACC               10.1       0       0.464 0.002     0.02 
-    ## 14 Boise State   Mountain West     10.0       0.73    0.444 0         0.002
-    ## 15 BYU           Big 12            10.3       0.282   0.434 0.074     0.004
-    ## 16 Louisville    ACC                9.55      0       0.354 0         0.008
+    ##  1 Indiana       Big Ten           12.0       0.514   0.958 0.298     0.264
+    ##  2 Ohio State    Big Ten           11.9       0.486   0.92  0.26      0.268
+    ##  3 Georgia       SEC               10.9       0.612   0.69  0.06      0.122
+    ##  4 North Texas   American Athletic 11.0       0.59    0.688 0.016     0.002
+    ##  5 Alabama       SEC               10.8       0.388   0.686 0.054     0.064
+    ##  6 James Madison Sun Belt          10.7       0.818   0.662 0.02      0.004
+    ##  7 Ole Miss      SEC               10.6       0       0.65  0         0.064
+    ##  8 Texas Tech    Big 12            10.6       0.644   0.616 0.056     0.026
+    ##  9 Texas A&M     SEC               10.8       0       0.612 0.09      0.034
+    ## 10 Memphis       American Athletic  9.95      0       0.548 0         0    
+    ## 11 Oregon        Big Ten           10.1       0       0.536 0         0.1  
+    ## 12 BYU           Big 12            10.4       0.356   0.492 0.082     0.006
+    ## 13 Georgia Tech  ACC               10.2       0       0.454 0.042     0    
+    ## 14 Louisville    ACC                9.62      0       0.416 0.002     0.006
+    ## 15 Miami         ACC               10.0       0       0.412 0         0.022
+    ## 16 Boise State   Mountain West     10.0       0.734   0.402 0         0.008
 
 [`summary()`](https://rdrr.io/r/base/summary.html) turns the same
 numbers into a table grouped by conference:

@@ -86,7 +86,7 @@ Other CFBD Rushing:
 # \donttest{
   try(cfbd_rushing_players_games(year = 2025, week = 5))
 #> ── Player game rushing data from CollegeFootballData.com ───── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:23:25 UTC
+#> ℹ Data updated: 2026-11-09 17:02:31 UTC
 #> # A tibble: 526 × 93
 #>      game_id season  week season_type player_id player team  conference opponent
 #>        <int>  <int> <int> <chr>       <chr>     <chr>  <chr> <chr>      <chr>   

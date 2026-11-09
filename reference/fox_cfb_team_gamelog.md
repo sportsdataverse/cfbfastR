@@ -44,20 +44,20 @@ A `cfbfastR`-tagged tibble with one row per (game, stat):
 # \donttest{
   try(fox_cfb_team_gamelog(team_id = "11"))
 #> ── Team game log from Fox Sports (Bifrost) ─────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:26:05 UTC
+#> ℹ Data updated: 2026-11-09 17:04:24 UTC
 #> # A tibble: 340 × 8
 #>    team_id season_type    category game_id game_date opponent stat     value
 #>    <chr>   <chr>          <chr>    <chr>   <chr>     <chr>    <chr>    <chr>
-#>  1 11      REGULAR SEASON passing  43922   10/31     @UNC     comp     22   
-#>  2 11      REGULAR SEASON passing  43922   10/31     @UNC     att      29   
-#>  3 11      REGULAR SEASON passing  43922   10/31     @UNC     pct      75.9 
-#>  4 11      REGULAR SEASON passing  43922   10/31     @UNC     yds      274  
-#>  5 11      REGULAR SEASON passing  43922   10/31     @UNC     pyds_att 14.3 
-#>  6 11      REGULAR SEASON passing  43922   10/31     @UNC     td       3    
-#>  7 11      REGULAR SEASON passing  43922   10/31     @UNC     int      0    
-#>  8 11      REGULAR SEASON passing  43922   10/31     @UNC     sck      1    
-#>  9 11      REGULAR SEASON passing  43922   10/31     @UNC     yds_2    1    
-#> 10 11      REGULAR SEASON passing  43922   10/31     @UNC     qbr      189.4
+#>  1 11      REGULAR SEASON passing  44100   11/7      @ND      comp     24   
+#>  2 11      REGULAR SEASON passing  44100   11/7      @ND      att      43   
+#>  3 11      REGULAR SEASON passing  44100   11/7      @ND      pct      55.8 
+#>  4 11      REGULAR SEASON passing  44100   11/7      @ND      yds      276  
+#>  5 11      REGULAR SEASON passing  44100   11/7      @ND      pyds_att 8.8  
+#>  6 11      REGULAR SEASON passing  44100   11/7      @ND      td       3    
+#>  7 11      REGULAR SEASON passing  44100   11/7      @ND      int      1    
+#>  8 11      REGULAR SEASON passing  44100   11/7      @ND      sck      2    
+#>  9 11      REGULAR SEASON passing  44100   11/7      @ND      yds_2    14   
+#> 10 11      REGULAR SEASON passing  44100   11/7      @ND      qbr      128.1
 #> # ℹ 330 more rows
 # }
 ```

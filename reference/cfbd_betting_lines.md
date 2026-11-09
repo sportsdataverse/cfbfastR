@@ -108,20 +108,38 @@ Other CFBD Betting Functions:
 ``` r
 # \donttest{
    try(cfbd_betting_lines(year = 2018, week = 12, team = "Florida State"))
-#> ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:21:51 UTC
-#> # A tibble: 4 × 23
-#>     game_id season season_type  week start_date           home_team_id home_team
-#>       <int>  <int> <chr>       <int> <chr>                       <int> <chr>    
-#> 1 401013175   2018 regular        12 2018-11-17T20:30:00…           52 Florida …
-#> 2 401013175   2018 regular        12 2018-11-17T20:30:00…           52 Florida …
-#> 3 401013175   2018 regular        12 2018-11-17T20:30:00…           52 Florida …
-#> 4 401013175   2018 regular        12 2018-11-17T20:30:00…           52 Florida …
-#> # ℹ 16 more variables: home_conference <chr>, home_classification <chr>,
-#> #   home_score <int>, away_team_id <int>, away_team <chr>,
-#> #   away_conference <chr>, away_classification <chr>, away_score <int>,
-#> #   provider <chr>, spread <dbl>, formatted_spread <chr>, spread_open <lgl>,
-#> #   over_under <dbl>, over_under_open <lgl>, home_moneyline <lgl>,
-#> #   away_moneyline <lgl>
+#> Waiting 4s for retry backoff ■■■■■■■■■■                      
+#> Waiting 4s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
+#> Waiting 4s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 10s for retry backoff ■■■■■■■■                        
+#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■               
+#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
+#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 21s for retry backoff ■■                              
+#> Waiting 21s for retry backoff ■■■■■■                          
+#> Waiting 21s for retry backoff ■■■■■■■■■■■                     
+#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■                 
+#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
+#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
+#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
+#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 44s for retry backoff ■■                              
+#> Waiting 44s for retry backoff ■■■■                            
+#> Waiting 44s for retry backoff ■■■■■■                          
+#> Waiting 44s for retry backoff ■■■■■■■■                        
+#> Waiting 44s for retry backoff ■■■■■■■■■■                      
+#> Waiting 44s for retry backoff ■■■■■■■■■■■■                    
+#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■                  
+#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■                
+#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■              
+#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
+#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
+#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
+#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
+#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
+#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
+#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> 2026-11-09 16:19:22.822403: Invalid arguments or no betting lines data available! The CFBD API returned HTTP 429 (Too Many Requests)
+#> data frame with 0 columns and 0 rows
 # }
 ```

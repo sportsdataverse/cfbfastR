@@ -248,37 +248,32 @@ Can be found using the <code><a href="cfbd_player_info.html">cfbd_player_info()<
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_metrics_ppa_players_season</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"TCU"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Player season PPA data from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 3.1.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-06 08:22:16 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 19 × 23</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    season athlete_id name     position team  conference avg_PPA_all avg_PPA_pass</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>   <span style="text-decoration: underline;">2</span>019 3676818    TreVont… WR       TCU   B12              0.117        0.462</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>   <span style="text-decoration: underline;">2</span>019 3886634    Alex De… QB       TCU   B12             -<span style="color: #BB0000;">0.023</span>       -<span style="color: #BB0000;">0.124</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>   <span style="text-decoration: underline;">2</span>019 4038533    Darius … RB       TCU   B12              0.076       -<span style="color: #BB0000;">0.144</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>   <span style="text-decoration: underline;">2</span>019 4038536    Dylan T… WR       TCU   B12              1.18         1.18 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>   <span style="text-decoration: underline;">2</span>019 4038539    Sewo Ol… RB       TCU   B12              0.157       -<span style="color: #BB0000;">0.104</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>   <span style="text-decoration: underline;">2</span>019 4038556    Artayvi… TE       TCU   B12              0.506        0.506</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>   <span style="text-decoration: underline;">2</span>019 4241795    Al'Dont… WR       TCU   B12              3.18         3.18 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>   <span style="text-decoration: underline;">2</span>019 4241802    Jalen R… WR       TCU   B12              0.299        0.347</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>   <span style="text-decoration: underline;">2</span>019 4259331    Carter … TE       TCU   B12              0.808        0.808</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">2</span>019 4362430    Taye Ba… WR       TCU   B12              0.591        0.55 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span>   <span style="text-decoration: underline;">2</span>019 4362442    Pro Wel… TE       TCU   B12              0.642        0.642</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span>   <span style="text-decoration: underline;">2</span>019 4362477    Derius … WR       TCU   B12              0.243        0.296</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span>   <span style="text-decoration: underline;">2</span>019 4362478    Emari D… RB       TCU   B12             -<span style="color: #BB0000;">0.149</span>       <span style="color: #BB0000;">NA</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span>   <span style="text-decoration: underline;">2</span>019 4362483    Tevaila… WR       TCU   B12              0.385        0.385</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span>   <span style="text-decoration: underline;">2</span>019 4362489    John St… WR       TCU   B12              0.421        0.726</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span>   <span style="text-decoration: underline;">2</span>019 4426635    Darwin … RB       TCU   B12              0.166       -<span style="color: #BB0000;">0.881</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span>   <span style="text-decoration: underline;">2</span>019 4426965    Blair C… WR       TCU   B12              1.07         1.07 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span>   <span style="text-decoration: underline;">2</span>019 4427105    Max Dug… QB       TCU   B12              0.176        0.092</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span>   <span style="text-decoration: underline;">2</span>019 4427217    Daimarq… RB       TCU   B12              0.365       <span style="color: #BB0000;">NA</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15 more variables: avg_PPA_rush &lt;dbl&gt;, avg_PPA_first_down &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   avg_PPA_second_down &lt;dbl&gt;, avg_PPA_third_down &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   avg_PPA_standard_downs &lt;dbl&gt;, avg_PPA_passing_downs &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   total_PPA_all &lt;dbl&gt;, total_PPA_pass &lt;dbl&gt;, total_PPA_rush &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   total_PPA_first_down &lt;dbl&gt;, total_PPA_second_down &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   total_PPA_third_down &lt;dbl&gt;, total_PPA_standard_downs &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   total_PPA_passing_downs &lt;dbl&gt;, countable_plays &lt;int&gt;</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 6s for retry backoff <span style="color: #00BB00;">■■■■■■                          </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 6s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■               </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 6s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 7s for retry backoff <span style="color: #00BB00;">■■■■■                           </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 7s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■                  </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 7s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■    </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 7s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 24s for retry backoff <span style="color: #00BB00;">■■■■                            </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 24s for retry backoff <span style="color: #00BB00;">■■■■■■■■                        </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 24s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■                    </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 24s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 24s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 24s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■         </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 24s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■     </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 24s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 23s for retry backoff <span style="color: #00BB00;">■■                              </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 23s for retry backoff <span style="color: #00BB00;">■■■■■                           </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 23s for retry backoff <span style="color: #00BB00;">■■■■■■■■■                       </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 23s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 23s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■               </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 23s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■            </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 23s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■        </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 23s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■    </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 23s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-11-09 16:54:17.789329: Invalid arguments or no CFBData metrics PPA season-level players data available! The CFBD API returned HTTP 429 (Too Many Requests)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> data frame with 0 columns and 0 rows</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

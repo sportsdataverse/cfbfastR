@@ -6,8 +6,18 @@ file.path(tools::R_user_dir("cfbfastR", "cache"), "models"). A cached copy
 is re-downloaded once it is older than getOption("cfbfastR.cache_duration")
 seconds (default one day). Under R CMD check the cache is in tempdir()
 instead.
+A model is read from the cache once per R session and then kept in memory,
+so that refresh reaches a session only for models it has not loaded yet.
+Restarting R drops the loaded models but not the cache: a new session reads
+the cached copy until it is older than cfbfastR.cache_duration. To pick up
+a newly published model at once, call cfb_clear_model_cache().
+An expired copy only triggers a download attempt: if that download fails, the
+expired copy is used instead and stays loaded for the rest of the session,
+even after the connection returns.
 cfb_clear_model_cache() deletes that directory and drops the models already
-loaded in this session, so the next call downloads them again. The ESPN
+loaded in this session, so the next call downloads them again. It also
+removes that offline fallback, so clear the cache only with a working
+connection, or the next model call has nothing to read. The ESPN
 request cache is separate; see espn_cfb_clear_cache().'><meta property="og:description" content='The expected points, win probability, field goal and other models that
 calculate_cfb_models, cfbd_pbp_data() and espn_cfb_pbp() score with are
 downloaded from the cfb_model_artifacts release on first use and cached in
@@ -15,8 +25,18 @@ file.path(tools::R_user_dir("cfbfastR", "cache"), "models"). A cached copy
 is re-downloaded once it is older than getOption("cfbfastR.cache_duration")
 seconds (default one day). Under R CMD check the cache is in tempdir()
 instead.
+A model is read from the cache once per R session and then kept in memory,
+so that refresh reaches a session only for models it has not loaded yet.
+Restarting R drops the loaded models but not the cache: a new session reads
+the cached copy until it is older than cfbfastR.cache_duration. To pick up
+a newly published model at once, call cfb_clear_model_cache().
+An expired copy only triggers a download attempt: if that download fails, the
+expired copy is used instead and stays loaded for the rest of the session,
+even after the connection returns.
 cfb_clear_model_cache() deletes that directory and drops the models already
-loaded in this session, so the next call downloads them again. The ESPN
+loaded in this session, so the next call downloads them again. It also
+removes that offline fallback, so clear the cache only with a working
+connection, or the next model call has nothing to read. The ESPN
 request cache is separate; see espn_cfb_clear_cache().'><meta property="og:image" content="https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/social_card_cfbfastR_final_quote.png"><meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@saiemgilani"><meta name="twitter:site" content="@cfbfastR"><!-- Privacy-friendly analytics by Plausible --><script async src="https://plausible.io/js/pa-ZFDwSnsNQXnprFDxKtvpE.js"></script><script>
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
@@ -194,8 +214,18 @@ downloaded from the <code>cfb_model_artifacts</code> release on first use and ca
 is re-downloaded once it is older than <code>getOption("cfbfastR.cache_duration")</code>
 seconds (default one day). Under <code>R CMD check</code> the cache is in <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>
 instead.</p>
+<p>A model is read from the cache once per R session and then kept in memory,
+so that refresh reaches a session only for models it has not loaded yet.
+Restarting R drops the loaded models but not the cache: a new session reads
+the cached copy until it is older than <code>cfbfastR.cache_duration</code>. To pick up
+a newly published model at once, call <code>cfb_clear_model_cache()</code>.</p>
+<p>An expired copy only triggers a download attempt: if that download fails, the
+expired copy is used instead and stays loaded for the rest of the session,
+even after the connection returns.</p>
 <p><code>cfb_clear_model_cache()</code> deletes that directory and drops the models already
-loaded in this session, so the next call downloads them again. The ESPN
+loaded in this session, so the next call downloads them again. It also
+removes that offline fallback, so clear the cache only with a working
+connection, or the next model call has nothing to read. The ESPN
 request cache is separate; see <code><a href="espn_cfb_clear_cache.html">espn_cfb_clear_cache()</a></code>.</p>
     </div>
 

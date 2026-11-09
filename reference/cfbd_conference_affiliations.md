@@ -80,22 +80,37 @@ Other CFBD Conference Functions:
 ``` r
 # \donttest{
   try(cfbd_conference_affiliations(team = "Georgia"))
-#> ── Get conference affiliations by team and season from CollegeFootballData.com ─
-#> ℹ Data updated: 2026-11-06 08:21:55 UTC
-#> # A tibble: 9 × 9
-#>   team_id team    conference_id conference conference_abbreviat…¹ classification
-#>     <int> <chr>           <int> <chr>      <chr>                  <chr>         
-#> 1      61 Georgia            18 FBS Indep… Ind                    fbs           
-#> 2      61 Georgia           273 SIAA       SIAA                   fbs           
-#> 3      61 Georgia           273 SIAA       SIAA                   fbs           
-#> 4      61 Georgia           273 SIAA       SIAA                   fbs           
-#> 5      61 Georgia           273 SIAA       SIAA                   fbs           
-#> 6      61 Georgia           206 Southern   Southern               fbs           
-#> 7      61 Georgia             8 SEC        SEC                    fbs           
-#> 8      61 Georgia             8 SEC        SEC                    fbs           
-#> 9      61 Georgia             8 SEC        SEC                    fbs           
-#> # ℹ abbreviated name: ¹​conference_abbreviation
-#> # ℹ 3 more variables: conference_division <chr>, start_year <int>,
-#> #   end_year <int>
+#> Waiting 3s for retry backoff ■■■■■■■■■■■■■                   
+#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
+#> Waiting 5s for retry backoff ■■■■■■■                         
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 5s for retry backoff ■■■■■■■                         
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 21s for retry backoff ■■■■                            
+#> Waiting 21s for retry backoff ■■■■■■■■                        
+#> Waiting 21s for retry backoff ■■■■■■■■■■■■■                   
+#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■               
+#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
+#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
+#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 41s for retry backoff ■■■                             
+#> Waiting 41s for retry backoff ■■■■■                           
+#> Waiting 41s for retry backoff ■■■■■■■                         
+#> Waiting 41s for retry backoff ■■■■■■■■■■                      
+#> Waiting 41s for retry backoff ■■■■■■■■■■■■                    
+#> Waiting 41s for retry backoff ■■■■■■■■■■■■■■                  
+#> Waiting 41s for retry backoff ■■■■■■■■■■■■■■■■                
+#> Waiting 41s for retry backoff ■■■■■■■■■■■■■■■■■■              
+#> Waiting 41s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
+#> Waiting 41s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
+#> Waiting 41s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
+#> Waiting 41s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
+#> Waiting 41s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
+#> Waiting 41s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> 2026-11-09 16:25:56.694971: Invalid arguments or no conferences data available! The CFBD API returned HTTP 429 (Too Many Requests)
+#> data frame with 0 columns and 0 rows
 # }
 ```

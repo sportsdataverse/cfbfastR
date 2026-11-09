@@ -163,12 +163,10 @@
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_futures.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_broadcasts.html</loc></url>
-<url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_drive_plays.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_drives.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_leaders.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_odds.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.html</loc></url>
-<url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_play.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_player_box.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_player_statistics.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_powerindex.html</loc></url>
@@ -227,6 +225,7 @@
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_week_rankings.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_metrics.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/family_espn_cfb.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/fox_cfb_boxscore.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/fox_cfb_league_leaders.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/fox_cfb_odds.html</loc></url>
@@ -254,7 +253,6 @@
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_aliases.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_group_seasons.html</loc></url>
-<url><loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_summaries_weekly.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_talent.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams_crosswalk.html</loc></url>

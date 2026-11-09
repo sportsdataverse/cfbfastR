@@ -209,28 +209,29 @@ Minimum value accepted: 2002</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_calendar</span><span class="op">(</span><span class="fl">2019</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Calendar data from CollegeFootballData.com ──────────────── <span style="font-style: italic;">cfbfastR 3.1.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-06 08:21:51 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 17 × 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    season  week season_type first_game_start         last_game_start         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>   <span style="text-decoration: underline;">2</span>019     1 regular     2019-07-25T07:00:00.000Z 2019-09-03T06:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>   <span style="text-decoration: underline;">2</span>019     2 regular     2019-09-03T07:00:00.000Z 2019-09-10T06:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>   <span style="text-decoration: underline;">2</span>019     3 regular     2019-09-10T07:00:00.000Z 2019-09-17T06:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>   <span style="text-decoration: underline;">2</span>019     4 regular     2019-09-17T07:00:00.000Z 2019-09-24T06:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>   <span style="text-decoration: underline;">2</span>019     5 regular     2019-09-24T07:00:00.000Z 2019-10-01T06:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>   <span style="text-decoration: underline;">2</span>019     6 regular     2019-10-01T07:00:00.000Z 2019-10-08T06:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>   <span style="text-decoration: underline;">2</span>019     7 regular     2019-10-08T07:00:00.000Z 2019-10-15T06:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>   <span style="text-decoration: underline;">2</span>019     8 regular     2019-10-15T07:00:00.000Z 2019-10-22T06:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>   <span style="text-decoration: underline;">2</span>019     9 regular     2019-10-22T07:00:00.000Z 2019-10-29T06:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">2</span>019    10 regular     2019-10-29T07:00:00.000Z 2019-11-05T07:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span>   <span style="text-decoration: underline;">2</span>019    11 regular     2019-11-05T08:00:00.000Z 2019-11-12T07:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span>   <span style="text-decoration: underline;">2</span>019    12 regular     2019-11-12T08:00:00.000Z 2019-11-19T07:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span>   <span style="text-decoration: underline;">2</span>019    13 regular     2019-11-19T08:00:00.000Z 2019-11-26T07:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span>   <span style="text-decoration: underline;">2</span>019    14 regular     2019-11-26T08:00:00.000Z 2019-12-03T07:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span>   <span style="text-decoration: underline;">2</span>019    15 regular     2019-12-03T08:00:00.000Z 2019-12-10T07:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span>   <span style="text-decoration: underline;">2</span>019    16 regular     2019-12-10T08:00:00.000Z 2019-12-16T07:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span>   <span style="text-decoration: underline;">2</span>019     1 postseason  2019-12-16T08:00:00.000Z 2020-01-15T07:59:00.000Z</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 4s for retry backoff <span style="color: #00BB00;">■■■■■■■■■                       </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 4s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 8s for retry backoff <span style="color: #00BB00;">■■■■■                           </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 8s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 8s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■      </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 8s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 12s for retry backoff <span style="color: #00BB00;">■■■■■■                          </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 12s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 12s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 12s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 12s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 29s for retry backoff <span style="color: #00BB00;">■■■■                            </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 29s for retry backoff <span style="color: #00BB00;">■■■■■■■                         </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 29s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■                      </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 29s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 29s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 29s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 29s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 29s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■       </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 29s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 29s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-11-09 16:20:15.304345:Invalid arguments or no calendar data available! The CFBD API returned HTTP 429 (Too Many Requests)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> data frame with 0 columns and 0 rows</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

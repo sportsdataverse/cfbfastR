@@ -29,21 +29,28 @@ Other CFBD Draft:
 ``` r
 # \donttest{
   try(cfbd_draft_positions())
-#> ── NFL positions data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:21:58 UTC
-#> # A tibble: 29 × 2
-#>    position_name     position_abbreviation
-#>    <chr>             <chr>                
-#>  1 Center            C                    
-#>  2 Cornerback        CB                   
-#>  3 Defensive Back    DB                   
-#>  4 Defensive Edge    EDGE                 
-#>  5 Defensive End     DE                   
-#>  6 Defensive Lineman DL                   
-#>  7 Defensive Tackle  DT                   
-#>  8 Free Safety       FS                   
-#>  9 Fullback          FB                   
-#> 10 Inside Linebacker ILB                  
-#> # ℹ 19 more rows
+#> Waiting 4s for retry backoff ■■■■■■■■                        
+#> Waiting 4s for retry backoff ■■■■■■■■■■■■■■                  
+#> Waiting 4s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 8s for retry backoff ■■■■■                           
+#> Waiting 8s for retry backoff ■■■■■■■■■■■■■■■■■               
+#> Waiting 8s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
+#> Waiting 8s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 9s for retry backoff ■■■■■■■■■■                      
+#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
+#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 29s for retry backoff ■■                              
+#> Waiting 29s for retry backoff ■■                              
+#> Waiting 29s for retry backoff ■■■■■■                          
+#> Waiting 29s for retry backoff ■■■■■■■■■                       
+#> Waiting 29s for retry backoff ■■■■■■■■■■■■                    
+#> Waiting 29s for retry backoff ■■■■■■■■■■■■■■■                 
+#> Waiting 29s for retry backoff ■■■■■■■■■■■■■■■■■■              
+#> Waiting 29s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
+#> Waiting 29s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
+#> Waiting 29s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
+#> Waiting 29s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> 2026-11-09 16:30:37.985766: Invalid arguments or no NFL positions data available! The CFBD API returned HTTP 429 (Too Many Requests)
+#> data frame with 0 columns and 0 rows
 # }
 ```

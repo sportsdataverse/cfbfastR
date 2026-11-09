@@ -133,27 +133,32 @@ Other CFBD Coaches Functions:
 ``` r
 # \donttest{
   try(cfbd_coaches_seasons(team = "Georgia"))
-#> ── Get coaching seasons from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:21:54 UTC
-#> # A tibble: 123 × 68
-#>     year games  wins losses  ties win_percentage preseason_rank postseason_rank
-#>    <int> <int> <int>  <int> <int>          <dbl>          <int>           <int>
-#>  1  1902     7     4      2     1          0.643             NA              NA
-#>  2  1903     7     3      4     0          0.429             NA              NA
-#>  3  1904     6     1      5     0          0.167             NA              NA
-#>  4  1905     6     1      5     0          0.167             NA              NA
-#>  5  1906     7     2      4     1          0.357             NA              NA
-#>  6  1907     8     4      3     1          0.563             NA              NA
-#>  7  1908     8     5      2     1          0.688             NA              NA
-#>  8  1909     7     1      4     2          0.286             NA              NA
-#>  9  1910     9     6      2     1          0.722             NA              NA
-#> 10  1911     9     7      1     1          0.833             NA              NA
-#> # ℹ 113 more rows
-#> # ℹ 60 more variables: srs <dbl>, sp_overall <dbl>, sp_offense <dbl>,
-#> #   sp_defense <dbl>, attribution_complete <lgl>, coach_id <int>,
-#> #   coach_first_name <chr>, coach_last_name <chr>, team_id <int>,
-#> #   team_school <chr>, team_conference <chr>,
-#> #   team_metrics_sp_special_teams <dbl>,
-#> #   team_metrics_strength_of_schedule <dbl>, …
+#> Waiting 3s for retry backoff ■■■■■■■■■■                      
+#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
+#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 7s for retry backoff ■■■■■■■■■                       
+#> Waiting 7s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
+#> Waiting 7s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 19s for retry backoff ■■                              
+#> Waiting 19s for retry backoff ■■■■■■■                         
+#> Waiting 19s for retry backoff ■■■■■■■■■■■■                    
+#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■               
+#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
+#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
+#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 32s for retry backoff ■■                              
+#> Waiting 32s for retry backoff ■■■■                            
+#> Waiting 32s for retry backoff ■■■■■■■                         
+#> Waiting 32s for retry backoff ■■■■■■■■■■                      
+#> Waiting 32s for retry backoff ■■■■■■■■■■■■■                   
+#> Waiting 32s for retry backoff ■■■■■■■■■■■■■■■                 
+#> Waiting 32s for retry backoff ■■■■■■■■■■■■■■■■■■              
+#> Waiting 32s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
+#> Waiting 32s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
+#> Waiting 32s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
+#> Waiting 32s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
+#> Waiting 32s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> 2026-11-09 16:23:37.999116: Invalid arguments or no coaches data available! The CFBD API returned HTTP 429 (Too Many Requests)
+#> data frame with 0 columns and 0 rows
 # }
 ```

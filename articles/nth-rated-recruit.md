@@ -79,7 +79,7 @@ all.recruits <- purrr::map2_dfr(
 tictoc::toc()
 ```
 
-    ## 28.512 sec elapsed
+    ## 24.099 sec elapsed
 
 ``` r
 

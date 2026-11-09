@@ -101,7 +101,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_model_pbp(2004))
 #> ── college football model-enriched play-by-play from the SportsDataverse data re
-#> ℹ Data updated: 2026-11-06 08:26:55 UTC
+#> ℹ Data updated: 2026-11-09 17:05:03 UTC
 #> # A tibble: 83,182 × 43
 #>      game_id id     sequenceNumber game_play_number drive.id season  week period
 #>        <int> <chr>  <chr>                     <int> <chr>     <int> <int>  <int>

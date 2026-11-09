@@ -18,7 +18,7 @@
   Get the broadcast / streaming outlets carrying a single college
   football game.
 
-- [`espn_cfb_game_drive_plays()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_drive_plays.md):
+- [`espn_cfb_game_drive_plays()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md):
   Get the play-by-play for a single drive of a college football game –
   one row per play, scoped to one drive.
 
@@ -38,7 +38,7 @@
   Get the full core-v2 play-by-play feed for a single college football
   game – one row per play.
 
-- [`espn_cfb_game_play()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_play.md):
+- [`espn_cfb_game_play()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md):
   Get the full detail object for a single play of a college football
   game.
 

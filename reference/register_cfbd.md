@@ -62,24 +62,24 @@ has_cfbd_key()
 #> [1] TRUE
 # \donttest{
   if (has_cfbd_key()) try(cfbd_api_key_info())
-#> 2026-11-06 08:27:32.534747: Invalid arguments or no CFBD API key info data available! Tibble columns must have compatible sizes.
+#> 2026-11-09 17:05:34.609257: Invalid arguments or no CFBD API key info data available! Tibble columns must have compatible sizes.
 #> • Size 2: Column `products`.
 #> • Size 5: Column `features`.
 #> ℹ Only values of size one are recycled.
 #> $patron_level
-#> [1] 4
+#> [1] 6
 #> 
 #> $tier_name
-#> [1] "Tier 4"
+#> [1] "Tier 6"
 #> 
 #> $monthly_limit
-#> [1] 125000
+#> [1] 500000
 #> 
 #> $remaining_calls
-#> [1] 11808
+#> [1] 499622
 #> 
 #> $used_calls
-#> [1] 113192
+#> [1] 378
 #> 
 #> $reset_at
 #> [1] "2026-12-01T00:00:00.000Z"

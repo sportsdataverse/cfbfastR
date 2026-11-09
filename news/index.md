@@ -16,17 +16,44 @@ model notes below before mixing outputs from the two releases.
   drops the ones already loaded in the session.
   [`?cfb_clear_model_cache`](https://cfbfastR.sportsdataverse.org/reference/cfb_clear_model_cache.md),
   [`?calculate_cfb_models`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
-  and the README now say where the cache is and how often it refreshes.
+  and the README now say where the cache is and how often it refreshes,
+  and that a model already loaded stays in memory for the session. A
+  restart does not clear the cache, so a new session reads the cached
+  copy until it expires;
+  [`cfb_clear_model_cache()`](https://cfbfastR.sportsdataverse.org/reference/cfb_clear_model_cache.md)
+  picks up a new model at once.
 - A model download that fails no longer leaks R’s own “cannot open URL”
   warnings, and one that reports a non-zero status is no longer cached.
   A `calculate_*()` call that cannot fetch its model or card says why
   (the download’s own message) and that the models come from GitHub.
 
+### Changed: smaller installed help
+
+- The 67 ESPN CFB functions no longer list each other under “See also”
+  on every help page. Each page links to one index page,
+  [`?family_espn_cfb`](https://cfbfastR.sportsdataverse.org/reference/family_espn_cfb.md),
+  which lists the whole family. The smaller families keep their “See
+  also” lists.
+- [`load_cfb_team_summaries_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_team_summaries.md)
+  is now documented on the
+  [`?load_espn_cfb_team_summaries`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_team_summaries.md)
+  page. The two loaders return the same 385 columns (the weekly frame
+  adds `through_week`), and the table is no longer printed twice.
+- [`espn_cfb_game_drive_plays()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md)
+  and
+  [`espn_cfb_game_play()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md)
+  are now documented on the
+  [`?espn_cfb_game_pbp`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md)
+  page. All three take the same arguments, plus a drive or play id, and
+  return the same play columns, which the page now lists once. Their
+  examples make one call each.
+- The spelling word list, `inst/WORDLIST`, is a development file and is
+  no longer installed.
+
 ### Changed: examples
 
 - The examples for the Yahoo season stats,
   [`espn_cfb_standings()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_standings.md),
-  [`espn_cfb_game_player_box()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_player_box.md),
   [`espn_cfb_game_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md),
   [`espn_cfb_qbr()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_qbr.md)
   and
@@ -42,6 +69,18 @@ model notes below before mixing outputs from the two releases.
   and
   [`update_cfb_db()`](https://cfbfastR.sportsdataverse.org/reference/update_cfb_db.md),
   run only in an interactive session.
+- So do the examples of
+  [`espn_cfb_game_player_box()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_player_box.md)
+  (one request per player),
+  [`espn_cfb_groups()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_groups.md)
+  (one per conference and division),
+  [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
+  and
+  [`espn_cfb_pbp_v2()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp_v2.md)
+  (several seconds of CPU to parse a game), and the `calculate_*()`
+  functions that download a model on first use.
+  [`espn_cfb_game_drive_plays()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md)
+  shows two calls instead of five.
 - The
   [`calculate_win_probability()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
   example scores a hand-built row; it used to pass a CFBD play-by-play
@@ -512,6 +551,10 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   budget and surface as “no data available”, so a throttled call looked
   like an empty result.
   ([\#148](https://github.com/sportsdataverse/cfbfastR/issues/148))
+- [`cfbd_ratings_sp()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_sp.md)
+  now stops with the “requires an API key” error when no `CFBD_API_KEY`
+  is set, like every other `cfbd_*()` function. It used to send the
+  request anyway and return an empty frame after an HTTP 401.
 
 ### Fixed: ESPN play-by-play carries the pre-game line
 
@@ -969,6 +1012,9 @@ on every play
   not on one scale.
 - Both are checked against a new sdv-py oracle of two 2025 overtime
   games (`wp_overtime_oracle.csv.gz`, `test-parity_wp_overtime.R`).
+- The overtime stage reads a factor `period` or `season` by its labels.
+  It used the level codes, so a caller’s factor `period` hid every
+  overtime possession. The package’s own frames carry numeric periods.
 
 ### Fixed: the games index csv read retries
 
@@ -978,6 +1024,23 @@ failed on the first slow response. It now goes through
 `.release_csv_from_url()`, the release-read helper the loaders use (150
 s timeout floor, two retries, a warning naming the url, the last error
 raised when every try fails), as hoopR and wehoop do.
+
+`update_cfb_db(force_rebuild = TRUE)` could still lose seasons from your
+database: it drops the table and rebuilds only the seasons in the games
+index, and a partial index read went through with a warning.
+`.release_csv_from_url()` now downloads the file with libcurl (which
+honours R’s `timeout` and fails on an HTTP error page;
+`download.file.method = "curl"` did neither) and reads the local copy.
+The rebuild reads the index first and strictly: if the read fails or
+`fread()` warns, it stops with an error naming the index url and leaves
+the table as it was. A read that `fread()` warns on fails at once
+instead of being downloaded and parsed three times; a failed download is
+still retried. The rebuild also stops, with the table untouched, when
+the index has no seasons from 2014 on, when a full rebuild’s index lacks
+a season the table holds, or when a season’s play-by-play file fails to
+download: every season is now downloaded before any rows are deleted.
+The purge and the write run in one transaction, so a write that fails
+puts the purged rows back.
 
 ### Fixed: `pos_score_pts` is the points scored on the play
 
@@ -1012,7 +1075,7 @@ surface. All loaders return `cfbfastR_data`-tagged tibbles, accept
 - [`load_cfb_ratings()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_ratings.md),
   [`load_cfb_ratings_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_ratings_weekly.md),
   [`load_cfb_fpi_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_fpi_weekly.md),
-  [`load_cfb_team_summaries_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_summaries_weekly.md),
+  [`load_cfb_team_summaries_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_team_summaries.md),
   [`load_cfb_team_talent()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_talent.md),
   [`load_cfb_recruits()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_recruits.md),
   [`load_cfb_recruiting_proj()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_recruiting_proj.md),
@@ -1166,8 +1229,8 @@ layout-oriented JSON (sections → tables → rows → cells) into tidy
   — per-game odds, broadcasts, pre-game predictor, live win-probability,
   matchup power index, and play-by-play.
 - [`espn_cfb_game_drives()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_drives.md),
-  [`espn_cfb_game_drive_plays()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_drive_plays.md),
-  [`espn_cfb_game_play()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_play.md),
+  [`espn_cfb_game_drive_plays()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md),
+  [`espn_cfb_game_play()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md),
   [`espn_cfb_game_leaders()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_leaders.md),
   [`espn_cfb_game_situation()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_situation.md),
   [`espn_cfb_game_status()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_status.md),
@@ -1178,8 +1241,8 @@ layout-oriented JSON (sections → tables → rows → cells) into tidy
   leaders, situation, status, and per-player game box lines.
 - The play-level wrappers
   ([`espn_cfb_game_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md),
-  [`espn_cfb_game_drive_plays()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_drive_plays.md),
-  [`espn_cfb_game_play()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_play.md))
+  [`espn_cfb_game_drive_plays()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md),
+  [`espn_cfb_game_play()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md))
   extract every field ESPN returns for a play and expose its nested
   child collections through opt-in parameters: `participants`
   (`"none"`/`"wide"`/`"long"`) and `participants_list` surface per-play

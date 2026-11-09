@@ -61,12 +61,31 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_wepa_players_kicking(year = 2019, team = "TCU"))
-#> ── Points Added Above Replacement (PAAR) ratings for kicking data from CollegeFo
-#> ℹ Data updated: 2026-11-06 08:22:19 UTC
-#> # A tibble: 2 × 7
-#>    year athlete_id athlete_name  team  conference  paar attempts
-#>   <int> <chr>      <chr>         <chr> <chr>      <dbl>    <int>
-#> 1  2019 3929311    Jonathan Song TCU   Big 12     10.2        24
-#> 2  2019 4574573    Griffin Kell  TCU   Big 12      2.85        4
+#> Waiting 5s for retry backoff ■■■■■■■                         
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■             
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 9s for retry backoff ■■■■                            
+#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■                 
+#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
+#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 19s for retry backoff ■■■                             
+#> Waiting 19s for retry backoff ■■■■■■■■                        
+#> Waiting 19s for retry backoff ■■■■■■■■■■■■■                   
+#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■               
+#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
+#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
+#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 27s for retry backoff ■■                              
+#> Waiting 27s for retry backoff ■■■■■                           
+#> Waiting 27s for retry backoff ■■■■■■■■                        
+#> Waiting 27s for retry backoff ■■■■■■■■■■■■                    
+#> Waiting 27s for retry backoff ■■■■■■■■■■■■■■■                 
+#> Waiting 27s for retry backoff ■■■■■■■■■■■■■■■■■■■             
+#> Waiting 27s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
+#> Waiting 27s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
+#> Waiting 27s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
+#> Waiting 27s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> 2026-11-09 16:58:14.702065: Invalid arguments or no Points Added Above Replacement (PAAR) ratings for kicking data available! The CFBD API returned HTTP 429 (Too Many Requests)
+#> data frame with 0 columns and 0 rows
 # }
 ```

@@ -140,19 +140,36 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_game_box_advanced(game_id = 401114233))
-#> ── Advanced box score data from CollegeFootballData.com ────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:22:01 UTC
-#> # A tibble: 2 × 69
-#>   team     ppa_plays ppa_overall_total ppa_overall_quarter1 ppa_overall_quarter2
-#>   <chr>        <dbl>             <dbl>                <dbl>                <dbl>
-#> 1 Eastern…        45            -0.272               -0.745                0.122
-#> 2 Washing…        56             0.999                1.08                 0.741
-#> # ℹ 64 more variables: ppa_overall_quarter3 <dbl>, ppa_overall_quarter4 <dbl>,
-#> #   ppa_passing_total <dbl>, ppa_passing_quarter1 <dbl>,
-#> #   ppa_passing_quarter2 <dbl>, ppa_passing_quarter3 <dbl>,
-#> #   ppa_passing_quarter4 <dbl>, ppa_rushing_total <dbl>,
-#> #   ppa_rushing_quarter1 <dbl>, ppa_rushing_quarter2 <dbl>,
-#> #   ppa_rushing_quarter3 <dbl>, ppa_rushing_quarter4 <dbl>,
-#> #   cumulative_ppa_plays <dbl>, cumulative_ppa_overall_total <dbl>, …
+#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■                  
+#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 6s for retry backoff ■■■■■■                          
+#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
+#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■                    
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 16s for retry backoff ■■■                             
+#> Waiting 16s for retry backoff ■■■■■■■                         
+#> Waiting 16s for retry backoff ■■■■■■■■■■■■■                   
+#> Waiting 16s for retry backoff ■■■■■■■■■■■■■■■■■■■             
+#> Waiting 16s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
+#> Waiting 16s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
+#> Waiting 16s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 42s for retry backoff ■■■                             
+#> Waiting 42s for retry backoff ■■■■■                           
+#> Waiting 42s for retry backoff ■■■■■■■                         
+#> Waiting 42s for retry backoff ■■■■■■■■■                       
+#> Waiting 42s for retry backoff ■■■■■■■■■■■■                    
+#> Waiting 42s for retry backoff ■■■■■■■■■■■■■■                  
+#> Waiting 42s for retry backoff ■■■■■■■■■■■■■■■■                
+#> Waiting 42s for retry backoff ■■■■■■■■■■■■■■■■■■              
+#> Waiting 42s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
+#> Waiting 42s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
+#> Waiting 42s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
+#> Waiting 42s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
+#> Waiting 42s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
+#> Waiting 42s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 42s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> 2026-11-09 16:35:07.61373: game_id '401114233' invalid or no game advanced box score data available!
+#> data frame with 0 columns and 0 rows
 # }
 ```

@@ -108,31 +108,26 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_game_weather(year = 2025, week = 1, conference = "SEC"))
-#> ── Game weather data from CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:22:09 UTC
-#> # A tibble: 16 × 22
-#>      game_id season  week season_type start_time          game_indoors home_team
-#>        <int>  <int> <int> <chr>       <chr>               <lgl>        <chr>    
-#>  1 401752665   2025     1 regular     2025-08-30T19:30:0… FALSE        Florida …
-#>  2 401752666   2025     1 regular     2025-08-30T20:15:0… FALSE        Arkansas 
-#>  3 401752675   2025     1 regular     2025-08-30T22:00:0… FALSE        Oklahoma 
-#>  4 401752670   2025     1 regular     2025-08-30T16:45:0… FALSE        Kentucky 
-#>  5 401752673   2025     1 regular     2025-08-30T16:00:0… FALSE        Southern…
-#>  6 401752677   2025     1 regular     2025-08-30T16:00:0… FALSE        Ohio Sta…
-#>  7 401752679   2025     1 regular     2025-08-30T23:00:0… FALSE        Vanderbi…
-#>  8 401752667   2025     1 regular     2025-08-30T00:00:0… FALSE        Baylor   
-#>  9 401752676   2025     1 regular     2025-08-30T16:00:0… TRUE         Tennessee
-#> 10 401752674   2025     1 regular     2025-08-28T23:30:0… FALSE        Missouri 
-#> 11 401752680   2025     1 regular     2025-08-31T19:00:0… TRUE         South Ca…
-#> 12 401752668   2025     1 regular     2025-08-30T23:00:0… FALSE        Florida  
-#> 13 401752678   2025     1 regular     2025-08-30T23:00:0… FALSE        Texas A&M
-#> 14 401752671   2025     1 regular     2025-08-30T23:30:0… FALSE        Clemson  
-#> 15 401752669   2025     1 regular     2025-08-30T19:30:0… FALSE        Georgia  
-#> 16 401752672   2025     1 regular     2025-08-30T23:45:0… FALSE        Ole Miss 
-#> # ℹ 15 more variables: home_conference <chr>, away_team <chr>,
-#> #   away_conference <chr>, venue_id <int>, venue <chr>, temperature <dbl>,
-#> #   dew_point <dbl>, humidity <int>, precipitation <int>, snowfall <int>,
-#> #   wind_direction <int>, wind_speed <dbl>, pressure <dbl>,
-#> #   weather_condition_code <int>, weather_condition <chr>
+#> Waiting 5s for retry backoff ■■■■■■■                         
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■               
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 11s for retry backoff ■■■                             
+#> Waiting 11s for retry backoff ■■■■■■■■■■■                     
+#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■■■■             
+#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
+#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 12s for retry backoff ■■■■■                           
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■■                   
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 17s for retry backoff ■■■■                            
+#> Waiting 17s for retry backoff ■■■■■■■■■■                      
+#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■                 
+#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
+#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
+#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> ✖ 2026-11-09 16:48:33.173087: Failed to fetch game weather data.Error: The CFBD API returned HTTP 429 (Too Many Requests)
+#> data frame with 0 columns and 0 rows
 # }
 ```

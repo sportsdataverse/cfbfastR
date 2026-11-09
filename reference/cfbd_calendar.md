@@ -48,27 +48,28 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_calendar(2019))
-#> ── Calendar data from CollegeFootballData.com ──────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:21:51 UTC
-#> # A tibble: 17 × 5
-#>    season  week season_type first_game_start         last_game_start         
-#>     <int> <int> <chr>       <chr>                    <chr>                   
-#>  1   2019     1 regular     2019-07-25T07:00:00.000Z 2019-09-03T06:59:00.000Z
-#>  2   2019     2 regular     2019-09-03T07:00:00.000Z 2019-09-10T06:59:00.000Z
-#>  3   2019     3 regular     2019-09-10T07:00:00.000Z 2019-09-17T06:59:00.000Z
-#>  4   2019     4 regular     2019-09-17T07:00:00.000Z 2019-09-24T06:59:00.000Z
-#>  5   2019     5 regular     2019-09-24T07:00:00.000Z 2019-10-01T06:59:00.000Z
-#>  6   2019     6 regular     2019-10-01T07:00:00.000Z 2019-10-08T06:59:00.000Z
-#>  7   2019     7 regular     2019-10-08T07:00:00.000Z 2019-10-15T06:59:00.000Z
-#>  8   2019     8 regular     2019-10-15T07:00:00.000Z 2019-10-22T06:59:00.000Z
-#>  9   2019     9 regular     2019-10-22T07:00:00.000Z 2019-10-29T06:59:00.000Z
-#> 10   2019    10 regular     2019-10-29T07:00:00.000Z 2019-11-05T07:59:00.000Z
-#> 11   2019    11 regular     2019-11-05T08:00:00.000Z 2019-11-12T07:59:00.000Z
-#> 12   2019    12 regular     2019-11-12T08:00:00.000Z 2019-11-19T07:59:00.000Z
-#> 13   2019    13 regular     2019-11-19T08:00:00.000Z 2019-11-26T07:59:00.000Z
-#> 14   2019    14 regular     2019-11-26T08:00:00.000Z 2019-12-03T07:59:00.000Z
-#> 15   2019    15 regular     2019-12-03T08:00:00.000Z 2019-12-10T07:59:00.000Z
-#> 16   2019    16 regular     2019-12-10T08:00:00.000Z 2019-12-16T07:59:00.000Z
-#> 17   2019     1 postseason  2019-12-16T08:00:00.000Z 2020-01-15T07:59:00.000Z
+#> Waiting 4s for retry backoff ■■■■■■■■■                       
+#> Waiting 4s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 8s for retry backoff ■■■■■                           
+#> Waiting 8s for retry backoff ■■■■■■■■■■■■■                   
+#> Waiting 8s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
+#> Waiting 8s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 12s for retry backoff ■■■■■■                          
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■■                   
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 29s for retry backoff ■■■■                            
+#> Waiting 29s for retry backoff ■■■■■■■                         
+#> Waiting 29s for retry backoff ■■■■■■■■■■                      
+#> Waiting 29s for retry backoff ■■■■■■■■■■■■■                   
+#> Waiting 29s for retry backoff ■■■■■■■■■■■■■■■■                
+#> Waiting 29s for retry backoff ■■■■■■■■■■■■■■■■■■■             
+#> Waiting 29s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
+#> Waiting 29s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
+#> Waiting 29s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
+#> Waiting 29s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> 2026-11-09 16:20:15.304345:Invalid arguments or no calendar data available! The CFBD API returned HTTP 429 (Too Many Requests)
+#> data frame with 0 columns and 0 rows
 # }
 ```

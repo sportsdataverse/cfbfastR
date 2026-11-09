@@ -48,29 +48,9 @@ Saiem Gilani
 ## Examples
 
 ``` r
- # \donttest{
-   try(espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE))
-#> ── Play-by-play data from ESPN (core-v2) ───────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:25:08 UTC
-#> # A tibble: 196 × 542
-#>    season id_play    game_id game_play_number half_play_number drive_play_number
-#>     <int> <chr>      <chr>              <dbl>            <dbl>             <dbl>
-#>  1   2021 401282614… 401282…                1                1                 1
-#>  2   2021 401282614… 401282…                2                2                 2
-#>  3   2021 401282614… 401282…                2                2                 2
-#>  4   2021 401282614… 401282…                3                3                 3
-#>  5   2021 401282614… 401282…                4                4                 4
-#>  6   2021 401282614… 401282…                5                5                 5
-#>  7   2021 401282614… 401282…                6                6                 6
-#>  8   2021 401282614… 401282…                7                7                 1
-#>  9   2021 401282614… 401282…                8                8                 2
-#> 10   2021 401282614… 401282…                8                8                 2
-#> # ℹ 186 more rows
-#> # ℹ 536 more variables: pos_team <chr>, def_pos_team <chr>,
-#> #   pos_team_score <int>, def_pos_team_score <int>, half <fct>, period <int>,
-#> #   clock_minutes <dbl>, clock_seconds <dbl>, play_type <chr>, play_text <chr>,
-#> #   down <dbl>, distance <dbl>, yards_to_goal <dbl>, yards_gained <dbl>,
-#> #   EPA <dbl>, ep_before <dbl>, ep_after <dbl>, wpa <dbl>, wp_before <dbl>,
-#> #   wp_after <dbl>, def_wp_before <dbl>, def_wp_after <dbl>, …
- # }
+if (FALSE) { # interactive()
+# Parsing one game takes several seconds of CPU, and `epa_wpa = TRUE` also
+# downloads the EP and WP models on first use.
+try(espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE))
+}
 ```

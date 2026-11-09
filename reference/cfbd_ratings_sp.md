@@ -73,7 +73,7 @@ Other CFBD Ratings and Rankings:
 # \donttest{
   try(cfbd_ratings_sp(year = 2018))
 #> ── SP+ data from CollegeFootballData.com ───────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:23:16 UTC
+#> ℹ Data updated: 2026-11-09 17:02:20 UTC
 #> # A tibble: 131 × 29
 #>     year team  conference rating ranking second_order_wins   sos offense_ranking
 #>    <int> <chr> <chr>       <dbl>   <int>             <dbl> <dbl>           <int>
@@ -97,16 +97,16 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_sp(team = "Texas A&M"))
 #> ── SP+ data from CollegeFootballData.com ───────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:23:17 UTC
+#> ℹ Data updated: 2026-11-09 17:02:20 UTC
 #> # A tibble: 114 × 29
 #>     year team  conference rating ranking second_order_wins   sos offense_ranking
 #>    <int> <chr> <chr>       <dbl>   <int>             <dbl> <dbl>           <int>
 #>  1  1970 Texa… SEC          -1.7      53                NA    NA              51
 #>  2  1971 Texa… SEC          -3.5      55                NA    NA              57
 #>  3  1972 Texa… SEC           3.7      49                NA    NA              54
-#>  4  1973 Texa… SEC           8.9      43                NA    NA              37
+#>  4  1973 Texa… SEC           8.9      42                NA    NA              37
 #>  5  1974 Texa… SEC          14.9      27                NA    NA              50
-#>  6  1975 Texa… SEC          19.1      17                NA    NA              45
+#>  6  1975 Texa… SEC          19.1      17                NA    NA              44
 #>  7  1976 Texa… SEC          20.8      10                NA    NA              23
 #>  8  1977 Texa… SEC          11.8      34                NA    NA              11
 #>  9  1978 Texa… SEC           8.2      44                NA    NA              46
@@ -121,7 +121,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_sp(year = 2019, team = "Texas"))
 #> ── SP+ data from CollegeFootballData.com ───────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:23:17 UTC
+#> ℹ Data updated: 2026-11-09 17:02:20 UTC
 #> # A tibble: 2 × 29
 #>    year team   conference rating ranking second_order_wins sos   offense_ranking
 #>   <int> <chr>  <chr>       <dbl>   <int> <lgl>             <lgl>           <int>

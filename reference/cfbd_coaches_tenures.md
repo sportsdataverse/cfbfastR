@@ -80,34 +80,33 @@ Other CFBD Coaches Functions:
 ``` r
 # \donttest{
   try(cfbd_coaches_tenures(team = "Georgia"))
-#> ── Get coaching tenures from CollegeFootballData.com ───────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:21:54 UTC
-#> # A tibble: 20 × 20
-#>       id hire_date  start_year end_year effective_start effective_end is_interim
-#>    <int> <chr>           <int>    <int> <lgl>           <lgl>         <lgl>     
-#>  1  1446 NA               1902     1902 NA              NA            FALSE     
-#>  2  1453 NA               1903     1903 NA              NA            FALSE     
-#>  3  1447 NA               1904     1904 NA              NA            FALSE     
-#>  4  1454 NA               1905     1905 NA              NA            FALSE     
-#>  5  1458 NA               1906     1907 NA              NA            FALSE     
-#>  6  1441 NA               1908     1908 NA              NA            FALSE     
-#>  7  1449 NA               1909     1909 NA              NA            FALSE     
-#>  8  1456 NA               1910     1916 NA              NA            FALSE     
-#>  9  1457 NA               1919     1919 NA              NA            FALSE     
-#> 10  1448 NA               1920     1922 NA              NA            FALSE     
-#> 11  1445 NA               1923     1927 NA              NA            FALSE     
-#> 12  1444 NA               1928     1937 NA              NA            FALSE     
-#> 13  1451 NA               1938     1938 NA              NA            FALSE     
-#> 14  1442 NA               1939     1960 NA              NA            FALSE     
-#> 15  1452 NA               1961     1963 NA              NA            FALSE     
-#> 16  1443 NA               1964     1988 NA              NA            FALSE     
-#> 17  1455 NA               1989     1995 NA              NA            FALSE     
-#> 18  1450 NA               1996     2000 NA              NA            FALSE     
-#> 19  1043 2000-12-26       2001     2015 NA              NA            FALSE     
-#> 20   101 2015-12-06       2016       NA NA              NA            FALSE     
-#> # ℹ 13 more variables: active <lgl>, seasons <int>, attribution_complete <lgl>,
-#> #   coach_id <int>, coach_first_name <chr>, coach_last_name <chr>,
-#> #   team_id <int>, team_school <chr>, record_games <int>, record_wins <int>,
-#> #   record_losses <int>, record_ties <int>, record_win_percentage <dbl>
+#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■                
+#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 6s for retry backoff ■■■■■■■■■■                      
+#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
+#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 6s for retry backoff ■■■■■■■■■■■                     
+#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
+#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 12s for retry backoff ■■■■■■■                         
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■                 
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 38s for retry backoff ■■■                             
+#> Waiting 38s for retry backoff ■■■■■■                          
+#> Waiting 38s for retry backoff ■■■■■■■■                        
+#> Waiting 38s for retry backoff ■■■■■■■■■■                      
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■                   
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■                 
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■               
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> 2026-11-09 16:24:41.728084: Invalid arguments or no coaches data available! The CFBD API returned HTTP 429 (Too Many Requests)
+#> data frame with 0 columns and 0 rows
 # }
 ```

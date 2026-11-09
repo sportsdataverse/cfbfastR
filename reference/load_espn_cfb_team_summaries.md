@@ -1,14 +1,26 @@
-# **Load college football team season summaries from the SportsDataverse data repo**
+# **Load college football team season and weekly summaries from the SportsDataverse data repo**
 
-Loads season-level team summaries – one row per team with the full
-offense/defense/special-teams EPA and success-rate profile. Published to
-the `espn_cfb_team_summaries` release tag on the sportsdataverse-data
-repo.
+`load_espn_cfb_team_summaries()` loads season-level team summaries – one
+row per team with the full offense/defense/special-teams EPA and
+success-rate profile. Published to the `espn_cfb_team_summaries` release
+tag on the sportsdataverse-data repo.
+
+`load_cfb_team_summaries_weekly()` loads weekly team summaries – one row
+per team-week with the same columns computed cumulative to date, plus
+`through_week`. Published to the `cfb_team_summaries_weekly` release tag
+on the sportsdataverse-data repo.
 
 ## Usage
 
 ``` r
 load_espn_cfb_team_summaries(
+  seasons = most_recent_cfb_season(),
+  ...,
+  dbConnection = NULL,
+  tablename = NULL
+)
+
+load_cfb_team_summaries_weekly(
   seasons = most_recent_cfb_season(),
   ...,
   dbConnection = NULL,
@@ -40,7 +52,8 @@ load_espn_cfb_team_summaries(
 
 ## Value
 
-Returns a `cfbfastR_data` tibble.
+Returns a `cfbfastR_data` tibble. The weekly frame adds `through_week`,
+the last row below.
 
 |  |  |  |
 |----|----|----|
@@ -428,6 +441,7 @@ Returns a `cfbfastR_data` tibble.
 | adj_off_epa_rank | double | National rank of the team's adj_off_epa, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 | adj_def_epa_rank | double | National rank of the team's adj_def_epa, where 1 is best (fewest EPA allowed). Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 | net_adj_epa_rank | double | National rank of the team's net_adj_epa, 1 = largest net adjusted EPA. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+| through_week | integer | Weekly frame only. Regular-season week this cumulative snapshot covers – the row reflects the team's state through the end of that week. One asset holds every week, so filter on this column. |
 
 ## Author
 
@@ -439,7 +453,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_team_summaries(2004))
 #> ── college football team season summaries from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-11-06 08:27:14 UTC
+#> ℹ Data updated: 2026-11-09 17:05:18 UTC
 #> # A tibble: 118 × 788
 #>    team_id pos_team     division conference season passrate_off_n rushrate_off_n
 #>    <chr>   <chr>        <chr>    <chr>       <int>          <int>          <int>
@@ -455,6 +469,31 @@ Saiem Gilani
 #> 10 151     East Caroli… fbs      Conferenc…   2004            280            280
 #> # ℹ 108 more rows
 #> # ℹ 781 more variables: havoc_off_n <int>, explosive_off_n <int>,
+#> #   EPAplay_off_n <int>, yardsplay_off_n <int>, play_stuffed_off_n <int>,
+#> #   success_off_n <int>, red_zone_success_off_n <int>,
+#> #   third_down_success_off_n <int>, third_down_distance_off_n <int>,
+#> #   late_down_success_off_n <int>, early_down_EPA_off_n <int>,
+#> #   nonExplosiveEpaPerPlay_off_n <int>, line_yards_off_n <int>, …
+# }
+# \donttest{
+  try(load_cfb_team_summaries_weekly(2004))
+#> ── college football weekly team summaries from the SportsDataverse data repo ───
+#> ℹ Data updated: 2026-11-09 17:05:18 UTC
+#> # A tibble: 1,585 × 789
+#>    team_id pos_team     division conference season passrate_off_n rushrate_off_n
+#>    <chr>   <chr>        <chr>    <chr>       <int>          <int>          <int>
+#>  1 259     Virginia Te… fbs      ACC          2004             63             63
+#>  2 30      USC          fbs      Pac-10       2004             58             58
+#>  3 103     Boston Coll… fbs      Big East     2004             67             67
+#>  4 120     Maryland     fbs      ACC          2004             68             68
+#>  5 127     Michigan St… fbs      Big Ten      2004             62             62
+#>  6 130     Michigan     fbs      Big Ten      2004             68             68
+#>  7 135     Minnesota    fbs      Big Ten      2004             81             81
+#>  8 142     Missouri     fbs      Big 12       2004             58             58
+#>  9 145     Ole Miss     fbs      SEC          2004             61             61
+#> 10 150     Duke         fbs      ACC          2004             61             61
+#> # ℹ 1,575 more rows
+#> # ℹ 782 more variables: havoc_off_n <int>, explosive_off_n <int>,
 #> #   EPAplay_off_n <int>, yardsplay_off_n <int>, play_stuffed_off_n <int>,
 #> #   success_off_n <int>, red_zone_success_off_n <int>,
 #> #   third_down_success_off_n <int>, third_down_distance_off_n <int>,

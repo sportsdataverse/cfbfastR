@@ -88,42 +88,61 @@ Other CFBD Draft:
 ``` r
 # \donttest{
   try(cfbd_draft_picks(year = 2020))
-#> ── NFL draft data from CollegeFootballData.com ─────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:21:57 UTC
-#> # A tibble: 255 × 24
-#>    college_athlete_id nfl_athlete_id college_id college_team college_conference
-#>                 <int>          <int>      <int> <chr>        <chr>             
-#>  1            3915511         104204         99 LSU          SEC               
-#>  2            4241986         104097        194 Ohio State   Big Ten           
-#>  3            4241984         104096        194 Ohio State   Big Ten           
-#>  4            4259566         104112         61 Georgia      SEC               
-#>  5            4241479         104093        333 Alabama      SEC               
-#>  6            4038941         104099       2483 Oregon       Pac-12            
-#>  7            4035495         104098          2 Auburn       SEC               
-#>  8            4035462         104106        228 Clemson      ACC               
-#>  9            4240596         104104         57 Florida      SEC               
-#> 10            4241482         104425        333 Alabama      SEC               
-#> # ℹ 245 more rows
-#> # ℹ 19 more variables: nfl_team_id <int>, nfl_team <chr>, year <int>,
-#> #   overall <int>, round <int>, pick <int>, name <chr>, position <chr>,
-#> #   height <int>, weight <int>, pre_draft_ranking <int>,
-#> #   pre_draft_position_ranking <int>, pre_draft_grade <int>,
-#> #   hometown_info_city <chr>, hometown_info_state <chr>,
-#> #   hometown_info_country <chr>, hometown_info_latitude <chr>, …
+#> Waiting 3s for retry backoff ■■■■■■■■■■■                     
+#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 4s for retry backoff ■■■■■■■■■■                      
+#> Waiting 4s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
+#> Waiting 9s for retry backoff ■■■■■■■■■■■                     
+#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
+#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 14s for retry backoff ■■■                             
+#> Waiting 14s for retry backoff ■■■■■■■■                        
+#> Waiting 14s for retry backoff ■■■■■■■■■■■■■■■                 
+#> Waiting 14s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
+#> Waiting 14s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
+#> Waiting 14s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 36s for retry backoff ■■■                             
+#> Waiting 36s for retry backoff ■■■■■                           
+#> Waiting 36s for retry backoff ■■■■■■■■                        
+#> Waiting 36s for retry backoff ■■■■■■■■■■                      
+#> Waiting 36s for retry backoff ■■■■■■■■■■■■■                   
+#> Waiting 36s for retry backoff ■■■■■■■■■■■■■■■                 
+#> Waiting 36s for retry backoff ■■■■■■■■■■■■■■■■■■              
+#> Waiting 36s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
+#> Waiting 36s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
+#> Waiting 36s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
+#> Waiting 36s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
+#> Waiting 36s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 36s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> 2026-11-09 16:28:43.005733: Invalid arguments or no NFL draft data available! The CFBD API returned HTTP 429 (Too Many Requests)
+#> data frame with 0 columns and 0 rows
 
   try(cfbd_draft_picks(year = 2016, position = "PK"))
-#> ── NFL draft data from CollegeFootballData.com ─────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:21:58 UTC
-#> # A tibble: 1 × 24
-#>   college_athlete_id nfl_athlete_id college_id college_team  college_conference
-#>                <int>          <int>      <int> <chr>         <chr>             
-#> 1             535422          50410         52 Florida State ACC               
-#> # ℹ 19 more variables: nfl_team_id <int>, nfl_team <chr>, year <int>,
-#> #   overall <int>, round <int>, pick <int>, name <chr>, position <chr>,
-#> #   height <int>, weight <int>, pre_draft_ranking <int>,
-#> #   pre_draft_position_ranking <int>, pre_draft_grade <int>,
-#> #   hometown_info_city <chr>, hometown_info_state <chr>,
-#> #   hometown_info_country <chr>, hometown_info_latitude <chr>,
-#> #   hometown_info_longitude <chr>, hometown_info_county_fips <chr>
+#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
+#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■             
+#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 9s for retry backoff ■■■■■■                          
+#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■               
+#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
+#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 13s for retry backoff ■■■■■                           
+#> Waiting 13s for retry backoff ■■■■■■■■■■■■                    
+#> Waiting 13s for retry backoff ■■■■■■■■■■■■■■■■■■■             
+#> Waiting 13s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
+#> Waiting 13s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 31s for retry backoff ■■                              
+#> Waiting 31s for retry backoff ■■■■■                           
+#> Waiting 31s for retry backoff ■■■■■■■■                        
+#> Waiting 31s for retry backoff ■■■■■■■■■■■                     
+#> Waiting 31s for retry backoff ■■■■■■■■■■■■■■                  
+#> Waiting 31s for retry backoff ■■■■■■■■■■■■■■■■■               
+#> Waiting 31s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
+#> Waiting 31s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
+#> Waiting 31s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
+#> Waiting 31s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
+#> Waiting 31s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> 2026-11-09 16:29:42.135883: Invalid arguments or no NFL draft data available! The CFBD API returned HTTP 429 (Too Many Requests)
+#> data frame with 0 columns and 0 rows
 # }
 ```

@@ -68,26 +68,26 @@ Other Yahoo CFB Functions:
 # \donttest{
   try(yahoo_cfb_player_season_stats(season = 2024, count = 10))
 #> ── Player season stats from Yahoo Sports (shangrila) ───────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:27:39 UTC
+#> ℹ Data updated: 2026-11-09 17:05:38 UTC
 #> # A tibble: 10 × 89
-#>    player_id    display_name team  team_abbreviation rushing_yards games_rushing
-#>    <chr>        <chr>        <chr> <chr>             <chr>         <chr>        
-#>  1 ncaaf.p.647… Trey Sanders TCU   TCU               46            5            
-#>  2 ncaaf.p.176… Alexander D… Kenn… KENN              29            2            
-#>  3 ncaaf.p.177… Carson Kent  Pitt… PITT              NA            NA           
-#>  4 ncaaf.p.218… Eric Goins   Notr… ND                NA            NA           
-#>  5 ncaaf.p.220… Rico Watson… Sout… S FLA             NA            NA           
-#>  6 ncaaf.p.263… Cam McCormi… Miam… MIA               NA            NA           
-#>  7 ncaaf.p.264… Danarius Jo… Kenn… KENN              NA            NA           
-#>  8 ncaaf.p.270… Keenan Pili  Tenn… TENN              NA            NA           
-#>  9 ncaaf.p.276… Spencer Cur… Hawa… HAW               NA            NA           
-#> 10 ncaaf.p.276… Logan Lutui  BYU   BYU               NA            NA           
-#> # ℹ 83 more variables: receiving_yards_per_game <chr>, games_receiving <chr>,
-#> #   field_goal_attempts <chr>, kickoff_return_yards <chr>,
-#> #   extra_point_attempts <chr>, field_goal_attempts_30_39 <chr>,
-#> #   passing_touchdowns <chr>, rushing_attempts_per_game <chr>,
-#> #   passing_interceptions <chr>, longest_kickoff_return <chr>,
-#> #   passing_completions <chr>, rushing_touchdowns <chr>,
-#> #   field_goals_40_to_49 <chr>, sacks_taken <chr>, longest_field_goal <chr>, …
+#>    player_id      display_name     team          team_abbreviation games_offense
+#>    <chr>          <chr>            <chr>         <chr>             <chr>        
+#>  1 ncaaf.p.64742  Trey Sanders     TCU           TCU               5            
+#>  2 ncaaf.p.176026 Alexander Diggs  Kennesaw St.  KENN              2            
+#>  3 ncaaf.p.177536 Carson Kent      Pittsburgh    PITT              10           
+#>  4 ncaaf.p.218709 Eric Goins       Notre Dame    ND                NA           
+#>  5 ncaaf.p.220824 Rico Watson III  South Florida S FLA             1            
+#>  6 ncaaf.p.263248 Cam McCormick    Miami (FL)    MIA               5            
+#>  7 ncaaf.p.264043 Danarius Johnson Kennesaw St.  KENN              NA           
+#>  8 ncaaf.p.270875 Keenan Pili      Tennessee     TENN              NA           
+#>  9 ncaaf.p.276361 Spencer Curtis   Hawaii        HAW               10           
+#> 10 ncaaf.p.276368 Logan Lutui      BYU           BYU               1            
+#> # ℹ 84 more variables: extra_point_attempts <chr>,
+#> #   field_goal_attempts_40_49 <chr>, longest_punt <chr>,
+#> #   completion_percentage <chr>, return_yards_per_kickoff <chr>,
+#> #   field_goals_50_plus <chr>, passing_yards_per_attempt <chr>,
+#> #   field_goal_attempts_30_39 <chr>, receiving_yards_per_game <chr>,
+#> #   sacks_taken <chr>, kickoff_returns <chr>, extra_point_percentage <chr>,
+#> #   punt_yards_per_punt <chr>, receiving_yards <chr>, games_defense <chr>, …
 # }
 ```

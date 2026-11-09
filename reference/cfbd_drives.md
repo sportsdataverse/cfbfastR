@@ -125,51 +125,66 @@ cfbd_drives(
 ``` r
 # \donttest{
   try(cfbd_drives(year=2018, week = 1, team = "TCU"))
-#> ── Drives data from CollegeFootballData.com ────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:21:59 UTC
-#> # A tibble: 25 × 28
-#>    drive_id      game_id offense  offense_conference defense  defense_conference
-#>    <chr>           <int> <chr>    <chr>              <chr>    <chr>             
-#>  1 4010130721  401013072 TCU      Big 12             Southern SWAC              
-#>  2 4010130722  401013072 Southern SWAC               TCU      Big 12            
-#>  3 4010130723  401013072 TCU      Big 12             Southern SWAC              
-#>  4 4010130724  401013072 Southern SWAC               TCU      Big 12            
-#>  5 4010130725  401013072 TCU      Big 12             Southern SWAC              
-#>  6 4010130726  401013072 Southern SWAC               TCU      Big 12            
-#>  7 4010130727  401013072 TCU      Big 12             Southern SWAC              
-#>  8 4010130728  401013072 Southern SWAC               TCU      Big 12            
-#>  9 4010130729  401013072 TCU      Big 12             Southern SWAC              
-#> 10 40101307210 401013072 Southern SWAC               TCU      Big 12            
-#> # ℹ 15 more rows
-#> # ℹ 22 more variables: drive_number <int>, scoring <lgl>, start_period <int>,
-#> #   start_yardline <int>, start_yards_to_goal <int>, end_period <int>,
-#> #   end_yardline <int>, end_yards_to_goal <int>, plays <int>, yards <int>,
-#> #   drive_result <chr>, is_home_offense <lgl>, start_offense_score <int>,
-#> #   start_defense_score <int>, end_offense_score <int>,
-#> #   end_defense_score <int>, time_minutes_start <int>, …
+#> Waiting 6s for retry backoff ■■■■■■                          
+#> Waiting 6s for retry backoff ■■■■■■■■■■■■                    
+#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
+#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 8s for retry backoff ■■■■■■■■■■■                     
+#> Waiting 8s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
+#> Waiting 8s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 12s for retry backoff ■■■■                            
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■                    
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
+#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 38s for retry backoff ■■                              
+#> Waiting 38s for retry backoff ■■■■■                           
+#> Waiting 38s for retry backoff ■■■■■■■                         
+#> Waiting 38s for retry backoff ■■■■■■■■■■                      
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■                    
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■                  
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■               
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■             
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
+#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> 2026-11-09 16:32:42.544256: Invalid arguments or no drives data available! The CFBD API returned HTTP 429 (Too Many Requests)
+#> data frame with 0 columns and 0 rows
 
   try(cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC"))
-#> ── Drives data from CollegeFootballData.com ────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:22:00 UTC
-#> # A tibble: 259 × 28
-#>    drive_id      game_id offense   offense_conference defense defense_conference
-#>    <chr>           <int> <chr>     <chr>              <chr>   <chr>             
-#>  1 4010122581  401012258 Northwes… Southland          Texas … SEC               
-#>  2 4010122583  401012258 Northwes… Southland          Texas … SEC               
-#>  3 4010122585  401012258 Northwes… Southland          Texas … SEC               
-#>  4 4010122587  401012258 Northwes… Southland          Texas … SEC               
-#>  5 4010122589  401012258 Northwes… Southland          Texas … SEC               
-#>  6 40101225811 401012258 Northwes… Southland          Texas … SEC               
-#>  7 40101225813 401012258 Northwes… Southland          Texas … SEC               
-#>  8 40101225815 401012258 Northwes… Southland          Texas … SEC               
-#>  9 40101225817 401012258 Northwes… Southland          Texas … SEC               
-#> 10 40101225819 401012258 Northwes… Southland          Texas … SEC               
-#> # ℹ 249 more rows
-#> # ℹ 22 more variables: drive_number <int>, scoring <lgl>, start_period <int>,
-#> #   start_yardline <int>, start_yards_to_goal <int>, end_period <int>,
-#> #   end_yardline <int>, end_yards_to_goal <int>, plays <int>, yards <int>,
-#> #   drive_result <chr>, is_home_offense <lgl>, start_offense_score <int>,
-#> #   start_defense_score <int>, end_offense_score <int>,
-#> #   end_defense_score <int>, time_minutes_start <int>, …
+#> Waiting 3s for retry backoff ■■■■■■■■■■                      
+#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
+#> Waiting 3s for retry backoff ■■■■■■■■■■■                     
+#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
+#> Waiting 9s for retry backoff ■■■■                            
+#> Waiting 9s for retry backoff ■■■■■■■■■■■■■                   
+#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
+#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 22s for retry backoff ■■■                             
+#> Waiting 22s for retry backoff ■■■■■■■                         
+#> Waiting 22s for retry backoff ■■■■■■■■■■■                     
+#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■                 
+#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■             
+#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
+#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
+#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> Waiting 39s for retry backoff ■■                              
+#> Waiting 39s for retry backoff ■■■■                            
+#> Waiting 39s for retry backoff ■■■■■■                          
+#> Waiting 39s for retry backoff ■■■■■■■■                        
+#> Waiting 39s for retry backoff ■■■■■■■■■■■                     
+#> Waiting 39s for retry backoff ■■■■■■■■■■■■■                   
+#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■                 
+#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■■■■              
+#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
+#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
+#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
+#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
+#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
+#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
+#> 2026-11-09 16:33:57.209801: Invalid arguments or no drives data available! The CFBD API returned HTTP 429 (Too Many Requests)
+#> data frame with 0 columns and 0 rows
 # }
 ```

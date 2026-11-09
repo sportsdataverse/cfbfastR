@@ -212,73 +212,7 @@ Minimum value accepted: 2004</p></dd>
     <p>A data frame with one row per (category x team-season x stat):</p><table class="table table"><tr><td>col_name</td><td>types</td><td>description</td></tr><tr><td>athlete_id</td><td>character</td><td>ESPN athlete id.</td></tr><tr><td>season</td><td>integer</td><td>Requested season (4-digit year).</td></tr><tr><td>category</td><td>character</td><td>Stat category key (e.g. <code>passing</code>).</td></tr><tr><td>category_display</td><td>character</td><td>Human-readable category name.</td></tr><tr><td>team_id</td><td>character</td><td>ESPN team id for the stat row.</td></tr><tr><td>team_slug</td><td>character</td><td>Team slug for the stat row.</td></tr><tr><td>stat_season</td><td>integer</td><td>Season of the stat row (per ESPN).</td></tr><tr><td>position</td><td>character</td><td>Player position for the stat row.</td></tr><tr><td>stat_name</td><td>character</td><td>Stat key (from the category <code>names</code>).</td></tr><tr><td>stat_label</td><td>character</td><td>Stat short label (from <code>labels</code>).</td></tr><tr><td>stat_display_name</td><td>character</td><td>Stat display name (from <code>displayNames</code>).</td></tr><tr><td>value</td><td>character</td><td>Stat value (as published).</td></tr></table></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>Other ESPN CFB Functions:
-<code><a href="espn_cfb_award.html">espn_cfb_award()</a></code>,
-<code><a href="espn_cfb_awards.html">espn_cfb_awards()</a></code>,
-<code><a href="espn_cfb_clear_cache.html">espn_cfb_clear_cache()</a></code>,
-<code><a href="espn_cfb_coach.html">espn_cfb_coach()</a></code>,
-<code><a href="espn_cfb_coach_record.html">espn_cfb_coach_record()</a></code>,
-<code><a href="espn_cfb_coaches.html">espn_cfb_coaches()</a></code>,
-<code><a href="espn_cfb_franchise.html">espn_cfb_franchise()</a></code>,
-<code><a href="espn_cfb_franchises.html">espn_cfb_franchises()</a></code>,
-<code><a href="espn_cfb_futures.html">espn_cfb_futures()</a></code>,
-<code><a href="espn_cfb_game_broadcasts.html">espn_cfb_game_broadcasts()</a></code>,
-<code><a href="espn_cfb_game_drive_plays.html">espn_cfb_game_drive_plays()</a></code>,
-<code><a href="espn_cfb_game_drives.html">espn_cfb_game_drives()</a></code>,
-<code><a href="espn_cfb_game_leaders.html">espn_cfb_game_leaders()</a></code>,
-<code><a href="espn_cfb_game_odds.html">espn_cfb_game_odds()</a></code>,
-<code><a href="espn_cfb_game_pbp.html">espn_cfb_game_pbp()</a></code>,
-<code><a href="espn_cfb_game_play.html">espn_cfb_game_play()</a></code>,
-<code><a href="espn_cfb_game_player_box.html">espn_cfb_game_player_box()</a></code>,
-<code><a href="espn_cfb_game_player_statistics.html">espn_cfb_game_player_statistics()</a></code>,
-<code><a href="espn_cfb_game_powerindex.html">espn_cfb_game_powerindex()</a></code>,
-<code><a href="espn_cfb_game_predictor.html">espn_cfb_game_predictor()</a></code>,
-<code><a href="espn_cfb_game_probabilities.html">espn_cfb_game_probabilities()</a></code>,
-<code><a href="espn_cfb_game_situation.html">espn_cfb_game_situation()</a></code>,
-<code><a href="espn_cfb_game_status.html">espn_cfb_game_status()</a></code>,
-<code><a href="espn_cfb_game_team_leaders.html">espn_cfb_game_team_leaders()</a></code>,
-<code><a href="espn_cfb_game_team_linescores.html">espn_cfb_game_team_linescores()</a></code>,
-<code><a href="espn_cfb_game_team_records.html">espn_cfb_game_team_records()</a></code>,
-<code><a href="espn_cfb_game_team_roster.html">espn_cfb_game_team_roster()</a></code>,
-<code><a href="espn_cfb_game_team_statistics.html">espn_cfb_game_team_statistics()</a></code>,
-<code><a href="espn_cfb_game_teams.html">espn_cfb_game_teams()</a></code>,
-<code><a href="espn_cfb_groups.html">espn_cfb_groups()</a></code>,
-<code><a href="espn_cfb_pbp_v2.html">espn_cfb_pbp_v2()</a></code>,
-<code><a href="espn_cfb_player.html">espn_cfb_player()</a></code>,
-<code><a href="espn_cfb_player_career_stats.html">espn_cfb_player_career_stats()</a></code>,
-<code><a href="espn_cfb_player_eventlog.html">espn_cfb_player_eventlog()</a></code>,
-<code><a href="espn_cfb_player_gamelog.html">espn_cfb_player_gamelog()</a></code>,
-<code><a href="espn_cfb_player_overview.html">espn_cfb_player_overview()</a></code>,
-<code><a href="espn_cfb_player_seasons.html">espn_cfb_player_seasons()</a></code>,
-<code><a href="espn_cfb_player_splits.html">espn_cfb_player_splits()</a></code>,
-<code><a href="espn_cfb_players.html">espn_cfb_players()</a></code>,
-<code><a href="espn_cfb_position.html">espn_cfb_position()</a></code>,
-<code><a href="espn_cfb_positions.html">espn_cfb_positions()</a></code>,
-<code><a href="espn_cfb_powerindex.html">espn_cfb_powerindex()</a></code>,
-<code><a href="espn_cfb_qbr.html">espn_cfb_qbr()</a></code>,
-<code><a href="espn_cfb_rankings.html">espn_cfb_rankings()</a></code>,
-<code><a href="espn_cfb_recruits.html">espn_cfb_recruits()</a></code>,
-<code><a href="espn_cfb_season_info.html">espn_cfb_season_info()</a></code>,
-<code><a href="espn_cfb_season_types.html">espn_cfb_season_types()</a></code>,
-<code><a href="espn_cfb_season_weeks.html">espn_cfb_season_weeks()</a></code>,
-<code><a href="espn_cfb_seasons.html">espn_cfb_seasons()</a></code>,
-<code><a href="espn_cfb_standings.html">espn_cfb_standings()</a></code>,
-<code><a href="espn_cfb_team.html">espn_cfb_team()</a></code>,
-<code><a href="espn_cfb_team_ats.html">espn_cfb_team_ats()</a></code>,
-<code><a href="espn_cfb_team_awards.html">espn_cfb_team_awards()</a></code>,
-<code><a href="espn_cfb_team_coaches.html">espn_cfb_team_coaches()</a></code>,
-<code><a href="espn_cfb_team_events.html">espn_cfb_team_events()</a></code>,
-<code><a href="espn_cfb_team_leaders.html">espn_cfb_team_leaders()</a></code>,
-<code><a href="espn_cfb_team_powerindex.html">espn_cfb_team_powerindex()</a></code>,
-<code><a href="espn_cfb_team_ranks.html">espn_cfb_team_ranks()</a></code>,
-<code><a href="espn_cfb_team_record.html">espn_cfb_team_record()</a></code>,
-<code><a href="espn_cfb_team_roster.html">espn_cfb_team_roster()</a></code>,
-<code><a href="espn_cfb_team_schedule.html">espn_cfb_team_schedule()</a></code>,
-<code><a href="espn_cfb_teams.html">espn_cfb_teams()</a></code>,
-<code><a href="espn_cfb_unnest_plays.html">espn_cfb_unnest_plays()</a></code>,
-<code><a href="espn_cfb_venue.html">espn_cfb_venue()</a></code>,
-<code><a href="espn_cfb_venues.html">espn_cfb_venues()</a></code>,
-<code><a href="espn_cfb_week_rankings.html">espn_cfb_week_rankings()</a></code></p></div>
+    <div class="dont-index"><p><a href="family_espn_cfb.html">family_espn_cfb</a> lists every function in this family.</p></div>
     </div>
 
     <div class="section level2">
@@ -286,7 +220,7 @@ Minimum value accepted: 2004</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_player_stats_v3</span><span class="op">(</span>athlete_id <span class="op">=</span> <span class="fl">4431611</span>, year <span class="op">=</span> <span class="fl">2023</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Player web-v3 statistics from ESPN ──────────────────────── <span style="font-style: italic;">cfbfastR 3.1.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-06 08:25:22 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-09 17:03:49 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 190 × 18</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    athlete_id season category category_display team_id team_slug     stat_season</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>

@@ -1,13 +1,37 @@
-# **ESPN College Football Game Plays (Core-v2 Play-by-Play)**
+# **ESPN College Football Game Plays (Core-v2 Play-by-Play, Drive Plays and Single Play)**
 
-Get the full core-v2 play-by-play feed for a single college football
-game – one row per play, with down/distance, clock, score, and yardage.
+`espn_cfb_game_pbp()` gets the full core-v2 play-by-play feed for a
+single college football game – one row per play, with down/distance,
+clock, score, and yardage. `espn_cfb_game_drive_plays()` gets the same
+plays for a single drive, and `espn_cfb_game_play()` gets the full
+detail object for a single play – one row with the play type, text,
+score, clock, down/distance, and win-probability delta.
 
 ## Usage
 
 ``` r
 espn_cfb_game_pbp(
   game_id = NULL,
+  participants = c("none", "wide", "long"),
+  participants_list = FALSE,
+  team_participants = c("none", "wide"),
+  team_participants_list = FALSE,
+  team_detail = TRUE
+)
+
+espn_cfb_game_drive_plays(
+  game_id = NULL,
+  drive_id = NULL,
+  participants = c("none", "wide", "long"),
+  participants_list = FALSE,
+  team_participants = c("none", "wide"),
+  team_participants_list = FALSE,
+  team_detail = TRUE
+)
+
+espn_cfb_game_play(
+  game_id = NULL,
+  play_id = NULL,
   participants = c("none", "wide", "long"),
   participants_list = FALSE,
   team_participants = c("none", "wide"),
@@ -77,14 +101,27 @@ espn_cfb_game_pbp(
   erroring the wrapper. Set `FALSE` to skip the catalog fetch and the
   join.
 
+- drive_id:
+
+  (*Integer* required): ESPN drive id (from
+  [`espn_cfb_game_drives()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_drives.md)).
+
+- play_id:
+
+  (*Character* required): ESPN play id (from `espn_cfb_game_pbp()`).
+  Supply as a character string – the id is too large for an exact
+  numeric.
+
 ## Value
 
-A data frame with one row per play:
+A data frame with one row per play (one row in all for
+`espn_cfb_game_play()`):
 
 |  |  |  |
 |----|----|----|
 | col_name | types | description |
 | game_id | character | ESPN game identifier. |
+| drive_id | character | ESPN drive id; `espn_cfb_game_drive_plays()` only. |
 | play_id | character | ESPN play id. |
 | sequence_number | character | Play sequence number within the game. |
 | type_id | character | Play-type id. |
@@ -160,10 +197,29 @@ stable `$ref`-derived ids; use
 [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
 for the modeled play-by-play.
 
+`espn_cfb_game_drive_plays()` wraps
+`events/{game_id}/competitions/{game_id}/drives/{drive_id}/plays`. The
+competition id always equals the game id. It returns the same play
+schema as `espn_cfb_game_pbp()`, plus `drive_id`, partitioned to a
+single drive (typically 5-11 plays). Harvest the `drive_id` from
+[`espn_cfb_game_drives()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_drives.md)
+– its `drive_id` column lists every drive in the game.
+
+`espn_cfb_game_play()` wraps
+`events/{game_id}/competitions/{game_id}/plays/{play_id}` and returns a
+single-row data frame describing one play in full. Harvest the `play_id`
+from the `play_id` column of `espn_cfb_game_pbp()` or
+`espn_cfb_game_drive_plays()`. Use it for play drill-down when you need
+a single play's complete object rather than the whole game feed. ESPN
+play ids are 18-digit integers that exceed R's exact double-precision
+range – **pass `play_id` as a character string** (e.g.
+`"401628339101927401"`) so no precision is lost. A bare numeric literal
+will be silently rounded and the lookup will 404.
+
 When `participants = "wide"`, the base play schema is kept intact and
 six columns are appended for every participant `type` that appears
-anywhere in the game. The column names are **dynamic** – one set per
-participant type present (e.g. `passer`, `rusher`, `receiver`,
+anywhere in the returned plays. The column names are **dynamic** – one
+set per participant type present (e.g. `passer`, `rusher`, `receiver`,
 `tackler`, `sacked_by`, `pass_defender`, `kicker`, `returner`). ESPN's
 camelCase types are snake-cased (`sackedBy` -\> `sacked_by`). For each
 type the appended columns are:
@@ -217,9 +273,9 @@ play x participant row. The raw plays are fetched only once even when
 both options are active.
 
 When `team_participants = "wide"`, three columns are appended for every
-`teamParticipants[]` `type` present anywhere in the game (ESPN ships
-`offense` / `defense`). The column names are **dynamic** – one set per
-type, snake-cased: `{type}_team_id` (scalar character, the first
+`teamParticipants[]` `type` present anywhere in the returned plays (ESPN
+ships `offense` / `defense`). The column names are **dynamic** – one set
+per type, snake-cased: `{type}_team_id` (scalar character, the first
 occurrence of that type on the play), `{type}_team_order` (scalar
 integer, ESPN's display order), and `{type}_team_ref` (scalar character,
 the `$ref` URL to that team resource). Plays with none of a type carry
@@ -254,73 +310,8 @@ are skipped.
 
 ## See also
 
-Other ESPN CFB Functions:
-[`espn_cfb_award()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_award.md),
-[`espn_cfb_awards()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_awards.md),
-[`espn_cfb_clear_cache()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_clear_cache.md),
-[`espn_cfb_coach()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_coach.md),
-[`espn_cfb_coach_record()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_coach_record.md),
-[`espn_cfb_coaches()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_coaches.md),
-[`espn_cfb_franchise()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_franchise.md),
-[`espn_cfb_franchises()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_franchises.md),
-[`espn_cfb_futures()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_futures.md),
-[`espn_cfb_game_broadcasts()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_broadcasts.md),
-[`espn_cfb_game_drive_plays()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_drive_plays.md),
-[`espn_cfb_game_drives()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_drives.md),
-[`espn_cfb_game_leaders()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_leaders.md),
-[`espn_cfb_game_odds()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_odds.md),
-[`espn_cfb_game_play()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_play.md),
-[`espn_cfb_game_player_box()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_player_box.md),
-[`espn_cfb_game_player_statistics()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_player_statistics.md),
-[`espn_cfb_game_powerindex()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_powerindex.md),
-[`espn_cfb_game_predictor()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_predictor.md),
-[`espn_cfb_game_probabilities()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_probabilities.md),
-[`espn_cfb_game_situation()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_situation.md),
-[`espn_cfb_game_status()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_status.md),
-[`espn_cfb_game_team_leaders()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_team_leaders.md),
-[`espn_cfb_game_team_linescores()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_team_linescores.md),
-[`espn_cfb_game_team_records()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_team_records.md),
-[`espn_cfb_game_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_team_roster.md),
-[`espn_cfb_game_team_statistics()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_team_statistics.md),
-[`espn_cfb_game_teams()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_teams.md),
-[`espn_cfb_groups()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_groups.md),
-[`espn_cfb_pbp_v2()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp_v2.md),
-[`espn_cfb_player()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player.md),
-[`espn_cfb_player_career_stats()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_career_stats.md),
-[`espn_cfb_player_eventlog()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_eventlog.md),
-[`espn_cfb_player_gamelog()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_gamelog.md),
-[`espn_cfb_player_overview()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_overview.md),
-[`espn_cfb_player_seasons()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_seasons.md),
-[`espn_cfb_player_splits()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_splits.md),
-[`espn_cfb_player_stats_v3()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_stats_v3.md),
-[`espn_cfb_players()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_players.md),
-[`espn_cfb_position()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_position.md),
-[`espn_cfb_positions()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_positions.md),
-[`espn_cfb_powerindex()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_powerindex.md),
-[`espn_cfb_qbr()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_qbr.md),
-[`espn_cfb_rankings()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_rankings.md),
-[`espn_cfb_recruits()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_recruits.md),
-[`espn_cfb_season_info()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_season_info.md),
-[`espn_cfb_season_types()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_season_types.md),
-[`espn_cfb_season_weeks()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_season_weeks.md),
-[`espn_cfb_seasons()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_seasons.md),
-[`espn_cfb_standings()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_standings.md),
-[`espn_cfb_team()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team.md),
-[`espn_cfb_team_ats()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_ats.md),
-[`espn_cfb_team_awards()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_awards.md),
-[`espn_cfb_team_coaches()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_coaches.md),
-[`espn_cfb_team_events()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_events.md),
-[`espn_cfb_team_leaders()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_leaders.md),
-[`espn_cfb_team_powerindex()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_powerindex.md),
-[`espn_cfb_team_ranks()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_ranks.md),
-[`espn_cfb_team_record()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_record.md),
-[`espn_cfb_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_roster.md),
-[`espn_cfb_team_schedule()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_schedule.md),
-[`espn_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_teams.md),
-[`espn_cfb_unnest_plays()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_unnest_plays.md),
-[`espn_cfb_venue()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_venue.md),
-[`espn_cfb_venues()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_venues.md),
-[`espn_cfb_week_rankings()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_week_rankings.md)
+[family_espn_cfb](https://cfbfastR.sportsdataverse.org/reference/family_espn_cfb.md)
+lists every function in this family.
 
 ## Examples
 
@@ -328,7 +319,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_pbp(game_id = 401628339))
 #> ── Game plays data from ESPN ───────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:24:29 UTC
+#> ℹ Data updated: 2026-11-09 17:03:27 UTC
 #> # A tibble: 157 × 84
 #>    game_id   play_id   sequence_number type_id type_text type_abbreviation text 
 #>    <chr>     <chr>     <chr>           <chr>   <chr>     <chr>             <chr>
@@ -352,7 +343,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide",
                         participants_list = TRUE))
 #> ── Game plays data from ESPN ───────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-06 08:24:32 UTC
+#> ℹ Data updated: 2026-11-09 17:03:33 UTC
 #> # A tibble: 157 × 157
 #>    game_id   play_id   sequence_number type_id type_text type_abbreviation text 
 #>    <chr>     <chr>     <chr>           <chr>   <chr>     <chr>             <chr>
@@ -373,5 +364,44 @@ Other ESPN CFB Functions:
 #> #   scoring_play <lgl>, score_value <int>, priority <lgl>, is_penalty <lgl>,
 #> #   is_turnover <lgl>, stat_yardage <int>, scoring_type_name <chr>,
 #> #   scoring_type_display_name <chr>, scoring_type_abbreviation <chr>, …
+# }
+# \donttest{
+  try(espn_cfb_game_drive_plays(game_id = 401628339,
+                                drive_id = 4016283391))
+#> ── Game drive plays data from ESPN ─────────────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 17:03:33 UTC
+#> # A tibble: 6 × 85
+#>   game_id   drive_id play_id sequence_number type_id type_text type_abbreviation
+#>   <chr>     <chr>    <chr>   <chr>           <chr>   <chr>     <chr>            
+#> 1 401628339 4016283… 401628… 101849905       53      Kickoff   K                
+#> 2 401628339 4016283… 401628… 101849908       24      Pass Rec… REC              
+#> 3 401628339 4016283… 401628… 101857801       5       Rush      RUSH             
+#> 4 401628339 4016283… 401628… 101866801       21      Timeout   TO               
+#> 5 401628339 4016283… 401628… 101866802       5       Rush      RUSH             
+#> 6 401628339 4016283… 401628… 101875001       52      Punt      PUNT             
+#> # ℹ 78 more variables: text <chr>, short_text <chr>, alternative_text <chr>,
+#> #   short_alternative_text <chr>, period <int>, clock <chr>,
+#> #   clock_seconds <dbl>, home_score <int>, away_score <int>,
+#> #   scoring_play <lgl>, score_value <int>, priority <lgl>, is_penalty <lgl>,
+#> #   is_turnover <lgl>, stat_yardage <int>, scoring_type_name <chr>,
+#> #   scoring_type_display_name <chr>, scoring_type_abbreviation <chr>,
+#> #   point_after_attempt_id <int>, point_after_attempt_text <chr>, …
+# }
+# \donttest{
+  try(espn_cfb_game_play(game_id = 401628339,
+                         play_id = "401628339101927401"))
+#> ── Game play data from ESPN ────────────────────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 17:03:33 UTC
+#> # A tibble: 1 × 84
+#>   game_id   play_id    sequence_number type_id type_text type_abbreviation text 
+#>   <chr>     <chr>      <chr>           <chr>   <chr>     <chr>             <chr>
+#> 1 401628339 401628339… 101927401       24      Pass Rec… REC               Cars…
+#> # ℹ 77 more variables: short_text <chr>, alternative_text <chr>,
+#> #   short_alternative_text <chr>, period <int>, clock <chr>,
+#> #   clock_seconds <dbl>, home_score <int>, away_score <int>,
+#> #   scoring_play <lgl>, score_value <int>, priority <lgl>, is_penalty <lgl>,
+#> #   is_turnover <lgl>, stat_yardage <int>, scoring_type_name <chr>,
+#> #   scoring_type_display_name <chr>, scoring_type_abbreviation <chr>,
+#> #   point_after_attempt_id <int>, point_after_attempt_text <chr>, …
 # }
 ```
