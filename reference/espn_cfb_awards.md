@@ -75,8 +75,27 @@ lists every function in this family.
 ## Examples
 
 ``` r
-if (FALSE) { # interactive()
 # One request per award (about 35), so this takes several seconds.
 try(espn_cfb_awards(year = 2024))
-}
+#> ── Awards data from ESPN ───────────────────────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 19:54:07 UTC
+#> # A tibble: 34 × 19
+#>    season award_id name                 description athlete_id team_id team_name
+#>     <int> <chr>    <chr>                <chr>       <chr>      <chr>   <chr>    
+#>  1   2024 1        Buck Buchanan Award  I-AA Defen… 5085355    2110    Bears    
+#>  2   2024 2        Chuck Bednarik Award Defensive … 4685415    38      Buffaloes
+#>  3   2024 3        Davey O'Brien Award  National Q… 4688380    2390    Hurrican…
+#>  4   2024 4        Dick Butkus Award    Outstandin… 4685597    61      Bulldogs 
+#>  5   2024 5        Doak Walker Award    National R… 4890973    68      Broncos  
+#>  6   2024 6        Fred Biletnikoff Aw… Outstandin… 4685415    38      Buffaloes
+#>  7   2024 7        Gagliardi Trophy     NCAA Divis… 4911584    3071    Cardinals
+#>  8   2024 8        Harlon Hill Trophy   NCAA Divis… 4572712    2118    Mules    
+#>  9   2024 9        Heisman Memorial Tr… Outstandin… 4685415    38      Buffaloes
+#> 10   2024 10       Jim Thorpe Award     Outstandin… 4430925    251     Longhorns
+#> # ℹ 24 more rows
+#> # ℹ 12 more variables: team_abbreviation <chr>, team_location <chr>,
+#> #   team_display_name <chr>, team_short_display_name <chr>,
+#> #   team_nickname <chr>, team_color <chr>, team_alternate_color <chr>,
+#> #   team_logo_href <chr>, team_logo_dark_href <chr>, award_ref <chr>,
+#> #   athlete_ref <chr>, team_ref <chr>
 ```

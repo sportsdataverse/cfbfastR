@@ -83,7 +83,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_coach(coach_id = 5120149, year = 2024))
 #> ── Coach detail from ESPN ──────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 18:42:21 UTC
+#> ℹ Data updated: 2026-11-09 19:54:11 UTC
 #> # A tibble: 1 × 20
 #>   coach_id season first_name last_name uid   team_id team_name team_abbreviation
 #>   <chr>     <int> <chr>      <chr>     <chr> <chr>   <chr>     <chr>            
@@ -95,7 +95,7 @@ lists every function in this family.
 #> #   team_ref <chr>, person_ref <chr>
   try(espn_cfb_coach(coach_id = 5120149, year = 2024, team_detail = FALSE))
 #> ── Coach detail from ESPN ──────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 18:42:21 UTC
+#> ℹ Data updated: 2026-11-09 19:54:11 UTC
 #> # A tibble: 1 × 10
 #>   coach_id season first_name last_name uid              team_id n_career_records
 #>   <chr>     <int> <chr>      <chr>     <chr>            <chr>              <int>

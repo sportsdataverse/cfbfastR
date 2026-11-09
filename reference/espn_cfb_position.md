@@ -54,7 +54,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_position(position_id = 8))
 #> ── Position detail from ESPN ───────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 18:42:45 UTC
+#> ℹ Data updated: 2026-11-09 19:55:20 UTC
 #> # A tibble: 1 × 7
 #>   position_id name        display_name abbreviation leaf  parent_id position_ref
 #>   <chr>       <chr>       <chr>        <chr>        <lgl> <chr>     <chr>       

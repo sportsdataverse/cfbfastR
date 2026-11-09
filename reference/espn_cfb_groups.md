@@ -63,8 +63,24 @@ lists every function in this family.
 ## Examples
 
 ``` r
-if (FALSE) { # interactive()
 # One request per conference and division, so this takes a while.
 try(espn_cfb_groups(year = 2024))
-}
+#> ── Groups and conferences from ESPN ────────────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 19:55:03 UTC
+#> # A tibble: 78 × 12
+#>    season season_type group_id name        abbreviation short_name is_conference
+#>     <int>       <int> <chr>    <chr>       <chr>        <chr>      <lgl>        
+#>  1   2024           2 35       Division I… yy           Div II/III FALSE        
+#>  2   2024           2 57       NCAA Divis… d2           NCAA Divi… FALSE        
+#>  3   2024           2 104      CIAA        ciaa         CIAA       TRUE         
+#>  4   2024           2 107      GLIAC       gliac        GLIAC      TRUE         
+#>  5   2024           2 146      Great Amer… gamc         Great Ame… TRUE         
+#>  6   2024           2 108      Great Lakes gl           Great Lak… TRUE         
+#>  7   2024           2 165      Great Midw… G-MAC        Great Mid… TRUE         
+#>  8   2024           2 110      Gulf South  gs           Gulf South TRUE         
+#>  9   2024           2 112      Independen… ind2         Independe… TRUE         
+#> 10   2024           2 116      Lone Star   lone         Lone Star  TRUE         
+#> # ℹ 68 more rows
+#> # ℹ 5 more variables: parent_group_id <chr>, slug <chr>, group_ref <chr>,
+#> #   standings_ref <chr>, teams_ref <chr>
 ```

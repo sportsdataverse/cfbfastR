@@ -198,43 +198,54 @@ Other CFB Model Calculators:
 ## Examples
 
 ``` r
-if (FALSE) { # interactive()
 # Downloads the model from GitHub on first use.
 try(calculate_xpass(data.frame(season = 2024, down = 3, distance = 8,
   yards_to_goal = 55, pos_score_diff = -4, TimeSecsRem = 900, period = 3)))
-}
-if (FALSE) { # interactive()
+#>   season down distance yards_to_goal pos_score_diff TimeSecsRem period era
+#> 1   2024    3        8            55             -4         900      3   3
+#>       xpass
+#> 1 0.8236039
 # Downloads the model from GitHub on first use.
 try(calculate_field_goal_probability(data.frame(season = 2024, yards_to_goal = 25)))
-}
-if (FALSE) { # interactive()
+#>   season yards_to_goal era0 era1 era2 era3 fg_make_prob
+#> 1   2024            25    0    0    0    1    0.6751403
 # Downloads the model from GitHub on first use.
 try(calculate_completion_probability(data.frame(season = 2024, down = 3,
   distance = 8, yards_to_goal = 55, score_diff = -4,
   seconds_remaining = 900, is_home = 1, period = 3, passing_down = 1)))
-}
-if (FALSE) { # interactive()
+#>   season down distance yards_to_goal score_diff seconds_remaining is_home
+#> 1   2024    3        8            55         -4               900       1
+#>   period passing_down        cp
+#> 1      3            1 0.4777572
 # Downloads the model from GitHub on first use.
 try(calculate_two_point_probability(data.frame(season = 2024,
   posteam_spread = -3, posteam_total = 28, pos_score_diff = -2)))
-}
-if (FALSE) { # interactive()
+#>   season posteam_spread posteam_total pos_score_diff era two_pt_prob
+#> 1   2024             -3            28             -2   3   0.5070384
 # Downloads the model from GitHub on first use.
 try(calculate_fourth_down(data.frame(season = 2024, down = 4, distance = 2,
   yards_to_goal = 45, posteam_total = 52, posteam_spread = -3)))
-}
-if (FALSE) { # interactive()
+#>   season down distance yards_to_goal posteam_total posteam_spread era0 era1
+#> 1   2024    4        2            45            52             -3    0    0
+#>   era2 era3 fd_expected_yards fd_conversion_prob
+#> 1    0    1           8.22391          0.6602082
 # Downloads the model from GitHub on first use.
 try(calculate_qbr(data.frame(season = 2024, qbr_epa = 0.1, sack_epa = -0.2,
   pass_epa = 0.3, rush_epa = 0.05, pen_epa = 0, spread = -3)))
-}
-if (FALSE) { # interactive()
+#>   season qbr_epa sack_epa pass_epa rush_epa pen_epa spread era0 era1 era2 era3
+#> 1   2024     0.1     -0.2      0.3     0.05       0     -3    0    0    0    1
+#>        qbr
+#> 1 53.04573
 # Downloads the model from GitHub on first use.
 try(calculate_expected_points(data.frame(TimeSecsRem = 1800,
   yards_to_goal = 75, distance = 10, down_1 = 1, down_2 = 0, down_3 = 0,
   down_4 = 0, pos_score_diff_start = 0)))
-}
-if (FALSE) { # interactive()
+#>   TimeSecsRem yards_to_goal distance down_1 down_2 down_3 down_4
+#> 1        1800            75       10      1      0      0      0
+#>   pos_score_diff_start down    No_Score        FG    Opp_FG  Opp_Safety
+#> 1                    0    1 0.004676826 0.1563549 0.1184921 0.002391808
+#>      Opp_TD      Safety        TD        ep
+#> 1 0.3181985 0.003416252 0.3964695 0.6635342
 # Downloads the model from GitHub on first use.
 # Start of the second half, tied, home team receiving.
 try(calculate_win_probability(data.frame(season = 2024, period = 3,
@@ -243,7 +254,14 @@ try(calculate_win_probability(data.frame(season = 2024, period = 3,
   ExpScoreDiff_Time_Ratio = 0, pos_team_receives_2H_kickoff = 1,
   is_home = 1, pos_team_timeouts_rem_before = 3,
   def_pos_team_timeouts_rem_before = 3)))
-}
+#>   season period down distance yards_to_goal TimeSecsRem adj_TimeSecsRem
+#> 1   2024      3    1       10            75        1800            1800
+#>   pos_score_diff_start ExpScoreDiff_Time_Ratio pos_team_receives_2H_kickoff
+#> 1                    0                       0                            1
+#>   is_home pos_team_timeouts_rem_before def_pos_team_timeouts_rem_before
+#> 1       1                            3                                3
+#>         wp
+#> 1 0.568352
 # Offline: with `ep` present, EPA is the difference.
 calculate_epa(data.frame(ep = 2, ep_end = 5))
 #>   ep ep_end epa

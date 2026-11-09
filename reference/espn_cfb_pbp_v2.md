@@ -173,9 +173,29 @@ lists every function in this family.
 ## Examples
 
 ``` r
-if (FALSE) { # interactive()
 # Parsing one game takes several seconds of CPU, and `epa_wpa = TRUE` also
 # downloads the EP and WP models on first use.
 try(espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE))
-}
+#> ── Play-by-play data from ESPN (core-v2) ───────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 19:55:10 UTC
+#> # A tibble: 156 × 542
+#>    season id_play    game_id game_play_number half_play_number drive_play_number
+#>     <int> <chr>      <chr>              <dbl>            <dbl>             <dbl>
+#>  1   2024 401628339… 401628…                1                1                 1
+#>  2   2024 401628339… 401628…                2                2                 2
+#>  3   2024 401628339… 401628…                3                3                 3
+#>  4   2024 401628339… 401628…                3                3                 3
+#>  5   2024 401628339… 401628…                4                4                 4
+#>  6   2024 401628339… 401628…                5                5                 5
+#>  7   2024 401628339… 401628…                6                6                 1
+#>  8   2024 401628339… 401628…                7                7                 1
+#>  9   2024 401628339… 401628…                8                8                 2
+#> 10   2024 401628339… 401628…                9                9                 3
+#> # ℹ 146 more rows
+#> # ℹ 536 more variables: pos_team <chr>, def_pos_team <chr>,
+#> #   pos_team_score <int>, def_pos_team_score <int>, half <fct>, period <int>,
+#> #   clock_minutes <dbl>, clock_seconds <dbl>, play_type <chr>, play_text <chr>,
+#> #   down <dbl>, distance <dbl>, yards_to_goal <dbl>, yards_gained <dbl>,
+#> #   EPA <dbl>, ep_before <dbl>, ep_after <dbl>, wpa <dbl>, wp_before <dbl>,
+#> #   wp_after <dbl>, def_wp_before <dbl>, def_wp_after <dbl>, …
 ```

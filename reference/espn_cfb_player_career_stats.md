@@ -100,7 +100,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_player_career_stats(athlete_id = 102597, year = 2024))
 #> ── Player season statistics from ESPN ──────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 18:42:40 UTC
+#> ℹ Data updated: 2026-11-09 19:55:12 UTC
 #> # A tibble: 165 × 19
 #>    athlete_id season season_type category category_display stat_name            
 #>    <chr>       <int>       <int> <chr>    <chr>            <chr>                
@@ -123,7 +123,7 @@ lists every function in this family.
   try(espn_cfb_player_career_stats(athlete_id = 102597, year = 2024,
                                  athlete_detail = FALSE))
 #> ── Player season statistics from ESPN ──────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 18:42:40 UTC
+#> ℹ Data updated: 2026-11-09 19:55:12 UTC
 #> # A tibble: 165 × 13
 #>    athlete_id season season_type category category_display stat_name            
 #>    <chr>       <int>       <int> <chr>    <chr>            <chr>                

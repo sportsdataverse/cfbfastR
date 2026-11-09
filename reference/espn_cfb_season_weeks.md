@@ -58,7 +58,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_season_weeks(year = 2024))
 #> ── Season weeks from ESPN ──────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 18:42:53 UTC
+#> ℹ Data updated: 2026-11-09 19:55:33 UTC
 #> # A tibble: 16 × 7
 #>    season season_type  week text    start_date        end_date          week_ref
 #>     <int>       <int> <int> <chr>   <chr>             <chr>             <chr>   

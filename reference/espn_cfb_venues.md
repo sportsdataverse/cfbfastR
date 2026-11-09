@@ -55,7 +55,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_venues(max_results = 5))
 #> ── Venues index from ESPN ──────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 18:43:04 UTC
+#> ℹ Data updated: 2026-11-09 19:56:10 UTC
 #> # A tibble: 5 × 9
 #>   venue_id full_name         city  state zip_code country grass indoor venue_ref
 #>   <chr>    <chr>             <chr> <chr> <chr>    <chr>   <lgl> <lgl>  <chr>    

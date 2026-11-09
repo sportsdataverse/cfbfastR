@@ -160,8 +160,28 @@ Saiem Gilani
 ## Examples
 
 ``` r
-if (FALSE) { # interactive()
 # Downloads and parses a whole season of play-by-play.
 try(load_ncaa_mfb_pbp_cfbfastr(2013))
-}
+#> ── NCAA men's football play-by-play, cfbfastR-shaped from the SportsDataverse da
+#> ℹ Data updated: 2026-11-09 19:57:49 UTC
+#> # A tibble: 304,132 × 105
+#>    game_id id_play  drive_id game_play_number half_play_number drive_play_number
+#>      <int> <chr>       <int>            <int>            <int>             <int>
+#>  1  688871 6888710… 68887101                1                1                 1
+#>  2  688871 6888710… 68887101                2                2                 2
+#>  3  688871 6888710… 68887101                3                3                 3
+#>  4  688871 6888710… 68887101                4                4                 4
+#>  5  688871 6888710… 68887102                5                5                 1
+#>  6  688871 6888710… 68887102                6                6                 2
+#>  7  688871 6888710… 68887102                7                7                 3
+#>  8  688871 6888710… 68887102                8                8                 4
+#>  9  688871 6888710… 68887102                9                9                 5
+#> 10  688871 6888710… 68887102               10               10                 6
+#> # ℹ 304,122 more rows
+#> # ℹ 99 more variables: drive_number <int>, season <int>, year <int>,
+#> #   week <int>, period <int>, half <int>, clock.minutes <int>,
+#> #   clock.seconds <int>, TimeSecsRem <int>, Under_two <lgl>, pos_team <chr>,
+#> #   def_pos_team <chr>, offense_play <chr>, defense_play <chr>, home <chr>,
+#> #   away <chr>, pos_team_score <int>, def_pos_team_score <int>,
+#> #   offense_score <int>, defense_score <int>, pos_score_diff <int>, …
 ```

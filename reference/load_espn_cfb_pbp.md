@@ -536,8 +536,28 @@ Saiem Gilani
 ## Examples
 
 ``` r
-if (FALSE) { # interactive()
 # Downloads a whole season of play-by-play (about 500 columns).
 try(load_espn_cfb_pbp(2004))
-}
+#> ── ESPN college football play-by-play from the SportsDataverse data repo ───────
+#> ℹ Data updated: 2026-11-09 19:57:25 UTC
+#> # A tibble: 87,214 × 499
+#>    season   game_id game_play_number pos_team_id pos_team        def_pos_team_id
+#>     <int>     <int>            <int>       <int> <chr>                     <int>
+#>  1   2004 242410259                1         259 Virginia Tech …              30
+#>  2   2004 242410259                2         259 Virginia Tech …              30
+#>  3   2004 242410259                3         259 Virginia Tech …              30
+#>  4   2004 242410259                4         259 Virginia Tech …              30
+#>  5   2004 242410259                5         259 Virginia Tech …              30
+#>  6   2004 242410259                6         259 Virginia Tech …              30
+#>  7   2004 242410259                7         259 Virginia Tech …              30
+#>  8   2004 242410259                8         259 Virginia Tech …              30
+#>  9   2004 242410259                9         259 Virginia Tech …              30
+#> 10   2004 242410259               10          30 USC Trojans                 259
+#> # ℹ 87,204 more rows
+#> # ℹ 493 more variables: def_pos_team <chr>, pos_team_score <int>,
+#> #   def_pos_team_score <int>, half <int>, period <int>, down <int>,
+#> #   distance <int>, EPA <dbl>, wpa <dbl>, wp_before <dbl>, wp_after <dbl>,
+#> #   def_wp_before <dbl>, def_wp_after <dbl>, penalty_detail <chr>,
+#> #   yds_penalty <chr>, penalty_1st_conv <lgl>, new_series <lgl>,
+#> #   firstD_by_kickoff <lgl>, firstD_by_poss <lgl>, firstD_by_penalty <lgl>, …
 ```

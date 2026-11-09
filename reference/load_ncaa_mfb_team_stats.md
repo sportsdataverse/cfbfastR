@@ -65,7 +65,7 @@ Saiem Gilani
 # \donttest{
   try(load_ncaa_mfb_team_stats(2013))
 #> ── NCAA men's football team stats (stats.ncaa.org) from the SportsDataverse data
-#> ℹ Data updated: 2026-11-09 18:44:13 UTC
+#> ℹ Data updated: 2026-11-09 19:57:54 UTC
 #> # A tibble: 207,164 × 10
 #>    contest_id category stat     period away_team away_value home_team home_value
 #>    <chr>      <chr>    <chr>    <chr>  <chr>     <chr>      <chr>     <chr>     

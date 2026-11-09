@@ -75,8 +75,28 @@ Other loaders:
 ## Examples
 
 ``` r
-if (FALSE) { # interactive()
 # One season is about 160,000 plays and 400 MB in memory.
 try(load_cfb_pbp(2024))
-}
+#> ── PBP from data repo and CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 19:56:39 UTC
+#> # A tibble: 277,048 × 362
+#>     year  week id_play   game_id game_play_number half_play_number
+#>    <int> <int>   <dbl>     <int>            <dbl>            <dbl>
+#>  1  2024     1 4.02e17 401628319                1                1
+#>  2  2024     1 4.02e17 401628319                2                2
+#>  3  2024     1 4.02e17 401628319                3                3
+#>  4  2024     1 4.02e17 401628319                4                4
+#>  5  2024     1 4.02e17 401628319                5                5
+#>  6  2024     1 4.02e17 401628319                6                6
+#>  7  2024     1 4.02e17 401628319                7                7
+#>  8  2024     1 4.02e17 401628319                8                8
+#>  9  2024     1 4.02e17 401628319                9                9
+#> 10  2024     1 4.02e17 401628319               10               10
+#> # ℹ 277,038 more rows
+#> # ℹ 356 more variables: drive_play_number <dbl>, pos_team <chr>,
+#> #   def_pos_team <chr>, pos_team_score <int>, def_pos_team_score <int>,
+#> #   half <dbl>, period <int>, clock_minutes <int>, clock_seconds <int>,
+#> #   play_type <chr>, play_text <chr>, down <dbl>, distance <dbl>,
+#> #   yards_to_goal <dbl>, yards_gained <dbl>, EPA <dbl>, ep_before <dbl>,
+#> #   ep_after <dbl>, wpa <dbl>, wp_before <dbl>, wp_after <dbl>, …
 ```

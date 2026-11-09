@@ -44,7 +44,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_franchises())
 #> ── Franchises index from ESPN ──────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 18:42:23 UTC
+#> ℹ Data updated: 2026-11-09 19:54:25 UTC
 #> # A tibble: 808 × 2
 #>    franchise_id franchise_ref                                                   
 #>    <chr>        <chr>                                                           

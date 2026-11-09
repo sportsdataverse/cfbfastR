@@ -69,7 +69,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_teams_crosswalk(2014))
 #> ── college football team id crosswalk from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-11-09 18:43:32 UTC
+#> ℹ Data updated: 2026-11-09 19:57:01 UTC
 #> # A tibble: 830 × 11
 #>    norm_key        espn_team_id espn_team espn_abbreviation fox_team_id fox_team
 #>    <chr>                  <int> <chr>     <chr>             <chr>       <chr>   

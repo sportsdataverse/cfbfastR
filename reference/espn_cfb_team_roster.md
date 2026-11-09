@@ -127,9 +127,27 @@ lists every function in this family.
 ## Examples
 
 ``` r
-if (FALSE) { # interactive()
 # One request per player (about 180 for a team), so this takes a while.
 try(espn_cfb_team_roster(team_id = 61, year = 2024,
                          position_detail = FALSE, team_detail = FALSE))
-}
+#> ── Team roster from ESPN ───────────────────────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 19:56:04 UTC
+#> # A tibble: 177 × 22
+#>    season team_id athlete_id first_name last_name full_name  display_name jersey
+#>     <int> <chr>   <chr>      <chr>      <chr>     <chr>      <chr>        <chr> 
+#>  1   2024 61      4870588    Joenel     Aguero    Joenel Ag… Joenel Ague… 6     
+#>  2   2024 61      4870598    CJ         Allen     CJ Allen   CJ Allen     3     
+#>  3   2024 61      5150384    Liam       Badger    Liam Badg… Liam Badger  96    
+#>  4   2024 61      4691816    Aliou      Bah       Aliou Bah  Aliou Bah    55    
+#>  5   2024 61      5160178    Clinton    Barlow    Clinton B… Clinton Bar… 67    
+#>  6   2024 61      4914220    Henry      Bates     Henry Bat… Henry Bates  94    
+#>  7   2024 61      4430841    Carson     Beck      Carson Be… Carson Beck  11    
+#>  8   2024 61      4712579    Dillon     Bell      Dillon Be… Dillon Bell  86    
+#>  9   2024 61      5150831    Jeremy     Bell      Jeremy Be… Jeremy Bell  11    
+#> 10   2024 61      5081059    Luke       Bennett   Luke Benn… Luke Bennett 29    
+#> # ℹ 167 more rows
+#> # ℹ 14 more variables: position <chr>, position_abbr <chr>, height <dbl>,
+#> #   display_height <chr>, weight <dbl>, display_weight <chr>, experience <int>,
+#> #   class <chr>, birth_city <chr>, birth_state <chr>, birth_country <chr>,
+#> #   status <chr>, active <lgl>, headshot_href <chr>
 ```

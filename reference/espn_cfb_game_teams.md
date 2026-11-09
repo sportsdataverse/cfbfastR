@@ -135,7 +135,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_game_teams(game_id = 401628339))
 #> ── Game teams data from ESPN ───────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 18:42:37 UTC
+#> ℹ Data updated: 2026-11-09 19:54:59 UTC
 #> # A tibble: 2 × 38
 #>   game_id   competitor_id competitor_name competitor_abbreviation
 #>   <chr>     <chr>         <chr>           <chr>                  
@@ -150,7 +150,7 @@ lists every function in this family.
 #> #   team_short_display_name <chr>, team_nickname <chr>, team_color <chr>, …
   try(espn_cfb_game_teams(game_id = 401628339, format = "wide"))
 #> ── Game teams data from ESPN ───────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 18:42:37 UTC
+#> ℹ Data updated: 2026-11-09 19:54:59 UTC
 #> # A tibble: 1 × 73
 #>   game_id   home_competitor_id home_competitor_name home_competitor_abbreviation
 #>   <chr>     <chr>              <chr>                <chr>                       
@@ -164,7 +164,7 @@ lists every function in this family.
 #> #   home_team_location <chr>, home_team_display_name <chr>, …
   try(espn_cfb_game_teams(game_id = 401628339, team_detail = FALSE))
 #> ── Game teams data from ESPN ───────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 18:42:38 UTC
+#> ℹ Data updated: 2026-11-09 19:54:59 UTC
 #> # A tibble: 2 × 18
 #>   game_id   competitor_id team_id order home_away winner competitor_type
 #>   <chr>     <chr>         <chr>   <int> <chr>     <lgl>  <chr>          

@@ -92,7 +92,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_game_team_statistics(game_id = 401628339))
 #> ── Game team statistics data from ESPN ─────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 18:42:36 UTC
+#> ℹ Data updated: 2026-11-09 19:54:58 UTC
 #> # A tibble: 584 × 30
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -116,7 +116,7 @@ lists every function in this family.
   try(espn_cfb_game_team_statistics(game_id = 401628339,
                                     team_detail = FALSE))
 #> ── Game team statistics data from ESPN ─────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 18:42:37 UTC
+#> ℹ Data updated: 2026-11-09 19:54:58 UTC
 #> # A tibble: 584 × 20
 #>    game_id   team_id home_away split_id split_name split_abbreviation
 #>    <chr>     <chr>   <chr>     <chr>    <chr>      <chr>             
