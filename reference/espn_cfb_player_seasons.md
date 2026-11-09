@@ -76,7 +76,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_player_seasons(athlete_id = 102597))
 #> ── Player seasons from ESPN ────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:47 UTC
+#> ℹ Data updated: 2026-11-09 18:42:42 UTC
 #> # A tibble: 10 × 11
 #>    athlete_id season stat_type season_ref    statistics_ref athlete_display_name
 #>    <chr>       <int> <chr>     <chr>         <chr>          <chr>               
@@ -95,7 +95,7 @@ lists every function in this family.
 #> #   athlete_position_abbreviation <chr>
   try(espn_cfb_player_seasons(athlete_id = 102597, athlete_detail = FALSE))
 #> ── Player seasons from ESPN ────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:47 UTC
+#> ℹ Data updated: 2026-11-09 18:42:42 UTC
 #> # A tibble: 10 × 5
 #>    athlete_id season stat_type season_ref                         statistics_ref
 #>    <chr>       <int> <chr>     <chr>                              <chr>         

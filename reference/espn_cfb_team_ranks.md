@@ -102,7 +102,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_team_ranks(team_id = 61, year = 2024))
 #> ── Team poll rank history from ESPN ────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:04:11 UTC
+#> ℹ Data updated: 2026-11-09 18:42:59 UTC
 #> # A tibble: 4 × 25
 #>   season team_id team_name team_abbreviation team_location team_display_name
 #>    <int> <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -119,7 +119,7 @@ lists every function in this family.
   try(espn_cfb_team_ranks(team_id = 61, year = 2024,
                           team_detail = FALSE))
 #> ── Team poll rank history from ESPN ────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:04:11 UTC
+#> ℹ Data updated: 2026-11-09 18:42:59 UTC
 #> # A tibble: 4 × 15
 #>   season team_id  week poll_id poll_name      poll_short_name poll_type headline
 #>    <int> <chr>   <int> <chr>   <chr>          <chr>           <chr>     <chr>   

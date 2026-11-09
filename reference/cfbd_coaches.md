@@ -117,36 +117,30 @@ Other CFBD Coaches Functions:
 ``` r
 # \donttest{
   try(cfbd_coaches(first = "Nick", last = "Saban", team = "alabama"))
-#> Waiting 6s for retry backoff ■■■■■■                          
-#> Waiting 6s for retry backoff ■■■■■■                          
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 7s for retry backoff ■■■■■■                          
-#> Waiting 7s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
-#> Waiting 7s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 19s for retry backoff ■■                              
-#> Waiting 19s for retry backoff ■■■■■■■                         
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■                
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 40s for retry backoff ■■■                             
-#> Waiting 40s for retry backoff ■■■■■                           
-#> Waiting 40s for retry backoff ■■■■■■■■                        
-#> Waiting 40s for retry backoff ■■■■■■■■■■                      
-#> Waiting 40s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 40s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 40s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 40s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 40s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 40s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
-#> Waiting 40s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
-#> Waiting 40s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
-#> Waiting 40s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 40s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:21:28.554197: Invalid arguments or no coaches data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Coaches data from CollegeFootballData.com ───────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:30 UTC
+#> # A tibble: 17 × 19
+#>       id first_name last_name hire_date    team_id school conference  year games
+#>    <int> <chr>      <chr>     <chr>          <int> <chr>  <chr>      <int> <int>
+#>  1   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2007    13
+#>  2   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2008    14
+#>  3   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2009    14
+#>  4   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2010    13
+#>  5   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2011    13
+#>  6   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2012    14
+#>  7   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2013    13
+#>  8   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2014    14
+#>  9   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2015    15
+#> 10   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2016    15
+#> 11   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2017    14
+#> 12   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2018    15
+#> 13   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2019    13
+#> 14   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2020    13
+#> 15   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2021    15
+#> 16   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2022    13
+#> 17   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2023    14
+#> # ℹ 10 more variables: wins <int>, losses <int>, ties <int>,
+#> #   win_percentage <dbl>, preseason_rank <int>, postseason_rank <int>,
+#> #   srs <dbl>, sp_overall <dbl>, sp_offense <dbl>, sp_defense <dbl>
 # }
 ```

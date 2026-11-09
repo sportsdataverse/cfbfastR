@@ -66,7 +66,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_game_broadcasts(game_id = 401628339))
 #> ── Game broadcasts data from ESPN ──────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:25 UTC
+#> ℹ Data updated: 2026-11-09 18:42:25 UTC
 #> # A tibble: 2 × 23
 #>   game_id   type_id type_name type_slug station slug  channel priority partnered
 #>   <chr>     <chr>   <chr>     <chr>     <chr>   <chr> <chr>      <int> <lgl>    

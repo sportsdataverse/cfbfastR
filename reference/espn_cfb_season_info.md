@@ -63,7 +63,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_season_info(year = 2024))
 #> ── Season detail from ESPN ─────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:04:03 UTC
+#> ℹ Data updated: 2026-11-09 18:42:51 UTC
 #> # A tibble: 1 × 13
 #>   season display_name start_date        end_date      active_type_id active_type
 #>    <int> <chr>        <chr>             <chr>                  <int>       <int>

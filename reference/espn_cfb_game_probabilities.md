@@ -106,7 +106,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_game_probabilities(game_id = 401628339))
 #> ── Game win probabilities data from ESPN ───────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:36 UTC
+#> ℹ Data updated: 2026-11-09 18:42:31 UTC
 #> # A tibble: 157 × 41
 #>    game_id   play_id            sequence_number home_team_id home_team_name
 #>    <chr>     <chr>              <chr>           <chr>        <chr>         
@@ -130,7 +130,7 @@ lists every function in this family.
   try(espn_cfb_game_probabilities(game_id = 401628339,
                                   team_detail = FALSE))
 #> ── Game win probabilities data from ESPN ───────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:37 UTC
+#> ℹ Data updated: 2026-11-09 18:42:32 UTC
 #> # A tibble: 157 × 21
 #>    game_id play_id sequence_number home_team_id away_team_id home_win_percentage
 #>    <chr>   <chr>   <chr>           <chr>        <chr>                      <dbl>

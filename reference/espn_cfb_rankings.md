@@ -54,7 +54,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_rankings(year = 2024))
 #> ── Ranking sources from ESPN ───────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:59 UTC
+#> ℹ Data updated: 2026-11-09 18:42:49 UTC
 #> # A tibble: 7 × 7
 #>   season ranking_id name                short_name type  n_snapshots ranking_ref
 #>    <int> <chr>      <chr>               <chr>      <chr>       <int> <chr>      

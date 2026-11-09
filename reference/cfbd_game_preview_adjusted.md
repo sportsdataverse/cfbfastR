@@ -189,36 +189,40 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_game_preview_adjusted(game_id = 401114233))
-#> Waiting 3s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 6s for retry backoff ■■■■■■                          
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 9s for retry backoff ■■■■■                           
-#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
-#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 18s for retry backoff ■■■■                            
-#> Waiting 18s for retry backoff ■■■■■■■■■                       
-#> Waiting 18s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 18s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 18s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
-#> Waiting 18s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 18s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 38s for retry backoff ■■■                             
-#> Waiting 38s for retry backoff ■■■■■                           
-#> Waiting 38s for retry backoff ■■■■■■■                         
-#> Waiting 38s for retry backoff ■■■■■■■■■■                      
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:41:39.630361: Invalid arguments or no adjusted game preview data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> list()
+#> $game
+#> ── Adjusted game preview data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:45 UTC
+#> # A tibble: 1 × 30
+#>     game_id season  week season_type status    status_checked_at      start_date
+#>       <int>  <int> <int> <chr>       <chr>     <chr>                  <chr>     
+#> 1 401114233   2019     1 regular     completed 2026-11-09T18:39:44.5… 2019-08-3…
+#> # ℹ 23 more variables: start_time_tbd <lgl>, neutral_site <lgl>,
+#> #   conference_game <lgl>, home_team_id <int>, home_team_name <chr>,
+#> #   home_team_conference <chr>, home_team_conference_abbreviation <chr>,
+#> #   home_team_classification <chr>, home_team_points <int>, away_team_id <int>,
+#> #   away_team_name <chr>, away_team_conference <chr>,
+#> #   away_team_conference_abbreviation <chr>, away_team_classification <chr>,
+#> #   away_team_points <int>, venue_id <int>, venue_name <chr>, …
+#> 
+#> $team_metrics
+#> ── Adjusted game preview data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:45 UTC
+#> # A tibble: 0 × 0
+#> 
+#> $passing
+#> ── Adjusted game preview data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:45 UTC
+#> # A tibble: 0 × 0
+#> 
+#> $rushing
+#> ── Adjusted game preview data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:45 UTC
+#> # A tibble: 0 × 0
+#> 
+#> $kicking
+#> ── Adjusted game preview data from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:45 UTC
+#> # A tibble: 0 × 0
+#> 
 # }
 ```

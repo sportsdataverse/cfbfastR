@@ -234,33 +234,28 @@ variables, so a caller can override the shared setting for one endpoint.</p></dd
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_coaches_seasons</span><span class="op">(</span>team <span class="op">=</span> <span class="st">"Georgia"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 3s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■                      </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 3s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 3s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 7s for retry backoff <span style="color: #00BB00;">■■■■■■■■■                       </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 7s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■         </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 7s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 19s for retry backoff <span style="color: #00BB00;">■■                              </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 19s for retry backoff <span style="color: #00BB00;">■■■■■■■                         </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 19s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■                    </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 19s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■               </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 19s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 19s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■      </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 19s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 32s for retry backoff <span style="color: #00BB00;">■■                              </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 32s for retry backoff <span style="color: #00BB00;">■■■■                            </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 32s for retry backoff <span style="color: #00BB00;">■■■■■■■                         </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 32s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■                      </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 32s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 32s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■                 </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 32s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■              </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 32s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 32s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■        </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 32s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■     </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 32s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 32s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-11-09 16:23:37.999116: Invalid arguments or no coaches data available! The CFBD API returned HTTP 429 (Too Many Requests)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> data frame with 0 columns and 0 rows</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Get coaching seasons from CollegeFootballData.com ───────── <span style="font-style: italic;">cfbfastR 3.1.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-09 18:39:32 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 123 × 68</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     year games  wins losses  ties win_percentage preseason_rank postseason_rank</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">1</span>902     7     4      2     1          0.643             <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">1</span>903     7     3      4     0          0.429             <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">1</span>904     6     1      5     0          0.167             <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">1</span>905     6     1      5     0          0.167             <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">1</span>906     7     2      4     1          0.357             <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">1</span>907     8     4      3     1          0.563             <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">1</span>908     8     5      2     1          0.688             <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">1</span>909     7     1      4     2          0.286             <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">1</span>910     9     6      2     1          0.722             <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">1</span>911     9     7      1     1          0.833             <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 113 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 60 more variables: srs &lt;dbl&gt;, sp_overall &lt;dbl&gt;, sp_offense &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sp_defense &lt;dbl&gt;, attribution_complete &lt;lgl&gt;, coach_id &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   coach_first_name &lt;chr&gt;, coach_last_name &lt;chr&gt;, team_id &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   team_school &lt;chr&gt;, team_conference &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   team_metrics_sp_special_teams &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   team_metrics_strength_of_schedule &lt;dbl&gt;, …</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

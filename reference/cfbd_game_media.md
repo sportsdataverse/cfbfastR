@@ -94,31 +94,22 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_game_media(2019, week = 4, conference = "ACC"))
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 6s for retry backoff ■■■■■■                          
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 10s for retry backoff ■■■■                            
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■                   
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 22s for retry backoff ■■                              
-#> Waiting 22s for retry backoff ■■■■■■                          
-#> Waiting 22s for retry backoff ■■■■■■■■■■                      
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■              
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 17s for retry backoff ■■■■■                           
-#> Waiting 17s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■■                
-#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
-#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:37:08.821885: Invalid arguments or no game media data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Game media data from CollegeFootballData.com ────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:43 UTC
+#> # A tibble: 10 × 13
+#>      game_id season  week season_type start_time     is_start_time_tbd home_team
+#>        <int>  <int> <int> <chr>       <chr>          <lgl>             <chr>    
+#>  1 401112462   2019     4 regular     2019-09-21T16… FALSE             Syracuse 
+#>  2 401112464   2019     4 regular     2019-09-21T16… FALSE             Wake For…
+#>  3 401112265   2019     4 regular     2019-09-21T16… FALSE             Rutgers  
+#>  4 401112461   2019     4 regular     2019-09-21T19… FALSE             Pittsbur…
+#>  5 401112459   2019     4 regular     2019-09-21T19… FALSE             North Ca…
+#>  6 401112457   2019     4 regular     2019-09-21T19… FALSE             Florida …
+#>  7 401112458   2019     4 regular     2019-09-21T20… FALSE             Miami    
+#>  8 401112460   2019     4 regular     2019-09-21T23… FALSE             NC State 
+#>  9 401112463   2019     4 regular     2019-09-21T23… FALSE             Virginia 
+#> 10 401112456   2019     4 regular     2019-09-21T23… FALSE             Clemson  
+#> # ℹ 6 more variables: home_conference <chr>, away_team <chr>,
+#> #   away_conference <chr>, tv <list>, radio <lgl>, web <list>
 # }
 ```

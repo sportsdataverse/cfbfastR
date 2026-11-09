@@ -39,35 +39,21 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_fg_ep())
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 11s for retry backoff ■■■■■■■■                        
-#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■                
-#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 10s for retry backoff ■■■■                            
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 44s for retry backoff ■■                              
-#> Waiting 44s for retry backoff ■■■                             
-#> Waiting 44s for retry backoff ■■■■■                           
-#> Waiting 44s for retry backoff ■■■■■■■                         
-#> Waiting 44s for retry backoff ■■■■■■■■■                       
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■                
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■              
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:50:43.869653: Invalid arguments or no CFBData metrics FG expected points data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── FG expected points data from CollegeFootballData.com ────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:54 UTC
+#> # A tibble: 100 × 3
+#>    yards_to_goal distance expected_points
+#>            <int>    <int>           <dbl>
+#>  1             0       17            2.85
+#>  2             1       18            2.84
+#>  3             2       19            2.82
+#>  4             3       20            2.81
+#>  5             4       21            2.79
+#>  6             5       22            2.78
+#>  7             6       23            2.75
+#>  8             7       24            2.73
+#>  9             8       25            2.71
+#> 10             9       26            2.68
+#> # ℹ 90 more rows
 # }
 ```

@@ -114,33 +114,11 @@ lists every function in this family.
 
 ``` r
 # \donttest{
-  try(espn_cfb_game_team_roster(game_id = 401628339))
-#> ── Game team roster data from ESPN ─────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:40 UTC
-#> # A tibble: 242 × 30
-#>    game_id   team_id team_name team_abbreviation team_location team_display_name
-#>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
-#>  1 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  2 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  3 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  4 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  5 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  6 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  7 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  8 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  9 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> 10 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> # ℹ 232 more rows
-#> # ℹ 24 more variables: team_short_display_name <chr>, team_nickname <chr>,
-#> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
-#> #   team_logo_dark_href <chr>, home_away <chr>, athlete_id <chr>,
-#> #   player_id <chr>, display_name <chr>, jersey <chr>, position_id <chr>,
-#> #   period <int>, starter <lgl>, active <lgl>, did_not_play <lgl>, valid <lgl>,
-#> #   athlete_ref <chr>, position_ref <chr>, position_name <chr>, …
+  # position_detail = FALSE skips the position catalog (about 75 requests).
   try(espn_cfb_game_team_roster(game_id = 401628339,
                                 position_detail = FALSE))
 #> ── Game team roster data from ESPN ─────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:41 UTC
+#> ℹ Data updated: 2026-11-09 18:42:36 UTC
 #> # A tibble: 242 × 25
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -161,27 +139,5 @@ lists every function in this family.
 #> #   player_id <chr>, display_name <chr>, jersey <chr>, position_id <chr>,
 #> #   period <int>, starter <lgl>, active <lgl>, did_not_play <lgl>, valid <lgl>,
 #> #   athlete_ref <chr>, position_ref <chr>
-  try(espn_cfb_game_team_roster(game_id = 401628339,
-                                team_detail = FALSE))
-#> ── Game team roster data from ESPN ─────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:41 UTC
-#> # A tibble: 242 × 20
-#>    game_id   team_id home_away athlete_id player_id display_name  jersey
-#>    <chr>     <chr>   <chr>     <chr>      <chr>     <chr>         <chr> 
-#>  1 401628339 61      home      4369935    4369935   I. Reeves     37    
-#>  2 401628339 61      home      4427080    4427080   X. Truss      73    
-#>  3 401628339 61      home      4429035    4429035   T. Ratledge   69    
-#>  4 401628339 61      home      4429105    4429105   A. Smith      11    
-#>  5 401628339 61      home      4429136    4429136   W. Brinson    97    
-#>  6 401628339 61      home      4429142    4429142   N. Stackhouse 78    
-#>  7 401628339 61      home      4429736    4429736   C. Ham        95    
-#>  8 401628339 61      home      4430841    4430841   C. Beck       15    
-#>  9 401628339 61      home      4431520    4431520   C. Chambliss  32    
-#> 10 401628339 61      home      4431573    4431573   S. Mondon Jr. 2     
-#> # ℹ 232 more rows
-#> # ℹ 13 more variables: position_id <chr>, period <int>, starter <lgl>,
-#> #   active <lgl>, did_not_play <lgl>, valid <lgl>, athlete_ref <chr>,
-#> #   position_ref <chr>, position_name <chr>, position_display_name <chr>,
-#> #   position_abbreviation <chr>, position_leaf <lgl>, position_parent_id <chr>
 # }
 ```

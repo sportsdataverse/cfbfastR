@@ -101,7 +101,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_game_team_records(game_id = 401628339))
 #> ── Game team records data from ESPN ────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:39 UTC
+#> ℹ Data updated: 2026-11-09 18:42:35 UTC
 #> # A tibble: 8 × 24
 #>   game_id   team_id team_name  team_abbreviation team_location team_display_name
 #>   <chr>     <chr>   <chr>      <chr>             <chr>         <chr>            
@@ -121,7 +121,7 @@ lists every function in this family.
 #> #   value <dbl>, record_ref <chr>
   try(espn_cfb_game_team_records(game_id = 401628339, detail = TRUE))
 #> ── Game team records data from ESPN ────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:40 UTC
+#> ℹ Data updated: 2026-11-09 18:42:35 UTC
 #> # A tibble: 78 × 23
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -145,7 +145,7 @@ lists every function in this family.
   try(espn_cfb_game_team_records(game_id = 401628339,
                                  team_detail = FALSE))
 #> ── Game team records data from ESPN ────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:40 UTC
+#> ℹ Data updated: 2026-11-09 18:42:35 UTC
 #> # A tibble: 8 × 14
 #>   game_id   team_id home_away record_id name      abbreviation display_name     
 #>   <chr>     <chr>   <chr>     <chr>     <chr>     <chr>        <chr>            

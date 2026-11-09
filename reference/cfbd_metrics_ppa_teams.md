@@ -92,35 +92,17 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_ppa_teams(year = 2019, team = "TCU"))
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■                   
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 6s for retry backoff ■■■■■■■■■                       
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 11s for retry backoff ■■■■■■■                         
-#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■                
-#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 21s for retry backoff ■■                              
-#> Waiting 21s for retry backoff ■■■■■■                          
-#> Waiting 21s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
-#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
-#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 30s for retry backoff ■■                              
-#> Waiting 30s for retry backoff ■■■■■                           
-#> Waiting 30s for retry backoff ■■■■■■■■                        
-#> Waiting 30s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 30s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 30s for retry backoff ■■■■■■■■■■■■■■■■■■              
-#> Waiting 30s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 30s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 30s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 30s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 30s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:57:14.328452: Invalid arguments or no CFBData metrics PPA teams data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Team PPA data from CollegeFootballData.com ──────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:58 UTC
+#> # A tibble: 1 × 21
+#>   season conference team  off_overall off_passing off_rushing off_first_down
+#>    <int> <chr>      <chr>       <dbl>       <dbl>       <dbl>          <dbl>
+#> 1   2019 Big 12     TCU          0.08       -0.03        0.21          -0.02
+#> # ℹ 14 more variables: off_second_down <dbl>, off_third_down <dbl>,
+#> #   off_cumulative_total <dbl>, off_cumulative_passing <dbl>,
+#> #   off_cumulative_rushing <dbl>, def_overall <dbl>, def_passing <dbl>,
+#> #   def_rushing <dbl>, def_first_down <dbl>, def_second_down <dbl>,
+#> #   def_third_down <dbl>, def_cumulative_total <dbl>,
+#> #   def_cumulative_passing <dbl>, def_cumulative_rushing <dbl>
 # }
 ```

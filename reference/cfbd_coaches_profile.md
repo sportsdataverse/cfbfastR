@@ -60,34 +60,16 @@ Other CFBD Coaches Functions:
 ``` r
 # \donttest{
   try(cfbd_coaches_profile(coach_id = 1))
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 5s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 17s for retry backoff ■■■                             
-#> Waiting 17s for retry backoff ■■■■■■■■                        
-#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
-#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 39s for retry backoff ■■■                             
-#> Waiting 39s for retry backoff ■■■■■                           
-#> Waiting 39s for retry backoff ■■■■■■■■                        
-#> Waiting 39s for retry backoff ■■■■■■■■■■                      
-#> Waiting 39s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
-#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 39s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:22:36.424872: Invalid arguments or no coaches data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Get a coach profile from CollegeFootballData.com ────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:31 UTC
+#> # A tibble: 1 × 20
+#>      id first_name last_name display_name  current_team birth_date alma_mater_id
+#>   <int> <chr>      <chr>     <chr>         <lgl>        <chr>              <int>
+#> 1     1 Steve      Addazio   Steve Addazio NA           1959-06-01          2115
+#> # ℹ 13 more variables: alma_mater_school <chr>, graduation_year <int>,
+#> #   wikidata_id <chr>, hall_of_fame_year <lgl>, career_seasons <int>,
+#> #   career_teams <int>, career_first_year <int>, career_last_year <int>,
+#> #   career_games <int>, career_wins <int>, career_losses <int>,
+#> #   career_ties <int>, career_win_percentage <dbl>
 # }
 ```

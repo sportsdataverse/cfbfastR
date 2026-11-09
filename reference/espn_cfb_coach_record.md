@@ -71,7 +71,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_coach_record(coach_id = 5120149, year = 2024))
 #> ── Coach season record from ESPN ───────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:21 UTC
+#> ℹ Data updated: 2026-11-09 18:42:21 UTC
 #> # A tibble: 5 × 15
 #>   coach_id season season_type record_id record_name   record_type record_summary
 #>   <chr>     <int>       <int> <chr>     <chr>         <chr>       <chr>         

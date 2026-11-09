@@ -80,7 +80,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_game_team_linescores(game_id = 401628339))
 #> ── Game team linescores data from ESPN ─────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:39 UTC
+#> ℹ Data updated: 2026-11-09 18:42:34 UTC
 #> # A tibble: 8 × 20
 #>   game_id   team_id team_name  team_abbreviation team_location team_display_name
 #>   <chr>     <chr>   <chr>      <chr>             <chr>         <chr>            
@@ -100,7 +100,7 @@ lists every function in this family.
   try(espn_cfb_game_team_linescores(game_id = 401628339,
                                     team_detail = FALSE))
 #> ── Game team linescores data from ESPN ─────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:39 UTC
+#> ℹ Data updated: 2026-11-09 18:42:34 UTC
 #> # A tibble: 8 × 10
 #>   game_id   team_id home_away period value display_value source_id source_state
 #>   <chr>     <chr>   <chr>      <int> <dbl> <chr>         <chr>     <chr>       

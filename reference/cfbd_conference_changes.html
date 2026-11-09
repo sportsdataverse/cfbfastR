@@ -210,29 +210,26 @@ variables, so a caller can override the shared setting for one endpoint.</p></dd
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_conference_changes</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2024</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 3s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■                      </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 3s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 4s for retry backoff <span style="color: #00BB00;">■■■■■■■■■                       </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 4s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 8s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■                    </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 8s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■        </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 8s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 14s for retry backoff <span style="color: #00BB00;">■■■                             </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 14s for retry backoff <span style="color: #00BB00;">■■■■■■■                         </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 14s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■                  </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 14s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 14s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■    </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 14s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 22s for retry backoff <span style="color: #00BB00;">■■■                             </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 22s for retry backoff <span style="color: #00BB00;">■■■■■■■                         </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 22s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■                    </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 22s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 22s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■            </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 22s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■        </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 22s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■    </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Waiting 22s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-11-09 16:26:48.193906: Invalid arguments or no conferences data available! The CFBD API returned HTTP 429 (Too Many Requests)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> data frame with 0 columns and 0 rows</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Get conference realignment changes from CollegeFootballData.com ─────────────</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-09 18:39:34 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 36 × 11</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    team_id team        from_conference_id from_conference from_conference_abbr…¹</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>      12 Arizona                      9 Pac-12          PAC                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>       9 Arizona St…                  9 Pac-12          PAC                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     349 Army                        18 FBS Independen… Ind                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>    <span style="text-decoration: underline;">2</span>045 Austin                     100 American South… <span style="color: #BB0000;">NA</span>                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">124</span>180 Bluefield …                112 Independent DII <span style="color: #BB0000;">NA</span>                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>    <span style="text-decoration: underline;">2</span>803 Bryant                     179 Big South-OVC   BSOVC                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>      25 California                   9 Pac-12          PAC                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>      38 Colorado                     9 Pac-12          PAC                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">101</span>784 Erskine                    139 South Atlantic  <span style="color: #BB0000;">NA</span>                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">125</span>974 Hilbert                    126 North Coast     <span style="color: #BB0000;">NA</span>                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 26 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​from_conference_abbreviation</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 6 more variables: from_classification &lt;chr&gt;, to_conference_id &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   to_conference &lt;chr&gt;, to_conference_abbreviation &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   to_classification &lt;chr&gt;, effective_year &lt;int&gt;</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

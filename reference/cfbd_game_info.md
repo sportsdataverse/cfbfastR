@@ -157,32 +157,22 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_game_info(2018, week = 7, conference = "Ind"))
-#> Waiting 3s for retry backoff ■■■■■■■■■■                      
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 8s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 8s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 8s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 19s for retry backoff ■■■                             
-#> Waiting 19s for retry backoff ■■■■■■■■                        
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■■                   
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 33s for retry backoff ■■                              
-#> Waiting 33s for retry backoff ■■■■                            
-#> Waiting 33s for retry backoff ■■■■■■■                         
-#> Waiting 33s for retry backoff ■■■■■■■■■■                      
-#> Waiting 33s for retry backoff ■■■■■■■■■■■■■                   
-#> Waiting 33s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 33s for retry backoff ■■■■■■■■■■■■■■■■■■              
-#> Waiting 33s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 33s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 33s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 33s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 33s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:36:11.473771: Invalid arguments or no game info data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Game information from CollegeFootballData.com ───────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:42 UTC
+#> # A tibble: 5 × 32
+#>     game_id season  week season_type start_date         start_time_tbd completed
+#>       <int>  <int> <int> <chr>       <chr>              <lgl>          <lgl>    
+#> 1 401013452   2018     7 regular     2018-10-13T18:00:… FALSE          TRUE     
+#> 2 401013148   2018     7 regular     2018-10-13T18:30:… FALSE          TRUE     
+#> 3 401013370   2018     7 regular     2018-10-13T19:30:… FALSE          TRUE     
+#> 4 401013442   2018     7 regular     2018-10-13T21:00:… FALSE          TRUE     
+#> 5 401016408   2018     7 regular     2018-10-14T02:15:… FALSE          TRUE     
+#> # ℹ 25 more variables: neutral_site <lgl>, conference_game <lgl>,
+#> #   attendance <int>, venue_id <int>, venue <chr>, home_id <int>,
+#> #   home_team <chr>, home_division <chr>, home_conference <chr>,
+#> #   home_points <int>, home_post_win_prob <dbl>, home_pregame_elo <int>,
+#> #   home_postgame_elo <int>, away_id <int>, away_team <chr>,
+#> #   away_division <chr>, away_conference <chr>, away_points <int>,
+#> #   away_post_win_prob <dbl>, away_pregame_elo <int>, …
 # }
 ```

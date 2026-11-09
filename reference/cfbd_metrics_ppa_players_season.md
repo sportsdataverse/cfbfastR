@@ -113,31 +113,36 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_ppa_players_season(year = 2019, team = "TCU"))
-#> Waiting 6s for retry backoff ■■■■■■                          
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 7s for retry backoff ■■■■■                           
-#> Waiting 7s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 7s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
-#> Waiting 7s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 24s for retry backoff ■■■■                            
-#> Waiting 24s for retry backoff ■■■■■■■■                        
-#> Waiting 24s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 24s for retry backoff ■■■■■■■■■■■■■■■■                
-#> Waiting 24s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 24s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
-#> Waiting 24s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 24s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 23s for retry backoff ■■                              
-#> Waiting 23s for retry backoff ■■■■■                           
-#> Waiting 23s for retry backoff ■■■■■■■■■                       
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■                   
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:54:17.789329: Invalid arguments or no CFBData metrics PPA season-level players data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Player season PPA data from CollegeFootballData.com ─────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:56 UTC
+#> # A tibble: 19 × 23
+#>    season athlete_id name     position team  conference avg_PPA_all avg_PPA_pass
+#>     <int> <chr>      <chr>    <chr>    <chr> <chr>            <dbl>        <dbl>
+#>  1   2019 3676818    TreVont… WR       TCU   B12              0.117        0.462
+#>  2   2019 3886634    Alex De… QB       TCU   B12             -0.023       -0.124
+#>  3   2019 4038533    Darius … RB       TCU   B12              0.076       -0.144
+#>  4   2019 4038536    Dylan T… WR       TCU   B12              1.18         1.18 
+#>  5   2019 4038539    Sewo Ol… RB       TCU   B12              0.157       -0.104
+#>  6   2019 4038556    Artayvi… TE       TCU   B12              0.506        0.506
+#>  7   2019 4241795    Al'Dont… WR       TCU   B12              3.18         3.18 
+#>  8   2019 4241802    Jalen R… WR       TCU   B12              0.299        0.347
+#>  9   2019 4259331    Carter … TE       TCU   B12              0.808        0.808
+#> 10   2019 4362430    Taye Ba… WR       TCU   B12              0.591        0.55 
+#> 11   2019 4362442    Pro Wel… TE       TCU   B12              0.642        0.642
+#> 12   2019 4362477    Derius … WR       TCU   B12              0.243        0.296
+#> 13   2019 4362478    Emari D… RB       TCU   B12             -0.149       NA    
+#> 14   2019 4362483    Tevaila… WR       TCU   B12              0.385        0.385
+#> 15   2019 4362489    John St… WR       TCU   B12              0.421        0.726
+#> 16   2019 4426635    Darwin … RB       TCU   B12              0.166       -0.881
+#> 17   2019 4426965    Blair C… WR       TCU   B12              1.07         1.07 
+#> 18   2019 4427105    Max Dug… QB       TCU   B12              0.176        0.092
+#> 19   2019 4427217    Daimarq… RB       TCU   B12              0.365       NA    
+#> # ℹ 15 more variables: avg_PPA_rush <dbl>, avg_PPA_first_down <dbl>,
+#> #   avg_PPA_second_down <dbl>, avg_PPA_third_down <dbl>,
+#> #   avg_PPA_standard_downs <dbl>, avg_PPA_passing_downs <dbl>,
+#> #   total_PPA_all <dbl>, total_PPA_pass <dbl>, total_PPA_rush <dbl>,
+#> #   total_PPA_first_down <dbl>, total_PPA_second_down <dbl>,
+#> #   total_PPA_third_down <dbl>, total_PPA_standard_downs <dbl>,
+#> #   total_PPA_passing_downs <dbl>, countable_plays <int>
 # }
 ```

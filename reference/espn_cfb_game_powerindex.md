@@ -83,7 +83,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_game_powerindex(game_id = 401628339))
 #> ── Game power index data from ESPN ─────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:35 UTC
+#> ℹ Data updated: 2026-11-09 18:42:30 UTC
 #> # A tibble: 8 × 22
 #>   game_id   season team_id team_name     team_abbreviation team_location 
 #>   <chr>      <int> <chr>   <chr>         <chr>             <chr>         
@@ -103,7 +103,7 @@ lists every function in this family.
 #> #   team_ref <chr>
   try(espn_cfb_game_powerindex(game_id = 401628339, team_detail = FALSE))
 #> ── Game power index data from ESPN ─────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:35 UTC
+#> ℹ Data updated: 2026-11-09 18:42:30 UTC
 #> # A tibble: 8 × 12
 #>   game_id  season team_id stat_name abbreviation display_name short_display_name
 #>   <chr>     <int> <chr>   <chr>     <chr>        <chr>        <chr>             

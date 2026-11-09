@@ -79,37 +79,8 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_wepa_players_rushing(year = 2019, team = "TCU"))
-#> Waiting 5s for retry backoff ■■■■■■■                         
-#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 9s for retry backoff ■■■■                            
-#> Waiting 9s for retry backoff ■■■■■■■■■■■■■                   
-#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
-#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 15s for retry backoff ■■■                             
-#> Waiting 15s for retry backoff ■■■■■■■■■                       
-#> Waiting 15s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 15s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 15s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 15s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 44s for retry backoff ■■                              
-#> Waiting 44s for retry backoff ■■■■                            
-#> Waiting 44s for retry backoff ■■■■■■                          
-#> Waiting 44s for retry backoff ■■■■■■■■                        
-#> Waiting 44s for retry backoff ■■■■■■■■■■                      
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■                
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■              
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
 #> ── Opponent-adjusted players rushing PPA data from CollegeFootballData.com ─────
-#> ℹ Data updated: 2026-11-09 17:00:51 UTC
+#> ℹ Data updated: 2026-11-09 18:39:59 UTC
 #> # A tibble: 3 × 8
 #>    year athlete_id athlete_name    position team  conference  wepa plays
 #>   <int> <chr>      <chr>           <chr>    <chr> <chr>      <dbl> <int>

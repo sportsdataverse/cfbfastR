@@ -79,35 +79,11 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_wepa_players_passing(year = 2019, team = "TCU"))
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 6s for retry backoff ■■■■■■■                         
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 12s for retry backoff ■■■■■                           
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 12s for retry backoff ■■■■■                           
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■                   
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 38s for retry backoff ■■■                             
-#> Waiting 38s for retry backoff ■■■■■                           
-#> Waiting 38s for retry backoff ■■■■■■■                         
-#> Waiting 38s for retry backoff ■■■■■■■■■■                      
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 38s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:59:24.069474: Invalid arguments or no opponent-adjusted players passing PPA data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Opponent-adjusted players passing PPA data from CollegeFootballData.com ─────
+#> ℹ Data updated: 2026-11-09 18:39:58 UTC
+#> # A tibble: 1 × 8
+#>    year athlete_id athlete_name position team  conference  wepa plays
+#>   <int> <chr>      <chr>        <chr>    <chr> <chr>      <dbl> <int>
+#> 1  2019 4427105    Max Duggan   QB       TCU   Big 12      0.16   355
 # }
 ```

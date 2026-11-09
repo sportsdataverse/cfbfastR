@@ -97,7 +97,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_team_leaders(team_id = 61, year = 2024))
 #> ── Team statistical leaders from ESPN ──────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:04:09 UTC
+#> ℹ Data updated: 2026-11-09 18:42:58 UTC
 #> # A tibble: 176 × 20
 #>    season season_type team_id team_name team_abbreviation team_location
 #>     <int>       <int> <chr>   <chr>     <chr>             <chr>        
@@ -120,7 +120,7 @@ lists every function in this family.
   try(espn_cfb_team_leaders(team_id = 61, year = 2024,
                             team_detail = FALSE))
 #> ── Team statistical leaders from ESPN ──────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:04:09 UTC
+#> ℹ Data updated: 2026-11-09 18:42:58 UTC
 #> # A tibble: 176 × 10
 #>    season season_type team_id category_name category_display leader_rank
 #>     <int>       <int> <chr>   <chr>         <chr>                  <int>

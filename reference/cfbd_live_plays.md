@@ -138,32 +138,27 @@ Other CFBD PBP:
 ``` r
 # \donttest{
   try(cfbd_live_plays(game_id=401520182))
-#> Waiting 2s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 2s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 10s for retry backoff ■■■■■■■■■■                      
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 15s for retry backoff ■■■■■■                          
-#> Waiting 15s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 15s for retry backoff ■■■■■■■■■■■■■■■■■■              
-#> Waiting 15s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 15s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 15s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 28s for retry backoff ■■■■                            
-#> Waiting 28s for retry backoff ■■■■■■■                         
-#> Waiting 28s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 28s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 28s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 28s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 28s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 28s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 28s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 28s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:49:34.23184: Invalid arguments or no plays data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Live play-by-play data from CollegeFootballData.com ─────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:53 UTC
+#> # A tibble: 164 × 98
+#>      game_id home_team_id home_team    away_team_id away_team play_id home_score
+#>        <int>        <int> <chr>               <int> <chr>     <chr>        <int>
+#>  1 401520182           52 Florida Sta…           99 LSU       401520…          0
+#>  2 401520182           52 Florida Sta…           99 LSU       401520…          0
+#>  3 401520182           52 Florida Sta…           99 LSU       401520…          0
+#>  4 401520182           52 Florida Sta…           99 LSU       401520…          0
+#>  5 401520182           52 Florida Sta…           99 LSU       401520…          0
+#>  6 401520182           52 Florida Sta…           99 LSU       401520…          0
+#>  7 401520182           52 Florida Sta…           99 LSU       401520…          0
+#>  8 401520182           52 Florida Sta…           99 LSU       401520…          0
+#>  9 401520182           52 Florida Sta…           99 LSU       401520…          0
+#> 10 401520182           52 Florida Sta…           99 LSU       401520…          0
+#> # ℹ 154 more rows
+#> # ℹ 91 more variables: away_score <int>, period <int>, clock <chr>,
+#> #   wall_clock <chr>, offense_team_id <int>, offense_team <chr>, down <int>,
+#> #   distance <int>, yards_to_goal <int>, yards_gained <int>,
+#> #   play_type_id <int>, play_type <chr>, ppa <dbl>, garbage_time <lgl>,
+#> #   success <lgl>, rush_pass <chr>, down_type <chr>, play_text <chr>,
+#> #   drive_id <chr>, drive_offense_id <int>, drive_offense_team <chr>, …
 # }
 ```

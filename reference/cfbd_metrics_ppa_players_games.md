@@ -103,35 +103,19 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_ppa_players_games(year = 2019, week = 3, team = "TCU"))
-#> Waiting 6s for retry backoff ■■■■■■                          
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 11s for retry backoff ■■■■■■■■■                       
-#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
-#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 10s for retry backoff ■■■■                            
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 45s for retry backoff ■■                              
-#> Waiting 45s for retry backoff ■■■                             
-#> Waiting 45s for retry backoff ■■■■■                           
-#> Waiting 45s for retry backoff ■■■■■■■                         
-#> Waiting 45s for retry backoff ■■■■■■■■■                       
-#> Waiting 45s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 45s for retry backoff ■■■■■■■■■■■■■                   
-#> Waiting 45s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 45s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 45s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 45s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 45s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
-#> Waiting 45s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
-#> Waiting 45s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 45s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 45s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 45s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:53:16.257282: Invalid arguments or no CFBData metrics PPA game-level players data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Player PPA data from CollegeFootballData.com ────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:55 UTC
+#> # A tibble: 8 × 11
+#>   season  week season_type athlete_id name   position team  opponent avg_PPA_all
+#>    <int> <int> <chr>       <chr>      <chr>  <chr>    <chr> <chr>          <dbl>
+#> 1   2019     3 regular     3886634    Alex … QB       TCU   Purdue        -0.861
+#> 2   2019     3 regular     4038533    Dariu… RB       TCU   Purdue         0.629
+#> 3   2019     3 regular     4038539    Sewo … RB       TCU   Purdue         0.374
+#> 4   2019     3 regular     4241795    Al'Do… WR       TCU   Purdue         3.18 
+#> 5   2019     3 regular     4241802    Jalen… WR       TCU   Purdue         0.008
+#> 6   2019     3 regular     4362442    Pro W… TE       TCU   Purdue         0.129
+#> 7   2019     3 regular     4362478    Emari… RB       TCU   Purdue        -0.08 
+#> 8   2019     3 regular     4427105    Max D… QB       TCU   Purdue        -0.184
+#> # ℹ 2 more variables: avg_PPA_pass <dbl>, avg_PPA_rush <dbl>
 # }
 ```

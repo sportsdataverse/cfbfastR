@@ -102,28 +102,23 @@ lists every function in this family.
 
 ``` r
 # \donttest{
-  try(espn_cfb_recruits(year = 2024, max_results = 25))
+  try(espn_cfb_recruits(year = 2024, max_results = 5))
 #> ── Recruiting class data from ESPN ─────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:04:01 UTC
-#> # A tibble: 25 × 31
-#>    season recruit_id recruiting_class athlete_id alternate_athlete_id first_name
-#>     <dbl> <chr>                 <int> <chr>      <chr>                <chr>     
-#>  1   2024 255473                 2024 255473     5146775              David     
-#>  2   2024 254466                 2024 254466     5138455              Jide      
-#>  3   2024 257502                 2024 257502     NA                   Papa      
-#>  4   2024 258479                 2024 258479     NA                   Na'eem    
-#>  5   2024 257649                 2024 257649     NA                   Omari     
-#>  6   2024 254482                 2024 254482     5138702              Adham     
-#>  7   2024 250916                 2024 250916     5079289              Tawaski   
-#>  8   2024 257098                 2024 257098     5173623              Frank     
-#>  9   2024 258339                 2024 258339     NA                   Collins   
-#> 10   2024 255259                 2024 255259     5145820              Cooper    
-#> # ℹ 15 more rows
+#> ℹ Data updated: 2026-11-09 18:42:49 UTC
+#> # A tibble: 5 × 31
+#>   season recruit_id recruiting_class athlete_id alternate_athlete_id first_name
+#>    <dbl> <chr>                 <int> <chr>      <chr>                <chr>     
+#> 1   2024 255473                 2024 255473     5146775              David     
+#> 2   2024 254466                 2024 254466     5138455              Jide      
+#> 3   2024 257502                 2024 257502     NA                   Papa      
+#> 4   2024 258479                 2024 258479     NA                   Na'eem    
+#> 5   2024 257649                 2024 257649     NA                   Omari     
 #> # ℹ 25 more variables: last_name <chr>, full_name <chr>, display_name <chr>,
 #> #   short_name <chr>, position_id <chr>, position_abbreviation <chr>,
 #> #   weight <dbl>, height <dbl>, grade <dbl>, grade_display_value <chr>,
 #> #   overall_rank <int>, position_rank <int>, state_rank <int>,
 #> #   region_rank <int>, status_id <chr>, status <chr>, committed_team_id <chr>,
-#> #   hometown_city <chr>, hometown_state <chr>, …
+#> #   hometown_city <chr>, hometown_state <chr>,
+#> #   hometown_state_abbreviation <chr>, high_school_id <chr>, …
 # }
 ```

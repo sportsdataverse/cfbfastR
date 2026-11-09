@@ -137,31 +137,27 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_game_schedule(year = 2025, season_type = "regular", week = 1))
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 10s for retry backoff ■■■■■■                          
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 12s for retry backoff ■■■                             
-#> Waiting 12s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 31s for retry backoff ■■                              
-#> Waiting 31s for retry backoff ■■■■■                           
-#> Waiting 31s for retry backoff ■■■■■■■■                        
-#> Waiting 31s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 31s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 31s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 31s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
-#> Waiting 31s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
-#> Waiting 31s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
-#> Waiting 31s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
-#> Waiting 31s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:45:00.315213: Invalid arguments or no game schedule data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Game schedule data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:46 UTC
+#> # A tibble: 96 × 43
+#>      game_id season  week season_type status    status_checked_at     start_date
+#>        <int>  <int> <int> <chr>       <chr>     <chr>                 <chr>     
+#>  1 401756846   2025     1 regular     completed 2026-11-09T18:39:46.… 2025-08-2…
+#>  2 401760371   2025     1 regular     completed 2026-11-09T18:39:46.… 2025-08-2…
+#>  3 401756847   2025     1 regular     completed 2026-11-09T18:39:46.… 2025-08-2…
+#>  4 401757218   2025     1 regular     completed 2026-11-09T18:39:46.… 2025-08-2…
+#>  5 401754516   2025     1 regular     completed 2026-11-09T18:39:46.… 2025-08-2…
+#>  6 401762522   2025     1 regular     completed 2026-11-09T18:39:46.… 2025-08-2…
+#>  7 401752794   2025     1 regular     completed 2026-11-09T18:39:46.… 2025-08-2…
+#>  8 401762790   2025     1 regular     completed 2026-11-09T18:39:46.… 2025-08-2…
+#>  9 401754373   2025     1 regular     completed 2026-11-09T18:39:46.… 2025-08-2…
+#> 10 401756848   2025     1 regular     completed 2026-11-09T18:39:46.… 2025-08-2…
+#> # ℹ 86 more rows
+#> # ℹ 36 more variables: start_time_tbd <lgl>, neutral_site <lgl>,
+#> #   conference_game <lgl>, playoff <lgl>, watchability_score <lgl>,
+#> #   home_team_id <int>, home_team_name <chr>, home_team_conference <chr>,
+#> #   home_team_conference_abbreviation <chr>, home_team_classification <chr>,
+#> #   home_team_points <int>, away_team_id <int>, away_team_name <chr>,
+#> #   away_team_conference <chr>, away_team_conference_abbreviation <chr>, …
 # }
 ```

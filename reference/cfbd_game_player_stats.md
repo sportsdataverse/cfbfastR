@@ -154,71 +154,44 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_game_player_stats(year = 2020, week = 15, team = "Alabama"))
-#> Waiting 3s for retry backoff ■■■■■■■■■■                      
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 5s for retry backoff ■■■■■■■■                        
-#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 7s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 7s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 7s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 21s for retry backoff ■■■                             
-#> Waiting 21s for retry backoff ■■■■■■■                         
-#> Waiting 21s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■                
-#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
-#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 21s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 35s for retry backoff ■■■                             
-#> Waiting 35s for retry backoff ■■■■■                           
-#> Waiting 35s for retry backoff ■■■■■■■■                        
-#> Waiting 35s for retry backoff ■■■■■■■■■■                      
-#> Waiting 35s for retry backoff ■■■■■■■■■■■■■                   
-#> Waiting 35s for retry backoff ■■■■■■■■■■■■■■■■                
-#> Waiting 35s for retry backoff ■■■■■■■■■■■■■■■■■■              
-#> Waiting 35s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 35s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
-#> Waiting 35s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
-#> Waiting 35s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 35s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:38:18.52418: Invalid arguments or no game player stats data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Game player stats data from CollegeFootballData.com ─────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:43 UTC
+#> # A tibble: 48 × 60
+#>      game_id team     conference home_away team_points athlete_id athlete_name  
+#>        <int> <chr>    <chr>      <chr>           <int>      <int> <chr>         
+#>  1 401267164 Arkansas SEC        home                3    4034948 Feleipe Franks
+#>  2 401267164 Arkansas SEC        home                3    4567149 KJ Jefferson  
+#>  3 401267164 Arkansas SEC        home                3    4567156 Treylon Burks 
+#>  4 401267164 Arkansas SEC        home                3    4242881 Trelon Smith  
+#>  5 401267164 Arkansas SEC        home                3    4035576 T.J. Hammonds 
+#>  6 401267164 Arkansas SEC        home                3    4360174 Michael Woods 
+#>  7 401267164 Arkansas SEC        home                3    4079623 Blake Kern    
+#>  8 401267164 Arkansas SEC        home                3    4567151 Trey Knox     
+#>  9 401267164 Arkansas SEC        home                3    4372007 Nathan Parodi 
+#> 10 401267164 Arkansas SEC        home                3    4391568 M Phillips    
+#> # ℹ 38 more rows
+#> # ℹ 53 more variables: defensive_td <dbl>, defensive_qb_hur <dbl>,
+#> #   defensive_pd <dbl>, defensive_tfl <dbl>, defensive_sacks <dbl>,
+#> #   defensive_solo <dbl>, defensive_tot <dbl>, fumbles_rec <dbl>,
+#> #   fumbles_lost <dbl>, fumbles_fum <dbl>, punting_long <dbl>,
+#> #   punting_in_20 <dbl>, punting_tb <dbl>, punting_avg <dbl>,
+#> #   punting_yds <dbl>, punting_no <dbl>, kicking_pts <dbl>, …
 
   try(cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing"))
-#> Waiting 3s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 5s for retry backoff ■■■■■■■                         
-#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 7s for retry backoff ■■■■■■■■■■                      
-#> Waiting 7s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
-#> Waiting 7s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 23s for retry backoff ■■■                             
-#> Waiting 23s for retry backoff ■■■■■■■                         
-#> Waiting 23s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 44s for retry backoff ■■                              
-#> Waiting 44s for retry backoff ■■■                             
-#> Waiting 44s for retry backoff ■■■■■                           
-#> Waiting 44s for retry backoff ■■■■■■■                         
-#> Waiting 44s for retry backoff ■■■■■■■■■                       
-#> Waiting 44s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■                   
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 44s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:39:38.490798: Invalid arguments or no game player stats data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Game player stats data from CollegeFootballData.com ─────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:44 UTC
+#> # A tibble: 3 × 60
+#>     game_id team        conference home_away team_points athlete_id athlete_name
+#>       <int> <chr>       <chr>      <chr>           <int>      <int> <chr>       
+#> 1 332450221 Pittsburgh  ACC        home               13     514116 Tom Savage  
+#> 2 332450221 Florida St… ACC        away               41     530308 Jameis Wins…
+#> 3 332450221 Florida St… ACC        away               41     514124 Jake Coker  
+#> # ℹ 53 more variables: defensive_td <dbl>, defensive_qb_hur <dbl>,
+#> #   defensive_pd <dbl>, defensive_tfl <dbl>, defensive_sacks <dbl>,
+#> #   defensive_solo <dbl>, defensive_tot <dbl>, fumbles_rec <dbl>,
+#> #   fumbles_lost <dbl>, fumbles_fum <dbl>, punting_long <dbl>,
+#> #   punting_in_20 <dbl>, punting_tb <dbl>, punting_avg <dbl>,
+#> #   punting_yds <dbl>, punting_no <dbl>, kicking_pts <dbl>, kicking_long <dbl>,
+#> #   kicking_pct <dbl>, punt_returns_td <dbl>, punt_returns_long <dbl>, …
 # }
 ```

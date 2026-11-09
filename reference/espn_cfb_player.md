@@ -223,34 +223,21 @@ lists every function in this family.
 
 ``` r
 # \donttest{
-  try(espn_cfb_player(athlete_id = 102597, year = 2024))
+  # position_detail = FALSE skips the position catalog (about 75 requests).
+  try(espn_cfb_player(athlete_id = 102597, year = 2024,
+                      position_detail = FALSE))
 #> ── Player detail from ESPN ─────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:44 UTC
-#> # A tibble: 1 × 46
+#> ℹ Data updated: 2026-11-09 18:42:39 UTC
+#> # A tibble: 1 × 43
 #>   athlete_id season uid        guid  first_name last_name full_name display_name
 #>   <chr>       <int> <chr>      <chr> <chr>      <chr>     <chr>     <chr>       
 #> 1 102597       2024 s:20~l:23… b084… Will       Rogers    Will Rog… Will Rogers 
-#> # ℹ 38 more variables: short_name <chr>, weight <dbl>, display_weight <chr>,
+#> # ℹ 35 more variables: short_name <chr>, weight <dbl>, display_weight <chr>,
 #> #   height <dbl>, display_height <chr>, jersey <chr>, slug <chr>, active <lgl>,
 #> #   date_of_birth <chr>, birth_city <chr>, birth_state <chr>,
 #> #   birth_country <chr>, position_id <chr>, position_name <chr>,
 #> #   position_abbreviation <chr>, experience_years <int>, status_id <chr>,
 #> #   status_name <chr>, status_type <chr>, headshot_href <chr>, team_id <chr>,
 #> #   team_name <chr>, team_abbreviation <chr>, team_location <chr>, …
-  try(espn_cfb_player(athlete_id = 102597, year = 2024,
-                      team_detail = FALSE, position_detail = FALSE))
-#> ── Player detail from ESPN ─────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:44 UTC
-#> # A tibble: 1 × 33
-#>   athlete_id season uid        guid  first_name last_name full_name display_name
-#>   <chr>       <int> <chr>      <chr> <chr>      <chr>     <chr>     <chr>       
-#> 1 102597       2024 s:20~l:23… b084… Will       Rogers    Will Rog… Will Rogers 
-#> # ℹ 25 more variables: short_name <chr>, weight <dbl>, display_weight <chr>,
-#> #   height <dbl>, display_height <chr>, jersey <chr>, slug <chr>, active <lgl>,
-#> #   date_of_birth <chr>, birth_city <chr>, birth_state <chr>,
-#> #   birth_country <chr>, position_id <chr>, position_name <chr>,
-#> #   position_abbreviation <chr>, experience_years <int>, status_id <chr>,
-#> #   status_name <chr>, status_type <chr>, headshot_href <chr>, team_id <chr>,
-#> #   team_ref <chr>, statistics_ref <chr>, eventlog_ref <chr>, …
 # }
 ```

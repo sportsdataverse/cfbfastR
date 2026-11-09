@@ -102,6 +102,38 @@ model notes below before mixing outputs from the two releases.
   and
   [`cfb_clear_model_cache()`](https://cfbfastR.sportsdataverse.org/reference/cfb_clear_model_cache.md)
   run theirs offline, outside `\donttest`.
+- The examples of
+  [`load_espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_pbp.md)
+  and
+  [`load_ncaa_mfb_pbp_cfbfastr()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_pbp_cfbfastr.md)
+  (a whole season),
+  [`espn_cfb_awards()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_awards.md)
+  and
+  [`espn_cfb_positions()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_positions.md)
+  (one request per award or position), and the
+  [`espn_cfb_game_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md)
+  call with `participants = "wide"` (which fetches the position catalog)
+  also run only in an interactive session.
+  [`espn_cfb_venues()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_venues.md)
+  and
+  [`espn_cfb_recruits()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_recruits.md)
+  ask for 5 rows instead of 50 and 25, and
+  [`espn_cfb_game_player_statistics()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_player_statistics.md),
+  [`espn_cfb_game_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_team_roster.md)
+  and
+  [`espn_cfb_player()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player.md)
+  show one call, with `position_detail = FALSE`, instead of two or
+  three.
+
+### Changed: faster ESPN participant and Yahoo stat parsing
+
+- [`espn_cfb_game_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md)
+  and its siblings with participant columns, and the Yahoo season stats,
+  clean each participant type or stat name once per session instead of
+  once per play or per player. The output is unchanged; a 10-player
+  [`yahoo_cfb_player_season_stats()`](https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_player_season_stats.md)
+  call takes about 0.6 s of CPU instead of 4.5 s, and the participant
+  columns of one game take less than half as long.
 
 ### Expected Points model now comes from the shared `cfb_model_artifacts` bundle
 

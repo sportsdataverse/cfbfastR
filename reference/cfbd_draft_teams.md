@@ -31,31 +31,21 @@ Other CFBD Draft:
 ``` r
 # \donttest{
   try(cfbd_draft_teams())
-#> Waiting 3s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 4s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 4s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 9s for retry backoff ■■■■■                           
-#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■                
-#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 18s for retry backoff ■■■■                            
-#> Waiting 18s for retry backoff ■■■■■■■■■                       
-#> Waiting 18s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 18s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 18s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
-#> Waiting 18s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 18s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 25s for retry backoff ■■■                             
-#> Waiting 25s for retry backoff ■■■■■■■                         
-#> Waiting 25s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 25s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 25s for retry backoff ■■■■■■■■■■■■■■■■■■              
-#> Waiting 25s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
-#> Waiting 25s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
-#> Waiting 25s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 25s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:31:38.123246: Invalid arguments or no NFL teams data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── NFL teams data from CollegeFootballData.com ─────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:39 UTC
+#> # A tibble: 32 × 4
+#>    nfl_location nfl_nickname nfl_display_name     nfl_logo                      
+#>    <chr>        <chr>        <chr>                <chr>                         
+#>  1 Cincinnati   Bengals      Cincinnati Bengals   https://a.espncdn.com/i/teaml…
+#>  2 Tennessee    Titans       Tennessee Titans     https://a.espncdn.com/i/teaml…
+#>  3 New York     Jets         New York Jets        https://a.espncdn.com/i/teaml…
+#>  4 Buffalo      Bills        Buffalo Bills        https://a.espncdn.com/i/teaml…
+#>  5 New Orleans  Saints       New Orleans Saints   https://a.espncdn.com/i/teaml…
+#>  6 Denver       Broncos      Denver Broncos       https://a.espncdn.com/i/teaml…
+#>  7 Arizona      Cardinals    Arizona Cardinals    https://a.espncdn.com/i/teaml…
+#>  8 Jacksonville Jaguars      Jacksonville Jaguars https://a.espncdn.com/i/teaml…
+#>  9 Indianapolis Colts        Indianapolis Colts   https://a.espncdn.com/i/teaml…
+#> 10 Las Vegas    Raiders      Las Vegas Raiders    https://a.espncdn.com/i/teaml…
+#> # ℹ 22 more rows
 # }
 ```

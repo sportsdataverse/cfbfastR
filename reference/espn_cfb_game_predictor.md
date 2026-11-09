@@ -87,7 +87,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_game_predictor(game_id = 401628339))
 #> ── Game predictor data from ESPN ───────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:36 UTC
+#> ℹ Data updated: 2026-11-09 18:42:30 UTC
 #> # A tibble: 34 × 24
 #>    game_id   matchup_name     matchup_short_name last_modified team_side team_id
 #>    <chr>     <chr>            <chr>              <chr>         <chr>     <chr>  
@@ -110,7 +110,7 @@ lists every function in this family.
 #> #   display_name <chr>, short_display_name <chr>, value <dbl>, …
   try(espn_cfb_game_predictor(game_id = 401628339, team_detail = FALSE))
 #> ── Game predictor data from ESPN ───────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:36 UTC
+#> ℹ Data updated: 2026-11-09 18:42:31 UTC
 #> # A tibble: 34 × 14
 #>    game_id   matchup_name     matchup_short_name last_modified team_side team_id
 #>    <chr>     <chr>            <chr>              <chr>         <chr>     <chr>  

@@ -206,7 +206,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_team(team_id = 61, year = 2024))
 #> ── Team detail from ESPN ───────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:04:07 UTC
+#> ℹ Data updated: 2026-11-09 18:42:55 UTC
 #> # A tibble: 1 × 32
 #>   season team_id team_name team_abbreviation team_location team_display_name
 #>    <int> <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -220,7 +220,7 @@ lists every function in this family.
 #> #   venue_id <chr>, venue_name <chr>, venue_city <chr>, venue_state <chr>, …
   try(espn_cfb_team(team_id = 61, year = 2024, team_detail = FALSE))
 #> ── Team detail from ESPN ───────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:04:07 UTC
+#> ℹ Data updated: 2026-11-09 18:42:55 UTC
 #> # A tibble: 1 × 22
 #>   season team_id guid   uid   slug  abbreviation display_name short_display_name
 #>    <int> <chr>   <chr>  <chr> <chr> <chr>        <chr>        <chr>             

@@ -281,27 +281,55 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_game_preview(game_id = 401114233))
-#> Waiting 6s for retry backoff ■■■■■■                          
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 5s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 12s for retry backoff ■■■                             
-#> Waiting 12s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 22s for retry backoff ■■                              
-#> Waiting 22s for retry backoff ■■■                             
-#> Waiting 22s for retry backoff ■■■■■■■                         
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■                
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:40:26.566272: Invalid arguments or no game preview data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> list()
+#> $game
+#> ── Game preview data from CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:44 UTC
+#> # A tibble: 1 × 30
+#>     game_id season  week season_type status    status_checked_at      start_date
+#>       <int>  <int> <int> <chr>       <chr>     <chr>                  <chr>     
+#> 1 401114233   2019     1 regular     completed 2026-11-09T18:39:44.5… 2019-08-3…
+#> # ℹ 23 more variables: start_time_tbd <lgl>, neutral_site <lgl>,
+#> #   conference_game <lgl>, home_team_id <int>, home_team_name <chr>,
+#> #   home_team_conference <chr>, home_team_conference_abbreviation <chr>,
+#> #   home_team_classification <chr>, home_team_points <int>, away_team_id <int>,
+#> #   away_team_name <chr>, away_team_conference <chr>,
+#> #   away_team_conference_abbreviation <chr>, away_team_classification <chr>,
+#> #   away_team_points <int>, venue_id <int>, venue_name <chr>, …
+#> 
+#> $broadcasts
+#> ── Game preview data from CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:44 UTC
+#> # A tibble: 0 × 0
+#> 
+#> $odds
+#> ── Game preview data from CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:44 UTC
+#> # A tibble: 0 × 0
+#> 
+#> $teams
+#> ── Game preview data from CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:44 UTC
+#> # A tibble: 0 × 0
+#> 
+#> $key_players
+#> ── Game preview data from CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:44 UTC
+#> # A tibble: 0 × 0
+#> 
+#> $recent_results
+#> ── Game preview data from CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:44 UTC
+#> # A tibble: 0 × 0
+#> 
+#> $series
+#> ── Game preview data from CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:44 UTC
+#> # A tibble: 0 × 0
+#> 
+#> $series_meetings
+#> ── Game preview data from CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:44 UTC
+#> # A tibble: 0 × 0
+#> 
 # }
 ```

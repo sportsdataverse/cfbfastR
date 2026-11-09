@@ -107,7 +107,7 @@ lists every function in this family.
   # One conference (group 8, the SEC) keeps the request small.
   try(espn_cfb_standings(year = 2024, group_id = 8, team_detail = FALSE))
 #> ── Standings data from ESPN ────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:04:06 UTC
+#> ℹ Data updated: 2026-11-09 18:42:54 UTC
 #> # A tibble: 2,304 × 13
 #>    season season_type group_id team_id record_type record_name record_summary
 #>     <int>       <int> <chr>    <chr>   <chr>       <chr>       <chr>         

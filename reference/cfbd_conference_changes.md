@@ -53,28 +53,25 @@ Other CFBD Conference Functions:
 ``` r
 # \donttest{
   try(cfbd_conference_changes(year = 2024))
-#> Waiting 3s for retry backoff ■■■■■■■■■■                      
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 4s for retry backoff ■■■■■■■■■                       
-#> Waiting 4s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 8s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 8s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 8s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 14s for retry backoff ■■■                             
-#> Waiting 14s for retry backoff ■■■■■■■                         
-#> Waiting 14s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 14s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 14s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
-#> Waiting 14s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 22s for retry backoff ■■■                             
-#> Waiting 22s for retry backoff ■■■■■■■                         
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■                
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■    
-#> Waiting 22s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:26:48.193906: Invalid arguments or no conferences data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Get conference realignment changes from CollegeFootballData.com ─────────────
+#> ℹ Data updated: 2026-11-09 18:39:34 UTC
+#> # A tibble: 36 × 11
+#>    team_id team        from_conference_id from_conference from_conference_abbr…¹
+#>      <int> <chr>                    <int> <chr>           <chr>                 
+#>  1      12 Arizona                      9 Pac-12          PAC                   
+#>  2       9 Arizona St…                  9 Pac-12          PAC                   
+#>  3     349 Army                        18 FBS Independen… Ind                   
+#>  4    2045 Austin                     100 American South… NA                    
+#>  5  124180 Bluefield …                112 Independent DII NA                    
+#>  6    2803 Bryant                     179 Big South-OVC   BSOVC                 
+#>  7      25 California                   9 Pac-12          PAC                   
+#>  8      38 Colorado                     9 Pac-12          PAC                   
+#>  9  101784 Erskine                    139 South Atlantic  NA                    
+#> 10  125974 Hilbert                    126 North Coast     NA                    
+#> # ℹ 26 more rows
+#> # ℹ abbreviated name: ¹​from_conference_abbreviation
+#> # ℹ 6 more variables: from_classification <chr>, to_conference_id <int>,
+#> #   to_conference <chr>, to_conference_abbreviation <chr>,
+#> #   to_classification <chr>, effective_year <int>
 # }
 ```

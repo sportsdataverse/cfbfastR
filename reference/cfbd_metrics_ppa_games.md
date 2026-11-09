@@ -101,36 +101,26 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_ppa_games(year = 2019, team = "TCU"))
-#> Waiting 3s for retry backoff ■■■■■■■■■■                      
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■            
-#> Waiting 3s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 10s for retry backoff ■■■■■■■                         
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■                
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■      
-#> Waiting 10s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 11s for retry backoff ■■■■                            
-#> Waiting 11s for retry backoff ■■■■■■■■■■                      
-#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■■■              
-#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 47s for retry backoff ■■                              
-#> Waiting 47s for retry backoff ■■■■                            
-#> Waiting 47s for retry backoff ■■■■■■                          
-#> Waiting 47s for retry backoff ■■■■■■■■                        
-#> Waiting 47s for retry backoff ■■■■■■■■■                       
-#> Waiting 47s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 47s for retry backoff ■■■■■■■■■■■■■                   
-#> Waiting 47s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 47s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 47s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 47s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 47s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
-#> Waiting 47s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
-#> Waiting 47s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 47s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 47s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 47s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:51:58.076657: Invalid arguments or no CFBData metrics PPA games data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── PPA data from CollegeFootballData.com ───────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:55 UTC
+#> # A tibble: 12 × 19
+#>      game_id season  week season_type team  conference opponent      off_overall
+#>        <int>  <int> <int> <chr>       <chr> <chr>      <chr>               <dbl>
+#>  1 401112129   2019     1 regular     TCU   Big 12     Arkansas-Pin…        0.07
+#>  2 401112130   2019     3 regular     TCU   Big 12     Purdue               0.03
+#>  3 401112131   2019     4 regular     TCU   Big 12     SMU                 -0.02
+#>  4 401112100   2019     5 regular     TCU   Big 12     Kansas               0.39
+#>  5 401112088   2019     6 regular     TCU   Big 12     Iowa State           0.23
+#>  6 401112109   2019     8 regular     TCU   Big 12     Kansas State         0.14
+#>  7 401112132   2019     9 regular     TCU   Big 12     Texas                0.21
+#>  8 401112127   2019    10 regular     TCU   Big 12     Oklahoma Sta…        0.05
+#>  9 401112081   2019    11 regular     TCU   Big 12     Baylor              -0.12
+#> 10 401112133   2019    12 regular     TCU   Big 12     Texas Tech           0.2 
+#> 11 401112120   2019    13 regular     TCU   Big 12     Oklahoma            -0.06
+#> 12 401112134   2019    14 regular     TCU   Big 12     West Virginia       -0.2 
+#> # ℹ 11 more variables: off_passing <dbl>, off_rushing <dbl>,
+#> #   off_first_down <dbl>, off_second_down <dbl>, off_third_down <dbl>,
+#> #   def_overall <dbl>, def_passing <dbl>, def_rushing <dbl>,
+#> #   def_first_down <dbl>, def_second_down <dbl>, def_third_down <dbl>
 # }
 ```

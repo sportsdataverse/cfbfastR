@@ -48,53 +48,39 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_ppa_predicted(down = 1, distance = 10))
-#> Waiting 6s for retry backoff ■■■■■■                          
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■                   
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■                   
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 12s for retry backoff ■■■■■■■■                        
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■                
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 12s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 18s for retry backoff ■■■                             
-#> Waiting 18s for retry backoff ■■■■■■                          
-#> Waiting 18s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 18s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 18s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
-#> Waiting 18s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 18s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:55:03.691585: Invalid arguments or no CFBData metrics PPA predicted data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── PPA data from CollegeFootballData.com ───────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:56 UTC
+#> # A tibble: 90 × 2
+#>    yard_line predicted_points
+#>        <int>            <dbl>
+#>  1        90             4.49
+#>  2        89             4.48
+#>  3        88             4.47
+#>  4        87             4.46
+#>  5        86             4.45
+#>  6        85             4.44
+#>  7        84             4.43
+#>  8        83             4.42
+#>  9        82             4.41
+#> 10        81             4.4 
+#> # ℹ 80 more rows
 
   try(cfbd_metrics_ppa_predicted(down = 3, distance = 10))
-#> Waiting 6s for retry backoff ■■■■■■                          
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 7s for retry backoff ■■■■■■■                         
-#> Waiting 7s for retry backoff ■■■■■■■■■■■■■■■■■■■■■           
-#> Waiting 7s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 23s for retry backoff ■■                              
-#> Waiting 23s for retry backoff ■■■■■■                          
-#> Waiting 23s for retry backoff ■■■■■■■■■■                      
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■                  
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 23s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 26s for retry backoff ■■■■                            
-#> Waiting 26s for retry backoff ■■■■■■■■                        
-#> Waiting 26s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 26s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 26s for retry backoff ■■■■■■■■■■■■■■■■■■              
-#> Waiting 26s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
-#> Waiting 26s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
-#> Waiting 26s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 26s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:56:05.566484: Invalid arguments or no CFBData metrics PPA predicted data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── PPA data from CollegeFootballData.com ───────────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:56 UTC
+#> # A tibble: 90 × 2
+#>    yard_line predicted_points
+#>        <int>            <dbl>
+#>  1        90             3.92
+#>  2        89             3.89
+#>  3        88             3.86
+#>  4        87             3.83
+#>  5        86             3.8 
+#>  6        85             3.76
+#>  7        84             3.72
+#>  8        83             3.68
+#>  9        82             3.63
+#> 10        81             3.59
+#> # ℹ 80 more rows
 # }
 ```

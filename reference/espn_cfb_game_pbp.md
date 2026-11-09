@@ -319,7 +319,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_game_pbp(game_id = 401628339))
 #> ── Game plays data from ESPN ───────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:27 UTC
+#> ℹ Data updated: 2026-11-09 18:42:28 UTC
 #> # A tibble: 157 × 84
 #>    game_id   play_id   sequence_number type_id type_text type_abbreviation text 
 #>    <chr>     <chr>     <chr>           <chr>   <chr>     <chr>             <chr>
@@ -340,36 +340,18 @@ lists every function in this family.
 #> #   scoring_play <lgl>, score_value <int>, priority <lgl>, is_penalty <lgl>,
 #> #   is_turnover <lgl>, stat_yardage <int>, scoring_type_name <chr>,
 #> #   scoring_type_display_name <chr>, scoring_type_abbreviation <chr>, …
-  try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide",
-                        participants_list = TRUE))
-#> ── Game plays data from ESPN ───────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:33 UTC
-#> # A tibble: 157 × 157
-#>    game_id   play_id   sequence_number type_id type_text type_abbreviation text 
-#>    <chr>     <chr>     <chr>           <chr>   <chr>     <chr>             <chr>
-#>  1 401628339 40162833… 101849903       70      Coin Toss NA                Geor…
-#>  2 401628339 40162833… 101849905       53      Kickoff   K                 Peyt…
-#>  3 401628339 40162833… 101849908       24      Pass Rec… REC               Jord…
-#>  4 401628339 40162833… 101857801       5       Rush      RUSH              Jale…
-#>  5 401628339 40162833… 101866801       21      Timeout   TO                Time…
-#>  6 401628339 40162833… 101866802       5       Rush      RUSH              Jale…
-#>  7 401628339 40162833… 101875001       52      Punt      PUNT              Spen…
-#>  8 401628339 40162833… 101877201       67      Passing … TD                Cars…
-#>  9 401628339 40162833… 101877203       53      Kickoff   K                 Peyt…
-#> 10 401628339 40162833… 101877501       5       Rush      RUSH              Jord…
-#> # ℹ 147 more rows
-#> # ℹ 150 more variables: short_text <chr>, alternative_text <chr>,
-#> #   short_alternative_text <chr>, period <int>, clock <chr>,
-#> #   clock_seconds <dbl>, home_score <int>, away_score <int>,
-#> #   scoring_play <lgl>, score_value <int>, priority <lgl>, is_penalty <lgl>,
-#> #   is_turnover <lgl>, stat_yardage <int>, scoring_type_name <chr>,
-#> #   scoring_type_display_name <chr>, scoring_type_abbreviation <chr>, …
 # }
+if (FALSE) { # interactive()
+# Adds the game roster and ESPN's position catalog, one request per
+# position (about 75), so this takes several seconds.
+try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide",
+                      participants_list = TRUE))
+}
 # \donttest{
   try(espn_cfb_game_drive_plays(game_id = 401628339,
                                 drive_id = 4016283391))
 #> ── Game drive plays data from ESPN ─────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:33 UTC
+#> ℹ Data updated: 2026-11-09 18:42:28 UTC
 #> # A tibble: 6 × 85
 #>   game_id   drive_id play_id sequence_number type_id type_text type_abbreviation
 #>   <chr>     <chr>    <chr>   <chr>           <chr>   <chr>     <chr>            
@@ -391,7 +373,7 @@ lists every function in this family.
   try(espn_cfb_game_play(game_id = 401628339,
                          play_id = "401628339101927401"))
 #> ── Game play data from ESPN ────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 17:03:33 UTC
+#> ℹ Data updated: 2026-11-09 18:42:28 UTC
 #> # A tibble: 1 × 84
 #>   game_id   play_id    sequence_number type_id type_text type_abbreviation text 
 #>   <chr>     <chr>      <chr>           <chr>   <chr>     <chr>             <chr>

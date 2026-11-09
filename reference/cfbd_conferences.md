@@ -67,29 +67,21 @@ Other CFBD Conference Functions:
 ``` r
 # \donttest{
   try(cfbd_conferences())
-#> Waiting 2s for retry backoff ■■■■■■■■■■■■■■■                 
-#> Waiting 2s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 6s for retry backoff ■■■■■■■                         
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 6s for retry backoff ■■■■■■■■■■■                     
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 20s for retry backoff ■■■■                            
-#> Waiting 20s for retry backoff ■■■■■■■■■                       
-#> Waiting 20s for retry backoff ■■■■■■■■■■■■■                   
-#> Waiting 20s for retry backoff ■■■■■■■■■■■■■■■■■■              
-#> Waiting 20s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■         
-#> Waiting 20s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 20s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 19s for retry backoff ■■                              
-#> Waiting 19s for retry backoff ■■■■■■■                         
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■                    
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■               
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■          
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 19s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:27:39.202518: Invalid arguments or no Conference data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Conference data from CollegeFootballData.com ────────────── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:35 UTC
+#> # A tibble: 256 × 6
+#>    conference_id name         long_name abbreviation classification member_count
+#>            <int> <chr>        <chr>     <chr>        <chr>                 <int>
+#>  1           213 AAWU         Athletic… AAWU         fbs                       0
+#>  2             1 ACC          Atlantic… ACC          fbs                      17
+#>  3           151 American At… American… AAC          fbs                      14
+#>  4           114 American Ri… American… NA           iii                       8
+#>  5           100 American So… American… NA           iii                       6
+#>  6           302 American We… American… AWC          ii                        0
+#>  7           224 American We… American… AWC          fcs                       0
+#>  8           225 Arkansas In… Arkansas… AIC          ii                        0
+#>  9           226 Athletic Le… Athletic… NA           ii/iii                    0
+#> 10            19 Atlantic 10  Atlantic… A10          fcs                       0
+#> # ℹ 246 more rows
 # }
 ```

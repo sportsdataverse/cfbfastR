@@ -61,26 +61,12 @@ Other CFBD Betting Functions:
 ``` r
 # \donttest{
    try(cfbd_betting_ats(year = 2023, team = "Michigan"))
-#> Waiting 6s for retry backoff ■■■■■■                          
-#> Waiting 6s for retry backoff ■■■■■■■■■■                      
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■     
-#> Waiting 6s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 9s for retry backoff ■■■■■■■■■                       
-#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■   
-#> Waiting 9s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 11s for retry backoff ■■■■■■■■                        
-#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■                
-#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■       
-#> Waiting 11s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> Waiting 17s for retry backoff ■■■                             
-#> Waiting 17s for retry backoff ■■■■■■■                         
-#> Waiting 17s for retry backoff ■■■■■■■■■■■■■                   
-#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■■■■■             
-#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■        
-#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  
-#> Waiting 17s for retry backoff ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 
-#> 2026-11-09 16:18:01.404359: Invalid arguments or no ATS data available! The CFBD API returned HTTP 429 (Too Many Requests)
-#> data frame with 0 columns and 0 rows
+#> ── Against-the-spread records from CollegeFootballData.com ─── cfbfastR 3.1.0 ──
+#> ℹ Data updated: 2026-11-09 18:39:28 UTC
+#> # A tibble: 1 × 9
+#>    year team_id team     conference games ats_wins ats_losses ats_pushes
+#>   <int>   <int> <chr>    <chr>      <int>    <int>      <int>      <int>
+#> 1  2023     130 Michigan B1G           15       10          5          0
+#> # ℹ 1 more variable: avg_cover_margin <dbl>
 # }
 ```

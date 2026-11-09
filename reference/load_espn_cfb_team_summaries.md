@@ -453,7 +453,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_team_summaries(2004))
 #> ── college football team season summaries from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-11-09 17:05:18 UTC
+#> ℹ Data updated: 2026-11-09 18:44:01 UTC
 #> # A tibble: 118 × 788
 #>    team_id pos_team     division conference season passrate_off_n rushrate_off_n
 #>    <chr>   <chr>        <chr>    <chr>       <int>          <int>          <int>
@@ -478,7 +478,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_team_summaries_weekly(2004))
 #> ── college football weekly team summaries from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-11-09 17:05:18 UTC
+#> ℹ Data updated: 2026-11-09 18:44:02 UTC
 #> # A tibble: 1,585 × 789
 #>    team_id pos_team     division conference season passrate_off_n rushrate_off_n
 #>    <chr>   <chr>        <chr>    <chr>       <int>          <int>          <int>
