@@ -183,6 +183,7 @@ test_that("a games csv that keeps failing warns with the url, then raises", {
 })
 
 test_that("a release csv is read from a local file with libcurl, whatever the option says", {
+  skip_if_not("file" %in% attr(libcurlVersion(), "protocols"), "libcurl has no FILE support")
   # "curl" would shell out to the curl binary; the helper must not.
   withr::local_options(download.file.method = "curl")
   src <- withr::local_tempfile(fileext = ".csv")
@@ -209,13 +210,21 @@ test_that("a release csv is read from a local file with libcurl, whatever the op
 partial_csv <- c("season,game_id", "2014,1", "2015,2,3", "2016,4")
 
 test_that("a strict release csv read turns a fread() warning into an error", {
-  local_mocked_bindings(.download_url = fake_download(partial_csv))
+  reads <- 0L
+  download <- fake_download(partial_csv)
+  local_mocked_bindings(.download_url = function(...) {
+    reads <<- reads + 1L
+    download(...)
+  })
   expect_warning(out <- .release_csv_from_url("https://x/g.csv"), "Stopped early")
   expect_equal(nrow(out), 1L)
+  reads <- 0L
   expect_error(
     suppressWarnings(.release_csv_from_url("https://x/g.csv", strict = TRUE)),
     "may be partial.*Stopped early"
   )
+  # The file is the same on every try, so the partial read is not retried.
+  expect_equal(reads, 1L)
 })
 
 test_that("build_cfb_db(rebuild = TRUE) keeps the table when the games index read fails", {

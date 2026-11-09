@@ -763,7 +763,8 @@ now downloads the file with libcurl (which honours R's `timeout` and fails on an
 HTTP error page; `download.file.method = "curl"` did neither) and reads the
 local copy. The rebuild reads the index first and strictly: if the read fails
 or `fread()` warns, it stops with an error naming the index url and leaves the
-table as it was. It also stops, with the table untouched, when the index has no
+table as it was. A read that `fread()` warns on fails at once instead of being
+downloaded and parsed three times; a failed download is still retried. It also stops, with the table untouched, when the index has no
 seasons from 2014 on, when a full rebuild's index lacks a season the table
 holds, or when a season's play-by-play file fails to download: every season is
 now downloaded before any rows are deleted.

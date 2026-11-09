@@ -63,7 +63,8 @@ csv_from_url <- function(...){
 # fread(url) under `download.file.method = "curl"` shells out to curl, which
 # ignores R's `timeout` and saves an HTTP 503 error page as if it were the csv.
 # With `strict = TRUE` a fread() warning (it stops early on a malformed row and
-# returns the rows before it) is an error, so a partial table never passes.
+# returns the rows before it) is an error, so a partial table never passes; the
+# file is the same on every try, so that error is not retried.
 .release_csv_from_url <- function(url, ..., strict = FALSE) {
   read <- function(u) {
     tmp <- tempfile(fileext = if (grepl("\\.gz$", u)) ".csv.gz" else ".csv")
@@ -72,7 +73,10 @@ csv_from_url <- function(...){
     if (!strict) return(csv_from_url(file = tmp, ...))
     withCallingHandlers(
       csv_from_url(file = tmp, ...),
-      warning = function(w) stop("fread() warned, so the table may be partial: ", conditionMessage(w), call. = FALSE)
+      warning = function(w) stop(errorCondition(
+        paste0("fread() warned, so the table may be partial: ", conditionMessage(w)),
+        class = "release_csv_partial", call = NULL
+      ))
     )
   }
   load <- .read_release_asset(url, read)
@@ -127,9 +131,10 @@ parquet_from_url <- function(url) {
 # A slow asset used to hit R's default 60 s `timeout`, and the loader dropped
 # that season from a multi-season load with a vague warning. The timeout is
 # raised to at least 150 s for the read (a larger user setting is kept), and a
-# failed read is tried again after 1 s and 2 s. A 404 is not retried. Warnings
-# from a read that then succeeds are passed on. When every try fails, it warns
-# that the file is missing from the result and returns the `try-error`.
+# failed read is tried again after 1 s and 2 s. A 404 and a partial strict csv
+# read are not retried. Warnings from a read that then succeeds are passed on.
+# When every try fails, it warns that the file is missing from the result and
+# returns the `try-error`.
 .read_release_asset <- function(url, read, tries = 3L) {
   old <- options(timeout = max(150, getOption("timeout", 60)))
   on.exit(options(old), add = TRUE)
@@ -152,7 +157,8 @@ parquet_from_url <- function(url) {
     }
     why <- unique(c(conditionMessage(attr(out, "condition")),
                     vapply(warns, conditionMessage, character(1))))
-    if (i == tries || any(grepl("HTTP status was '404", why, fixed = TRUE))) break
+    if (i == tries || inherits(attr(out, "condition"), "release_csv_partial") ||
+        any(grepl("HTTP status was '404", why, fixed = TRUE))) break
     Sys.sleep(i)
   }
   why <- paste(why, collapse = "; ")
