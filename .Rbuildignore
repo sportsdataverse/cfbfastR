@@ -54,3 +54,4 @@ cfb_pbp_db
 ^tests/testthat/_problems$
 ^tests/testthat/testthat-problems\.rds$
 ^CLAUDE\.html$
+^inst/WORDLIST$
