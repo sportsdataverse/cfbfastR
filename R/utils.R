@@ -754,3 +754,27 @@ validate_reqs <- function(...){
   }
   season
 }
+
+# Memo for .clean_name(). Parsers that clean one name per play or per stat
+# (ESPN participant types, Yahoo stat ids) repeat a few dozen strings
+# hundreds of times, and janitor::make_clean_names() costs about a
+# millisecond a call.
+.clean_name_memo <- new.env(parent = emptyenv())
+
+#' `janitor::make_clean_names()` of one string, memoised for the session
+#'
+#' Internal helper. Same result as `janitor::make_clean_names(x)` for a
+#' length-1 `x`; never call it on a vector, where `make_clean_names()`
+#' de-duplicates across elements.
+#' @keywords internal
+#' @noRd
+.clean_name <- function(x) {
+  key <- as.character(x)
+  if (is.na(key) || !nzchar(key)) return(janitor::make_clean_names(x))
+  out <- .clean_name_memo[[key]]
+  if (is.null(out)) {
+    out <- janitor::make_clean_names(x)
+    assign(key, out, envir = .clean_name_memo)
+  }
+  out
+}

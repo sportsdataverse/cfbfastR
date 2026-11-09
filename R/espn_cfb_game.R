@@ -271,6 +271,17 @@ NULL
   df
 }
 
+#' snake_case one ESPN type string (`sackedBy` -> `sacked_by`)
+#'
+#' Internal helper. `NULL`, `NA` and `""` give `NA_character_`; anything else
+#' gives `janitor::make_clean_names(x)` through the memo in `.clean_name()`.
+#' @keywords internal
+#' @noRd
+.espn_cfb_snake <- function(x) {
+  if (is.null(x) || is.na(x) || x == "") return(NA_character_)
+  .clean_name(x)
+}
+
 
 #' Build an ESPN CFB team-id detail lookup
 #'
@@ -620,10 +631,7 @@ espn_cfb_clear_cache <- function() {
     e[["name"]] %||% NA_character_
   }
 
-  snake <- function(x) {
-    if (is.null(x) || is.na(x) || x == "") return(NA_character_)
-    janitor::make_clean_names(x)
-  }
+  snake <- .espn_cfb_snake
 
   # Build one 0+-row tibble of participant detail for a single raw play.
   build_cell <- function(it) {
@@ -771,10 +779,7 @@ espn_cfb_clear_cache <- function() {
 .espn_cfb_attach_team_participants <- function(plays_df, raw_plays) {
   `%||%` <- rlang::`%||%`
 
-  snake <- function(x) {
-    if (is.null(x) || is.na(x) || x == "") return(NA_character_)
-    janitor::make_clean_names(x)
-  }
+  snake <- .espn_cfb_snake
 
   # Normalise one play's teamParticipants[] into a list of typed rows.
   parse_tp <- function(it) {
@@ -1046,10 +1051,7 @@ espn_cfb_clear_cache <- function() {
   # frame is the who-played-what-role table; stats stay in long mode.
   if (mode == "wide") {
     # snake_case helper: camelCase / PascalCase -> snake_case.
-    snake <- function(x) {
-      if (is.null(x) || is.na(x) || x == "") return(NA_character_)
-      janitor::make_clean_names(x)
-    }
+    snake <- .espn_cfb_snake
 
     # Discover every participant type present in the game, in first-seen
     # order, so the appended column set is stable and deterministic.

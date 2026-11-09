@@ -111,3 +111,14 @@ test_that("LIVE: yahoo_cfb_player_season_stats returns rows", {
   expect_s3_class(x, "data.frame")
   Sys.sleep(2)
 })
+
+test_that(".clean_name() matches janitor::make_clean_names() one string at a time", {
+  ids <- c("RUSHING_YARDS", "sackedBy", "FIELD_GOALS_40_TO_49", "passDefender",
+           "RUSHING_YARDS", "x", "", "Yds/Att", "1st downs")
+  expect_identical(
+    vapply(ids, cfbfastR:::.clean_name, character(1), USE.NAMES = FALSE),
+    vapply(ids, janitor::make_clean_names, character(1), USE.NAMES = FALSE)
+  )
+  expect_identical(cfbfastR:::.espn_cfb_snake(NA_character_), NA_character_)
+  expect_identical(cfbfastR:::.espn_cfb_snake("sackedBy"), "sacked_by")
+})

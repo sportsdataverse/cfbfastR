@@ -54,7 +54,7 @@
   for (s in .yahoo_or(row[["stats"]], list())) {
     sid <- s[["statId"]]
     if (!is.null(sid)) {
-      rec[[janitor::make_clean_names(sid)]] <- .yahoo_or(s[["value"]], NA_character_)
+      rec[[.clean_name(sid)]] <- .yahoo_or(s[["value"]], NA_character_)
     }
   }
   rec
