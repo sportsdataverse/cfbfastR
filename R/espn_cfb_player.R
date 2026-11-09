@@ -392,9 +392,9 @@ NULL
 #' @export
 #' @examples
 #' \donttest{
-#'   try(espn_cfb_player(athlete_id = 102597, year = 2024))
+#'   # position_detail = FALSE skips the position catalog (about 75 requests).
 #'   try(espn_cfb_player(athlete_id = 102597, year = 2024,
-#'                       team_detail = FALSE, position_detail = FALSE))
+#'                       position_detail = FALSE))
 #' }
 espn_cfb_player <- function(athlete_id = NULL,
                             year = NULL,
