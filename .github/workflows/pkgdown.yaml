@@ -82,4 +82,6 @@ jobs:
         run: |
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'
+          # interactive() is TRUE for this build, so the @examplesIf interactive()
+          # examples run and their output is shown on the site.
+          Rscript -e 'unlockBinding("interactive", baseenv()); assign("interactive", function() TRUE, envir = baseenv()); pkgdown::deploy_to_branch(new_process = FALSE)'
