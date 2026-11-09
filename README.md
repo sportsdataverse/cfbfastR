@@ -1,6 +1,6 @@
 
 
-# **cfbfastR** <a href='https://cfbfastR.sportsdataverse.org/'><img src='https://raw.githubusercontent.com/sportsdataverse/cfbfastR/main/logo.png' align="right" width="20%" min-width="100px"/></a>
+# **cfbfastR** <a href='https://cfbfastR.sportsdataverse.org/'><img alt="cfbfastR hex logo" src='https://raw.githubusercontent.com/sportsdataverse/cfbfastR/main/logo.png' align="right" width="20%" min-width="100px"/></a>
 
 <!-- badges: start -->
 
@@ -14,7 +14,7 @@
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg?style=for-the-badge&logo=github)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://github.com/sportsdataverse/cfbfastR/blob/main/LICENSE.md)
 [![Contributors](https://img.shields.io/github/contributors/sportsdataverse/cfbfastR?style=for-the-badge)](https://github.com/sportsdataverse/cfbfastR/graphs/contributors)
-[![GitHub stars](https://img.shields.io/github/stars/sportsdataverse/cfbfastR?style=for-the-badge&logo=github)](https://github.com/sportsdataverse/cfbfastR/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/sportsdataverse/cfbfastR?style=for-the-badge&logo=github)](https://github.com/sportsdataverse/cfbfastR)
 [![X Follow](https://img.shields.io/twitter/follow/cfbfastR?color=blue&label=%40cfbfastR&logo=x&style=for-the-badge)](https://x.com/cfbfastR)
 [![X Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=x&style=for-the-badge)](https://x.com/SportsDataverse)
 
@@ -63,7 +63,9 @@ You can install the development version of [**`cfbfastR`**](https://github.com/s
 ```r
 if (!requireNamespace("pak", quietly = TRUE)) install.packages("pak")
 pak::pak("sportsdataverse/cfbfastR")
-# or: remotes::install_github("sportsdataverse/cfbfastR")
+# or, with remotes:
+# if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
+# remotes::install_github("sportsdataverse/cfbfastR")
 ```
 
 ## **Quick start**
@@ -156,7 +158,7 @@ block and the naming scheme once instead of listing every column.
 ## **Proxy support**
 
 If you run `cfbfastR` from behind a corporate proxy, set it once per
-session and every `cfbd_*()` / `espn_cfb_*()` call routes through it:
+session and every `cfbd_*()` call routes through it (the `espn_cfb_*()` functions don't read this option):
 
 ``` r
 options(cfbfastR.proxy = "http://proxy.host.example:8080")
