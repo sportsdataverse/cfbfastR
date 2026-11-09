@@ -1791,25 +1791,30 @@ load_espn_cfb_receiving <- function(seasons = most_recent_cfb_season(), ...,
 }
 
 
-#' **Load college football team season summaries from the SportsDataverse data repo**
+#' **Load college football team season and weekly summaries from the SportsDataverse data repo**
 #' @name load_espn_cfb_team_summaries
 NULL
 #' @title
-#' **Load college football team season summaries from the SportsDataverse data repo**
+#' **Load college football team season and weekly summaries from the SportsDataverse data repo**
 #' @rdname load_espn_cfb_team_summaries
 #' @author Saiem Gilani
 #' @description
-#'   Loads season-level team summaries -- one row per team with the full
-#'   offense/defense/special-teams EPA and success-rate profile. Published
-#'   to
-#'   the `espn_cfb_team_summaries` release tag on the sportsdataverse-data
-#'   repo.
+#'   `load_espn_cfb_team_summaries()` loads season-level team summaries --
+#'   one row per team with the full offense/defense/special-teams EPA and
+#'   success-rate profile. Published to the `espn_cfb_team_summaries`
+#'   release tag on the sportsdataverse-data repo.
+#'
+#'   `load_cfb_team_summaries_weekly()` loads weekly team summaries -- one
+#'   row per team-week with the same columns computed cumulative to date,
+#'   plus `through_week`. Published to the `cfb_team_summaries_weekly`
+#'   release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
 #'   writes the season data into a database.
 #' @param dbConnection A `DBIConnection` object, as returned by [DBI::dbConnect()]
 #' @param tablename The name of the data table within the database
-#' @return Returns a `cfbfastR_data` tibble.
+#' @return Returns a `cfbfastR_data` tibble. The weekly frame adds `through_week`,
+#'   the last row below.
 #'
 #'    |col_name                             |types     |description |
 #'    |-------------------------------------|----------|:-----------|
@@ -2196,11 +2201,13 @@ NULL
 #'    |adj_off_epa_rank                     |double    |National rank of the team's adj_off_epa, where 1 is best. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 #'    |adj_def_epa_rank                     |double    |National rank of the team's adj_def_epa, where 1 is best (fewest EPA allowed). Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
 #'    |net_adj_epa_rank                     |double    |National rank of the team's net_adj_epa, 1 = largest net adjusted EPA. Null when the metric is null or the column holds fewer than two distinct values: unranked, not last. |
+#'    |through_week                         |integer   |Weekly frame only. Regular-season week this cumulative snapshot covers -- the row reflects the team's state through the end of that week. One asset holds every week, so filter on this column. |
 #'
 #' @examples
 #' \donttest{
 #'   try(load_espn_cfb_team_summaries(2004))
 #' }
+#' @order 1
 #' @export
 load_espn_cfb_team_summaries <- function(seasons = most_recent_cfb_season(), ...,
                                          dbConnection = NULL, tablename = NULL) {

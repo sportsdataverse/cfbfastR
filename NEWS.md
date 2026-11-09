@@ -26,6 +26,10 @@ outputs from the two releases.
 * The 67 ESPN CFB functions no longer list each other under "See also" on every
   help page. Each page links to one index page, `?family_espn_cfb`, which lists
   the whole family. The smaller families keep their "See also" lists.
+* `load_cfb_team_summaries_weekly()` is now documented on the
+  `?load_espn_cfb_team_summaries` page. The two loaders return the same 385
+  columns (the weekly frame adds `through_week`), and the table is no longer
+  printed twice.
 
 ## Changed: examples
 
