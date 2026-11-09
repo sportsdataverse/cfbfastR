@@ -766,13 +766,15 @@ database: it drops the table and rebuilds only the seasons in the games index,
 and a partial index read went through with a warning. `.release_csv_from_url()`
 now downloads the file with libcurl (which honours R's `timeout` and fails on an
 HTTP error page; `download.file.method = "curl"` did neither) and reads the
-local copy. The rebuild reads the index first and strictly: if the read fails
-or `fread()` warns, it stops with an error naming the index url and leaves the
+local copy. The rebuild reads the index first and strictly: if the read fails or
+`fread()` warns, it stops with an error naming the index url and leaves the
 table as it was. A read that `fread()` warns on fails at once instead of being
-downloaded and parsed three times; a failed download is still retried. It also stops, with the table untouched, when the index has no
-seasons from 2014 on, when a full rebuild's index lacks a season the table
-holds, or when a season's play-by-play file fails to download: every season is
-now downloaded before any rows are deleted.
+downloaded and parsed three times; a failed download is still retried. The
+rebuild also stops, with the table untouched, when the index has no seasons from
+2014 on, when a full rebuild's index lacks a season the table holds, or when a
+season's play-by-play file fails to download: every season is now downloaded
+before any rows are deleted. The purge and the write run in one transaction, so
+a write that fails puts the purged rows back.
 
 ## Fixed: `pos_score_pts` is the points scored on the play
 
