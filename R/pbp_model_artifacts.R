@@ -100,8 +100,14 @@ NULL
 #' the cached copy until it is older than `cfbfastR.cache_duration`. To pick up
 #' a newly published model at once, call `cfb_clear_model_cache()`.
 #'
+#' An expired copy only triggers a download attempt: if that download fails, the
+#' expired copy is used instead and stays loaded for the rest of the session,
+#' even after the connection returns.
+#'
 #' `cfb_clear_model_cache()` deletes that directory and drops the models already
-#' loaded in this session, so the next call downloads them again. The ESPN
+#' loaded in this session, so the next call downloads them again. It also
+#' removes that offline fallback, so clear the cache only with a working
+#' connection, or the next model call has nothing to read. The ESPN
 #' request cache is separate; see [espn_cfb_clear_cache()].
 #'
 #' @return Invisibly, the path of the directory that was cleared.
