@@ -225,6 +225,13 @@ test_that("a strict release csv read turns a fread() warning into an error", {
   )
   # The file is the same on every try, so the partial read is not retried.
   expect_equal(reads, 1L)
+  expect_error(
+    suppressWarnings(.release_csv_from_url("https://x/g.csv", strict = TRUE)),
+    class = "release_csv_partial"
+  )
+  # fread() finished its own cleanup, so the next read is clean.
+  expect_no_warning(data.table::fread(text = "a,b
+1,2"))
 })
 
 test_that("build_cfb_db(rebuild = TRUE) keeps the table when the games index read fails", {
