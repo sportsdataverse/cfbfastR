@@ -65,6 +65,11 @@ oracle_booster_sha256 <- c(
 
 test_that("the boosters are the bytes the oracle was scored with", {
   skip_if_no_models()
+  # skip_if_no_models() loaded the boosters from these files (memoised for the
+  # session). An unlimited TTL keeps .cfb_model_file() from re-downloading a
+  # file before it is hashed, so the hash is of the copy the session scores
+  # with rather than of a newer download.
+  withr::local_options(cfbfastR.cache_duration = Inf)
   got <- vapply(names(oracle_booster_sha256), function(asset) {
     unname(cli::hash_file_sha256(.cfb_model_file(asset)))
   }, character(1))
