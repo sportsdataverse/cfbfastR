@@ -164,44 +164,52 @@ The models are downloaded from GitHub on first use and cached on disk; see
 \code{\link[=cfb_clear_model_cache]{cfb_clear_model_cache()}} for where the cache lives and how to clear it.
 }
 \examples{
-\donttest{
-  try(calculate_xpass(data.frame(season = 2024, down = 3, distance = 8,
-    yards_to_goal = 55, pos_score_diff = -4, TimeSecsRem = 900, period = 3)))
-}
-\donttest{
-  try(calculate_field_goal_probability(data.frame(season = 2024, yards_to_goal = 25)))
-}
-\donttest{
-  try(calculate_completion_probability(data.frame(season = 2024, down = 3,
-    distance = 8, yards_to_goal = 55, score_diff = -4,
-    seconds_remaining = 900, is_home = 1, period = 3, passing_down = 1)))
-}
-\donttest{
-  try(calculate_two_point_probability(data.frame(season = 2024,
-    posteam_spread = -3, posteam_total = 28, pos_score_diff = -2)))
-}
-\donttest{
-  try(calculate_fourth_down(data.frame(season = 2024, down = 4, distance = 2,
-    yards_to_goal = 45, posteam_total = 52, posteam_spread = -3)))
-}
-\donttest{
-  try(calculate_qbr(data.frame(season = 2024, qbr_epa = 0.1, sack_epa = -0.2,
-    pass_epa = 0.3, rush_epa = 0.05, pen_epa = 0, spread = -3)))
-}
-\donttest{
-  try(calculate_expected_points(data.frame(TimeSecsRem = 1800,
-    yards_to_goal = 75, distance = 10, down_1 = 1, down_2 = 0, down_3 = 0,
-    down_4 = 0, pos_score_diff_start = 0)))
-}
-\donttest{
-  # Start of the second half, tied, home team receiving.
-  try(calculate_win_probability(data.frame(season = 2024, period = 3,
-    down = 1, distance = 10, yards_to_goal = 75, TimeSecsRem = 1800,
-    adj_TimeSecsRem = 1800, pos_score_diff_start = 0,
-    ExpScoreDiff_Time_Ratio = 0, pos_team_receives_2H_kickoff = 1,
-    is_home = 1, pos_team_timeouts_rem_before = 3,
-    def_pos_team_timeouts_rem_before = 3)))
-}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# Downloads the model from GitHub on first use.
+try(calculate_xpass(data.frame(season = 2024, down = 3, distance = 8,
+  yards_to_goal = 55, pos_score_diff = -4, TimeSecsRem = 900, period = 3)))
+\dontshow{\}) # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# Downloads the model from GitHub on first use.
+try(calculate_field_goal_probability(data.frame(season = 2024, yards_to_goal = 25)))
+\dontshow{\}) # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# Downloads the model from GitHub on first use.
+try(calculate_completion_probability(data.frame(season = 2024, down = 3,
+  distance = 8, yards_to_goal = 55, score_diff = -4,
+  seconds_remaining = 900, is_home = 1, period = 3, passing_down = 1)))
+\dontshow{\}) # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# Downloads the model from GitHub on first use.
+try(calculate_two_point_probability(data.frame(season = 2024,
+  posteam_spread = -3, posteam_total = 28, pos_score_diff = -2)))
+\dontshow{\}) # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# Downloads the model from GitHub on first use.
+try(calculate_fourth_down(data.frame(season = 2024, down = 4, distance = 2,
+  yards_to_goal = 45, posteam_total = 52, posteam_spread = -3)))
+\dontshow{\}) # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# Downloads the model from GitHub on first use.
+try(calculate_qbr(data.frame(season = 2024, qbr_epa = 0.1, sack_epa = -0.2,
+  pass_epa = 0.3, rush_epa = 0.05, pen_epa = 0, spread = -3)))
+\dontshow{\}) # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# Downloads the model from GitHub on first use.
+try(calculate_expected_points(data.frame(TimeSecsRem = 1800,
+  yards_to_goal = 75, distance = 10, down_1 = 1, down_2 = 0, down_3 = 0,
+  down_4 = 0, pos_score_diff_start = 0)))
+\dontshow{\}) # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# Downloads the model from GitHub on first use.
+# Start of the second half, tied, home team receiving.
+try(calculate_win_probability(data.frame(season = 2024, period = 3,
+  down = 1, distance = 10, yards_to_goal = 75, TimeSecsRem = 1800,
+  adj_TimeSecsRem = 1800, pos_score_diff_start = 0,
+  ExpScoreDiff_Time_Ratio = 0, pos_team_receives_2H_kickoff = 1,
+  is_home = 1, pos_team_timeouts_rem_before = 3,
+  def_pos_team_timeouts_rem_before = 3)))
+\dontshow{\}) # examplesIf}
 # Offline: with `ep` present, EPA is the difference.
 calculate_epa(data.frame(ep = 2, ep_end = 5))
 # Offline: with `wp` present, WPA is the difference.

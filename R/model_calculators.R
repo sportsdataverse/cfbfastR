@@ -220,11 +220,10 @@ NULL
 #'  |xpass    |numeric |Probability the play is a pass (0-1). |
 #'
 #' @export
-#' @examples
-#' \donttest{
-#'   try(calculate_xpass(data.frame(season = 2024, down = 3, distance = 8,
-#'     yards_to_goal = 55, pos_score_diff = -4, TimeSecsRem = 900, period = 3)))
-#' }
+#' @examplesIf interactive()
+#' # Downloads the model from GitHub on first use.
+#' try(calculate_xpass(data.frame(season = 2024, down = 3, distance = 8,
+#'   yards_to_goal = 55, pos_score_diff = -4, TimeSecsRem = 900, period = 3)))
 calculate_xpass <- function(df, season = NULL) {
   .cfb_calculate(df, "xpass_model", "xpass", season = season)
 }
@@ -242,10 +241,9 @@ calculate_xpass <- function(df, season = NULL) {
 #' names distinct makes chaining the two lossless in both languages.
 #'
 #' @export
-#' @examples
-#' \donttest{
-#'   try(calculate_field_goal_probability(data.frame(season = 2024, yards_to_goal = 25)))
-#' }
+#' @examplesIf interactive()
+#' # Downloads the model from GitHub on first use.
+#' try(calculate_field_goal_probability(data.frame(season = 2024, yards_to_goal = 25)))
 calculate_field_goal_probability <- function(df, season = NULL) {
   .cfb_calculate(df, "fg_model", "fg_make_prob", season = season)
 }
@@ -258,12 +256,11 @@ calculate_field_goal_probability <- function(df, season = NULL) {
 #'  |cp       |numeric |Completion probability (0-1).    |
 #'
 #' @export
-#' @examples
-#' \donttest{
-#'   try(calculate_completion_probability(data.frame(season = 2024, down = 3,
-#'     distance = 8, yards_to_goal = 55, score_diff = -4,
-#'     seconds_remaining = 900, is_home = 1, period = 3, passing_down = 1)))
-#' }
+#' @examplesIf interactive()
+#' # Downloads the model from GitHub on first use.
+#' try(calculate_completion_probability(data.frame(season = 2024, down = 3,
+#'   distance = 8, yards_to_goal = 55, score_diff = -4,
+#'   seconds_remaining = 900, is_home = 1, period = 3, passing_down = 1)))
 calculate_completion_probability <- function(df, season = NULL) {
   .cfb_calculate(df, "cfb_cp_model", "cp", season = season)
 }
@@ -276,11 +273,10 @@ calculate_completion_probability <- function(df, season = NULL) {
 #'  |two_pt_prob |numeric |Two-point conversion probability (0-1).    |
 #'
 #' @export
-#' @examples
-#' \donttest{
-#'   try(calculate_two_point_probability(data.frame(season = 2024,
-#'     posteam_spread = -3, posteam_total = 28, pos_score_diff = -2)))
-#' }
+#' @examplesIf interactive()
+#' # Downloads the model from GitHub on first use.
+#' try(calculate_two_point_probability(data.frame(season = 2024,
+#'   posteam_spread = -3, posteam_total = 28, pos_score_diff = -2)))
 calculate_two_point_probability <- function(df, season = NULL) {
   .cfb_calculate(df, "two_pt_model", "two_pt_prob", season = season)
 }
@@ -299,11 +295,10 @@ calculate_two_point_probability <- function(df, season = NULL) {
 #' usable public surface.
 #'
 #' @export
-#' @examples
-#' \donttest{
-#'   try(calculate_fourth_down(data.frame(season = 2024, down = 4, distance = 2,
-#'     yards_to_goal = 45, posteam_total = 52, posteam_spread = -3)))
-#' }
+#' @examplesIf interactive()
+#' # Downloads the model from GitHub on first use.
+#' try(calculate_fourth_down(data.frame(season = 2024, down = 4, distance = 2,
+#'   yards_to_goal = 45, posteam_total = 52, posteam_spread = -3)))
 calculate_fourth_down <- function(df, season = NULL) {
   prepared <- cfb_add_era_columns(
     .cfb_normalize_pbp_columns(df, "fd_model"), "fd_model",
@@ -344,11 +339,10 @@ calculate_fourth_down <- function(df, season = NULL) {
 #'  |qbr      |numeric |Model QBR.         |
 #'
 #' @export
-#' @examples
-#' \donttest{
-#'   try(calculate_qbr(data.frame(season = 2024, qbr_epa = 0.1, sack_epa = -0.2,
-#'     pass_epa = 0.3, rush_epa = 0.05, pen_epa = 0, spread = -3)))
-#' }
+#' @examplesIf interactive()
+#' # Downloads the model from GitHub on first use.
+#' try(calculate_qbr(data.frame(season = 2024, qbr_epa = 0.1, sack_epa = -0.2,
+#'   pass_epa = 0.3, rush_epa = 0.05, pen_epa = 0, spread = -3)))
 calculate_qbr <- function(df, season = NULL) {
   .cfb_calculate(df, "qbr_model", "qbr", season = season)
 }
@@ -373,12 +367,11 @@ calculate_qbr <- function(df, season = NULL) {
 #' produce every column present and every value mis-assigned.
 #'
 #' @export
-#' @examples
-#' \donttest{
-#'   try(calculate_expected_points(data.frame(TimeSecsRem = 1800,
-#'     yards_to_goal = 75, distance = 10, down_1 = 1, down_2 = 0, down_3 = 0,
-#'     down_4 = 0, pos_score_diff_start = 0)))
-#' }
+#' @examplesIf interactive()
+#' # Downloads the model from GitHub on first use.
+#' try(calculate_expected_points(data.frame(TimeSecsRem = 1800,
+#'   yards_to_goal = 75, distance = 10, down_1 = 1, down_2 = 0, down_3 = 0,
+#'   down_4 = 0, pos_score_diff_start = 0)))
 calculate_expected_points <- function(df, season = NULL) {
   prepared <- cfb_add_era_columns(
     .cfb_normalize_pbp_columns(df, "ep_model"), "ep_model",
@@ -454,16 +447,15 @@ calculate_expected_points <- function(df, season = NULL) {
 #' the presence of spread information is what decides which contract applies.
 #'
 #' @export
-#' @examples
-#' \donttest{
-#'   # Start of the second half, tied, home team receiving.
-#'   try(calculate_win_probability(data.frame(season = 2024, period = 3,
-#'     down = 1, distance = 10, yards_to_goal = 75, TimeSecsRem = 1800,
-#'     adj_TimeSecsRem = 1800, pos_score_diff_start = 0,
-#'     ExpScoreDiff_Time_Ratio = 0, pos_team_receives_2H_kickoff = 1,
-#'     is_home = 1, pos_team_timeouts_rem_before = 3,
-#'     def_pos_team_timeouts_rem_before = 3)))
-#' }
+#' @examplesIf interactive()
+#' # Downloads the model from GitHub on first use.
+#' # Start of the second half, tied, home team receiving.
+#' try(calculate_win_probability(data.frame(season = 2024, period = 3,
+#'   down = 1, distance = 10, yards_to_goal = 75, TimeSecsRem = 1800,
+#'   adj_TimeSecsRem = 1800, pos_score_diff_start = 0,
+#'   ExpScoreDiff_Time_Ratio = 0, pos_team_receives_2H_kickoff = 1,
+#'   is_home = 1, pos_team_timeouts_rem_before = 3,
+#'   def_pos_team_timeouts_rem_before = 3)))
 calculate_win_probability <- function(df, season = NULL) {
   model <- if ("spread_time" %in% names(df) || "start.spread_time" %in% names(df)) {
     "wp_spread"
