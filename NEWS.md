@@ -24,12 +24,17 @@ outputs from the two releases.
 ## Changed: examples
 
 * The examples for the Yahoo season stats, `espn_cfb_standings()`,
-  `espn_cfb_game_player_box()`, `espn_cfb_game_pbp()`, `espn_cfb_qbr()` and
+  `espn_cfb_game_pbp()`, `espn_cfb_qbr()` and
   `cfbd_pbp_data_v2()` ask for one team, conference or page of results instead
   of a whole league, so they run in seconds. `espn_cfb_seasons()`,
   `espn_cfb_coaches()` and `espn_cfb_team_roster()` make one request per row,
   so their examples, like those of `load_cfb_pbp()` and `update_cfb_db()`, run
   only in an interactive session.
+* So do the examples of `espn_cfb_game_player_box()` (one request per player),
+  `espn_cfb_groups()` (one per conference and division), `espn_cfb_pbp()` and
+  `espn_cfb_pbp_v2()` (several seconds of CPU to parse a game), and the
+  `calculate_*()` functions that download a model on first use.
+  `espn_cfb_game_drive_plays()` shows two calls instead of five.
 * The `calculate_win_probability()` example scores a hand-built row; it used to
   pass a CFBD play-by-play frame that lacks the model's inputs and errored.
 * `cfbd_pbp_data()`, `load_cfb_pbp()`, `update_cfb_db()`, `has_cfbd_key()`,
