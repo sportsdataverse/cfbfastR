@@ -82,8 +82,9 @@ NULL
 #' @keywords internal
 #' @noRd
 .ot_forced_two_point <- function(season, period) {
-  s <- suppressWarnings(as.numeric(season))
-  p <- suppressWarnings(as.numeric(period))
+  # as.character() first: a factor would give its level codes.
+  s <- suppressWarnings(as.numeric(as.character(season)))
+  p <- suppressWarnings(as.numeric(as.character(period)))
   n <- max(length(s), length(p))
   s <- rep_len(s, n)
   p <- rep_len(p, n)
@@ -127,7 +128,7 @@ NULL
 .ot_second_possession <- function(df) {
   if (!all(c("game_id", "period", "pos_team", "down") %in% names(df))) return(NULL)
   n <- nrow(df)
-  period <- suppressWarnings(as.numeric(df$period))
+  period <- suppressWarnings(as.numeric(as.character(df$period))) # factor-safe
   down <- suppressWarnings(as.numeric(as.character(df$down)))
   snap <- !is.na(down) & down >= 1 & down <= 4
   if ("play_type" %in% names(df)) snap <- snap & !(df$play_type %in% .OT_NOT_A_SNAP)

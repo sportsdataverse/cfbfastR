@@ -229,8 +229,16 @@ The EPA, win probability and other models behind `calculate_*()`,
 downloaded from GitHub the first time they are needed. They are cached
 in `file.path(tools::R_user_dir("cfbfastR", "cache"), "models")` and
 refreshed once a day (change it in seconds,
-e.g. `options(cfbfastR.cache_duration = 7 * 86400)` for a week).
-`cfb_clear_model_cache()` deletes the cache.
+e.g. `options(cfbfastR.cache_duration = 7 * 86400)` for a week). A
+model is kept in memory for the rest of the R session once it is loaded,
+so the daily refresh does not reach a session that already uses it:
+restarting R drops the loaded models but not the cache, so a new session
+still reads the cached copy until it expires. An expired copy only
+triggers a download attempt: if the download fails, the expired copy is
+used and stays loaded for the session. To pick up a new model at once,
+run `cfb_clear_model_cache()`, which deletes the cache and the loaded
+models; do that with a working connection, since it also removes the
+offline fallback.
 
 ## Follow [cfbfastR](https://x.com/cfbfastR) and the [SportsDataverse](https://x.com/SportsDataverse) on Twitter and star this repo
 

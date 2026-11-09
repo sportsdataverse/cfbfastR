@@ -205,7 +205,7 @@ state. Outputs: sdv-py's published `EP_start`, `EP_end`, `EPA`, `wp_before_naive
 which cfbfastR has not ported; `ep_start_raw` / `ep_end_raw`, sdv-py's EP model on the start / end
 state (the published `EP_start` / `EP_end` are that value after the pipeline's possession-flip and
 scoring rules). `pos_team_won` is for calibration metrics. Re-capture: `python
-data-raw/parity_epa_wp_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file."""
+data-raw/parity_epa_wp_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON`); do not hand-edit the file. `test-parity_epa_wp.R` pins the SHA-256 of the three boosters the oracle was scored with (`oracle_booster_sha256`: `ep_model.ubj`, `wp_naive.ubj`, `wp_spread.ubj`). The generator does not update them: after a re-capture against new boosters, set them by hand to each asset's `digest` on the `cfb_model_artifacts` release, without its `sha256:` prefix (the test compares the bare hex) (`gh api repos/sportsdataverse/sportsdataverse-data/releases/tags/cfb_model_artifacts`). The `wp_*_raw` columns are the generator's own booster calls on sdv-py's states with sdv-py's `_as_trained_2h_flag`, not values read from sdv-py's pipeline, so the WP check confirms R scores those states the same way; it does not test the trained-on-`1 - is_home` premise itself. Decision-surface WP is not in the oracle; `test-decision-state.R` pins it to sdv-py's exact values. Both libraries toggle the flag only in first-half flipped states while `is_home` always toggles, so second-half flipped states reach the booster as `flag == is_home`; that is to be fixed in sdv-py first and mirrored here."""
     readme = FIX / "README.md"
     text = readme.read_text(encoding="utf-8")
     pat = re.compile(

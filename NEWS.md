@@ -12,7 +12,10 @@ outputs from the two releases.
   `file.path(tools::R_user_dir("cfbfastR", "cache"), "models")`, and drops the
   ones already loaded in the session. `?cfb_clear_model_cache`,
   `?calculate_cfb_models` and the README now say where the cache is and how
-  often it refreshes.
+  often it refreshes, and that a model already loaded stays in memory for the
+  session. A restart does not clear the cache, so a new session reads the
+  cached copy until it expires; `cfb_clear_model_cache()` picks up a new model
+  at once.
 * A model download that fails no longer leaks R's own "cannot open URL"
   warnings, and one that reports a non-zero status is no longer cached. A
   `calculate_*()` call that cannot fetch its model or card says why (the
@@ -21,12 +24,17 @@ outputs from the two releases.
 ## Changed: examples
 
 * The examples for the Yahoo season stats, `espn_cfb_standings()`,
-  `espn_cfb_game_player_box()`, `espn_cfb_game_pbp()`, `espn_cfb_qbr()` and
+  `espn_cfb_game_pbp()`, `espn_cfb_qbr()` and
   `cfbd_pbp_data_v2()` ask for one team, conference or page of results instead
   of a whole league, so they run in seconds. `espn_cfb_seasons()`,
   `espn_cfb_coaches()` and `espn_cfb_team_roster()` make one request per row,
   so their examples, like those of `load_cfb_pbp()` and `update_cfb_db()`, run
   only in an interactive session.
+* So do the examples of `espn_cfb_game_player_box()` (one request per player),
+  `espn_cfb_groups()` (one per conference and division), `espn_cfb_pbp()` and
+  `espn_cfb_pbp_v2()` (several seconds of CPU to parse a game), and the
+  `calculate_*()` functions that download a model on first use.
+  `espn_cfb_game_drive_plays()` shows two calls instead of five.
 * The `calculate_win_probability()` example scores a hand-built row; it used to
   pass a CFBD play-by-play frame that lacks the model's inputs and errored.
 * `cfbd_pbp_data()`, `load_cfb_pbp()`, `update_cfb_db()`, `has_cfbd_key()`,
@@ -741,6 +749,9 @@ stays in Suggests.
   aggregate that one, since the two boosters are not on one scale.
 * Both are checked against a new sdv-py oracle of two 2025 overtime games
   (`wp_overtime_oracle.csv.gz`, `test-parity_wp_overtime.R`).
+* The overtime stage reads a factor `period` or `season` by its labels. It
+  used the level codes, so a caller's factor `period` hid every overtime
+  possession. The package's own frames carry numeric periods.
 
 ## Fixed: the games index csv read retries
 
@@ -749,6 +760,21 @@ which failed on the first slow response. It now goes through
 `.release_csv_from_url()`, the release-read helper the loaders use (150 s
 timeout floor, two retries, a warning naming the url, the last error raised when
 every try fails), as hoopR and wehoop do.
+
+`update_cfb_db(force_rebuild = TRUE)` could still lose seasons from your
+database: it drops the table and rebuilds only the seasons in the games index,
+and a partial index read went through with a warning. `.release_csv_from_url()`
+now downloads the file with libcurl (which honours R's `timeout` and fails on an
+HTTP error page; `download.file.method = "curl"` did neither) and reads the
+local copy. The rebuild reads the index first and strictly: if the read fails or
+`fread()` warns, it stops with an error naming the index url and leaves the
+table as it was. A read that `fread()` warns on fails at once instead of being
+downloaded and parsed three times; a failed download is still retried. The
+rebuild also stops, with the table untouched, when the index has no seasons from
+2014 on, when a full rebuild's index lacks a season the table holds, or when a
+season's play-by-play file fails to download: every season is now downloaded
+before any rows are deleted. The purge and the write run in one transaction, so
+a write that fails puts the purged rows back.
 
 ## Fixed: `pos_score_pts` is the points scored on the play
 

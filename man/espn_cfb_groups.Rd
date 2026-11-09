@@ -47,9 +47,10 @@ Big Ten, ...); the \code{group_id} of a conference is what
 column lets you reconstruct the division -> conference nesting.
 }
 \examples{
-\donttest{
-  try(espn_cfb_groups(year = 2024))
-}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# One request per conference and division, so this takes a while.
+try(espn_cfb_groups(year = 2024))
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other ESPN CFB Functions:

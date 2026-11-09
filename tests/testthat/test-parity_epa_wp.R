@@ -52,6 +52,30 @@ skip_if_no_models <- function() {
   testthat::skip_if(is.null(.cfb_wp_spread_model()), "spread WP booster unavailable")
 }
 
+# The SHA-256 of the cfb_model_artifacts boosters the oracle was scored with:
+# the release digests of the assets uploaded 2026-10-12, before the 2026-10-31
+# capture. A stale cached booster, or a republished one the oracle predates,
+# fails here by name instead of passing (or failing) the value checks below.
+# Re-capturing the oracle against new boosters means updating these.
+oracle_booster_sha256 <- c(
+  "ep_model.ubj" = "44516f5618363c1d3d935eec74784a46f22010a2b0fde95e4cf2c2b6ed51da6e",
+  "wp_naive.ubj" = "624ee14943302ed7f982e27257832e51e98a694da28bed007bcef389c2ceb897",
+  "wp_spread.ubj" = "486699334ef9dcdaadc71331b4acd5f14660a5f2d6cea8f1d4969d7092a22c32"
+)
+
+test_that("the boosters are the bytes the oracle was scored with", {
+  skip_if_no_models()
+  # skip_if_no_models() loaded the boosters from these files (memoised for the
+  # session). An unlimited TTL keeps .cfb_model_file() from re-downloading a
+  # file before it is hashed, so the hash is of the copy the session scores
+  # with rather than of a newer download.
+  withr::local_options(cfbfastR.cache_duration = Inf)
+  got <- vapply(names(oracle_booster_sha256), function(asset) {
+    unname(cli::hash_file_sha256(.cfb_model_file(asset)))
+  }, character(1))
+  expect_identical(got, oracle_booster_sha256)
+})
+
 read_oracle <- function() {
   o <- utils::read.csv(oracle_path, colClasses = c(game_id = "character",
                        id_play = "character", home_id = "character",

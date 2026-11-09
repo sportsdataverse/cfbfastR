@@ -30,10 +30,11 @@ A data frame with college football play-by-play data
 Get ESPN college football PBP data
 }
 \examples{
- \donttest{
-   try(espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE))
- }
-
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# Parsing one game takes several seconds of CPU, and `epa_wpa = TRUE` also
+# downloads the EP and WP models on first use.
+try(espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE))
+\dontshow{\}) # examplesIf}
 }
 \author{
 Saiem Gilani

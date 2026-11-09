@@ -56,3 +56,16 @@ test_that("ESPN game 252460252 publishes the punt for a loss as -12 on both engi
     expect_equal(as.numeric(row$yds_punted), -12, label = paste("yds_punted,", eng))
   }
 })
+
+test_that("add_yardage() recomputes yds_punted with the sign kept", {
+  # add_yardage() overwrites the clean stage's yds_punted, so it has its own check.
+  df <- data.frame(
+    play_type = "Punt", punt = 1, season = 2005,
+    play_text = c(loss_text, gain_text)
+  )
+  df[c("rush", "pass", "yards_gained", "int_td", "int", "fumble_vec",
+       "kickoff_play", "kickoff_tb", "kickoff_downed", "kickoff_fair_catch",
+       "punt_blocked", "punt_tb", "punt_downed", "punt_oob", "punt_fair_catch",
+       "sack", "penalty_detail")] <- 0
+  expect_identical(add_yardage(df)$yds_punted, c(-12, 43))
+})

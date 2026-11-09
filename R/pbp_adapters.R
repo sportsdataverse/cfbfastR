@@ -529,7 +529,13 @@
 #' @return `df` with `timeout_team` (the charged team's abbreviation),
 #'   `home_timeouts`, `away_timeouts`, `offense_timeouts`, `defense_timeouts`,
 #'   and `timeout_window`, which `.pbp_add_play_counts()` reads to open each
-#'   overtime period and then drops.
+#'   overtime period and then drops. A play with no known offense
+#'   (`offense_play` is `NA`) gets the away team's counts as
+#'   `offense_timeouts` and the home team's as `defense_timeouts`, not `NA`.
+#'   This is deliberate: sdv-py's `start.posTeamTimeouts` /
+#'   `end.posTeamTimeouts` take the `otherwise()` (away) branch on a null
+#'   `pos_team.id` the same way (`cfb_pbp.py`), and the two engines are held to
+#'   parity (#203). `home_timeouts` / `away_timeouts` are exact either way.
 #' @keywords internal
 #' @noRd
 .espn_add_timeouts <- function(df) {
@@ -551,6 +557,7 @@
                             ifelse(to$away_called, df$away_team_abbreviation, NA_character_))
   df$home_timeouts <- to$end_home
   df$away_timeouts <- to$end_away
+  # An unknown offense counts as away, as in sdv-py; see the note above.
   home_off <- !is.na(df$offense_play) & df$offense_play == df$home
   df$offense_timeouts <- ifelse(home_off, df$home_timeouts, df$away_timeouts)
   df$defense_timeouts <- ifelse(home_off, df$away_timeouts, df$home_timeouts)

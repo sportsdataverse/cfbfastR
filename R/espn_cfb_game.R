@@ -1525,17 +1525,6 @@ espn_cfb_game_broadcasts <- function(game_id = NULL) {
 #'   try(espn_cfb_game_drive_plays(game_id = 401628339,
 #'                                 drive_id = 4016283391,
 #'                                 participants = "long"))
-#'   try(espn_cfb_game_drive_plays(game_id = 401628339,
-#'                                 drive_id = 4016283391,
-#'                                 participants = "wide",
-#'                                 participants_list = TRUE))
-#'   try(espn_cfb_game_drive_plays(game_id = 401628339,
-#'                                 drive_id = 4016283391,
-#'                                 team_participants = "wide",
-#'                                 team_participants_list = TRUE))
-#'   try(espn_cfb_game_drive_plays(game_id = 401628339,
-#'                                 drive_id = 4016283391,
-#'                                 team_detail = FALSE))
 #' }
 espn_cfb_game_drive_plays <- function(game_id = NULL, drive_id = NULL,
                                       participants = c("none", "wide", "long"),
@@ -3746,11 +3735,10 @@ espn_cfb_game_player_statistics <- function(game_id = NULL,
 #' @keywords ESPN CFB Game Player Box Score
 #' @family ESPN CFB Functions
 #' @export
-#' @examples
-#' \donttest{
-#'   try(espn_cfb_game_player_box(game_id = 401628339,
-#'                                position_detail = FALSE, team_detail = FALSE))
-#' }
+#' @examplesIf interactive()
+#' # One request per player in the game, so this takes a while.
+#' try(espn_cfb_game_player_box(game_id = 401628339,
+#'                              position_detail = FALSE, team_detail = FALSE))
 espn_cfb_game_player_box <- function(game_id = NULL,
                                      position_detail = TRUE,
                                      team_detail = TRUE) {
@@ -6121,10 +6109,10 @@ espn_cfb_game_teams <- function(game_id = NULL,
 #' switching to the `espn_cfb_pbp_v2()` name.
 #' @export
 #'
-#' @examples
-#'  \donttest{
-#'    try(espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE))
-#'  }
+#' @examplesIf interactive()
+#' # Parsing one game takes several seconds of CPU, and `epa_wpa = TRUE` also
+#' # downloads the EP and WP models on first use.
+#' try(espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE))
 #'
 espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "default"){
   # See .pbp_engine(): per-call `engine=` beats the session option, which beats
@@ -6572,10 +6560,10 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
 #' @keywords CFB PBP
 #' @family ESPN CFB Functions
 #' @export
-#' @examples
-#' \donttest{
-#'   try(espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE))
-#' }
+#' @examplesIf interactive()
+#' # Parsing one game takes several seconds of CPU, and `epa_wpa = TRUE` also
+#' # downloads the EP and WP models on first use.
+#' try(espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE))
 espn_cfb_pbp_v2 <- function(game_id,
                             epa_wpa       = FALSE,
                             output        = "default",

@@ -136,9 +136,11 @@ left join from the context frame, so no play row is dropped and the row
 count is identical to the \code{epa_wpa = FALSE} result.
 }
 \examples{
-\donttest{
-  try(espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE))
-}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+# Parsing one game takes several seconds of CPU, and `epa_wpa = TRUE` also
+# downloads the EP and WP models on first use.
+try(espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE))
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other ESPN CFB Functions:
