@@ -163,7 +163,7 @@ parquet_from_url <- function(url) {
       # Re-raised with cli, keeping the reader's own warning classes.
       for (w in warns) {
         cli::cli_warn("{conditionMessage(w)}",
-                      class = setdiff(class(w), c("simpleWarning", "warning", "condition")))
+                      class = setdiff(class(w), c("rlang_warning", "simpleWarning", "warning", "condition")))
       }
       return(out)
     }
