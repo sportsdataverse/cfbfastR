@@ -151,25 +151,39 @@ for (i in seq_along(min_year_map)) {
   returned_rows <- 1
   min_year <- unname(func)
   tf <- purrr::quietly(get(func_name))
-  # 1869 is the first college football season. A wrapper that ignores `year`
-  # (espn_cfb_team) returns rows for every year and would otherwise walk to 1000.
-  while (returned_rows > 0 && min_year > 1869) {
-    min_year <- min_year - 1
+  probe <- function(y) {
     if (func_name %in% espn_team_func) {
-      returned_rows <- get_returned_rows(year = min_year, team_id = 2633)
+      get_returned_rows(year = y, team_id = 2633)
     } else if (func_name %in% func_with_required_team) {
-      returned_rows <- get_returned_rows(year = min_year, team = "Texas")
+      get_returned_rows(year = y, team = "Texas")
     } else if (func_name %in% func_with_week) {
       # cfbd_game_schedule() requires year, season_type and week together; the
       # other week-taking wrappers accept season_type and default to regular.
       if ('season_type' %in% formal_names(func_name)) {
-        returned_rows <- get_returned_rows(year = min_year, week = 5, season_type = "regular")
+        get_returned_rows(year = y, week = 5, season_type = "regular")
       } else {
-        returned_rows <- get_returned_rows(year = min_year, week = 5)
+        get_returned_rows(year = y, week = 5)
       }
     } else {
-      returned_rows <- get_returned_rows(year = min_year)
+      get_returned_rows(year = y)
     }
+  }
+  # 1869 is the first college football season. A wrapper that ignores `year`
+  # (espn_cfb_team) returns rows for every year and would otherwise walk to 1000.
+  floor_year <- 1869
+  if (min_year <= floor_year) {
+    # The walk below would make no call, so verify the floor itself before
+    # refreshing the timestamp. With no rows there, leave the row unverified
+    # so the freshness test flags it.
+    if (probe(floor_year) == 0) {
+      print(glue::glue('{func_name}: no rows at the {floor_year} floor; left unverified'))
+      next
+    }
+    min_year <- floor_year
+  }
+  while (returned_rows > 0 && min_year > floor_year) {
+    min_year <- min_year - 1
+    returned_rows <- probe(min_year)
     Sys.sleep(1)
   }
 
