@@ -1,5 +1,22 @@
 .datatable.aware <- TRUE
 
+# Evaluate a wrapper's body, re-raising each warning as a classed
+# `cfbfastR_warning` that names the wrapper, and carry on. A
+# `tryCatch(warning =)` handler would instead stop the body at the first
+# warning and return the empty or half-built frame with no message.
+# `expr` is a promise, so its assignments land in the caller's frame.
+.cfb_with_warnings <- function(fn, expr) {
+  withCallingHandlers(
+    expr,
+    warning = function(w) {
+      if (inherits(w, "cfbfastR_warning")) return() # already named by an inner wrapper
+      msg <- conditionMessage(w)
+      cli::cli_warn(c("!" = "{fn}(): {msg}"), class = "cfbfastR_warning", call = NULL)
+      invokeRestart("muffleWarning")
+    }
+  )
+}
+
 #' @keywords internal
 #' @importFrom httr2 resp_status resp_status_desc
 #'

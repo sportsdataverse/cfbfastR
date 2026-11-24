@@ -103,26 +103,25 @@ cfbd_func <- function(year, ...) {
   df_list <- list()   # <-- MANDATORY. Initialize before tryCatch.
 
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("cfbd_func", {
       resp    <- .cfbd_request(url = base_url, query = params)
       df_list <- resp |>
         data.frame(stringsAsFactors = FALSE) |>
         dplyr::as_tibble() |>
         janitor::clean_names() |>
         make_cfbfastR_data("CFBD games", Sys.time())
-    },
+    }),
     error = function(e) {
       cli::cli_alert_danger("{Sys.time()}: No data for {.val {year}}!")
       cli::cli_alert_danger("Error: {conditionMessage(e)}")
-    },
-    warning = function(w) {
-      cli::cli_alert_warning("{Sys.time()}: {conditionMessage(w)}")
     },
     finally = {}
   )
   return(df_list)
 }
 ```
+
+Do not give that `tryCatch` a `warning =` handler. Any handler there, even one that only reports, stops `expr` at the first warning and returns the empty or half-built frame. Wrap the body in `.cfb_with_warnings("<function name>", { ... })` (`R/utils.R`) instead. It re-raises each warning as a classed `cfbfastR_warning` that names the function, and lets the body finish.
 
 This rule applies to **every return variable name**, not just `df_list`: `plays_df`, `pbp`, `standings`, `teams`, `recruits`, `coaches`, `ratings`, etc. Initialize to the appropriate empty value -- `list()` for named-list returns, `NULL` for single-object returns, `data.frame()` for tibble returns.
 
@@ -131,7 +130,7 @@ This rule applies to **every return variable name**, not just `df_list`: `plays_
 All user-facing messages use `cli`:
 
 - `cli::cli_alert_danger()` for errors inside `tryCatch` handlers
-- `cli::cli_alert_warning()` for warnings inside handlers
+- `cli::cli_alert_warning()` for a degraded-but-continuing result (never from a `tryCatch(warning =)` handler)
 - `cli::cli_alert_info()` / `cli::cli_alert_success()` for progress and success
 - `cli::cli_warn()` / `cli::cli_abort()` for **raised** conditions (e.g., argument validation, mis-set API key)
 

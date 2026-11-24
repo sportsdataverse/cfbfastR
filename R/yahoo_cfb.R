@@ -137,7 +137,7 @@ yahoo_cfb_player_season_stats <- function(season = most_recent_cfb_season(),
       out <- make_cfbfastR_data(out, "Player season stats from Yahoo Sports (shangrila)", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: invalid arguments or no Yahoo player stats available!"))
+      message(glue::glue("{Sys.time()}: invalid arguments or no Yahoo player stats available! {conditionMessage(e)}"))
     }
   )
   return(.attach_query_meta_auto(out))
@@ -179,7 +179,7 @@ yahoo_cfb_team_season_stats <- function(season = most_recent_cfb_season(),
       out <- make_cfbfastR_data(out, "Team season stats from Yahoo Sports (shangrila)", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: invalid arguments or no Yahoo team stats available!"))
+      message(glue::glue("{Sys.time()}: invalid arguments or no Yahoo team stats available! {conditionMessage(e)}"))
     }
   )
   return(.attach_query_meta_auto(out))
@@ -231,7 +231,7 @@ yahoo_cfb_player_season_stats_legacy <- function(season = most_recent_cfb_season
       out <- make_cfbfastR_data(out, "Legacy player season stats from Yahoo Sports (shangrila)", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: invalid arguments or no Yahoo legacy player stats available!"))
+      message(glue::glue("{Sys.time()}: invalid arguments or no Yahoo legacy player stats available! {conditionMessage(e)}"))
     }
   )
   return(.attach_query_meta_auto(out))
@@ -282,7 +282,7 @@ yahoo_cfb_team_season_stats_legacy <- function(season = most_recent_cfb_season()
       out <- make_cfbfastR_data(out, "Legacy team season stats from Yahoo Sports (shangrila)", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: invalid arguments or no Yahoo legacy team stats available!"))
+      message(glue::glue("{Sys.time()}: invalid arguments or no Yahoo legacy team stats available! {conditionMessage(e)}"))
     }
   )
   return(.attach_query_meta_auto(out))
@@ -324,7 +324,7 @@ yahoo_cfb_scoreboard <- function(season = most_recent_cfb_season(), week = 1, co
       out <- make_cfbfastR_data(out, "Scoreboard from Yahoo Sports (editorial)", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: invalid arguments or no Yahoo scoreboard available!"))
+      message(glue::glue("{Sys.time()}: invalid arguments or no Yahoo scoreboard available! {conditionMessage(e)}"))
     }
   )
   return(.attach_query_meta_auto(out))
@@ -355,7 +355,7 @@ yahoo_cfb_boxscore <- function(game_id) {
       raw <- .yahoo_get(.YAHOO_EDITORIAL, paste0("boxscore/", game_id), query = list(v = 4))
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: invalid game_id or no Yahoo boxscore available!"))
+      message(glue::glue("{Sys.time()}: invalid game_id or no Yahoo boxscore available! {conditionMessage(e)}"))
     }
   )
   return(raw)
