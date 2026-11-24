@@ -51,21 +51,21 @@ CFB Venue Information
 # \donttest{
   try(cfbd_venues())
 #> ── Venue data from CollegeFootballData.com ─────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 21:11:30 UTC
-#> # A tibble: 852 × 14
+#> ℹ Data updated: 2026-11-24 09:58:56 UTC
+#> # A tibble: 854 × 14
 #>    venue_id name    capacity grass dome  city  state zip   country_code timezone
 #>       <int> <chr>      <int> <lgl> <lgl> <chr> <chr> <chr> <chr>        <chr>   
 #>  1     5938 Al Whi…     4000 NA    FALSE Port… "NM"  88130 US           NA      
 #>  2      218 FIU St…    20000 FALSE FALSE Miami "FL"  33199 US           America…
 #>  3     4779 Thomas…    15000 TRUE  FALSE Nass… ""    NA    BS           NA      
 #>  4    11591 Lokken…       NA NA    FALSE Vall… "ND"  NA    US           NA      
-#>  5     3884 RAM St…       NA NA    FALSE East… "GA"  NA    US           NA      
-#>  6    11589 Hinchl…       NA NA    TRUE  Pate… "NJ"  NA    US           NA      
-#>  7     6043 Bethpa…     6000 FALSE FALSE Broo… "NY"  11545 US           America…
-#>  8    11539 Charlo…       NA NA    FALSE Jame… "ND"  NA    US           NA      
-#>  9    11712 Bank o…       NA NA    FALSE Sun … "WI"  NA    US           NA      
-#> 10    11724 Commun…       NA NA    FALSE Cors… "TX"  NA    US           NA      
-#> # ℹ 842 more rows
+#>  5    13096 Neenah…       NA NA    FALSE Neen… "WI"  NA    USA          NA      
+#>  6     3884 RAM St…       NA NA    FALSE East… "GA"  NA    US           NA      
+#>  7    11589 Hinchl…       NA NA    TRUE  Pate… "NJ"  NA    US           NA      
+#>  8     6043 Bethpa…     6000 FALSE FALSE Broo… "NY"  11545 US           America…
+#>  9    11539 Charlo…       NA NA    FALSE Jame… "ND"  NA    US           NA      
+#> 10    13107 Bank I…       NA FALSE NA    Flor… "AL"  NA    USA          NA      
+#> # ℹ 844 more rows
 #> # ℹ 4 more variables: latitude <dbl>, longitude <dbl>, elevation <chr>,
 #> #   year_constructed <int>
 # }

@@ -46,7 +46,7 @@ lists every function in this family.
 # a while.
 try(espn_cfb_seasons())
 #> ── Seasons index from ESPN ─────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 21:13:13 UTC
+#> ℹ Data updated: 2026-11-24 10:00:35 UTC
 #> # A tibble: 155 × 5
 #>    season display_name start_date        end_date          season_ref           
 #>     <int> <chr>        <chr>             <chr>             <chr>                

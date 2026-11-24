@@ -87,8 +87,8 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_passing(2004))
 #> ── college football advanced passing from the SportsDataverse data repo ────────
-#> ℹ Data updated: 2026-11-09 21:14:27 UTC
-#> # A tibble: 1,520 × 37
+#> ℹ Data updated: 2026-11-24 10:02:09 UTC
+#> # A tibble: 1,517 × 37
 #>    pos_team_id pos_team passer_player_name  Comp   Att xComp   Yds Pass_TD   Int
 #>          <int> <chr>    <chr>              <int> <int> <dbl> <dbl>   <int> <int>
 #>  1          30 USC Tro… Matt Leinart          19    29 16.6    272       3     0
@@ -101,7 +101,7 @@ Saiem Gilani
 #>  8         103 Boston … Paul Peterson         13    24 13.6    140       1     1
 #>  9          77 Northwe… Brett Basanez         37    59 31.2    495       4     1
 #> 10        2628 TCU Hor… Tye Gunn              20    38 22.3    375       4     1
-#> # ℹ 1,510 more rows
+#> # ℹ 1,507 more rows
 #> # ℹ 28 more variables: YPA <dbl>, EPA <dbl>, EPA_per_Play <dbl>, WPA <dbl>,
 #> #   SR <dbl>, Sck <int>, CompPct <dbl>, xCompPct <dbl>, CPOE <dbl>,
 #> #   AirYds <lgl>, aDOT <lgl>, CompAirYds <lgl>, YAC <lgl>, AirYdsPct <lgl>,

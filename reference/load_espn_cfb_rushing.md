@@ -84,20 +84,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_rushing(2004))
 #> ── college football rushing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-11-09 21:14:53 UTC
+#> ℹ Data updated: 2026-11-24 10:02:36 UTC
 #> # A tibble: 1,122 × 78
 #>    team_id pos_team      division conference season player_id rusher_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 259     Virginia Tech fbs      ACC          2004    116190 Bryan Randall     
-#>  2 97      Louisville    fbs      Conferenc…   2004    112516 Stefan LeFors     
-#>  3 2199    Eastern Mich… fbs      Mid-Ameri…   2004    136199 Anthony Sherrell  
-#>  4 142     Missouri      fbs      Big 12       2004    145459 Beau Viehmann     
-#>  5 2509    Purdue        fbs      Big Ten      2004    101132 Jon Goldsberry    
-#>  6 183     Syracuse      fbs      Big East     2004    113926 Xzavier Gaines    
-#>  7 2579    South Caroli… fbs      SEC          2004    146843 Noah Whiteside    
-#>  8 344     Mississippi … fbs      SEC          2004    102581 Darnell Jones     
-#>  9 36      Colorado Sta… fbs      Mountain …   2004    150673 George Hill       
-#> 10 2459    Northern Ill… fbs      Mid-Ameri…   2004    114880 Dan Sheldon       
+#>  1 68      Boise State   fbs      Western A…   2004    103357 Michael Sanford   
+#>  2 251     Texas         fbs      Big 12       2004    155432 Antwan Hobbs      
+#>  3 38      Colorado      fbs      Big 12       2004    161674 Hugh Charles      
+#>  4 135     Minnesota     fbs      Big Ten      2004    127742 Marion Barber III 
+#>  5 277     West Virginia fbs      Big East     2004    134807 Jason Colson      
+#>  6 12      Arizona       fbs      Pac-10       2004    136732 Gilbert Harris    
+#>  7 150     Duke          fbs      ACC          2004    116808 Cedric Dargan     
+#>  8 201     Oklahoma      fbs      Big 12       2004    113902 Kejuan Jones      
+#>  9 87      Notre Dame    fbs      FBS Indep…   2004    134723 Jeff Jenkins      
+#> 10 23      San Jose Sta… fbs      Western A…   2004    136035 James Jones       
 #> # ℹ 1,112 more rows
 #> # ℹ 71 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, rushing_td <dbl>, fumbles <dbl>,

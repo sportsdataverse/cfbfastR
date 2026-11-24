@@ -60,21 +60,21 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_rosters_crosswalk())
 #> ── college football roster id crosswalk from the SportsDataverse data repo ─────
-#> ℹ Data updated: 2026-11-09 21:14:15 UTC
-#> # A tibble: 45,721 × 14
-#>    espn_team_id fox_team_id person_key      espn_athlete_id fox_athlete_id
-#>           <int> <chr>       <chr>                     <int> <chr>         
-#>  1          125 292         quinton barrow          5125872 NA            
-#>  2          125 292         kyle mcmahon             241449 NA            
-#>  3          125 292         cade peterson           5209834 NA            
-#>  4          125 292         hunter rison            4241975 NA            
-#>  5          125 292         rob carlisle            2243996 NA            
-#>  6          125 292         sydney omameh           4002761 NA            
-#>  7          125 292         danny richard            493640 NA            
-#>  8          125 292         andre thomas            2617709 NA            
-#>  9          125 292         johnny williams         3129315 NA            
-#> 10          125 292         deshaun lanier               NA 233774        
-#> # ℹ 45,711 more rows
+#> ℹ Data updated: 2026-11-24 10:01:46 UTC
+#> # A tibble: 47,829 × 14
+#>    espn_team_id fox_team_id person_key        espn_athlete_id fox_athlete_id
+#>           <int> <chr>       <chr>                       <int> <chr>         
+#>  1         2247 740         aidan andrews             5217870 240700        
+#>  2         2247 740         tayo ashadele             5295774 240720        
+#>  3         2247 740         derrick avery jr          5216495 240374        
+#>  4         2247 740         kadorian benjamin         5291708 251051        
+#>  5         2247 740         jamal bing jr             5155355 219130        
+#>  6         2247 740         hunter britt              5295789 240702        
+#>  7         2247 740         cameran brown             5193926 223638        
+#>  8         2247 740         jordan brown              4879662 193088        
+#>  9         2247 740         matt buron                5086204 197728        
+#> 10         2247 740         xavier butler             5292031 251042        
+#> # ℹ 47,819 more rows
 #> # ℹ 9 more variables: yahoo_athlete_id <chr>, name <chr>, espn_jersey <chr>,
 #> #   fox_jersey <chr>, espn_position <chr>, fox_position <chr>,
 #> #   yahoo_position <chr>, match_method <chr>, matched_sources <chr>

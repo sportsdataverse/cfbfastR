@@ -317,6 +317,11 @@
 <code><a href="../reference/helpers_pbp.html">add_yardage()</a></code> output changes for kickoffs out of bounds: <code>yds_kickoff_return</code> was 40 in every season and is now 35 by default (the 2012 rule). Pass <code>season</code>, or carry a <code>season</code> column, to get 40 for games through 2011.</li>
 </ul></div>
 <div class="section level3">
+<h3 id="fixed-espn-player-splits-error-message-3-1-0">Fixed: ESPN player splits error message<a class="anchor" aria-label="anchor" href="#fixed-espn-player-splits-error-message-3-1-0"></a></h3>
+<ul><li>
+<code><a href="../reference/espn_cfb_player_splits.html">espn_cfb_player_splits()</a></code> now includes the underlying error in its “no ESPN player splits data” message (for example <code>HTTP 400 Bad Request.</code>), so a transient ESPN failure can be told apart from an athlete with no splits. Its test skips when either season comes back empty instead of failing on a one-off ESPN error.</li>
+</ul></div>
+<div class="section level3">
 <h3 id="fixed-cfbd-team-rosters-3-1-0">Fixed: CFBD team rosters<a class="anchor" aria-label="anchor" href="#fixed-cfbd-team-rosters-3-1-0"></a></h3>
 <ul><li>
 <code><a href="../reference/cfbd_team_roster.html">cfbd_team_roster()</a></code> (and so <code><a href="../reference/load_cfb_rosters.html">load_cfb_rosters()</a></code>) returns <code>year</code> as the athlete’s class year. CFBD fills that field with the season instead for every roster before 2014 and most from 2014-2019; those values are now <code>NA</code>. A new <code>season</code> column carries the roster year. (<a href="https://github.com/sportsdataverse/cfbfastR/issues/157" class="external-link">#157</a>)</li>

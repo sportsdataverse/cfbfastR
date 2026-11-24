@@ -68,8 +68,8 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_team_aliases())
 #> ── college football provider team id and name aliases from the SportsDataverse d
-#> ℹ Data updated: 2026-11-09 21:14:19 UTC
-#> # A tibble: 4,165 × 12
+#> ℹ Data updated: 2026-11-24 10:01:55 UTC
+#> # A tibble: 4,169 × 12
 #>    league team_id team_id_source source source_id id_kind name_kind    value    
 #>    <chr>  <chr>   <chr>          <chr>  <chr>     <chr>   <chr>        <chr>    
 #>  1 cfb    101     espn           cfbd   101       team    NA           NA       
@@ -82,7 +82,7 @@ Saiem Gilani
 #>  8 cfb    103     espn           cbs    493       team    NA           NA       
 #>  9 cfb    103     espn           cfbd   103       team    NA           NA       
 #> 10 cfb    103     espn           fox    10        team    abbreviation BC       
-#> # ℹ 4,155 more rows
+#> # ℹ 4,159 more rows
 #> # ℹ 4 more variables: valid_from <int>, valid_to <int>, match_method <chr>,
 #> #   evidence <chr>
 # }

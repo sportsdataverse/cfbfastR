@@ -639,6 +639,15 @@ declares. It used a fixed 10-column list that included `spread`, so the
   `season`, or carry a `season` column, to get 40 for games through
   2011.
 
+### Fixed: ESPN player splits error message
+
+- [`espn_cfb_player_splits()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_splits.md)
+  now includes the underlying error in its “no ESPN player splits data”
+  message (for example `HTTP 400 Bad Request.`), so a transient ESPN
+  failure can be told apart from an athlete with no splits. Its test
+  skips when either season comes back empty instead of failing on a
+  one-off ESPN error.
+
 ### Fixed: CFBD team rosters
 
 - [`cfbd_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_roster.md)

@@ -101,20 +101,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_passing(2004))
 #> ── college football passing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-11-09 21:14:43 UTC
+#> ℹ Data updated: 2026-11-24 10:02:26 UTC
 #> # A tibble: 373 × 98
 #>    team_id pos_team      division conference season player_id passer_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 2509    Purdue        fbs      Big Ten      2004    119358 Kyle Orton        
-#>  2 239     Baylor        fbs      Big 12       2004    134743 Shawn Bell        
-#>  3 195     Ohio          fbs      Mid-Ameri…   2004    162712 Brooks Rossman    
-#>  4 62      Hawai'i       fbs      Western A…   2004    122359 Kainoa Akina      
-#>  5 2305    Kansas        fbs      Big 12       2004    117131 Clark Green       
-#>  6 356     Illinois      fbs      Big Ten      2004    133743 Chris Pazan       
-#>  7 2199    Eastern Mich… fbs      Mid-Ameri…   2004    116236 Matt Bohnet       
-#>  8 38      Colorado      fbs      Big 12       2004    113990 John Torp         
-#>  9 2572    Southern Miss fbs      Conferenc…   2004    147930 Jeremy Young      
-#> 10 58      South Florida fbs      Conferenc…   2004    110628 Ronnie Banks      
+#>  1 195     Ohio          fbs      Mid-Ameri…   2004    162712 Brooks Rossman    
+#>  2 275     Wisconsin     fbs      Big Ten      2004    146220 Tyler Donovan     
+#>  3 197     Oklahoma Sta… fbs      Big 12       2004    145596 Donovan Woods     
+#>  4 58      South Florida fbs      Conferenc…   2004    161640 Andre Hall        
+#>  5 201     Oklahoma      fbs      Big 12       2004     20847 Jason White       
+#>  6 99      LSU           fbs      SEC          2004    107723 Marcus Randall    
+#>  7 264     Washington    fbs      Pac-10       2004    136579 Isaiah Stanback   
+#>  8 309     Louisiana     fbs      Sun Belt     2004    136229 Jerry Babb        
+#>  9 2084    Buffalo       fbs      Mid-Ameri…   2004    107383 Randall Secky     
+#> 10 2483    Oregon        fbs      Pac-10       2004    145035 Garren Strong     
 #> # ℹ 363 more rows
 #> # ℹ 91 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <dbl>, success <dbl>, comp <dbl>, att <dbl>,

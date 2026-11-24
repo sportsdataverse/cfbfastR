@@ -147,8 +147,8 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_team_gamelog(2004))
 #> ── college football advanced team gamelog from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-11-09 21:14:34 UTC
-#> # A tibble: 926 × 92
+#> ℹ Data updated: 2026-11-24 10:02:17 UTC
+#> # A tibble: 926 × 94
 #>    season  week season_type   game_id start_date       team_id team  opponent_id
 #>     <int> <int>       <int>     <int> <chr>              <int> <chr>       <int>
 #>  1   2004     1           2 242410259 2004-08-28T23:4…     259 Virg…          30
@@ -162,7 +162,7 @@ Saiem Gilani
 #>  9   2004     2           2 242460009 2004-09-03T02:0…       9 Ariz…        2638
 #> 10   2004     2           2 242460009 2004-09-03T02:0…    2638 UTEP…           9
 #> # ℹ 916 more rows
-#> # ℹ 84 more variables: opponent <chr>, is_home <lgl>, neutral_site <lgl>,
+#> # ℹ 86 more variables: opponent <chr>, is_home <lgl>, neutral_site <lgl>,
 #> #   points_for <int>, points_against <int>, margin <int>, win <lgl>,
 #> #   rushing_highlight_yards_per_opp <dbl>, total_pen_yards <int>,
 #> #   EPA_penalty <dbl>, penalty_first_downs_created <int>,

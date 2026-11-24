@@ -45,20 +45,20 @@ A `cfbfastR`-tagged tibble with one row per player:
 # \donttest{
   try(fox_cfb_team_roster(team_id = "11"))
 #> ── Roster data from Fox Sports (Bifrost) ───────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-09 21:13:46 UTC
-#> # A tibble: 115 × 8
+#> ℹ Data updated: 2026-11-24 10:01:07 UTC
+#> # A tibble: 119 × 8
 #>    team_id position_group player             pos   cls   ht     wt    athlete_id
 #>    <chr>   <chr>          <chr>              <chr> <chr> <chr>  <chr> <chr>     
 #>  1 11      OFFENSE        Seuseu Alofaituli  OL    SO    "6'2\… 298 … 233452    
 #>  2 11      OFFENSE        Judd Anderson      QB    SO    "6'7\… 235 … 220945    
 #>  3 11      OFFENSE        Cooper Barkate     WR    SR    "6'1\… 195 … 203004    
 #>  4 11      OFFENSE        Joe Borchers       QB    JR    "6'3\… 220 … 219990    
-#>  5 11      OFFENSE        Israel Briggs      TE    FR    "6'4\… 225 … 249402    
-#>  6 11      OFFENSE        CharMar Brown      RB    JR    "5'11… 220 … 213306    
-#>  7 11      OFFENSE        Max Buchanan       OL    SO    "6'4\… 310 … 233455    
-#>  8 11      OFFENSE        Brennan Burton     WR    SO    "6'0\… 205 … 227766    
-#>  9 11      OFFENSE        Demetrius Campbell OL    FR    "6'6\… 330 … 233461    
-#> 10 11      OFFENSE        Jackson Cantwell   OL    FR    "6'8\… 330 … 249398    
-#> # ℹ 105 more rows
+#>  5 11      OFFENSE        Armaun Brady       WR    GS1   "5'9\… 167 … 262732    
+#>  6 11      OFFENSE        Israel Briggs      TE    FR    "6'4\… 225 … 249402    
+#>  7 11      OFFENSE        CharMar Brown      RB    JR    "5'11… 220 … 213306    
+#>  8 11      OFFENSE        Max Buchanan       OL    SO    "6'4\… 310 … 233455    
+#>  9 11      OFFENSE        Brennan Burton     WR    SO    "6'0\… 205 … 227766    
+#> 10 11      OFFENSE        Demetrius Campbell OL    FR    "6'6\… 330 … 233461    
+#> # ℹ 109 more rows
 # }
 ```

@@ -66,8 +66,8 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_player_aliases())
 #> ── college football provider player id aliases from the SportsDataverse data rep
-#> ℹ Data updated: 2026-11-09 21:14:06 UTC
-#> # A tibble: 421,766 × 12
+#> ℹ Data updated: 2026-11-24 10:01:28 UTC
+#> # A tibble: 421,754 × 12
 #>    league athlete_id athlete_id_source source source_player_id team_id
 #>    <chr>  <chr>      <chr>             <chr>  <chr>            <chr>  
 #>  1 cfb    100009     espn              ncaa   4242411          12     
@@ -80,7 +80,7 @@ Saiem Gilani
 #>  8 cfb    102597     espn              ncaa   7752435          344    
 #>  9 cfb    102597     espn              ncaa   8059016          344    
 #> 10 cfb    102597     espn              yahoo  ncaaf.p.316907   344    
-#> # ℹ 421,756 more rows
+#> # ℹ 421,744 more rows
 #> # ℹ 6 more variables: source_team_id <chr>, valid_from <int>, valid_to <int>,
 #> #   match_method <chr>, match_confidence <dbl>, evidence <chr>
 # }

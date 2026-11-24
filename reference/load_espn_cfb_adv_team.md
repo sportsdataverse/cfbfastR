@@ -137,8 +137,8 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_team(2004))
 #> ── college football advanced team from the SportsDataverse data repo ───────────
-#> ℹ Data updated: 2026-11-09 21:14:33 UTC
-#> # A tibble: 926 × 82
+#> ℹ Data updated: 2026-11-24 10:02:15 UTC
+#> # A tibble: 926 × 84
 #>    pos_team_id pos_team       rushing_highlight_ya…¹ total_pen_yards EPA_penalty
 #>          <int> <chr>                           <dbl>           <int>       <dbl>
 #>  1         259 Virginia Tech…                   5.2                5        2.04
@@ -153,7 +153,7 @@ Saiem Gilani
 #> 10        2638 UTEP Miners                      3.23              10        1.46
 #> # ℹ 916 more rows
 #> # ℹ abbreviated name: ¹​rushing_highlight_yards_per_opp
-#> # ℹ 77 more variables: penalty_first_downs_created <int>,
+#> # ℹ 79 more variables: penalty_first_downs_created <int>,
 #> #   penalty_first_downs_created_rate <dbl>, penalties <int>,
 #> #   penalty_yards <int>, special_teams_plays <int>, EPA_sp <dbl>,
 #> #   EPA_special_teams <dbl>, field_goals <int>, EPA_fg <dbl>, punt_plays <int>,

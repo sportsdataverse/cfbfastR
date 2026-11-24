@@ -86,7 +86,7 @@ participating in this project you agree to abide by its terms.
       [`has_cfbd_key()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)-style
       guidance in the error path if no key is configured).
     - Parse the response with
-      [`jsonlite::fromJSON()`](https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html)
+      [`jsonlite::fromJSON()`](https://rdrr.io/pkg/jsonlite/man/fromJSON.html)
       -\>
       [`dplyr::as_tibble()`](https://tibble.tidyverse.org/reference/as_tibble.html)
       -\>

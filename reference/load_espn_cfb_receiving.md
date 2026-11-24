@@ -87,20 +87,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_receiving(2004))
 #> ── college football receiving EPA splits from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-11-09 21:14:52 UTC
+#> ℹ Data updated: 2026-11-24 10:02:35 UTC
 #> # A tibble: 1,418 × 77
 #>    team_id pos_team    division conference season player_id receiver_player_name
 #>    <chr>   <chr>       <chr>    <chr>       <int>     <int> <chr>               
-#>  1 87      Notre Dame  fbs      FBS Indep…   2004    150329 Brady Quinn         
-#>  2 239     Baylor      fbs      Big 12       2004    155317 Marcus Venus        
-#>  3 344     Mississipp… fbs      SEC          2004    134640 Bryson Davis        
-#>  4 12      Arizona     fbs      Pac-10       2004    136720 Biren Ealy          
-#>  5 38      Colorado    fbs      Big 12       2004    104669 Bobby Purify        
-#>  6 38      Colorado    fbs      Big 12       2004    145310 Dusty Sprague       
-#>  7 2579    South Caro… fbs      SEC          2004    146820 D'von Hill          
-#>  8 2390    Miami       fbs      ACC          2004    120155 Roscoe Parrish      
-#>  9 166     New Mexico… fbs      Sun Belt     2004    160111 Clint Jones         
-#> 10 120     Maryland    fbs      ACC          2004    116018 Rich Parson         
+#>  1 183     Syracuse    fbs      Big East     2004    165278 Quinton Brown       
+#>  2 2653    Troy        fbs      Sun Belt     2004    129586 Jason Samples       
+#>  3 99      LSU         fbs      SEC          2004    116982 David Jones         
+#>  4 70      Idaho       fbs      Sun Belt     2004    150896 Bobby Bernal-Wood   
+#>  5 2439    UNLV        fbs      Mountain …   2004    121992 Dyante Perkins      
+#>  6 25      California  fbs      Pac-10       2004    144982 Garrett Cross       
+#>  7 21      San Diego … fbs      Mountain …   2004    147853 Jeremy Justice      
+#>  8 202     Tulsa       fbs      Western A…   2004    135169 Garrett Mills       
+#>  9 2306    Kansas Sta… fbs      Big 12       2004    137315 Michael Weiner      
+#> 10 221     Pittsburgh  fbs      Big East     2004    120104 Justin Acierno      
 #> # ℹ 1,408 more rows
 #> # ℹ 70 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, comp <int>, targets <int>,

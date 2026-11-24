@@ -445,7 +445,7 @@ below needs an API key.</p>
 <span>  <span class="st">"releases/download/cfb_model_artifacts/"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">manifest</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">base</span>, <span class="st">"MANIFEST.json"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">manifest</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">base</span>, <span class="st">"MANIFEST.json"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">manifest</span><span class="op">$</span><span class="va">model_version</span>          <span class="co"># "2026.08.27"</span></span>
 <span><span class="va">manifest</span><span class="op">$</span><span class="va">consumers</span>              <span class="co"># "cfbfastR (R)", "sportsdataverse-py (Python)"</span></span>
@@ -455,7 +455,7 @@ below needs an API key.</p>
 <span><span class="co">#&gt;  7 -7  3 -3  2 -2  0</span></span></code></pre></div>
 <p>Every model ships a card recording exactly how it was trained:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">card</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">base</span>, <span class="st">"ep_model.card.json"</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">card</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">base</span>, <span class="st">"ep_model.card.json"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">card</span><span class="op">)</span></span></code></pre></div>
 <p>which currently reports:</p>
 <table class="table">

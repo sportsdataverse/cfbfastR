@@ -72,21 +72,21 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_rushing(2004))
 #> ── college football advanced rushing from the SportsDataverse data repo ────────
-#> ℹ Data updated: 2026-11-09 21:14:30 UTC
-#> # A tibble: 4,758 × 16
+#> ℹ Data updated: 2026-11-24 10:02:12 UTC
+#> # A tibble: 4,802 × 16
 #>    pos_team_id pos_team       rusher_player_name   Car   Yds Rush_TD   YPC   EPA
 #>          <int> <chr>          <chr>              <int> <dbl>   <int> <dbl> <dbl>
-#>  1          30 USC Trojans    LenDale White         15    77       0  5.13  0.36
-#>  2         259 Virginia Tech… Bryan Randall         12   110       0  9.17  9.55
+#>  1         259 Virginia Tech… Bryan Randall         17    81       0  4.76  9.55
+#>  2          30 USC Trojans    LenDale White         15    77       0  5.13  0.36
 #>  3          30 USC Trojans    Reggie Bush            9    28       0  3.11 -2.75
 #>  4         259 Virginia Tech… Cedric Humes           9    26       0  2.89 -3.74
 #>  5         259 Virginia Tech… Justin Hamilton        8    33       0  4.12 -1.37
-#>  6          30 USC Trojans    Matt Leinart           2     9       0  4.5   1.79
+#>  6          30 USC Trojans    Matt Leinart           4    -3       0 -0.75  1.79
 #>  7          30 USC Trojans    Steve Smith            1    -1       0 -1    -0.59
 #>  8         254 Utah Utes      Marty Johnson         20    77       0  3.85 -5.57
 #>  9         245 Texas A&M Agg… Reggie McNeal         13    97       2  7.46  7.16
 #> 10         254 Utah Utes      Alex Smith            13    94       2  7.23 -1.23
-#> # ℹ 4,748 more rows
+#> # ℹ 4,792 more rows
 #> # ℹ 8 more variables: EPA_per_Play <dbl>, WPA <dbl>, SR <dbl>, Fum <int>,
 #> #   Fum_Lost <int>, game_id <int>, season <int>, week <int>
 # }

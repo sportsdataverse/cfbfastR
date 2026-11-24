@@ -73,8 +73,8 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_receiving(2004))
 #> ── college football advanced receiving from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-11-09 21:14:28 UTC
-#> # A tibble: 7,251 × 22
+#> ℹ Data updated: 2026-11-24 10:02:11 UTC
+#> # A tibble: 7,244 × 22
 #>    pos_team_id pos_team      receiver_player_name   Rec   Tar   Yds Rec_TD   YPT
 #>          <int> <chr>         <chr>                <int> <int> <dbl>  <int> <dbl>
 #>  1         259 Virginia Tec… NA                       0    15     0      0   0  
@@ -87,7 +87,7 @@ Saiem Gilani
 #>  8          30 USC Trojans   Alex Holmes              2     2    11      0   5.5
 #>  9          30 USC Trojans   Chris McFoy              2     2    11      0   5.5
 #> 10          30 USC Trojans   Dwayne Jarrett           2     2    10      0   5  
-#> # ℹ 7,241 more rows
+#> # ℹ 7,234 more rows
 #> # ℹ 14 more variables: EPA <dbl>, EPA_per_Play <dbl>, WPA <dbl>, SR <dbl>,
 #> #   Fum <int>, Fum_Lost <int>, AirYds <lgl>, aDOT <lgl>, CompAirYds <lgl>,
 #> #   YAC <lgl>, AirYdsPct <lgl>, game_id <int>, season <int>, week <int>

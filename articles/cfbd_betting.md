@@ -36,7 +36,9 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
+
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
+
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
     ## Reading package lists...
@@ -58,9 +60,9 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).
     ## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.14).
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
-    ## 0 upgraded, 0 newly installed, 0 to remove and 35 not upgraded.
+    ## 0 upgraded, 0 newly installed, 0 to remove and 65 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [8.8s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [10.7s]
 
 ``` r
 
@@ -99,7 +101,7 @@ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 
     ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
 
-    ## ℹ Data updated: 2026-11-09 21:19:28 UTC
+    ## ℹ Data updated: 2026-11-24 10:07:58 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -122,8 +124,7 @@ cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC
 ```
 
     ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 3.1.0 ──
-
-    ## ℹ Data updated: 2026-11-09 21:19:29 UTC
+    ## ℹ Data updated: 2026-11-24 10:07:58 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
