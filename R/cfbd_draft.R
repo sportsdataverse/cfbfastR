@@ -66,7 +66,7 @@ cfbd_draft_teams <- function() {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("cfbd_draft_teams", {
 
       # Create the GET request and set response as res
       res <- get_req(full_url)
@@ -86,11 +86,9 @@ cfbd_draft_teams <- function() {
         )
       df <- df |>
         make_cfbfastR_data("NFL teams data from CollegeFootballData.com",Sys.time())
-    },
+    }),
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no NFL teams data available! {conditionMessage(e)}"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -129,7 +127,7 @@ cfbd_draft_positions <- function() {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("cfbd_draft_positions", {
 
       # Create the GET request and set response as res
       res <- get_req(full_url)
@@ -148,11 +146,9 @@ cfbd_draft_positions <- function() {
 
       df <- df |>
         make_cfbfastR_data("NFL positions data from CollegeFootballData.com",Sys.time())
-    },
+    }),
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no NFL positions data available! {conditionMessage(e)}"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -238,7 +234,7 @@ cfbd_draft_picks <- function(year = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("cfbd_draft_picks", {
 
       # Create the GET request and set response as res
       res <- get_req(full_url)
@@ -252,11 +248,9 @@ cfbd_draft_picks <- function(year = NULL,
 
       df <- df |>
         make_cfbfastR_data("NFL draft data from CollegeFootballData.com",Sys.time())
-    },
+    }),
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no NFL draft data available! {conditionMessage(e)}"))
-    },
-    warning = function(w) {
     },
     finally = {
     }

@@ -164,7 +164,7 @@ NULL
 
   detail <- na_detail
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings(".espn_cfb_athlete_detail", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -192,9 +192,10 @@ NULL
           }
         )
       }
-    },
-    error = function(e) {},
-    warning = function(w) {}
+    }),
+    error = function(e) {
+      cli::cli_alert_danger(".espn_cfb_athlete_detail(): {conditionMessage(e)}")
+    }
   )
   detail
 }
@@ -428,7 +429,7 @@ espn_cfb_player <- function(athlete_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_player", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -529,11 +530,9 @@ espn_cfb_player <- function(athlete_id = NULL,
 
       df <- df |>
         make_cfbfastR_data("Player detail from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -664,7 +663,7 @@ espn_cfb_player_eventlog <- function(athlete_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_player_eventlog", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -731,11 +730,9 @@ espn_cfb_player_eventlog <- function(athlete_id = NULL,
 
       df <- df |>
         make_cfbfastR_data("Player event log from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player event log data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player event log data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -878,7 +875,7 @@ espn_cfb_player_gamelog <- function(athlete_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_player_gamelog", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -964,11 +961,9 @@ espn_cfb_player_gamelog <- function(athlete_id = NULL,
 
       df <- df |>
         make_cfbfastR_data("Player game log from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player game log data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player game log data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1074,7 +1069,7 @@ espn_cfb_player_overview <- function(athlete_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_player_overview", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -1130,11 +1125,9 @@ espn_cfb_player_overview <- function(athlete_id = NULL,
 
       df <- df |>
         make_cfbfastR_data("Player statistics overview from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player overview data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player overview data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1229,7 +1222,7 @@ espn_cfb_player_seasons <- function(athlete_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_player_seasons", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -1302,11 +1295,9 @@ espn_cfb_player_seasons <- function(athlete_id = NULL,
 
       df <- df |>
         make_cfbfastR_data("Player seasons from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player seasons data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player seasons data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1411,7 +1402,7 @@ espn_cfb_player_splits <- function(athlete_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_player_splits", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -1473,13 +1464,11 @@ espn_cfb_player_splits <- function(athlete_id = NULL,
 
       df <- df |>
         make_cfbfastR_data("Player statistical splits from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
       message(glue::glue(
         "{Sys.time()}: Invalid arguments or no ESPN player splits data available! ({conditionMessage(e)})"
       ))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -1560,7 +1549,7 @@ espn_cfb_player_stats_v3 <- function(athlete_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_player_stats_v3", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -1620,11 +1609,9 @@ espn_cfb_player_stats_v3 <- function(athlete_id = NULL,
 
       df <- df |>
         make_cfbfastR_data("Player web-v3 statistics from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player stats (v3) data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player stats (v3) data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1739,7 +1726,7 @@ espn_cfb_player_career_stats <- function(athlete_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_player_career_stats", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -1793,11 +1780,9 @@ espn_cfb_player_career_stats <- function(athlete_id = NULL,
 
       df <- df |>
         make_cfbfastR_data("Player season statistics from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player statistics data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player statistics data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -2655,7 +2640,7 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
 
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no season player stats data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no season player stats data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -2760,7 +2745,7 @@ espn_cfb_players <- function(year = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_players", {
       rows <- list()
       pages_to_fetch <- seq.int(
         from = as.integer(page),
@@ -2830,11 +2815,9 @@ espn_cfb_players <- function(year = NULL,
 
       df <- df |>
         make_cfbfastR_data("Players index from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN players index data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN players index data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -2969,7 +2952,7 @@ espn_cfb_recruits <- function(year = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_recruits", {
       res <- httr2::request(base_url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -3098,11 +3081,9 @@ espn_cfb_recruits <- function(year = NULL,
       df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble() |>
         make_cfbfastR_data("Recruiting class data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN recruits data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN recruits data available! {conditionMessage(e)}"))
     },
     finally = {
     }

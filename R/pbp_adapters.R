@@ -634,7 +634,7 @@
   )
 
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings(".espn_pbp_game_meta", {
       # The event resource carries the week $ref + season $ref + competition[]
       # array with competitors[]; one HTTP call covers all fields.
       url <- glue::glue(
@@ -761,15 +761,10 @@
       } else {
         meta$game_date <- as.character(raw[["date"]] %||% NA)
       }
-    },
+    }),
     error = function(e) {
       cli::cli_alert_warning(
         "ESPN meta unavailable for game {game_id}: {conditionMessage(e)}"
-      )
-    },
-    warning = function(w) {
-      cli::cli_alert_warning(
-        "ESPN meta partial for game {game_id}: {conditionMessage(w)}"
       )
     }
   )

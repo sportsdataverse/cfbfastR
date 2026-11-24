@@ -58,7 +58,7 @@
 
   out <- empty
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings(".espn_cfb_pbp_sidecar", {
       url <- paste0(
         "https://cdn.espn.com/core/college-football/playbyplay?xhr=1&gameId=",
         game_id
@@ -123,7 +123,7 @@
                                   team_id = tids[!dup],
                                   row.names = NULL, stringsAsFactors = FALSE)
       }
-    },
+    }),
     error = function(e) {
       # Degrade, but say so. Silently returning empty frames here is how the
       # site.api 403 went unnoticed: every consumer just saw NA.
@@ -131,8 +131,7 @@
         "ESPN play-by-play sidecar unavailable for game {game_id}:
          {conditionMessage(e)}. Falling back to roster-only names and ids."
       )
-    },
-    warning = function(w) {}
+    }
   )
   out
 }

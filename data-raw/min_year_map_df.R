@@ -28,7 +28,8 @@ get_returned_rows <- function(...) {
         return(n)
       }
       msg <- paste(out$messages, out$warnings, collapse = " ")
-      if (!grepl("HTTP 5|timed out|Timeout|Could not resolve", msg)) {
+      # A 429 is a throttle, not "no data": retry it like a 5xx.
+      if (!grepl("HTTP 5|HTTP 429|timed out|Timeout|Could not resolve", msg)) {
         return(0L)
       }
     }
@@ -151,41 +152,71 @@ for (i in seq_along(min_year_map)) {
   returned_rows <- 1
   min_year <- unname(func)
   tf <- purrr::quietly(get(func_name))
-  while (returned_rows > 0) {
-    min_year <- min_year - 1
+  probe <- function(y, week = 5) {
     if (func_name %in% espn_team_func) {
-      returned_rows <- get_returned_rows(year = min_year, team_id = 2633)
+      get_returned_rows(year = y, team_id = 2633)
     } else if (func_name %in% func_with_required_team) {
-      returned_rows <- get_returned_rows(year = min_year, team = "Texas")
+      get_returned_rows(year = y, team = "Texas")
     } else if (func_name %in% func_with_week) {
       # cfbd_game_schedule() requires year, season_type and week together; the
       # other week-taking wrappers accept season_type and default to regular.
       if ('season_type' %in% formal_names(func_name)) {
-        returned_rows <- get_returned_rows(year = min_year, week = 5, season_type = "regular")
+        get_returned_rows(year = y, week = week, season_type = "regular")
       } else {
-        returned_rows <- get_returned_rows(year = min_year, week = 5)
+        get_returned_rows(year = y, week = week)
       }
     } else {
-      returned_rows <- get_returned_rows(year = min_year)
+      get_returned_rows(year = y)
     }
+  }
+  # 1869 is the first college football season. A wrapper that ignores `year`
+  # (espn_cfb_team) returns rows for every year and would otherwise walk to 1000.
+  floor_year <- 1869
+  if (min_year <= floor_year) {
+    # The walk below would make no call, so verify the floor itself before
+    # refreshing the timestamp. With no rows there, mark the row unverified
+    # (NA) so the freshness test flags it.
+    # 1869 had two games and neither fell in week 5, so a week-taking wrapper
+    # is also probed with no week before the floor counts as empty.
+    floor_rows <- probe(floor_year)
+    if (floor_rows == 0 && func_name %in% func_with_week) floor_rows <- probe(floor_year, week = NULL)
+    if (floor_rows == 0) {
+      print(glue::glue('{func_name}: no rows at the {floor_year} floor; marked unverified'))
+      min_year_map_df[min_year_map_df$function_name == func_name, 'last_updated'] <- as.Date(NA)
+      next
+    }
+    min_year <- floor_year
+  }
+  while (returned_rows > 0 && min_year > floor_year) {
+    min_year <- min_year - 1
+    returned_rows <- probe(min_year)
     Sys.sleep(1)
   }
 
-  updated_year <- min_year + 1
+  # Stopped at the floor with rows still coming back: the floor is the minimum.
+  updated_year <- if (returned_rows > 0) min_year else min_year + 1
   min_year_map_df <- update_map(
     df = min_year_map_df,
     func_name = func_name,
     new_year = updated_year
   )
-  if (func_name %in% inherit_map) {
-    for (c_func in names(inherit_map[inherit_map == func_name])) {
-      print(glue::glue('Updating {c_func}, inheriting from {func_name}...'))
+  # Inheritance chains (cfbd_player_season_overview <- cfbd_player_info <-
+  # cfbd_game_player_stats): a middle link is skipped above, so walk the chain
+  # here or its children are never refreshed.
+  parents <- func_name
+  visited <- func_name
+  while (length(parents) > 0) {
+    children <- setdiff(names(inherit_map[inherit_map %in% parents]), visited) # guards a cycle
+    visited <- c(visited, children)
+    for (c_func in children) {
+      print(glue::glue('Updating {c_func}, inheriting from {inherit_map[[c_func]]}...'))
       min_year_map_df <- update_map(
         df = min_year_map_df,
         func_name = c_func,
         new_year = updated_year
       )
     }
+    parents <- children
   }
 }
 

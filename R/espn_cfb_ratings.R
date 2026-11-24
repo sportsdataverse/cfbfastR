@@ -85,7 +85,7 @@ espn_cfb_futures <- function(year = NULL) {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_futures", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -172,11 +172,9 @@ espn_cfb_futures <- function(year = NULL) {
       df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble() |>
         make_cfbfastR_data("Betting futures data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN futures data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN futures data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -256,7 +254,7 @@ espn_cfb_powerindex <- function(year = NULL) {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_powerindex", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -303,11 +301,9 @@ espn_cfb_powerindex <- function(year = NULL) {
       df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble() |>
         make_cfbfastR_data("Power Index data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN power index data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN power index data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -441,7 +437,7 @@ espn_cfb_qbr <- function(year = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_qbr", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -511,11 +507,9 @@ espn_cfb_qbr <- function(year = NULL,
 
       df <- df |>
         make_cfbfastR_data("QBR data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN QBR data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN QBR data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -659,7 +653,7 @@ espn_ratings_fpi <- function(year = 2019) {
         make_cfbfastR_data("FPI rating data from ESPN",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN FPI data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN FPI data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -749,7 +743,7 @@ espn_metrics_wp <- function(game_id) {
         make_cfbfastR_data("Win probability chart data from ESPN",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: game_id '{espn_game_id}' invalid or no ESPN win probability data available!"))
+      message(glue::glue("{Sys.time()}: game_id '{espn_game_id}' invalid or no ESPN win probability data available! {conditionMessage(e)}"))
     },
     finally = {
     }

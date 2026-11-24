@@ -121,7 +121,7 @@ cfbd_coaches <- function(first = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("cfbd_coaches", {
 
       # Create the GET request and set response as res
       res <- get_req(full_url)
@@ -139,12 +139,10 @@ cfbd_coaches <- function(first = NULL,
 
       df <- df |>
         make_cfbfastR_data("Coaches data from CollegeFootballData.com",Sys.time())
-    },
+    }),
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no coaches data available! {conditionMessage(e)}"))
 
-    },
-    warning = function(w) {
     },
     finally = {
     }

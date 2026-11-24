@@ -834,7 +834,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
       }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: game_id '{game_id}' invalid or no game advanced box score data available!"))
+      message(glue::glue("{Sys.time()}: game_id '{game_id}' invalid or no game advanced box score data available! {conditionMessage(e)}"))
     },
     finally = {
     }

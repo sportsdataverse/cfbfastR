@@ -716,6 +716,7 @@ cfbd_pbp_data <- function(year,
         }
       },
       error = function(e) {
+        cli::cli_alert_warning("cfbd_pbp_data(): betting lines not attached, so spread and over_under are missing: {conditionMessage(e)}")
       },
       finally = {
       }

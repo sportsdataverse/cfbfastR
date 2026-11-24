@@ -207,7 +207,7 @@ NULL
   `%||%` <- rlang::`%||%`
   pos_lk <- list()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings(".espn_cfb_position_lookup", {
       pos <- espn_cfb_positions()
       if (is.data.frame(pos) && nrow(pos) > 0) {
         for (i in seq_len(nrow(pos))) {
@@ -222,9 +222,10 @@ NULL
           )
         }
       }
-    },
-    error = function(e) {},
-    warning = function(w) {}
+    }),
+    error = function(e) {
+      cli::cli_alert_danger(".espn_cfb_position_lookup(): {conditionMessage(e)}")
+    }
   )
   pos_lk
 }
@@ -310,7 +311,7 @@ NULL
   `%||%` <- rlang::`%||%`
   team_lk <- list()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings(".espn_cfb_team_lookup", {
       teams <- espn_cfb_teams()
       if (is.data.frame(teams) && nrow(teams) > 0) {
         for (i in seq_len(nrow(teams))) {
@@ -336,9 +337,10 @@ NULL
           )
         }
       }
-    },
-    error = function(e) {},
-    warning = function(w) {}
+    }),
+    error = function(e) {
+      cli::cli_alert_danger(".espn_cfb_team_lookup(): {conditionMessage(e)}")
+    }
   )
   team_lk
 }
@@ -521,7 +523,7 @@ espn_cfb_clear_cache <- function() {
     list()
   }
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings(".espn_cfb_participant_roster", {
       # position_detail = FALSE here -- this helper does its own catalog
       # enrichment from pos_lk, so the roster wrapper's join is redundant.
       # team_detail = FALSE -- the roster wrapper's team-catalog join is
@@ -557,9 +559,10 @@ espn_cfb_clear_cache <- function() {
           )
         }
       }
-    },
-    error = function(e) {},
-    warning = function(w) {}
+    }),
+    error = function(e) {
+      cli::cli_alert_danger(".espn_cfb_participant_roster(): {conditionMessage(e)}")
+    }
   )
   roster_lk
 }
@@ -1242,7 +1245,7 @@ espn_cfb_game_broadcasts <- function(game_id = NULL) {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_broadcasts", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -1297,11 +1300,9 @@ espn_cfb_game_broadcasts <- function(game_id = NULL) {
       df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble() |>
         make_cfbfastR_data("Game broadcasts data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game broadcasts data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game broadcasts data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1366,7 +1367,7 @@ espn_cfb_game_drive_plays <- function(game_id = NULL, drive_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_drive_plays", {
       base_url <- glue::glue(
         "https://sports.core.api.espn.com/v2/sports/football/leagues/",
         "college-football/events/{game_id}/competitions/{game_id}/",
@@ -1447,11 +1448,9 @@ espn_cfb_game_drive_plays <- function(game_id = NULL, drive_id = NULL,
 
       df <- plays_df |>
         make_cfbfastR_data("Game drive plays data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game drive plays data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game drive plays data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1718,7 +1717,7 @@ espn_cfb_game_drives <- function(game_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_drives", {
       raw <- get_json(url)
 
       items <- raw[["items"]]
@@ -1935,11 +1934,9 @@ espn_cfb_game_drives <- function(game_id = NULL,
         df <- df |>
           make_cfbfastR_data("Game drives data from ESPN", Sys.time())
       }
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game drives data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game drives data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -2132,7 +2129,7 @@ espn_cfb_game_leaders <- function(game_id = NULL, team_detail = TRUE) {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_leaders", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -2201,11 +2198,9 @@ espn_cfb_game_leaders <- function(game_id = NULL, team_detail = TRUE) {
 
       df <- leaders_df |>
         make_cfbfastR_data("Game leaders data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game leaders data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game leaders data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -2310,7 +2305,7 @@ espn_cfb_game_odds <- function(game_id = NULL, line_history = FALSE) {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_odds", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -2440,11 +2435,9 @@ espn_cfb_game_odds <- function(game_id = NULL, line_history = FALSE) {
       df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble() |>
         make_cfbfastR_data("Game odds data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game odds data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game odds data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -2745,7 +2738,7 @@ espn_cfb_game_pbp <- function(game_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_pbp", {
       base_url <- glue::glue(
         "https://sports.core.api.espn.com/v2/sports/football/leagues/",
         "college-football/events/{game_id}/competitions/{game_id}/",
@@ -2824,11 +2817,9 @@ espn_cfb_game_pbp <- function(game_id = NULL,
 
       df <- plays_df |>
         make_cfbfastR_data("Game plays data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game plays data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game plays data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -2892,7 +2883,7 @@ espn_cfb_game_play <- function(game_id = NULL, play_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_play", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -2950,11 +2941,9 @@ espn_cfb_game_play <- function(game_id = NULL, play_id = NULL,
 
       df <- df |>
         make_cfbfastR_data("Game play data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game play data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game play data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -3111,7 +3100,7 @@ espn_cfb_game_player_statistics <- function(game_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_player_statistics", {
       base <- glue::glue(
         "https://sports.core.api.espn.com/v2/sports/football/leagues/",
         "college-football/events/{game_id}/competitions/{game_id}"
@@ -3250,11 +3239,9 @@ espn_cfb_game_player_statistics <- function(game_id = NULL,
 
       df <- stats_df |>
         make_cfbfastR_data("Game player statistics data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game player statistics data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game player statistics data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -3399,7 +3386,7 @@ espn_cfb_game_player_box <- function(game_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_player_box", {
       # Position catalog fetched once when position_detail = TRUE -- the
       # lookup degrades to empty on any catalog failure (NA join, never
       # an error).
@@ -3414,7 +3401,7 @@ espn_cfb_game_player_box <- function(game_id = NULL,
       # degrades to NA names / positions rather than erroring.
       roster_lk <- list()
       tryCatch(
-        expr = {
+        expr = .cfb_with_warnings("espn_cfb_game_player_box", {
           ros <- espn_cfb_game_team_roster(game_id, position_detail = FALSE,
                                            team_detail = FALSE)
           if (is.data.frame(ros) && nrow(ros) > 0) {
@@ -3427,9 +3414,10 @@ espn_cfb_game_player_box <- function(game_id = NULL,
               )
             }
           }
-        },
-        error = function(e) {},
-        warning = function(w) {}
+        }),
+        error = function(e) {
+          cli::cli_alert_warning("espn_cfb_game_player_box(): roster lookup failed, so player names and positions will be NA: {conditionMessage(e)}")
+        }
       )
 
       comp_url <- glue::glue(
@@ -3563,11 +3551,9 @@ espn_cfb_game_player_box <- function(game_id = NULL,
 
       df <- box_df |>
         make_cfbfastR_data("Game player box score data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game player box data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game player box data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -3675,7 +3661,7 @@ espn_cfb_game_powerindex <- function(game_id = NULL, team_detail = TRUE) {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_powerindex", {
       url <- glue::glue(
         "https://sports.core.api.espn.com/v2/sports/football/leagues/",
         "college-football/events/{game_id}/competitions/{game_id}/",
@@ -3741,11 +3727,9 @@ espn_cfb_game_powerindex <- function(game_id = NULL, team_detail = TRUE) {
 
       df <- pi_df |>
         make_cfbfastR_data("Game power index data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game power index data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game power index data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -3853,7 +3837,7 @@ espn_cfb_game_predictor <- function(game_id = NULL, team_detail = TRUE) {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_predictor", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -3920,11 +3904,9 @@ espn_cfb_game_predictor <- function(game_id = NULL, team_detail = TRUE) {
 
       df <- pred_df |>
         make_cfbfastR_data("Game predictor data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game predictor data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game predictor data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -4059,7 +4041,7 @@ espn_cfb_game_probabilities <- function(game_id = NULL, team_detail = TRUE) {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_probabilities", {
       base_url <- glue::glue(
         "https://sports.core.api.espn.com/v2/sports/football/leagues/",
         "college-football/events/{game_id}/competitions/{game_id}/",
@@ -4147,11 +4129,9 @@ espn_cfb_game_probabilities <- function(game_id = NULL, team_detail = TRUE) {
 
       df <- prob_df |>
         make_cfbfastR_data("Game win probabilities data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game probabilities data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game probabilities data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -4227,7 +4207,7 @@ espn_cfb_game_situation <- function(game_id = NULL) {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_situation", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -4268,11 +4248,9 @@ espn_cfb_game_situation <- function(game_id = NULL) {
       ) |>
         dplyr::as_tibble() |>
         make_cfbfastR_data("Game situation data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game situation data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game situation data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -4348,7 +4326,7 @@ espn_cfb_game_status <- function(game_id = NULL) {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_status", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -4382,11 +4360,9 @@ espn_cfb_game_status <- function(game_id = NULL) {
       ) |>
         dplyr::as_tibble() |>
         make_cfbfastR_data("Game status data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game status data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game status data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -4506,7 +4482,7 @@ espn_cfb_game_team_leaders <- function(game_id = NULL, team_detail = TRUE) {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_team_leaders", {
       comp_url <- glue::glue(
         "https://sports.core.api.espn.com/v2/sports/football/leagues/",
         "college-football/events/{game_id}/competitions/{game_id}/competitors",
@@ -4609,11 +4585,9 @@ espn_cfb_game_team_leaders <- function(game_id = NULL, team_detail = TRUE) {
 
       df <- tl_df |>
         make_cfbfastR_data("Game team leaders data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game team leaders data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game team leaders data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -4720,7 +4694,7 @@ espn_cfb_game_team_linescores <- function(game_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_team_linescores", {
       comp_url <- glue::glue(
         "https://sports.core.api.espn.com/v2/sports/football/leagues/",
         "college-football/events/{game_id}/competitions/{game_id}/competitors",
@@ -4784,11 +4758,9 @@ espn_cfb_game_team_linescores <- function(game_id = NULL,
 
       df <- ls_df |>
         make_cfbfastR_data("Game team linescores data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game team linescores data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game team linescores data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -4916,7 +4888,7 @@ espn_cfb_game_team_records <- function(game_id = NULL, detail = FALSE,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_team_records", {
       comp_url <- glue::glue(
         "https://sports.core.api.espn.com/v2/sports/football/leagues/",
         "college-football/events/{game_id}/competitions/{game_id}/competitors",
@@ -5007,11 +4979,9 @@ espn_cfb_game_team_records <- function(game_id = NULL, detail = FALSE,
 
       df <- rec_df |>
         make_cfbfastR_data("Game team records data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game team records data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game team records data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -5146,7 +5116,7 @@ espn_cfb_game_team_roster <- function(game_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_team_roster", {
       # Position catalog fetched once per call when position_detail = TRUE
       # -- the lookup degrades to empty on any catalog failure, so the
       # join NA-fills rather than erroring the wrapper.
@@ -5253,11 +5223,9 @@ espn_cfb_game_team_roster <- function(game_id = NULL,
 
       df <- roster_df |>
         make_cfbfastR_data("Game team roster data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game team roster data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game team roster data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -5375,7 +5343,7 @@ espn_cfb_game_team_statistics <- function(game_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_team_statistics", {
       comp_url <- glue::glue(
         "https://sports.core.api.espn.com/v2/sports/football/leagues/",
         "college-football/events/{game_id}/competitions/{game_id}/competitors",
@@ -5466,11 +5434,9 @@ espn_cfb_game_team_statistics <- function(game_id = NULL,
 
       df <- ts_df |>
         make_cfbfastR_data("Game team statistics data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game team statistics data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game team statistics data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -5620,7 +5586,7 @@ espn_cfb_game_teams <- function(game_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_game_teams", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -5712,11 +5678,9 @@ espn_cfb_game_teams <- function(game_id = NULL,
 
       df <- teams_df |>
         make_cfbfastR_data("Game teams data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game teams data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN game teams data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -5956,7 +5920,7 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
 
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no play-by-play data for {game_id} available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no play-by-play data for {game_id} available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -6006,7 +5970,7 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
   )
 
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings(".espn_cfb_game_meta", {
       url <- glue::glue(
         "https://sports.core.api.espn.com/v2/sports/football/leagues/",
         "college-football/events/{game_id}?lang=en&region=us"
@@ -6063,9 +6027,10 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
       } else {
         meta$game_date <- as.character(raw[["date"]] %||% NA)
       }
-    },
-    error = function(e) {},
-    warning = function(w) {}
+    }),
+    error = function(e) {
+      cli::cli_alert_danger(".espn_cfb_game_meta(): {conditionMessage(e)}")
+    }
   )
   meta
 }

@@ -107,7 +107,7 @@ cfbd_api_key_info <- function(){
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("cfbd_api_key_info", {
 
       # Create the GET request and set response as res
       res <- get_req(full_url)
@@ -121,12 +121,10 @@ cfbd_api_key_info <- function(){
 
       df <- df |>
         make_cfbfastR_data("CFBD API key info data from CollegeFootballData.com",Sys.time())
-    },
+    }),
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no CFBD API key info data available! {conditionMessage(e)}"))
 
-    },
-    warning = function(w) {
     },
     finally = {
     }

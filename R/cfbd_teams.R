@@ -272,7 +272,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("cfbd_team_matchup_records", {
 
       # Create the GET request and set response as res
       res <- get_req(full_url)
@@ -312,11 +312,9 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 
       df <- df |>
         make_cfbfastR_data("Team matchup record from CollegeFootballData.com",Sys.time())
-    },
+    }),
     error = function(e) {
       message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup records data available! {conditionMessage(e)}"))
-    },
-    warning = function(w) {
     },
     finally = {
     }

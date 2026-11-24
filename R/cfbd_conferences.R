@@ -77,7 +77,7 @@ cfbd_conferences <- function(year = NULL, division = NULL) {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("cfbd_conferences", {
 
       # Create the GET request and set response as res
       res <- get_req(full_url)
@@ -98,11 +98,9 @@ cfbd_conferences <- function(year = NULL, division = NULL) {
 
       df <- df |>
         make_cfbfastR_data("Conference data from CollegeFootballData.com",Sys.time())
-    },
+    }),
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no Conference data available! {conditionMessage(e)}"))
-    },
-    warning = function(w) {
     },
     finally = {
     }

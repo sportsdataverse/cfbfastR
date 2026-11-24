@@ -139,6 +139,12 @@ metadata the bare payload omits is resolved by `.espn_pbp_game_meta()`.
   On API error the handler runs, the var never binds, and `return(var)` throws
   `object not found` instead of the intended `cli_alert_danger()` + empty fallback. Applies
   to all return names; init `list()`/`NULL`/`data.frame()` as appropriate.
+- **No `warning =` handler on a wrapper's `tryCatch`.** It stops `expr` at the first warning and
+  returns the empty fallback silently (80 sites had an empty one until 3.1.0). Write
+  `expr = .cfb_with_warnings("<fn>", { ... })` (`R/utils.R`): each warning is re-raised as a
+  classed `cfbfastR_warning` naming the function, and the body finishes. Every `error =` handler
+  includes `{conditionMessage(e)}`; `test-handler_causes.R` mocks `httr2::req_perform()` to
+  fail and checks every such function passes the cause on.
 - **Scalar-default args, not `c(...)` + `match.arg()`.** Default `output = "default"`,
   document choices in `@param`, validate with `cli::cli_abort()`. The c-vector form silently
   picks the first element on a vector arg.

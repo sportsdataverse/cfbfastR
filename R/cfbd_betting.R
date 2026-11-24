@@ -129,7 +129,7 @@ cfbd_betting_lines <- function(game_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("cfbd_betting_lines", {
 
       # Create the GET request and set response as res
       res <- get_req(full_url)
@@ -182,11 +182,9 @@ cfbd_betting_lines <- function(game_id = NULL,
 
       df <- df |>
         make_cfbfastR_data("Betting lines data from CollegeFootballData.com",Sys.time())
-    },
+    }),
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no betting lines data available! {conditionMessage(e)}"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -262,7 +260,7 @@ cfbd_betting_ats <- function(year = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("cfbd_betting_ats", {
 
       # Create the GET request and set response as res
       res <- get_req(full_url)
@@ -281,11 +279,9 @@ cfbd_betting_ats <- function(year = NULL,
 
       df <- df |>
         make_cfbfastR_data("Against-the-spread records from CollegeFootballData.com", Sys.time())
-    },
+    }),
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no ATS data available! {conditionMessage(e)}"))
-    },
-    warning = function(w) {
     },
     finally = {
     }

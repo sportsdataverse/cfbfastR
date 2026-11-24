@@ -236,7 +236,7 @@ espn_cfb_scoreboard <- function(date = NULL) {
         make_cfbfastR_data("Live Scoreboard Data from ESPN",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN scoreboard data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN scoreboard data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -491,7 +491,7 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
         make_cfbfastR_data("Schedule Data from ESPN",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: invalid input or no ESPN schedule data available!"))
+      message(glue::glue("{Sys.time()}: invalid input or no ESPN schedule data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -588,7 +588,7 @@ espn_cfb_calendar <- function(year=NULL, groups=NULL){
         make_cfbfastR_data("Calendar Data from ESPN",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: invalid input or no ESPN calendar available!"))
+      message(glue::glue("{Sys.time()}: invalid input or no ESPN calendar available! {conditionMessage(e)}"))
     },
     finally = {
     }

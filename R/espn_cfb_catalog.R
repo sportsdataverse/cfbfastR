@@ -218,7 +218,7 @@ espn_cfb_award <- function(award_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_award", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -301,11 +301,9 @@ espn_cfb_award <- function(award_id = NULL,
 
       df <- df |>
         make_cfbfastR_data("Award detail from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN award data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN award data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -411,7 +409,7 @@ espn_cfb_awards <- function(year = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_awards", {
       res <- httr2::request(base_url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -508,11 +506,9 @@ espn_cfb_awards <- function(year = NULL,
 
       df <- df |>
         make_cfbfastR_data("Awards data from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN awards data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN awards data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -629,7 +625,7 @@ espn_cfb_coach <- function(coach_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_coach", {
       res <- httr2::request(season_url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -682,11 +678,9 @@ espn_cfb_coach <- function(coach_id = NULL,
 
       df <- df |>
         make_cfbfastR_data("Coach detail from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN coach data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN coach data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -778,7 +772,7 @@ espn_cfb_coach_record <- function(coach_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_coach_record", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -826,11 +820,9 @@ espn_cfb_coach_record <- function(coach_id = NULL,
       df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble() |>
         make_cfbfastR_data("Coach season record from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN coach record data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN coach record data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -933,7 +925,7 @@ espn_cfb_coaches <- function(year = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_coaches", {
       res <- httr2::request(base_url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -1001,11 +993,9 @@ espn_cfb_coaches <- function(year = NULL,
 
       df <- df |>
         make_cfbfastR_data("Coaches index from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN coaches data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN coaches data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1105,7 +1095,7 @@ espn_cfb_franchise <- function(franchise_id = NULL,
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_franchise", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -1160,11 +1150,9 @@ espn_cfb_franchise <- function(franchise_id = NULL,
 
       df <- df |>
         make_cfbfastR_data("Franchise detail from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN franchise data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN franchise data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1236,7 +1224,7 @@ espn_cfb_franchises <- function() {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_franchises", {
       res <- httr2::request(base_url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -1280,11 +1268,9 @@ espn_cfb_franchises <- function() {
       df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble() |>
         make_cfbfastR_data("Franchises index from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN franchises data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN franchises data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1357,7 +1343,7 @@ espn_cfb_position <- function(position_id = NULL) {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_position", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -1389,11 +1375,9 @@ espn_cfb_position <- function(position_id = NULL) {
       ) |>
         dplyr::as_tibble() |>
         make_cfbfastR_data("Position detail from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN position data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN position data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1468,7 +1452,7 @@ espn_cfb_positions <- function() {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_positions", {
       res <- httr2::request(base_url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -1520,11 +1504,9 @@ espn_cfb_positions <- function() {
       df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble() |>
         make_cfbfastR_data("Positions index from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN positions data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN positions data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1595,7 +1577,7 @@ espn_cfb_venue <- function(venue_id = NULL) {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_venue", {
       res <- httr2::request(url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -1624,11 +1606,9 @@ espn_cfb_venue <- function(venue_id = NULL) {
       ) |>
         dplyr::as_tibble() |>
         make_cfbfastR_data("Venue detail from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN venue data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN venue data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1710,7 +1690,7 @@ espn_cfb_venues <- function(max_results = 200) {
 
   df <- data.frame()
   tryCatch(
-    expr = {
+    expr = .cfb_with_warnings("espn_cfb_venues", {
       res <- httr2::request(base_url) |>
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
@@ -1761,11 +1741,9 @@ espn_cfb_venues <- function(max_results = 200) {
       df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble() |>
         make_cfbfastR_data("Venues index from ESPN", Sys.time())
-    },
+    }),
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN venues data available!"))
-    },
-    warning = function(w) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN venues data available! {conditionMessage(e)}"))
     },
     finally = {
     }
