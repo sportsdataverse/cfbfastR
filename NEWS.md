@@ -472,7 +472,8 @@ and every `exp_qbr` come back `NA` without an error once the shared
   re-raised as a `cfbfastR_warning` that names the function, for example
   `espn_cfb_team_schedule(): NAs introduced by coercion`, and the function
   finishes and returns its data. Use `suppressWarnings(classes =
-  "cfbfastR_warning")` to quiet them.
+  "cfbfastR_warning")` to quiet them; the warning also keeps its original
+  class, so an existing `classes =` filter still matches.
 * Error messages now carry the cause. 78 wrappers printed only "Invalid
   arguments or no ... data available!", so an HTTP 429, a 403 and a parse
   failure all read like an empty result; the message now ends with the

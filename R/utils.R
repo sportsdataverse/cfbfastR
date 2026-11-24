@@ -11,7 +11,9 @@
     warning = function(w) {
       if (inherits(w, "cfbfastR_warning")) return() # already named by an inner wrapper
       msg <- conditionMessage(w)
-      cli::cli_warn(c("!" = "{fn}(): {msg}"), class = "cfbfastR_warning", call = NULL)
+      # keep the original classes, so suppressWarnings(classes = <original>) still matches
+      orig <- setdiff(class(w), c("simpleWarning", "warning", "condition"))
+      cli::cli_warn(c("!" = "{fn}(): {msg}"), class = c("cfbfastR_warning", orig), call = NULL)
       invokeRestart("muffleWarning")
     }
   )

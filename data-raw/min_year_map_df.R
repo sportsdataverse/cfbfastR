@@ -28,7 +28,8 @@ get_returned_rows <- function(...) {
         return(n)
       }
       msg <- paste(out$messages, out$warnings, collapse = " ")
-      if (!grepl("HTTP 5|timed out|Timeout|Could not resolve", msg)) {
+      # A 429 is a throttle, not "no data": retry it like a 5xx.
+      if (!grepl("HTTP 5|HTTP 429|timed out|Timeout|Could not resolve", msg)) {
         return(0L)
       }
     }
@@ -151,7 +152,7 @@ for (i in seq_along(min_year_map)) {
   returned_rows <- 1
   min_year <- unname(func)
   tf <- purrr::quietly(get(func_name))
-  probe <- function(y) {
+  probe <- function(y, week = 5) {
     if (func_name %in% espn_team_func) {
       get_returned_rows(year = y, team_id = 2633)
     } else if (func_name %in% func_with_required_team) {
@@ -160,9 +161,9 @@ for (i in seq_along(min_year_map)) {
       # cfbd_game_schedule() requires year, season_type and week together; the
       # other week-taking wrappers accept season_type and default to regular.
       if ('season_type' %in% formal_names(func_name)) {
-        get_returned_rows(year = y, week = 5, season_type = "regular")
+        get_returned_rows(year = y, week = week, season_type = "regular")
       } else {
-        get_returned_rows(year = y, week = 5)
+        get_returned_rows(year = y, week = week)
       }
     } else {
       get_returned_rows(year = y)
@@ -173,10 +174,15 @@ for (i in seq_along(min_year_map)) {
   floor_year <- 1869
   if (min_year <= floor_year) {
     # The walk below would make no call, so verify the floor itself before
-    # refreshing the timestamp. With no rows there, leave the row unverified
-    # so the freshness test flags it.
-    if (probe(floor_year) == 0) {
-      print(glue::glue('{func_name}: no rows at the {floor_year} floor; left unverified'))
+    # refreshing the timestamp. With no rows there, mark the row unverified
+    # (NA) so the freshness test flags it.
+    # 1869 had two games and neither fell in week 5, so a week-taking wrapper
+    # is also probed with no week before the floor counts as empty.
+    floor_rows <- probe(floor_year)
+    if (floor_rows == 0 && func_name %in% func_with_week) floor_rows <- probe(floor_year, week = NULL)
+    if (floor_rows == 0) {
+      print(glue::glue('{func_name}: no rows at the {floor_year} floor; marked unverified'))
+      min_year_map_df[min_year_map_df$function_name == func_name, 'last_updated'] <- as.Date(NA)
       next
     }
     min_year <- floor_year
@@ -198,8 +204,10 @@ for (i in seq_along(min_year_map)) {
   # cfbd_game_player_stats): a middle link is skipped above, so walk the chain
   # here or its children are never refreshed.
   parents <- func_name
+  visited <- func_name
   while (length(parents) > 0) {
-    children <- names(inherit_map[inherit_map %in% parents])
+    children <- setdiff(names(inherit_map[inherit_map %in% parents]), visited) # guards a cycle
+    visited <- c(visited, children)
     for (c_func in children) {
       print(glue::glue('Updating {c_func}, inheriting from {inherit_map[[c_func]]}...'))
       min_year_map_df <- update_map(

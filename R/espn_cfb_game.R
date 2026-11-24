@@ -3416,7 +3416,7 @@ espn_cfb_game_player_box <- function(game_id = NULL,
           }
         }),
         error = function(e) {
-          cli::cli_alert_danger("espn_cfb_game_player_box(): {conditionMessage(e)}")
+          cli::cli_alert_warning("espn_cfb_game_player_box(): roster lookup failed, so player names and positions will be NA: {conditionMessage(e)}")
         }
       )
 

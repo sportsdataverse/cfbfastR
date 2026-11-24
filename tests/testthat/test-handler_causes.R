@@ -1,13 +1,15 @@
 # A wrapper's tryCatch() error handler must name the cause of a failure, not
 # only "no data available": a 429, a 403 and a parse bug otherwise read like an
-# empty result. Every request is made to fail offline and each wrapper whose
-# body reports conditionMessage() must pass that cause on.
+# empty result. Every request is made to fail offline, and every function with
+# a block-bodied tryCatch() error handler must pass that cause on, without the
+# error escaping.
 
-# Functions that cannot reach their error handler with this setup, with why.
+# Functions this setup cannot exercise, with why.
 .handler_cause_skip <- c(
   .espn_cfb_pbp_line = "no request to fail",
   cfbd_pbp_data = "a failed plays request is raised, not handled",
-  cfbd_pbp_data_v2 = "a failed plays request is raised, not handled"
+  cfbd_pbp_data_v2 = "a failed plays request is raised, not handled",
+  build_cfb_db = "aborts on purpose, with the cause as parent = e"
 )
 
 .handler_cause_args <- list(
@@ -33,19 +35,21 @@
 
 test_that("error handlers report the cause of a failed request", {
   ns <- asNamespace("cfbfastR")
-  reports_cause <- function(nm) {
+  # Selected by handler shape, not by whether it already reports the cause,
+  # so a handler that loses conditionMessage() fails here instead of
+  # silently dropping out of the list.
+  has_block_handler <- function(nm) {
     f <- .unmemoise(get(nm, envir = ns))
     if (!is.function(f) || is.primitive(f)) return(FALSE)
     b <- paste(deparse(body(f)), collapse = "\n")
-    grepl("tryCatch", b, fixed = TRUE) &&
-      grepl("error = function(e)", b, fixed = TRUE) &&
-      grepl("conditionMessage(e)", b, fixed = TRUE)
+    grepl("tryCatch", b, fixed = TRUE) && grepl("error = function(e) {", b, fixed = TRUE)
   }
-  fns <- Filter(reports_cause, ls(ns, all.names = TRUE))
+  fns <- Filter(has_block_handler, ls(ns, all.names = TRUE))
+  expect_true(all(names(.handler_cause_skip) %in% fns))
   fns <- setdiff(fns, names(.handler_cause_skip))
   expect_gt(length(fns), 150L)
 
-  withr::local_options(cfbfastR.cache = "off", cfbfastR.test_request_delay = 0)
+  withr::local_options(cfbfastR.test_request_delay = 0)
   withr::local_envvar(CFBD_API_KEY = "test-key")
   # Wrappers call memoised lookups; don't leave failed results cached for later tests.
   espn_cfb_clear_cache()
@@ -56,12 +60,13 @@ test_that("error handlers report the cause of a failed request", {
   )
 
   silent <- character()
+  escaped <- character()
   for (nm in fns) {
     f <- .unmemoise(get(nm, envir = ns))
     args <- .handler_cause_args[intersect(names(formals(f)), names(.handler_cause_args))]
     msgs <- character()
     withCallingHandlers(
-      tryCatch(do.call(f, args), error = function(e) msgs <<- c(msgs, conditionMessage(e))),
+      tryCatch(do.call(f, args), error = function(e) escaped <<- c(escaped, nm)),
       message = function(m) {
         msgs <<- c(msgs, conditionMessage(m))
         invokeRestart("muffleMessage")
@@ -70,5 +75,6 @@ test_that("error handlers report the cause of a failed request", {
     )
     if (!any(grepl("mock outage", msgs, fixed = TRUE))) silent <- c(silent, nm)
   }
-  expect_identical(silent, character())
+  expect_identical(escaped, character())
+  expect_identical(setdiff(silent, escaped), character())
 })
