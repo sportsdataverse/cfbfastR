@@ -1475,7 +1475,9 @@ espn_cfb_player_splits <- function(athlete_id = NULL,
         make_cfbfastR_data("Player statistical splits from ESPN", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player splits data available!"))
+      message(glue::glue(
+        "{Sys.time()}: Invalid arguments or no ESPN player splits data available! ({conditionMessage(e)})"
+      ))
     },
     warning = function(w) {
     },
