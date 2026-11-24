@@ -226,7 +226,10 @@
 <li>Use <code>%||%</code> (from rlang) for null-safe defaults on every extracted field.</li>
 </ul></li>
 <li>
-<strong>Initialize the return variable before <code>tryCatch</code></strong>. Every wrapper that returns a value assigned inside <code>tryCatch</code> must initialize that variable (<code>df &lt;- data.frame()</code>, <code>df_list &lt;- list()</code>, <code>plays_df &lt;- NULL</code>, etc.) <strong>before</strong> the <code>tryCatch</code> block. Otherwise an API error leaves the variable unbound and <code>return(&lt;var&gt;)</code> throws <code>object '&lt;var&gt;' not found</code> instead of the intended <code><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli::cli_alert_danger()</a></code> + empty fallback.</li>
+<strong>Initialize the return variable before <code>tryCatch</code></strong>. Every wrapper that returns a value assigned inside <code>tryCatch</code> must initialize that variable (<code>df &lt;- data.frame()</code>, <code>df_list &lt;- list()</code>, <code>plays_df &lt;- NULL</code>, etc.) <strong>before</strong> the <code>tryCatch</code> block. Otherwise an API error leaves the variable unbound and <code>return(&lt;var&gt;)</code> throws <code>object '&lt;var&gt;' not found</code> instead of the intended <code><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli::cli_alert_danger()</a></code> + empty fallback.
+<ul><li>Wrap the <code>tryCatch</code> body as <code>expr = .cfb_with_warnings("&lt;function name&gt;", { ... })</code> and give the <code>tryCatch</code> <strong>no</strong> <code>warning =</code> handler. A <code>warning =</code> handler stops the body at the first warning and returns the empty fallback with no message. <code>.cfb_with_warnings()</code> re-raises each warning as a <code>cfbfastR_warning</code> that names the function and lets the body finish.</li>
+<li>Every <code>error =</code> handler must include <code>{conditionMessage(e)}</code>, so a 429 or 403 doesn’t read like an empty result. <code>tests/testthat/test-handler_causes.R</code> fails any handler that drops it.</li>
+</ul></li>
 <li>
 <strong>Add roxygen docs</strong> with <code>@export</code>, <code>@family</code>, <code>@return</code> (including column markdown tables), and a runnable example.</li>
 <li>

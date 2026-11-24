@@ -118,7 +118,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_qbr(year = 2024))
 #> ── QBR data from ESPN ──────────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-24 10:00:24 UTC
+#> ℹ Data updated: 2026-11-24 14:28:05 UTC
 #> # A tibble: 129 × 26
 #>    season season_type group_id athlete_id team_id  qbpaa cwepa_passes_condensed
 #>     <int>       <int> <chr>    <chr>      <chr>    <dbl>                  <dbl>

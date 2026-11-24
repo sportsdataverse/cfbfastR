@@ -47,26 +47,26 @@ Other Yahoo CFB Functions:
 # \donttest{
   try(yahoo_cfb_team_season_stats(season = 2024, count = 10))
 #> ── Team season stats from Yahoo Sports (shangrila) ─────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-24 10:06:59 UTC
+#> ℹ Data updated: 2026-11-24 14:33:55 UTC
 #> # A tibble: 10 × 101
-#>    team         team_abbreviation receiving_yards_per_r…¹ receiving_touchdowns…²
-#>    <chr>        <chr>             <chr>                   <chr>                 
-#>  1 Clemson      CLEM              11.8                    22                    
-#>  2 Duke         DUKE              11.4                    19                    
-#>  3 Florida St.  FSU               12.1                    16                    
-#>  4 Georgia Tech GT                11.5                    24                    
-#>  5 Maryland     UMD               10.5                    22                    
-#>  6 N. Carolina  UNC               12.7                    19                    
-#>  7 NC State     NCST              11.9                    19                    
-#>  8 Virginia     UVA               11.2                    20                    
-#>  9 Wake Forest  WAKE              11.6                    23                    
-#> 10 Boston Coll. BC                12.5                    17                    
-#> # ℹ abbreviated names: ¹​receiving_yards_per_reception,
-#> #   ²​receiving_touchdowns_allowed
-#> # ℹ 97 more variables: points_per_game <chr>, games_punting <chr>,
-#> #   receptions_per_game <chr>, receiving_first_downs <chr>,
-#> #   receiving_yards <chr>, rushing_yards_per_attempt <chr>,
-#> #   passing_attempts <chr>, third_down_conversion_percentage <chr>,
-#> #   receiving_yards_per_game <chr>, longest_pass <chr>, …
+#>    team         team_abbreviation points_allowed passing_yards_per_attempt
+#>    <chr>        <chr>             <chr>          <chr>                    
+#>  1 Clemson      CLEM              328            7.3                      
+#>  2 Duke         DUKE              318            6.8                      
+#>  3 Florida St.  FSU               336            6.1                      
+#>  4 Georgia Tech GT                333            7.5                      
+#>  5 Maryland     UMD               365            6.7                      
+#>  6 N. Carolina  UNC               365            7.4                      
+#>  7 NC State     NCST              392            7.7                      
+#>  8 Virginia     UVA               345            6.9                      
+#>  9 Wake Forest  WAKE              390            7.1                      
+#> 10 Boston Coll. BC                309            7.9                      
+#> # ℹ 97 more variables: passing_attempts_allowed_per_game <chr>,
+#> #   rushing_touchdowns_allowed <chr>, rushing_yards_allowed_per_attempt <chr>,
+#> #   receiving_touchdowns_allowed <chr>, rushing_yards_per_game_rank <chr>,
+#> #   passing_completions_allowed_per_game <chr>,
+#> #   rushing_attempts_per_game <chr>, passing_yards_allowed_per_game <chr>,
+#> #   total_offensive_yards_per_game_rank <chr>, rushing_yards_per_game <chr>,
+#> #   rushing_yards_allowed <chr>, time_of_possession_per_game <chr>, …
 # }
 ```

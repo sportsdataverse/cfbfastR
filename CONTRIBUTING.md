@@ -108,6 +108,17 @@ participating in this project you agree to abide by its terms.
     `object '<var>' not found` instead of the intended
     [`cli::cli_alert_danger()`](https://cli.r-lib.org/reference/cli_alert.html) +
     empty fallback.
+    - Wrap the `tryCatch` body as
+      `expr = .cfb_with_warnings("<function name>", { ... })` and give
+      the `tryCatch` **no** `warning =` handler. A `warning =` handler
+      stops the body at the first warning and returns the empty fallback
+      with no message. `.cfb_with_warnings()` re-raises each warning as
+      a `cfbfastR_warning` that names the function and lets the body
+      finish.
+    - Every `error =` handler must include `{conditionMessage(e)}`, so a
+      429 or 403 doesn’t read like an empty result.
+      `tests/testthat/test-handler_causes.R` fails any handler that
+      drops it.
 3.  **Add roxygen docs** with `@export`, `@family`, `@return` (including
     column markdown tables), and a runnable example.
 4.  **Create a test** in `tests/testthat/` with `skip_on_cran()` and

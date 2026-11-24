@@ -68,7 +68,7 @@ Other Yahoo CFB Functions:
 # \donttest{
   try(yahoo_cfb_player_season_stats(season = 2024, count = 10))
 #> ── Player season stats from Yahoo Sports (shangrila) ───────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-24 10:06:56 UTC
+#> ℹ Data updated: 2026-11-24 14:33:53 UTC
 #> # A tibble: 10 × 89
 #>    player_id      display_name    team  team_abbreviation interception_return_…¹
 #>    <chr>          <chr>           <chr> <chr>             <chr>                 

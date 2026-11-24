@@ -61,7 +61,7 @@ lists every function in this family.
 # \donttest{
   try(espn_cfb_futures(year = 2024))
 #> ── Betting futures data from ESPN ──────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-24 09:59:25 UTC
+#> ℹ Data updated: 2026-11-24 14:27:12 UTC
 #> # A tibble: 916 × 12
 #>    season market_id market_name           market_type market_display provider_id
 #>     <int> <chr>     <chr>                 <chr>       <chr>          <chr>      

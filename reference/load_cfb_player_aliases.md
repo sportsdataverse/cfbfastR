@@ -66,7 +66,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_player_aliases())
 #> ── college football provider player id aliases from the SportsDataverse data rep
-#> ℹ Data updated: 2026-11-24 10:01:28 UTC
+#> ℹ Data updated: 2026-11-24 14:29:12 UTC
 #> # A tibble: 421,754 × 12
 #>    league athlete_id athlete_id_source source source_player_id team_id
 #>    <chr>  <chr>      <chr>             <chr>  <chr>            <chr>  

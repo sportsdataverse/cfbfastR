@@ -648,6 +648,29 @@ declares. It used a fixed 10-column list that included `spread`, so the
   skips when either season comes back empty instead of failing on a
   one-off ESPN error.
 
+### Fixed: warnings and errors now reach you
+
+- 80 [`tryCatch()`](https://rdrr.io/r/base/conditions.html) blocks in
+  the `cfbd_*()` and `espn_cfb_*()` wrappers and the play-by-play
+  sidecar had an empty `warning = function(w) {}` handler. Any warning
+  while parsing (a coercion `NA`, a partial read) stopped the parse and
+  returned an empty or half-built frame with no message. The ESPN
+  game-metadata lookup did the same but printed “ESPN meta partial”.
+  Each warning is now re-raised as a `cfbfastR_warning` that names the
+  function, for example
+  `espn_cfb_team_schedule(): NAs introduced by coercion`, and the
+  function finishes and returns its data. Use
+  `suppressWarnings(classes = "cfbfastR_warning")` to quiet them; the
+  warning also keeps its original class, so an existing `classes =`
+  filter still matches.
+- Error messages now carry the cause. 78 wrappers printed only “Invalid
+  arguments or no … data available!”, so an HTTP 429, a 403 and a parse
+  failure all read like an empty result; the message now ends with the
+  underlying error. Seven handlers that printed nothing, among them
+  [`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md)’s
+  betting-line join and the ESPN team, position, roster and athlete
+  lookups, now say what failed.
+
 ### Fixed: CFBD team rosters
 
 - [`cfbd_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_roster.md)

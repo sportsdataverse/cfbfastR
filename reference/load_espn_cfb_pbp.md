@@ -539,7 +539,7 @@ Saiem Gilani
 # Downloads a whole season of play-by-play (about 500 columns).
 try(load_espn_cfb_pbp(2004))
 #> ── ESPN college football play-by-play from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-11-24 10:02:28 UTC
+#> ℹ Data updated: 2026-11-24 14:29:51 UTC
 #> # A tibble: 87,214 × 499
 #>    season   game_id game_play_number pos_team_id pos_team        def_pos_team_id
 #>     <int>     <int>            <int>       <int> <chr>                     <int>
