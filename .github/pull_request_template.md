@@ -69,6 +69,7 @@ Example format:
 
 - [ ] Code follows tidyverse style (`snake_case`, 2-space indent, native pipe `|>`)
 - [ ] Return variables are initialized **before** any `tryCatch` block (e.g. `df_list <- list()`, `plays_df <- NULL`)
+- [ ] `tryCatch` bodies are wrapped in `.cfb_with_warnings("<fn>", { ... })` with no `warning =` handler, and every `error =` handler includes `{conditionMessage(e)}`
 - [ ] Column drops use `dplyr::select(-dplyr::any_of(...))`; renames use `dplyr::rename(dplyr::any_of(c(new = "old")))`
 - [ ] User-facing messages use `cli::cli_alert_*()` / `cli::cli_warn()` / `cli::cli_abort()` (not `message()` / `stop()` / `warning()`)
 - [ ] `devtools::document()` has been run (NAMESPACE updated; no hand-edits to `man/` or `NAMESPACE`)
