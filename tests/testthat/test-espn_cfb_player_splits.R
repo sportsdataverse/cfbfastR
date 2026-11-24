@@ -19,7 +19,10 @@ test_that("ESPN CFB Player Statistical Splits", {
 
   y <- espn_cfb_player_splits(athlete_id = 102597, year = 2023)
 
-  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0) {
+  # Either season can come back empty on a transient ESPN failure (the function catches it and
+  # returns the bare query columns): 2026-11-20 the 2023 call did, and the test failed on `y`.
+  empty <- function(d) is.null(d) || !is.data.frame(d) || nrow(d) == 0
+  if (empty(x) || empty(y)) {
     skip("No ESPN player splits data returned at test time")
   }
 

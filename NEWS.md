@@ -456,6 +456,12 @@ and every `exp_qbr` come back `NA` without an error once the shared
   was 40 in every season and is now 35 by default (the 2012 rule). Pass
   `season`, or carry a `season` column, to get 40 for games through 2011.
 
+## Fixed: ESPN player splits error message
+
+* `espn_cfb_player_splits()` now includes the underlying error in its "no ESPN player splits data" message (for
+  example `HTTP 400 Bad Request.`), so a transient ESPN failure can be told apart from an athlete with no splits.
+  Its test skips when either season comes back empty instead of failing on a one-off ESPN error.
+
 ## Fixed: CFBD team rosters
 
 * `cfbd_team_roster()` (and so `load_cfb_rosters()`) returns `year` as the
