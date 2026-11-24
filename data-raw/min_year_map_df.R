@@ -151,7 +151,9 @@ for (i in seq_along(min_year_map)) {
   returned_rows <- 1
   min_year <- unname(func)
   tf <- purrr::quietly(get(func_name))
-  while (returned_rows > 0) {
+  # 1869 is the first college football season. A wrapper that ignores `year`
+  # (espn_cfb_team) returns rows for every year and would otherwise walk to 1000.
+  while (returned_rows > 0 && min_year > 1869) {
     min_year <- min_year - 1
     if (func_name %in% espn_team_func) {
       returned_rows <- get_returned_rows(year = min_year, team_id = 2633)
@@ -171,21 +173,28 @@ for (i in seq_along(min_year_map)) {
     Sys.sleep(1)
   }
 
-  updated_year <- min_year + 1
+  # Stopped at the floor with rows still coming back: the floor is the minimum.
+  updated_year <- if (returned_rows > 0) min_year else min_year + 1
   min_year_map_df <- update_map(
     df = min_year_map_df,
     func_name = func_name,
     new_year = updated_year
   )
-  if (func_name %in% inherit_map) {
-    for (c_func in names(inherit_map[inherit_map == func_name])) {
-      print(glue::glue('Updating {c_func}, inheriting from {func_name}...'))
+  # Inheritance chains (cfbd_player_season_overview <- cfbd_player_info <-
+  # cfbd_game_player_stats): a middle link is skipped above, so walk the chain
+  # here or its children are never refreshed.
+  parents <- func_name
+  while (length(parents) > 0) {
+    children <- names(inherit_map[inherit_map %in% parents])
+    for (c_func in children) {
+      print(glue::glue('Updating {c_func}, inheriting from {inherit_map[[c_func]]}...'))
       min_year_map_df <- update_map(
         df = min_year_map_df,
         func_name = c_func,
         new_year = updated_year
       )
     }
+    parents <- children
   }
 }
 
