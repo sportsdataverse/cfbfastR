@@ -27,15 +27,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        config:
-         # - {os: macos-latest,   r: 'release'}
-          - {os: windows-latest, r: 'release'}
-          # r-devel fails on NOTEs: CRAN's r-devel flavours flagged 3.0.0 with a
-          # NOTE ('stats' in Suggests but imported) that the default
-          # error-on "warning" would have let through green.
-          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release', error-on: '"note"'}
-          - {os: ubuntu-latest,   r: 'release'}
-          - {os: ubuntu-latest,   r: 'oldrel-1'}
+        # push / pull_request: ubuntu + macOS release. Weekly cron and manual
+        # dispatch add ubuntu R-devel and windows release (CRAN-relevant).
+        # r-devel fails on NOTEs: CRAN's r-devel flavours flagged 3.0.0 with a
+        # NOTE ('stats' in Suggests but imported) that the default
+        # error-on "warning" would have let through green.
+        config: ${{ fromJSON((github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && '[{"os":"macos-latest","r":"release"},{"os":"windows-latest","r":"release"},{"os":"ubuntu-latest","r":"devel","http-user-agent":"release","error-on":"\"note\""},{"os":"ubuntu-latest","r":"release"}]' || '[{"os":"macos-latest","r":"release"},{"os":"ubuntu-latest","r":"release"}]') }}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true

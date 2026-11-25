@@ -261,7 +261,7 @@ The repository runs seven workflows out of `.github/workflows/`:
 
 | Workflow            | Triggers                          | Purpose                                          |
 | ------------------- | --------------------------------- | ------------------------------------------------ |
-| `R-CMD-check.yaml`  | push / PR to `main`, weekly cron, manual | Cross-platform `R CMD check` matrix; the r-devel job fails on NOTEs |
+| `R-CMD-check.yaml`  | push / PR to `main`, weekly cron, manual | `R CMD check` on macOS and Ubuntu (release); the weekly cron and manual runs add Windows (release) and Ubuntu r-devel, which fails on NOTEs |
 | `test-coverage.yaml` | push / PR to `main`, manual       | covr test coverage, uploaded to Codecov (upload failures don't fail the job) |
 | `url-check.yaml`    | push / PR to `main`, weekly cron, manual | `urlchecker` over docs and README; fails on 404/410, permanent redirects and non-canonical CRAN URLs |
 | `pkgdown.yaml`      | push to `main`, release, manual   | Build & deploy <https://cfbfastr.sportsdataverse.org/> |

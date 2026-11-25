@@ -26,8 +26,8 @@ pkgdown::build_site()                                  # build docs site locally
 devtools::build_readme()                               # re-render README.md from README.Rmd (never hand-edit README.md)
 ```
 
-CI (`.github/workflows/`): `R-CMD-check.yaml` (windows + ubuntu release/oldrel-1 + ubuntu r-devel
-failing on NOTEs, weekly cron, sets `CFBD_API_KEY` secret), `test-coverage.yaml` (covr → Codecov),
+CI (`.github/workflows/`): `R-CMD-check.yaml` (macOS + ubuntu release on push/PR;
+the weekly cron and manual dispatch add windows release + ubuntu r-devel failing on NOTEs; sets `CFBD_API_KEY` secret), `test-coverage.yaml` (covr → Codecov),
 `url-check.yaml` (urlchecker, weekly), `pkgdown.yaml` (push to main + release), `rhub.yaml`
 (manual dispatch), `api-sync.yaml` (daily diff of the live CFBD spec against the
 wrappers), `star-history.yml` (README star chart). The doctoc TOCs in
