@@ -87,7 +87,7 @@ When extending the catalog:
 
 | Data Source                  | Prefix             | Example                                                   |
 | ---------------------------- | ------------------ | --------------------------------------------------------- |
-| College Football Data API    | `cfbd_`            | `cfbd_games()`, `cfbd_pbp_data_v2()`, `cfbd_betting_ats()` |
+| College Football Data API    | `cfbd_`            | `cfbd_game_info()`, `cfbd_pbp_data_v2()`, `cfbd_betting_ats()` |
 | ESPN College Football        | `espn_cfb_`        | `espn_cfb_pbp_v2()`, `espn_cfb_schedule()`, `espn_cfb_qbr()` |
 | ESPN win-probability metrics | `espn_metrics_`    | `espn_metrics_wp()`                                        |
 | ESPN ratings                 | `espn_ratings_`    | `espn_ratings_fpi()`                                       |
@@ -221,7 +221,7 @@ test_that("CFBD endpoint returns expected columns", {
   skip_on_ci()
   skip_if(Sys.getenv("CFBD_API_KEY") == "", "CFBD_API_KEY not set")
 
-  x <- cfbd_games(year = 2023, week = 1)
+  x <- cfbd_game_info(year = 2023, week = 1)
 
   # Skip-if-empty guard - always right after the API call, before any
   # assertion that touches the response. Handles transient 500s.

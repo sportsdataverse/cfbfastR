@@ -2382,7 +2382,7 @@ clean_drive_info <- function(drive_df) {
 
 #' @rdname helpers_pbp
 #'
-#' @param play_df (*data.frame* required) Plays dataframe pulled from API via the `cfbd_play()` or within the `cfbd_pbp_data()` function.
+#' @param play_df (*data.frame* required) Plays dataframe pulled from API via `cfbd_plays()` or within the `cfbd_pbp_data()` function.
 #' @details Cleans CFB play-by-play text to be compliant with existing play-by-play parsing. Generally not recommended for standalone use. This method exists due to ESPN PBP changes midway through the 2025 season.
 #'
 #' * `play_text`: Returned as `play_text`: .

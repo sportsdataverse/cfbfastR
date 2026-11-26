@@ -650,6 +650,12 @@ and every `exp_qbr` come back `NA` without an error once the shared
 * `cfbd_pbp_data()`: the score columns (`offense_score`, `pos_team_score`,
   `score_diff`, ...) were documented as pre-play; they are after the play, and
   `score_diff_start` / `pos_score_diff_start` hold the pre-play values.
+* CONTRIBUTING, the issue template, the contributor instructions and a source
+  comment on `clean_play_text()` named functions that do not exist
+  (`cfbd_play()`, `cfbd_games()`, `register_cfbd()`, `skip_cfbd_test()`,
+  `skip_espn_test()`). They now name `cfbd_plays()`, `cfbd_game_info()`, the
+  `?register_cfbd` help page and the `has_cfbd_key()` / `skip_if_offline()`
+  test guards.
 
 ## New: CFBD passing and rushing endpoint families
 
