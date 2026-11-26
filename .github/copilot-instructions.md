@@ -219,8 +219,8 @@ Adding a new query arg to a catalog wrapper's signature (e.g., `group_id`) auto-
 
 ## Testing
 
-- Use `skip_on_cran()` and `skip_on_ci()` guards for all live API tests.
-- Add a source-specific guard immediately after `skip_on_ci()`:
+- Use `skip_on_cran()` for every live API test. CI runs the live CFBD and ESPN tests (it sets `CFBD_API_KEY`), so they do not call `skip_on_ci()`; only a few Fox, Yahoo and play-by-play engine tests do.
+- Add a source-specific guard immediately after `skip_on_cran()`:
   - `skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")` for `test-cfbd_*.R` (requires `CFBD_API_KEY`)
   - for new `test-espn_cfb_*.R` tests, `skip_if_offline("site.api.espn.com")` (or the `sports.core.api.espn.com` host the test calls); ESPN needs no key
 - **Column assertions must always use the subset direction** -- expected ⊆ actual:
