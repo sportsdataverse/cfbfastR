@@ -214,7 +214,7 @@ Adding a new query arg to a catalog wrapper's signature (e.g., `group_id`) auto-
 
 ## HTTP Layer
 
-- **CFBD** -- base URL `https://api.collegefootballdata.com/`. Auth is a bearer token in the `Authorization: Bearer ...` header, read from `Sys.getenv("CFBD_API_KEY")`. Use `register_cfbd()` to set it interactively. CFBD endpoints are **not** cached.
+- **CFBD** -- base URL `https://api.collegefootballdata.com/`. Auth is a bearer token in the `Authorization: Bearer ...` header, read from `Sys.getenv("CFBD_API_KEY")`. The `?register_cfbd` help page shows how to save it with `Sys.setenv()` or `~/.Renviron`. CFBD endpoints are **not** cached.
 - **ESPN catalog** -- two base hosts: `site.api.espn.com` (rich JSON for scoreboards, teams, athletes) and `sports.core.api.espn.com` (the `$ref`-heavy "core" API). No auth required. ESPN catalog calls are cached through `cachem` + `memoise`, controlled by `options(cfbfastR.cache = "memory" | "filesystem" | "off")` and `options(cfbfastR.cache_duration = 86400)`. Use `espn_cfb_clear_cache()` after upstream schema changes.
 
 ## Testing
@@ -222,7 +222,7 @@ Adding a new query arg to a catalog wrapper's signature (e.g., `group_id`) auto-
 - Use `skip_on_cran()` and `skip_on_ci()` guards for all live API tests.
 - Add a source-specific guard immediately after `skip_on_ci()`:
   - `skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")` for `test-cfbd_*.R` (requires `CFBD_API_KEY`)
-  - `skip_if_offline("site.api.espn.com")` (or the `sports.core.api.espn.com` host the test calls) for `test-espn_cfb_*.R`; ESPN needs no key
+  - for new `test-espn_cfb_*.R` tests, `skip_if_offline("site.api.espn.com")` (or the `sports.core.api.espn.com` host the test calls); ESPN needs no key
 - **Column assertions must always use the subset direction** -- expected ⊆ actual:
   `expect_in(sort(expected_cols), sort(colnames(x)))`. Both CFBD and ESPN add columns without removing old ones, so strict `expect_equal(sort(colnames(x)), sort(cols))` will flag on any new column. The subset direction is the only pattern that survives upstream drift.
 - **Always add a skip-if-empty guard immediately after the API call**, before any assertion that touches `x`:
