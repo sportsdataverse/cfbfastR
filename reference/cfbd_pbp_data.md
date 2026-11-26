@@ -643,9 +643,9 @@ Other CFBD PBP:
 #>   player names, *_player_id columns and the `output` tier selector.
 #> • Drop `engine = "legacy"` (or `options(cfbfastR.pbp_engine = "legacy")`) to
 #>   get it back.
-#> • 14:24:47 | Start processing of 1 game...
+#> • 22:44:29 | Start processing of 1 game...
 #> ── Play-by-Play data from CollegeFootballData.com ──────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-24 14:24:51 UTC
+#> ℹ Data updated: 2026-11-26 22:44:33 UTC
 #> # A tibble: 162 × 364
 #>    season    wk id_play              game_id game_play_number half_play_number
 #>     <dbl> <dbl> <chr>                  <int>            <dbl>            <dbl>

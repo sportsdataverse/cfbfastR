@@ -889,6 +889,21 @@ declares. It used a fixed 10-column list that included `spread`, so the
   the score columns (`offense_score`, `pos_team_score`, `score_diff`, …)
   were documented as pre-play; they are after the play, and
   `score_diff_start` / `pos_score_diff_start` hold the pre-play values.
+- CONTRIBUTING, the issue template, the contributor instructions and a
+  source comment on
+  [`clean_play_text()`](https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.md)
+  named functions that do not exist
+  ([`cfbd_play()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play.md),
+  [`cfbd_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_games.md),
+  [`register_cfbd()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md),
+  `skip_cfbd_test()`, `skip_espn_test()`). They now name
+  [`cfbd_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_plays.md),
+  [`cfbd_game_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.md),
+  the
+  [`?register_cfbd`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
+  help page and the
+  [`has_cfbd_key()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
+  / `skip_if_offline()` test guards.
 
 ### New: CFBD passing and rushing endpoint families
 

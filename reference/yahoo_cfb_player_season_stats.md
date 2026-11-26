@@ -68,7 +68,7 @@ Other Yahoo CFB Functions:
 # \donttest{
   try(yahoo_cfb_player_season_stats(season = 2024, count = 10))
 #> ── Player season stats from Yahoo Sports (shangrila) ───────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-24 14:33:53 UTC
+#> ℹ Data updated: 2026-11-26 22:54:31 UTC
 #> # A tibble: 10 × 89
 #>    player_id      display_name    team  team_abbreviation interception_return_…¹
 #>    <chr>          <chr>           <chr> <chr>             <chr>                 
@@ -82,12 +82,12 @@ Other Yahoo CFB Functions:
 #>  8 ncaaf.p.270875 Keenan Pili     Tenn… TENN              0                     
 #>  9 ncaaf.p.276361 Spencer Curtis  Hawa… HAW               NA                    
 #> 10 ncaaf.p.276368 Logan Lutui     BYU   BYU               0                     
-#> # ℹ abbreviated name: ¹​interception_return_yards
-#> # ℹ 84 more variables: extra_point_attempts <chr>, field_goal_attempts <chr>,
-#> #   sacks_yards_lost <chr>, longest_rush <chr>, field_goals_20_to_29 <chr>,
-#> #   all_purpose_yards <chr>, sacks_yards <chr>, punt_yards <chr>,
-#> #   longest_field_goal <chr>, passing_yards <chr>,
-#> #   receiving_yards_per_reception <chr>, games_defense <chr>,
-#> #   field_goals_made <chr>, field_goal_attempts_50_plus <chr>, …
+#> # ℹ abbreviated name: ¹​interception_return_touchdowns
+#> # ℹ 84 more variables: field_goals_made <chr>, field_goals_made_50_plus <chr>,
+#> #   field_goals_made_30_39 <chr>, rushing_yards_per_game <chr>,
+#> #   games_receiving <chr>, points_scored_kicking <chr>,
+#> #   field_goals_made_40_49 <chr>, games_rushing <chr>,
+#> #   longest_kickoff_return <chr>, rushing_touchdowns <chr>,
+#> #   forced_fumbles <chr>, field_goal_attempts_20_29 <chr>, …
 # }
 ```

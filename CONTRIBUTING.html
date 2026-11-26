@@ -265,7 +265,7 @@
 </tr></thead><tbody><tr><td>College Football Data API</td>
 <td><code>cfbd_</code></td>
 <td>
-<code><a href="reference/cfbd_games.html">cfbd_games()</a></code>, <code><a href="reference/cfbd_pbp_data_v2.html">cfbd_pbp_data_v2()</a></code>, <code><a href="reference/cfbd_betting_ats.html">cfbd_betting_ats()</a></code>
+<code><a href="reference/cfbd_game_info.html">cfbd_game_info()</a></code>, <code><a href="reference/cfbd_pbp_data_v2.html">cfbd_pbp_data_v2()</a></code>, <code><a href="reference/cfbd_betting_ats.html">cfbd_betting_ats()</a></code>
 </td>
 </tr><tr><td>ESPN College Football</td>
 <td><code>espn_cfb_</code></td>
@@ -396,7 +396,7 @@ ci: bump actions/checkout to v5 in pkgdown workflow</code></pre>
 <span>  <span class="fu">skip_on_ci</span><span class="op">(</span><span class="op">)</span></span>
 <span>  <span class="fu">skip_if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"CFBD_API_KEY"</span><span class="op">)</span> <span class="op">==</span> <span class="st">""</span>, <span class="st">"CFBD_API_KEY not set"</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cfbd_games.html">cfbd_games</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2023</span>, week <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cfbd_game_info.html">cfbd_game_info</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2023</span>, week <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="co"># Skip-if-empty guard - always right after the API call, before any</span></span>
 <span>  <span class="co"># assertion that touches the response. Handles transient 500s.</span></span>
@@ -439,7 +439,8 @@ ci: bump actions/checkout to v5 in pkgdown workflow</code></pre>
 <th>Purpose</th>
 </tr></thead><tbody><tr><td><code>R-CMD-check.yaml</code></td>
 <td>push / PR to <code>main</code>, weekly cron, manual</td>
-<td>Cross-platform <code>R CMD check</code> matrix; the r-devel job fails on NOTEs</td>
+<td>
+<code>R CMD check</code> on macOS and Ubuntu (release); the weekly cron and manual runs add Windows (release) and Ubuntu r-devel, which fails on NOTEs</td>
 </tr><tr><td><code>test-coverage.yaml</code></td>
 <td>push / PR to <code>main</code>, manual</td>
 <td>covr test coverage, uploaded to Codecov (upload failures don’t fail the job)</td>

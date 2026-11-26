@@ -40,7 +40,7 @@ A `cfbfastR`-tagged tibble with one row per (player, stat):
 # \donttest{
   try(fox_cfb_boxscore(game_id = "41616"))
 #> ── Boxscore data from Fox Sports (Bifrost) ─────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-24 14:28:48 UTC
+#> ℹ Data updated: 2026-11-26 22:48:43 UTC
 #> # A tibble: 843 × 7
 #>    game_id team       stat_group player       athlete_id stat  value
 #>    <chr>   <chr>      <chr>      <chr>        <chr>      <chr> <chr>

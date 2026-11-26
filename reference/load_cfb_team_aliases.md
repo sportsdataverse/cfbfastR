@@ -68,21 +68,21 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_team_aliases())
 #> ── college football provider team id and name aliases from the SportsDataverse d
-#> ℹ Data updated: 2026-11-24 14:29:25 UTC
-#> # A tibble: 4,169 × 12
-#>    league team_id team_id_source source source_id id_kind name_kind    value    
-#>    <chr>  <chr>   <chr>          <chr>  <chr>     <chr>   <chr>        <chr>    
-#>  1 cfb    101     espn           cfbd   101       team    NA           NA       
-#>  2 cfb    101161  espn           cfbd   101161    team    NA           NA       
-#>  3 cfb    101442  espn           cfbd   101442    team    NA           NA       
-#>  4 cfb    101784  espn           cbs    3159236   team    NA           NA       
-#>  5 cfb    101784  espn           cfbd   101784    team    NA           NA       
-#>  6 cfb    101784  espn           fox    798       team    abbreviation ERSK     
-#>  7 cfb    101784  espn           fox    798       team    name         ERSKINE …
-#>  8 cfb    103     espn           cbs    493       team    NA           NA       
-#>  9 cfb    103     espn           cfbd   103       team    NA           NA       
-#> 10 cfb    103     espn           fox    10        team    abbreviation BC       
-#> # ℹ 4,159 more rows
+#> ℹ Data updated: 2026-11-26 22:49:20 UTC
+#> # A tibble: 6,777 × 12
+#>    league team_id team_id_source source source_id    id_kind name_kind    value 
+#>    <chr>  <chr>   <chr>          <chr>  <chr>        <chr>   <chr>        <chr> 
+#>  1 cfb    101     espn           cfbd   101          team    NA           NA    
+#>  2 cfb    101161  espn           cfbd   101161       team    NA           NA    
+#>  3 cfb    101442  espn           cfbd   101442       team    NA           NA    
+#>  4 cfb    101784  espn           cbs    3159236      team    NA           NA    
+#>  5 cfb    101784  espn           cfbd   101784       team    NA           NA    
+#>  6 cfb    101784  espn           fox    798          team    abbreviation ERSK  
+#>  7 cfb    101784  espn           fox    798          team    name         ERSKI…
+#>  8 cfb    101784  espn           yahoo  ncaaf.t.2631 team    abbreviation ERSK  
+#>  9 cfb    101784  espn           yahoo  ncaaf.t.2631 team    abbreviation ERSK  
+#> 10 cfb    101784  espn           yahoo  ncaaf.t.2631 team    abbreviation ERSK  
+#> # ℹ 6,767 more rows
 #> # ℹ 4 more variables: valid_from <int>, valid_to <int>, match_method <chr>,
 #> #   evidence <chr>
 # }

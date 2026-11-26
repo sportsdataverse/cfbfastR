@@ -77,8 +77,8 @@ lists every function in this family.
 # One request per coach (about 270 for a season), so this takes a while.
 try(espn_cfb_coaches(year = 2024, team_detail = FALSE))
 #> ── Coaches index from ESPN ─────────────────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-24 14:27:08 UTC
-#> # A tibble: 268 × 8
+#> ℹ Data updated: 2026-11-26 22:46:51 UTC
+#> # A tibble: 267 × 8
 #>    season coach_id first_name last_name   team_id coach_ref  person_ref team_ref
 #>     <int> <chr>    <chr>      <chr>       <chr>   <chr>      <chr>      <chr>   
 #>  1   2024 5120149  Alex       Golesh      58      http://sp… http://sp… http://…
@@ -91,5 +91,5 @@ try(espn_cfb_coaches(year = 2024, team_detail = FALSE))
 #>  8   2024 5345545  Alonzo     Carter      NA      http://sp… http://sp… NA      
 #>  9   2024 156919   Sean       Lewis       21      http://sp… http://sp… http://…
 #> 10   2024 559953   Ken        Niumatalolo 23      http://sp… http://sp… http://…
-#> # ℹ 258 more rows
+#> # ℹ 257 more rows
 ```

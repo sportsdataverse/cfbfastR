@@ -66,21 +66,21 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_player_aliases())
 #> ── college football provider player id aliases from the SportsDataverse data rep
-#> ℹ Data updated: 2026-11-24 14:29:12 UTC
-#> # A tibble: 421,754 × 12
-#>    league athlete_id athlete_id_source source source_player_id team_id
-#>    <chr>  <chr>      <chr>             <chr>  <chr>            <chr>  
-#>  1 cfb    100009     espn              ncaa   4242411          12     
-#>  2 cfb    100009     espn              ncaa   4555821          12     
-#>  3 cfb    100009     espn              ncaa   4948498          12     
-#>  4 cfb    102597     espn              cbs    3171029          344    
-#>  5 cfb    102597     espn              cbs    3171029          264    
-#>  6 cfb    102597     espn              ncaa   7021730          344    
-#>  7 cfb    102597     espn              ncaa   7289213          344    
-#>  8 cfb    102597     espn              ncaa   7752435          344    
-#>  9 cfb    102597     espn              ncaa   8059016          344    
-#> 10 cfb    102597     espn              yahoo  ncaaf.p.316907   344    
-#> # ℹ 421,744 more rows
+#> ℹ Data updated: 2026-11-26 22:49:08 UTC
+#> # A tibble: 574,745 × 12
+#>    league athlete_id athlete_id_source source    source_player_id team_id
+#>    <chr>  <chr>      <chr>             <chr>     <chr>            <chr>  
+#>  1 cfb    -1000047   espn              on3       122839           2005   
+#>  2 cfb    -1000047   espn              sports247 46052204         2005   
+#>  3 cfb    -1000117   espn              on3       65257            2005   
+#>  4 cfb    -1000117   espn              sports247 92789            2005   
+#>  5 cfb    -1000177   espn              on3       29533            2005   
+#>  6 cfb    -1000177   espn              sports247 38260            2005   
+#>  7 cfb    -1000359   espn              on3       98300            2006   
+#>  8 cfb    -1000359   espn              sports247 46081010         2006   
+#>  9 cfb    -1000379   espn              on3       119737           2006   
+#> 10 cfb    -1000379   espn              sports247 46050769         2006   
+#> # ℹ 574,735 more rows
 #> # ℹ 6 more variables: source_team_id <chr>, valid_from <int>, valid_to <int>,
 #> #   match_method <chr>, match_confidence <dbl>, evidence <chr>
 # }

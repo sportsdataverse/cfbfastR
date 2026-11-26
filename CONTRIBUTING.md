@@ -170,7 +170,7 @@ When extending the catalog:
 
 | Data Source | Prefix | Example |
 |----|----|----|
-| College Football Data API | `cfbd_` | [`cfbd_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_games.md), [`cfbd_pbp_data_v2()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.md), [`cfbd_betting_ats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_ats.md) |
+| College Football Data API | `cfbd_` | [`cfbd_game_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.md), [`cfbd_pbp_data_v2()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.md), [`cfbd_betting_ats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_ats.md) |
 | ESPN College Football | `espn_cfb_` | [`espn_cfb_pbp_v2()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp_v2.md), [`espn_cfb_schedule()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_scoreboard.md), [`espn_cfb_qbr()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_qbr.md) |
 | ESPN win-probability metrics | `espn_metrics_` | [`espn_metrics_wp()`](https://cfbfastR.sportsdataverse.org/reference/espn_metrics.md) |
 | ESPN ratings | `espn_ratings_` | [`espn_ratings_fpi()`](https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.md) |
@@ -379,7 +379,7 @@ test_that("CFBD endpoint returns expected columns", {
   skip_on_ci()
   skip_if(Sys.getenv("CFBD_API_KEY") == "", "CFBD_API_KEY not set")
 
-  x <- cfbd_games(year = 2023, week = 1)
+  x <- cfbd_game_info(year = 2023, week = 1)
 
   # Skip-if-empty guard - always right after the API call, before any
   # assertion that touches the response. Handles transient 500s.
@@ -438,7 +438,7 @@ The repository runs seven workflows out of `.github/workflows/`:
 
 | Workflow | Triggers | Purpose |
 |----|----|----|
-| `R-CMD-check.yaml` | push / PR to `main`, weekly cron, manual | Cross-platform `R CMD check` matrix; the r-devel job fails on NOTEs |
+| `R-CMD-check.yaml` | push / PR to `main`, weekly cron, manual | `R CMD check` on macOS and Ubuntu (release); the weekly cron and manual runs add Windows (release) and Ubuntu r-devel, which fails on NOTEs |
 | `test-coverage.yaml` | push / PR to `main`, manual | covr test coverage, uploaded to Codecov (upload failures don’t fail the job) |
 | `url-check.yaml` | push / PR to `main`, weekly cron, manual | `urlchecker` over docs and README; fails on 404/410, permanent redirects and non-canonical CRAN URLs |
 | `pkgdown.yaml` | push to `main`, release, manual | Build & deploy <https://cfbfastr.sportsdataverse.org/> |

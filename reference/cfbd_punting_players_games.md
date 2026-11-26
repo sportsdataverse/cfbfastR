@@ -94,7 +94,7 @@ Other CFBD Punting:
 # \donttest{
   try(cfbd_punting_players_games(year = 2025, week = 5))
 #> ── Player game punting data from CollegeFootballData.com ───── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-24 14:25:39 UTC
+#> ℹ Data updated: 2026-11-26 22:45:20 UTC
 #> # A tibble: 207 × 34
 #>      game_id season  week season_type player_id player team  conference opponent
 #>        <int>  <int> <int> <chr>       <chr>     <chr>  <chr> <chr>      <chr>   

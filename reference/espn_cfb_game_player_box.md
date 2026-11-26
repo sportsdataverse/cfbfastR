@@ -131,7 +131,7 @@ lists every function in this family.
 try(espn_cfb_game_player_box(game_id = 401628339,
                              position_detail = FALSE, team_detail = FALSE))
 #> ── Game player box score data from ESPN ────────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-24 14:27:29 UTC
+#> ℹ Data updated: 2026-11-26 22:47:17 UTC
 #> # A tibble: 6,101 × 18
 #>    game_id   team_id home_away athlete_id athlete_name position_id category_name
 #>    <chr>     <chr>   <chr>     <chr>      <chr>        <chr>       <chr>        

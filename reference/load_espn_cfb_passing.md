@@ -101,20 +101,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_passing(2004))
 #> ── college football passing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-11-24 14:29:49 UTC
+#> ℹ Data updated: 2026-11-26 22:49:45 UTC
 #> # A tibble: 373 × 98
 #>    team_id pos_team      division conference season player_id passer_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 195     Ohio          fbs      Mid-Ameri…   2004    162712 Brooks Rossman    
-#>  2 275     Wisconsin     fbs      Big Ten      2004    146220 Tyler Donovan     
-#>  3 197     Oklahoma Sta… fbs      Big 12       2004    145596 Donovan Woods     
-#>  4 58      South Florida fbs      Conferenc…   2004    161640 Andre Hall        
-#>  5 201     Oklahoma      fbs      Big 12       2004     20847 Jason White       
-#>  6 99      LSU           fbs      SEC          2004    107723 Marcus Randall    
-#>  7 264     Washington    fbs      Pac-10       2004    136579 Isaiah Stanback   
-#>  8 309     Louisiana     fbs      Sun Belt     2004    136229 Jerry Babb        
-#>  9 2084    Buffalo       fbs      Mid-Ameri…   2004    107383 Randall Secky     
-#> 10 2483    Oregon        fbs      Pac-10       2004    145035 Garren Strong     
+#>  1 152     NC State      fbs      ACC          2004    145900 Marcus Stone      
+#>  2 277     West Virginia fbs      Big East     2004    134809 Charles Hales     
+#>  3 130     Michigan      fbs      Big Ten      2004    116362 Spencer Brinton   
+#>  4 333     Alabama       fbs      SEC          2004    133282 Marc Guillon      
+#>  5 2116    UCF           fbs      Mid-Ameri…   2004    150032 Steven Moffett    
+#>  6 309     Louisiana     fbs      Sun Belt     2004    136229 Jerry Babb        
+#>  7 277     West Virginia fbs      Big East     2004    154084 Bryan Wright      
+#>  8 38      Colorado      fbs      Big 12       2004    135504 James Cox         
+#>  9 164     Rutgers       fbs      Big East     2004    135377 Ryan Hart         
+#> 10 2440    Nevada        fbs      Western A…   2004    133570 Jeff Rowe         
 #> # ℹ 363 more rows
 #> # ℹ 91 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <dbl>, success <dbl>, comp <dbl>, att <dbl>,

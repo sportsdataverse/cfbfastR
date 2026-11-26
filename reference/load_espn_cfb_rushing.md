@@ -84,20 +84,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_rushing(2004))
 #> ── college football rushing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-11-24 14:29:59 UTC
+#> ℹ Data updated: 2026-11-26 22:49:56 UTC
 #> # A tibble: 1,122 × 78
 #>    team_id pos_team      division conference season player_id rusher_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 68      Boise State   fbs      Western A…   2004    103357 Michael Sanford   
-#>  2 251     Texas         fbs      Big 12       2004    155432 Antwan Hobbs      
-#>  3 38      Colorado      fbs      Big 12       2004    161674 Hugh Charles      
-#>  4 135     Minnesota     fbs      Big Ten      2004    127742 Marion Barber III 
-#>  5 277     West Virginia fbs      Big East     2004    134807 Jason Colson      
-#>  6 12      Arizona       fbs      Pac-10       2004    136732 Gilbert Harris    
-#>  7 150     Duke          fbs      ACC          2004    116808 Cedric Dargan     
-#>  8 201     Oklahoma      fbs      Big 12       2004    113902 Kejuan Jones      
-#>  9 87      Notre Dame    fbs      FBS Indep…   2004    134723 Jeff Jenkins      
-#> 10 23      San Jose Sta… fbs      Western A…   2004    136035 James Jones       
+#>  1 2294    Iowa          fbs      Big Ten      2004    123343 Kevin Sherlock    
+#>  2 2309    Kent State    fbs      Mid-Ameri…   2004    129604 Darrell Dowery Jr.
+#>  3 328     Utah State    fbs      Sun Belt     2004    149336 Matt Crivello     
+#>  4 309     Louisiana     fbs      Sun Belt     2004    136559 Chester Johnson   
+#>  5 57      Florida       fbs      SEC          2004    134516 Ciatrick Fason    
+#>  6 228     Clemson       fbs      ACC          2004    102438 Yusef Kelly       
+#>  7 23      San Jose Sta… fbs      Western A…   2004    147041 Dale Rogers       
+#>  8 2306    Kansas State  fbs      Big 12       2004    136886 Donnie Anders     
+#>  9 2       Auburn        fbs      SEC          2004    146370 Kody Bliss        
+#> 10 130     Michigan      fbs      Big Ten      2004    102615 Tim Bracken       
 #> # ℹ 1,112 more rows
 #> # ℹ 71 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, rushing_td <dbl>, fumbles <dbl>,

@@ -52,7 +52,7 @@ Saiem Gilani
 # downloads the EP and WP models on first use.
 try(espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE))
 #> ── Play-by-play data from ESPN (core-v2) ───────────────────── cfbfastR 3.1.0 ──
-#> ℹ Data updated: 2026-11-24 14:27:48 UTC
+#> ℹ Data updated: 2026-11-26 22:47:37 UTC
 #> # A tibble: 196 × 542
 #>    season id_play    game_id game_play_number half_play_number drive_play_number
 #>     <int> <chr>      <chr>              <dbl>            <dbl>             <dbl>

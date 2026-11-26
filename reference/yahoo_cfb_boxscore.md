@@ -37,7 +37,7 @@ Other Yahoo CFB Functions:
 ``` r
 # \donttest{
   try(yahoo_cfb_boxscore(game_id = "ncaaf.g.202509200023"))
-#> 2026-11-24 14:33:51.222685: invalid game_id or no Yahoo boxscore available! HTTP 404 Not Found.
+#> 2026-11-26 22:54:28.9183: invalid game_id or no Yahoo boxscore available! HTTP 404 Not Found.
 #> NULL
 # }
 ```

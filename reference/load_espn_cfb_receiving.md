@@ -87,20 +87,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_receiving(2004))
 #> ── college football receiving EPA splits from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-11-24 14:29:58 UTC
+#> ℹ Data updated: 2026-11-26 22:49:55 UTC
 #> # A tibble: 1,418 × 77
 #>    team_id pos_team    division conference season player_id receiver_player_name
 #>    <chr>   <chr>       <chr>    <chr>       <int>     <int> <chr>               
-#>  1 183     Syracuse    fbs      Big East     2004    165278 Quinton Brown       
-#>  2 2653    Troy        fbs      Sun Belt     2004    129586 Jason Samples       
-#>  3 99      LSU         fbs      SEC          2004    116982 David Jones         
-#>  4 70      Idaho       fbs      Sun Belt     2004    150896 Bobby Bernal-Wood   
-#>  5 2439    UNLV        fbs      Mountain …   2004    121992 Dyante Perkins      
-#>  6 25      California  fbs      Pac-10       2004    144982 Garrett Cross       
-#>  7 21      San Diego … fbs      Mountain …   2004    147853 Jeremy Justice      
-#>  8 202     Tulsa       fbs      Western A…   2004    135169 Garrett Mills       
-#>  9 2306    Kansas Sta… fbs      Big 12       2004    137315 Michael Weiner      
-#> 10 221     Pittsburgh  fbs      Big East     2004    120104 Justin Acierno      
+#>  1 8       Arkansas    fbs      SEC          2004    134126 David Thompson      
+#>  2 166     New Mexico… fbs      Sun Belt     2004    136433 David Romaka        
+#>  3 2439    UNLV        fbs      Mountain …   2004    147032 Alvin Marshall      
+#>  4 145     Ole Miss    fbs      SEC          2004    133971 Lawrence Lilly      
+#>  5 2653    Troy        fbs      Sun Belt     2004    155215 Eugene Hampton      
+#>  6 68      Boise State fbs      Western A…   2004    150199 Mark Onibokun       
+#>  7 2005    Air Force   fbs      Mountain …   2004    134711 J.P. Waller         
+#>  8 2572    Southern M… fbs      Conferenc…   2004    129247 Chris Johnson       
+#>  9 2641    Texas Tech  fbs      Big 12       2004    108570 Clay McGuire        
+#> 10 193     Miami (OH)  fbs      Mid-Ameri…   2004    116403 Mike Smith          
 #> # ℹ 1,408 more rows
 #> # ℹ 70 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, comp <int>, targets <int>,
