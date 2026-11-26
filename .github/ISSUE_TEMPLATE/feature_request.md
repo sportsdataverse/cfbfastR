@@ -10,7 +10,7 @@ assignees: ""
 ## Is your feature request related to a problem?
 
 A clear and concise description of what the problem is.
-Example: *"I'm always frustrated when I have to manually join `cfbd_games()`
+Example: *"I'm always frustrated when I have to manually join `cfbd_game_info()`
 output to `cfbd_drives()` to get drive-level start/end field position."*
 
 ## Which data source / function family?

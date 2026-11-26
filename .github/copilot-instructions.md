@@ -80,7 +80,7 @@ One loader per sportsdataverse-data release tag; new loaders go in
 following the neighboring function's shape (parquet-only tags use
 `parquet_from_url()`).
 
-The CFBD API requires a bearer token. Set the `CFBD_API_KEY` environment variable; users can register one via `register_cfbd()` and confirm with `cfbd_api_key_info()` / `has_cfbd_key()`.
+The CFBD API requires a bearer token. Set the `CFBD_API_KEY` environment variable; users can request one at <https://collegefootballdata.com/key> (the `?register_cfbd` help page shows how to save it with `Sys.setenv()` or `~/.Renviron`) and confirm with `cfbd_api_key_info()` / `has_cfbd_key()`.
 
 ## Code Style
 
@@ -220,15 +220,15 @@ Adding a new query arg to a catalog wrapper's signature (e.g., `group_id`) auto-
 ## Testing
 
 - Use `skip_on_cran()` and `skip_on_ci()` guards for all live API tests.
-- Add a source-specific env-var skip helper immediately after `skip_on_ci()`:
-  - `skip_cfbd_test()` for `test-cfbd_*.R` (requires `CFBD_API_KEY`)
-  - `skip_espn_test()` for `test-espn_cfb_*.R` (requires `ESPN_TESTS=1`)
+- Add a source-specific guard immediately after `skip_on_ci()`:
+  - `skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")` for `test-cfbd_*.R` (requires `CFBD_API_KEY`)
+  - `skip_if_offline("site.api.espn.com")` (or the `sports.core.api.espn.com` host the test calls) for `test-espn_cfb_*.R`; ESPN needs no key
 - **Column assertions must always use the subset direction** -- expected ⊆ actual:
   `expect_in(sort(expected_cols), sort(colnames(x)))`. Both CFBD and ESPN add columns without removing old ones, so strict `expect_equal(sort(colnames(x)), sort(cols))` will flag on any new column. The subset direction is the only pattern that survives upstream drift.
 - **Always add a skip-if-empty guard immediately after the API call**, before any assertion that touches `x`:
 
   ```r
-  x <- cfbd_games(year = 2023, week = 1)
+  x <- cfbd_game_info(year = 2023, week = 1)
   if (is.null(x) || !is.data.frame(x) || nrow(x) == 0) {
     skip("No rows returned from endpoint at test time")
   }
@@ -243,10 +243,9 @@ Adding a new query arg to a catalog wrapper's signature (e.g., `group_id`) auto-
 
 ### Environment Variables
 
-| Variable           | Description                       | Helper                  |
+| Variable           | Description                       | Test guard              |
 |--------------------|-----------------------------------|-------------------------|
-| `CFBD_API_KEY`     | Bearer token for CFBD endpoints   | `skip_cfbd_test()`      |
-| `ESPN_TESTS=1`     | Enable ESPN catalog tests         | `skip_espn_test()`      |
+| `CFBD_API_KEY`     | Bearer token for CFBD endpoints   | `has_cfbd_key()`        |
 
 ## Documentation Maintenance
 
